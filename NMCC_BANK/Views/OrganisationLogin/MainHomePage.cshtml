@@ -1,0 +1,592 @@
+﻿<!DOCTYPE html>
+@{
+
+    Layout = null;
+}
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RSSB Bank</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link href="~/Content/snewcss.css" rel="stylesheet" />
+    <link href="~/Content/newhomepage/NewCss/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/newhomepage/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/newhomepage/style.css" rel="stylesheet" />
+    <link href="~/Content/newhomepage/fontawesome.min.css" rel="stylesheet" />
+    <link href="~/Content/newhomepage/NewCss/css.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/Content/snewcss.css" />
+    <link href="~/Content/Navigation/nestyle.css" rel="stylesheet" />
+
+    <style>
+        #show {
+            display: none;
+        }
+
+        .init_div {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 90px;
+        }
+
+        .init_a {
+            font-size: 18px;
+            font-weight: 500;
+        }
+
+            .init_a:focus {
+                border: none !important;
+            }
+
+        .init_login_btn {
+            border: none !important;
+            color: #fff !important;
+            font-size: 18px !important;
+            color: #fff !important;
+            margin-top: 0 !important;
+            border-radius: 0px !important;
+            padding: 5px 15px !important;
+            font-weight: 500 !important;
+        }
+
+        .init_link {
+            font-size: 18px;
+            margin-right: 12px;
+            padding: 3px 10px;
+            color: #007bff !important;
+        }
+
+            .init_link:hover {
+                text-decoration: underline;
+                transition: all.6s ease;
+            }
+
+        .init_ul {
+            display: flex;
+            flex-direction: row;
+            margin-bottom: 0;
+        }
+
+        .init-ul-parent {
+            margin-right: 40px !important;
+        }
+
+        .init_nav {
+            width: 100%;
+            font-family: 'Roboto', sans-serif;
+            background: white;
+            min-height: 95px;
+            margin-bottom: 0 !important;
+            padding: 0;
+        }
+
+        .init_logo_div {
+            margin-left: 40px;
+        }
+        .navbar-expand-lg .navbar-nav .dropdown-menu {
+            position: absolute;
+            background-color: #bf5252;
+            color: #fff;
+        }
+
+        .dropdown-menu > li > a:focus, .dropdown-menu > li > a:hover {
+            color: #262626;
+            text-decoration: none;
+            background-color: #ba0000;
+            background-image: linear-gradient(359deg, black, transparent);
+        }
+
+        .init_li {
+            border-bottom: 1px solid rgba(255,255,255,0.5);
+            padding: 2px;
+        }
+
+        .dropdown-menu_custom {
+            width: 128px !important;
+            padding: 0 !important;
+            border-top: none;
+            border-radius: 0px;
+            width: 130px !important;
+            position: absolute;
+            z-index: 1000;
+            color: #212529;
+            text-align: left;
+            list-style: none;
+            background-clip: padding-box;
+            border: 1px solid rgba(0, 0, 0, 0.15);
+            border-radius: 0.25rem;
+        }
+
+        #CustomerClickId:focus {
+            outline-color: none;
+            outline-offset: 0px;
+        }
+
+        #AgentClickId :focus {
+            outline-color: none;
+            outline-offset: 0px;
+        }
+
+        .dropdown-menu > li > a:hover {
+            background: transparent !important;
+        }
+
+        .dropdown-menu_custom > li:focus, .dropdown-menu_custom > li:hover {
+            border-bottom: 2px solid #fff;
+            transition: all 0.3s ease;
+        }
+
+        .img-res {
+            height: 41px;
+            width: 212px;
+            margin-left: -25px;
+        }
+
+        button:focus {
+            outline: none !important;
+        }
+
+        /*main home page*/
+        @@media only screen and (max-width:800px) {
+            .init_logo_main {
+                height: 44px;
+            }
+        }
+
+        @@media only screen and (max-width:700px) {
+            .init_logo_main {
+                height: 40px;
+            }
+        }
+
+        @@media only screen and (max-width:700px) {
+            .init_logo_div {
+                margin-left: 20px;
+            }
+        }
+
+        @@media only screen and (max-width:700px) {
+            .init_link {
+                display: none;
+            }
+        }
+
+        @@media only screen and (max-width:700px) {
+            .init_logo_main {
+                height: 34px;
+            }
+
+            .init_logo_div {
+                margin-left: 15px;
+            }
+
+            .init_div {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                height: 68px;
+            }
+
+            .dropdown-menu_custom {
+                width: 107px !important;
+            }
+
+            .init-ul-parent {
+                margin-right: 20px !important;
+            }
+        }
+    </style>
+    <link href="~/css/multiclass.css" rel="stylesheet" />
+</head>
+<body>
+    <div id="header" class="header">
+        <div class="init_div">
+            <div class="init_logo_div">
+                <img src="~/content/logos/RSSB_bank.jpg" class="init_logo_main" alt="Bank Logo" />
+            </div>
+            <div class="init-ul-parent" id="show-menu">
+                <ul class="init_ul">
+                    <a href="https://www.rajarshishahubankpune.com/" class="init_link" style="color: #000!important;">About Us</a>
+                    <li class="init-btn-pad" id="dropdown1">
+                        <button class="dropdown-toggle btn-primary1 init_login_btn" type="button">
+                            Login
+                        </button>
+                        <ul class="dropdown-menu_custom" id="show">
+                            <li class="init_li">
+                                <a class="init_a" href="#wcs"> <button type="button" id="CustomerClickId" class="" style="padding: 5px 28px;color: #fff;font-size: 14px;border:none;font-weight: 500;background: transparent;">Customer</button></a>
+                            </li> 
+                            <li class="init_li">
+                                <a class="init_a" href="#wcs"> <button type="button" id="AgentClickId" class="" style="padding: 5px 28px;color: #fff;font-size: 14px;border:none;font-weight: 500;background: transparent;">Agent</button></a>
+                            </li>
+                            <li class="init_li">
+                                <a class="init_a" href="#wcs"> <button type="button" id="AdminClickId" class="" style="padding: 5px 28px;color: #fff;font-size: 14px;border:none;font-weight: 500;background: transparent;">Admin</button></a>
+                            </li>
+                            <li class="init_li">
+                                <a class="init_a" href="#wcs"> <button type="button" id="EmployeeClickId" class="" style="padding: 5px 28px;color: #fff;font-size: 14px;border:none;font-weight: 500;background: transparent;">Employee</button></a>
+                            </li>
+                        </ul>
+                    </li>
+                    @*<li class="nav-item .search-container">
+                    <a class="nav-link search" href="#"><i class="fas fa-search"></i></a>
+                    <form>
+                    <input type="search" placeholder="Search">
+                    </form>
+                    </li>*@
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="home_section">
+        <img src="~/Content/imghome/blog3.png" alt="Chicago" style="width:100%;">
+    </div>
+
+
+
+    <script type='text/javascript'>
+        $(document).ready(function () {
+
+            //this will be triggered when the first button was clicked
+            $("#CustomerClickId").click(function () {
+                $("#DigiCerti").html("<div style='position: fixed;z-index: 5000;float: left;right: 50%;height: 50px;width: 50px;top:40%;'><i class='fa fa-pulse fa-fw dgldr ldrdesign' style='height:70px;width:70px;border-radius:50%;border-bottom:5px dotted grey;border-top:5px dotted black;border-right:5px dotted black;border-left:5px dotted black;height:80px;width:80px;position:absolute;margin: 20% 50%;'></i></div>");
+                $("#DigiCerti").show();
+                window.location.href = "/CustomerRegistration/CustomerRegistration";
+            });
+            $("#AgentClickId").click(function () {
+                $("#DigiCerti").html("<div style='position: fixed;z-index: 5000;float: left;right: 50%;height: 50px;width: 50px;top:40%;'><i class='fa fa-pulse fa-fw dgldr ldrdesign' style='height:70px;width:70px;border-radius:50%;border-bottom:5px dotted grey;border-top:5px dotted black;border-right:5px dotted black;border-left:5px dotted black;height:80px;width:80px;position:absolute;margin: 20% 50%;'></i></div>");
+                $("#DigiCerti").show();
+                window.location.href = "/OrganisationLogin/OrganisationDetails";
+            });
+            $("#AdminClickId").click(function () {
+                $("#DigiCerti").html("<div style='position: fixed;z-index: 5000;float: left;right: 50%;height: 50px;width: 50px;top:40%;'><i class='fa fa-pulse fa-fw dgldr ldrdesign' style='height:70px;width:70px;border-radius:50%;border-bottom:5px dotted grey;border-top:5px dotted black;border-right:5px dotted black;border-left:5px dotted black;height:80px;width:80px;position:absolute;margin: 20% 50%;'></i></div>");
+                $("#DigiCerti").show();
+                window.location.href = "/adminlogin/userdetails";
+            });
+            $("#EmployeeClickId").click(function () {
+                $("#DigiCerti").html("<div style='position: fixed;z-index: 5000;float: left;right: 50%;height: 50px;width: 50px;top:40%;'><i class='fa fa-pulse fa-fw dgldr ldrdesign' style='height:70px;width:70px;border-radius:50%;border-bottom:5px dotted grey;border-top:5px dotted black;border-right:5px dotted black;border-left:5px dotted black;height:80px;width:80px;position:absolute;margin: 20% 50%;'></i></div>");
+                $("#DigiCerti").show();
+                window.location.href = "/EmployeeLogin/EmpOrganisationDetails";
+            });
+
+        });
+    </script>
+
+    @*<script>
+    function myFunction() {
+    @{Html.RenderAction("CustomerRegistration", "CustomerRegistration");}
+
+    }
+    </script>*@
+    @*<script>
+    function getorgreg() {
+    debugger;
+    window.location.href = '/CustomerRegistration/CustomerRegistration';
+    }
+    </script>*@
+    @*<div class="container-fluied" style="margin-top:-20px">
+
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">*@
+    <!-- Indicators -->
+    @*<ol class="carousel-indicators">
+    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+    <li data-target="#myCarousel" data-slide-to="1"></li>
+    <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ol>*@
+
+    <!-- Wrapper for slides -->
+    @*    <div class="carousel-inner">*@
+    @*<div class="item active">
+    <img src="~/Content/imghome/blog2.png" alt="Los Angeles" style="width:100%;">
+    </div>*@
+
+    @*<div class="item">
+    <img src="~/Content/imghome/blog3.png" alt="Chicago" style="width:100%;">
+    </div>*@
+
+    @*<div class="item">
+    <img src="~/Content/imghome/blog1.png" alt="New york" style="width:100%;">
+    </div>*@
+    @* </div>*@
+
+    <!-- Left and right controls -->
+    @*<a class="left carousel-control" href="#myCarousel" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left"></span>
+    <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right"></span>
+    <span class="sr-only">Next</span>
+    </a>*@
+    @* </div>
+    </div>
+    *@
+    @*<div id="home" class="slider">
+    @*<div id="main_slider" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+    <li data-target="#main_slider" data-slide-to="0" class="active"></li>
+    <li data-target="#main_slider" data-slide-to="1"></li>
+    <li data-target="#main_slider" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner">
+    <div class="carousel-item active">
+    <img class="d-block w-100" src="~/Content/imghome/blog1.png" alt="slider_img">
+    <div class="ovarlay_slide_cont">
+    <h3 style="color:#fff">E-Kyc Service</h3>
+    <h4 style="color:#fff">Aadhaar service</h4>
+
+    <a class="blue_bt" href="#" style="background-color:#107ff6;">See Our Service</a>
+    </div>
+    </div>
+    <div class="carousel-item">
+    <img class="d-block w-100" src="~/Content/imghome/slide1.jpg" alt="slider_img">
+    <div class="ovarlay_slide_cont">
+    <h3 style="color:#fff">E-Kyc Service</h3>
+    <h3 style="color:#fff">Aadhaar service</h3>
+
+    <a class="blue_bt" href="#" style="background-color:#107ff6;">See Our Service</a>
+    </div>
+    </div>
+    </div>
+    <a class="carousel-control-prev" href="#main_slider" role="button" data-slide="prev">
+    <img src="~/Content/imghome/left.png" alt="#" />
+    </a>
+    <a class="carousel-control-next" href="#main_slider" role="button" data-slide="next">
+    <img src="~/Content/imghome/right.png" alt="#" />
+    </a>
+    </div>*@
+
+    <div id="about" class="about_section layout_padding" style="display:none;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5">
+                    <h4>Unique Identification Authority of India</h4>
+                    <h3 style="text-transform: none !important">Its Legal Framework and organization structure.</h3>
+                    <p>The Unique Identification Authority of India is a statutory authority established under the provisions of Aadhaar act 2016 by the Govt. of India under the Ministry of Electronics & Information Technology.</p>
+                </div>
+                <div class="col-md-6 offset-md-1">
+                    <div class="full text_align_center">
+                        <img class="img-responsive" src="~/Content/imghome/about.png" alt="#" style="max-width:100%!important" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="hiw" class="hiw_section layout_padding" style="display:none;" @*style="background: #e7e6e6;"*@>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-7">
+                    <h3 class="" style="color:#262626">About Aadhaar</h3>
+                    <p class="" style="color:#262626">Enrolling for Aadhaar is free of cost & you can get enrolled at a center close to you.</p>
+                </div>
+                <div class="col-md-5">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-sm-4 col-xs-4">
+                    <img class="margin_top_30 img-responsive mnhmpgbox" src="~/Content/imghome/chekkk.png" alt="#" />
+                    <h3 class="blog_head hmtext mnhmpgboxfnt">Book An Appoinment</h3>
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-4">
+                    <img class="margin_top_30 img-responsive mnhmpgbox" src="~/Content/imghome/cheksta.png" alt="#" />
+                    <h3 class="blog_head hmtext mnhmpgboxfnt">Check Status</h3>
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-4">
+                    <img class="margin_top_30 img-responsive mnhmpgbox" src="~/Content/imghome/downlodeadd.png" alt="#" />
+                    <h3 class="blog_head hmtext mnhmpgboxfnt">Download Aadhaar</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="service" class="hiw_section layout_padding" style="display:none;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-7">
+                    <h3>OUR SERVICES</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.</p>
+                </div>
+                <div class="col-md-5">
+                </div>
+            </div>
+            <div class="row">
+                @*<div class="col-md-7 service_blog">
+                <img class="margin_top_30 img-responsive" src="~/Content/imghome/s1.png" alt="#" />
+                <h3 class="blog_head">Verify Aadhaar</h3>
+                </div>
+                <div class="col-md-4 service_blog">
+                <img class="margin_top_30 img-responsive" src="~/Content/imghome/s33.png" alt="#" />
+                <h3 class="blog_head">Verify Register</h3>
+                </div>*@
+                <div class="col-md-4 service_blog">
+                    <img class="margin_top_30 img-responsive" src="~/Content/imghome/s5.png" alt="#" />
+                    <h3 class="blog_head">Retrieved Aadhar</h3>
+                </div>
+                <div class="col-md-4 service_blog">
+                    <img class="margin_top_30 img-responsive" src="~/Content/imghome/s66.png" alt="#" />
+                    <h3 class="blog_head">Genrate VID</h3>
+                </div>
+                <div class="col-md-4 service_blog">
+                    <img class="margin_top_30 img-responsive" src="~/Content/imghome/s2.png" alt="#" />
+                    <h3 class="blog_head">Aadhaar Status</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="contact" class="hiw_section layout_padding" style="display:none;" @*style="background: #eeefef;"*@>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-7">
+                    <h3>Any Help?</h3>
+                </div>
+                <div class="col-md-5">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-7">
+                    <div class="contact-form">
+                        <form style="font-size:15px">
+                            <input type="text" placeholder="Name" />
+                            <input type="email" placeholder="Email" />
+                            <input type="text" placeholder="Phone Number" />
+                            <input type="text" placeholder="Type of Service">
+                            <textarea placeholder="Message"></textarea>
+                            <button type="submit" value="SEND" style="background-color:#107ff6;text-align:center;width:100%;height:52px;color:#fff;border:none;">SEND</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-md-5 text_align_center dispn" style="margin-top:5.8%">
+                    <img class="img-responsive" src="~/Content/imghome/man_cartoon.png" alt="#" style="height:690px" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--<div id="wcs" class="hiw_section layout_padding">
+       <div class="container">
+          <div class="row">
+             <div class="col-md-12 text_align_center">
+                <h3>Our Client Say</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.</p>
+             </div>
+             <div class="col-md-5">
+             </div>
+          </div>
+          <div class="row">
+             <div class="col-md-11">
+                <div class="full testimonial_blog">
+                   <p>Jackrok</p>
+                   <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscureContrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over</p>
+                </div>
+             </div>
+          </div>
+       </div>
+    </div>-->
+    <div class="subcribe" style="display:none;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 col-sm-6">
+                    <h4 style="color:#fff">Indofin net</h4>
+                    <p>Offline Ekyc mhbjjknkjnj</p>
+                </div>
+                <div class="col-md-8 col-sm-6">
+                    <form>
+                        <input type="email" name="email" placeholder="Enter Your Email Address" />
+                        <button>Subscribe</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    @*<footer>
+    <div class="container" style="display:none;">
+    <div class="row">
+    <div class="col-lg-3 col-md-6 col-12">
+    <div class="footer_blog_section">
+    <a class="nav-link  href="#home"> <img class="img-res" src="~/Content/imgs/newlogo2.png" alt="#"/></a>
+
+    <p style="margin-top: 5px;">It is a long established fact that a reader will be distracted by the readable content..</p>
+    </div>
+    </div>
+    <div class="col-lg-2 col-md-6 col-12 init-main-div init-last ">
+    <div class="item">
+    <h4 class="text-uppercase">Navigation</h4>
+    <ul class="init-ul">
+    <li><a href="#">Home</a></li>
+    <li><a href="#">About</a></li>
+    <li><a href="#">Location</a></li>
+    <li><a href="#">Service</a></li>
+    <li><a href="#">Contact</a></li>
+    </ul>
+    </div>
+    </div>
+    <div class="col-lg-4 col-md-6 col-12 init-main-div">
+    <div class="item">
+    <h4 class="text-uppercase">Contact Info</h4>
+    <p><strong> Office Address:</strong></p>
+    <p><img src="~/Content/imghome/phone_icon.png" alt="#" /> Kurla Mumbai</p>
+    <p><strong>Customer Service:</strong></p>
+    <p><img src="~/Content/imghome/location.png" alt="#" /> 987 654 3210</p>
+    </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-12 init-main-div init-last init-mar">
+    <div class="item ">
+    <h4 class="text-uppercase">Discover</h4>
+    <ul class="init-ul">
+    <li><a href="#">Help</a></li>
+    <li><a href="#">My UIDAI</a></li>
+    <li><a href="#">Subscribe</a></li>
+    <li><a href="#">Contact Us</a></li>
+    </ul>
+    </div>
+    </div>
+    </div>
+    </div>
+    <div class="copyright text-center" style="display:none;">
+    <p>© Indo-FinNet. All Rights Reserved  <a href="www.indofinnet.co.in">Visit us at www.indofinnet.co.in</a></p>
+    </div>
+    </footer>*@
+
+    @*<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>*@
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    @*<script src="~/Scripts/bootstrap.min.js"></script>*@
+    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#dropdown1").click(function () {
+                $('#show').slideToggle(200);
+            });
+        });
+    </script>
+    <script>
+        $(function () {
+
+            'use strict';
+
+            var winH = $(window).height();
+
+            $('header').height(winH);
+
+            $('header .container > div').css('top', (winH / 2) - ($('header .container > div').height() / 2));
+
+            $('.navbar ul li a.search').on('click', function (e) {
+                e.preventDefault();
+            });
+            $('.navbar a.search').on('click', function () {
+                $('.navbar form').fadeToggle();
+            });
+
+            $('.navbar ul.navbar-nav li a').on('click', function (e) {
+
+                var getAttr = $(this).attr('href');
+
+                e.preventDefault();
+                $('html').animate({ scrollTop: $(getAttr).offset().top }, 1000);
+            });
+        })
+    </script>
+
+    <div id="DigiCerti"></div>
+</body>
+</html>

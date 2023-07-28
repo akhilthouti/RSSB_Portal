@@ -1,0 +1,156 @@
+﻿@{
+    Layout = "~/Views/Shared/_AdminLayoutPage.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>DashBoard</title>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/Dashcss/dashboard.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.11.1.min.js"></script>
+    @*@Styles.Render("~/Content/Dashboard")*@
+    @*@Scripts.Render("~/bundles/jquery")*@
+    <link href="~/Scripts/sweetalert.css" rel="stylesheet" />
+    <script src="~/Scripts/sweetalert.min.js"></script>
+    <link href="~/Content1/Dashcss/shivani/css">
+    <link href="~/Content/snewcss.css" rel="stylesheet" />
+    <script>
+        function getcustdetails() {
+            debugger;
+            window.location.href = '/AdminLogin/PendingREKYC';
+        }
+        function getApprove() {
+            debugger;
+            window.location.href = '/AdminLogin/ApproveReKycDetails';
+        }
+        function getRejectdetails() {
+            debugger;
+            window.location.href = '/AdminLogin/RejectReKyctDetails';
+        }
+    </script>
+    <script>
+        $(function () {
+            var Accordion = function (el, multiple) {
+                this.el = el || {};
+                this.multiple = multiple || false;
+                var links = this.el.find('.link');
+                links.on('click', { el: this.el, multiple: this.multiple }, this.dropdown)
+            }
+            Accordion.prototype.dropdown = function (e) {
+                var $el = e.data.el;
+                $this = $(this),
+                    $next = $this.next();
+                $next.slideToggle();
+                $this.parent().toggleClass('open');
+                if (!e.data.multiple) {
+                    $el.find('.submenu').not($next).slideUp().parent().removeClass('open');
+                };
+            }
+            var accordion = new Accordion($('#accordion'), false);
+        });
+    </script>
+    <script>
+        function Home(){
+           window.location.href = '/AdminDashBoardNew/IndoFinAdminDashBoard'; 
+        }
+        </Script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            if ('@ViewBag.msg' != null && '@ViewBag.msg' != '') {
+
+                swal('@ViewBag.msg');
+            }
+        });
+    </script>
+    <style>
+       .numdt{
+           color: white;
+    font-weight: 700;
+    font-size: 25px!important;
+    text-align: center;
+       } 
+       .init_href {
+            font-size: 16px;
+            padding: 5px 12px;
+            color: #fff !important;
+            cursor:pointer;
+        }
+
+            .init_href:hover {
+                border-radius: 3px;
+                transition: all 0.4s ease;
+            }
+    </style>
+     <link href="~/css/multiclass.css" rel="stylesheet" />
+</head>
+<body>
+    <section class="breadcrumbs" style="display:none;">
+        <div class="container-fluid">
+            <div class="d-flex justify-content-between align-items-center">
+                <h3 style="color:#fff;font-size:20px">Dashboard</h3>
+            </div>
+        </div>
+    </section>
+   
+    <section id="dashboard-menu" style="padding:0!important">
+        <div class="dashboard-menu">
+            <div class="" id="navbarSupportedContent" style="font-size: 15px;display: flex;align-items: center;padding: 12px;">
+                <div class="container-fluid">
+                   <h3 style="color:#fff;font-size:20px;margin-bottom: 0;">Dashboard</h3>
+                </div>
+                <div style="display: flex;flex-direction: row;">
+                    <a class="init_href" style="" href="#" onclick="Home()">Home</a>
+                    <a class="init_href" style="margin-left: 15px;" href="#" onclick="LogOut()">Logout</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <div class="containerrw">
+        <div class="box admnbox" id="cdetails" onclick="getcustdetails()">
+            <div class="boxContent">
+                <i class="fa fa-file-text icon"></i>
+               <div class="nocon numdt">@ViewBag.PendingCnt</div>
+                <h1 class="title adfntsz">Pending ReKyc</h1>
+            </div>
+            <a href="#"></a>
+            <a href="#"></a>
+        </div>
+        <div class="box1 admnbox" id="cdetails" onclick="getApprove()">
+            <div class="boxContent">
+                <i class="fa fa-check-circle icon"></i>
+                <div class="nocon numdt">@ViewBag.REkycapproveCnt</div>
+                <h1 class="title adfntsz">Approved ReKyc</h1>
+            </div>
+            <a href="#"></a>
+            <a href="#"></a>
+        </div>
+        <div class="box2 admnbox" id="cdetails" onclick="getRejectdetails()">
+            <div class="boxContent">
+                <i class="fa  fa-ban icon"></i>
+               <div class="nocon numdt">@ViewBag.REKYCrejectCnt</div>
+                <h1 class="title adfntsz">Rejected ReKyc</h1>
+            </div>
+            <a href="#"></a>
+            <a href="#"></a>
+        </div>
+    </div>
+    <div id="orgregresult"></div>
+    <ul id="list"></ul>
+    <p style="border-top: 1px solid rgba(0, 0, 0, 0.3);
+    text-align: center;
+    border-bottom: 1pxsol;
+    font-size: 14px;
+    margin-top: 54px;
+    padding: 9px 0;
+padding-bottom:0;
+color: #2c4964;">© Indo-FinNet. All Rights Reserved  <a href="www.indofinnet.co.in" style="color:color: #2c4964;">Visit us at www.indofinnet.co.in</a></p>
+</body>
+</html>
+
+

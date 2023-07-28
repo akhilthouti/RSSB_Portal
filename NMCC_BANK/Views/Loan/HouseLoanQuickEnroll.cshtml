@@ -1,0 +1,683 @@
+﻿@model INDO_FIN_NET.Models.QuickEnroll.ClsCustQuickEnrollment
+
+@{
+    Layout = "~/Views/Shared/LoanLayout.cshtml";
+}
+
+
+
+<html>
+<head>
+
+    <link href="~/Content/Navigation/nestyle.css" rel="stylesheet"/>
+    <link href="~/Content/snewcss.css" rel="stylesheet"/>
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&display=swap"
+        rel="stylesheet">
+
+    <link href="~/css/multiclass.css" rel="stylesheet" />
+    <style>
+        @@media screen and (max-width:1036px) {
+            .init_redirect_inner {
+                width: 90%;
+            }
+        }
+
+        @@media screen and (max-width:992px) {
+            .init_padding {
+                padding: 0;
+            }
+
+            .spec_btn_div {
+                width: 100%;
+            }
+        }
+
+        .init_full_btn {
+            width: 100%;
+        }
+
+        .init_mid_section {
+            text-align: center;
+            height: 100%;
+            width: 6px;
+            margin: 0px 48px;
+            background: #544e4e;
+        }
+
+        .init_img_step {
+            /* height: 128px;*/
+            display: none;
+        }
+
+        .init_step_div {
+            position: relative;
+        }
+
+        .init_main {
+            display: flex;
+            flex-direction: row;
+            padding: 0px 18px 0 18px;
+        }
+
+        .init_step_num {
+            display: inline-block;
+            position: absolute;
+            margin-top: -17px;
+            margin-left: 13px;
+            background: #fff;
+            padding: 0 4px;
+            font-size: 24px;
+        }
+
+        .init_left {
+            display: flex;
+            align-items: center;
+        }
+
+        .init_step_num,
+        .init_desc,
+        .init_header {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .init_desc {
+            color: #fff;
+            font-size: 14px;
+            font-weight: 500;
+            padding: 13px 0px;
+            margin-bottom: 0;
+        }
+
+        .init_redirect_wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .init_redirect_inner {
+            width: 90%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .init_redirect_content {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+        }
+
+        .init_step_1 {
+            background-color: #6353ab;
+            margin-bottom: 73px;
+        }
+
+        .init_step_2 {
+            background-color: #fdc620;
+            margin-top: 68px;
+            margin-bottom: 74px;
+        }
+
+        .init_step_3 {
+            background-color: #fe7b5a;
+        }
+
+        .init_step_4 {
+            background-color: #3f87eb;
+        }
+
+        @@media screen and (max-width:996px) {
+            .init_step_1 {
+                margin-bottom: 52px;
+            }
+
+            .init_step_2 {
+                margin-bottom: 35px;
+            }
+
+            .init_header {
+                font-size: 20px !important;
+                margin: 0 !important;
+            }
+
+            .btn_last {
+                margin-top: 10px !important;
+            }
+        }
+
+        @@media screen and (max-width:900px) {
+            .init_rediect_div {
+                display: flex;
+            }
+        }
+
+        .steps-sm {
+            display: none;
+        }
+
+        .init_step_div {
+            border-radius: 5px;
+        }
+
+        .init_step_num1 {
+            background-color: #9583e1;
+            color: #fff;
+            border-radius: 50%;
+            padding: 3px 4px;
+        }
+
+        .init_step_num2 {
+            background-color: #ffdb6d;
+            color: #fff;
+            border-radius: 50%;
+            padding: 3px 1px;
+        }
+
+        .init_step_num3 {
+            background-color: #eda796;
+            color: #fff;
+            border-radius: 50%;
+            padding: 3px 1px;
+        }
+
+        .init_step_num4 {
+            background-color: #6aa5f7;
+            color: #fff;
+            border-radius: 50%;
+            padding: 3px 1px;
+        }
+
+        .init_mid_section {
+            text-align: center;
+            height: 100%;
+            width: 6px;
+            margin: 0px 48px;
+            background: #544e4e;
+        }
+
+        .init_step_1::before,
+        .init_step_3::before {
+            content: "";
+            width: 20px;
+            height: 20px;
+            transform: rotate(90deg);
+            position: absolute;
+            transform: rotate(45deg);
+            top: 21px;
+            z-index: -1;
+            right: -10px;
+        }
+
+        .init_step_2::before,
+        .init_step_4::before {
+            content: "";
+            width: 20px;
+            height: 20px;
+            transform: rotate(90deg);
+            position: absolute;
+            transform: rotate(45deg);
+            top: 21px;
+            left: -10px;
+            z-index: -1;
+        }
+
+        .init_step_1::before {
+            background-color: #6353ab;
+        }
+
+        .init_step_2::before {
+            background-color: #fdc620;
+        }
+
+        .init_step_3::before {
+            background-color: #fe7b5a;
+        }
+
+        .init_step_4::before {
+            background-color: #3f87eb;
+        }
+
+        .circle {
+            width: 30px;
+            height: 30px;
+            background-color: #6c5f5f;
+            margin-left: -12px;
+            border-radius: 50%;
+            font-size: 23px;
+            margin-bottom: 40px;
+            color: #fff;
+        }
+
+        .last_circle {
+            width: 30px;
+            height: 30px;
+            background-color: #6c5f5f;
+            margin-left: -12px;
+            border-radius: 50%;
+            font-size: 23px;
+            color: #fff;
+        }
+
+        .first {
+            margin-top: 14px;
+        }
+
+        .init_header {
+            font-size: 24px;
+            font-weight: 500;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .btn_last {
+            color: white;
+            background: #bf5252;
+            border: none;
+            margin-top: 30px;
+        }
+
+        #steps {
+            position: fixed;
+            /* display: none;  */
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 2000;
+            cursor: pointer;
+            background-color: #fff;
+        }
+
+        .write {
+            color: #3e3e3e;
+            font-size: 15px;
+            font-weight: 500;
+            padding: 0px 6px 0px 0px;
+            font-family: 'Poppins', sans-serif;
+            position: relative;
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            /* text-align: center;*/
+        }
+
+            .write::before {
+                content: "✔";
+                background: #f78787;
+                border-radius: 50%;
+                font-size: 20px;
+                color: white;
+                padding: 5px 10px;
+                font-size: 16px;
+                margin-right: 8px;
+            }
+
+        .write_icon {
+        }
+
+        .steps-sm {
+            padding: 22px;
+            background: #fff1f1;
+            border-radius: 8px;
+        }
+    </style>
+    <style>
+        #viewport {
+            border: 1px solid #000 !important;
+        }
+
+        .zoomDocument {
+            height: 40px;
+            width: 40px;
+            cursor: pointer;
+        }
+        .zoomDocument:hover {
+                ms-transform: scale(25);
+                -webkit-transform: scale(25);
+                transform: scale(25);
+                /* margin-left: 1854%; */
+                float: left;
+                left: 49%;
+                /* margin-top: 1126%; */
+                position: absolute;
+                z-index: 999;
+                /* top: 47%; */
+                height: 15px;
+                width: 21px;
+                cursor: pointer;
+                top: 48% !important;
+                position: fixed;
+        }
+
+
+    </style>
+    <style>
+       .bg-green{
+            background-color:green!important;
+        }
+   </style>
+    <style>
+
+
+        .alert_box {
+            width: 30%;
+            border: 1px solid #000;
+            height: 120px;
+            background-color: #fff;
+            float: left;
+            position: fixed;
+            z-index: 100;
+            left: 36%;
+            top: 40%;
+        }
+
+        .alert_headtext {
+            text-align: center;
+            width: 100%;
+            padding-top: 5%;
+        }
+
+        #overlay_disabl {
+            width: 100%;
+            height: 100%;
+            top: 0px;
+            left: 0px;
+            position: fixed;
+            display: none;
+            background: rgba(0,0,0,.2) url(../../Images/Ajaxloader/ui-bg_diagonals-thick_20_666666_40x40.png) 50% 50% repeat;
+            opacity: .50;
+            filter: Alpha(Opacity=50);
+            z-index: 99;
+            text-align: center;
+        }
+
+        #quickEnrollDiv {
+            padding: 4px 4px;
+            margin: 1% 1%;
+            border-radius: 5px;
+        }
+
+        #custdob img {
+            height: 34px;
+            margin-top: 1px;
+            margin-left: -16%;
+        }
+
+        #savebtn {
+            float: right;
+        }
+
+        #savebtn1 {
+            float: right;
+            margin-top: 6px;
+        }
+
+        .form-group input[type=text]:focus, .form-group input[type=password]:focus {
+            border-radius: 3px !important;
+            box-shadow: 0 0 3px #f76217;
+        }
+
+        .panel-heading {
+            padding: 2px 11px;
+        }
+
+
+        input.largerCheckbox {
+            width: 18px;
+            height: 18px;
+            margin-left: 2px;
+            accent-color: #bf5252;
+        }
+
+            input.largerCheckbox label {
+                margin-top: 1%
+            }
+
+        input[type=radio] {
+            width: 18px;
+            height: 18px;
+            float: left;
+        }
+
+        .form-group {
+            padding-left: 0px !important;
+            padding-right: 0px !important;
+        }
+
+        input[type=radio] label {
+            margin-top: 1%
+        }
+
+        input.largerCheckbox.label.form-check-label {
+            margin-top: -1%
+        }
+
+        .pstfirst {
+            width: auto;
+            display: flex;
+            flex-direction: row;
+        }
+
+        .vrfymail {
+            width: 100%;
+        }
+
+        .rdbtn {
+            margin-top: 2.5px;
+        }
+
+        .dsfx {
+            display: flex;
+        }
+
+        .phtadhr {
+            height: 138px;
+            width: 100px;
+        }
+
+        .adhrmn {
+            text-align: center;
+        }
+
+        .adhrvrfd {
+            text-align: center;
+            display: flex;
+        }
+
+        .dsfxjstf {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .cqetopchng1 {
+            margin-top: -6%;
+        }
+
+        #btnPDFWithout {
+            display: none;
+        }
+
+        #btnPDF {
+            display: none;
+        }
+
+        .xmlsmt {
+            margin: 1%;
+            width: 10%;
+        }
+
+        .rkycannlrn {
+            display: none;
+        }
+
+        .rdonlyclr {
+            background-color: #f6f3f3;
+        }
+
+        .rkycprnldtls {
+            border: 1px solid #e1e1e1;
+            margin: 5px;
+        }
+
+        .rkychding {
+            background: #e1e0e0;
+            padding: 7px 13px;
+            font-weight: 600;
+        }
+
+        .rkycvrfybtn {
+            width: 12%;
+            float: right;
+            margin: 3px 12px;
+        }
+
+        .gndfx {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .drvngaddrss {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: -8.5%;
+        }
+
+        .cntry {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+            margin-top: -5.5%;
+        }
+
+        .daadhrimgdv {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .phtlbl {
+            margin-bottom: -20px;
+        }
+
+        #CustDigiDriving {
+            margin-top: 10px;
+        }
+
+        .ddbtn {
+            display: none;
+        }
+
+        .drvngpht {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 0px;
+        }
+    </style>
+    <style>
+        html.swal2-shown, body.swal2-shown {
+            overflow-y: hidden !important;
+            height: auto !important;
+        }
+    </style>
+
+    <script>
+        function QEDataSave() {
+            swal("Customer Enroll Successfully");
+            window.location.href = '/Loan/HouseLoanDocumentDetails';
+
+        }
+    </script>
+</head>
+<body onload="autoScrolling()">
+
+
+        <div id="quickEnrollDiv" style="margin-top:-12px;clear:both" class="quickenroll">
+
+        <div class="panel-body" id="mainDIVid">
+                <div class="form-group pddextr" style=" ">
+                  <div class="row pstmrgn">
+
+                      <div class="col-lg-3 pddTopLo martop pdfil12 pdquick" style="float:left;">
+
+                        @Html.TextBoxFor(model => model.QEFirstName, htmlAttributes: new { @class = "form-control border_rd pdlftr8user", @placeholder = "First Name", @onkeypress = "CharacterOnly(event)", @maxlength = "50", @onkeyup = "alphabetOnly(this.id);", style = "height:45px!important;" })
+                        @Html.ValidationMessageFor(model => model.QEFirstName, "", new { @class = "text-danger" })
+                        </div>
+
+
+
+                       <div class="col-lg-3 pddTopLo  pdfil12 pdquick" style="float:left;">
+
+                        @Html.TextBoxFor(model => model.QELastName, htmlAttributes: new { @class = "form-control border_rd pdlftr8user", placeholder = "Last Name", @onkeypress = "CharacterOnly(event)", @maxlength = "50", @onkeyup = "alphabetOnly(this.id);", style = "height:45px!important;" })
+                        @Html.ValidationMessageFor(model => model.QELastName, "", new { @class = "text-danger" })
+                        </div>
+
+
+
+                        <div class="col-lg-3 pddTopLo pdfil12 pdquick" style="float:left;">
+
+                        @Html.TextBoxFor(model => model.QEMobileNo, htmlAttributes: new { id = "QEMobileNo", @class = "form-control border_rd pdlftr8user", @maxlength = "10", placeholder = "Mobile No", @onkeyup = "numericOnly(this.id)", @onblur = "Dedupe(this.id)",style = "height:45px!important;" })
+                        @Html.ValidationMessageFor(model => model.QEMobileNo, "", new { @class = "text-danger" })
+                              <div id="savebtn1" class=" col-lg-6 col-md-12 col-sm-12 col-xs-12 flt_lft  pdfil12 pdquick" style="padding-left:0px;padding-right:0px;">
+                                <button type="button" onclick="QEMobileAuth()" class="btn btn-primary get1 right1 hello real" id="QEAuthMobileGetOtp" style="height:52px!important;  font-size:14px;" @*style="padding:3%"*@>Verify Mobile No. </button>
+
+                                <label id="QEisMobileVerify" style="float:left;padding-right:10px;display:none" class="hell real"><input type="checkbox" class="largerCheckbox" id="QEMobileVerify" checked="checked" readonly="readonly"/>Mobile Verified</label>
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-lg-3 pddTopLo pdfil12 pdquick" style="float:left;">
+
+                        @Html.TextBoxFor(model => model.QEEmailId, htmlAttributes: new { @class = "form-control border_rd pdlftr8user", placeholder = "Email ID",@onblur="EmailValiddation(this.id)", style = "border-radius:3px!important;height:45px!important" })
+                        @Html.ValidationMessageFor(model => model.QEEmailId, "", new { @class = "text-danger" })
+
+                             <div id="savebtn1" class=" col-lg-6 col-md-12 col-sm-12 col-xs-12 flt_lft  pdfil12 pdquick" style="padding-left:0px;padding-right:0px;" @*style="margin-right:1.4%;"*@>
+                                <button type="button" onclick="QEOTPAuth()" class="btn btn-primary get1 right1" id="QEEmailGetOtp"style="height:52px!important;  font-size:14px;" @*style="padding:4%"*@>Verify Email</button>
+
+                                <label id="QEisEmailVerify" style="float:left;padding-right:10px;display:none"><input type="checkbox" class="largerCheckbox" checked="checked" id="QEisEmailVerifyCheckbox" readonly="readonly" style="display:none" />@*<img src="~Images/right1.png" />*@Email Verified</label>
+
+                            </div>
+                        </div>
+
+                   </div>
+                    <div class="row">
+
+                          <div class=" col-lg-3 mr pdfil12se pdfil12 pdquick" style="clear:both">
+                        <label for="VerifyCustData" class="col-lg-5 col-md-4 col-xs-12 col-sm-4 mTopId1 mTopId2 pdfil12 pdquick" style="clear:both;">
+                        <div class="label_val fontpfhndr lblfont_sz121" style=" ">ID Type</div>
+                        </label>
+
+                        @Html.DropDownListFor(model => model.QEVType, ViewBag.VTypeData as SelectList, "--Select--", new { @class = "form-control dropdiv ", @id = "VTYPE", style = "height:45px!important;" })
+                        @Html.ValidationMessageFor(model => model.QEVType, "", new { @class = "text-danger dropdiv" })
+                        </div>
+
+
+                        <div class="col-lg-3  flt_lft  pdfil12 pdquick mrgntop"  style="">
+                        @Html.TextBoxFor(model => model.QEVTypeTextbox, new { @id = "QEVTypeTextboxId", @class = "form-control col-lg-12 col-md-12 col-sm-12 col-xs-12 flt_lft", @maxlength = 15,@onblur = "Dedupe1(this.id)", style = "height:45px!important;text-transform:uppercase;" })
+                        @Html.ValidationMessageFor(model => model.QEVTypeTextbox, "", new { @class = "text-danger" })
+                        </div>
+
+
+                        <div id="savebtn" class=" col-lg-6 col-md-12 col-sm-12 col-xs-12 flt_lft  pdfil12 pdquick idtype pdd11"  style="">
+
+                            <input type="button" id="SaveQEData" value="Save" onclick="QEDataSave(this);" class="col-lg-2 btn btn-primary right1 datasave1" style="height:45px!important;margin-bottom:6px;" />
+
+                        </div>
+
+
+                      </div>
+                    <div id="saveLoader"></div>
+                </div>
+            </div>
+        </div>
+
+
+</body>
+</html>

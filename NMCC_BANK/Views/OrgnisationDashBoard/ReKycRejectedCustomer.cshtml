@@ -1,0 +1,189 @@
+﻿@{
+    Layout = "~/Views/Shared/_AdminLayoutPage.cshtml";
+
+}
+
+<html>
+<head>
+    @*  <script src="~/Scripts/jquery-1.11.0.min.js"></script>*@
+    <script src="~/Scripts/DataTable/jquery.dataTables.min.js"></script>
+    <script src="~/Scripts/DataTable/dataTables.bootstrap.js"></script>
+    <link href="~/Scripts/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="~/Scripts/webGridStyle.css" rel="stylesheet" />
+    
+    <script>
+        function EditCustomer(tr) {
+            debugger;
+            var RejectCustId = tr.id;
+            
+            $.ajax({
+                url: '/KYCQuickEnroll/ReKycRejectedCustDropout',
+                type: 'POST',
+                data: {
+                    RejectCustId: RejectCustId
+                },
+                cache: false,
+                success: function(result) {
+                    
+                    if (result == "please click on the document details") {
+                        window.location.href = "/DocumentDetails/CustomerDocumentDetails";
+                    }
+                    else if (result == "please click on the ReKycCAF") {
+
+                        window.location.href = "/KYCQuickEnroll/DigitalQuickEnrollment";
+                    }
+                    else {
+                        swal("User Not Found");
+                    }
+                }
+            })
+            
+            
+        }
+    </script>
+    <script type="text/javascript">
+        var assetListVM;
+        $(function () {
+            debugger;
+            assetListVM = {
+                dt: null,
+                init: function () {
+                    debugger;
+                    dt = $('#assets-data-table').DataTable({
+                        "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+                        "ordering": false,
+                        "Searching": true,
+                        "ajax": {
+                            url: '/OrgnisationDashBoard/ReKycRejectCustomerGRID',
+                            type: 'POST'
+                        },
+                        "columns": [
+                            { "title": "CustomerDetailId", "data": "CustomerDetailId", "searchable": true },
+                            { "title": "FIRST NAME", "data": "FirstName" },
+                            { "title": "MIDDLE NAME", "data": "MiddleName" },                           
+                            { "title": "LAST NAME", "data": "LastName" },
+                            { "title": "REJECT REASON ", "data": "ReKycRejectReason" },
+                            { "title": "REJECT DATE ", "data": "RejectedDate" },
+                             
+                        ],
+                        columnDefs: [{
+                             targets: 6,
+                            render: function (a, b, data, d) {
+                                debugger;
+                                return '<input type="button" value="Edit" data-toggle="modal" data-target="#myModal1" id="' + data.CustomerDetailId + '"class="btn btn-primary test" onclick="EditCustomer(this)" style="float:none !important;text-align:center;font-size:12px;color:#fff"><a href="#"  id=' + data.CustomerDetailId + ' style="padding-left:0px;width:100%;padding:0px;text-align:center;float:left;background-color: transparent" </a> '
+                            }
+                        },
+                        {
+                                    targets: [5],
+                                    render: function (data) {
+                                        debugger;
+                                        var date = new Date(data);
+                                        var month = date.getMonth() + 1;
+                                        return date.getDate() + "-" + (month.toString().length > 1 ? month : "0" + month) + "-" + date.getFullYear(); /*+ "&nbsp;&nbsp;" + (date.getHours() < 10 ? ("0" + date.getHours()) : date.getHours()) + ":" + (date.getMinutes() < 10 ? ("0" + date.getMinutes()) : date.getMinutes());*/
+
+                                    }
+                        }     
+                        ]
+                    })
+                }
+            }
+            assetListVM.init();
+        });
+       
+    </script>
+  
+    <script>
+        function backtoview() {
+            window.location.href = "/AdminDashBoardNew/IndoFinAdminDashBoard";
+        }
+    </script>
+
+    <style>   
+        #assets-data-table_wrapper row {
+            float: left;
+            width: 100%
+        }
+        #assets-data-table {
+            font-size: 14px;
+            width: 100%
+        }
+        #assets-data-table_info row {
+            float: left;
+            width: 100%;
+        }
+        #assets-data-table_paginate ul {
+            float: right;
+            width: 100%
+        }
+        .panel-body row {
+            width: 100%;
+        }
+        #assets-data-table_length tr {
+            width: 100% !important;
+        }
+        #assets-data-table_wrapper {
+            float: left;
+            width: 100%;
+        }
+            #assets-data-table_wrapper row {
+                width: 100%;
+                float: left;
+            }
+        #assets-data-table_info {
+            width: 100%;
+        }
+        .panel-body table, tr {
+            width: 100%;
+        }
+        .panel-body .row {
+            float: left;
+            width: 100%
+        }
+
+        .row {
+            width: 100%
+        }
+    </style>
+    @if (ViewBag.AdminFlag == "AdminFlag")
+    {
+        <style>
+            .panel-body .row {
+                float: left;
+                width: 100%
+            }
+
+            .panel-body row {
+                width: 100%;
+            }
+
+            .panel-body table tr {
+                float: left;
+                width: 100%
+            }
+
+            th {
+                font-size: 14px;
+            }
+        </style>
+    }
+</head>
+<body>
+
+    
+
+    <div class=" id="list-panel">
+        <div class="">
+            <div class="" style="">
+                <form></form>
+            </div>
+            <table id="assets-data-table" class="table table-striped table-bordered" style="width:100%;">  </table>
+        </div>
+    </div>
+    <div id="CustAllDataReject"></div>
+    <div id="DataTable"></div>
+    <div id="verifyloaderReject"></div>
+    <div id="verifybagReject"></div>
+    <div id="VerifyResultReject"></div>
+    <div id="testidReject"></div>
+</body>
+</html>

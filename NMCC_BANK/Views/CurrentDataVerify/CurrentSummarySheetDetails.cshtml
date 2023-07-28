@@ -1,0 +1,616 @@
+﻿@model INDO_FIN_NET.Models.CurrentModels.CIN_Verification
+@{
+    Layout = "~/Views/Shared/Components/_CurrentAccountLayout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="~/bundlejs/bundlingofsummarysheet.min.js"></script>
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/Navigation/style.css" rel="stylesheet" />
+    <link href="~/Content/PDF/PDF.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Scripts/sweetalert.css" rel="stylesheet" />
+    <script src="~/Scripts/sweetalert.min.js"></script>
+    <link href="~/Content/snewcss.css" rel="stylesheet" />
+
+    <style>
+        .init_logo_main {
+            height: 53px;
+        }
+
+        @@media screen and (max-width:900px) {
+            .init_summery_div {
+                display: flex;
+                flex-direction: column-reverse;
+                padding: 0;
+                align-items: center;
+            }
+
+            .init_btn_sp {
+                width: 100%;
+                font-size: 16px !important;
+                /* width: 104.5%;
+                                                margin-left: 5px;*/
+            }
+
+            .init_row_sm {
+                width: 100%;
+                margin: 0;
+            }
+
+            .init_row_ {
+                margin: 0;
+            }
+        }
+
+        .active_digi_caf_doc_ipv_sum::after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            top: 20px;
+            left: -50%;
+            z-index: -1;
+        }
+
+        .active_digi_caf_doc_ipv_sum::after {
+            content: none;
+        }
+
+        .active_digi_caf_doc_ipv_sum::before {
+            background: #3ed718 !important;
+            color: #fff !important;
+            content: "\2713" !important;
+            font-size: 23px;
+            font-weight: 900;
+        }
+
+    </style>
+
+    <style>
+        #icon-test {
+            height: 22px;
+            opacity: 0.7;
+            float: right;
+        }
+
+        table.ex1 {
+            empty-cells: hide;
+        }
+
+        table.ex2 {
+            empty-cells: show;
+        }
+
+        .livept1 {
+            padding: 0%;
+            height: 138px;
+            width: 110px;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        .geeks {
+            border-right: hidden;
+        }
+
+        .gfg {
+            border-collapse: separate;
+            border-spacing: 0 4px;
+        }
+
+        tabel, td {
+            color: #413f3f;
+        }
+
+        .approve_popup {
+            position: fixed !important;
+            z-index: 999 !important;
+            background-color: #f9f7f7 !important;
+            top: 4% !important;
+            width: 32% !important;
+            margin: 8% 8%;
+            padding: 0px 7px;
+            border-radius: 4px;
+        }
+
+        .newspaper {
+            column-count: 3;
+            width: 43%;
+            float: left;
+            padding: 2px;
+        }
+
+        /* schnges*/
+
+        label {
+            font-size: 1.5rem;
+        }
+
+        .headingback {
+            background-color: #e1e0e0;
+        }
+
+        .livepth2 {
+            width: 112px;
+        }
+
+        .lvpt3 {
+            background-color: #1761e6;
+            border-color: #1761e6;
+            color: #fff;
+            font-size: 18px !important;
+            width: 50% !important;
+            margin: 0 auto 3px !important;
+            padding: 5px;
+        }
+
+        .titlesc {
+            font-family: Roboto,Arial,sans-serif !important;
+            letter-spacing: 0;
+            line-height: 32px;
+            display: inline-block;
+            color: #434444 !important;
+            font-size: 17px !important;
+            padding: 3px 10px !important;
+            font-weight: 600 !important;
+            margin-bottom: 0px !important;
+        }
+
+        .pdrow {
+            padding: 0px 25px 0px 25px;
+        }
+
+        .labelfr {
+            margin: 5px;
+        }
+
+        .pdr {
+            padding: 10px;
+        }
+
+        .divfst {
+            border: 1px solid #dadddd;
+            background-color: white;
+        }
+
+        .liveimg {
+            background-color: #337ab7;
+            color: white;
+            text-align: center;
+            float: initial;
+        }
+
+        .detdiv {
+            /* background-color: #e3bfbfde;*/
+            border-radius: 5px;
+        }
+
+        .alert-primary {
+            color: #850000;
+            background-color: #ffe5e5;
+            border-color: #b8daff;
+        }
+
+        .paradet {
+            color: #023036;
+        }
+
+        .detailsbox {
+            float: left;
+            width: 100%;
+            box-sizing: border-box;
+            border: 1px solid lightgrey;
+            background-color: white;
+        }
+
+
+        .amndiv {
+            float: left;
+            width: 100%;
+            margin-top: 0px;
+            background-color: white;
+            border: 1px solid lightgrey;
+        }
+
+
+        .livephoto {
+            padding: 0px !important;
+        }
+
+    </style>
+    <meta name="viewport" content="width=device-width" />
+    <script>
+
+        function UserMobileOTPGenerate() {
+            debugger;
+            var UserMobileNo = $("#UserMobileNo_id").val();
+            $.ajax({
+                url: "/DataVerify/SendOtp?MbileNo=" + UserMobileNo,
+                type: "Get",
+                cache: false,
+                success: function (result) {
+                    debugger;
+                    if (result == "OTP Generated Successfully...!" || result == "OK") {
+                        debugger;
+                        swal("OTP Generated Successfully");
+                        $('#userOtpDiv').show();
+                    }
+                    else {
+                        swal(result);
+                    }
+                }
+            })
+        }
+
+        function CustMobileOTPGenerate() {
+            debugger;
+            var CMobileNo = $("#CustMobileNo_id").val();
+            $.ajax({
+                url: "/DataVerify/SendOtp?MbileNo=" + CMobileNo,
+                type: "Get",
+                cache: false,
+                success: function (result) {
+                    debugger;
+                    if (result == "OTP Generated Successfully...!" || result == "OK") {
+                        debugger;
+                        swal("OTP Generated Successfully");
+                        $('#custOtpDiv').show();
+                    }
+                    else {
+                        swal(result);
+                    }
+                }
+            })
+        }
+        function CCVerifyOTP() {
+            debugger;
+            var MbileNo;
+            var OTP;
+            var checkid = $(this).attr('id');
+            if ($("#CustOTP_id").val() != null && $("#CustOTP_id").val() != "") {
+                MbileNo = $("#CustMobileNo_id").val();
+                OTP = $("#CustOTP_id").val();
+            }
+            else if ($("#UserOTP_id").val() != null && $("#UserOTP_id").val() != "") {
+                MbileNo = $('#UserMobileNo_id').val();
+                OTP = $("#UserOTP_id").val();
+            }
+            else {
+                swal("Enter OTP");
+            }
+            $.ajax({
+                url: "/DataVerify/VerifyGenerateOTP?MbileNo=" + MbileNo + "&OTP=" + OTP + "&Verifyname=CCVerifyOTP",//+ "&BCPhoto=" + null.......,
+                type: "Get",
+                cache: false,
+                success: function (result) {
+                    debugger;
+                    if (result == "OTP Validated Successfully!!!!!") {
+                        debugger;
+                        $('#SMobileVerify1').show();
+                        $('#SisMobileVerify1').show();
+                        swal(result);
+                    }
+                    else {
+                        swal(result);
+                    }
+                }
+            })
+        }
+
+        function UserVerifyOTP() {
+            debugger;
+            var MbileNo;
+            var OTP;
+            if ($("#UserOTP_id").val() != null && $("#UserOTP_id").val() != "") {
+                MbileNo = $('#UserMobileNo_id').val();
+                OTP = $("#UserOTP_id").val();
+            }
+            else {
+                swal("Enter OTP");
+            }
+            $.ajax({
+                url: "/DataVerify/VerifyGenerateOTP?MbileNo=" + MbileNo + "&OTP=" + OTP + "&Verifyname=UserVerifyOTP",//+ "&BCPhoto=" + $('#digiphotoid').val(),
+                type: "Get",
+                cache: false,
+                success: function (result) {
+                    debugger;
+                    var resultdata = result.split("/");
+                    if (resultdata[0] == "OTP Validated Successfully!!!!!") {
+                        $('#isMobileVerify2').show();
+                        $('#MobileVerify2').show();
+                        swal(result);
+                    }
+                    else {
+                        swal(result);
+                    }
+                    if (resultdata[1] == "1") {
+                        $('#adrbtnid').show();
+                    }
+                }
+            })
+        }
+
+        function generatepdf() {
+            debugger;
+            $('#btnback').prop('disabled', false);
+            var url = window.location.protocol + "//" + window.location.host + "/CurrentDataVerify/CurrentGeneratepdf";
+            window.open(url, '_blank');
+        }
+
+
+        function GOTOCURRENTACCOUNT() {
+            window.location.href = "/CurrentDataVerify/GOTOCURRENTACCOUNT";
+        };
+
+    </script>
+
+
+
+
+</head>
+<body>
+    <div id="SummeryDataView">
+
+
+        <div class="mgbtm_2">
+
+            <div class="container">
+
+
+                <div class="wdth100p">
+                    <div class="panel-heading headingback">
+                        <h3 class="panel-title titlesc">CUSTOMER APPLICATION FORM</h3>
+                    </div>
+                    <div class="clearfix">
+                    </div>
+                    <div class="panel-body caf-pdf-form" style="">
+                        <div class="row init_summery_div">
+                            <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 paddcaf">
+                                <div class="row">
+                                    <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 labelfr  cafPDf" style="padding:0">
+                                        <label>Company Name</label>
+                                    </div>
+                                    <div class="col-xl-9 paddcaf12">
+                                        @Html.TextBoxFor(model => model.CompanyName, new { @id = "COMPANYNAME", @class = "form-control",@readonly = "readonly"})
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 labelfr  cafPDf" style="padding:0">
+                                        <label>Company type</label>
+                                    </div>
+                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12" style="padding:0px">
+
+                                        @Html.TextBoxFor(model => model.CompanyType, new { @id = "COMPANYTYPE", @class = "form-control",@readonly = "readonly"})
+
+                                    </div>
+                                    <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 labelfr  cafPDf" style="padding:0">
+                                        <label>Authorized Capital</label>
+                                    </div>
+                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12" style="padding:0px">
+
+                                        @Html.TextBoxFor(model => model.AuthorizedCapital, new { @id = "AUTHORIZEDCAPITAL", @class = "form-control",@readonly = "readonly"})
+
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 labelfr  cafPDf" style="padding:0">
+                                        <label>Category</label>
+                                    </div>
+                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12" style="padding:0px">
+                                        @Html.TextBoxFor(model => model.Category, new { @id = "CATEGORY", @class = "form-control",@readonly = "readonly"})
+                                    </div>
+                                    <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 labelfr  cafPDf" style="padding:0">
+                                        <label>Date of Incorporation</label>
+                                    </div>
+                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12" style="padding:0px">
+                                        @Html.TextBoxFor(model => model.DateofIncorporation, new { @id = "DATEOFINCORPORATION", @class = "form-control",@readonly = "readonly"})
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 labelfr cafPDf" style="padding:0">
+                                        <label>Last Annual Meeting Date</label>
+                                    </div>
+                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12" style="font-size:12px;padding:0px">
+                                        @Html.TextBoxFor(model => model.LastAnnualGeneralMeetingDate, new { @id = "LASTANNUALGENERALMEETINGDATE", @class = "form-control",@readonly = "readonly"})
+
+                                    </div>
+                                    <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 labelfr  cafPDf" style="padding:0">
+                                        <label>Number of Directors</label>
+                                    </div>
+                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12" style="padding:0px">
+                                        @Html.TextBoxFor(model => model.NumberofDirectors, new { @id = "NUMBEROFDIRECTORS", @class = "form-control",@readonly = "readonly"})
+
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 labelfr  cafPDf" style="padding:0">
+                                        <label>Registered Address</label>
+                                    </div>
+                                    <div class="col-xl-9 paddcaf12">
+                                        @Html.TextBoxFor(model => model.RegisteredAddress, new { @id = "REGISTEREDADDRESS", @class = "form-control",@readonly = "readonly"})
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 labelfr  cafPDf" style="padding:0">
+                                        <label>Registered Email</label>
+                                    </div>
+                                    <div class="col-xl-9 paddcaf12">
+                                        @Html.TextBoxFor(model => model.RegisteredEmailId, new { @id = "REGISTEREDEMAILID", @class = "form-control",@readonly = "readonly"})
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 labelfr  cafPDf" style="padding:0">
+                                        <label>Registration Number</label>
+                                    </div>
+                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12" style="padding:0px">
+                                        @Html.TextBoxFor(model => model.RegistrationNumber, new { @id = "REGISTRATIONNUMBER", @class = "form-control",@readonly = "readonly"})
+
+
+                                    </div>
+                                    <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 labelfr cafPDf" style="padding:0">
+                                        <label>Status For E-filing</label>
+                                    </div>
+                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12" style="padding:0px">
+                                        @Html.TextBoxFor(model => model.StatusForEfiling, new { @id = "STATUSFOREFILING", @class = "form-control",@readonly = "readonly"})
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 labelfr  cafPDf" style="padding:0">
+                                        <label>DIN Name</label>
+                                    </div>
+                                    <div class="col-xl-9 paddcaf12">
+                                        @Html.TextBoxFor(model => model.Name, new { @id = "NAME", @class = "form-control",@readonly = "readonly"})
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 labelfr  cafPDf" style="padding:0">
+                                        <label>Date of Appointment</label>
+                                    </div>
+                                    <div class="col-xl-9 paddcaf12">
+                                        @Html.TextBoxFor(model => model.DateofAppointment, new { @id = "DATEOFAPPOINTMENT", @class = "form-control",@readonly = "readonly"})
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 labelfr  cafPDf" style="padding:0">
+                                        <label>DIN Name</label>
+                                    </div>
+                                    <div class="col-xl-9 paddcaf12">
+                                        @Html.TextBoxFor(model => model.Name2, new { @id = "NAME2", @class = "form-control",@readonly = "readonly"})
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 labelfr  cafPDf" style="padding:0">
+                                        <label>Date of Appointment</label>
+                                    </div>
+                                    <div class="col-xl-9 paddcaf12">
+                                        @Html.TextBoxFor(model => model.DateofAppointment2, new { @id = "DATEOFAPPOINTMENT2", @class = "form-control",@readonly = "readonly"})
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+
+                            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 pdlft  paddcaf12liv">
+                                <div class="camera-div">
+                                    <h3 class="liveimg lvpt3">Live Photo</h3>
+                                    <div class="camera-view livephoto livepth2">
+                                        @*<img src="" id="Livephoto" style="padding:0%;" class="photoimg livept1">*@
+                                        <img src="@ViewBag.liveimage" id="Livephoto" style="padding:0%;" class="photoimg livept1">
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <div class="panel-heading pd0" style="margin-top: 8px;">
+                    <h3 class="panel-title">Customer Mobile Number</h3>
+                </div>
+                <div class="panel-body" style="float:left;width:100%;margin-top:0px;">
+                    <div class="row">
+                        <div class="col-xl-4  pdlftcaf cusMargin">
+                            <input type="text" value="@Model.Name" disabled />
+                        </div>
+                        <div class="col-xl-2  pdlftcaf cusMargin">
+                            <input type="Text" name="Ekyc" id="CustMobileNo_id" />
+                        </div>
+                        <div class="col-xl-2 pdlftcaf cusMargin texali">
+                            <input type="button" id="CustMobileNoButton_id" value="Send OTP" class="btn btn-primary" onclick="CustMobileOTPGenerate()" />
+                        </div>
+                        <div class="col-xl-2 pdlftcaf cusMargin">
+                            <input type="password" name="CustOTp" class="" id="CustOTP_id" />
+                        </div>
+                        <div class="col-xl-2 cusMargin pdlftcaf texali">
+                            <input type="button" value="Verify" id="CVerifyButton" class="btn btn-primary" onclick="CCVerifyOTP()" style="width:67%!important" />
+                            <label id="SMobileVerify1" style="float:left;padding-right:10px;display:none"><input type="checkbox" id="SisMobileVerify1" checked="checked" readonly="readonly" style="display:none" />Mobile Verified</label>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="panel-heading pd0" style="margin-top: 8px;">
+                    <h3 class="panel-title">Agent Mobile Number</h3>
+                </div>
+
+                <div class="panel-body" style="float:left;width:100%;margin-top:0px;
+   ">
+                    <div class="row">
+                        <div class="col-xl-4 pdlftcaf cusMargin">
+                            <input type="text" value="@ViewBag.UserName" class="" disabled />
+                        </div>
+                        <div class="col-xl-2  pdlftcaf cusMargin">
+                            <input type="Text" name="Ekyc" id="UserMobileNo_id" value="@ViewBag.MOBNO" disabled />
+                        </div>
+                        <div class="col-xl-2 pdlftcaf cusMargin texali">
+                            <input type="button" id="UserMobileNoButton_id" value="Send OTP" class="btn btn-primary" onclick="UserMobileOTPGenerate()" />
+                        </div>
+                        @*<div class="col-xl-2  cusMargin">*@
+                        <div class="col-xl-2  cusMargin">
+                            <input type="password" name="UserOTp" class="" id="UserOTP_id" />
+                        </div>
+                        <div class="col-xl-2 cusMargin texali">
+                            <input type="button" value="Verify" id="UserVerifyButton" class="btn btn-primary" onclick="UserVerifyOTP()" style="width:67%!important" />
+
+                        </div>
+                        <label id="isMobileVerify2" style="float:left;padding-right:10px;display:none"><input type="checkbox" id="MobileVerify2" checked="checked" readonly="readonly" style="display:none" />Mobile Verified</label>
+                    </div>
+                </div>
+
+
+
+
+            </div>
+
+        </div>
+        <div class="row init_row_sm">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12" style="">
+                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 cusMargin texali cafseppadd" style="display: flex;justify-content: center;">
+                    <button type="button" id="pdfcrt" value="Generate PDF" class="btn btn-primary uppcase init_btn_sp" onclick="generatepdf()">Generate Pdf With E-Sign</button>
+
+                </div>
+
+
+            </div>
+        </div>
+        <div class="row init_row_sm">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12" style="">
+                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 cusMargin texali cafseppadd" style="display: flex;justify-content: center;">
+                    <button type="button" id="pdfcrt" value="Generate" class="btn btn-primary uppcase init_btn_sp" onclick="GOTOCURRENTACCOUNT()">GO TO CURRENT ACCOUNT</button>
+
+                </div>
+
+
+            </div>
+        </div>
+
+
+
+
+    </div>
+
+
+
+
+
+
+
+
+</body>
+</html>

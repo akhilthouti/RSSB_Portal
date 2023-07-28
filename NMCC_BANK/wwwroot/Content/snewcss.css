@@ -1,0 +1,1006 @@
+﻿.livept1 {
+    height: 139px;
+    width: 122px;
+}
+.btn-primary {
+    color: #fff;
+    border-color: #ffffff;
+    background-color: #bf5252;
+}
+/*.input[type=radio] {
+    accent-color: #bf5252!important;
+}*/
+.table.dataTable.no-footer {
+    border: 1px solid rgb(121 31 31);
+}
+.nav-tabs {
+    background-color: #bf5252;
+}
+.sheadbk {
+    background-color: #bf5252;
+}
+.progressbar {
+    background-color: #bf5252;
+   /* box-shadow: inset 0 0 31px #4e2424 !important;*/
+}
+.tocheck {
+    background-color: #bf5252;
+   /* box-shadow: inset 0 0 31px #4e2424 !important;*/
+}
+.alert-primary {
+    color: #004085;
+    background-color: #ffd9d9;
+}
+.init_submit_btn {
+    background-color: #bf5252 !important;
+    /*box-shadow: inset 0 0 31px #4e2424 !important;*/
+}
+.form-control:focus {
+    border-color: #efa8a8;
+}
+    .svnglst {
+    display: flex;
+    justify-content: center
+}
+.pntr {
+    cursor: pointer;
+}
+.btnred {
+    color: #fff;
+    background-color: #c74844;
+    border-color: #ffffff;
+}
+.dsfxalgncnt {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.upldbtn{
+    width:40%!important;
+}
+.pd10 {
+    padding: 10px;
+}
+.livepth2 {
+    background: none;
+    border: 0px dashed #1f4a75;
+    width: 80%;
+    margin: 0px auto 8px;
+}
+
+.lvpt3 {
+    margin: 0 auto 0px !important;
+    width: 53.5% !important;
+}
+
+.btnsdigi1 {
+    margin-left: 45%;
+}
+
+.btn:hover {
+    color: white;
+}
+
+.logonew {
+    width: 240px;
+    height: 61px;
+    margin-top: 6px;
+    margin-left: 8%;
+}
+
+.photoimg {
+    height: 138px;
+    width: 100px;
+}
+/*main home page*/
+.mnpghvrbtn:hover {
+    border: 1px solid #ba0000;
+    background-color: black;
+    background-image: linear-gradient(179deg, #ba0000, transparent);
+}
+
+.mnbtnhvr {
+    background-color: transparent;
+}
+
+    .mnbtnhvr:hover {
+        background-color: transparent !important;
+    }
+
+.mnpgbtntrns:hover {
+    background-color: transparent;
+}
+
+.mnxopnbx {
+    margin-top: -7px !important;
+    margin-left: -22px;
+}
+
+.hmlogomain {
+    margin-left: -60px !important;
+}
+
+@media screen and (min-device-width:992px) and (max-device-width:1200px) {
+    .mnxopnbx {
+        margin-top: -25px !important;
+        margin-left: -14px;
+    }
+}
+
+@media screen and (min-device-width:768px) and (max-device-width:992px) {
+    .mnxopnbx {
+        margin-top: -25px !important;
+        margin-left: -14px;
+    }
+}
+
+
+@media screen and (min-device-width:300px) and (max-device-width:500px) {
+    .hmlogomain {
+        width: 190px !important;
+        height: 189px !important;
+    }
+}
+
+@media screen and (min-device-width:300px) and (max-device-width:500px) {
+    .init_logo_main {
+        width: 170px;
+        height: 40px;
+    }
+    /*.mnhmpgboxfnt {
+        font-size: 12px !important;
+        width: 150px !important;
+        line-height: 29px;
+    }*/
+}
+
+/*generate pdf*/
+.pdflnwdth {
+    width: 100%
+}
+
+/*customer account form*/
+.hrdgbk {
+    background-color: #e1e0e0;
+    padding: 7px;
+}
+
+.bldwht {
+    font-weight: 600;
+}
+
+.bckgrnddsn {
+    background-color: #f5f3f3;
+}
+
+.hldr1 {
+    display: flex;
+    flex-direction: row;
+}
+
+.btnrep {
+    height: 50%;
+    margin-top: 15.5%;
+}
+
+.branchdsgn {
+    background-color: #fbfbfb;
+    border: 1px solid #dddddd;
+    padding-top: 10px;
+    box-shadow: 2px 2px 6px #dddddd;
+    margin-left: 13px;
+    margin-right: 13px;
+}
+
+.jonthldr {
+    background-color: #fbfbfb;
+}
+
+.nominpr {
+    display: flex;
+}
+/*get document details view*/
+.restblht {
+    line-height: 0.3
+}
+
+@media only screen and (max-width:768px) {
+    .restblht {
+        line-height: 1.3
+    }
+}
+/*MainDashboard*/
+.mdashbox {
+    height: 174px;
+    border-radius: 6px;
+    margin: 5px;
+}
+
+
+
+
+@media screen and (min-device-width:500px) and (max-device-width:768px) {
+    .mdashbox {
+        height: 150px;
+        border-radius: 6px;
+        margin: 5px;
+    }
+
+    /*.maindashbox {
+        width: 48%;
+        margin: auto;*/
+        /*padding-left: 5px;*/
+    /*}*/
+
+    .mndshbord {
+        font-size: 14px;
+    }
+
+    .mndashbrdmn {
+        padding-left: 0% !important;
+    }
+}
+
+@media screen and (min-device-width:300px) and (max-device-width:500px) {
+    .mdashbox {
+        height: 100px;
+        border-radius: 6px;
+    }
+
+    .maindashbox {
+        width: 48%;
+        margin: auto;
+        padding-left: 5px;
+    }
+
+    .mndshbord {
+        font-size: 14px;
+    }
+}
+
+@media screen and (min-device-width:200px) and (max-device-width:300px) {
+    .mdashbox {
+        height: 90px;
+        border-radius: 6px;
+    }
+
+    .maindashbox {
+        width: 47%;
+        margin: 3px;
+    }
+}
+
+/*customer document details*/
+
+.bbutton {
+    font-size: 18px !important;
+    width: 13.4%;
+    margin: 0px 5px;
+}
+
+.dbutton {
+    float: left;
+    width: 100%;
+    padding-left: 1%;
+    margin: 5px 0px 10px 0px;
+    display: flex;
+    flex-direction: row;
+}
+
+.cddbrdr1 {
+    margin-bottom: 25px;
+    box-shadow: 0 6px 8px 0 rgb(0 0 0 / 10%);
+}
+
+.cddmrgnh {
+    margin-top: 110px;
+}
+/*customer quick enrollment*/
+.pddextr {
+    padding-top: 0px;
+}
+
+.fetchdoc {
+    margin-top: 30px;
+}
+
+.rdiobtn {
+    width: 18px !important;
+    height: 19px !important;
+}
+.dwndbtnsvng {
+    margin-top: 5px;
+    margin-left: 25px
+}
+.cqemrgnstt {
+    margin-left: 25%;
+}
+
+.cqetopchng {
+    margin-top: -3%;
+}
+
+.cqepht {
+    text-align: center;
+}
+/*<!-- LATEST CHANGES HERE-- >*/
+.lvphtaadhaar {
+    width: 80%;
+}
+
+.drvngpht {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 0px;
+}
+
+.dwnldxml {
+    width: 297px;
+    margin-left: 82px;
+}
+
+.btndwnldxml {
+
+}
+
+/*LATEST CHANGES*/
+
+@media screen and (min-device-width:768px) and (max-device-width:990px) {
+    .lvphtaadhaar {
+        width: 27%;
+    }
+
+    .pdd11 {
+        padding-top: 6px;
+        margin-top: 6px !important;
+    }
+    /*LATEST CHANGES HERE*/
+    .dwnldxml {
+        width: 100%;
+        margin-left: 0px;
+        padding-left: 0px;
+    }
+
+    .btndwnldxml {
+        width: 100%;
+    }
+
+    /*LATEST CHANGES END */
+}
+
+@media screen and (min-device-width:300px) and (max-device-width:768px) {
+    /*LATEST CHANGES HERE*/
+    .lvphtaadhaar {
+        width: 80%;
+    }
+
+    .dwnldxml {
+        width: 100%;
+        margin-left: 0px;
+    }
+
+    .btndwnldxml {
+        width: 100%;
+    }
+
+    .dwndbtnsvng {
+        margin-left: 5px;
+    }
+    /*LATEST CHANGES END*/
+    .svnglst {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+    }
+    .cecf {
+        display: block;
+    }
+
+    .pdd11 {
+        padding-top: 6px;
+        margin-top: 6px !important;
+    }
+
+    .pstnwrkyc {
+        display: block;
+        flex-direction: row;
+    }
+
+    .rekycmrlft {
+        margin-left: -50px;
+    }
+
+    .fetchdoc {
+        margin-top: 6px;
+    }
+
+    .psthead {
+        background-color: white;
+        padding-left: 10px;
+        padding-top: 15px;
+    }
+
+    .cqeotp {
+        font-size: 11px;
+    }
+
+    .pstpara {
+        margin-bottom: 5px;
+        margin-left: 5px;
+    }
+}
+
+@media screen and (min-device-width:250px) and (max-device-width:400px) {
+    .pstnwrkyc {
+        display: block;
+    }
+
+    .rekycmrlft {
+        margin-left: 0px !important;
+    }
+
+    .pstfirst {
+        width: auto;
+        display: block !important;
+    }
+}
+
+@media screen and (min-device-width:200px) and (max-device-width:300px) {
+    .gcbcdata {
+        margin-top: 5px;
+    }
+}
+
+@media screen and (min-device-width:500px) and (max-device-width:300px) {
+    .psthead {
+        background-color: white;
+        padding-left: 10px;
+        padding-top: 15px;
+    }
+}
+
+/*digital Quick enrollment*/
+.inputsectbx {
+    height: 34px;
+}
+
+.mrgnagnt {
+    margin-top: 26px;
+}
+
+.apprej {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.dqerdobtn {
+    height: 51px;
+    width: 19px;
+}
+
+.dqerdotxt {
+    margin-top: 13px;
+}
+
+.dqetopbtn {
+    margin: 0px 10px;
+}
+
+.rkycbtn2 {
+    font-size: 15px;
+    padding: 3px 20px 3px 20px;
+    margin-bottom: 10px;
+}
+
+@media screen and (min-device-width:768px) and (max-device-width:990px) {
+    .mailverify {
+        margin-left: 16px;
+        margin-top: 5px;
+    }
+}
+
+@media screen and (min-device-width: 320px) and (max-device-width: 768px) {
+    .dqerdotxt {
+        margin-top: 0px;
+    }
+}
+
+
+
+
+
+/*user details*/
+@media screen and (min-device-width: 320px) and (max-device-width: 768px) {
+
+    .userdtlicon {
+        position: absolute;
+        margin-top: 3%;
+        margin-left: 4%;
+        height: 38px;
+        width: 41px;
+    }
+}
+
+/*main-home page*/
+.logmrgn {
+    margin-left: -53px;
+}
+
+.mnpgd {
+    display: flex;
+    flex-direction: row;
+}
+
+
+
+
+
+
+
+/*Indofin admin dashboard*/
+@media screen and (min-device-width:420px) and (max-device-width:500px) {
+
+    .admnbox {
+        width: 174px !important;
+        height: 146px !important;
+    }
+}
+
+@media screen and (min-device-width:300px) and (max-device-width:420px) {
+    /*.admnbox {
+        width: 129px !important;
+        height: 124px !important;
+    }*/
+
+    .adfntsz {
+        font-size: 10px !important;
+    }
+}
+
+/* organisation details*/
+@media screen and (min-device-width:300px) and (max-device-width:600px) {
+    .agntlogn {
+        padding-left: 37px;
+    }
+
+    .formorg {
+        padding: 18px;
+    }
+}
+/* s changes*/
+.genderstyl {
+    margin-right: 10px;
+    margin-bottom: 0px;
+}
+
+.trhclr {
+    background-color: #2874f0;
+    color: white;
+}
+
+.crossbtn {
+    margin-right: -117px;
+}
+
+.pstcqe {
+    display: flex;
+}
+
+.mrgntop {
+    margin-top: 30px;
+}
+
+.pstmrgn {
+    margin-top: 0px !important;
+}
+
+.trdclr {
+    background-color: white;
+}
+
+.cddcstid {
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+}
+
+.deleteicon {
+    height: 23px;
+    margin-top: 0px;
+}
+
+.cacusagebtn {
+    display: flex;
+    margin: 0%;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.cnommi1 {
+    display: flex;
+}
+
+.cyesnommi {
+    display: flex;
+    align-items: center;
+}
+
+.cecf {
+    display: flex;
+}
+
+.cecf2 {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+}
+
+.plusicon {
+    position: absolute;
+    margin: -11px -32px;
+}
+
+.minusicon {
+    margin: -11px -32px;
+}
+
+.fntofuse {
+    font-size: 14px;
+}
+
+.labelval {
+    display: flex;
+}
+
+.idtype {
+    margin-top: 30px;
+}
+
+.ccheckbox {
+    display: flex;
+    align-items: baseline;
+}
+
+.lastsavecaf {
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
+
+.lastsubbtn {
+    margin: 5px;
+}
+
+.cmainholder {
+    margin-right: 5px;
+}
+
+.maidprenm {
+    margin: 1% 1% !important;
+}
+
+.cbrnch {
+    margin-left: 1%;
+    margin-top: -4%;
+}
+
+.ynfrstdiv {
+    font-size: 16px;
+}
+
+.srchrstbtn {
+    height: 50%;
+    margin-right: 10px;
+    margin-top: 8px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+
+.ssdgpdf {
+    display: flex;
+    justify-content: center;
+    margin: 13px;
+    padding: 12px !important;
+}
+
+.ssdgpdfmain {
+    justify-content: center;
+    display: flex;
+}
+/* .init-ul-parent {
+            padding: 0!important;
+           
+        }*/
+/*main home page*/
+/* @@media only screen and (max-width:1028px) {
+            nav.navbar ul li{
+                padding: 0 8px;
+            }
+            .nav-item{
+              /*  border:1px solid red;
+                
+            }/*
+            .init-ul-parent{
+
+            }
+*/
+/* @@media (max-width: 992px) {
+        .init-ul-parent{
+                position: absolute;
+                background-color:#4fcaff;
+                width: 50%!important;
+                right: 0px;
+                top: 93px;
+            }
+        .res-ul{
+            width: 100%!important;
+           
+            display: flex!important;
+            align-items: center;
+            justify-content: center;
+        }*/
+/*nav.navbar ul li{
+               margin:0;
+            }*/
+/*nav.navbar ul li:nth-last-child(1){
+               margin-bottom:170px;
+            }*/
+/* .init-btn-pad{
+                margin-bottom: 21px!important;
+        }*/
+/*.res-logo{
+            margin-left: -360px!important;
+        }
+        .res-btn{
+                margin-right: -338px!important;
+        }
+        .init-img-par{
+                margin-right: 213px;
+                margin-left: -60px;
+        }*/
+/*main home page*/
+
+
+.pdrow {
+    padding: 0px 25px 0px 25px;
+    display: flex;
+}
+
+@media screen and (min-device-width:768px) and (max-device-width:1283px) {
+    .crossbtn {
+        margin-right: -30px;
+    }
+}
+
+
+
+
+
+
+@media only screen and (max-width:768px) {
+    .hmtext {
+        width: 350px !important;
+    }
+    /* .navbar-collapse.collapse {
+        display: none !important;
+    }
+*/
+}
+
+@media screen and (min-device-width:340px) and (max-device-width:768px) {
+    .right1{
+        width:100%;
+    }
+    .dsfx {
+        display: block !important;
+    }
+    .right11 {
+        width: 100%;
+    }
+
+    .cyesnommi {
+        display: block;
+    }
+
+    .dsfx {
+        display: block;
+    }
+
+    .form-control {
+        height: 52px ;
+    }
+
+    .pddrght {
+        padding-right: 12px !important;
+    }
+
+    .srchrstbtn {
+        height: 52px !important;
+    }
+
+    .cnommi1 {
+        display: block;
+    }
+
+    .cecf {
+        display: block;
+    }
+
+    .ssdgpdf {
+        display: block;
+        justify-content: center;
+    }
+
+    .ssdgpdfmain {
+        justify-content: center;
+        display: block;
+    }
+
+    .bbutton {
+        width: 100%;
+    }
+
+    .gnrtpdfssd {
+        width: 100%;
+        height: 52px;
+        margin: 0px 8px 0px 11px;
+    }
+
+    .gcbcdata {
+        margin-top: 5px;
+    }
+
+    .mrtpbtn {
+        width: 100%;
+    }
+
+    .idtype {
+        padding-top: 0px;
+    }
+
+    .mrgntop {
+        margin-top: 6px;
+    }
+}
+
+@media screen and (min-device-width: 200px) and (max-device-width: 340px) {
+    .hmtext {
+        width: 340px !important;
+    }
+
+    .res-navbar {
+        min-height: 65px;
+    }
+
+    .res-logo {
+        width: 168px !important;
+    }
+
+    .bbutton {
+        width: 100%;
+    }
+
+    .mrgntop {
+        margin-top: 6px;
+    }
+    /* .cqepopup {
+        margin: 2px;
+        margin-bottom:3px;
+
+    }*/
+
+}
+
+@media only screen and (max-width:1200px) {
+
+    .cqepopup {
+        font-size: 11px;
+    }
+}
+
+@media screen and (min-device-width:320px) and (max-device-width:430px) {
+    .init_logout_img {
+        cursor: pointer;
+        width: 20px;
+        height: 20px;
+    }
+    .mrgntop {
+        margin-top: 6px;
+    }
+}
+
+.pdlfmns {
+    margin-left: -8%;
+}
+
+.dsfxFix {
+    display: flex;
+}
+.padinfirt {
+    padding-right: 0px;
+    margin: 0.5% 0% 1% 2%;
+}
+.dsfxclmn {
+    display: flex;
+}
+.prefixall {
+    padding: 0px;
+    clear: both;
+}
+@media screen and (min-device-width:760px) and (max-device-width:994px) {
+    .mn99 {
+        display: flex;
+        flex-direction: column;
+    }
+    .cecf {
+        display: flex;
+        flex-direction: column;
+    }
+    .pdlfmns {
+        margin-left: 0%;
+    }
+    .padinfirt {
+        margin: 0.5% 0% 1% 0%;
+        padding-left: 0%;
+    }
+    .brnchdsgn2 {
+        background-color: #fbfbfb00   ;
+        border: none;
+        padding-top: 0px;
+        box-shadow: none;
+    }
+    .dsfxclmn {
+        display: flex;
+        flex-direction: column;
+    }
+    .wdthmrgn {
+        width: 92%;
+        margin-left: 3%;
+    }
+    .padinfirt {
+        padding: 0px 15px !important;
+    }
+    .prefixall {
+        padding: 0px 15px;
+    }
+    .wdthmrgn2 {
+        width: 94%;
+        margin-left: 3%;
+    }
+    .sec2custn {
+        margin-left: 20px;
+    }
+    .wdthmrgn3 {
+        width: 97%;
+        margin-left: 3%;
+    }
+}
+@media screen and (min-device-width:300px) and (max-device-width:760px) {
+    .dsfxclmn {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .wdthmrgn {
+        width: 92%!important;
+        margin-left: 3%;
+    }
+    .padinfirt {
+        padding: 0px 15px!important;
+    }
+    .prefixall {
+        padding: 0px 15px;
+    }
+    .wdthmrgn2 {
+        width: 94%;
+        margin-left: 3%;
+    }
+    .sec2custn {
+        margin-left: 20px;
+    }
+    .wdthmrgn3 {
+        width: 97%;
+        margin-left: 3%;
+    }
+}

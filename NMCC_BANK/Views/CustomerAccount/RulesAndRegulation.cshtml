@@ -1,0 +1,575 @@
+﻿@*@model ServiceProvider1.Models.UserDetails.ClsSummeryDetails*@
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="~/Content/PDF/PDF.css" rel="stylesheet" />
+    <script src="~/Scripts/bootstrap-multiselect.js"></script>
+    <style>
+        table.ex1 {
+            empty-cells: hide;
+        }
+
+        table.ex2 {
+            empty-cells: show;
+        }
+    </style>
+
+
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/PDF/PDF.css" rel="stylesheet" />
+    <script>
+        function CloseForm() {
+            $.ajax({
+                url: "/DataVerify/SummerySheet",
+                type: "Get",
+                cache: false,
+                success: function (result) {
+                    debugger;
+                    $("#Indo_Dashboard").hide();
+                    $('#QuickEnrollview').html(result);
+
+                }
+            })
+        }
+    </script>
+    <script>
+
+        function UserMobileOTPGenerate() {
+            debugger;
+            var UserMobileNo = $("#UserMobileNo_id").val();
+            $.ajax({
+                url: "/DataVerify/GenerateOTP?MbileNo=" + UserMobileNo,
+                type: "Get",
+                cache: false,
+                success: function (result) {
+                    debugger;
+                    if (result == "OTP Generated Successfully!!!!!" || result == "OK") {
+                        debugger;
+                        swal("OTP Generated Successfully");
+                    }
+                    else {
+                        swal(result);
+                    }
+                }
+            })
+        }
+        function CustMobileOTPGenerate() {
+            debugger;
+            var CMobileNo = $("#CustMobileNo_id").val();
+            $.ajax({
+                url: "/DataVerify/GenerateOTP?MbileNo=" + CMobileNo,
+                type: "Get",
+                cache: false,
+                success: function (result) {
+                    debugger;
+                    if (result == "OTP Generated Successfully!!!!!" || result == "OK") {
+                        debugger;
+                        swal("OTP Generated Successfully");
+                    }
+                    else {
+                        swal(result);
+                    }
+                }
+            })
+        }
+        function CVerifyOTP() {
+            debugger;
+            var MbileNo;
+            var OTP;
+
+            if ($("#CustOTP_id").val() != null && $("#CustOTP_id").val() != "") {
+                MbileNo = $("#CustMobileNo_id").val();
+                OTP = $("#CustOTP_id").val();
+            }
+            else if ($("#UserOTP_id").val() != null && $("#UserOTP_id").val() != "") {
+                MbileNo = $('#UserMobileNo_id').val();
+                OTP = $("#UserOTP_id").val();
+            }
+            else {
+                swal("Enter OTP");
+            }
+            $.ajax({
+                url: "/DataVerify/VerifyGenerateOTP?MbileNo=" + MbileNo + "&OTP=" + OTP,
+                type: "Get",
+                cache: false,
+                success: function (result) {
+                    debugger;
+                    if (result == "OTP Validated Successfully!!!!!" / "") {
+                        swal("hiiiii");
+                    }
+                    else {
+                        swal("OTP");
+                    }
+
+                    //if (result == "OTP Validated Successfully!!!!!") {
+                    //    swal(result);
+                    //}
+                    //else {
+                    //    swal(result);
+                    //}
+                }
+            })
+        }
+
+        function UserVerifyOTP() {
+            debugger;
+            var MbileNo;
+            var OTP;
+
+
+            if ($("#UserOTP_id").val() != null && $("#UserOTP_id").val() != "") {
+                MbileNo = $('#UserMobileNo_id').val();
+                OTP = $("#UserOTP_id").val();
+            }
+            else {
+                swal("Enter OTP");
+            }
+            $.ajax({
+                url: "/DataVerify/VerifyGenerateOTP?MbileNo=" + MbileNo + "&OTP=" + OTP,
+                type: "Get",
+                cache: false,
+                success: function (result) {
+                    debugger;
+                    if (result == "OTP Validated Successfully!!!!!") {
+                        swal(result);
+                    }
+                    else {
+                        swal(result);
+                    }
+                }
+            })
+        }
+    </script>
+    <script>
+        $(document).ready(function () {
+            //  window.location = "/PaymntReceipt/ShowPaymentReceipt" + "?ajaxcall=" + $('#NPSPaymentReceipt').val();
+            debugger;
+            @*if (@Model.ACCRegular == true) {
+
+                $('#ACRegular').prop('checked');
+            }*@
+            $('#btnPdf').click(function () {
+                debugger;
+                // window.location = "/DataVerify/dowanloadpdf";
+                var url = window.location.protocol + "//" + window.location.host + "/DataVerify/dowanloadpdf";
+                window.open(url, '_blank');
+            })
+            $('#closeformdata').click(function () {
+                debugger;
+                $('#SummeryDataView').hide();
+            })
+        })
+    </script>
+
+
+    <script>
+        function backtoview() {
+            window.location.href = '/ServiceProviderMainHome/QuickEnrollDashboard';
+        }
+    </script>
+</head>
+<body style="font-family:Arial">
+
+    @*<button type="submit" class="btn btn-success btn-lg float-right" id="btnPdf">Pdf Dowanload</button>*@
+    <div id="SummeryDataView">
+       
+
+            <!--end page19-->
+            <div class="clr"></div>
+
+            <div class="start-pg9" style="font-size:16px; page-break-before:always;width:96%;margin:2% 2%;">
+                @*class="pic-hdr"*@
+                <div class="customerpdfdigi" style="margin-top:1%">
+                    <div class="custhdpdfdigi" style=""> Comprehensive Declaration </div>
+                </div>
+                @*Comprehensive Declaration*@
+                <div style="width:98%;margin:0% 2%;font-size:14px;font-family:sans-serif">
+                    <p style="width:98%;margin-left:1%;">
+                        I/ We confirm having read and understood the account rules and hereby agree to be bound
+                        by the terms and conditions governing the account which I/We am / are opening  / will open
+                        and amendment to the rules made from time to time and those relating to various services availed
+                        by me / us when displayed by the Bank on its Notice Board or on its website - www.cosmobank.com
+                        and those relating to various services offered by the Bank including but not limited to
+                        ATM Card / Debit Card/ Internet Banking /SMS Banking / IM(Internet + Mobile)Banking /Flexi Deposit Scheme/
+                        Sweep in Sweep Out and other facilities offered by the Bank. The usage of these facilities
+                        is governed by the terms and conditions stipulated by the Bank from time to time.
+
+                    </p>
+                    <br />
+                    <p style="width:98%;margin-left:1%;">
+                        I / We have read/understood and agreed to'Most Important Terms & Conditions' including the interpretation of
+                        rules , risk, limits charges and other conditions.
+                    </p>
+                    <br />
+                    <div style="width:98%;margin-left:1%;">
+                        I undertake that the saving account will be used to route transactions of only non business / non commercial nature.
+                        In event of occurrence of such transactions, Bank reserves the right to unilaterally freeze the account operations nd/or
+                        close the account.
+                    </div>
+                    <br />
+                    <div style="width:98%;margin-left:1%;">
+                        In case of joint accounts, instructions received from one of the account holders to stop operations will be deemed to be
+                        sufficient notice to the Bank to act upon such instructions. Further operations would be allowed only upon receipt of fresh
+                        instructions from all the account holders.
+                    </div>
+                </div>
+            </div>
+
+            <div class="start-pg9" style="font-size:16px; page-break-before:always;width: 96%;margin: 2% 2% 0% 2% !important;">
+       <div class="border_pdfdigi">
+    
+                <div class="customerpdfdigi" style="margin-top:1%">
+                    <div class="custhdpdfdigi" style="">Rules & Regulations </div>
+                </div>
+                <div style="width:98%;margin:0% 2%;font-size:14px;font-family:sans-serif">
+                    <div style="width:98%;margin-left:1%;font-family: arial, sans-serif;font-style:oblique">
+                        <strong> Account Opening</strong>
+                    </div>
+                    <br />
+                    <div style="width:98%;margin-left:1%;"> 
+                        1. If you do not receive welcome letter within 2 weeks of the date  of submission of the form kindly contact the branch.
+                        <br />
+                        2.  The opening / operating / closing of any account is subject to the extant Know Your Customer (KYC) guidelines of Reserve Bank of India.
+                        Providing PAN/Form No. 60(Where PAN is not available) is mandatory.
+                        <br />
+                        3.The initial minimum deposit as applicable form time to time is need to be deposited at the time of account opening.
+                        <br />
+                        4.In case the Account is opened with a cheque and the said cheque is returned unpaid,the Bank reserves the right to not to open/activate the account.
+                        <br />
+                    </div>
+                    <br />
+                    <div style="width:98%;margin-left:1%;font-family: arial, sans-serif; font-style:oblique">
+                        <strong> Passbook / statement of account </strong>
+                    </div>
+                    <br />
+                    <div style="width:98%;margin-left:1%;">
+                        1. Pass book will be given to all savings account holders. If the accountholder wants a statement of account(hard copy),
+                        it will be issued on specific request and on payment of necessary charges.
+                        <br />
+                        2. Accountholder may register his/her email iD to receive the statement of account via email at specific frequency.
+                        <br />
+                        3. The account holder(s) is/are expected to verify the entries made in pass book and draw the attention of the bank to any errors or omissions if any discovered.
+                        The bank does not accept any responsibility for any loss arising out of failure on the part of the account holder to carry out verification of entries in the pass book
+                        and to point out such error and/omission within one month from the date of updation of pass book.
+                        <br />
+                    </div>
+                    <br />
+                    <div style="width:98%;margin-left:1%;font-family: arial, sans-serif; font-style:oblique">
+                        <strong>Conduct of Account</strong>
+                    </div>
+                    <br />
+                    <div style="width:98%;margin-left:1%;">
+                        The customer should maintain prescribed average quartly balance in the account as may be required from time to time.
+                        Non-maintennce of such adequate balance shall automatically entitle the bnk to levy the charges for non-maintenance of prescribed balance
+                        on quarterly basis and on a date determined by the Bank.
+                        <br />
+                        For premium onward accounts, if adequate balance is not maintained in the account, the Bank reserves the right to withdraw the
+                        free/concessional services offered in the account and transfer the account to Regular Account Scheme.
+                        <br />
+                        In case of joint Accounts,any change in operational instruction or any other information with regard to the Account Opening Form
+                        is to be given by all the joint account holders irrespective of the mode of operation.
+                        <br />
+                        The bank has the authority to debit the account to recover any amount credited erroneously.
+                        <br />
+                        Bank is its sole discretion may restrict the number of withdrawls in the Account.
+                        <br />
+                        Accountholder should issue cheques in the account only after making prior arrangement of funds in the account to void returns/dishonor.
+                        If a cheque issued is required to be returned for insufficient balance in the Account or for being in excess of arrangements, a penalty/charge
+                        may be levied as applicable. In case of large number of returns/dishonors in the account, the Bank reserves the right to take corrective
+                        action for the corrective action for the specific account as deemed fit.
+                        <br />
+                        Account operations will be ceased after 3 months from the date of account opening, for non-submission of offically vaild document.
+                        <br />
+                        Savings account having no customer induced transactions for more than 1 year will be treated as inoperative account as per RBI guidelines.
+                        Further, the savings account having no customer induced transaction for more  than 2 years will be classified as Dormant Account.
+                        For activation of Dormant Account, customer is required to submit latest KYC documents and latest photographs alongwith letter giving
+                        reasons for non-operation of account.
+                        <br />
+                        Mobile Number of the first Account holder mentioned in Account Opening Form is considered as Primary Mobile Number and all transaction
+                        alerts related to account will be sent to that mobile number only.
+                        <br />
+                        For Salary ccount, in case of non credit of salarybfor consecutive 3 months, the Bank reserves the right to clse the said account
+                        or transfer the salary account to regular savings account scheme. After transferring the accoint to Regular Scheme, rules and
+                        service charges will be applicble as per regular account scheme.
+                        <br />
+                        Service Charges will be applicable as mended from time to time. Shedule of servicecherges is displayed on Notice Board at branch as
+                        well it is available on bank's website.
+                        <br />
+                        Withdrawals will be allowed either by withdrawal slips or by cheques or by any other mode acceptable to the Bank.
+                        <br />
+                        For withdrawing money from savings account through a withdrawal slip, production of pass book issued by the Bank is necessary.
+                        <br />
+                        When an account is closed either by the accountholder or by the Bank, the accountholder/s are required to return the ATM card/Debit
+                        Card and all the unused cheques to the bank. Also closure of account requires signatures of all accountholders.
+                        <br />
+                        The usage of Debit Card issued to special categories of customer will be in accordance with the rules and regulations.
+                        The Bank reserves the right to suspend the services of ATM/Debit card unilaterally without any prior notice or assigning any reason.
+                        <br />
+                        Nomination facility is available for the Account in the name of individual. Only one nominee is permissble per account.
+                        <br />
+                        The accountholder is at liberty to change the nominee or cancelthe nomination, thriugh declaration in the appropriate form to revise
+                        the nomination during the currency of the account with Bank.
+                        <br />
+                        The customer shall be solely responsible for the safe-keeping and the confidentiality of the statements of account, cheque books,
+                        Debit card and its PIN, User ID and passwords relting to Internet Banking and such other items relevent or pertaining to the Account.
+                        <br />
+                        Interest as decided from time to time shall be paid on the balances in Savings Bank Accounts.
+                        <br />
+                        Interest will be credited to account on quaterly basis viz. financial quarters calculated on daily product basis.
+                        <br />
+                        Savings Bank Account cannot be opened for business purposes as per RBI directives and hence Savings Bank Account should be used to
+                        route transactions of only nonbusiness / non-commercial nature.
+                        <br />
+                        Annual maintainence charges for debit card will be applicable as per Bank Policy from second year onward as it is free of cost for the first year.
+                        <br />
+                        The Bank reserves the right to alter, delete or add any of these rules at any time without prior intimation to individual customers or to
+                        refuse to open an account or to close any account.
+                        <br />
+                        Opening of the Savings Bank Account is considered as deemed acceptance of the aforesaid rules and regulations as well as the fact of being
+                        informed about the vrious services charges being levied by the bank and the terms and conditions guiding related products and service.
+                    </div>
+                    <br />
+                    <div style="width:98%;margin-left:1%;">
+                        The above rules are not exhaustive.
+                    </div>
+                    <br />
+                    <div style="width:98%;margin-left:1%;">
+                        For further details, please contact your Home branch.
+                    </div>
+                    <br />
+                    <div style="width:98%;margin-left:1%;">
+                        Internet Banking(Cosmo Net) / mobile Application(IM Banking)
+                    </div>
+                    <div style="width:98%;margin:0% 2%;">
+                        Incase ou find mutipe customer IDs attached for my different accounts, I accept & agree to merge those multiple customer IDs an one customer ID,
+                        as per RBI directive which will also be used as authenticated login user ID for Internet Banking(Cosmo Net)
+                        <br />
+                        I/We authorize the pplicnt to access the account(s) via the channels selected further. We accept and agree to be bound by the said terms
+                        and conditions for the use of Internet Banking(Cosmo Net) / mobile Application(IM Banking)
+                        <br />
+                        Cosmos Bank shall not be responsible and liable to monitor the nature of expense incurred by the use of the said Internet Banking(Cosmo Net)
+                        / Mobile Application(IM Banking)
+                        <br />
+                        All transactions carried in the above mentioned account through use Internet Banking(Cosmo Net) facility shall be binding on corporate entity
+                        and Cosmos Bank shall all times be kept saved and harmless from all actions, claims, demands, proceedings losses, damages cost, charges and expenses
+                        whatsoever which Cosmos bank may at any time incur, suffer or to be put as a consequence of or by reason of or arising out of transaction carried out
+                        through the Internet Banking(Cosmo Net) / mobile Application(IM Banking) facility.
+                        <br />
+                        Cosmos Bank shall at all times be informed of any change in the operating instructions for Banking facility by furnishing necessary documents in writing
+                        and in such events to change the Internet Banking(Cosmo Net) / Mobile Application(IM Banking) password forthwith.
+                        <br />
+                        I/We further agree the since the modeof operation of our Account is joint (one initiator & all other approvers), the transaction/s initiated by anyone
+                        holder will have to be approved by other joint holder/s. I/We further affirm, confirm and undertake that I/We will be responsible for any action by any
+                        of us using IM (Internet+Mobile) Banking facility.
+                        <br />
+                        I/We hereby state should I/We wish to charge/revokethe above authorization, I/We shall duly submit a change mandate to that effect to the Bank.
+                        I/We hereby agree that till 10(ten) working days, after receipt of such change mandate existing account operations shall be hold good.
+                        <br />
+                        I confirm that I will keep all banking information and password securely. I will not share any of important banking information to any unknown  person.
+                        <br />
+                        I also confirm that all the information given above belongs to me and can be used to update my records in your Bank.
+                    </div>
+                </div>
+    </div>
+            </div>
+            <br />
+            <div class="start-pg9" style="font-size:16px; page-break-before:always;width: 96%;margin: 2% 2% 0% 2% !important;">
+                <div class="border_pdfdigi">
+                    <div style="width:98%;margin:0% 2%;font-size:14px;font-family:sans-serif">
+                        <div class="customerpdfdigi" style="margin-top:1%">
+                            <div class="custhdpdfdigi" style="">For Office Use Only </div>
+                        </div>
+                        @*<div class="pic-hdr">
+                            <div class="custhdpdfdigi" style="">
+                                
+                            </div>
+                        </div>*@
+                        <div style="width:98%;margin-left:1%;font-family: arial, sans-serif">
+                            Application Accepted by (Branch Official):        At the time of accepting the application:
+                        </div>
+                        <div style="width:98%;margin-left:1%;font-family: arial, sans-serif">
+                            Confirmed all A/c No. A/c Holder (Customer ID) and Operation on
+                            <br />
+                            Check and Confirm EmailID I Mobile No. 1 User Level for iB IIM (Internet + Mobile) Banking.
+                            <br />
+                            KYC Compliance checked and allowed to open an account
+                            <br /><br/>
+                            <Div class="textlft hdgrea">Initial Amount</Div>
+                            <input type="text" @*value="@Model.OfficeUseInitialAmount"*@ class="textbox_btm1" style="float: left;width: 31%;margin-right: 3%;border-top: none!important;border-right: none!important; border-left: none !important;" />
+                            <br />
+                            <Div class="textlft hdgrea">DC No.</Div>
+                            <input type="text" @*value="@Model.OfficeUseDC_NO"*@ class="textbox_btm1" style="float: left;width: 31%;margin-right: 3%;border-top: none!important;border-right: none!important; border-left: none !important;" />
+                            <br />
+                            <Div class="textlft hdgrea">Date</Div>
+                            <input type="text" @*value="@Model.OfficeUseDate"*@ class="textbox_btm1" style="float: left;width: 31%;margin-right: 3%;border-top: none!important;border-right: none!important; border-left: none !important;" />
+                            <br />
+                            <Div class="textlft hdgrea"> WF No.</Div>
+                            <input type="text" @*value="@Model.OfficeUseWF_No"*@ class="textbox_btm1" style="float: left;width: 31%;margin-right: 3%;border-top: none!important;border-right: none!important; border-left: none !important;" />
+                            <br />
+                            <Div class="textlft hdgrea">  Name & Signature of the officer :</Div>
+                            <input type="text" @*value="@Model.OfficeUseNameAndSign"*@ class="textbox_btm1" style="float: left;width: 31%;margin-right: 3%;border-top: none!important;border-right: none!important; border-left: none !important;" />
+
+
+                        </div>
+
+                    </div>
+
+
+                    <br />
+
+                    @*class="start-pg9" style="font-size:16px; page-break-before:always;"*@
+
+                    <div style="font-family: arial, sans-serif;width:98%;margin:0% 1%;">
+                       
+                        <div class="customerpdfdigi" style="margin-top:1%">
+                            <div class="custhdpdfdigi" style="">For AOC(Account Opening Cell)</div>
+                        </div>
+                        <div style="font-family: arial, sans-serif">
+                            Entered By : Name & Signature
+                        </div>
+                        <div style="width:98%;float:left;font-family: arial, sans-serif">
+
+                            <div style="font-family: arial, sans-serif;font-size:20px;float:left;width:100%">
+                                @if (Model.AOC_VISAorATM == true)
+                                        {
+                                        <input type="checkbox" checked="checked" @*value="@Model.AOC_VISAorATM"*@ class="textbox_btm1" style="float: left;margin-right: 2%;border-top: none!important;border-right: none!important; border-left: none !important;" />
+                                }
+                                else
+                                {
+                                    <input type="checkbox" @*value="@Model.AOC_VISAorATM"*@ class="textbox_btm1" style="float: left;margin-right: 2%;border-top: none!important;border-right: none!important; border-left: none !important;" />
+
+                                }
+                                <div class="enrolldiginewbx">  VISA / ATM Card Data Entry in ATM Card Application Management(Intranet Site) </div>
+                            </div>
+                            <br />
+
+                            <div style="font-family: arial, sans-serif;font-size:20px;float:left;width:100%">
+                                @if (Model.AOC_SMSBanking == true)
+                                {
+                                    <input type="checkbox" checked="checked" @*value="@Model.AOC_SMSBanking"*@ class="textbox_btm1" style="float: left;margin-right: 2%;border-top: none!important;border-right: none!important; border-left: none !important;" />
+                                }
+                                else
+                                {
+                                    <input type="checkbox" @*value="@Model.AOC_SMSBanking"*@ class="textbox_btm1" style="float: left;margin-right: 2%;border-top: none!important;border-right: none!important; border-left: none !important;" />
+
+                                }
+                                <div class="enrolldiginewbx"> Cosmos M-Messaging Data Entry in SMS Banking System(Internet Site). </div>
+                            </div>
+                            <br />
+
+                            <div style="font-family: arial, sans-serif;font-size:20px;float:left;width:100%">
+                                @if (Model.AOC_ACAndKYCComplied == true)
+                                {
+                                    <input type="checkbox" checked="checked" @*value="@Model.AOC_ACAndKYCComplied"*@ class="textbox_btm1" style="float: left;margin-right: 2%;border-top: none!important;border-right: none!important; border-left: none !important;" />
+                                }
+                                else
+                                {
+                                    <input type="checkbox" @*value="@Model.AOC_ACAndKYCComplied"*@ class="textbox_btm1" style="float: left;margin-right: 2%;border-top: none!important;border-right: none!important; border-left: none !important;" />
+
+                                }
+                                <div class="enrolldiginewbx"> The applicant A/c is active & KYC complied. </div>
+                            </div>
+                            <br />
+
+                            <div style="font-family: arial, sans-serif;font-size:20px;float:left;width:100%">
+                                @if (Model.AOC_IBComformationRequest == true)
+                                {
+                                    <input type="checkbox" checked="checked" @*value="@Model.AOC_IBComformationRequest"*@ class="textbox_btm1" style="float: left;margin-right: 2%;border-top: none!important;border-right: none!important; border-left: none !important;" />
+                                }
+                                else
+                                {
+                                    <input type="checkbox" @*value="@Model.AOC_IBComformationRequest"*@ class="textbox_btm1" style="float: left;margin-right: 2%;border-top: none!important;border-right: none!important; border-left: none !important;" />
+
+                                }
+                                <div class="enrolldiginewbx"> IB confirmation at request. </div>
+                            </div>
+                            <br />
+
+                            <div style="font-family: arial, sans-serif;font-size:20px;float:left;width:100%">
+                                @if (Model.AOC_ChequeBookRequest == true)
+                                {
+                                    <input type="checkbox" checked="checked" @*value="@Model.AOC_ChequeBookRequest"*@ class="textbox_btm1" style="float: left;margin-right: 2%;border-top: none!important;border-right: none!important; border-left: none !important;" />
+                                }
+                                else
+                                {
+                                    <input type="checkbox" @*value="@Model.AOC_ChequeBookRequest"*@ class="textbox_btm1" style="float: left;margin-right: 2%;border-top: none!important;border-right: none!important; border-left: none !important;" />
+
+                                }
+                                <div class="enrolldiginewbx"> Personalized Cheque Book Issued. </div>
+                            </div>
+                            <br />
+
+                            <div style="font-family: arial, sans-serif;font-size:20px;float:left;width:100%">
+                                @if (Model.AOC_CosmoNetComformationRequest == true)
+                                {
+                                    <input type="checkbox" checked="checked" @*value="@Model.AOC_CosmoNetComformationRequest"*@ class="textbox_btm1" style="float: left;margin-right: 2%;border-top: none!important;border-right: none!important; border-left: none !important;" />
+                                }
+                                else
+                                {
+                                    <input type="checkbox" @*value="@Model.AOC_CosmoNetComformationRequest"*@ class="textbox_btm1" style="float: left;margin-right: 2%;border-top: none!important;border-right: none!important; border-left: none !important;" />
+
+                                }
+                                <div class="enrolldiginewbx"> Internet Banking (Cosmo Net) conformation request. </div>
+                            </div>
+                            <br />
+
+                            <div style="width:98%;font-family: arial, sans-serif;font-size:20px;float:left;width:100%">
+                                @if (Model.AOC_AutoSweep == true)
+                                {
+                                    <input type="checkbox" checked="checked" @*value="@Model.AOC_AutoSweep"*@ class="textbox_btm1" style="float: left;margin-right: 2%;border-top: none!important;border-right: none!important; border-left: none !important;" />
+                                }
+                                else
+                                {
+                                    <input type="checkbox" @*value="@Model.AOC_AutoSweep"*@ class="textbox_btm1" style="float: left;margin-right: 2%;border-top: none!important;border-right: none!important; border-left: none !important;" />
+
+                                }
+                                <div class="enrolldiginewbx"> Flexi fixed Deposit Scheme (Auto Sweep)(Tick anyone Box). </div>
+                            </div>
+                        </div>
+                        <br />
+                        <div style="width:98%;margin-left:1%;">
+                            Verified & found corect for further processing
+                            <br /><br/>
+                            <Div class="textlft hdgrea" style="width:18%">  Name & Signature of the officer :</Div>
+                            <input type="text" @*value="@Model.AOC_OfficerName"*@ class="textbox_btm1" style="float: left;width: 30%;margin-right: 2%;border-top: none!important;border-right: none!important; border-left: none !important;" />
+                            <br />
+                            <Div class="textlft hdgrea" style="width:13%">  Ticket No :</Div>
+                            <input type="text" @*value="@Model.AOC_TicketNo"*@ class="textbox_btm1" style="float: left;width: 29%;margin-right: 2%;border-top: none!important;border-right: none!important; border-left: none !important;" />
+                        </div>
+
+                    </div>
+
+
+                    <br />
+
+                    <div>
+                        <div class="customerpdfdigi" style="margin-top:1%">
+                            <div class="custhdpdfdigi" style="">For ABC Cell</div>
+                        </div>
+                       
+                        <br />
+                        <div style="width:98%;margin-left:1%;float:left;font-family: arial, sans-serif">
+                            RTS No. IB RTS No. Internet Banking (Cosmo Net) / Mobile Application (IM Banking):
+                            <br/>
+                            <br/>
+                            <Div class="textlft hdgrea" style="width:18%">  Name & Signature of the officer :</Div>
+                            <input type="text" @*value="@Model.ABCcell_OfficerName"*@ class="textbox_btm1" style="float: left;width: 30%;margin-right: 2%;border-top: none!important;border-right: none!important; border-left: none !important;" />
+                            <br />
+                            <Div class="textlft hdgrea" style="width:13%">  Ticket No :</Div>
+                            <input type="text" @*value="@Model.ABCcell_TicketNo"*@ class="textbox_btm1" style="float: left;width: 29%;margin-right: 2%;border-top: none!important;border-right: none!important; border-left: none !important;" />
+                        </div>
+
+                    </div>
+                    </div>
+                </div>
+
+            </div>
+    
+
+</body>
+</html>
+
+

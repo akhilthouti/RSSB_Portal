@@ -1,0 +1,112 @@
+﻿body {
+}
+
+
+
+.accordion {
+    font-size: 1rem;
+    width: 100%;
+    margin: 0 auto;
+    /* margin-left: 3%; */
+    margin-bottom: 1%;
+    border-radius: 5px;
+}
+.imae1{
+    height:30px;
+}
+.accordion-header,
+.accordion-body {
+    background: white;
+}
+
+.accordion-header {
+    padding: 10px;
+    background: #dadad8;
+    color: #3c3a3a;
+    display: flex;
+    font-weight: bold;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 4px;
+    border: 1px solid #eaeae9;
+}
+
+.accordion__item {
+    /*border-bottom: 1px solid #3a4ba4;*/
+    padding: 2px;
+    display: none;
+    float: left;
+    background-color: rgb(247, 245, 245);
+    /* margin-top: 1%; */
+    border: 1px solid rgb(238, 238, 238);
+    width: 100%;
+}
+
+    .accordion__item .accordion__item {
+        border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    }
+
+.accordion-header:hover {
+    background: #87a5dc;
+    position: relative;
+    z-index: 5;
+}
+
+.accordion-body {
+    background-color: rgb(247, 245, 245);
+    /* margin-top: 1%; */
+    border: 1px solid rgb(238, 238, 238);
+    width: 100%;
+    float: left;
+    margin-top: 1%;
+   
+}
+
+.accordion-body__contents {
+    padding: 1.5em 1.5em;
+    font-size: 12px;
+}
+
+.accordion__item.active:last-child .accordion-header {
+    border-radius: none;
+}
+
+.accordion:first-child > .accordion__item > .accordion-header {
+    border-bottom: 1px solid #3f51b5;
+}
+
+.accordion__item > .accordion-header:after {
+    content: "\f106";
+    font-family: 'FontAwesome';
+    font-size: 21px;
+    font-weight: bold;
+    float: right;
+    position: relative;
+    top: -2px;
+    transition: .3s all;
+    transform: rotate(0deg);
+}
+.panel-body {
+   
+}
+
+.accordion__item.active > .accordion-header:after {
+    transform: rotate(-180deg);
+}
+
+.accordion__item.active .accordion-header {
+    border-radius: 4px;
+    background: #f2f2f5;
+    border: 1px solid #3f51b5;
+    color: #3f51b5;
+    font-weight: bold;
+}
+
+.accordion__item .accordion__item .accordion-header {
+    background: #f1f1f1;
+    color: #353535;
+}
+
+

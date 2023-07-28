@@ -1,0 +1,544 @@
+﻿@{
+    /**/
+
+
+    // ViewBag.Title = "MainDashboard";
+    Layout = "~/Views/Shared/_AdminLayoutPage.cshtml";
+}
+<html>
+<head>
+    <script src="~/content/navigation/js/chart.min.js"></script>
+    @* PieChart CSS*@
+
+    <style>
+        .init_date_div {
+            margin-top: 12px;
+            background: #fff;
+            padding-top: 12px;
+            padding-bottom: 12px;
+            margin-bottom: 20px;
+        }
+
+        .init_radio {
+            margin: 0;
+            transform: scale(1.5);
+        }
+
+        .pie-chart {
+            background: radial-gradient( circle closest-side, transparent 66%, white 0 ), conic-gradient( from 277deg, #4e79a7 0, #4e79a7 27.1%, #f28e2c 0, #f28e2c 43.5%, #e15759 0, #e15759 54.9%, #76b7b2 0, #76b7b2 62%, #59a14f 0, #59a14f 66.3%, #edc949 0, #edc949 71.3%, #af7aa1 0, #af7aa1 78.4%, #ff9da7 0, #ff9da7 88.4%, #9c755f 0, #9c755f 99.8% );
+            position: relative;
+            width: 500px;
+            min-height: 350px;
+            margin: 0;
+            outline: 1px solid #ccc;
+            margin-left: 40px;
+        }
+
+            .pie-chart h2 {
+                position: absolute;
+                margin: 1rem;
+            }
+
+            .pie-chart cite {
+                position: absolute;
+                bottom: 0;
+                font-size: 80%;
+                padding: 1rem;
+                color: gray;
+            }
+
+            .pie-chart figcaption {
+                position: absolute;
+                bottom: 1em;
+                right: 1em;
+                . font-size: smaller;
+                text-align: right;
+            }
+
+            .pie-chart span:after {
+                display: inline-block;
+                content: "";
+                width: 0.8em;
+                height: 0.8em;
+                margin-left: 0.4em;
+                height: 0.8em;
+                border-radius: 0.2em;
+                background: currentColor;
+            }
+    </style>
+
+    <style>
+        #icon-test {
+            height: 22px;
+            opacity: 0.7;
+            float: right;
+        }
+
+        @@media screen and (max-width:767px) {
+            .init_details {
+                margin: 0;
+                display: flex;
+                flex-direction: column;
+            }
+
+            .init_dashboard {
+                margin-left: 0px !important;
+            }
+        }
+
+        .init_main_space {
+            display: flex;
+            justify-content: space-between;
+            margin: 0;
+        }
+
+        .init_dash_div {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .init_dashboard, .init_user {
+            color: #fff;
+        }
+
+        .init_dashboard {
+            margin-left: 50px;
+        }
+
+        .init_user {
+            float: right;
+            color: #fff;
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        .init_agent {
+            margin-right: 22px;
+        }
+
+        .cqepopupmn {
+            position: fixed;
+            top: 90%;
+            left: 20%;
+            transform: translate(-50%, -50%);
+            margin-top: -19%;
+            width: 41%;
+            display: none;
+            z-index: 2;
+            background-color: white;
+            box-shadow: 1px 1px 13.5px grey;
+            position: absolute;
+            margin-left: 30%;
+        }
+    </style>
+    <style>
+        .icndsgn {
+            color: white;
+            display: flex;
+            justify-content: center;
+            font-size: 42px;
+            padding: 10px;
+        }
+
+        .bxdsgn {
+            border: 1px solid #d467d4;
+            background-color: #d467d4;
+            padding-top: 4px;
+            padding-bottom: 8px;
+            border-radius: 9px;
+            padding-left: 3px;
+            padding-right: 0px;
+        }
+
+        .bxtext {
+            color: white;
+            font-weight: 700;
+            font-size: 14px;
+            border-top: 2px solid white;
+            border-bottom: 1px solid white;
+            padding: 6px;
+            margin-top: 6px;
+        }
+
+        .numdt {
+            color: white;
+            font-weight: 700;
+            font-size: 25px !important;
+            text-align: center;
+        }
+
+        .bxdsply {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .bxtext2 {
+            width: 62%;
+            margin-right: 0px;
+            margin-left: -1px;
+            display: flex;
+            padding-left: 18px;
+            justify-content: center;
+        }
+
+        .bxdsgn2 {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .bxdsgn3 {
+            padding: 15px 40px;
+            background-color: #87cb94;
+        }
+
+        .bxtext3 {
+            width: 101%;
+        }
+
+        .bxdsgn4 {
+            width: 15%;
+        }
+
+            .bxdsgn4:hover {
+                background: linear-gradient(130deg, #4b7bd0 0%, #84a9ea 100%);
+                box-shadow: none;
+            }
+
+        .bxdsgn3:hover {
+            background: linear-gradient(130deg, #4b7bd0 0%, #84a9ea 100%);
+            box-shadow: none;
+        }
+    </style>
+    <style>
+        .init_a_nav:hover {
+            background: #d55959;
+            transition: ease-in-out 0.3s;
+        }
+
+        .init_href {
+            font-size: 16px;
+            padding: 5px 12px;
+            color: #fff !important;
+            cursor: pointer;
+        }
+
+            .init_href:hover {
+                border-radius: 3px;
+                transition: all 0.4s ease;
+            }
+    </style>
+    <link href="~/css/multiclass.css" rel="stylesheet" />
+    <link href="~/Content/snewcss.css" rel="stylesheet" />
+    <link href="~/Content/Dashcss/dashboard.css" rel="stylesheet" />
+    <script>
+        function GetData() {
+            debugger;
+            $("#DigiCerti").html("<div style='position: fixed;z-index: 5000;float: left;right: 50%;height: 50px;width: 50px;top:40%;'><i class='fa fa-pulse fa-fw dgldr ldrdesign' style='height:70px;width:70px;border-radius:50%;border-bottom:5px dotted grey;border-top:5px dotted black;border-right:5px dotted black;border-left:5px dotted black;height:80px;width:80px;position:absolute;margin: 20% 50%;'></i></div>");
+            $("#DigiCerti").show();
+            $("#DIGIbag").show();
+
+            var PostData = "";
+
+            $("#DigiCerti").hide();
+            $("#DIGIbag").hide();
+            window.location.href = "/KYCQuickEnroll/CustomerQuickEnrollment?NewCJourney=" + PostData;
+
+        }
+    </script>
+
+
+    <script>
+        function getRejectdetails() {
+
+            window.location.href = '/OrgnisationDashBoard/RejectedCustomerDashboard';
+
+        }
+    </script>
+
+    <script>
+        function GotoView(e) {
+            debugger;
+            $("#DigiCerti").html("<div style='position: fixed;z-index: 5000;float: left;right: 50%;height: 50px;width: 50px;top:40%;'><i class='fa fa-pulse fa-fw dgldr ldrdesign' style='height:70px;width:70px;border-radius:50%;border-bottom:5px dotted grey;border-top:5px dotted black;border-right:5px dotted black;border-left:5px dotted black;height:80px;width:80px;position:absolute;margin: 20% 50%;'></i></div>");
+            $("#DigiCerti").show();
+            $("#DIGIbag").show();
+            var dashboard = e.id;
+            var url = null;
+            if (dashboard == "btnKycQuick") {
+                url = '/KYCQuickEnroll/CustomerQuickEnrollment';
+                //} else if (dashboard == "btnData") {
+                //    url = '/DataVerify/SummarySheetData';
+                //} else if (dashboard == "btnData") {
+                //   url = '/DataVerify/IncompleteRecords';
+
+            } else if (dashboard == "btnDoc") {
+                url = '/DocumentDetails/CustomerDocumentDetails';
+            } else if (dashboard == "btnUpdateKYCData") {
+                url = '/DataVerify/UpdateKYCData';
+            }
+            $.ajax({
+                url: url,
+                type: 'get',
+                success: function (result) {
+                    debugger;
+                    $("#DigiCerti").hide();
+                    $("#DIGIbag").hide();
+                    $("#MainDashboard").hide();
+                    $('#QuickEnrollview').html(result);
+                }
+            });
+        }
+        function ShowDigitalCaDetails(e) {
+            debugger;
+            $("#DigiCerti").html("<div style='position: fixed;z-index: 5000;float: left;right: 50%;height: 50px;width: 50px;top:40%;'><i class='fa fa-pulse fa-fw dgldr ldrdesign' style='height:70px;width:70px;border-radius:50%;border-bottom:5px dotted grey;border-top:5px dotted black;border-right:5px dotted black;border-left:5px dotted black;height:80px;width:80px;position:absolute;margin: 20% 50%;'></i><i class='fa fa-pulse fa-fw dgldr ldrdesign' style='height:70px;width:70px;border-radius:50%;border-bottom:5px dotted grey;border-top:5px dotted black;border-right:5px dotted black;border-left:5px dotted black;height:80px;width:80px;position:absolute;margin: 20% 50%;'></i></div>");
+            $("#DigiCerti").show();
+            $("#DIGIbag").show(); var dashboard = e.id;
+            var url = '/OrgCaCertificateCreation/CaCertificateGrid';
+
+            $.ajax({
+                url: url,
+                type: 'get',
+                success: function (result) {
+                    debugger;
+
+                    if (result == 'Session Expired') {
+                        window.location.href = '/OrganisationLogin/OrganisationDetails';
+                    } else {
+
+                        $("#DigiCerti").hide();
+                        $("#DIGIbag").hide();
+                        $("#MainDashboard").hide();
+                        $('#OrgCaCertificateDetails').html(result);
+
+                    }
+                }
+            });
+        }
+        function ShowDropedOutDetails(e) {
+            debugger;
+            $("#DigiCerti").html("<div style='position: fixed;z-index: 5000;float: left;right: 50%;height: 50px;width: 50px;top:40%;'><i class='fa fa-pulse fa-fw dgldr ldrdesign' style='height:70px;width:70px;border-radius:50%;border-bottom:5px dotted grey;border-top:5px dotted black;border-right:5px dotted black;border-left:5px dotted black;height:80px;width:80px;position:absolute;margin: 20% 50%;'></i></div>");
+            $("#DigiCerti").show();
+            $("#DIGIbag").show();
+            $('#Emailbakdrop').show();
+            var dashboard = e.id;
+
+            var url = '/DataVerify/IncompleteRecords';
+
+            $.ajax({
+                url: url,
+                //url: '/DataVerify/IncompleteRecords',
+                type: 'GET',
+                datatype: 'json',
+                cache: false,
+                success: function (result) {
+                    debugger;
+
+                    if (result == 'Session Expired') {
+                        window.location.href = '/OrganisationLogin/OrganisationDetails';
+                    }
+                    else {
+                        $("#DigiCerti").hide();
+                        $("#DIGIbag").hide();
+                        $('#Emailbakdrop').hide()
+                        $("#MainDashboard").hide();
+
+                        $('#DropDetailsDiv').html(result);
+                    }
+                }
+            });
+        }
+        function ShowPendingSignDetails(e) {
+            debugger;
+            $("#DigiCerti").html("<div style='position: fixed;z-index: 5000;float: left;right: 50%;height: 50px;width: 50px;top:40%;'><i class='fa fa-pulse fa-fw dgldr ldrdesign' style='height:70px;width:70px;border-radius:50%;border-bottom:5px dotted grey;border-top:5px dotted black;border-right:5px dotted black;border-left:5px dotted black;height:80px;width:80px;position:absolute;margin: 20% 50%;'></i></div>");
+            $("#DigiCerti").show();
+            $("#DIGIbag").show();
+            $('#Emailbakdrop').show();
+            var dashboard = e.id;
+
+            var url = '/DataVerify/IncompleteCustForAgentSign';
+
+            $.ajax({
+                url: url,
+                //url: '/DataVerify/IncompleteRecords',
+                type: 'GET',
+                datatype: 'json',
+                cache: false,
+                success: function (result) {
+                    debugger;
+
+                    if (result == 'Session Expired') {
+                        window.location.href = '/OrganisationLogin/OrganisationDetails';
+                    }
+                    else {
+                        $("#DigiCerti").hide();
+                        $("#DIGIbag").hide();
+                        $('#Emailbakdrop').hide()
+                        $("#MainDashboard").hide();
+
+                        $('#DropDetailsDiv').html(result);
+                    }
+                }
+            });
+        }
+    </script>
+    <style>
+        .digital-clock {
+        }
+
+        .init_details_div {
+            /* display: grid;
+                    justify-content: end;*/
+        }
+
+        .init_div {
+            display: flex;
+        }
+    </style>
+    <script>
+        $(document).ready(function () {
+            clockUpdate();
+            setInterval(clockUpdate, 1000);
+        })
+
+        function clockUpdate() {
+            var date = new Date();
+            $('.digital-clock').css({ 'color': '#fff' });
+            function addZero(x) {
+                if (x < 10) {
+                    return x = '0' + x;
+                } else {
+                    return x;
+                }
+            }
+
+            function twelveHour(x) {
+                if (x > 12) {
+                    return x = x - 12;
+                } else if (x == 0) {
+                    return x = 12;
+                } else {
+                    return x;
+                }
+            }
+
+            var h = addZero(twelveHour(date.getHours()));
+            var m = addZero(date.getMinutes());
+            var s = addZero(date.getSeconds());
+
+            $('.digital-clock').text(h + ':' + m + ':' + s)
+        }
+    </script>
+    <script>
+        function GetExcel() {
+            debugger;
+            $("#DigiCerti").html("<div style='position: fixed;z-index: 5000;float: left;right: 50%;height: 50px;width: 50px;top:40%;'><i class='fa fa-pulse fa-fw dgldr ldrdesign' style='height:70px;width:70px;border-radius:50%;border-bottom:5px dotted grey;border-top:5px dotted black;border-right:5px dotted black;border-left:5px dotted black;height:80px;width:80px;position:absolute;margin: 20% 50%;'></i></div>");
+            $("#DigiCerti").show();
+            let b = document.getElementById("Pending").checked;
+            let c = document.getElementById("Success").checked;
+            let d = document.getElementById("Reject").checked;
+            var FromDate = $("#FromDate").val();
+            var ToDate = $("#ToDate").val();
+            url = '/VerifyBulkPAN/AgentReportExcel';
+            $.ajax({
+                url: url,
+                type: "POST",
+                data: {
+                    FromDate: FromDate,
+                    Pending: b,
+                    Success: c,
+                    Reject: d,
+                    ToDate: ToDate
+                },
+                success: function (result) {
+                    debugger;
+                    $("#DigiCerti").hide();
+
+                    downloadexcel();
+                },
+            });
+        }
+        function downloadexcel() {
+            debugger;
+            window.location.href = '/VerifyBulkPAN/DownloadAgentPendingExcel';
+        }
+    </script>
+    <link href="~/css/multiclass.css" rel="stylesheet" />
+</head>
+<body>
+    <section class="breadcrumbs" style="padding: 0;">
+        <div class="container-fluid">
+            <div class="row init_main_space">
+                <div class="init_dash_div">
+                    <span class="init_dashboard">Reports</span>
+                </div>
+                <div class="">
+                    <div class="row init_details">
+                        <div class="init_details_div">
+                            <div class="digital-clock">00:00:00</div>
+                        </div>
+                        <div class="init_details_div">
+                            @*<div class="init_div">
+                            <span class="init_user">Agent Name :</span>
+                            <span class="init_user">@ViewBag.agnet</span>
+                            </div>*@
+                            <div class="init_div">
+                                <span class="init_user">Login Time :</span>
+                                <span class="init_user">@ViewBag.Time</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <div class="panel-body pdfil12 pdquick" id="ReportsDiv" style="height: 58px;margin-top: 12px;">
+        <div class="row" id="imp">
+            <div class="col-2 init_flex">
+                @*<input type="radio" class="init_input" id="Success">*@
+                <input class="init_radio" type="radio" name="exampleRadios" id="Pending">
+                <label for="New" class="init_label">Pending Approval</label>
+            </div>
+            <div class="col-2 init_flex">
+                @* <input type="radio" id="Reject" class="init_input">*@
+                <input class="init_radio" type="radio" name="exampleRadios" id="Success">
+                <label for="New" class="init_label">Approved</label>
+            </div>
+            <div class="col-2 init_flex">
+                @*<input type="radio" class="init_input" id="Success">*@
+                <input class="init_radio" type="radio" name="exampleRadios" id="Reject">
+                <label for="New" class="init_label">Rejected</label>
+            </div>
+        </div>
+        <div class="row init_date_div" id="date">
+            <div class="col-md-3">
+                <label class="init_label">From Date:</label>
+                <input type="date" id="FromDate" class="form-control" />
+            </div>
+            <div class="col-md-3">
+                <label class="init_label">To Date:</label>
+                <input type="date" id="ToDate" class="form-control" />
+            </div>
+            <div class="" style="display: flex;align-content: center;align-items: center;align-items: flex-end;">
+                <button class="btn btn-primary init_btn" onclick="GetExcel()">Submit</button>
+            </div>
+            <div class="col-4" style="display: flex;align-content: center;align-items: center;opacity:0;">
+                <button id="downloadexcel" class="btn btn-primary init_btn" onclick="downloadexcel()">download</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+
+
+

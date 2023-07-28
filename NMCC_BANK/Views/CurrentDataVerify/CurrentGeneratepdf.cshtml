@@ -1,0 +1,276 @@
+﻿@model INDO_FIN_NET.Models.CurrentModels.CurrentPdfCreation
+@{
+    //Layout = null;
+    Layout = "~/Views/Shared/_pdf.cshtml";
+}
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+
+        .headingback {
+            background-color: #e1e0e0;
+            text-align: center;
+        }
+
+        .titlesc {
+            font-family: Roboto,Arial,sans-serif !important;
+            letter-spacing: 0;
+            line-height: 32px;
+            display: inline-block;
+            color: #434444 !important;
+            font-size: 17px !important;
+            padding: 3px 10px !important;
+            font-weight: 600 !important;
+            margin-bottom: 0px !important;
+        }
+
+        .labelr {
+            background-color: #ebe9e9;
+            margin: 5px !important;
+            text-align: center;
+            border: 10px solid white;
+        }
+
+        .tdiv {
+            margin: 2px;
+            background-color: white;
+            border: 2px solid lightgrey;
+            padding: 2px;
+        }
+
+        .table1 {
+            /*border:1px solid lightgrey;*/
+            padding: 3px;
+            width: 96%;
+        }
+
+        input {
+            border-right: 0px;
+            border-left: 0px;
+            border-top: 0px;
+            width: 90%;
+        }
+
+        /* td{
+                                        padding:1%;
+                                    }*/
+        table {
+            border-spacing: 40px;
+        }
+
+        .cuslive {
+            display: flex !important;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+
+        tr {
+            margin-top: 2% !important;
+        }
+
+        .table2 {
+            width: 22%;
+        }
+    </style>
+
+    <script>
+
+
+    </script>
+</head>
+<body>
+
+    <div class="tdiv">
+
+        <header>
+            <div class="headingback">
+                <h2 class="titlesc">Customer KYC Details</h2>
+            </div>
+        </header>
+
+    </div>
+    <div class="cuslive">
+        <div>
+            <header style="margin-top:10px;margin-bottom:15px!important;">
+                <div class="headingback">
+                    <h2 class="titlesc">Company Details </h2>
+                </div>
+            </header>
+        </div>
+        <div id="livephoto" style="float:right; padding-right:101px;margin-bottom: 5px; margin-top:-5px;position: absolute;margin-top: 10%;margin-left: 80%;">
+            <div style="background-color:lightgrey; text-align:center;">Live photo</div>
+            <img src="" style="height:138px; width:100px ; border:1px solid grey;" />
+        </div>
+
+    </div>
+    <div class="">
+
+        <table style="width:100%" class="table1 tdiv">
+
+            <tr>
+                <th class="labelr"><span style="background-color: #ebe9e9; width:100%;">Company Name</span></th>
+                <td colspan="2"><div><input type="text" id="companyname1" value="@Model.CompanyName" /></div></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th class="labelr"><span style="background-color: #ebe9e9; width:100%;">Industry Type</span></th>
+                <td colspan="2"><div><input type="text" id="industrytype" value="@Model.IndustryType" /></div></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th class="labelr"><span style="background-color: #ebe9e9; width:100%;">Business TL</span></th>
+                <td colspan="2"><div><input type="text" id="businesstl" value="@Model.BusinessTL" /></div></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th class="labelr"><span style="background-color: #ebe9e9; width:100%;">DOE</span></th>
+                <td colspan="2"><div><input type="text" id="doe" value="@Model.DOE" /></div></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th class="labelr"><span style="background-color: #ebe9e9; width:100%;">POE</span></th>
+                <td colspan="2"><div><input type="text" id="poe" value="@Model.POE" /></div></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th class="labelr"><span style="background-color: #ebe9e9; width:100%;">NOE</span></th>
+                <td colspan="2"><div><input type="text" id="noe" value="@Model.NOE" /></div></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th class="labelr"><span style="background-color: #ebe9e9; width:100%;">Branches</span></th>
+                <td colspan="2"><div><input type="text" id="branches" value="@Model.Branches" /></div></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th class="labelr"><span style="background-color: #ebe9e9; width:100%;">Turnover</span></th>
+                <td colspan="2"><div><input type="text" id="turnover" value="@Model.Turnover" /></div></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th class="labelr"><span style="background-color: #ebe9e9; width:100%;">Email</span></th>
+                <td colspan="2"><div><input type="text" id="email1" value="@Model.Email" /></div></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th class="labelr"><span style="background-color: #ebe9e9; width:100%;">Mobile No</span></th>
+                <td colspan="2"><div><input type="text" id="mobileno" value="@Model.Mobileno" /></div></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th class="labelr"><span style="background-color: #ebe9e9; width:100%;">Landline No</span></th>
+                <td colspan="2"><div><input type="text" id="landlineno" value="@Model.LandLine" /></div></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>(LINE1)</td>
+                <td>(LINE2)</td>
+                <td>(LINE3)</td>
+            </tr>
+            <tr>
+                <th class="labelr table2"><span style="background-color: #ebe9e9; width:103%;">Address</span></th>
+                <td>
+                    <div>
+                        <input type="text" id="line1" value="@Model.PAddress1" />
+                    </div>
+                </td>
+                <td><div><input type="text" id="line2" value="@Model.PAddress2" /></div></td>
+                <td><div><input type="text" id="line3" value="@Model.PAddress3" /></div></td>
+            </tr>
+
+
+            <tr>
+                <th class="labelr"><span style="background-color: #ebe9e9; width:100%;">City</span></th>
+                <td colspan="2"><div><input type="text" id="city" value="@Model.PCity" /></div></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th class="labelr"><span style="background-color: #ebe9e9; width:100%;">Pincode</span></th>
+                <td colspan="2"><div><input type="text" id="pincode" value="@Model.Pincode" /></div></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th class="labelr"><span style="background-color: #ebe9e9; width:100%;">State</span></th>
+                <td colspan="2"><div><input type="text" id="state" value="@Model.PSate" /></div></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th class="labelr"><span style="background-color: #ebe9e9; width:100%;">Country</span></th>
+                <td colspan="2"><div><input type="text" id="country" value="@Model.PCountry" /></div></td>
+                <td></td>
+            </tr>
+
+
+        </table>
+
+    </div>
+
+
+
+    <div class="">
+        <table style="width:100%" class="table1 tdiv">
+
+            <div>
+                <header style="margin-top:10px;margin-bottom:15px!important;">
+                    <div class="headingback">
+                        <h2 class="titlesc">Document Details </h2>
+                    </div>
+                </header>
+            </div>
+
+            <tr>
+                <th class="labelr table2"><span style="background-color: #ebe9e9; width:103%;">CompanyName</span></th>
+                <td><div><input type="text" id="companyname" value="@Model.CcompanyName" /></div></td>
+            </tr>
+            <tr>
+                <th class="labelr"><span style="background-color: #ebe9e9; width:100%;">Date Of Incorporation</span></th>
+                <td colspan="2"><div><input type="text" id="dateofincorp" value="@Model.CDateofIncorporation" /></div></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th class="labelr"><span style="background-color: #ebe9e9; width:100%;">Address</span></th>
+                <td colspan="2"><div><input type="text" id="addr" value="@Model.CRegisteredAddress" /></div></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th class="labelr"><span style="background-color: #ebe9e9; width:100%;">Registered Email</span></th>
+                <td colspan="2"><div><input type="text" id="email" value="@Model.CRegisteredEmailId" /></div></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th class="labelr"><span style="background-color: #ebe9e9; width:100%;">Registered Number</span></th>
+                <td colspan="2"><div><input type="text" id="registerednum" value="@Model.CRegistrationNumber" /></div></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th class="labelr"><span style="background-color: #ebe9e9; width:100%;">Authorized Capital</span></th>
+                <td colspan="2"><div><input type="text" id="authorizedcapital" value="@Model.CAuthorizedCapital" /></div></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th class="labelr"><span style="background-color: #ebe9e9; width:100%;">DIN Name</span></th>
+                <td colspan="2"><div><input type="text" id="dinname" value="@Model.CDIN" /></div></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th class="labelr"><span style="background-color: #ebe9e9; width:100%;">DIN Name</span></th>
+                <td colspan="2"><div><input type="text" id="dinname2" value="@Model.CDIN2" /></div></td>
+                <td></td>
+            </tr>
+
+
+
+        </table>
+
+
+
+    </div>
+
+
+</body>
+</html>

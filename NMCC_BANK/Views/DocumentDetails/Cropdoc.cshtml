@@ -1,0 +1,52 @@
+﻿@{
+    ///ViewBag.Title = "Cropdoc";
+    Layout = null;
+}
+
+<html>
+<head>
+    <script>
+        debugger;
+        function uploadimg(img) {
+            //        outputdata.forEach(function (element) {
+            //        content = $("<div><a href='something'><img onclick='uploadimg()' src='" + element + "'   /></a></div>");
+            //        content.addClass('content');
+            //        container.append(content);
+            //        $("#fp_thumbScroller").append(container);
+            //    });
+            //}
+            debugger;
+            var canvas = document.getElementById("viewport");
+            var ctx = canvas.getContext("2d");
+            var img1 = img.src;
+            document.getElementById("myimage").src = img1;
+            //  var imag11 = document.getElementById("myimage").src;
+            //  var img = document.getElementById("scream");
+            // var img = Document.getDocument.imagePath.src;
+            ctx.drawImage(img, 100, 100);
+
+            // magnify("myimage", 5);
+
+
+
+
+
+
+        };
+    </script>
+</head>
+<body>
+    <div>
+        @foreach (var file in ViewBag.images)
+
+        {
+        @*<img src="C:\Users\Rohit\Downloads\FileJPg.jpg" width="50" height="50" />*@
+     //   <img src="..\..\Uploads\@ViewBag.personalid\@Path.GetFileName(file)" width="50" height="50" id="scream" onclick="uploadimg(this)" />
+
+
+        }
+
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,1559 @@
+﻿@model INDO_FIN_NET.Controllers.Organisation.ClsOrgLogin
+
+@{
+    ViewBag.Title = "OrganisationDetails";
+    Layout = null;
+
+
+}
+
+<html>
+<head>
+    <script src="~/bundlejs/bundlingoforganisationdetails.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="~/js/encryption.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <link href="~/Content/Navigation/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Content/Navigation/vendor/animate.css/animate.min.css" rel="stylesheet">
+    <link href="~/Content/Navigation/vendor/animate.css/animate.min.css" rel="stylesheet">
+    <link href="~/Content/Navigation/css/style.css" rel="stylesheet">
+    <link href="~/Content/Navigation/css/custom.css" rel="stylesheet">
+    <link href="~/Content/Navigation/css/font-awesome.min.css" rel="stylesheet">
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <link href="~/fonts/font-awesome.css" rel="stylesheet" />
+    <link href="~/Content/Navigation/animate.css" rel="stylesheet" />
+    <link href="~/Content/Navigation/bootsnav.css" rel="stylesheet" />
+    <link href="~/Content/Navigation/style.css" rel="stylesheet" />
+    <link href="~/Content/HoverEffect/hover.css" rel="stylesheet" />
+    <script src="~/Content/Navigation/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <link href="~/Content/Navigation/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Content/Navigation/vendor/animate.css/animate.min.css" rel="stylesheet">
+    <link href="~/Content/Navigation/vendor/animate.css/animate.min.css" rel="stylesheet">
+    <link href="~/Content/Navigation/css/style.css" rel="stylesheet">
+    <link href="~/Content/Navigation/css/custom.css" rel="stylesheet">
+    <link href="~/Content/Navigation/css/font-awesome.min.css" rel="stylesheet">
+    <script src="~/Content/Navigation/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/Content/Navigation/vendor/jquery.easing/jquery.easing.min.js"></script>
+    <script src="~/Content/Navigation/vendor/venobox/venobox.min.js"></script>
+    <script src="~/Content/Navigation/js/main.js"></script>
+    <link href="~/Content/Navigation/css/admindqe.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <link href="~/Content/Navigation/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Content/Navigation/vendor/animate.css/animate.min.css" rel="stylesheet">
+    <link href="~/Content/Navigation/vendor/animate.css/animate.min.css" rel="stylesheet">
+    <link href="~/Content/Navigation/css/style.css" rel="stylesheet">
+    <link href="~/Content/Navigation/css/custom.css" rel="stylesheet">
+    <link href="~/Content/Navigation/css/font-awesome.min.css" rel="stylesheet">
+    <script src="~/Content/Navigation/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/Content/Navigation/vendor/jquery.easing/jquery.easing.min.js"></script>
+    <script src="~/Content/Navigation/vendor/venobox/venobox.min.js"></script>
+    <script src="~/Content/Navigation/js/main.js"></script>
+    <link href="~/Content/Navigation/nestyle.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <link href="~/Scripts/sweetalert.css" rel="stylesheet" />
+    <script src="~/Scripts/sweetalert.min.js"></script>
+    <link href="~/Scripts/sweetalert.css" rel="stylesheet" />
+    <link href="~/Content/Navigation/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/css/multiclass.css" rel="stylesheet" />
+    @*Capcha css*@
+    <style>
+        .orgdeticon {
+            position: absolute;
+            margin-top: 2%;
+            margin-left: 3%;
+            height: 15px;
+            width: 20px;
+        }
+
+        .logonew {
+            height: 60px;
+            width: 220px;
+            margin-top: 11px;
+            margin-left: 25px;
+        }
+
+        .init-sp_form {
+            height: 34px !important;
+            font-size: 14px !important;
+        }
+
+        @@media screen and (min-device-width: 320px) and (max-device-width: 600px) {
+            .orgdeticon {
+                position: absolute;
+                margin-top: 5%;
+                margin-left: 4%;
+                height: 40px;
+                width: 50px;
+            }
+
+            .orgdeticon {
+                margin-top: 8%;
+            }
+        }
+
+        @@media screen and (max-device-width: 768px) {
+            #agent_login_form {
+                margin: 0 !important;
+                padding: 20px 20px 0px 20px !important;
+                width: 90% !important;
+            }
+        }
+
+        @@media screen and (max-device-width:412px) {
+            .capcode {
+                width: 118px !important;
+            }
+
+            #UserCaptchaCode {
+                height: 35px !important;
+                width: 100px !important;
+            }
+        }
+
+        @@media screen and (max-device-width: 768px) {
+            .captchaField {
+                width: 100% !important;
+            }
+
+            .init_eye_div {
+                top: 15px;
+                right: 16px;
+            }
+
+            .checkboxSize {
+                width: 23px;
+                height: 11px;
+            }
+
+            #btnLogin {
+                height: 36px !important;
+                margin-bottom: 10px;
+            }
+
+            .lablesize {
+                font-size: 12px !important;
+            }
+
+            .CaptchaWrap {
+                flex-direction: row;
+                align-items: center;
+            }
+
+            #UserCaptchaCode {
+                width: 115px;
+                padding: 4px;
+            }
+
+            #Password {
+                font-size: 14px;
+                height: 36px !important;
+            }
+
+            #UserId {
+                font-size: 14px;
+                height: 36px !important;
+            }
+
+            #btnLogin {
+                height: 45px;
+                font-size: 17px;
+            }
+
+            #agent_login_form {
+                margin: 0px 35px 25px 70px;
+            }
+
+            .btnotpdv {
+                padding-right: 12px;
+                padding-left: 0px;
+                margin-left: 5px;
+            }
+
+            .cqepopupmn1 {
+                width: 85%;
+            }
+
+            .adminlogform {
+                width: 90%;
+                justify-content: center;
+                margin: 34px;
+            }
+
+            .placehldr {
+                height: 70px !important;
+                font-size: 25px !important;
+            }
+
+            .logtext {
+                font-size: 35px !important;
+                margin-top: 10% !important;
+            }
+
+            .orgdeticon {
+                position: absolute;
+                margin-top: 2%;
+                margin-left: 2%;
+                height: 27px;
+                width: 28px;
+            }
+
+            .admnrember {
+                height: 16px;
+                width: 16px;
+            }
+
+            .admnlogbtn {
+                height: 38px !important;
+                font-size: 19px;
+                font-weight: 600;
+            }
+        }
+
+        @@media only screen and (max-width:300px) {
+            .cqedivpup {
+                display: flex;
+                margin-bottom: 30px;
+                flex-direction: column;
+            }
+
+            .init_otp_btn {
+                width: 100%;
+            }
+        }
+    </style>
+
+    @* CSS for Navbar*@
+    <style>
+        #show {
+            display: none;
+        }
+
+        .init_div_nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 90px;
+        }
+
+        .init_a {
+            font-size: 18px;
+            font-weight: 500;
+        }
+
+            .init_a:focus {
+                border: none !important;
+            }
+
+        .init_login_btn {
+            border: none !important;
+            color: #fff !important;
+            font-size: 18px !important;
+            color: #fff !important;
+            border-color: #bf5252 !important;
+            background-color: #bf5252 !important;
+            margin-top: 0 !important;
+            border-radius: 0px !important;
+            padding: 5px 15px !important;
+            font-weight: 500 !important;
+        }
+
+        .init_href {
+            font-size: 16px;
+            padding: 5px 12px;
+            color: #fff !important;
+        }
+
+            .init_href:hover {
+                border-radius: 3px;
+                transition: all 0.4s ease;
+            }
+
+        .init_ul {
+            display: flex;
+            flex-direction: row;
+            margin-bottom: 0;
+        }
+
+        .init-ul-parent {
+            margin-right: 40px !important;
+        }
+
+        .init_nav {
+            width: 100%;
+            font-family: 'Roboto', sans-serif;
+            background: white;
+            min-height: 95px;
+            margin-bottom: 0 !important;
+            padding: 0;
+        }
+
+        .init_logo_div {
+            margin-left: 40px;
+        }
+
+        .init_logo {
+            height: 53px;
+        }
+
+        .navbar-expand-lg .navbar-nav .dropdown-menu {
+            position: absolute;
+            background-color: #bf5252;
+            color: #fff;
+        }
+
+        .dropdown-menu > li > a:focus, .dropdown-menu > li > a:hover {
+            color: #262626;
+            text-decoration: none;
+            background-color: #ba0000;
+            background-image: linear-gradient(359deg, black, transparent);
+        }
+
+        .init_li {
+            border-bottom: 1px solid rgba(255,255,255,0.5);
+            padding: 2px;
+        }
+
+        .dropdown-menu_custom {
+            width: 128px !important;
+            padding: 0 !important;
+            background: #bf5252;
+            border-top: none;
+            border-radius: 0px;
+            width: 130px !important;
+            position: absolute;
+            z-index: 1000;
+            color: #212529;
+            text-align: left;
+            list-style: none;
+            background-clip: padding-box;
+            border: 1px solid rgba(0, 0, 0, 0.15);
+            border-radius: 0.25rem;
+        }
+
+        #CustomerClickId:focus {
+            outline-color: none;
+            outline-offset: 0px;
+        }
+
+        #AgentClickId :focus {
+            outline-color: none;
+            outline-offset: 0px;
+        }
+
+        .dropdown-menu > li > a:hover {
+            background: transparent !important;
+        }
+
+        .dropdown-menu_custom > li:focus, .dropdown-menu_custom > li:hover {
+            border-bottom: 2px solid #fff;
+            background-color: #df7070;
+            transition: all 0.3s ease;
+        }
+
+        .img-res {
+            height: 41px;
+            width: 212px;
+            margin-left: -25px;
+        }
+
+        button:focus {
+            outline: none !important;
+        }
+
+
+        @@media only screen and (max-width:800px) {
+            .init_logo {
+                height: 44px;
+            }
+        }
+
+        @@media only screen and (max-width:700px) {
+            .init_logo {
+                height: 40px;
+            }
+        }
+
+        @@media only screen and (max-width:700px) {
+            .init_logo_div {
+                margin-left: 20px;
+            }
+        }
+
+        @@media only screen and (max-width:700px) {
+        }
+
+        @@media only screen and (max-width:700px) {
+            .init_logo {
+                height: 34px;
+            }
+
+            .init_logo_div {
+                margin-left: 15px;
+            }
+
+            .init_div_nav {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                height: 68px;
+            }
+
+            .dropdown-menu_custom {
+                width: 107px !important;
+            }
+
+            .init-ul-parent {
+                margin-right: 10px !important;
+            }
+        }
+    </style>
+    <style>
+        .otpbtndv {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .mrgnotp {
+            margin: 5px;
+        }
+
+        .dsfxotp {
+            display: flex;
+            margin-bottom: 30px;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #otp_div {
+            position: fixed;
+            width: 100%; /* Full width (cover the whole page) */
+            height: 100%; /* Full height (cover the whole page) */
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 1;
+            background-color: #999999;
+            display: none;
+        }
+
+        .border_rd {
+            border: 1px solid #dadce0 !important;
+        }
+
+        .init_cross {
+            position: absolute;
+            right: 18px;
+            top: -18px;
+            color: grey;
+            font-size: 20px;
+        }
+
+        .init_head {
+            text-align: center;
+            font-weight: 600;
+            font-size: 20px;
+            font-family: 'Poppins';
+            margin-top: 30px;
+            color: #212121;
+        }
+
+        .init_email {
+            color: grey;
+            text-align: center;
+            padding: 1px 25px 1px 25px;
+            font-size: 15px;
+            display: none;
+        }
+
+        .init_submit_btn {
+            border: none;
+            color: #fff;
+            border: none;
+            width: 100%;
+            height: 42px;
+            font-size: 15px;
+            box-shadow: 0 2px 4px 0 rgb(0 0 0 / 20%);
+            border: none;
+            padding: 4px 4px;
+            color: #fff;
+            letter-spacing: 1px;
+            border-radius: 3px;
+        }
+
+        .init_submit_btn {
+            transition: all 0.4s ease;
+        }
+
+        .init_input {
+            width: 100%;
+            box-shadow: none !important;
+            color: #555;
+            padding: 10px !important;
+            background-color: #fff !important;
+            padding: 12px;
+            display: inline-block;
+            font-size: 14px;
+            margin-bottom: 0 !important;
+            line-height: 1 !important;
+            box-shadow: none;
+            border: 1px solid #dadce0 !important;
+            border-radius: 5px !important;
+            font-weight: 500;
+            font-family: 'Poppins';
+        }
+
+        .init_login_label {
+            /* color: #555;*/
+            text-align: start;
+            margin-top: 10px;
+            position: absolute;
+            margin-left: 21px;
+            /* font-size: 15px; */
+            font-weight: 500;
+            font-family: 'Poppins';
+            box-shadow: none !important;
+            font-size: 15px;
+        }
+
+        .init_input:focus ~ .init_login_label {
+            margin-top: -9px;
+            color: #007bff;
+            background-color: #fff;
+            padding: 0px 10px;
+            margin-left: 8px;
+            box-shadow: none !important;
+            font-size: 13px;
+            transition: all 0.3s;
+            position: absolute;
+        }
+
+        .active1 {
+            margin-top: -9px;
+            /*color: #c76262;*/
+            background-color: #fff;
+            padding: 0px 10px;
+            margin-left: 8px;
+            box-shadow: none !important;
+            font-size: 13px;
+            transition: all 0.3s;
+            position: absolute;
+        }
+
+        .form-group {
+            margin-bottom: 0 !important;
+        }
+
+        #agent_login_form {
+            background: rgba(255,255,255,1.00);
+            padding: 5px 35px 0px 35px;
+            border: none;
+            margin: 0px 35px 25px 35px;
+            box-shadow: rgb(0 0 0 / 15%) 0px 5px 15px 0px;
+            width: 80%;
+            border-radius: 14px;
+        }
+
+        .init_login_title {
+            color: #4d5156;
+            font-size: 21px;
+            font-family: poppins,sans-serif !important;
+            margin: 12px 5px 30px 5px;
+        }
+
+        .lablesize {
+            color: grey !important;
+            accent-color: #bf5252 !important;
+        }
+
+        #please {
+            color: grey;
+            text-align: left;
+            margin-bottom: 5px;
+        }
+
+        .init_retest {
+            cursor: pointer;
+            color: red;
+        }
+
+        .captchaField {
+            margin: 0 auto;
+            width: 88%;
+            padding: 8px;
+            background-color: #f3f3f3;
+            margin-bottom: 12px;
+            box-shadow: 0 1px 2px 0 rgb(0 0 0 / 20%);
+        }
+
+        .CaptchaWrap {
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .CaptchaTxtField {
+            border-radius: 5px;
+            display: block;
+            box-sizing: border-box;
+        }
+
+        #UserCaptchaCode {
+            padding: 9px 10px;
+            outline: none;
+            font-size: 18px;
+            font-weight: normal;
+            font-family: 'Open Sans', sans-serif;
+            width: 120px;
+            height: 46px;
+            letter-spacing: 3px;
+            font-weight: 600;
+        }
+
+        #CaptchaImageCode {
+            text-align: center;
+            padding: 0px 0;
+            overflow: hidden;
+        }
+
+        .capcode {
+            font-size: 46px;
+            display: block;
+            -moz-user-select: none;
+            -webkit-user-select: none;
+            user-select: none;
+            cursor: default;
+            letter-spacing: 1px;
+            color: #ccc;
+            font-family: 'Roboto Slab', serif;
+            font-weight: 100;
+            font-style: italic;
+            width: 163px;
+            border: 1px solid #000;
+            border-radius: 5px;
+        }
+
+        .ReloadBtn {
+            background: url('https://webdevtrick.com/wp-content/uploads/recaptcha.png') left top no-repeat;
+            background-size: 100%;
+            width: 32px;
+            height: 32px;
+            border: 0px;
+            outline none;
+            bottom: 30px;
+            left: 310px;
+            outline: none;
+            cursor: pointer;
+        }
+
+        .btnSubmit {
+            margin-top: 15px;
+            border: 0px;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 18px;
+            background-color: #1285c4;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .error {
+            color: red;
+            font-size: 14px;
+            text-align: left;
+            display: block;
+        }
+
+        .success {
+            color: green;
+            font-size: 18px;
+            margin-bottom: 15px;
+            display: none;
+        }
+    </style>
+
+
+
+
+    <style>
+        .init_otp_btn {
+            color: #fff !important;
+            font-size: 12px !important;
+            padding: 4px 12px !important;
+        }
+
+        .init_password {
+            position: relative;
+        }
+
+        .init_eye_div {
+            color: #555;
+            opacity: 0.7;
+            position: absolute;
+            top: 23px;
+            right: 41px;
+        }
+
+        .cqepopupmn1 {
+            position: fixed;
+            top: 50%;
+            left: 49%;
+            transform: translate(-50%, -50%);
+            width: 35%;
+            z-index: 2;
+            background-color: white;
+            border-radius: 14px;
+        }
+
+    </style>
+    @if (ViewBag.AdminFlag == "AdminFlag")
+    {
+        <script src="~/Content/Navigation/jquery.min.js"></script>
+        <meta name="viewport" content="width=device-width" />
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+        <link href="~/Content/Navigation/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="~/Content/Navigation/vendor/animate.css/animate.min.css" rel="stylesheet">
+        <link href="~/Content/Navigation/vendor/animate.css/animate.min.css" rel="stylesheet">
+        <link href="~/Content/Navigation/css/style.css" rel="stylesheet">
+        <link href="~/Content/Navigation/css/custom.css" rel="stylesheet">
+        <link href="~/Content/Navigation/css/font-awesome.min.css" rel="stylesheet">
+        <script src="~/Content/Navigation/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="~/Content/Navigation/vendor/jquery.easing/jquery.easing.min.js"></script>
+        <script src="~/Content/Navigation/vendor/venobox/venobox.min.js"></script>
+        <script src="~/Content/Navigation/js/main.js"></script>
+        <link href="~/Content/Navigation/nestyle.css" rel="stylesheet" />
+        <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+        <link href="~/Scripts/sweetalert.css" rel="stylesheet" />
+        <script src="~/Scripts/sweetalert.min.js"></script>
+        <script>
+            $(function () {
+                debugger;
+                if (localStorage.chkbox && localStorage.chkbox != '') {
+                    $('#ChkRemind').attr('checked', 'checked');
+                    $('#UserId').val(localStorage.username);
+                    $('#Password').val(localStorage.pass);
+                } else {
+                    $('#ChkRemind').removeAttr('checked');
+                    $('#UserId').val('');
+                    $('#Password').val('');
+                }
+
+                $('#ChkRemind').click(function () {
+                    debugger;
+                    if ($('#ChkRemind').is(':checked')) {
+                        // save username and password
+                        localStorage.username = $('#UserId').val();
+                        localStorage.pass = $('#Password').val();
+                        localStorage.chkbox = $('#ChkRemind').val();
+                    } else {
+                        localStorage.username = '';
+                        localStorage.pass = '';
+                        localStorage.chkbox = '';
+                    }
+                });
+            });
+        </script>
+
+        <script>
+
+            $(document).ready(function () {
+                debugger;
+                $("#otp_div").hide();
+                if ('@Model.error' != '') {
+                    //swal('@Model.error;
+
+                    if ('@Model.error' != "Your previous session is already active, Please Logout.") {
+                        swal('@Model.error');
+                    }
+                    else if ('@Model.error' == "Your previous session is already active, Please Logout.") {
+                        debugger;
+                        swal({
+                            title: "Simultaneous Session Exists",
+                            text: "IP Address: @ViewBag.ip  \n Session Start Time: @ViewBag.loginDateTime ",
+                            confirmButtonClass: "btn-danger",
+                            showCancelButton: true,
+                            confirmButtonText: "Close This Session",
+                            cancelButtonText: "Exit",
+                            closeOnConfirm: false,
+                            closeOnCancel: false
+                        },
+                            function (isConfirm) {
+                                if (isConfirm) {
+                                    debugger;
+
+                                    swal({
+                                        title: "Previous Session Is Closed Now,Login Again",
+                                        confirmButtonClass: "btn-danger",
+                                        confirmButtonText: "ok",
+
+                                    },
+                                        function () {
+
+                                            $.ajax({
+                                                url: '/OrganisationLogin/Logout',
+                                                type: 'GET',
+                                                cache: false,
+                                                success: function (result) {
+                                                    debugger;
+                                                    if (result == "Logout") {
+                                                        window.location.href = "/OrganisationLogin/OrganisationDetails";
+                                                    }
+                                                }
+                                            })
+
+                                        }
+
+                                    )
+                                }
+                                else {
+                                    debugger;
+                                    window.location.href = "/OrganisationLogin/OrganisationDetails";
+                                }
+                            });
+                    }
+                }
+            })
+        </script>
+    }
+    else
+    {
+        <script src="~/Content/Navigation/jquery.min.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+        <link href="~/Content/Navigation/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="~/Content/Navigation/vendor/animate.css/animate.min.css" rel="stylesheet">
+        <link href="~/Content/Navigation/vendor/animate.css/animate.min.css" rel="stylesheet">
+        <link href="~/Content/Navigation/css/style.css" rel="stylesheet">
+        <link href="~/Content/Navigation/css/custom.css" rel="stylesheet">
+        <link href="~/Content/Navigation/css/font-awesome.min.css" rel="stylesheet">
+        <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+        <link href="~/Scripts/sweetalert.css" rel="stylesheet" />
+        <script src="~/Scripts/sweetalert.min.js"></script>
+        <link href="~/Content/Navigation/nestyle.css" rel="stylesheet" />
+        <script>
+            $(function () {
+                debugger;
+                if (localStorage.chkbox && localStorage.chkbox != '') {
+                    $('#ChkRemind').attr('checked', 'checked');
+                    $('#UserId').val(localStorage.username);
+                    $('#Password').val(localStorage.pass);
+                } else {
+                    $('#ChkRemind').removeAttr('checked');
+                    $('#UserId').val('');
+                    $('#Password').val('');
+                }
+
+                $('#ChkRemind').click(function () {
+                    debugger;
+                    if ($('#ChkRemind').is(':checked')) {
+                        // save username and password
+                        localStorage.username = $('#UserId').val();
+                        localStorage.pass = $('#Password').val();
+                        localStorage.chkbox = $('#ChkRemind').val();
+                    } else {
+                        localStorage.username = '';
+                        localStorage.pass = '';
+                        localStorage.chkbox = '';
+                    }
+                });
+            });
+        </script>
+
+        <script>
+            $(document).ready(function () {
+
+
+
+                debugger;
+                if ('@Model.error' != '') {
+                    //swal('@Model.error;
+
+                    if ('@Model.error' != "Your previous session is already active, Please Logout.") {
+                        swal('@Model.error');
+                    }
+                    else if ('@Model.error' == "Your previous session is already active, Please Logout.") {
+                        debugger;
+                        swal({
+                            title: "Simultaneous Session Exists",
+                            text: "IP Address: @ViewBag.ip  \n Session Start Time: @ViewBag.loginDateTime ",
+                            confirmButtonClass: "btn-danger",
+                            showCancelButton: true,
+                            confirmButtonText: "Close This Session",
+                            cancelButtonText: "Exit",
+                            closeOnConfirm: false,
+                            closeOnCancel: false
+                        },
+                            function (isConfirm) {
+                                if (isConfirm) {
+                                    debugger;
+
+                                    swal({
+                                        title: "Previous Session Is Closed Now,Login Again",
+                                        confirmButtonClass: "btn-danger",
+                                        confirmButtonText: "ok",
+
+                                    },
+                                        function () {
+
+                                            $.ajax({
+                                                url: '/OrganisationLogin/Logout',
+                                                type: 'GET',
+                                                cache: false,
+                                                success: function (result) {
+                                                    debugger;
+                                                    if (result == "Logout") {
+                                                        //window.location.href = "/OrganisationLogin/OrganisationDetails";
+                                                    }
+                                                }
+                                            })
+
+                                        }
+
+                                    )
+                                }
+                                else {
+                                    debugger;
+                                    window.location.href = "/OrganisationLogin/OrganisationDetails";
+                                }
+                            });
+                    }
+                }
+            })
+        </script>
+    }
+    @*-------------------  Orgnisation Agent Login validation --------*@
+    @*--------Orgnisation Agent Login validation END------------*@
+    
+    <script>
+        function encryptText(textToEncrypt, encryptionKey, IV) {
+            const key = CryptoJS.enc.Utf8.parse(encryptionKey);
+            const iv = CryptoJS.enc.Utf8.parse(IV);
+            const encrypted = CryptoJS.TripleDES.encrypt(textToEncrypt, key, {
+                iv: iv,
+                mode: CryptoJS.mode.CBC,
+                padding: CryptoJS.pad.Pkcs7
+            });
+            return encrypted.toString();
+        }
+        function decryptText(textToDecrypt, encryptionKey, IV) {
+            const key = CryptoJS.enc.Utf8.parse(encryptionKey);
+            const iv = CryptoJS.enc.Utf8.parse(IV);
+            const decrypted = CryptoJS.TripleDES.decrypt(textToDecrypt, key, {
+                iv: iv,
+                mode: CryptoJS.mode.CBC,
+                padding: CryptoJS.pad.Pkcs7
+            });
+            return decrypted.toString(CryptoJS.enc.Utf8);
+        }
+    </script>
+    <script>
+        function closeMobile() {
+            $("#DigiCerti").hide();
+            $("#DIGIbag").hide();
+            $('#Mobileform').hide();
+
+        }
+
+        function QEMobileAuth() {
+            debugger;
+            $("#DigiCerti").html("<div style='position: fixed;z-index: 5000;float: left;right: 50%;height: 50px;width: 50px;top:40%;'><i class='fa fa-pulse fa-fw dgldr ldrdesign' style='height:70px;width:70px;border-radius:50%;border-bottom:5px dotted grey;border-top:5px dotted black;border-right:5px dotted black;border-left:5px dotted black;height:80px;width:80px;position:absolute;margin: 20% 50%;'></i></div>");
+            $("#DigiCerti").show();
+            $("#DIGIbag").show();
+            //if ($('#QEMobileNo').val() == '') {
+            //    swal("Enter Valid Mobile Number");
+            //$('#QEEmailbaknew1').hide();
+            $('#DigiCerti').hide();
+            $('#DIGIbag').hide();
+            //} else {
+            //$("body").css('overflow', 'auto');
+            $("#DigiCerti").hide();
+            //$('#QEEmailbaknew1').show();
+            $('#Mobileform').show();
+
+            $('#Mobilecode').val
+            //}
+
+
+        }
+        function GetMobileOTP() {
+            debugger;
+            $("#DigiCerti").html("<div style='position: fixed;z-index: 5000;float: left;right: 50%;height: 50px;width: 50px;top:40%;'><i class='fa fa-pulse fa-fw dgldr ldrdesign' style='height:70px;width:70px;border-radius:50%;border-bottom:5px dotted grey;border-top:5px dotted black;border-right:5px dotted black;border-left:5px dotted black;height:80px;width:80px;position:absolute;margin: 20% 50%;'></i></div>");
+            $("#DigiCerti").show();
+            $("#DIGIbag").show();
+
+            var MobileNumber = $('#Mobilecode').val();
+            $.ajax({
+                url: '/KYCQuickEnroll/QEMoblieOTPSend',
+                type: 'POST',
+                data: {
+                    MobileNumber: MobileNumber
+                },
+                cache: false,
+                success: function (result) {
+                    debugger;
+                    $("#DigiCerti").hide();
+                    $("#DIGIbag").hide();
+                    if (result != null) {
+                        debugger;
+                        swal(result);
+                        // var elem = document.getElementById("QEMobileGetOtp");
+                        // $('#QEMobileGetOtp').val('Resend OTP');
+                        $("#MobileGetOtp").html('RESEND OTP');
+                        $("#MobileGetOtp").prop('disabled', true);
+                        setTimeout(function () {
+                            $("#MobileGetOtp").prop('disabled', false); // enable the button after 5 seconds
+                        }, 10000);
+                        // if (elem.value == "GET OTP") elem.value = "Resend OTP";
+                    } else {
+                        swal('OTP does not send.try again..');
+                    }
+                    // $('#DigitCaptureImage').html(result);
+                }
+            });
+
+        }
+
+
+        function OTPMobileAuthenticate() {
+            debugger;
+            $("#DIGIbag").show();
+            var OTP = $('#Mobileauth').val();
+            var MobileNumber = $('#Mobilecode').val();
+            $(".hello").hide();
+            $(".hell").css("display", "block");
+            //swal("Authenticate Successfully... ");
+            $("#Mobileform").hide();
+
+            $('#Mobileauth').val('');
+            $("")
+            if (OTP == '') {
+                swal("Enter valid OTP...");
+                return false;
+            }
+            if (OTP.length > 6) {
+                swal("Enter 6 digit Valid OTP...");
+                $('#Mobileauth').val('');
+
+                return false;
+            }
+            $.ajax({
+                //url: '/KYCQuickEnroll/OTPAutheticate',
+                url: '/KYCQuickEnroll/QEMobileOTPAuthenticate',
+                type: 'GET',
+                data: {
+                    OTP: OTP,
+                    MobileNumber: MobileNumber
+                },
+                cache: false,
+                success: function (result) {
+                    debugger;
+                    $("#DIGIbag").hide();
+                    if (result == "Verified Successfully") {
+                        swal({
+                            title: "Verified Successfully",
+
+                            type: 'success',
+
+                            confirmButtonColor: '#DD6B55',
+                            confirmButtonText: 'Ok',
+
+                            closeOnConfirm: false,
+                            closeOnCancel: false
+                        },
+                            function (isConfirm) {
+
+                                if (isConfirm) {
+                                    $('#QEMobileNo').prop("readonly", "readonly");
+                                    $("#DigiCerti").hide();
+                                    $("#DIGIbag").hide();
+                                    $('#Emailbaknew1').hide();
+                                    $('#Mobileform').hide();
+                                    $('#EmailGetOtp').hide();
+                                    $('#QEisMobileVerify').show();
+                                    $('#QEMobileVerify').show();
+                                    $('#SaveQEData').prop('disabled', false);
+                                    $('#AuthMobileGetOtp').hide();
+                                    window.location.href = "/OrgnisationDashBoard/MainDashboard";
+
+                                } else {
+                                    swal("Cancelled");
+                                }
+                            });
+
+
+
+
+
+                    }
+                    else if (result == "Index was outside the bounds of the array.") {
+                        swal("Please check ur Mobile No");
+                    }
+                    else {
+
+                        swal("Please check ur Mobile No");
+                        $('#Emailbaknew1').hide();
+                        $('#emailauth').val('');
+                        $('#QEMobileVerify').hide();
+                        $('#QEisMobileVerify').hide();
+                        $('#AuthMobileGetOtp').show();
+                    }
+
+                }
+            });
+
+        }
+    </script>
+    <script>
+        function SpacePass(id) {
+            var inputtxt = $('#' + id).val();
+
+            if (inputtxt.indexOf(' ') !== -1) {
+
+                swal('Password should not contain spaces.');
+                $('#' + id).val('');
+                return false;
+            }
+        }
+    </script>
+    <script>
+        function numericOnly(id) {
+            debugger;
+            // Allow: backspace, delete, tab, escape, enter and .
+            var inputtxt = $('#' + id).val();
+            var numbers = /^[0-9]{0,9}$/;
+            if (!numbers.test(inputtxt)) {
+                swal('Only Numeric Numbers Can Be Enter ');
+                $('#' + id).val('');
+                document.form1.text1.focus();
+                return true;
+            }
+
+        }
+    </script>
+    <script type='text/javascript'>
+        $(document).ready(function () {
+
+            $("#HomeClicked").click(function () {
+                window.location.href = "/OrganisationLogin/MainHomePage";
+            });
+
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $("#footer").hide();
+        });
+    </script>
+
+    @if (ViewBag.AdminFlag == "AdminFlag")
+    {
+        <style>
+            #header {
+                display: none;
+            }
+
+            .coninn {
+                display: none;
+            }
+
+            #topbar {
+                display: none;
+            }
+
+            #footer {
+                display: none;
+            }
+
+            @@media screen and (min-device-width: 320px) and (max-device-width: 600px) {
+                .orgdeticon {
+                    position: absolute;
+                    margin-top: 2%;
+                    margin-left: 4%;
+                    height: 40px;
+                    width: 50px;
+                }
+
+                .agntloginform {
+                    padding: 0% 9.3% !important;
+                }
+
+                .agntlogfnt {
+                    font-size: 3rem;
+                }
+
+                .agntlogfont {
+                    font-size: 30px;
+                }
+
+                .agntlogckbx {
+                    height: 14px;
+                    width: 17px;
+                }
+
+                .agntlogbtn {
+                    height: 70px;
+                }
+            }
+        </style>
+    }
+    <style>
+        .orgdeticon {
+            position: absolute;
+            margin-top: 2%;
+            margin-left: 3%;
+            height: 15px;
+            width: 20px;
+        }
+
+        .logonew {
+            height: 60px !important;
+            width: 220px !important;
+            margin-top: 11px !important;
+            margin-left: 25px;
+        }
+
+        @@media screen and (min-device-width: 300px) and (max-device-width: 768px) {
+
+            .footerLog {
+                font-size: 14px !important;
+            }
+
+            #btnLogin {
+                height: 36px !important;
+            }
+
+            #please {
+                font-size: 14px;
+            }
+
+            #Password {
+                font-size: 22px;
+                height: 36px;
+            }
+
+            #UserId {
+                font-size: 14px;
+                height: 36px;
+            }
+
+            .adminrsp {
+                justify-content: center;
+            }
+
+            .dsfxotp {
+                display: flex;
+                margin-bottom: 30px;
+                flex-direction: column;
+            }
+
+            .otpbtn123 {
+                font-size: 20px;
+            }
+
+            .cqepopup {
+                font-size: 16px;
+            }
+
+            .cqein {
+                width: 80%;
+            }
+
+            .init_head {
+                font-size: 22px;
+            }
+
+            .init_email {
+                font-size: 14px;
+            }
+
+            .cqepopupmn1 {
+                width: 80%;
+            }
+
+            .orgdeticon {
+                position: absolute;
+                margin-top: 2%;
+                margin-left: 4%;
+                height: 40px;
+                width: 50px;
+            }
+
+            .agntloginform {
+                padding: 0% 9.3% !important;
+            }
+
+            .agntlogfnt {
+                font-size: 3rem;
+            }
+
+            .agntlogfont {
+                font-size: 14px !important;
+            }
+
+            .agntlogckbx {
+                height: 14px;
+                width: 17px;
+            }
+
+            .agntlogbtn {
+                height: 70px !important;
+            }
+        }
+
+        @@media screen and (min-device-width: 600px) and (max-device-width: 898px) {
+            .agentlog {
+                margin-top: 15%;
+            }
+        }
+    </style>
+</head>
+
+<body onload="CreateCaptcha();">
+    <div id="header" class="header">
+        <div class="init_div_nav">
+            <div class="init_logo_div">
+                <img src="~/content/logos/RSSB_bank.jpg" class="init_logo_main" alt="Bank Logo" />
+            </div>
+            <div class="init-ul-parent" id="show-menu">
+                <ul class="init_ul">
+                    @* <a href="https://www.rajarshishahubankpune.com/" class="init_href" style="color: #000!important;">About Us</a>*@
+                    <a href="#" class="init_href" id="HomeClicked">Home</a>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+
+    <section id="" class="" style=" ">
+        <div class="container">
+            <div class="row" style="justify-content:center;position: relative;margin: 0;">
+                <div class="col-xl-6 col-lg-6 col-md-10 col-sm-12 slide-box" style="margin:10px;display: flex;justify-content: center;">
+                    <div id="agent_login_form">
+                        <div style="">
+                            <h3 class="init_login_title">Agent Login Here</h3>
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                            <div class="">
+                                @*<span style="color:#414040;font-size:13px;float:left;padding-left:4.4%;margin-bottom:1px" class="fontSizeInput">Username</span>*@
+
+                                <div class="form-group">
+                                    @* <i class="fa-ifn fa fa-user  iconSize "></i>*@
+                                    @* <img src="~/Images/Image/user2icon.png" style="opacity:0.5" class="orgdeticon">*@
+                                    @*<input type="text" value="" id="UserId" name="log" placeholder="Enter ID">*@
+                                    <label class="init_login_label active1">User Id</label>
+                                    @Html.EditorFor(model => model.UserId, new
+                                    {
+                                    htmlAttributes = new
+                                    {
+                                    @id = "UserId",
+                                    @class = "init_input init_input_test text-box single-line",
+                                    @style="border-radius: 5px!important;padding-left: 20px !important;",
+                                    @onkeyup = "numericOnly(this.id)"
+                                    //@class = "form-control border_rd pdlftr8user agntlogfont",
+                                    //placeholder = "UserId"
+                                        @*placeholder = "UserId"*@}
+                                    })
+                                    @Html.ValidationMessageFor(model => model.UserId, "", new { @class = "text-danger validation" })
+                                </div>
+
+                                @* <span style="color:#414040;font-size:13px;float:left;padding-left:4.4%;margin-bottom:1px" class="fontSizeInput">Password</span>*@
+                                <div class="form-group init_password">
+                                    @*<i class="fa-ifn fa fa-lock iconSize1 "></i>*@
+                                    @* <img src="~/Images/Image/lock.png" class="orgdeticon"/>*@
+                                    @*<input type="password" value="" id="Password" name="log" placeholder="Enter Password">*@
+                                    <label class="init_login_label active1">Password</label>
+                                    @Html.EditorFor(model => model.Password, new
+                                    {
+                                    htmlAttributes = new
+                                    {
+                                    @id = "Password",
+                                    @Password = "Password",
+                                    @type = "password",
+                                    @class = "init_input",
+                                    @style="border-radius: 5px!important;padding-left: 20px !important;",
+                                    @onkeyup = "SpacePass(this.id)"
+                                    //placeholder = "Password"
+                                        @*placeholder = "UserId"*@}
+                                    })
+                                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger validation" })
+                                    <div class="password01 init_eye_div" onclick="pass()">
+                                        <i class="fa-solid fa-eye-slash" id="init_eye"></i>
+                                    </div>
+                                </div>
+
+
+                                @*Capcha*@
+                                <div class="init_capcha_div">
+                                    <section>
+                                        <fieldset class="captchaField">
+                                            <p id="please" style="font-size: 15px;">Please enter the following Captcha</p>
+                                            @* <span id="SuccessMessage" class="success">Thanks! , The Captcha Is Correct!</span>*@
+
+                                            @*  <span id="WrongCaptchaError" class="error"></span>*@
+                                            <div class='CaptchaWrap'>
+                                                <div id="CaptchaImageCode" class="CaptchaTxtField">
+                                                    <canvas id="CapCode" class="capcode" width="300" height="80"></canvas>
+                                                </div>
+                                                <div class="init_capcha_input">
+                                                    <input type="text" id="UserCaptchaCode" class="form-control CaptchaTxtField init_capcha_input">
+                                                </div>
+                                            </div>
+                                            @* <input type="button" class="ReloadBtn" onclick='CreateCaptcha();'>*@
+                                            <span id="WrongCaptchaError" class="error"></span>
+                                            <p id="please" style="font-size: 13px;margin-top: 2px;margin-bottom: 2px;">Unable to read the above image? <span onclick='CreateCaptcha();' class="init_retest">Try another!</span></p>
+                                            @*<input type="button" class="btnSubmit" onblur="CheckCaptcha()" value="">*@
+                                        </fieldset>
+                                    </section>
+                                </div>
+
+                                @if (@ViewBag.msg != null)
+                                {
+                                    <div class="text-danger validation btnFont">@ViewBag.msg</div>
+                                }
+                                <div class="form-group remember mtp1" style=" ">
+                                    @*<label class="lablesize agntlogfont"><input type="checkbox" value="" class="remember-check checkboxSize agntlogckbx"> Remember me on this computer</label>*@
+                                    <a href="/OrganisationLogin/ForgetPass" style="display: block;margin-bottom: 7px;"> Forget Password? </a>
+                                </div>
+                                <div class="form-group mtp11" style=" ">
+                                    <button type="submit" class="init_submit_btn" id="btnLogin" onclick="test();">Login</button>
+                                </div>
+                                <div class="form-group mtp1" style="display:none">
+
+                                    <div class="or btnFont agntlogfont">-- Or --</div>
+                                    <button type="button" class="b111 reg1 regibtn btnFont agntlogfont" id="AuthMobileGetOtp" onclick="QEMobileAuth(this);" style="margin-top:2px">Login With Mobile No.</button>
+                                    @*<button type="submit" class="b111 reg1 regibtn btnFont agntlogfont" id="btnLogin" style="margin-top:2px">Request OTP</button>*@
+
+                                </div>
+                                <div class="form-group mtp1" style="display:none">
+
+                                    <div class="or btnFont agntlogfont">-- Or --</div>
+                                    <button type="submit" class="b111 gmail2 gmailbtn btnFont agntlogfont" id="btnLogin" style="margin-top:2px">Sign Up With Gmail</button>
+
+                                </div>
+                                <span style="color: #696868;font-size:13px;text-align:center;display:none" class="btnFont agntlogfont">Don't have Account &nbsp;? </span><br />
+                                <span style="color:#1d45b4;font-size:13px;text-align:center;font-weight:500;display:none" class="btnFont agntlogfont"><a href="#" target="_blank">Create Here !</a></span>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    @*<div id="back" class=""></div>*@
+
+
+
+
+
+    <div id="otp_div">
+        <div id="QEMobileform" class="cqepopupmn1">
+            <div class="" style="position: relative;">
+                <div class="init_head">OTP VERIFICATION</div>
+                @*<img src="~/Content/imgs/icons/Red-Close-Button.png" style=" height:20px;width:20px;position: absolute;top: 9px;right: 16px;"  onclick="closeQEMobile()" class="crossbtn">*@
+                @* <i class="fa-regular fa-xmark init_cross" onclick="closeQEMobile()"></i>*@
+                <i class="fa-solid fa-xmark init_cross" onclick="closeQEMobile()"></i>
+            </div>
+            <p class="init_email" id="text"></p>
+            <div style="margin-top:2.8%;">
+                <div class=" col-lg-12 col-md-12 col-sm-12 cqedivpup" style="display: flex;margin-bottom: 10px;">
+                    <div class="col-lg-8 col-md-8 pd0 cqein" style="margin-bottom:1%">
+                        <div class="md-form">
+                            @*<label style="" for="QEMobilecode" id="Mobileotp" class="label_val fontpfhndr active">MOBILE NUMBER</label>*@
+                            <input type="text" id="QEMobilecode" class="form-control border_rd pdlftr8user" placeholder="Enter Mobile No." ReadOnly="true" />
+                        </div>
+                    </div>
+                    @*<div class="col-lg-4 col-md-4 cqebtnw" style="padding-right: 12px;padding-left: 0px;">
+                    <button type="button" onclick="QEGetMobileOTP()" class="btn  get1 cqepopup init_otp_btn" id="QEMobileGetOtp">&nbsp;&nbsp;GET OTP&nbsp;&nbsp;</button>
+                    </div>*@
+                </div>
+                <div class="col-lg-12 col-sm-12 cqedivpup dsfxotp" style="display: flex;margin-bottom:30px;flex-direction: column;justify-content: center;align-items: center;">
+                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-11" style="">
+                        <div class="md-form" style="">
+                            @*<label style="" for="QEMobileauth" class="label_val fontpfhndr">OTP</label>*@
+                            <input type="password" id="QEMobileauth" class="form-control border_rd init-sp_form" placeholder="Enter OTP" maxlength="6" style="" />
+                        </div>
+                    </div>
+                    <div class="otpbtndv">
+                        <div class="col-lg-6 col-md-6" style="padding:5px">
+                            <button type="button" onclick="QEGetMobileOTP()" class="btn init_otp_btn" id="QEMobileGetOtp">&nbsp;&nbsp;RESEND OTP&nbsp;&nbsp;</button>
+                        </div>
+                        <div class="col-lg-6 col-md-6" style="padding:5px">
+                            <button type="button" id="MobileAuthOtp" class="btn init_otp_btn" onclick="OTPQEMobileAuthenticate()">AUTHENTICATE</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            @*<div class=" col-lg-12 cqedivpup" style="display: flex;">
+            <div class="col-lg-9 col-md-8 dis1 cqein" style=" ">&nbsp;&nbsp;</div>
+            <div class="col-lg-3 col-md-4 clotop cqebtnw" style="padding-right: 0px;padding-left: 0px;padding-bottom:3%;">
+
+            <button type="button" class="btn btn-primary get1 gg cqepopup" onclick="closeQEMobile()" >CLOSE</button>
+            </div>
+            </div>*@
+
+
+        </div>
+    </div>
+
+    @*<main id="main" style="padding: 0% 2%;">
+
+
+    <section id="services" class="services">
+    <div class="container-fluid">
+    <div class="row">
+    <h4>KYC ?</h4>
+    <p style="text-align:justify"> The know your customer or know your client (KYC) guidelines in financial services requires that professionals make an effort to verify the identity, suitability, and risks involved with maintaining a business relationship. The procedures fit within the broader scope of a bank's Anti-Money Laundering (AML) policy. KYC processes are also employed by companies of all sizes for the purpose of ensuring their proposed customers, agents, consultants, or distributors are anti-bribery compliant, and are actually who they claim to be. Banks, insurers, export creditors and other financial institutions are increasingly demanding that customers provide detailed due diligence information. Initially, these regulations were imposed only on the financial institutions but now the non-financial industry, fintech, virtual assets dealers, and even the non-profit organizations are liable to oblige.</p>
+    </div>
+    </div>
+    <div class="container">
+    <div class="row">
+    </section>
+
+    </main>*@
+
+    <footer id="footer">
+        <div class="copyright footerLog">
+            <p><a href="">Terms of Use</a> | <a href="">Privacy Policy</a> | <a href="">Disclaimer</a></p>
+            <p>© Indo FinNet. All Rights Reserved</p>
+            <p>Visit us at www.indofinnet.co.in</p>
+        </div>
+        </div>
+        </div>
+    </footer>
+
+    <div id="preloader">
+        <div id="Digil1" style="position: fixed; background-color: #cdcdcd5e; margin-top: 19%; margin-left: 47%;">
+            <i class=" fa fa-pulse fa-fw dgldr ldrdesign" style="height:70px;width:70px;border-radius:50%;
+            border-bottom:5px dotted grey;
+            border-top:5px dotted black;
+            border-right:5px dotted black;
+            border-left:5px dotted black;
+            height:80px;
+            width:80px;
+            position:absolute;
+            margin: 20% 50%;">
+            </i>
+        </div>
+    </div>
+    <div id="DigiCerti"></div>
+    <a href="#" class="back-to-top">
+
+        @* <i class="fa fa-chevron-up"></i>*@
+        <img src="~/Content/imgs/icons/uparrow1.png" height="35px" width="35px" />
+
+    </a>
+
+
+    <script src="~/Content/Navigation/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/Content/Navigation/vendor/jquery.easing/jquery.easing.min.js"></script>
+    <script src="~/Content/Navigation/vendor/venobox/venobox.min.js"></script>
+    <script src="~/Content/Navigation/js/main.js"></script>
+</body>
+</html>

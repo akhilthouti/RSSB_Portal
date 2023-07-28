@@ -1,0 +1,109 @@
+﻿@model ServiceProvider1.Models.clsResponseCkyc
+
+<script>
+    function CkycPassValue() {
+        debugger;
+        $('#CKYCCustomerSearchDetails').hide();
+        $('#blackbg2').hide();
+        $.ajax({
+            url: '/KYCQuickEnroll/PopulateCKYCCustomer?ckycNumber=' + $('#QuickCKYCNoId').val() + '&authFactor=' + $('#panckycdob').val(),
+            type: 'POST',
+            success: function (result) {
+            }
+    }
+
+    function CloseCKYC() {
+        debugger;
+        $('#CKYCSerachDetails').hide();
+        $('#blackbg2').hide();
+    }
+</script>
+@using (Html.BeginForm())
+{
+<div class=" " id="CKYCSerachDetails">
+    <div class="panel-heading">
+        <div class="panel-title" style="text-align: center !important;">CKYC Customer Details</div>
+    </div>
+    <div class="panel-body">
+    <form>
+        @Html.AntiForgeryToken()
+        <div class="" id="SearchData_id">
+            <div class="panCntent-centering adjust pd_lft15Cust">
+                <div class="control-label col-md-3 customerlbl flt_lft">
+                    @Html.Label("Customer Name : ")
+                </div>
+                <div class="main_input flt_lft">
+                    <div class="cbs_textbox">
+                        @Html.TextBoxFor(model => model.firstName, new { @id = "QuickCKYCFirstNameId", @class = "custsign_textbox" })
+                        @Html.ValidationMessageFor(model => model.firstName)
+                    </div>
+                </div>
+            </div>
+            <div class="panCntent-centering adjust pd_lft15Cust">
+                <div class="control-label col-md-3 customerlbl flt_lft">
+                    @Html.Label("Father Name : ")
+                </div>
+                <div class="main_input flt_lft">
+                    <div class="cbs_textbox">
+                        @Html.TextBoxFor(model => model.fatherName, new { @id = "QuickCKYCFatherNameId", @class = "custsign_textbox" })
+                        @Html.ValidationMessageFor(model => model.fatherName)
+                    </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+            <div class="panCntent-centering adjust pd_lft15Cust" style="margin-top:2%">
+                <div class="control-label col-md-3 customerlbl flt_lft">
+                    <label>CKYC No</label>
+                </div>
+                <div class="main_input flt_lft">
+                    <div class="cbs_textbox">
+                        @Html.TextBoxFor(model => model.ckycNumber, new { @id = "QuickCKYCNoId", @class = "custsign_textbox" })
+                        @Html.ValidationMessageFor(model => model.ckycNumber)
+                    </div>
+                </div>
+            </div>
+            <div class="panCntent-centering adjust pd_lft15Cust" style="margin-top:2%">
+                <div class="control-label col-md-3 customerlbl flt_lft">
+                    @Html.Label("Age : ")
+                </div>
+                <div class="main_input flt_lft">
+                    <div class="cbs_textbox">
+                        @Html.TextBoxFor(model => model.DOB, new { @id = "QuickCKYCAge", @class = "custsign_textbox" })
+                        @Html.ValidationMessageFor(model => model.DOB)
+                    </div>
+                </div>
+            </div>
+            @*<div class="panCntent-centering adjust pd_lft15Cust" style="height: auto">
+            <div class="control-label col-md-3 customerlbl flt_lft wd30Cust"><label> Photo</label></div>
+            <div class="main_input flt_lft">
+                <img src="data:image/jpg;base64,@(Html.Raw(Convert.ToBase64String(Model.custPhoto)))" alt="" id="FirstCustPopPic" class="progImgPreview" height="100" width="100" />
+            </div>
+        </div>*@
+            <div class="form_rowuser">
+                <div class="salestext_lable">
+                    @Html.LabelFor(model => model.custPhoto)
+                </div>
+                <div class="salestext_comboBox">
+                    @if (Model.custPhoto != null)
+                    {
+                        <img src="data:image/jpg;base64,@(Html.Raw(Model.custPhoto))" alt="" id="photo" class="appl_photo" style="height:55px; width:60px" />
+                    }
+                    else
+                    {
+                    }
+                </div>
+            </div>
+            <div class="clear:both"></div>
+            <div class="buttonpop">
+                <div class="wrapperapproved">
+                    <input type="button" class="searchdw" value="Populate" id="ckycIdPopulate" onclick="CkycPassValue()" style="margin-left: 3%;" />
+                    <input type="button" class="searchdw" value="Close" id="CloseQuickCkycid" onclick="CloseCKYC()" />
+                </div>
+            </div>
+        </div>
+    </form>
+    </div>
+    <div class="form-group" id="DwldData_id"></div>
+    <div id="CkycApprovloader"></div>
+    <div id="overlay_disabl-dwnld"></div>
+</div>}

@@ -1,0 +1,288 @@
+﻿@model ServiceProvider1.Models.UserDetails.ClsSummeryDetails
+@{
+    /**/
+
+    Layout = null;
+
+}
+<link href="~/Content/Navigation/style.css" rel="stylesheet" />
+
+@*@Styles.Render("Content/NewTab/verificationTABViewCSS")
+    @Scripts.Render("~/Scripts/Content/DataVeriTabViewJS")
+
+    @Scripts.Render("~/Scripts/Content/DataVerificationTabView")*@
+@*<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>*@
+<link href="~/css/multiclass.css" rel="stylesheet" />
+@*@Scripts.Render("~/bundles/validate")*@
+<style>
+     #Digil1{
+        margin: -17% 0% 0% 47%;
+    }
+
+    .ldrdesign{
+        height: 70px;
+        width: 70px;
+        border: 5px dotted black;
+        border-top: 5px dotted lightgrey;
+        border-radius: 50%;
+    }
+    .visited, .btnnew:hover {
+        color: #f76217;
+        background-color: #fff;
+    }
+    .btnnew:Active {
+        color: #f76217;
+        background-color: #fff;
+    }
+    .btnnew {
+        color: #fff;
+        background-color: #f76217;
+        display: inline-block;
+        padding: 6px 12px;
+        margin-bottom: 0;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 1.42857143;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: middle;
+        -ms-touch-action: manipulation;
+        touch-action: manipulation;
+        cursor: pointer;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        background-image: none;
+        border: 1px solid transparent;
+        border-radius: 1px;
+    }
+    #icon-layout .active {
+        color: #4a70b5;
+    }
+</style>
+@if (ViewBag.AdminFlag == "AdminFlag")
+{
+    <style>
+        #AadharResults {
+            float: left;
+            width: 100%;
+        }
+        #PanResults {
+            float: left;
+            width: 100%;
+        }
+        #SSheetResults {
+            float: left;
+            width: 100%;
+        }
+    </style>
+}
+<script>
+    function ViewSSheet() {
+        debugger;
+        $.ajax({
+            url: "/AdminLogin/sssss",
+            type: "Get",
+            cache: false,
+            success: function (result) {
+                debugger;
+                $('#PanResults').hide();
+                $('#SSheetResults').html(result);
+                $('#SSheetResults').show();
+                $('#AadharResults').hide();
+            }
+        })
+    }
+</script>
+<script>
+    function panClick() {
+        debugger;
+        $("#Digil1").css("display", "block");
+       
+        $.ajax({
+            url: "/AdminLogin/PanDataVerify",
+            type: "Get",
+            cache: false,
+            success: function (result) {
+                debugger;
+                $('#PanResults').html(result);
+                $('#PanResults').show();
+                $('#SSheetResults').hide();
+                $('#AadharResults').hide();
+                 $("#Digil1").css("display", "none");
+            }
+        })
+    }
+</script>
+<script>
+    function UserMobileOTPGenerate1() {
+        debugger;
+        $("#DigiCerti").html("<div style='position: fixed;z-index: 5000;float: left;right: 50%;height: 50px;width: 50px;top:40%;'><img class='ajax-loader' src='../Images/loader/Dual Ring-1s-200px.gif' height='60px' width='60px' align='middle' alt='ajaxloadergif' /></div>");
+        $("#DigiCerti").show();
+        $("#DIGIbag").show();
+        var UserMobileNo = $("#UserMobileNo_id").val();
+        $.ajax({
+            url: "/DataVerify/SendOtp?MbileNo=" + UserMobileNo,
+            type: "Get",
+            cache: false,
+            success: function (result) {
+                debugger;
+                $("#DigiCerti").hide();
+                $("#DIGIbag").hide();
+                if (result == "OTP Generated Successfully...!" || result == "OK") {
+                    debugger;
+                    swal("OTP Generated Successfully..");
+                    $('#userOtpDiv').show();
+                    $("#UserMobileNoButton_id").html('RESEND OTP');
+                    $("#UserMobileNoButton_id").prop('disabled', true);
+                    setTimeout(function () {
+                        $("#UserMobileNoButton_id").prop('disabled', false); // enable the button after 5 seconds
+                    }, 10000);
+                }
+                else {
+                    swal(result);
+                }
+            }
+        })
+    }
+</script>
+<script>
+    function UserVerifyOTP() {
+        debugger;
+        var MbileNo;
+        var OTP;
+        if ($("#UserOTP_id").val() != null && $("#UserOTP_id").val() != "") {
+            MbileNo = $('#UserMobileNo_id').val();
+            OTP = $("#UserOTP_id").val();
+        }
+        else {
+            swal("Enter OTP");
+        }
+        $.ajax({
+            url: "/DataVerify/VerifyGenerateOTP?MbileNo=" + MbileNo + "&OTP=" + OTP + "&Verifyname=UserVerifyOTP",//+ "&BCPhoto=" + $('#digiphotoid').val(),
+            type: "Get",
+            cache: false,
+            success: function (result) {
+                debugger;
+                var resultdata = result.split("/");
+                if (resultdata[0] == "OTP Validated Successfully..") {
+                    $('#isMobileVerify2').show();
+                    $('#MobileVerify2').show();
+                    swal(result);
+                    $("#UserMobileNoButton_id").prop('disabled', true);
+                    $("#UserVerifyButton").prop('disabled', true);
+                }
+                else {
+                    swal(result);
+
+                }
+                if (resultdata[1] == "1") {
+                    $('#adrbtnid').show();
+
+                }
+            }
+        })
+    }
+</script>
+<script>
+    function AdharClick() {
+        debugger;
+        $("#Digil1").css("display", "block");
+        $.ajax({
+            url: "/AdminLogin/AadharDataVerify",
+            type: "Get",
+            cache: false,
+            success: function (result) {
+                debugger;
+                $('#AadharResults').html(result);
+                $('#AadharResults').show();
+                $('#SSheetResults').hide();
+                $('#PanResults').hide();
+                 $("#Digil1").css("display", "none");
+            }
+        })
+    }
+</script>
+<script>
+    function aadharsubmit1(e) {
+        debugger;
+        var url = window.location.protocol + "//" + window.location.host + "/AdminLogin/downloadpdf";
+        window.open(url, '_blank');
+        setTimeout(function () {
+            window.location.reload(1);
+        }, 5000);
+    }
+</script>
+<div id="Digil1" style="position:fixed;display:none;">
+        <i class=" fa fa-pulse fa-fw dgldr ldrdesign" style="height:70px;width:70px;">
+        </i>
+    </div>
+<div class=" " id="allTab">
+    <div class="containerbxnew">
+        <div class="clear" style="width:100%;padding-top:5px;padding-bottom:6px;padding-left:0px;">
+            <ul class="nav nav-tabs pddinglft6px" id="icon-layout" style="padding: 6px 1px 6px 7px;">
+                @if (ViewBag.PanVerify == true)
+                {
+                    <li Id="Litab11" class="active" style="margin-left: 0px;margin-top: 0px;">
+                        <button type="button" id="btnPan" class="btnnew btn_primary" onclick="panClick();">Pan Matches</button>
+                    </li>
+                }
+                @if (ViewBag.IsDigiPANSumbitted == true)
+                {
+                    <li Id="Litab11" class="active" style="margin-left: 0px;margin-top: 0px;">
+                        <button type="button" id="btnPan" class="btnnew btn_primary" onclick="panClick();">Pan Matches</button>
+                    </li>
+                }
+                @if (ViewBag.IsDigiAadharSumbitted == true)
+                {
+                    <li Id="Litab12" style="margin-left: 0px;margin-top: 0px;">
+                        <button type="button" id="btnAadhar" class="btnnew" onclick="AdharClick();">Aadhar Matches</button>
+                    </li>
+                }
+                @if (ViewBag.AdharXML == true)
+                {
+                    <li Id="Litab12" style="margin-left: 0px;margin-top: 0px;">
+                        <button type="button" id="btnAadhar" class="btnnew" onclick="AdharClick();">Aadhar Matches</button>
+                    </li>
+                }
+                <li Id="Litab14" style="margin-left: 0px;margin-top: 0px;display:none;">
+                    <button type="button" id="btnSummery" class="btnnew" onclick="ViewSSheet();">Summery Sheet</button>
+                </li>
+                <li Id="Litab21" style="margin-left: 0px;margin-top: 0px;display:none;">
+                    <button type="button" id="pdfdownload11" class="btnnew" onclick="aadharsubmit1(this);">Download PDF</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="panel-heading" style="margin-top: 8px;display:none;">
+    <h3 class="panel-title">Agents's Mobile No</h3>
+</div>
+<div class="panel-body" style="float:left;display:none;width:100%;margin-top:0px">
+    <div class="row">
+        <div class="form-group">
+            @Html.TextBoxFor(model => model.CFirstName, htmlAttributes: new { @class = "form-control border_rd pdlftr8user paddB ", placeholder = "First Name", @onkeypress = "CharacterOnly(event)", @maxlength = "50", @onkeyup = "this.value = this.value.toUpperCase();" })
+            @Html.ValidationMessageFor(model => model.CFirstName, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            @Html.TextBoxFor(model => model.CMobileNo, htmlAttributes: new { @class = "form-control border_rd pdlftr8user ", @id = "UserMobileNo_id", @maxlength = "10", placeholder = "Mobile No", @onkeydown = "numericOnly(this,event)", style = "" })
+            @Html.ValidationMessageFor(model => model.CMobileNo, "", new { @class = "text-danger fontKyc" })
+        </div>
+        <div class="form-group">
+            <button type="button" id="UserMobileNoButton_id" value="Send OTP" class="btn btn-primary uppcase" onclick="UserMobileOTPGenerate1()">SEND OTP</button>
+        </div>
+        <div class="form-group">
+            @Html.TextBoxFor(model => model.MobileOtp1, htmlAttributes: new { @class = "form-control border_rd pdlftr8user paddB ", id = "UserOTP_id", @maxlength = "6", placeholder = "UserOTP", @onkeydown = "numericOnly(this,event)", style = "" })
+            @Html.ValidationMessageFor(model => model.MobileOtp1, "", new { @class = "text-danger fontKyc" })
+        </div>
+        <div class="form-group">
+            <input type="button" value="Verify" id="UserVerifyButton" class="btn btn-primary uppcase" onclick="UserVerifyOTP()" />
+            <label id="isMobileVerify2" style="float:left;padding-right:10px;display:none"><input type="checkbox" id="MobileVerify2" checked="checked" readonly="readonly" style="display:none" />Mobile Verified</label>
+        </div>
+    </div>
+</div>
+<div id="SSheetResults"></div>
+<div id="PanResults"></div>
+<div id="AadharResults"></div>
+</div>

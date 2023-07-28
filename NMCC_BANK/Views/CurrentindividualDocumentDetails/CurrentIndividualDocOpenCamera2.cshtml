@@ -1,0 +1,337 @@
+﻿@{
+    Layout = null;
+}
+
+
+<div style="float:left;width:100%">
+    <html lang="en">
+    <head>
+        @*<link href="~/Scripts/sweetalert.css" rel="stylesheet" />
+        <script src="~/Scripts/sweetalert.min.js"></script>
+
+        <link href="~/Content/HoverEffect/hover.css" rel="stylesheet" />
+        <link href="~/Content/Navigation/style.css" rel="stylesheet" />
+        <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+        <link href="~/Content/Navigation/css/newcss.css" rel="stylesheet" />
+        <link href="~/Content/snewcss.css" rel="stylesheet" />*@
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>WebcamJS Test Page</title>
+        <style type="text/css">
+            body {
+                font-family: Helvetica, sans-serif;
+            }
+
+            h2, h3 {
+                margin-top: 0;
+            }
+
+            form {
+                margin-top: 15px;
+            }
+
+                form > input {
+                    margin-right: 15px;
+                }
+
+            #buttonhide {
+                background: transparent;
+                border: none !important;
+                font-size: 0;
+            }
+
+            #POAC_camera {
+                width: 100% !important;
+                height: auto !important;
+            }
+
+            #POAP_camera {
+                width: 100% !important;
+                height: auto !important;
+            }
+
+            #BankCheq_camera {
+                width: 100% !important;
+                height: auto !important;
+            }
+
+            #POAC_camera video {
+                margin: 0px;
+            }
+
+            #POAP_camera video {
+                margin: 0px;
+            }
+
+            #BankCheq_camera video {
+                margin: 0px;
+            }
+
+            #btnExit {
+                background-color: #c52a2a;
+                color: white;
+            }
+        </style>
+
+
+    </head>
+    <body class="container">
+
+
+
+
+        <div id="results"></div>
+
+
+        <!-- Configure a few settings and attach camera -->
+        @if (ViewBag.DocPOA == true)
+        {
+            //<script src="~/Scripts/webcam.js"></script>
+            <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12 width90" style="position: relative;">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mg_tp-2" id="CameraPOIDA" style="margin:0px auto;float:none;clear:both">
+                    <div class="panel panel-default paneBX" style="height: auto;padding-bottom: 10px" id="div_POA_camera">
+                        <div class="panel-heading BX_txt" style="text-align:center">Camera</div>
+                        <div class="panel-body p8" style="padding:0px;text-align:center">
+                            <video id="videoPOA" playsinline autoplay style="width:200px"></video>
+                            <div id="POA_camera" style="width:250px;"></div>
+                            <img class="toggle" id="image_POA" src="~/Images/toggle.jpg" style="height: 40px;width: 40px;margin-bottom: 20px;margin-top:20px;" />
+                            <select id="select_POA" name="CameraListPOA" class="dropselect" style="display:none"></select>
+                            <canvas id="canvas" style="display:none" class="canvascam"></canvas>
+
+                            <!-- A button for taking snaps -->
+                            <form style="margin-top:0px">
+
+                                <input type="button" class="btn btn-success" value="Customer POA" id="CapturePermPOA" onClick="take_snapshotPOA()">
+                            </form>
+                            <form style="margin-top:10px">
+
+                                <input type="button" id="btnExit" class="btn btn-danger btnred init-btn edit" value="Close" />
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <script>
+                debugger;
+                var VideoReordPOA = document.getElementById('videoPOA');
+                var clieckButton = document.getElementById('button1');
+                var selectvaluePOA = document.getElementById('select_POA');
+                var cameraonPOA = document.getElementById('image_POA');
+                var currentStreamForPOA;
+                var CamClick = 1;
+
+                cameraonPOA.addEventListener('click', event => {
+                    debugger;
+
+                    if (typeof BackStream !== 'undefined') {
+                        stopMediaTracks(BackStream);
+                    }
+                    if (typeof currentStreamForPOA !== 'undefined') {
+                        stopMediaTracks(currentStreamForPOA);
+                    }
+                    var videoConstraints = {};
+
+                    if (CameraCount == 2) {
+                        if (CamClick === 1) {
+                            videoConstraints.deviceId = { exact: selectvaluePOA[1].value };
+                            CamClick = 2;
+                        }
+                        else {
+                            videoConstraints.deviceId = { exact: selectvaluePOA[2].value };
+                            CamClick = 1;
+                        }
+                    }
+                    else {
+                        videoConstraints.deviceId = { exact: selectvaluePOA[1].value };
+                    }
+                    var constraints = {
+
+                        video: videoConstraints,
+                        audio: false
+                    };
+                    navigator.mediaDevices
+                        .getUserMedia(constraints)
+                        .then(stream => {
+                            currentStreamForPOA = stream;
+                            VideoReordPOA.srcObject = stream;
+                            return navigator.mediaDevices.enumerateDevices();
+                        })
+                        .then(gotDevices)
+                        .catch(error => {
+                            console.error(error);
+                        });
+                });
+
+                navigator.mediaDevices.enumerateDevices().then(gotDevices);
+
+
+                $("#btnExit").click(function () {
+                    debugger;
+                    document.getElementById("CameraPOIDA").style.display = "none";
+                    //window.location.href = "/DocumentDetails/CustomerDocumentDetails";
+                });
+
+                function stopMediaTracks(stream) {
+                    debugger;
+                    stream.getTracks().forEach(track => {
+                        debugger;
+                        track.stop();
+                    });
+                }
+
+                function gotDevices(mediaDevices) {
+                    selectvaluePOA.innerHTML = '';
+                    selectvaluePOA.appendChild(document.createElement('option'));
+                    var count = 1;
+                    mediaDevices.forEach(mediaDevice => {
+                        if (mediaDevice.kind === 'videoinput') {
+                            var option = document.createElement('option');
+                            option.value = mediaDevice.deviceId;
+                            var label = mediaDevice.label || `Camera ${count++}`;
+                            var textNode = document.createTextNode(label);
+                            option.appendChild(textNode);
+                            selectvaluePOA.appendChild(option);
+                        }
+                    });
+                    CameraCount = document.getElementById("select_POA").options.length - 1;
+                    document.getElementsByName('CameraListPOA')[0].options[0].innerHTML = "--Choose Camera--";
+                }
+
+
+                var BackStream;
+
+                var videoConstraintsPOA = {};
+
+                videoConstraintsPOA.facingMode = 'environment';
+
+                var constraintsForPOA = {
+                    video: videoConstraintsPOA,
+                    audio: false
+                };
+                navigator.mediaDevices
+                    .getUserMedia(constraintsForPOA)
+                    .then(stream => {
+                        BackStream = stream;
+                        VideoReordPOA.srcObject = stream;
+                        return navigator.mediaDevices.enumerateDevices();
+                    })
+                    .then(gotDevices)
+                    .catch(error => {
+                        console.error(error);
+                    });
+
+
+
+            </script>
+            <script>
+                $("#CameraOpenViewAddrsPOA").show();
+                $('#POA_camera').append($('#CameraOpenViewAddrsPOA'));
+            </script>
+
+            <script>
+                function take_snapshotPOA() {
+                    debugger;
+                    $("#Digil1").css("display", "block");
+                    var idname = $('#ddl_corrAdd option:selected').text();
+                    //var docvalue = $('#ddl_idProof').val();
+
+
+                    if ($("#ddl_corrAdd").val() == 'Pan Card ') {
+                        $("#Digil1").css("display", "none");
+                        swal("Sorry...! PAN card cannot be used as an address document. Please select the appropriate document");
+                    }
+                    else {
+                        var canvas = document.getElementById('canvas');
+                        var video1 = document.getElementById('videoPOA');
+                        canvas.width = 320;
+                        canvas.height = 240;
+                        var docvalue = $('#ddl_corrAdd option:selected').text();
+                        var IdProof = $('#ddl_corrAdd').val();
+                        canvas.getContext('2d').drawImage(video1, 0, 0, 320, 240); // for drawing the video element on the canvas
+                        var data = canvas.toDataURL('image/jpeg');
+                        document.getElementById('DOC_resultPOA').innerHTML =
+                            '<img id="base64DOC_POA" src="' +
+                            data +
+                            '"/>';
+
+                        var formData = new FormData();
+                        var POAImage = document.getElementById("base64DOC_POA").src;  //Capture Code...
+                        formData.append("base64DOC_POA", POAImage);
+                        $.ajax({
+                            url: '/CurrentindividualDocumentDetails/DOCImageCapture12?DocType=' + 'DOCPOA' + "&POItype=" + docvalue + "&IdProof=" + IdProof,
+                            type: 'POST',
+                            data: formData,
+                            dataType: 'json',
+                            contentType: false,
+                            processData: false,
+                            success: function (Result) {
+                                debugger;
+                                if (Result == 'Success') {
+                                    $('#div_POA_camera').hide();
+                                    $('#CameraCustPOA').hide();
+                                    //$('#PermImgExist').val('ImgExist');
+                                    $('#CameraOpenViewMainAddrs').append($('#CameraOpenViewAddrsPOA'));
+                                    $("#Digil1").css("display", "none");
+                                    swal({
+                                        title: 'Document Uploaded Successfully',
+
+                                        type: 'success',
+
+                                        confirmButtonColor: '#DD6B55',
+                                        confirmButtonText: 'Ok',
+
+                                        closeOnConfirm: false,
+                                        closeOnCancel: false
+                                    },
+                                        function (isConfirm) {
+
+                                            if (isConfirm) {
+                                                //window.location.href = '/DocumentDetails/CustomerDocumentDetails';
+                                                window.location.href = '/CurrentindividualDocumentDetails/CurrentIndividualDocument';
+
+                                            } else {
+                                                swal("Cancelled");
+                                            }
+                                        });
+                                }
+                                else if (Result == 'Document not saved') {
+                                    $('#base64image').val('');
+                                    $('#POIUpload').val('');
+                                    $('#CameraCustDA').hide();
+                                    $("#CameraPOIDA").hide();
+                                    $("#CameraSignDA").hide();
+                                    $('#PermViewDoc').show();
+                                    $('#PermImgExist').val('ImgExist');
+                                    $('#CameraOpenViewMainAddrs').append($('#CameraOpenViewAddrsPOA'));
+                                    swal('Document not saved');
+                                }
+                                else {
+                                    swal('Please Select Valid Address Document')
+                                }
+                            }
+                        });
+                    }
+                }
+            </script>
+        }
+        <div id="Digil1" style="position:fixed;background-color: #cdcdcd5e;display:none;">
+            <i class=" fa fa-pulse fa-fw dgldr ldrdesign" style="height:70px;width:70px;">
+            </i>
+        </div>
+        <div id="DACamera1ViewPOA"></div>
+        <div id="ImageUpload"></div>
+        <div id="docdetails1"></div>
+        <div>
+            <input type="hidden" id="CustPhoto" />
+            <input type="hidden" id="POIPhoto" />
+        </div>
+        @*<div id="POIUpload"></div>*@
+    </body>
+</html>
+</div>
+<div id="CameraOpenViewAddrsPOA" style="display:none"></div>
+
+

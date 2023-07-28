@@ -1,0 +1,44 @@
+﻿/*cust details design*/
+@media only screen and (max-width:460px) {
+    .panel-body .row {
+        overflow: auto !important;
+    }
+
+    .appl_photo {
+        margin-left: 0px !important;
+    }
+
+    .phv01 {
+        margin-left: 15% !important;
+    }
+    .clearb{
+        clear:both
+    }
+    #digi_Gender {
+        border: 0px solid red !important;
+        margin-top: 0%!important; 
+        width: 105px;
+        margin-left: 0%!important; 
+    }
+}
+
+@media only screen and (max-width:768px) {
+    .panel-body .row {
+        overflow: auto !important;
+    }
+    .clearb {
+        clear: both
+    }
+    .flt{
+        float:left;
+    }
+    #xmlotpSend {
+        margin-left: 1%;
+        margin-bottom: 1%;
+        margin-top: 1%;
+    }
+    .capbx {
+        margin-top: 2%!important;
+        width: 47%!important;
+    }
+}

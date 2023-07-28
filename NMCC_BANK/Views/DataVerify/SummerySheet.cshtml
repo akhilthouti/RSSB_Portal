@@ -1,0 +1,122 @@
+﻿@model ServiceProvider1.Models.UserDetails.ClsSummeryDetails
+
+@{
+    Layout = null;
+}
+
+<html>
+<head>
+
+    <script src="~/Scripts/jquery-1.11.1.min.js"></script>
+    <script src="~/Scripts/sweetalert.min.js"></script>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+        <link href="~/Scripts/sweetalert.css" rel="stylesheet" />
+    <style>
+        /*Height*/
+        .hght {
+            height: auto !important;
+        }
+
+        .sndinstngridrow_popup {
+            float: left;
+            position: fixed;
+            z-index: 100;
+            background-color: #fff;
+            top: 2%;
+            width: 77%;
+            padding: 0%;
+            left: 11.5%;
+            position: -ms-page;
+            font-family: ANIVERS-BOLD;
+        }
+    </style>
+
+    <script>
+        $(document).ready(function () {
+            debugger;
+            if('@ViewBag.msg' != '')
+            {
+                swal('@ViewBag.msg');
+            }
+        })
+    </script>
+    <script>
+        function GetCustData(tr) {
+            debugger;
+            var personId = $($(tr).parent().parent())[0].id;
+            $.ajax({
+                url: "/DataVerify/KycSummerySheetDetails",
+                type: "GET",
+                cache: false,
+                data: {
+                    CustomerId: personId
+                },
+                success: function (result) {
+
+                    debugger;
+                    //$('#CustomerQuick').empty();
+                    $('#DataTable').hide();
+                    $('#CustAllData').html(result);
+
+                }
+            })
+        }
+    </script>
+    <script>
+        function viewDeatils() {
+            window.location.href = '/DataVerify/SummerySheetdata';
+        }
+    </script>
+
+
+    <script>
+        function backtoview() {
+            window.location.href = '/OrgnisationDashBoard/MainDashboard';
+        }
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            debugger;
+            $('#PreviewPdfid').click(function () {
+                // function PreviewPdfnps(e) {
+                debugger;
+                $('.formloader').show();
+                $('#formpageloader').show();
+                var url = '/DataVerify/SummerySheetDetails';
+                $.ajax({
+                    url: url,
+                    type: 'GET',
+                    success: function (result) {
+                        debugger;
+                        $('.formloader').hide();
+                        $('#formpageloader').hide();
+                        $('#SummeryDataView').html(result);
+                        
+                    }
+                });
+            });
+        })
+    </script>
+</head>
+
+<body>
+    <div class="form-group svctnbtn">
+        <div class="col-md-offset-2 col-lg-4 col-md-3 col-sm-12 col-xs-12 clear form_btm_btn">
+            <input type="button" id="PreviewPdfid" value="Preview Pdf" @*onclick="PreviewPdfnps(this);"*@ class="previewpdf" />
+            <input type="button" id="adrbtnid" value="dowanloadpdf" onclick="aadharsubmit(this);" class="downloadpdf" />
+
+            <input type="button" value="Back" id="btnback" onclick="backtoview()" class="backpdf" />
+
+
+        </div>
+
+    </div>
+    <div id="CustAllData"></div>
+    <div id="SummeryDataView" class="hght sndinstngridrow_popup" />
+
+    <div id="DataTable"></div>
+</body>
+</html>
+
+

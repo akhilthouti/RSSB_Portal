@@ -1,0 +1,707 @@
+﻿@model INDO_FIN_NET.Models.VKYC.CPO_model
+
+@{
+    // ViewBag.Title = "CPOVKYC";
+
+    // Layout = null;
+    Layout = "~/Views/Shared/AgentLayoutPage.cshtml";
+}
+
+
+@*<iframe allow="camera; microphone" src=@Model.CPOVkycLink width="1000" height="1000"></iframe>*@
+
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="description" content="WebRTC code samples">
+    <meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1, maximum-scale=1">
+    <meta itemprop="description" content="Client-side WebRTC code samples">
+    @*<meta itemprop="image" content="../../../images/webrtc-icon-192x192.png">*@
+    <meta itemprop="name" content="WebRTC code samples">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta id="theme-color" name="theme-color" content="#ffffff">
+    <link href="~/Content1/Site.css" rel="stylesheet" />
+    <link href="~/Scripts1/font-awesome.min.css" rel="stylesheet" />
+    @*<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>*@
+    <script src="~/Content1/newhomepage/NewCss/jquery.min.js"></script>
+    <script src="~/Scripts1/fontawasomekit.js"></script>
+    @*<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">*@
+    <link href="~/Content1/Navigation/css/font-awesome.min.css" rel="stylesheet" />
+    @*<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>*@
+
+    <base target="_blank">
+
+    <title>VKYC</title>
+
+    @*<link rel="icon" sizes="192x192" href="../../../images/webrtc-icon-192x192.png">*@
+    @*<link href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet" type="text/css">*@
+    <link href="~/Content/VCIP/fonts.googleapis.com.css" rel="stylesheet" />
+    <link rel="stylesheet" href="@Url.Content("~/Content1/css/main.css")">
+    <script>
+        $(document).ready(function () {
+            $("#blink").hide();
+
+            $("#container").hide();
+            $("#camera").hide();
+
+            $("#callButton").click(function () {
+                $("#blink").show();
+                $("#blink1").hide();
+            });
+
+            $("#answerButton").click(function () {
+                $("#blink").hide();
+                $("#blink1").show();
+            });
+        });
+    </script>
+</head>
+ <style>
+     .init_loc_lab{
+        margin-right: 12px;
+        color: #323131;
+        font-size: 18px;
+     }
+    .init_center_div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .init_cam_text {
+        font-size: 18px;
+        text-align: center;
+        color: #323131;
+    }
+        body{
+            padding: 0;
+        }
+        .init_img{
+            height: 450px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .init_passcode_div{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .timer_start {
+            font-family: 'Roboto', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            background-color: #3777FF;
+            color: #fff;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 56px;
+        }
+        .init_center_div{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .init_flex{
+            display: flex;
+            justify-content: center;
+        }
+        @@media screen and (max-width:992px){
+            .init_passcode_div{
+                align-items: center;
+                margin-top:-60px;
+            }
+            .init_join_btn{
+                width:100%;
+            }
+
+            .init_img_div {
+                padding:0;
+            }
+            .init_img{
+                height: 273px;
+            }
+        }
+    </style>
+    <style>
+        body{
+            padding:0;
+        }
+        div#container {
+            margin: auto !important;
+            max-width: 100% !important;
+            padding: 1%;
+        }
+
+
+
+        .hov1 .span {
+            visibility: hidden;
+        }
+
+        .hov1 {
+            font-size: 13px;
+            font-weight: 400;
+            color: #1f1f1f;
+            display: block;
+        }
+        /*chat section css*/
+
+
+        .notification {
+            background-color: #555;
+            color: white;
+            text-decoration: none;
+            padding: 15px 26px;
+            position: relative;
+            display: inline-block;
+            border-radius: 2px;
+        }
+
+            .notification:hover {
+                background: red;
+            }
+
+            .notification .badge {
+                position: absolute;
+                top: -10px;
+                right: -10px;
+                padding: 5px 10px;
+                border-radius: 50%;
+                background-color: red;
+                color: white;
+            }
+
+        .badge {
+            float: right;
+            margin-top: -78%;
+            display: inline-block;
+            min-width: 10px;
+            padding: 3px 7px;
+            font-size: 14px;
+            font-weight: bold;
+            line-height: 1;
+            color: #fff;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: middle;
+            background-color: #ff0000;
+            border-radius: 10px;
+        }
+        /* Add a red background color to the cancel button */
+        .form-container .cancel {
+            background-color: red;
+        }
+
+        /* Add some hover effects to buttons */
+        .form-container .btn:hover, .open-button:hover {
+            opacity: 1;
+        }
+
+        .btn:focus, .btn:active:focus, .btn.active:focus, .btn.focus, .btn:active.focus, .btn.active.focus {
+            outline: 0px auto -webkit-focus-ring-color;
+            outline-offset: -2px;
+        }
+
+        input, select, textarea {
+            max-width: 370px;
+        }
+
+        h3 {
+            /* border-top: 1px solid #eee; */
+            color: #666;
+            font-weight: 500;
+            margin: 5px 0 5px 0 !important;
+            white-space: initial !important;
+            width: 100%;
+        }
+
+        #text11 {
+            background-color: #b3d9f3;
+            padding: 7px;
+            border-radius: 12px 1px 12px 2px;
+            border: 1px solid #70b2df;
+            float: left;
+            font-weight: 400;
+            width: 100%;
+            color: #444241;
+            font-family: -webkit-pictograph;
+            /* margin: 3px; */
+            margin-bottom: 8px;
+            /*border-radius: 20px 0px;*/
+            /*border-radius: 40px 10px;*/
+        }
+    </style>
+
+
+
+
+    <body onload="getLocation()">
+        @*<div class="container-fluid" style="padding:0px;">
+            <div class="row" style="margin:0%">*@
+               @* <nav class="navbar navbar-expand-lg navbar-light bg-light dashboard-menu" style="padding: -0.4rem 1rem !important;">*@
+                   @* <button class="navbar-toggler posmob" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>*@
+
+                    @*<div class="collapse navbar-collapse" id="navbarSupportedContent" style="font-size: 15px;">
+                        <ul class="navbar-nav mr-auto" style=" ">
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Digital KYC</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Digital KYC</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Data Verification</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Update Digital KYC Data</a>
+                            </li>
+                        </ul>
+                        <form class="form-inline my-2 my-lg-0">
+                            <a class="nav-link" href="#" onclick="LogOut()">Logout</a>
+                        </form>
+                    </div>*@
+                @*</nav>*@
+            @*</div>
+        </div>*@
+        @*<div class="container-fluid" style="background-color: #2874f0 !important;padding:0px;margin-top:4px;">
+        @*<div class="clear">*@
+        @* add side nav for mobile *@
+
+        @*<a href="javascript:void(0);" class="ic menu">
+
+            <span class="line"></span>
+            <span class="line"></span>
+            <span class="line"></span>
+
+
+        </a>*@
+        @*<a href="javascript:void(0);" class="ic close"></a>*@
+
+        @*<ul id="deskt1" class="nav nav-tabs main-nav pddinglft6px">
+        @* add class main-nav *@
+        @*<li Id="Litab1" class="listAdmin">
+                    <a href="#tab1" style="width:100% !important">QuickEnroll Details</a>
+                </li>
+                <li Id="Litab6" class="listAdmin">
+                    <a href="#tab6" style="width:100% !important">CAF</a>
+                </li>
+                <li Id="Litab2" class="listAdmin">
+                    <a href="#tab2" style="width:100% !important">Document Details</a>
+                </li>
+                <li Id="Litab3" class="listAdmin">
+                    <a href="#tab3" style="width:100% !important">IPV  Details</a>
+                </li>
+                <li Id="Litab4" class="listAdmin">
+                    <a href="#tab4" style="width:100% !important">CAF PDF</a>
+                </li>
+                <li Id="Litab5" class="listAdmin">
+                    <a href="#tab5" style="width:100% !important">Saving Account</a>
+                </li>
+            </ul>
+        </div>*@
+        <div class="" id="div123" style="font-family: sans-serif;">
+             <div class="row" style="margin:0">
+            <div class="col-lg-6" style="display: flex!important;justify-content: center;">
+                <img src="~/content/imghome/webinar-pana.png" style="" class="init_img" />
+                </div>
+            <div class="col-lg-6 init_passcode_div" style="">
+               <h4 style="font-weight: 600;color: #605d5d;font-size: 30px;">Instruction</h4>
+                <h2 style="font-size: 16px;color: #736f6f;margin-top: 1px!important;"> Before  Proceding the Video Verification Be ready with you following </h2>
+                
+                
+                    <h2 style="font-size: 16px;color: red;border-bottom: none;border: none;">
+                        1. Identity Proof ( PanCard,Aadhar Card,Driving License,Passport)
+                    </h2>
+                    <h2 style="font-size: 16px;color: red;border-bottom: none;border: none;">
+                        2. Address Proof ( Aadhar Card,Ration Card,Bank Passbook)
+                    </h2>
+               @* <h3 style="font-size:16px;color:green">Identity Proof ( PanCard,Aadhar Card,Driving License,Passport)</h3>
+                <h3 style="font-size:16px;color:green"> 2)Address Proof ( Aadhar Card,Ration Card,Bank Passbook)</h3>*@
+
+                <input type="text" id="txtPasscode" placeholder="Passcode" hidden="hidden" class="form-control" style="display: inline-block !important;height: 48px;margin: 12px 0px;font-size: 18px;" />
+                <input type="button" id="btnJoinMeeting" name="btnJoinMeeting" value="Join Meeting" hidden="hidden" onclick="btnJoinMeetingOnClick();" />
+                <input type="button" id="btnJoinMeetingAsHostP" name="btnJoinMeetingAsHostP" value="Join Meeting" hidden="hidden" class="btn btn-primary init_join_btn" onclick="btnJoinMeetingAsHostPOnClick(p);" style="display: inline-block !important;font-size: 18px;" />
+                <!--   <input type="button" id="btnJoinMeetingAsGuestP" name="btnJoinMeetingAsGuestP" value="Join Meeting As Guest" hidden="hidden" class="btnall2"  onclick="btnJoinMeetingAsGuestPOnClick(p);" />
+                -->
+                <input type="button" id="btnJoinMeetingAsHost" name="btnJoinMeetingAsHost" value="Join Meeting" hidden="hidden" class="btn btn-primary init_join_btn" onclick="btnJoinMeetingAsHostOnClick(p);" />
+
+                <!--
+                 <input type="button" id="btnJoinMeetingAsGuest" name="btnJoinMeetingAsGuest" value="Join Meeting As Guest" hidden="hidden" onclick="btnJoinMeetingAsGuestOnClick(p);" />
+                -->
+                </div>
+                
+            </div>
+
+            
+             
+        <div id="camera" style="height:auto;width:auto; text-align:left;" hidden="hidden"></div>
+        </div>
+
+
+
+
+
+
+
+        <div id="container" class="container" style="display:block !important;">
+            <div class="maindiv">
+                <div class="col-lg-12 pding0">
+                    <h1 class="name1">Video  Call&nbsp;&nbsp;<i class="fa fa-video-camera" aria-hidden="true" style="color: #fff;background-color: #2897e5;box-shadow: #434dc9 1px 1px 8px 1px;"></i></h1>
+                </div>
+                <div class="col-lg-12">
+                    <div>
+                        <div class="row" style="margin:0">
+                            <div class="d-flex align-items-stretch pdleftdash" style="width:100%">
+                                <div class="icon-boxes d-flex flex-column justify-content-center" style="width:100%">
+                                <div id="mainwin" style="margin-top: 20px;">
+
+                                    <div class="row" style="margin: 0;display: flex;justify-content: center;">
+                                        <div class="col-lg-4 init_center_div" style="">
+                                                <video id="localVideo" style="width:360px; height: 300px;margin:0px" playsinline autoplay muted></video>
+                                            <label class="init_cam_text"> Customer screen</label>
+                                            </div>
+                                        <div class="col-lg-4 init_center_div">
+                                                <video id="remoteVideo" style="width: 360px; height: 300px;margin:0px" playsinline autoplay></video>
+                                            <label class="init_cam_text"> Host screen</label>
+                                            </div>
+
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="clearfix"></div>
+
+                        <div class="col-lg-12">
+                        <div class="row" style="display: flex;align-items: center;justify-content: center;margin: 0;flex-wrap: nowrap;">
+                                @*<button id="startButton">Start</button>*@
+                                <div class="col-xl-1 hov1" style="float:left;padding:5px;text-align:center ;display:none">
+                                    <button id="callButton" hidden="hidden"><i class="fas fa-phone-alt" style="font-size:26px;color:#fff;box-shadow:none"></i></button>
+                                    <div class="col-xl-12" style="float:none;padding:5px;margin-top:5px;">
+
+                                        @*<span>call</span>*@
+                                    </div>
+                                </div>
+
+                            <div class="col-xl-1 hov1 " style="float:left;padding:5px;text-align:center;display:none">
+                                    <button id="hangupButton" hidden="hidden"><i class="fas fa-phone-slash" style="font-size:26px;color:#fff;box-shadow:none;display:none"></i></button>
+                                    <div class="col-xl-12" style="float:none;padding:5px;margin-top:5px;">
+
+
+                                    </div>
+                                </div>
+                                <div class="col-xl-1 hov1" style="float:left;padding:5px;text-align:center;">
+                                    <button id="answerButton" class=" "><i class="fas fa-microphone" id=" " style="font-size:26px;color:#fff;box-shadow:none"></i></button>
+                                    <div class="col-xl-12" style="float:none;padding:5px;margin-top:5px;">
+
+                                        <span>Answer</span>
+                                    </div>
+
+                                </div>
+                                <div class="col-xl-1 hov1" style="float:left;padding:5px;text-align:center;">
+                                    @if (@ViewBag.CUSTOMERLOGIN != "CustomerLogin")
+                                    {
+                                        <button id="EndButton" onclick="window.location= '@Url.Action("EndCU", "CustomerOTP")'"><i class="fas fa-phone-slash" style="font-size:26px;color:#fff;box-shadow:none"></i></button>
+                                    }
+                                    @if (@ViewBag.CUSTOMERLOGIN == "CustomerLogin")
+                                    {
+                                        <button id="EndButton" onclick="window.location= '@Url.Action("EndCP", "CPO")'"><i class="fas fa-phone-slash" style="font-size:26px;color:#fff;box-shadow:none"></i></button>
+                                    }
+
+                                    <div class="col-xl-12" style="float:none;padding:5px;margin-top:5px;">
+
+                                        <span>End Call</span>
+                                    </div>
+                                </div>
+                            <div class="col-xl-1 hov1 " style="float:left;padding:5px;text-align:center;display:none">
+                                    <button id="btnSnapshot" disabled hidden="hidden"><i class="fas fa-expand" style="font-size:24px;color:#fff;box-shadow:none"></i></button>
+                                    <div class="col-xl-12" style="float:none;padding:5px;margin-top:5px;">
+
+                                        @*<span>Snapshot</span>*@
+                                    </div>
+                                </div>
+
+
+
+
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div style="float:left;width:100%">
+
+                            <canvas style="width: 600px; height: 200px; display:none" id="canvas"></canvas>
+
+                            @*<h1 class="ah1">Recording playback</h1>*@
+                            <video style="width: 500px; height: 250px;" id="recorded" hidden="hidden" playsinline></video>
+
+
+
+                            <div hidden="hidden" style="float: left;margin-left: 5%;position: relative;margin-top:-2%">
+                                <div class="col-xl-2 hov1 " style="float:left;padding:5px;text-align:center;">
+                                    <button id="record">Start Recording</button>
+                                </div>
+                                <div class="col-xl-2 hov1 " style="float:left;padding:5px;text-align:center;">
+                                    <button id="download" disabled><i class='fas fa-download' style="font-size:26px;color:#fff"></i></button>
+                                    <div class="col-xl-12" style="float:none;padding:5px;margin-top:5px;">
+
+                                        @*<span>Download</span>*@
+                                    </div>
+                                </div>
+
+
+                                <div class="col-xl-2 hov1 " hidden="hidden" style="float:left;padding:5px;text-align:center;">
+                                    <button id="play" disabled> <i class='fas fa-play' style="font-size:26px;color:#fff;"></i></button>
+                                    <div class="col-xl-12" style="float:none;padding:5px;margin-top:5px;margin-left:7px">
+
+                                        @*<span>Play</span>*@
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <div class="col-lg-4 snapshot" style="float:left;z-index:-1;">
+                        @*<h1 class="ah1">Snapshot</h1>*@
+
+                        <canvas hidden="hidden" style="width: 500px; height: 300px;" id="snapshotcanvas"></canvas>
+
+                    </div>
+                </div>
+
+                <div class="col-lg-3" style="float:left">
+                    @*<div class="col-lg-12" style="float:left">
+                        <h1 class="ah1">Messages-Chat-box</h1>
+                        <div style="height: 150px; width: 250px; overflow: auto;" id="msgs"></div>
+                        <input type="text" id="txtMsg" name="txtMsg" style="padding:5px;" />
+
+                        <input type="button" name="btnSend" id="btnSend" value="Send" />
+                        <input type="button" name="btnSendQuestion" id="btnSendQuestion" value="Send Question" />
+                    </div>*@
+                    <div class="sidebar-contact">
+                        <div class="toggle"></div>
+                        <h3>Question Answer</h3>
+                        <div class="scroll">
+                            <form>
+                                @*<input type="text" name="" placeholder="Name">
+                                <input type="email" name="" placeholder="Email">
+                                <input type="rel" name="" placeholder="Phone Number">*@
+                                <div class="ques1">
+                                    <span> Speak Your Name...<i class="fas fa-microphone-alt btn2" style="color: #fff;font-size:15px;"></i></span>
+                                    <br />
+                                    <span>Speak Your Id Number... <i class="fas fa-microphone-alt btn2" style="color: #fff;font-size:15px;"></i></span>
+                                    <br />
+                                    <span>Speak Your Aadhar Number...<i class="fas fa-microphone-alt btn2" style="color: #fff;font-size:15px;"></i></span>
+                                    <br />
+                                </div>
+                                <textarea placeholder="Message here.."></textarea>
+                                <input type="submit" name="" value="send">
+                            </form>
+                        </div>
+                    </div>
+                    @*<a href="" class="notif"><span class="num">2</span></a>*@
+                    <button class="open-button" onclick="openForm()">  <span class="badge">2</span><i class="far fa-comment-dots" style="font-size:22px"> </i></button>
+
+                    <div class="chat-popup" id="myForm" style="float:left">
+                        <form action="/action_page.php" class="form-container">
+                            <button type="button" class="btncancel cancel" onclick="closeForm()"><i class="fa fa-close" style="font-size:22px"></i></button>
+                            <h5>We are here to help!</h5>
+
+                            <label for="msg"><b>Message &nbsp;&nbsp;<i class="far fa-comment-dots msg2" style="color: #1e3295;font-size:33px"></i></b></label>
+                            <div name="msg" required id="msgs" overflow: auto;>
+
+                                <span> Here Message..</span>
+                            </div>
+                            <input type="text" id="txtMsg" name="txtMsg" placeholder="Type here..." style="padding:5px;margin:1%;outline:0px;outline-color:none" />
+                            <input type="button" class="btn succ" name="btnSend" id="btnSend" value="Send" style="color:#000!important;padding:2px;font-size:14px" />
+                            @*<button class="btn succ" name="btnSend" id="btnSend" value="Send"><i class="fa fa-send-o" style="color:#000"></i></button>*@
+
+                            @*<input type="button" name="btnSend" id="btnSend" value="Send" />*@
+                            <input type="button" class="btn succ" name="btnSendQuestion" id="btnSendQuestion" value="Ask" style="color:#000!important;font-size:14px;padding:2px;" />&nbsp;<i class="fa fa-question-circle" style="font-size:18px;color:red"></i>
+                            @*<button class="btn succ" name="btnSendQuestion" id="btnSendQuestion" formtarget="_self" value="Send Question">*@
+                            @*<input type="button" class="btn succ" name="btnSendQuestion" id="btnSendQuestion" value="Send Question"  style="color:#000!important"/>*@
+                        </form>
+                    </div>
+
+
+                </div>
+            <div class="col-lg-12" style="margin-top: 10px;display: flex;align-items: center;justify-content: center;flex-direction: column;">
+                    @Html.LabelFor(model => model.Customerlivelocation, htmlAttributes: new { @class = "init_loc_lab"})
+
+                    @Html.TextBoxFor(model => model.Customerlivelocation, new { @class = "form-control", style = "" })
+
+                </div>
+            </div>
+
+        </div>
+
+        @*<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>*@
+        <script src="~/Content/VCIP/jquery-3.6.0.min.js"></script>
+        <script src="@Url.Content("~/Content1/scripts/meetingjs.js")"></script>
+        <script type="text/javascript">
+            var p = "@ViewBag.meetId";
+            init({
+                meetingId: p,
+                startButton: 'startButton',
+                callButton: 'callButton',
+                answerButton: 'answerButton',
+                hangupButton: 'hangupButton',
+                canvas: 'canvas',
+                recorded: 'recorded',
+                record: 'record',
+                play: 'play',
+                download: 'download',
+                txtPasscode: 'txtPasscode',
+                btnJoinMeeting: 'btnJoinMeeting',
+                btnJoinMeetingAsHostP: 'btnJoinMeetingAsHostP',
+                btnJoinMeetingAsGuestP: 'btnJoinMeetingAsGuestP',
+                btnJoinMeetingAsHost: 'btnJoinMeetingAsHost',
+                btnJoinMeetingAsGuest: 'btnJoinMeetingAsGuest',
+                camera: 'camera',
+                container: 'container',
+                localVideo: 'localVideo',
+                remoteVideo: 'remoteVideo',
+                btnSnapshot: 'btnSnapshot',
+                snapshotcanvas: 'snapshotcanvas',
+                msgWindow: 'msgs',
+                sendMsg: 'btnSend',
+                msgTxt: 'txtMsg',
+                btnSendQuestion: 'btnSendQuestion'
+            });
+
+        </script>
+    <script>
+        $(document).ready(function () {
+            $("hr").hide();
+            $("#footer").hide();
+        });
+    </script>
+        <script type="text/javascript">
+            function btnEndMeeting() {
+                debugger;
+                //var $hangupButton = $('#hangupButton')
+
+                window.location.href = '/CustomerOTP/EndCU';
+            };
+
+            //////////////////////////----------------For Location detect----------------------------------////////////////////////
+
+
+            function getLocation() {
+                debugger;
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(showPosition);
+                } else {
+                    x.innerHTML = "Geolocation is not supported by this browser.";
+                }
+            }
+
+            function showPosition(position) {
+                x.innerHTML = "Latitude: " + position.coords.latitude +
+                    "<br>Longitude: " + position.coords.longitude;
+
+
+            }
+
+            function showPosition(position) {
+                debugger;
+                var coordinates = position.coords;
+                $("#autolocation").show();
+                $("#lat").val(coordinates.latitude);
+                $("#HomeLatitude").val(coordinates.latitude);
+                $("#WorkLatitude").val(coordinates.latitude);
+                $("#lon").val(coordinates.longitude); /*WorkLongitude*/
+                $("#WorkLongitude").val(coordinates.longitude);
+                $("#HomeLongitude").val(coordinates.longitude);
+                var latitudev = coordinates.latitude;
+                var longitudev = coordinates.longitude;
+
+
+                $.ajax({
+
+                    url: "/CustomerOTP/ShowAddress?latitude=" + latitudev + '&longitude=' + longitudev,
+                    type: 'GET',
+                    // cache: false,
+                    data: '',
+                    success: function (result) {
+
+                        debugger;
+
+                        //var urlw = '/Home/ShowAddress?latitude=' + latitudev + '&longitude=' + "longitudev";
+
+                        // var openwindow = window.open(urlw, '_blank');
+                        //var openwindow = window.open('','_blank');
+                        //$(openwindow).html(result);
+
+                        $('#city').val(result);
+                        $('#Customerlivelocation').val(result);
+                        $('#Workaddress').val(result);
+                        $('#Homeaddress').val(result);
+                        $('#HomeCity').val(result);
+                        $('#WorkCity').val(result);
+                        var strarray = result.split(',');
+                        for (var i = 0; i < strarray.length; i++) {
+                            //$('#HomeCity').val(strarray[2][3]);
+                            //$('#WorkCity').val(strarray[2],[3]);
+                            //$('#WorkPostalCode').val(strarray[4]);
+                            //$('#HomePostalCode').val(strarray[4]);
+                            //$('#HomeCountry').val(strarray[5]);
+                            //$('#WorkCountry').val(strarray[5]);
+
+                        }
+                    }
+                });
+
+            }
+        </script>
+        @*<script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>*@
+        <script src="~/Content/VCIP/adapter-latest.js"></script>
+        <script src="@Url.Content("~/Content1/js/main.js")"></script>
+        <script src="@Url.Content("~/Content1/js/webrtc.js")"></script>
+        <script src="@Url.Content("~/Content1/js/peerconnection.js")"></script>
+        <script src="@Url.Content("~/Content1/js/recordcanvas.js")"></script>
+        @*<script src="https://code.jquery.com/jquery-3.3.1.js"></script>*@
+        <script src="~/Content1/VCIP/IPVScript/jquery-3.3.1.js"></script>
+        @*<script src="@Url.Content("~/content/js/cameracontroller.js")"></script>
+        <script src="@Url.Content("~/content/js/matrix4X4.js")"></script>*@
+
+        @*<script src="@Url.Content("~/content/js/webgl-debug.js")"></script>
+        <script src="@Url.Content("~/content/js/webgl-utils.js")"></script>
+        <script src="@Url.Content("~/content/js/demo.js")"></script>*@
+
+        <script src="@Url.Content("~/Content1/js/lib/ga.js")"></script>
+        <script>
+            function openForm() {
+                document.getElementById("myForm").style.display = "block";
+            }
+
+            function closeForm() {
+                document.getElementById("myForm").style.display = "none";
+            }
+        </script>
+        <script>
+            $(document).ready(function () {
+                $('.toggle').click(function () {
+                    $('.sidebar-contact').toggleClass('active')
+                    $('.toggle').toggleClass('active')
+                })
+            })
+        </script>
+
+    </body>
+
+
+

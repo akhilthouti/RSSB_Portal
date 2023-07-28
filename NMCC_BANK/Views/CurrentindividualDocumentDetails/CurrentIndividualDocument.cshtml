@@ -1,0 +1,1055 @@
+﻿@model INDO_FIN_NET.Models.ClsDocumentDetails
+
+@{
+    Layout = "~/Views/Shared/Components/_CurrentAccountLayout.cshtml";
+
+}
+
+<head>
+    @*<script src="~/bundlejs/bundlingofdocumentsdetails.min.js"></script>*@
+    <link href="~/Scripts/sweetalert.css" rel="stylesheet" />
+    <script src="~/Scripts/sweetalert.min.js"></script>
+    <link href="~/Content/HoverEffect/hover.css" rel="stylesheet" />
+    <link href="~/Content/Navigation/style.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/Navigation/css/newcss.css" rel="stylesheet" />
+    <link href="~/Content/snewcss.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <style>
+        #docdetails {
+            width: 100% !important;
+            float: left;
+            margin-top: -2px;
+        }
+    </style>
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                url: '/CurrentindividualDocumentDetails/GetCurrentIndivitualDocumentsForGridView?DocMainType=I',
+                type: 'POST',
+                contentType: false, // Not to set any content header
+                processData: false, // Not to process data
+                data: {},
+                async: false,
+                success: function (result) {
+                    debugger;
+
+                    $('#docdetailsforPOI').html(result);
+                }
+            });
+            $.ajax({
+                url: '/CurrentindividualDocumentDetails/GetCurrentIndivitualDocumentsForGridView?DocMainType=CA',
+                type: 'POST',
+                contentType: false, // Not to set any content header
+                processData: false, // Not to process data
+                data: {},
+                async: false,
+                success: function (result) {
+                    debugger;
+
+                    $('#docdetailsforPOA').html(result);
+                }
+            });
+            $.ajax({
+                url: '/CurrentindividualDocumentDetails/GetCurrentIndivitualDocumentsForGridView?DocMainType=SI',
+                type: 'POST',
+                contentType: false, // Not to set any content header
+                processData: false, // Not to process data
+                data: {},
+                async: false,
+                success: function (result) {
+                    debugger;
+
+                    $('#docdetailsforSignature').html(result);
+                }
+            });
+        });
+    </script>
+    <script>
+        function uploadPOI() {
+            debugger;
+            var POI = $("#ddl_idProof").val();
+            var file = document.getElementById("fileInputforPOI").files[0];
+            var formData = new FormData();
+            formData.append("file", file);
+            formData.append("DocumentCategory", POI);
+            formData.append("DocMainType", "I");
+            $.ajax({
+                url: '/CurrentindividualDocumentDetails/Uploadforindiviual',
+                type: 'POST',
+                data: formData,
+                dataType: 'json',
+                contentType: false,
+                processData: false,
+                success: function (result) {
+                    debugger;
+                    if (result == "Uploded Failed") {
+                        swal("Please Upload Document ");
+                    }
+                    else if (result == "Valid") {
+                        swal("Please Enter Valid Document Type");
+                    }
+                    else if (result == "Enter Wrong Document") {
+                        swal("Sorry...! PAN card cannot be used as an address document. Please select the appropriate document");
+                    }
+                    else if (result == "Success") {
+                        alert("in");
+                        $.ajax({
+                            url: '/CurrentindividualDocumentDetails/GetCurrentIndivitualDocumentsForGridView?DocMainType=I',
+                            type: 'POST',
+                            contentType: false, // Not to set any content header
+                            processData: false, // Not to process data
+                            data: {},
+                            async: false,
+                            success: function (result) {
+                                debugger;
+
+
+                                $('#docdetailsforPOI').html(result);
+                            }
+                        });
+                    }
+                    else {
+
+
+                    }
+
+
+                }
+            });
+        };
+    </script>
+    <script>
+        function uploadPOA() {
+            debugger;
+            var POA = $("#ddl_corrAdd").val();
+            var filedata = document.getElementById("fileInputforPOA").files[0];
+            var formData = new FormData();
+            formData.append("file", filedata);
+            formData.append("DocumentCategory", POA);
+            formData.append("DocMainType", "CA");
+            $.ajax({
+                url: '/CurrentindividualDocumentDetails/Uploadforindiviual',
+                type: 'POST',
+                data: formData,
+                dataType: 'json',
+                contentType: false,
+                processData: false,
+                success: function (result) {
+                    debugger;
+                    if (result == "Uploded Failed") {
+                        swal("Please Upload Document ");
+                    }
+                    else if (result == "Valid") {
+                        swal("Please Enter Valid Document Type");
+                    }
+                    else if (result == "Enter Wrong Document") {
+                        swal("Sorry...! PAN card cannot be used as an address document. Please select the appropriate document");
+                    }
+                    else if (result == "Success") {
+                        $.ajax({
+                            url: '/CurrentindividualDocumentDetails/GetCurrentIndivitualDocumentsForGridView?DocMainType=CA',
+                            type: 'POST',
+                            contentType: false, // Not to set any content header
+                            processData: false, // Not to process data
+                            data: {},
+                            async: false,
+                            success: function (result) {
+                                debugger;
+
+                                $('#docdetailsforPOA').html(result);
+                            }
+                        });
+                    }
+                    else {
+
+                    }
+
+
+                }
+            });
+        };
+    </script>
+    <script>
+        function uploadSignature() {
+            debugger;
+
+            var filedata = document.getElementById("fileInputforSignature").files[0];
+            var formData = new FormData();
+            formData.append("file", filedata);
+            formData.append("DocumentCategory", "Signature");
+            formData.append("DocMainType", "SI");
+            $.ajax({
+                url: '/CurrentindividualDocumentDetails/Uploadforindiviual',
+                type: 'POST',
+                data: formData,
+                dataType: 'json',
+                contentType: false,
+                processData: false,
+                success: function (result) {
+                    debugger;
+                    if (result == "Uploded Failed") {
+                        swal("Please Upload Document ");
+                    }
+                    else if (result == "Success") {
+                        debugger;
+                        $.ajax({
+                            url: '/CurrentindividualDocumentDetails/GetCurrentIndivitualDocumentsForGridView?DocMainType=SI',
+                            type: 'POST',
+                            contentType: false, // Not to set any content header
+                            processData: false, // Not to process data
+                            data: {},
+                            async: false,
+                            success: function (result) {
+                                debugger;
+
+                                $('#docdetailsforSignature').html(result);
+                            }
+                        });
+                    }
+                    else {
+
+                    }
+
+
+                }
+            });
+        };
+    </script>
+    <script>
+        function deleteCurrentDoc(e, param) {
+            debugger;
+            swal({
+                title: "Are you sure?",
+                text: "Do you want to Delete Document?",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Yes",
+                cancelButtonText: "No",
+                closeOnConfirm: false,
+                closeOnCancel: false
+            },
+                function (isConfirm) {
+                    debugger;
+                    var id = e.id;
+
+                    // var idData = id.split('-');
+
+                    if (isConfirm) {
+                        debugger;
+                        $.ajax({
+                            url: '/CurrentindividualDocumentDetails/deleteCurrentIndivitualDocuments?docId=' + id,
+                            type: 'GET',
+                            data: '',
+                            cache: false,
+                            success: function (result) {
+                                debugger;
+
+                                if (result == 1) {
+                                    debugger;
+                                    swal('Document Deleted Successfully');
+                                    $.ajax({
+                                        url: '/CurrentindividualDocumentDetails/GetCurrentIndivitualDocumentsForGridView?DocMainType=I',
+                                        type: "POST",
+                                        contentType: false, // Not to set any content header
+                                        processData: false, // Not to process data
+                                        data: {},
+                                        async: false,
+                                        success: function (result) {
+                                            debugger;
+                                            $('#docdetailsforPOI').html(result);
+                                        }
+
+                                    });
+                                    $.ajax({
+                                        url: '/CurrentindividualDocumentDetails/GetCurrentIndivitualDocumentsForGridView?DocMainType=CA',
+                                        type: "POST",
+                                        contentType: false, // Not to set any content header
+                                        processData: false, // Not to process data
+                                        data: {},
+                                        async: false,
+                                        success: function (result) {
+                                            debugger;
+                                            $('#docdetailsforPOA').html(result);
+                                        }
+
+                                    });
+                                    $.ajax({
+                                        url: '/CurrentindividualDocumentDetails/GetCurrentIndivitualDocumentsForGridView?DocMainType=SI',
+                                        type: "POST",
+                                        contentType: false, // Not to set any content header
+                                        processData: false, // Not to process data
+                                        data: {},
+                                        async: false,
+                                        success: function (result) {
+                                            debugger;
+                                            $('#docdetailsforSignature').html(result);
+                                        }
+
+                                    });
+                                }
+
+
+                            }
+                        });
+                    }
+                    else {
+                        swal("Cancelled", " Cancelled your request  :)", "error");
+                    }
+                })
+
+        };
+    </script>
+    <script>
+        function OpenCurrentPOIcamera() {
+            debugger;
+            $('#CameraPOIView').hide();
+            $("#DIGIbagDD").show();
+            $('#POICam').val('POICam');
+            $('#CameraOpenViewMainAddrs').append($('#CameraOpenViewAddrs'));
+
+            if ($("#ddl_idProof").val() == '') {
+                $("#Digil1").css("display", "none");
+
+                swal("Please Select Identity Document");
+                return false();
+            }
+            $.ajax({
+                // url: '/KYCImageCapture/Opencamera',
+                url: '/CurrentindividualDocumentDetails/CurrentIndividualDocOpenCamera1?DocType=' + "DOCPOI",
+                type: 'GET',
+                cache: false,
+                success: function (result) {
+                    debugger;
+                    $("#Digil1").css("display", "none");
+                    $('#CameraPOIView').show();
+                    $('#CameraPOIView').html(result);
+                    $('#DigiCertiDD').hide();
+                    $('#DIGIbagDD').hide();
+                    // $("#Digil1").css("display", "none");
+
+                }
+            });
+        }
+
+
+        function OpenPOAcamera() {
+            debugger;
+            $("#Digil1").css("display", "none");
+            //$("#DigiCertiDD").html("<div style='position: fixed;z-index: 5000;float: left;right: 50%;height: 50px;width: 50px;top:40%;'><img class='ajax-loader' src='../Images/loader/Dual Ring-1s-200px.gif' height='60px' width='60px' align='middle' alt='ajaxloadergif' /></div>");
+            //$("#DigiCertiDD").show();
+            $("#DIGIbagDD").show();
+            $('#POACam').val('POACam');
+            if ($("#ddl_corrAdd").val() == '') {
+                $("#Digil1").css("display", "none");
+
+                swal("Please Select Valid Address Document");
+                $('#DigiCertiDD').hide();
+                $('#DIGIbagDD').hide();
+                return false();
+            }
+            // $('#CameraOpenViewMainAddrs').append($('#CameraOpenViewAddrs'));
+            $.ajax({
+                url: '/CurrentindividualDocumentDetails/CurrentIndividualDocOpenCamera2?DocType=' + "DOCPOA",
+                type: 'GET',
+                cache: false,
+                success: function (result) {
+                    debugger;
+                    if (this.lastStream) {
+                        this.lastStream.getTracks().forEach(track => track.stop())
+                    }
+                    $('#CameraPOIView').empty();
+                    $('#CameraPOAView').show();
+                    $('#CameraPOAView').html(result);
+                    $('#DigiCertiDD').hide();
+                    $('#DIGIbagDD').hide();
+
+                }
+            });
+        }
+
+
+        function OpenSigncamera() {
+            debugger;
+            //$("#DigiCertiDD").html("<div style='position: fixed;z-index: 5000;float: left;right: 50%;height: 50px;width: 50px;top:40%;'><img class='ajax-loader' src='../Images/loader/Dual Ring-1s-200px.gif' height='60px' width='60px' align='middle' alt='ajaxloadergif' /></div>");
+            //$("#DigiCertiDD").show();
+            $("#DIGIbagDD").show();
+            $('#SignCam').val('SignCam');
+            //$('#CameraOpenViewMainAddrs').append($('#CameraOpenViewAddrs'));
+            $.ajax({
+                url: '/CurrentindividualDocumentDetails/CurrentIndividualDocOpenCamera3?DocType=' + "DOCCamSign",
+                type: 'GET',
+                cache: false,
+                success: function (result) {
+                    debugger;
+                    $('#CameraSignView').show();
+                    $('#CameraSignView').html(result);
+                    $('#DigiCertiDD').hide();
+                    $('#DIGIbagDD').hide();
+
+                }
+            });
+        }
+
+    </script>
+
+    <script>
+
+
+        function CurrentIndividualSubmit() {
+            debugger;
+            var dropdowns = document.querySelectorAll("select");
+            var isValid = true;
+
+            dropdowns.forEach(function (dropdown) {
+                var selectedValue = dropdown.value;
+                var errorSpan = document.querySelector('[data-valmsg-for="' + dropdown.name + '"]');
+
+                if (selectedValue === "") {
+                    // Display an error message using SweetAlert
+                    swal("Error", "Please select an option.", "error");
+                    isValid = false;
+                } else {
+                    errorSpan.textContent = ""; // Clear the error message
+                }
+            });
+
+            var fileInputs = document.querySelectorAll('input[type="file"]');
+            fileInputs.forEach(function (fileInput) {
+                var errorSpan = document.querySelector('[data-valmsg-for="' + fileInput.id + '"]');
+
+                if (fileInput.files.length === 0) {
+                    // Display an error message using SweetAlert
+                    swal("Error", "Please select a file.", "error");
+                    isValid = false;
+                } //else {
+                //    errorSpan.textContent = ""; // Clear the error message
+                //}
+            });
+
+            if (isValid) {
+                debugger;
+                //************//
+                if ('@ViewBag.Ispartnership' == "True") {
+                    debugger;
+                    $.ajax({
+                        url: '/CurrentindividualDocumentDetails/saveDocs',
+                        type: 'GET',
+                        cache: false,
+                        success: function (result) {
+                            debugger;
+                            if (result == "Please add a partner.") {
+                                swal({
+                                    title: result,
+                                    //text: "Please Confirm..!",
+                                    type: "warning",
+                                    //showCancelButton: true,
+                                    confirmButtonColor: "#DD6B55",
+                                    confirmButtonText: "Yes",
+                                    //cancelButtonText: "No",
+                                    closeOnConfirm: true,
+                                    closeOnCancel: true
+                                },
+                                    function (isConfirm) {
+                                        if (isConfirm) {
+                                            window.location.href = "/CurrentQuickEnroll/CurrentQuickEnrollment";
+                                        }
+
+                                    }
+                                );
+                            }
+                            else if (result == "Do you want to add another partner?") {
+                                swal({
+                                    title: result,
+                                    text: "Please Confirm..!",
+                                    type: "warning",
+                                    showCancelButton: true,
+                                    confirmButtonColor: "#DD6B55",
+                                    confirmButtonText: "Yes",
+                                    cancelButtonText: "No",
+                                    closeOnConfirm: true,
+                                    closeOnCancel: true
+                                },
+                                    function (isConfirm) {
+                                        if (isConfirm) {
+                                            window.location.href = "/CurrentQuickEnroll/CurrentQuickEnrollment";
+                                        }
+                                        else {
+                                            window.location.href = "/CurrentServices/CurrentService";
+                                        }
+                                    });
+                            }
+                            else if (result == "Partner Added Successfully.") {
+                                swal({
+                                    title: result,
+                                    //text: "Please Confirm..!",
+                                    type: "warning",
+                                    //showCancelButton: true,
+                                    confirmButtonColor: "#DD6B55",
+                                    confirmButtonText: "Yes",
+                                    //cancelButtonText: "No",
+                                    closeOnConfirm: true,
+                                    closeOnCancel: true
+                                },
+                                    function (isConfirm) {
+                                        if (isConfirm) {
+                                            window.location.href = "/CurrentServices/CurrentService";
+
+                                        }
+
+                                    }
+                                );
+
+                            }
+                            else {
+                                swal("error");
+                            }
+
+
+                        }
+                    });
+                }
+                else {
+                    window.location.href = "/CurrentServices/CurrentService";
+                }
+
+                ///////////////
+
+                //************//
+
+            }
+        }
+
+
+
+        //function OpenCurrentLivePhotocamera() {
+        //    debugger;
+        //    $.ajax({
+        //        // url: '/KYCImageCapture/Opencamera',
+        //        url: '/CurrentindividualDocumentDetails/CurrentIndividualLivePhoto?DocType=' + "DOCPOI",
+        //        //type: 'GET',
+        //        //cache: false,
+        //        //success: function (result) {
+        //        //    debugger;
+        //        //    $("#Digil1").css("display", "none");
+        //        //    $('#CameraPOIView').show();
+        //        //    $('#CameraPOIView').html(result);
+        //        //    $('#DigiCertiDD').hide();
+        //        //    $('#DIGIbagDD').hide();
+        //            // $("#Digil1").css("display", "none");
+
+        //        }
+        //    });
+        //}
+
+
+        function OpenCurrentLivePhotocamera() {
+            debugger;
+            // Redirect to the "CurrentIndividualLivePhoto" view for image capture
+            //window.location.href = ' Url.Action("CurrentIndividualLivePhoto", "CurrentindividualDocumentDetails")';
+
+            $("#DIGIbagDD").show();
+            $('#SignCam').val('SignCam');
+            //$('#CameraOpenViewMainAddrs').append($('#CameraOpenViewAddrs'));
+            $.ajax({
+                url: '/CurrentindividualDocumentDetails/CurrentIndividualLivePhoto?DocType=' + "DOCPOI",
+                type: 'GET',
+                cache: false,
+                success: function (result) {
+                    debugger;
+                    $('#Cap_image').show();
+                    $('#Cap_image').html(result);
+                    $('#DigiCertiDD').hide();
+                    $('#DIGIbagDD').hide();
+
+                }
+            });
+        }
+
+
+
+    </script>
+    @*<script>
+    $(document).ready(function () {
+
+    var DocMainType = "I";
+    $.ajax({
+    url: '/CurrentDocumentDetails/GetCurrentDocumentsForGridView?DocMainType=' + DocMainType,
+    type: "POST",
+    contentType: false, // Not to set any content header
+    processData: false, // Not to process data
+    data: {},
+    async: false,
+    success: function (result) {
+    debugger;
+
+    $('#docdetails').html(result);
+
+    },
+    error: function (err) {
+    debugger;
+    // alert(err.statusText);
+    }
+    });
+    };
+    </script>
+    *@
+
+    <style>
+        @@media screen and (max-width:767px) {
+            .zoomDocument:hover {
+                height: 10px !important;
+                width: 15px !important;
+            }
+
+            #DocApprove {
+                margin-left: -135% !important;
+            }
+        }
+
+        .init_click {
+            font-size: 11px;
+            font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol" !important;
+            color: red;
+            font-weight: 700;
+        }
+
+        .init_cam_div {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .active_digi_caf_doc::after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            /*background: #5186e5;*/
+            top: 20px;
+            left: -50%;
+            z-index: -1;
+        }
+
+        .active_digi_caf_doc::after {
+            content: none;
+        }
+
+        .active_digi_caf_doc::before {
+            background: #3ed718 !important;
+            color: #fff !important;
+            content: "\2713" !important;
+            font-size: 23px;
+            font-weight: 900;
+        }
+
+        .init_btn_app {
+            font-size: 16px !important;
+            padding: 5px 15px !important;
+        }
+    </style>
+    <style>
+        #viewport {
+            border: 1px solid #000 !important;
+        }
+
+        #Digil1 {
+            position: absolute;
+            display: none; /* Hidden by default */
+            width: 100%; /* Full width (cover the whole page) */
+            height: 100%; /* Full height (cover the whole page) */
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .img-adjust {
+            height: 60px;
+            width: 60px;
+            margin-left: 50%;
+            margin-top: 50%;
+        }
+
+        #Docsign {
+            display: none;
+        }
+
+        #okloader {
+            display: none;
+        }
+
+        #oksign {
+            display: none;
+        }
+
+        .zoomDocument {
+            height: 40px;
+            width: 40px;
+            cursor: pointer;
+        }
+
+            .zoomDocument:hover {
+                ms-transform: scale(12);
+                -webkit-transform: scale(25);
+                transform: scale(25);
+                /* margin-left: 1854%; */
+                float: left;
+                left: 49%;
+                /* margin-top: 1126%; */
+                position: absolute;
+                z-index: 999;
+                /* top: 47%; */
+                height: 15px;
+                width: 21px;
+                cursor: pointer;
+                top: 48% !important;
+                position: fixed;
+                border: 1px solid grey !important;
+            }
+
+        #docdetails_Sign {
+            width: 100% !important;
+            float: left;
+        }
+
+        #docdetails_Sign {
+            width: 100% !important;
+            float: left;
+            margin-top: 5px;
+        }
+
+        #docdetails_Add {
+            width: 100% !important;
+            float: left;
+            margin-top: 5px;
+        }
+
+        #docdetails {
+            width: 100% !important;
+            float: left;
+            margin-top: -2px;
+        }
+
+        #DOC_resultSign img {
+            width: 95px;
+            margin-left: 100% !important;
+        }
+
+        #thecanvas {
+            cursor: url('../../Content/imgs/penimg.png') !important;
+            /*background-image: url('../../Content/imgs/penimg.png');*/
+        }
+
+        label {
+            font-size: 16px;
+        }
+
+        .thstyle {
+            color: white;
+            font-size: 14px;
+            padding: 17px;
+            border: 1px solid white;
+        }
+
+        .trstyle {
+            background-color: #bf5252;
+            border: 1px solid black;
+            text-align: center;
+            /*line-height: 0.2;*/
+        }
+
+        .tdstyle {
+            border: 1px solid #afacac;
+            background-color: white;
+            font-size: 14px;
+        }
+
+        .select2 {
+            height: 30px !important;
+        }
+
+        .bg-green {
+            background-color: green !important;
+        }
+
+    </style>
+    <style>
+        .brdgrey {
+            display: none;
+        }
+
+        :before,
+        :after {
+            box-sizing: border-box;
+        }
+
+        html {
+            font: 18px 'Helvetica Neue', sans-serif;
+        }
+
+        .signature-component {
+            text-align: left;
+            display: inline-block;
+            /*max-width: 100%;*/
+
+            h1
+
+        {
+            margin-bottom: 0;
+        }
+
+        h2 {
+            margin: 0;
+            font-size: 100%;
+        }
+
+        button {
+            padding: 1em;
+            background: transparent;
+            box-shadow: 2px 2px 4px #777;
+            margin-top: .5em;
+            border: 1px solid #777;
+            font-size: 1rem;
+            &.toggle
+
+        {
+            background: rgba(red, .2);
+        }
+
+        }
+
+        canvas {
+            display: block;
+            position: relative;
+            border: 1px solid;
+        }
+
+        img {
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+    </style>
+
+</head>
+<body>
+
+
+    <div class="panel-heading pdpan" style="padding:6px!important;text-align:left;">
+        <h3 class="panel-title">Captured Image</h3>
+    </div>
+    <div class="panel-body cddbrdr1" id="idpanel">
+        <div class="row">
+            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-6">
+                <label>Image Photo</label>
+            </div>
+
+            <div class="col-xl-1 col-lg-1 col-md-1 col-sm-4 init_cam_div" style="">
+                <i class="fa-solid fa-camera cstimgcam float_nn flt_lft doc_icons" onclick="OpenCurrentLivePhotocamera();"></i>
+                <label class="init_click" style="">Click Here</label>
+            </div>
+
+
+            @* <div id="imagePreview" style="">
+            <img id="capturedImage" src="#" alt="Captured Image">
+            </div>*@
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4  alert alert-info pic-cords  altop dsopct dsopct">
+                <div class="cap-img ">
+                    <div id="capturedImage" class="color_blue captrimg" style="float: left;text-align:left;font-size:14px">Your captured image will appear here...</div>
+                </div>
+            </div>
+            <div id="Cap_image" style="width:100%"></div>
+
+        </div>
+    </div>
+    <div class="space35doc"></div>
+
+
+    <div class="" style="">
+        <div class="panel-heading pdpan rkyclft" style="padding:6px!important;text-align:left;">
+            <h3 class="panel-title">Upload Identity Document</h3>
+        </div>
+        <div class="panel-body cddbrdr1" id="idpanel">
+            <div class="row">
+                <div class="col-xl-2 col-lg-2 col-md-2 col-sm-6">
+                    <label>Proof of identity <img src="assets/img/info-tip.png" data-toggle="tooltip" data-placement="top" title="" data-original-title="Identity proof documents"></label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6">
+                    <select class="form-control dropdownfnt_sz select2" id="ddl_idProof" name="ProofOfIdCode" onchange="ProofIdChang(this)">
+                        <option value="">--Select--</option>
+                        <option value="Certificate of Incorporation">Certificate of Incorporation/Formation </option>
+                        <option value="Memorandum Association ">Memorandum and Articles of Association </option>
+                        <option value="Resolution of Board">Resolution of Board/Managing Comitee</option>
+                        <option value="Partnership Deed">Partnership Deed</option>
+                        <option value="Trust Deed">Trust Deed</option>
+                        <option value="Power of Attorney">Power of Attorney</option>
+                    </select>                                    <span class="text-danger field-validation-valid" data-valmsg-for="ProofOfIdCode" data-valmsg-replace="true"></span>
+                </div>
+                <div class="col-xl-2 col-lg-2 col-md-2 col-sm-4 ">
+                    <div class="txtalgnC" id="validate_poi">
+
+
+                        <div>
+                            <i class="fa-solid fa-file-arrow-up doc_icons"></i>
+                            <input id="fileInputforPOI" style="opacity: 0;margin-top: -41px;width: 35%;margin-left: 66px;cursor: pointer;" data-val="true" type="file" onchange="uploadPOI()">
+                            <span class="text-danger field-validation-valid" id="fileInputError" data-valmsg-for="fileInputforPOI" data-valmsg-replace="true"></span>
+
+                        </div>
+
+
+                        <span class="text-danger field-validation-valid" data-valmsg-for="UploadprfOfId" data-valmsg-replace="true"></span>
+                        <span class="label-info word_break" id="upload-idProof-info" style=""></span>
+
+                        <div class="clear"></div>
+                        <label class="upload_cq_textnew" style="">Max Size 5 MB<br>Supported Files<br>JPEG,JPG,PNG</label>
+                    </div>
+                </div>
+                <div class="col-xl-1 col-lg-1 col-md-1 col-sm-4 init_cam_div" style="">
+                    <i class="fa-solid fa-camera cstimgcam float_nn flt_lft doc_icons" onclick="OpenCurrentPOIcamera();"></i>
+                    <label class="init_click" style="">Click Here</label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4  alert alert-info pic-cords  altop dsopct dsopct">
+                    <div class="cap-img ">
+                        <div id="DOC_resultPOI" class="color_blue captrimg" style="float: left;text-align:left;font-size:14px">Your captured image will appear here...</div>
+                    </div>
+
+                </div>
+                <div id="CameraPOIView"></div>
+            </div>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="docdetailsforPOI"></div>
+    <div id="CropPdfForm"></div>
+
+
+
+
+    <div class="">
+        <div class="panel-heading pdpan cddmrgnh rkyclft" style="padding:6px!important;text-align:left;">
+            <h3 class="panel-title">Upload Address Document</h3>
+        </div>
+        <div class="panel-body cddbrdr1" id="idpanel">
+            <div class="row">
+                <label class="col-xl-2 col-lg-2 col-md-2 col-sm-6 paddress" for="ProofOfCorrAddCode" style="">Proof Of Correspondence Address</label>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6">
+                    <select class="form-control dropdownfnt_sz select2" id="ddl_corrAdd" name="ProofOfCorrAddCode" onchange="ProofAddChang(this)">
+                        <option value="">--Select--</option>
+                        <option value="Certificate of Incorporation">Certificate of Incorporation/Formation </option>
+                        <option value="Registration Certificate">Registration Certificate</option>
+                        <option value="Other document">Other document</option>
+                    </select>
+                    <span class="text-danger field-validation-valid" data-valmsg-for="ProofOfCorrAddCode" data-valmsg-replace="true"></span>
+                </div>
+                <div class="col-xl-2 col-lg-2 col-md-2 col-sm-4" style="">
+                    <div class="txtalgnC" id="validate_poca">
+
+                        <div>
+
+                            <i class="fa-solid fa-file-arrow-up doc_icons"></i>
+                            <input id="fileInputforPOA" style="opacity: 0;margin-top: -41px;width: 35%;margin-left: 66px;cursor: pointer;" data-val="true" type="file" onchange="uploadPOA()">
+                        </div>
+
+                        <span class="text-danger pddnglft8 field-validation-valid" data-valmsg-for="UploadprfOfCorrAdd" data-valmsg-replace="true"></span>
+                        <span class="label-info word_break" id="upload-corrAdd-info" style=""></span>
+
+                        <div class="clear"></div>
+                        <label class="upload_cq_text" style="">Max Size 5 MB<br>Supported Files<br>JPEG,JPG,PNG</label>
+                    </div>
+                </div>
+                <div class="col-xl-1 col-lg-1 col-md-1 col-sm-4 init_cam_div" style="">
+                    <i class="fa-solid fa-camera cstimgcam float_nn flt_lft doc_icons" onclick="OpenPOAcamera();"></i>
+                    <label class="init_click" style="">Click Here</label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4  alert alert-info pic-cords  altop dsopct">
+                    <div class="cap-img ">
+                        <div id="DOC_resultPOA" class="color_blue captrimg" style="float: left;text-align: center;font-size:14px">Your captured image will appear here...</div>
+                    </div>
+
+                </div>
+                <div id="CameraPOAView" style="width:100%"></div>
+
+            </div>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="docdetailsforPOA"></div>
+    <div id="CropPdfForm_CA"></div>
+
+
+
+
+    <div class="signdiv">
+        <div class="panel-heading pdpan cddmrgnh rkyclft" style="padding:6px!important;text-align:left;">
+            <h3 class="panel-title">Upload Signature Document</h3>
+        </div>
+        <div class="panel-body cddbrdr1" id="idpanel">
+            <div class="row">
+                <label class="col-xl-2 col-md-2 col-sm-2" for="Signature" style="">Signature</label>
+                <div class="col-xl-2 col-lg-2 col-md-2 col-sm-4" style="">
+                    <div class="txtalgnC" id="validate_poca">
+                        <div>
+                            <i class="fa-solid fa-file-arrow-up doc_icons"></i>
+                            <input id="fileInputforSignature" style="opacity: 0;margin-top: -41px;width: 35%;margin-left: 66px;cursor: pointer;" data-val="true" type="file" onchange="uploadSignature()">
+                        </div>
+
+                        <span class="text-danger pddnglft8 field-validation-valid" data-valmsg-for="Signature" data-valmsg-replace="true"></span>
+                        <span class="label-info word_break" id="upload-corrAdd-info" style=""></span>
+
+                        <div class="clear"></div>
+                        <label class="upload_cq_text" style="">Max Size 5 MB<br>Supported Files<br>JPEG,JPG,PNG</label>
+                    </div>
+                </div>
+                <div class="col-xl-1 col-lg-1 col-md-1 col-sm-4 init_cam_div" style="">
+                    <i class="fa-solid fa-camera cstimgcam float_nn flt_lft doc_icons" id="CapturePOA" onclick="OpenSigncamera();"></i>
+                    <label class="init_click" style="">Click Here</label>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4  alert alert-info pic-cords altop dsopct" style="height:100%;position: inherit;">
+                    <div class="cap-img ">
+                        <div id="DOC_resultSign" class="color_blue captrimg" style="float: left;text-align: center;font-size:14px">Your captured image will appear here...</div>
+                    </div>
+
+                </div>
+                <div id="CameraSignView" style="width:100%"></div>
+                <div id="SignaturePadImage"></div>
+
+            </div>
+            <div style="width:100%;float:left;display:none;">
+                <section class="signature-component">
+
+                    <h2 class="sign" style="width:100%">Draw Signature with Mouse or Touch  <img src="../Content/imgs/signcanvas12.png" class="signcanvs"></h2>
+
+
+                    <div class="col-md-12 colwidth"></div>
+                    <div class="col-md-12 colwidth">
+                        <canvas id="thecanvas" class="signature_box" style="width:100%;border:1px  solid black;margin-left:0%;cursor:pointer"></canvas>
+                    </div>
+                </section>
+                <div class="buttons " style="float: left;width: 100%;padding-left: 11px;margin-top:-2px">
+                    <button type="button" class="save btn btn-primary right1 bbutton savebtn" style="">Save</button>
+                    <button type="button" id="btnclear" class="clearbtn btn btn-primary right1 bbutton savebtn" style="">Clear</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="docdetailsforSignature"></div>
+
+
+
+    <div class="">
+        <input type="hidden" id="CustomerDetailsId">
+        @* <input type="Submit" id="sacon" onclick="CurrentIndividualSubmit()" value="Save &amp; Continue" class="btn btn-primary right1 custSubtn bbutton scbutton" style="margin-top:1%;float:right;height:45px;margin-bottom:10px;>*@
+        <input type="Submit" id="sacon" onclick="CurrentIndividualSubmit()" value="Save &amp; Continue" class="btn btn-primary right1 custSubtn bbutton scbutton" style="margin-top:1%;float:right;height:45px;margin-bottom:10px;">
+
+    </div>
+
+
+</body>
+
+

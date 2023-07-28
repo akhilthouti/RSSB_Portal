@@ -1,0 +1,1769 @@
+﻿@model INDO_FIN_NET.Models.ClsUser
+
+@{
+    Layout = null;
+}
+<head>
+    @*//NEW CSS//*@
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <link href="~/Content/Navigation/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Content/Navigation/vendor/animate.css/animate.min.css" rel="stylesheet">
+    <link href="~/Content/Navigation/vendor/animate.css/animate.min.css" rel="stylesheet">
+    <link href="~/Content/Navigation/css/style.css" rel="stylesheet">
+    <link href="~/Content/Navigation/css/custom.css" rel="stylesheet">
+    <link href="~/Content/Navigation/css/font-awesome.min.css" rel="stylesheet">
+    <link href="~/Content/snewcss.css" rel="stylesheet" />
+    @*//NEW CSS//*@
+    @*//StartNavigationPart//*@
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <script src="~/js/encryption.js"></script>
+    <link href="~/fonts/font-awesome.css" rel="stylesheet" />
+    <link href="~/Content/Navigation/animate.css" rel="stylesheet" />
+    <link href="~/Content/Navigation/bootsnav.css" rel="stylesheet" />
+    <link href="~/Content/Navigation/style.css" rel="stylesheet" />
+    <link href="~/Content/HoverEffect/hover.css" rel="stylesheet" />
+    <script src="~/Content/Navigation/jquery.min.js"></script>
+    @*<script src=~/Content/Navigation/bootsnav.js"></script>*@
+    @*//EndNavigationPart//*@
+    @*/*newcss*/*@
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <link href="~/Content/Navigation/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Content/Navigation/vendor/animate.css/animate.min.css" rel="stylesheet">
+    <link href="~/Content/Navigation/vendor/animate.css/animate.min.css" rel="stylesheet">
+    <link href="~/Content/Navigation/css/style.css" rel="stylesheet">
+    <link href="~/Content/Navigation/css/custom.css" rel="stylesheet">
+    <link href="~/Content/Navigation/css/font-awesome.min.css" rel="stylesheet">
+    <script src="~/Content/Navigation/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/Content/Navigation/vendor/jquery.easing/jquery.easing.min.js"></script>
+    <script src="~/Content/Navigation/vendor/venobox/venobox.min.js"></script>
+    <script src="~/Content/Navigation/js/main.js"></script>
+    <link href="~/Content/Navigation/css/admindqe.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <link href="~/Content/Navigation/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Content/Navigation/vendor/animate.css/animate.min.css" rel="stylesheet">
+    <link href="~/Content/Navigation/vendor/animate.css/animate.min.css" rel="stylesheet">
+    <link href="~/Content/Navigation/css/style.css" rel="stylesheet">
+    <link href="~/Content/Navigation/css/custom.css" rel="stylesheet">
+    <link href="~/Content/Navigation/css/font-awesome.min.css" rel="stylesheet">
+    @*//NEW CSS//*@
+    <script src="~/Content/Navigation/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/Content/Navigation/vendor/jquery.easing/jquery.easing.min.js"></script>
+    <script src="~/Content/Navigation/vendor/venobox/venobox.min.js"></script>
+    <script src="~/Content/Navigation/js/main.js"></script>
+    @* s new chnges here*@
+    <link href="~/Content/Navigation/nestyle.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <link href="~/Scripts/sweetalert.css" rel="stylesheet" />
+    <script src="~/Scripts/sweetalert.min.js"></script>
+    <link href="~/Scripts/sweetalert.css" rel="stylesheet" />
+    <script src="~/js/encryption.js"></script>
+    <link href="~/Content/Navigation/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    @* CSS for Navbar*@
+    <style>
+        body {
+            background-color: #f3f3f3;
+        }
+
+        #show {
+            display: none;
+        }
+
+        .init_div_nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 90px;
+        }
+
+        .init_a {
+            font-size: 18px;
+            font-weight: 500;
+        }
+
+            .init_a:focus {
+                border: none !important;
+            }
+
+        .init_login_btn {
+            border: none !important;
+            color: #fff !important;
+            font-size: 18px !important;
+            color: #fff !important;
+            border-color: #bf5252 !important;
+            background-color: #bf5252 !important;
+            margin-top: 0 !important;
+            border-radius: 0px !important;
+            padding: 5px 15px !important;
+            font-weight: 500 !important;
+        }
+
+        .init_href {
+            font-size: 16px;
+            padding: 5px 12px;
+            color: #fff !important;
+        }
+
+            .init_href:hover {
+                border-radius: 3px;
+                transition: all 0.4s ease;
+            }
+
+        .init_ul {
+            display: flex;
+            flex-direction: row;
+            margin-bottom: 0;
+        }
+
+        .init-ul-parent {
+            margin-right: 40px !important;
+        }
+
+        .init_nav {
+            width: 100%;
+            /* z-index: 1000; */
+            font-family: 'Roboto', sans-serif;
+            background: white;
+            /* border-bottom: 5px solid #ba0000; */
+            /* background: #107ff6; */
+            min-height: 95px;
+            margin-bottom: 0 !important;
+            padding: 0;
+        }
+
+        .init_logo_div {
+            margin-left: 40px;
+        }
+
+        .init_logo_main {
+            height: 53px;
+        }
+
+        .navbar-expand-lg .navbar-nav .dropdown-menu {
+            position: absolute;
+            background-color: #bf5252;
+            /*background-color: #070ce1;*/
+            /*background-color: #007bff;*/
+            color: #fff;
+        }
+
+        .dropdown-menu > li > a:focus, .dropdown-menu > li > a:hover {
+            color: #262626;
+            text-decoration: none;
+            background-color: #ba0000;
+            background-image: linear-gradient(359deg, black, transparent);
+            /*background-color: #2d42e1;*/
+        }
+
+        .init_li {
+            border-bottom: 1px solid rgba(255,255,255,0.5);
+            padding: 2px;
+        }
+
+        .dropdown-menu_custom {
+            width: 128px !important;
+            padding: 0 !important;
+            background: #bf5252;
+            border-top: none;
+            border-radius: 0px;
+            width: 130px !important;
+            position: absolute;
+            z-index: 1000;
+            color: #212529;
+            text-align: left;
+            list-style: none;
+            background-clip: padding-box;
+            border: 1px solid rgba(0, 0, 0, 0.15);
+            border-radius: 0.25rem;
+        }
+
+        #CustomerClickId:focus {
+            outline-color: none;
+            outline-offset: 0px;
+        }
+
+        #AgentClickId :focus {
+            outline-color: none;
+            outline-offset: 0px;
+        }
+
+        .dropdown-menu > li > a:hover {
+            background: transparent !important;
+        }
+
+        .dropdown-menu_custom > li:focus, .dropdown-menu_custom > li:hover {
+            border-bottom: 2px solid #fff;
+            background-color: #df7070;
+            transition: all 0.3s ease;
+            /*color: #262626;
+                    text-decoration: none;
+                    background-color: #ba0000 !important;
+                    background-image: linear-gradient(359deg, black, transparent);
+                    background-color: #070ce1 !important;
+                    background-color: #007bff !important;*/
+        }
+
+        .img-res {
+            height: 41px;
+            width: 212px;
+            margin-left: -25px;
+        }
+
+        button:focus {
+            outline: none !important;
+        }
+
+        /*main home page*/
+        @@media only screen and (max-width:1028px) {
+        }
+
+        @@media only screen and (max-width:800px) {
+            .init_logo_main {
+                height: 44px;
+            }
+        }
+
+        @@media only screen and (max-width:700px) {
+            .init_logo_main {
+                height: 40px;
+            }
+        }
+
+        @@media only screen and (max-width:700px) {
+            .init_logo_div {
+                margin-left: 20px;
+            }
+        }
+
+        @@media only screen and (max-width:700px) {
+            .init_logo_main {
+                height: 34px;
+            }
+
+            .init_logo_div {
+                margin-left: 15px;
+            }
+
+            .init_div_nav {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                height: 68px;
+            }
+
+            .dropdown-menu_custom {
+                width: 107px !important;
+            }
+
+            .init-ul-parent {
+                margin-right: 20px !important;
+            }
+        }
+    </style>
+
+    <style>
+        .otpbtndv {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 7px;
+        }
+    </style>
+    <script>
+        function SpacePass(id) {
+            var inputtxt = $('#' + id).val();
+            
+            if (inputtxt.indexOf(' ') !== -1) {
+                
+                swal('Password should not contain spaces.');
+                $('#' + id).val('');
+                return false;
+            }
+        }
+    </script>
+    <script>
+        function pass() {
+            debugger;
+            var x = document.getElementById("Password");
+            var y = document.getElementById("init_eye");
+            if (x.type === "password") {
+                x.type = "text";
+                $("#init_eye").removeClass("fa-eye-slash");
+                $("#init_eye").addClass("fa-eye");
+            } else {
+                x.type = "password";
+                $("#init_eye").removeClass("fa-eye");
+                $("#init_eye").addClass("fa-eye-slash");
+            }
+        };
+    </script>
+    <script>
+        function encryptText(textToEncrypt, encryptionKey, IV) {
+            const key = CryptoJS.enc.Utf8.parse(encryptionKey);
+            const iv = CryptoJS.enc.Utf8.parse(IV);
+            const encrypted = CryptoJS.TripleDES.encrypt(textToEncrypt, key, {
+                iv: iv,
+                mode: CryptoJS.mode.CBC,
+                padding: CryptoJS.pad.Pkcs7
+            });
+            return encrypted.toString();
+        }
+        function decryptText(textToDecrypt, encryptionKey, IV) {
+            const key = CryptoJS.enc.Utf8.parse(encryptionKey);
+            const iv = CryptoJS.enc.Utf8.parse(IV);
+            const decrypted = CryptoJS.TripleDES.decrypt(textToDecrypt, key, {
+                iv: iv,
+                mode: CryptoJS.mode.CBC,
+                padding: CryptoJS.pad.Pkcs7
+            });
+            return decrypted.toString(CryptoJS.enc.Utf8);
+        }
+    </script>
+    <script>
+        function ActivLogin(ip, hostnm, time) {
+            debugger;
+            swal({
+                title: "User Already Logged In ",
+                
+
+                confirmButtonClass: "btn-danger",
+                showCancelButton: true,
+                confirmButtonText: "Close This Session",
+                closeOnConfirm: false,
+                closeOnCancel: false
+            },
+                function (isConfirm) {
+                    if (isConfirm) {
+                        debugger;
+
+                        swal({
+                            title: "Previous User Is Logout Now,Login Again",
+                            confirmButtonClass: "btn-danger",
+                            confirmButtonText: "ok",
+
+                        },
+                            function () {
+                                $.ajax({
+                                    url: '/AdminDashboardNew/Logout',
+                                    type: 'GET',
+                                    cache: false,
+                                    success: function (result) {
+                                        debugger;
+                                        if (result == "Logout") {
+                                    
+                                            window.location.href = "/AdminLogin/UserDetails";
+                                        }
+                                    }
+                                })
+
+                            }
+
+                        )
+                    }
+                    else {
+                        debugger;
+
+                        window.location.href = "/AdminLogin/UserDetails";
+                    }
+                });
+        }
+    </script>
+    <script>
+        $(document).ready(function () {
+            debugger;
+            if ('a' == 'a') {
+                $('#testid').val('aaa');
+            }
+            if ('@Model.error' != '') {
+                if ('@Model.error' != "Your previous session is already active, Please Logout.") {
+                    swal('@Model.error');
+                }
+                else if ('@Model.error' == "Your previous session is already active, Please Logout.") {
+                    debugger;
+                    swal({
+                        title: "Simultaneous Session Exists",
+                        text: "IP Address: @ViewBag.ip  \n Session Start Time: @ViewBag.loginDateTime ",
+                        confirmButtonClass: "btn-danger",
+                        showCancelButton: true,
+                        confirmButtonText: "Close This Session",
+                        cancelButtonText: "Exit",
+                        closeOnConfirm: false,
+                        closeOnCancel: false
+                    },
+                        function (isConfirm) {
+                            if (isConfirm) {
+                                debugger;
+                                swal({
+                                    title: "Previous Session Is Closed Now,Login Again",
+                                    confirmButtonClass: "btn-danger",
+                                    confirmButtonText: "ok",
+                                },
+                                    function () {
+                                        $.ajax({
+                                            url: '/AdminDashboard/Logout',
+                                            type: 'GET',
+                                            cache: false,
+                                            success: function (result) {
+                                                debugger;
+                                                if (result == "Logout") {
+                                                    window.location.href = "/AdminLogin/UserDetails";
+                                                }
+                                            }
+                                        })
+                                    }
+                                )
+                            }
+                            else {
+                                debugger;
+                                window.location.href = "/AdminLogin/UserDetails";
+                            }
+                        });
+                }
+            }
+        })
+        function AdminLogin() {
+            $("#DigiCerti").html("<div style='position: fixed;z-index: 5000;float: left;right: 50%;height: 50px;width: 50px;top:40%;'><i class='fa fa-pulse fa-fw dgldr ldrdesign' style='height:70px;width:70px;border-radius:50%;border-bottom:5px dotted grey;border-top:5px dotted black;border-right:5px dotted black;border-left:5px dotted black;height:80px;width:80px;position:absolute;margin: 20% 50%;'></i></div>");
+            $("#DigiCerti").show();
+            debugger;
+            var unm = $("#UserId").val();
+            const textToEncrypt = $("#Password").val();
+            const encryptedPassword = encryptText(textToEncrypt, encryptionKey, IV);
+            if ($("#UserId").val() == "" && $("#Password").val() == "") {
+                $("#DigiCerti").hide();
+                swal("Please Enter Valid UserID Or Passward");
+                return false;
+            }
+            else if ($("#UserId").val() == '') {
+                $("#DigiCerti").hide();
+                swal("Please Enter Valid UserID");
+                return false;
+            }
+            else if ($("#Password").val() == '') {
+                $("#DigiCerti").hide();
+                swal("Please Enter Valid Passward ");
+                return false;
+            }
+            else if (textToEncrypt.indexOf(' ') != -1) {
+                $("#DigiCerti").hide();
+                swal("Password should not contain spaces.");
+                return false;
+            }
+            else if ($("#UserCaptchaCode").val() == "" || $("#UserCaptchaCode").val() == null || $("#UserCaptchaCode").val() == "undefined") {
+                swal("Please Enter Code Given In a Picture.");
+                //$('#WrongCaptchaError').text('Please Enter Code Given In a Picture.').show();
+                $('#UserCaptchaCode').val("");
+                $('#UserCaptchaCode').focus();
+                $("#otp_div").css("display", "none");
+                $("#DigiCerti").hide();
+                return false;
+            }
+            else {
+                $.ajax({
+                    url: '/AdminLogin/UserDetails?userId=' + unm + '&Password=' + encryptedPassword,
+                    type: 'POST',
+                    data: {
+                    },
+                    cache: false,
+                    success: function (result) {
+                        debugger;
+                        var Message = result.split(',')[0];
+                        const textToEncrypt = result.split(',')[1];
+                        const encrypMobileNo = encryptText(textToEncrypt, encryptionKey, IV);
+                        var LogStatus = result.split(',')[2];
+                        var ip = result.split(',')[3];
+                        var hostnm = result.split(',')[4];
+                        var time = result.split(',')[5];
+                        if (Message == "Success") {
+                            
+                            if (LogStatus == 'true' || LogStatus == 'True') {
+
+                                ActivLogin(ip, hostnm, time);
+
+                            }
+                            else {
+                                CheckCaptcha();
+                                $("#DigiCerti").hide();
+                                $('#QEMobilecode').val(encrypMobileNo);
+                            }
+                            
+                        }
+                        else if (result == "Attempt1") {
+                            $("#DigiCerti").hide();
+                            swal({
+                                title: "Incorrect UserID Or Password",
+                                text: "You Have Only 2 Attempts Remaining",
+                                type: "warning",
+                                showCancelButton: false,
+                                confirmButtonColor: "#DD6B55",
+                                confirmButtonText: "Ok",
+                                closeOnConfirm: true,
+                                closeOnCancel: true
+                            },
+                                function (isConfirm) {
+                                    if (isConfirm) {
+                                        $("#DigiCerti").hide();
+                                        window.location.href = "/AdminLogin/UserDetails";
+                                    }
+                                    else {
+                                    }
+                                }
+                            );
+                        }
+                        else if (result == "Attempt2") {
+                            $("#DigiCerti").hide();
+                            swal({
+                                title: "Incorrect UserID Or Password",
+                                text: "You Have Only 1 Attempts Remaining",
+                                type: "warning",
+                                showCancelButton: false,
+                                confirmButtonColor: "#DD6B55",
+                                confirmButtonText: "Ok",
+                                closeOnConfirm: true,
+                                closeOnCancel: true
+                            },
+                                function (isConfirm) {
+                                    if (isConfirm) {
+                                        $("#DigiCerti").hide();
+                                        window.location.href = "/AdminLogin/UserDetails";
+                                    }
+                                    else {
+
+                                    }
+                                }
+                            );
+                        }
+                        else if (result == "Locked") {
+                            $("#DigiCerti").hide();
+                            swal({
+                                title: "You’ve reached the maximum login attempts .",
+                                text: "Your Account Has Been Locked",
+                                text: "Please Contact Admin For Help!",
+                                type: "warning",
+                                showCancelButton: false,
+                                confirmButtonColor: "#DD6B55",
+                                confirmButtonText: "Ok",
+                                closeOnConfirm: true,
+                                closeOnCancel: true
+                            },
+                                function (isConfirm) {
+                                    if (isConfirm) {
+                                        $("#DigiCerti").hide();
+                                        window.location.href = "/AdminLogin/UserDetails";
+                                    }
+                                    else {
+                                    }
+                                }
+                            );
+                        }
+                        else {
+                            $("#DigiCerti").hide();
+                            swal({
+                                title: "Please Enter Valid UserID OR Passward",
+                                type: "warning",
+                                showCancelButton: false,
+                                confirmButtonColor: "#DD6B55",
+                                confirmButtonText: "Yes",
+                                closeOnConfirm: true,
+                                closeOnCancel: true
+                            },
+                                function (isConfirm) {
+                                    if (isConfirm) {
+                                        $("#DigiCerti").hide();
+                                        window.location.href = "/AdminLogin/UserDetails";
+                                    }
+                                    else {
+
+                                    }
+                                }
+                            );
+                        }
+                    }
+                });
+            };
+        };
+        var cd;
+        var IsAllowed = false;
+        $(document).ready(function () {
+            CreateCaptcha();
+        });
+        // Create Captcha
+        function CreateCaptcha() {
+            $('#UserCaptchaCode').val('');
+            var alpha = new Array('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9');
+            var i;
+            for (i = 0; i < 6; i++) {
+                var a = alpha[Math.floor(Math.random() * alpha.length)];
+                var b = alpha[Math.floor(Math.random() * alpha.length)];
+                var c = alpha[Math.floor(Math.random() * alpha.length)];
+                var d = alpha[Math.floor(Math.random() * alpha.length)];
+                var e = alpha[Math.floor(Math.random() * alpha.length)];
+                var f = alpha[Math.floor(Math.random() * alpha.length)];
+            }
+            cd = a + ' ' + b + ' ' + c + ' ' + d + ' ' + e + ' ' + f;
+            $('#CaptchaImageCode').empty().append('<canvas id="CapCode" class="capcode" width="300" height="80"></canvas>')
+            var c = document.getElementById("CapCode"),
+                ctx = c.getContext("2d"),
+                x = c.width / 2,
+                img = new Image();
+            img.src = "https://webdevtrick.com/wp-content/uploads/captchaback.jpg";
+            img.onload = function () {
+                var pattern = ctx.createPattern(img, "repeat");
+                ctx.fillStyle = pattern;
+                ctx.fillRect(0, 0, c.width, c.height);
+                ctx.font = "46px Roboto Slab";
+                ctx.fillStyle = '#dc3545';
+                ctx.textAlign = 'center';
+                ctx.setTransform(1, -0.12, 0, 1, 0, 15);
+                ctx.fillText(cd, x, 55);
+            };
+        }
+        // Validate Captcha
+        function ValidateCaptcha() {
+            var string1 = removeSpaces(cd);
+            var string2 = removeSpaces($('#UserCaptchaCode').val());
+            if (string1 == string2) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+        // Remove Spaces
+        function removeSpaces(string) {
+            return string.split(' ').join('');
+        }
+        // Check Captcha
+        function CheckCaptcha() {
+            var result = ValidateCaptcha();
+            if ($("#UserCaptchaCode").val() == "" || $("#UserCaptchaCode").val() == null || $("#UserCaptchaCode").val() == "undefined") {
+                $('#UserCaptchaCode').val("");
+                $('#UserCaptchaCode').focus();
+            }
+            else {
+                if (result == false) {
+                    IsAllowed = false;
+                    $('#WrongCaptchaError').text("Captcha value doesn't match").show();
+                    $('#UserCaptchaCode').val("");
+                    $("#otp_div").css("display", "none");
+                    CreateCaptcha();
+                    $('#UserCaptchaCode').focus().select();
+                }
+                else {
+                    IsAllowed = true;
+                    CreateCaptcha();
+                    $('#WrongCaptchaError').fadeOut(100);
+                    $('#SuccessMessage').fadeIn(500).css('display', 'block').delay(5000).fadeOut(250);
+                    $("#otp_div").css("display", "block");
+                    $("#otp_div").show();
+                    $('#UserCaptchaCode').val("");
+                    swal("User Verified Successfully");
+                    QEGetMobileOTP();
+                    //$("#QEMobileform").show();
+                }
+            }
+        }
+        function test() {
+            AdminLogin();
+        }
+    </script>
+
+    @*Capcha css*@
+    <style>
+        .loader {
+            margin-top: -29%;
+            margin-left: 46%;
+            width: 55px;
+            height: 60px;
+            border-radius: 50%;
+            display: inline-block;
+            border-top: 4px solid #973a3a;
+            border-right: 4px solid transparent;
+            box-sizing: border-box;
+            animation: rotation 1s linear infinite;
+            display: none;
+        }
+
+            .loader::after {
+                content: '';
+                box-sizing: border-box;
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                border-left: 4px solid #d58787;
+                border-bottom: 4px solid transparent;
+                animation: rotation 0.5s linear infinite reverse;
+            }
+
+        @@keyframes rotation {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+       .init_otp_btn {
+    		background-color: #bf5252 !important;
+    		color: #fff !important;
+    		font-size: 12px!important;
+    		padding: 4px 12px!important;
+		}
+
+        .init_password {
+            position: relative;
+        }
+
+        .init_eye_div {
+            color: #555;
+            opacity: 0.7;
+            position: absolute;
+            top: 23px;
+            right: 41px;
+        }
+
+        .cqepopupmn1 {
+            position: fixed;
+            top: 50%;
+            left: 49%;
+            transform: translate(-50%, -50%);
+            width: 35%;
+            z-index: 2;
+            background-color: white;
+            border-radius: 14px;
+        }
+
+        .init_cross {
+            position: absolute;
+            right: 18px;
+            top: -18px;
+            color: grey;
+            font-size: 20px;
+        }
+
+        .init_head {
+            text-align: center;
+            font-weight: 600;
+            font-size: 20px;
+            font-family: 'Poppins';
+            margin-top: 30px;
+            color: #212121;
+        }
+
+        .init_email {
+            color: grey;
+            text-align: center;
+            padding: 1px 25px 1px 25px;
+            font-size: 15px;
+            display: none;
+        }
+
+        .init_submit_btn {
+            background-color: #bf5252 !important;
+            /* box-shadow: inset 0 0 31px #4e2424 !important;*/
+            border: none;
+            color: #fff;
+            border: none;
+            width: 100%;
+            height: 42px;
+            font-size: 15px;
+            box-shadow: 0 2px 4px 0 rgb(0 0 0 / 20%);
+            border: none;
+            padding: 4px 4px;
+            color: #fff;
+            letter-spacing: 1px;
+            border-radius: 3px;
+        }
+
+        .init_input {
+            width: 100%;
+            box-shadow: none !important;
+            color: #555;
+            padding: 10px !important;
+            background-color: #fff !important;
+            padding: 12px;
+            display: inline-block;
+            font-size: 14px;
+            margin-bottom: 0 !important;
+            line-height: 1 !important;
+            box-shadow: none;
+            border: 1px solid #dadce0 !important;
+            border-radius: 5px !important;
+            font-weight: 500;
+            font-family: 'Poppins';
+        }
+
+        .init_login_label {
+            color: #555;
+            text-align: start;
+            margin-top: 10px;
+            position: absolute;
+            margin-left: 21px;
+            font-weight: 500;
+            font-family: 'Poppins';
+            box-shadow: none !important;
+            font-size: 15px;
+        }
+
+        .init_input:focus, .form-control:focus {
+            border: 2px solid #e9a0a0 !important;
+            box-shadow: none !important;
+        }
+
+            .init_input:focus ~ .init_login_label {
+                margin-top: -9px;
+                color: #007bff;
+                background-color: #fff;
+                padding: 0px 10px;
+                margin-left: 8px;
+                box-shadow: none !important;
+                font-size: 13px;
+                transition: all 0.3s;
+                position: absolute;
+            }
+
+        .form-group {
+            margin-bottom: 0 !important;
+        }
+
+        #agent_login_form {
+            background: rgba(255,255,255,1.00);
+            padding: 5px 35px 0px 35px;
+            border: none;
+            margin: 0px 35px 25px 35px;
+            box-shadow: rgb(0 0 0 / 15%) 0px 5px 15px 0px;
+            width: 80%;
+            border-radius: 14px;
+        }
+
+        .init_login_title {
+            color: #4d5156;
+            font-size: 21px;
+            font-family: poppins,sans-serif !important;
+            margin: 12px 5px 30px 5px;
+        }
+
+        .form-control:focus {
+            border: 2px solid #ffd5d5 !important;
+            box-shadow: none !important;
+        }
+
+        .lablesize {
+            color: grey !important;
+            accent-color: #bf5252 !important;
+        }
+
+        #please {
+            color: grey;
+            text-align: left;
+            margin-bottom: 5px;
+        }
+
+        .init_retest {
+            cursor: pointer;
+            color: red;
+        }
+
+        .captchaField {
+            margin: 0 auto;
+            width: 88%;
+            padding: 8px;
+            background-color: #f3f3f3;
+            margin-bottom: 12px;
+            box-shadow: 0 1px 2px 0 rgb(0 0 0 / 20%);
+        }
+
+        .CaptchaWrap {
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .CaptchaTxtField {
+            border-radius: 5px;
+            display: block;
+            box-sizing: border-box;
+        }
+
+        #UserCaptchaCode {
+            padding: 9px 10px;
+            outline: none;
+            font-size: 18px;
+            font-weight: normal;
+            font-family: 'Open Sans', sans-serif;
+            width: 120px;
+            height: 46px;
+            letter-spacing: 3px;
+            font-weight: 600;
+        }
+
+        #CaptchaImageCode {
+            text-align: center;
+            padding: 0px 0;
+            overflow: hidden;
+        }
+
+        .capcode {
+            font-size: 46px;
+            display: block;
+            -moz-user-select: none;
+            -webkit-user-select: none;
+            user-select: none;
+            cursor: default;
+            letter-spacing: 1px;
+            color: #ccc;
+            font-family: 'Roboto Slab', serif;
+            font-weight: 100;
+            font-style: italic;
+            width: 163px;
+            border: 1px solid #000;
+            border-radius: 5px;
+        }
+
+        .ReloadBtn {
+            background: url('https://webdevtrick.com/wp-content/uploads/recaptcha.png') left top no-repeat;
+            background-size: 100%;
+            width: 32px;
+            height: 32px;
+            border: 0px;
+            outline none;
+            bottom: 30px;
+            left: 310px;
+            outline: none;
+            cursor: pointer;
+        }
+
+        .btnSubmit {
+            margin-top: 15px;
+            border: 0px;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 18px;
+            background-color: #1285c4;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .error {
+            color: red;
+            font-size: 14px;
+            text-align: left;
+            display: block;
+        }
+
+        .success {
+            color: green;
+            font-size: 18px;
+            margin-bottom: 15px;
+            display: none;
+        }
+
+        .cqepopupmn1 {
+            position: fixed;
+            top: 50%;
+            left: 49%;
+            transform: translate(-50%, -50%);
+            width: 35%;
+            z-index: 2;
+            background-color: white;
+            border-radius: 14px;
+        }
+
+        #otp_div {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 1;
+            background-color: #999999;
+            display: none;
+        }
+
+        #footer {
+            margin-top: 1px !important;
+        }
+
+        .init_submit_btn {
+            background-color: #bf5252 !important;
+            /*box-shadow: inset 0 0 31px #4e2424 !important;*/
+            border: none;
+            color: #fff;
+            border: none;
+            width: 100%;
+            height: 42px;
+            font-size: 15px;
+            box-shadow: 0 2px 4px 0 rgb(0 0 0 / 20%);
+            border: none;
+            padding: 4px 4px;
+            color: #fff;
+            letter-spacing: 1px;
+            border-radius: 3px;
+        }
+
+        .init_input {
+            width: 100%;
+            box-shadow: none !important;
+            color: #555;
+            padding: 10px !important;
+            background-color: #fff !important;
+            padding: 12px;
+            display: inline-block;
+            font-size: 14px;
+            margin-bottom: 0 !important;
+            line-height: 1 !important;
+            box-shadow: none;
+            border: 1px solid #dadce0 !important;
+            border-radius: 5px !important;
+            font-weight: 500;
+            font-family: 'Poppins';
+        }
+
+        .init_login_label {
+            color: #555;
+            text-align: start;
+            margin-top: 10px;
+            position: absolute;
+            margin-left: 21px;
+            font-weight: 500;
+            font-family: 'Poppins';
+            box-shadow: none !important;
+            font-size: 15px;
+        }
+
+        .init_input:focus, .form-control:focus {
+            border: 2px solid #e9a0a0 !important;
+            box-shadow: none !important;
+        }
+
+            .init_input:focus ~ .init_login_label {
+                margin-top: -9px;
+                color: #007bff;
+                background-color: #fff;
+                padding: 0px 10px;
+                margin-left: 8px;
+                box-shadow: none !important;
+                font-size: 13px;
+                transition: all 0.3s;
+                position: absolute;
+            }
+
+        .active1 {
+            margin-top: -9px;
+            color: #c76262;
+            background-color: white;
+            padding: 0px 10px;
+            margin-left: 8px;
+            box-shadow: none !important;
+            font-size: 13px;
+            transition: all 0.3s;
+            position: absolute;
+        }
+
+        .form-group {
+            margin-bottom: 0 !important;
+        }
+
+        #agent_login_form {
+            background: rgba(255,255,255,1.00);
+            padding: 20px 35px 0px 35px;
+            border: none;
+            margin: 0px 35px 25px 35px;
+            box-shadow: rgb(0 0 0 / 15%) 0px 5px 15px 0px;
+            width: 80%;
+            border-radius: 6px;
+        }
+
+        .init_login_title {
+            font-weight: 600;
+            line-height: 28px;
+            color: #4d5156;
+            font-size: 21px;
+            font-family: poppins,sans-serif !important;
+            margin: 12px 5px 30px 5px;
+        }
+
+        .form-control:focus {
+            border: 2px solid #ffd5d5 !important;
+            box-shadow: none !important;
+        }
+
+        .lablesize {
+            color: grey !important;
+        }
+
+        #please {
+            color: grey;
+            text-align: left;
+            margin-bottom: 5px;
+        }
+
+        .init_retest {
+            cursor: pointer;
+            color: red;
+        }
+
+        .captchaField {
+            margin: 0 auto;
+            width: 88%;
+            padding: 8px;
+            background-color: #f3f3f3;
+            margin-bottom: 12px;
+            box-shadow: 0 1px 2px 0 rgb(0 0 0 / 20%);
+        }
+
+        .CaptchaWrap {
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .CaptchaTxtField {
+            border-radius: 5px;
+            display: block;
+            box-sizing: border-box;
+        }
+
+        #UserCaptchaCode {
+            padding: 9px 10px;
+            outline: none;
+            font-size: 18px;
+            font-weight: normal;
+            font-family: 'Open Sans', sans-serif;
+            width: 120px;
+            height: 46px;
+        }
+
+        #CaptchaImageCode {
+            text-align: center;
+            padding: 0px 0;
+            overflow: hidden;
+        }
+
+        .capcode {
+            font-size: 46px;
+            display: block;
+            -moz-user-select: none;
+            -webkit-user-select: none;
+            user-select: none;
+            cu !importantsor: default;
+            letter-spacing: 1px;
+            color: #ccc;
+            font-family: 'Roboto Slab', serif;
+            font-weight: 100;
+            font-style: italic;
+            width: 163px;
+            border: 1px solid #000;
+            border-radius: 5px;
+        }
+
+        .ReloadBtn {
+            background: url('https://webdevtrick.com/wp-content/uploads/recaptcha.png') left top no-repeat;
+            background-size: 100%;
+            width: 32px;
+            height: 32px;
+            border: 0px;
+            outline none;
+            bottom: 30px;
+            left: 310px;
+            outline: none;
+            cursor: pointer;
+        }
+
+        .btnSubmit {
+            margin-top: 15px;
+            border: 0px;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 18px;
+            background-color: #1285c4;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .error {
+            color: red;
+            font-size: 14px;
+            text-align: left;
+            display: block;
+        }
+
+        .success {
+            color: green;
+            font-size: 18px;
+            margin-bottom: 15px;
+            display: none;
+        }
+    </style>
+    <script>
+        function OTPQEMobileAuthenticate() {
+            debugger;
+            $("#DIGIbag").show();
+            var OTP = $('#QEMobileauth').val();
+            var MobileNumber = $('#QEMobilecode').val();
+            $(".hello").hide();
+            $(".hell").css("display", "block");
+            $("#otp").hide();
+            $('#QEMobileauth').val('');
+            $("")
+            if (OTP == '') {
+                swal("Enter valid OTP...");
+                return false;
+            }
+            if (OTP.length > 6) {
+                swal("Enter 6 digit Valid OTP...");
+                $('#QEMobileauth').val('');
+                return false;
+            }
+            $.ajax({
+                url: '/KYCQuickEnroll/QEMobileOTPAuthenticate',
+                type: 'GET',
+                data: {
+                    OTP: OTP,
+                    MobileNumber: MobileNumber
+                },
+                cache: false,
+                success: function (result) {
+                    debugger;
+                    $("#DIGIbag").hide();
+                    if (result == "Verified Successfully") {
+                        swal("Verified Successfully");
+                        $("#DigiCerti").hide();
+                        window.location.href = "/AdminDashBoardNew/IndoFinAdminDashBoard";
+                    } else {
+                        swal(result);
+                        
+                        $('#emailauth').val('');
+                        $('#QEMobileVerify').hide();
+                        $('#QEisMobileVerify').hide();
+                        $('#QEAuthMobileGetOtp').show();
+                        
+                    }
+                }
+            });
+        }
+        function closeQEMobile() {
+            $('#otp_div').css("display", "none");
+        }
+        //function QEGetMobileOTP() {
+        //    debugger;
+        //    $("#DigiCerti").html("<div style='position: fixed;z-index: 5000;float: left;right: 50%;height: 50px;width: 50px;top:40%;'><i class='fa fa-pulse fa-fw dgldr ldrdesign' style='height:70px;width:70px;border-radius:50%;border-bottom:5px dotted grey;border-top:5px dotted black;border-right:5px dotted black;border-left:5px dotted black;height:80px;width:80px;position:absolute;margin: 20% 50%;'></i></div>");
+        //    $("#DigiCerti").show();
+        //    $("#DIGIbag").show();
+        //    var MobileNumber = $('#QEMobilecode').val();
+        //    var last_digits = MobileNumber.substr(6, 11);
+        //    var t = document.getElementById("text").innerHTML = `CP-ALPHAF has sent a temporary OTP to your mobile ending in ******${last_digits} (Valid for 2 mins).`;
+        //    $.ajax({
+        //        url: '/KYCQuickEnroll/QEMoblieOTPSend',
+        //        type: 'POST',
+        //        data: {
+        //            MobileNumber: MobileNumber
+        //        },
+        //        cache: false,
+        //        success: function (result) {
+        //            debugger;
+        //            $("#DigiCerti").hide();
+        //            $("#DIGIbag").hide();
+        //            if (result == "Index was outside the bounds of the array.") {
+        //                swal("Didn't get Response Please try After SomeTime")
+        //            }
+        //            else {
+        //                debugger;
+        //                swal(result);
+        //                $(".init_mail").show();
+        //                $("#QEMobileGetOtp").html('RESEND OTP');
+        //                $("#QEMobileGetOtp").prop('disabled', true);
+        //                setTimeout(function () {
+        //                    $("#QEMobileGetOtp").prop('disabled', false);
+        //                }, 10000);
+        //            }
+        //        }
+        //    });
+        //}
+        function QEGetMobileOTP() {
+            debugger;
+            $("#DigiCerti").html("<div style='position: fixed;z-index: 5000;float: left;right: 50%;height: 50px;width: 50px;top:40%;'><i class='fa fa-pulse fa-fw dgldr ldrdesign' style='height:70px;width:70px;border-radius:50%;border-bottom:5px dotted grey;border-top:5px dotted black;border-right:5px dotted black;border-left:5px dotted black;height:80px;width:80px;position:absolute;margin: 20% 50%;'></i></div>");
+            $("#DigiCerti").show();
+            $("#DIGIbag").show();
+            $("#QEMobilecode").hide();
+
+
+            var MobileNumber = $('#QEMobilecode').val();
+            var last_digits = MobileNumber.substr(6, 11);
+            //console.log(`Fifteen is ${a + b}.`);otp sent successfully to the registered mobile no
+            var t = document.getElementById("text").innerHTML = `RSSB has sent a temporary OTP to your Registered Mobile No(Valid for 10 mins).`;
+            //var t = document.getElementById("text").innerHTML = `CP-ALPHAF has sent a temporary OTP to your mobile ending in ******${last_digits} (Valid for 2 mins).`;
+            $(".init_email").show();
+            $.ajax({
+                url: '/KYCQuickEnroll/QEMoblieOTPSend',
+                type: 'POST',
+                data: {
+                    MobileNumber: MobileNumber
+                },
+                cache: false,
+                success: function (result) {
+                    debugger;
+                    $("#DigiCerti").hide();
+                    $("#DIGIbag").hide();
+                    //$("#QEEmailbaknew1").hide();
+                    if (result != null) {
+                        debugger;
+
+                        $(".init_mail").show();
+                        // var elem = document.getElementById("QEMobileGetOtp");
+                        // $('#QEMobileGetOtp').val('Resend OTP');
+                        $("#QEMobileGetOtp").html('RESEND OTP');
+                        $("#QEMobileGetOtp").prop('disabled', true);
+                        setTimeout(function () {
+                            $("#QEMobileGetOtp").prop('disabled', false); // enable the button after 5 seconds
+                        }, 600000);
+                        // if (elem.value == "GET OTP") elem.value = "Resend OTP";
+                    } else {
+                        swal('OTP does not send.try again..');
+
+                    }
+                    // $('#DigitCaptureImage').html(result);
+                }
+            });
+
+        }
+    </script>
+    <script>
+        function numericOnly(id) {
+            debugger;
+            // Allow: backspace, delete, tab, escape, enter and .
+            var inputtxt = $('#' + id).val();
+            var numbers = /^[0-9]{0,9}$/;
+            if (!numbers.test(inputtxt)) {
+                swal('Only Numeric Numbers Can Be Enter ');
+                $('#' + id).val('');
+                document.form1.text1.focus();
+                return true;
+            }
+
+        }
+    </script>
+    <script type='text/javascript'>
+        $(document).ready(function () {
+
+            $("#HomeClicked").click(function () {
+                window.location.href = "/OrganisationLogin/MainHomePage";
+            });
+
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            $("#footer").hide();
+        });
+    </script>
+    <style>
+        #login-form .form-group {
+            margin-bottom: 0px;
+        }
+    </style>
+    @if (ViewBag.AdminFlag == "AdminFlag")
+    {
+        <style>
+            #header {
+                display: none;
+            }
+
+            .coninn {
+                display: none;
+            }
+
+            #topbar {
+                display: none;
+            }
+
+            #footer {
+                display: none;
+            }
+        </style>
+    }
+    <style>
+        .orgdeticon {
+            position: absolute;
+            margin-top: 2%;
+            margin-left: 3%;
+            height: 15px;
+            width: 20px;
+        }
+
+        .logonew {
+            height: 60px;
+            width: 220px;
+            margin-top: 11px;
+            margin-left: 25px;
+        }
+
+        @@media screen and (min-device-width: 320px) and (max-device-width: 600px) {
+
+            .orgdeticon {
+                position: absolute;
+                margin-top: 5%;
+                margin-left: 4%;
+                height: 40px;
+                width: 50px;
+            }
+
+            .orgdeticon {
+                margin-top: 8%;
+            }
+        }
+
+        @@media screen and (max-device-width: 768px) {
+            #agent_login_form {
+                margin: 0;
+                padding: 20px 20px 0px 20px;
+                width: 90%;
+            }
+        }
+
+        @@media screen and (max-device-width:412px) {
+            .capcode {
+                width: 118px;
+            }
+
+            #UserCaptchaCode {
+                height: 35px !important;
+                width: 100px;
+            }
+        }
+
+        @@media screen and (max-device-width: 768px) {
+            .captchaField {
+                width: 100%;
+            }
+
+            .init_eye_div {
+                top: 15px;
+                right: 16px;
+            }
+
+            .checkboxSize {
+                width: 23px;
+                height: 11px;
+            }
+
+            #btnLogin {
+                height: 36px !important;
+                margin-bottom: 10px;
+            }
+
+            .lablesize {
+                font-size: 12px !important;
+            }
+
+            .CaptchaWrap {
+                flex-direction: row;
+                align-items: center;
+            }
+
+            #UserCaptchaCode {
+                width: 115px;
+                padding: 4px;
+            }
+
+            #Password {
+                font-size: 14px;
+                height: 36px !important;
+            }
+
+            #UserId {
+                font-size: 14px;
+                height: 36px !important;
+            }
+
+
+            #btnLogin {
+                height: 45px;
+                font-size: 17px;
+            }
+
+            #agent_login_form {
+                /*margin: 0px 35px 25px 70px !important;*/
+            }
+
+            /*#MobileAuthOtp {
+                height: 36px;
+                font-size: 12px !important;
+                margin-top: 0px;
+                padding-left: 3px;
+                width: 100px;
+            }
+
+            #QEMobileauth {
+                height: 36px !important;
+            }*/
+
+            .btnotpdv {
+                padding-right: 12px;
+                padding-left: 0px;
+                margin-left: 5px;
+            }
+
+            /*#QEMobileGetOtp {
+                height: 36px;
+                margin-top: 0px;
+                font-size: 12px !important;
+                padding-left: 3px;
+                width: 100px;
+            }
+
+            #QEMobilecode {
+                height: 36px !important;
+            }*/
+
+            .cqepopupmn1 {
+                width: 85%;
+            }
+
+            .adminlogform {
+                width: 90%;
+                justify-content: center;
+                margin: 34px;
+            }
+
+            .placehldr {
+                height: 70px !important;
+                font-size: 25px !important;
+            }
+
+            .logtext {
+                font-size: 35px !important;
+                margin-top: 10% !important;
+            }
+
+            .orgdeticon {
+                position: absolute;
+                margin-top: 2%;
+                margin-left: 2%;
+                height: 27px;
+                width: 28px;
+            }
+
+            .admnrember {
+                height: 16px;
+                width: 16px;
+            }
+
+            .admnlogbtn {
+                height: 38px !important;
+                font-size: 19px;
+                font-weight: 600;
+            }
+        }
+
+        @@media only screen and (max-width:300px) {
+            .cqedivpup {
+                display: flex;
+                margin-bottom: 30px;
+                flex-direction: column;
+            }
+
+            .init_otp_btn {
+                width: 100%;
+            }
+        }
+    </style>
+    <link href="~/css/multiclass.css" rel="stylesheet" />
+</head>
+<body onload="CheckCaptcha();">
+    @*<div id="topbar" class="d-none d-lg-flex align-items-center">
+    <div class="container-fluid pdcon">
+    <div class="contact-info">
+    <p>Customer Care +91-89288-00412</p>
+    </div>
+    </div>
+    </div>*@
+    <header id="header" style="display:none">
+        <div class="container-fluid d-flex align-items-center">
+            <h1 class="logo mr-auto">
+                <img src="~/Logos/RSSB_bank.jpg" class="init_logo_main" />
+
+            </h1>
+            <nav class="nav-menu d-none d-lg-block">
+                <ul>
+                    <li class="pntr" style="margin-top:0px"><a class="active" id="HomeClicked">Home</a></li>
+                    @*<li><a href="#">Customers</a></li>
+                    <li><a href="#">Partners</a></li>
+                    <li><a href="#">Services</a></li>*@
+                </ul>
+            </nav>
+            @*<a href="#" class="appointment-btn scrollto">CONTACT US</a>*@
+            <script>
+                <label>@ViewBag.RoleType</label >
+                    < div id = "Roletype" > </div>
+                $(document).ready(function () {
+                    $('#Roletype').hide();
+                });
+            </script>
+        </div>
+    </header>
+
+
+    <div id="header" class="header">
+        <div class="init_div_nav">
+            <div class="init_logo_div">
+                <img src="~/content/logos/RSSB_bank.jpg" class="init_logo_main" alt="Bank Logo" />
+            </div>
+            <div class="init-ul-parent" id="show-menu">
+                <ul class="init_ul">
+                    <a href="/OrganisationLogin/MainHomePage" class="init_href" id="HomeClicked">Home</a>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+    <section id="" class="" style="">
+        <div class="container">
+            <div class="row" style="justify-content:center;position: relative;margin: 0;">
+                <div class="col-xl-6 col-lg-6 col-md-10 col-sm-12 slide-box" style="margin:10px;display: flex;justify-content: center;">
+                    <div id="agent_login_form" style="">
+                        <div style="">
+                            <h3 class="init_login_title">Admin Login Here</h3>
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <div class=" ">
+                                <div class="form-group">
+                                    <label class="init_login_label active1">User Id</label>
+                                    @Html.EditorFor(model => model.UserId, new
+                                    {
+                                    htmlAttributes = new
+                                    {
+                                    @class = "init_input init_input_test text-box single-line",
+                                    style = "border-radius: 5px!important;padding-left: 20px !important;",
+                                    @onkeyup = "numericOnly(this.id)"
+                                    }
+                                    })
+                                    @Html.ValidationMessageFor(model => model.UserId, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group init_password">
+                                    <label class="init_login_label active1">Password</label>
+                                    @Html.EditorFor(model => model.Password, new
+                                    {
+                                    htmlAttributes = new
+                                    {
+                                    @id = "Password",
+                                    @Password = "Password",
+                                    @type = "password",
+                                    @class = "init_input",
+                                    @style="border-radius: 5px!important;padding-left: 20px !important;",
+                                    @onkeyup = "SpacePass(this.id)"
+                                    }
+                                    })
+                                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                                    <div class="password01 init_eye_div" onclick="pass()">
+                                        <i class="fa-solid fa-eye-slash" id="init_eye"></i>
+                                    </div>
+                                </div>
+                                @*Capcha*@
+                                <div class="init_capcha_div">
+                                    <section class="">
+                                        <fieldset class="captchaField">
+                                            <p id="please" style="font-size: 15px;">Please enter the following Captcha</p>
+                                            <div class='CaptchaWrap'>
+                                                <div id="CaptchaImageCode" class="CaptchaTxtField">
+                                                    <canvas id="CapCode" class="capcode" width="300" height="80"></canvas>
+                                                </div>
+                                                <div class="init_capcha_input">
+                                                    <input type="text" id="UserCaptchaCode" class="CaptchaTxtField form-control init_capcha_input">
+                                                </div>
+                                            </div>
+                                            <span id="WrongCaptchaError" class="error"></span>
+                                            <p id="please" style="font-size: 13px;margin-top: 2px;margin-bottom: 2px;">Unable to read the above image? <span onclick='CreateCaptcha();' class="init_retest">Try another!</span></p>
+                                        </fieldset>
+                                    </section>
+                                </div>
+                                <div class="form-group remember mtp1">
+                                    @*<label class="lablesize agntlogfont">
+                                        <input type="checkbox" value="" class="remember-check checkboxSize agntlogckbx">Remember me on this computer
+                                    </label>*@
+                                    <a href="/OrganisationLogin/ForgetPass" style="display: block;margin-bottom: 7px;"> Forget Password? </a>
+                                </div>
+                                <div class="form-group mtp11" style="padding-bottom: 30px;">
+                                    <button type="submit" class="init_submit_btn" id="btnLogin" onclick="AdminLogin()">Login</button>
+                                </div>
+                                @*</form>*@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="otp_div">
+        <div id="QEMobileform" class="cqepopupmn1">
+            <div class="" style="position: relative;">
+                <div class="init_head">OTP VERIFICATION</div>
+                <i class="fa-solid fa-xmark init_cross" onclick="closeQEMobile()"></i>
+            </div>
+            <p class="init_email" id="text"></p>
+            <div style="margin-top:2.8%;">
+                <div class=" col-lg-12 col-md-12 col-sm-12 cqedivpup" style="display: flex;margin-bottom: 10px;">
+                    <div class="col-lg-8 col-md-8 pd0 cqein" style="margin-bottom:1%">
+                        <div class="md-form">
+                            <input type="text" id="QEMobilecode" class="form-control border_rd pdlftr8user" placeholder="Enter Mobile No." ReadOnly="true" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12 col-sm-12 cqedivpup dsfxotp" style="display: flex;margin-bottom:30px;flex-direction: column;justify-content: center;align-items: center;">
+                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-11" style="">
+                        <div class="md-form" style="">
+                            <input type="password" id="QEMobileauth" class="form-control border_rd" placeholder="Enter OTP" maxlength="6" style="" />
+                        </div>
+                    </div>
+                    <div class="otpbtndv">
+                        <div class="col-lg-6 col-md-6" style="padding:5px">
+                            <button type="button" onclick="QEGetMobileOTP()" class="btn init_otp_btn" style="" id="QEMobileGetOtp">&nbsp;&nbsp;RESEND OTP&nbsp;&nbsp;</button>
+                        </div>
+                        <div class="col-lg-6 col-md-6" style="padding:5px">
+                            <button type="button" id="MobileAuthOtp" style="" class="btn init_otp_btn" onclick="OTPQEMobileAuthenticate()">AUTHENTICATE</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <main id="main" style="padding: 0% 2%;display:none">
+        <section id="services" class="services">
+            <div class="container-fluid">
+                <div class="row">
+                    <h4>KYC ?</h4>
+                    <p style="text-align:justify;font-family:Open Sans, sans-serif!important;"> The know your customer or know your client (KYC) guidelines in financial services requires that professionals make an effort to verify the identity, suitability, and risks involved with maintaining a business relationship. The procedures fit within the broader scope of a bank's Anti-Money Laundering (AML) policy. KYC processes are also employed by companies of all sizes for the purpose of ensuring their proposed customers, agents, consultants, or distributors are anti-bribery compliant, and are actually who they claim to be. Banks, insurers, export creditors and other financial institutions are increasingly demanding that customers provide detailed due diligence information. Initially, these regulations were imposed only on the financial institutions but now the non-financial industry, fintech, virtual assets dealers, and even the non-profit organizations are liable to oblige.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer id="footer" style="display:none;">
+        <div class="container">
+            <div class="row">
+                <div class="copyright">
+                    <p><a href="">Terms of Use</a> | <a href="">Privacy Policy</a> | <a href="">Disclaimer</a></p>
+                    <p>© Indo-FinNet. All Rights Reserved</p>
+                    <p>Visit us at www.indofinnet.co.in</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <div id="DigiCerti"></div>
+    <a href="#" class="back-to-top">
+        <img src="~/Content/imgs/icons/uparrow1.png" height="35px" width="35px" />
+    </a>
+</body>
+

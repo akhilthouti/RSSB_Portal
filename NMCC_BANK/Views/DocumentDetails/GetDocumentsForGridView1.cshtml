@@ -1,0 +1,191 @@
+﻿@{
+    Layout = null;
+}
+
+@{
+    var data = ViewBag.Message;
+}
+@if (data.Count > 0)
+{
+    <div class="table-responsive">
+        <table style="width:100%">
+            <tr class="trstyle">
+                <th class="thstyle">Document File</th>
+                <th class="thstyle">Document Type</th>
+                <th class="thstyle">Document Category</th>
+                @*<th class="thstyle">Document History</th>*@
+                <th class="thstyle">Image</th>
+                <th class="thstyle">Delete Document</th>
+                <th class="thstyle">Crop Image</th>
+                <th class="thstyle">Source</th>
+
+                <th class="thstyle">Signature</th>
+                <th class="thstyle">Face</th>
+
+            </tr>
+
+
+
+            @foreach (var products in data)
+            {
+
+                <tr style=" text-align:center; line-height: 0.3">
+                    <td class="tdstyle">@products.DocumentName</td>
+                    <td class="tdstyle">@products.DocumentCategory</td>
+                    <td class="tdstyle">@products.DocumentCategoryCode</td>
+                    <td class="tdstyle">
+                        @if (@products.CustomerDocumentId == 43)
+                        {
+                            <img src="~/Content/imgs/icons/view.png" class="upload_icon upldptview" id=@products.CustomerDocumentId onclick="CustomerBankStatementView(this)" style="height:18px!important;" />
+                            <p class="bnkchqtxt">View Image</p>
+
+                        }
+                        else
+                        {
+                            <img id=@products.CustomerDocumentId class="zoomDocument"
+                     src="data:image/jpg;base64,@(Convert.ToBase64String(products.DocumentHistory))" />
+                        }
+
+                    </td>
+                    <td class="tdstyle">
+                        @if (@products.CustomerDocumentId == 43)
+                        {
+
+                            <img src="~/Content/imgs/icons/delete.png" class="upload_icon upldptview deleteicon" id=@products.CustomerDocumentId onclick="deleteDoc(this)" style="" />
+                            <p class="bnkchqtxt">Delete Image</p>
+                            @* <img id=@item.customerDocumentId style="pointer-events:none" class="deletico" onclick="deleteDoc(this);"
+                src="~/Content/imgs/icons/delete.png" />*@
+
+
+                        }
+                        else
+                        {
+                            @*<img id=@products.CustomerDocumentId class="zoomDocument"
+                src="data:image/jpg;base64,@(Convert.ToBase64String(products.DocumentHistory))" />*@
+                            <img src="~/Content/imgs/icons/delete.png" class="upload_icon upldptview deleteicon" id=@products.CustomerDocumentId onclick="deleteDoc(this)" style="" />
+                            @*<p class="bnkchqtxt">Delete Image</p>*@
+                        }
+
+
+                    </td>
+
+                    <td class="tdstyle">
+                        @if (@products.CustomerDocumentId == 43)
+                        {
+
+
+                            @* <img id="@products.customerDocumentId @products.docMainCategory" style="text-align:center; pointer-events:none; width:31px; height:26px" onclick="CropDocumentPdf(this)" src="~/Images/Cropimage.png" />*@
+                            <img src="~/Content/imgs/icons/delete.png" class="upload_icon upldptview" id=@products.CustomerDocumentId onclick="deleteDoc(this)" style="height:18px!important;" />
+                            <p class="bnkchqtxt">Crop Image</p>
+                        }
+                        else
+                        {
+                            @* <img id=@products.CustomerDocumentId class="zoomDocument"
+                src="data:image/jpg;base64,@(Convert.ToBase64String(products.DocumentHistory))" />*@
+                            @*  <img src="~/Content/imgs/icons/Cropimage.png" class="upload_icon upldptview" id=@products.CustomerDocumentId onclick="CropDocument()" style="height:18px!important;" />
+
+                <p class="bnkchqtxt">Crop Image</p>*@
+
+                            @* <a href="/DocumentDetails/CropDocument">CropImage</a>*@
+                            <img src="~/Content/imgs/icons/Cropimage.png" height="20px" width="20px" onclick="location.href='/DocumentDetails/CropDocument'">
+
+                        }
+
+                    </td>
+                    <td class="tdstyle">
+                        @if (@products.CustomerDocumentId == 43)
+                        {
+                            <p><b>@products.Source</b></p>
+
+                        }
+                        else
+                        {
+                            <p><b>@products.Source</b></p>
+                        }
+
+                    </td>
+                    @*  <td class="tdstyle">
+            @if (@products.CustomerDocumentId == 43)
+            {
+
+            <img src="~/Content/imgs/icons/view.png" class="upload_icon upldptview" id=@products.CustomerDocumentId onclick="CustomerBankStatementView(this)" style="height:18px!important;" />
+
+            <p class="bnkchqtxt">View Image</p>
+            }
+            else
+            {
+            <img id=@products.CustomerDocumentId class="zoomDocument"
+            src="data:image/jpg;base64,@(Convert.ToBase64String(products.Faceext))" />
+            <img src="~/Content/imgs/icons/view.png" class="upload_icon upldptview" id=@products.CustomerDocumentId onclick="CustomerBankStatementView(this)" style="height:18px!important;" />
+
+            <p class="bnkchqtxt">View Image</p>
+            }
+
+            </td>*@
+                    <td class="tdstyle">
+                        @if (@products.CustomerDocumentId == 43)
+                        {
+                            <img src="~/Content/imgs/icons/view.png" class="upload_icon upldptview" id=@products.CustomerDocumentId onclick="CustomerBankStatementView(this)" style="height:18px!important;" />
+
+                        }
+                        else
+                        {
+                            @* <img id=@products.CustomerDocumentId class="zoomDocument"
+                src="data:image/jpg;base64,@(Convert.ToBase64String(products.Signature))" />*@
+                            if (products.Signature != null)
+                            {
+                                <img id=@products.CustomerDocumentId class="zoomDocument"
+                     src="data:image/jpg;base64,@(Convert.ToBase64String(products.Signature))" />
+                            }
+                            else
+                            {
+
+                            }
+                        }
+
+                    </td>
+
+
+
+                    <td class="tdstyle">
+                        @if (@products.CustomerDocumentId == 43)
+                        {
+                            <img src="~/Content/imgs/icons/view.png" class="upload_icon upldptview" id=@products.CustomerDocumentId onclick="CustomerBankStatementView(this)" style="height:18px!important;" />
+
+                        }
+                        else
+                        {
+                            @* <img id=@products.CustomerDocumentId class="zoomDocument"
+                src="data:image/jpg;base64,@(Convert.ToBase64String(products.Signature))" />*@
+                            if (products.Faceext != null)
+                            {
+                                <img id=@products.CustomerDocumentId class="zoomDocument"
+                     src="data:image/jpg;base64,@(Convert.ToBase64String(products.Faceext))" />
+                            }
+                            else
+                            {
+
+                            }
+                        }
+
+                    </td>
+
+                </tr>
+
+            }
+
+
+
+
+
+        </table>
+    </div>
+
+}
+else
+{
+
+    <p>No Details Available</p>
+}
+
+

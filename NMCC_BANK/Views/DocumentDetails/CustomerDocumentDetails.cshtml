@@ -1,0 +1,2449 @@
+﻿<i class="fa fa-pulse fa-fw dgldr" aria-hidden="true" style="font-size: 74px;color:#626060"; align="center"></i>
+
+
+@model INDO_FIN_NET.Models.ClsDocumentDetails
+@{
+    if(@ViewBag.rekycview=="1")
+    {
+        Layout = null;
+    }
+    else
+    {
+         Layout = "~/Views/Shared/_Multiagent.cshtml";
+    }
+
+
+
+
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="~/bundlejs/bundlingofdocumentsdetails.min.js"></script>
+    <link href="~/Scripts/sweetalert.css" rel="stylesheet" />
+    <script src="~/Scripts/sweetalert.min.js"></script>
+    <link href="~/Content/HoverEffect/hover.css" rel="stylesheet" />
+    <link href="~/Content/Navigation/style.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+     <link href="~/Content/Navigation/css/newcss.css" rel="stylesheet" />
+    <link href="~/Content/snewcss.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        @@media screen and (max-width:767px){
+            .zoomDocument:hover{
+                height: 10px!important;
+                width: 15px!important;
+            }
+            #DocApprove{
+                margin-left: -135% !important;
+            }
+        }
+        .init_click{
+            font-size: 11px;
+            font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol" !important;
+            color: red;
+            font-weight: 700;
+   
+        }
+        .init_cam_div{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .active_digi_caf_doc::after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            /*background: #5186e5;*/
+            top: 20px; 
+            left: -50%;
+            z-index: -1;
+        }
+
+        .active_digi_caf_doc::after {
+            content: none;
+        }
+
+        .active_digi_caf_doc::before {
+            background: #3ed718 !important;
+            color: #fff!important;
+            content: "\2713"!important;
+            font-size:23px;
+            font-weight: 900;
+        }
+
+        .init_btn_app{
+            font-size: 16px!important;
+            padding: 5px 15px!important;
+        }
+    </style>
+
+    
+    <script>
+        $(document).ready(function(){
+             var caf_doc = @ViewBag.progressbarqc;
+            if(caf_doc == 1){
+                document.getElementById("Agentlitab1").classList.add("active_digi_caf_doc");
+                $("#Agentlitab1").addClass("active_digi_caf_doc");
+
+                 document.getElementById("Agentlitab2").classList.add("active_digi_caf_doc");
+                $("#Agentlitab2").addClass("active_digi_caf_doc");
+
+                 $("#Agentlitab2").removeClass("init_disable_li");
+                 $("#Agentlitab3").removeClass("init_disable_li");
+            }
+        })
+    </script>
+    <style>
+        #viewport {
+            border: 1px solid #000 !important;
+        }
+        #Digil1{
+                position:absolute;
+                display: none; /* Hidden by default */
+                width: 100%; /* Full width (cover the whole page) */
+                height: 100%; /* Full height (cover the whole page) */
+                 top: 50%;
+                    left: 50%;
+                transform: translate(-50%, -50%);
+               
+           
+        }
+        .img-adjust{
+            height:60px;
+            width:60px;
+            margin-left:50%;
+            margin-top:50%;
+        }
+       #Docsign{
+
+           display:none;
+       }
+    #okloader{
+         display:none;
+    }
+    #oksign{
+    display:none;
+    }
+
+        .zoomDocument {
+           
+            height: 40px;
+            width: 40px;
+            cursor: pointer;
+        }
+
+            .zoomDocument:hover {
+                ms-transform: scale(12);
+                -webkit-transform: scale(25);
+                transform: scale(25);
+                /* margin-left: 1854%; */
+                float: left;
+                left: 49%;
+                /* margin-top: 1126%; */
+                position: absolute;
+                z-index: 999;
+                /* top: 47%; */
+                height: 15px;
+                width: 21px;
+                cursor: pointer;
+                top: 48% !important;
+                position: fixed;
+                border:1px solid grey!important;
+            }
+
+        #docdetails_Sign {
+            width: 100% !important;
+            float: left;
+        }
+
+        #docdetails_Sign {
+            width: 100% !important;
+            float: left;
+            
+            margin-top: 5px;
+        }
+
+        #docdetails_Add {
+            width: 100% !important;
+            float: left;
+            
+            margin-top: 5px;
+        }
+
+        #docdetails {
+            width: 100% !important;
+            float: left;
+           
+            margin-top: -2px;
+        }
+
+        #DOC_resultSign img {
+            width: 95px;
+            margin-left: 100% !important;
+        }
+
+        #thecanvas {
+            cursor: url('../../Content/imgs/penimg.png') !important;
+            /*background-image: url('../../Content/imgs/penimg.png');*/
+        }
+          label{
+            font-size: 16px;
+        }
+
+         .thstyle{
+               color: white;
+               font-size: 14px;
+               padding: 17px;
+               border: 1px solid white;
+        }
+
+        .trstyle{
+        background-color: #bf5252;
+        border: 1px solid black;
+        text-align: center;
+        /*line-height: 0.2;*/
+        }
+
+        .tdstyle{
+         border: 1px solid #afacac;
+         background-color: white;
+         font-size:14px;
+        }
+
+         .select2{
+            height: 30px !important;
+        }
+        .bg-green{
+            background-color:green!important;
+        }
+
+
+        
+
+    </style>
+    <style>
+        .brdgrey{
+            display:none;
+        }
+        :before,
+        :after {
+            box-sizing: border-box;
+        }
+
+        html {
+            font: 18px 'Helvetica Neue', sans-serif;
+        }
+
+        .signature-component {
+            text-align: left;
+            display: inline-block;
+            /*max-width: 100%;*/
+
+            h1
+
+        {
+            margin-bottom: 0;
+        }
+
+        h2 {
+            margin: 0;
+            font-size: 100%;
+        }
+
+        button {
+            padding: 1em;
+            background: transparent;
+            box-shadow: 2px 2px 4px #777;
+            margin-top: .5em;
+            border: 1px solid #777;
+            font-size: 1rem;
+            &.toggle
+
+        {
+            background: rgba(red, .2);
+        }
+
+        }
+
+        canvas {
+            display: block;
+            position: relative;
+            border: 1px solid;
+        }
+
+        img {
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+    </style>
+   
+
+    @if (ViewBag.AdminFlag == "AdminFlag")
+    {
+         Layout = null;
+         <link href="~/Content/snewcss.css" rel="stylesheet" />
+        <style>
+            #idpanel {
+                float: left;
+                width: 100%
+            }
+            #header {
+                display: block;
+            }
+            .mrgntpadmn{
+                    margin-top: -40px;
+            }
+        </style>
+    }
+
+    <script>
+        function saveofDecumentValidation() {
+
+            $.ajax({
+                url: '/DocumentDetails/GetDocumentsForValidation',
+                type: "GET",
+                contentType: false, // Not to set any content header
+                processData: false, // Not to process data
+                data: {},
+                async: false,
+                success: function (result) {
+
+                    if (result[0] == false) {
+                        swal("Please Upload Identity Document");
+                    }
+                    else if (result[1] == false) {
+                        swal("Please Upload Address Document");
+                    }
+                    else if (result[2] == false) {
+                        swal("Please Upload Signature Document");
+                    }
+                    else {
+                        
+                        window.location.href = "/NEWIPVDetails/CustIPVdetails";
+                    }
+
+                },
+                error: function (err) {
+                    debugger;
+                    //  alert(err.statusText);
+                }
+            });
+
+        }
+    </script>
+    <script type="text/javascript">
+        //function OpenPOIcamera() {
+        //    debugger;
+        //    $('#CameraPOIView').hide();
+        //    //$("#DigiCertiDD").html("<div style='position: fixed;z-index: 5000;float: left;right: 50%;height: 50px;width: 50px;top:40%;'><img class='ajax-loader' src='../Images/loader/Dual Ring-1s-200px.gif' height='60px' width='60px' align='middle' alt='ajaxloadergif' /></div>");
+        //    //$("#DigiCertiDD").show();
+        //     //$("#Digil1").css("display","block");
+        //    $("#DIGIbagDD").show();
+        //    $('#POICam').val('POICam');
+        //    $('#CameraOpenViewMainAddrs').append($('#CameraOpenViewAddrs'));
+            
+        //    if ($("#ddl_idProof").val() == ''){
+        //        $("#Digil1").css("display", "none");
+
+        //        swal("Please Select Identity Document");
+        //        return false();
+        //    }
+        //    $.ajax({
+        //        // url: '/KYCImageCapture/Opencamera',
+        //        url: '/DocumentDetails/DocOpenCamera1?DocType=' + "DOCPOI",
+        //        type: 'GET',
+        //        cache: false,
+        //        success: function (result) {
+        //            debugger;
+        //            $("#Digil1").css("display", "none");
+        //            $('#CameraPOIView').show();
+        //            $('#CameraPOIView').html(result);
+        //            $('#DigiCertiDD').hide();
+        //            $('#DIGIbagDD').hide();
+        //           // $("#Digil1").css("display", "none");
+
+        //        }
+        //    });
+        //}
+
+        //function OpenPOAcamera() {
+        //    debugger;
+        //    $("#Digil1").css("display", "none");
+        //    //$("#DigiCertiDD").html("<div style='position: fixed;z-index: 5000;float: left;right: 50%;height: 50px;width: 50px;top:40%;'><img class='ajax-loader' src='../Images/loader/Dual Ring-1s-200px.gif' height='60px' width='60px' align='middle' alt='ajaxloadergif' /></div>");
+        //    //$("#DigiCertiDD").show();
+        //    $("#DIGIbagDD").show();
+        //    $('#POACam').val('POACam');
+        //   if ($("#ddl_corrAdd").val() == '')
+        //            {
+        //             $("#Digil1").css("display","none");
+               
+        //            swal("Please Select Valid Address Document");
+        //            $('#DigiCertiDD').hide();
+        //            $('#DIGIbagDD').hide();
+        //            return false();
+        //            }
+        //    // $('#CameraOpenViewMainAddrs').append($('#CameraOpenViewAddrs'));
+        //    $.ajax({
+        //        url: '/DocumentDetails/DocOpenCamera2?DocType=' + "DOCPOA",
+        //        type: 'GET',
+        //        cache: false,
+        //        success: function (result) {
+        //            debugger;
+        //            if (this.lastStream) {
+        //                this.lastStream.getTracks().forEach(track => track.stop())
+        //            }
+        //            $('#CameraPOIView').empty();
+        //            $('#CameraPOAView').show();
+        //            $('#CameraPOAView').html(result);
+        //            $('#DigiCertiDD').hide();
+        //            $('#DIGIbagDD').hide();
+
+        //        }
+        //    });
+        //}
+        //function OpenSigncamera() {
+        //    debugger;
+        //    //$("#DigiCertiDD").html("<div style='position: fixed;z-index: 5000;float: left;right: 50%;height: 50px;width: 50px;top:40%;'><img class='ajax-loader' src='../Images/loader/Dual Ring-1s-200px.gif' height='60px' width='60px' align='middle' alt='ajaxloadergif' /></div>");
+        //    //$("#DigiCertiDD").show();
+        //    $("#DIGIbagDD").show();
+        //    $('#SignCam').val('SignCam');
+        //    //$('#CameraOpenViewMainAddrs').append($('#CameraOpenViewAddrs'));
+        //    $.ajax({
+        //        url: '/DocumentDetails/DocOpenCamera3?DocType=' + "DOCCamSign",
+        //        type: 'GET',
+        //        cache: false,
+        //        success: function (result) {
+        //            debugger;
+        //            $('#CameraSignView').show();
+        //            $('#CameraSignView').html(result);
+        //            $('#DigiCertiDD').hide();
+        //            $('#DIGIbagDD').hide();
+
+        //        }
+        //    });
+        //}
+    </script>
+    <script>
+         //FormData object
+     
+//        $(document).ready(function () {
+
+//            $("#fileInput").on("change", function () {
+               
+//                //alert("Working");
+//                $("#Digil1").css("display","block");
+//                $("body").attr('read-only', true);
+//                //$('#overlay_disabl').show();
+
+//                setTimeout(function(){
+//                    //Code here
+//                    hello();
+
+//                },1500);
+
+//            });
+//     });
+//                function hello(){
+//                    var fileInput = document.getElementById('fileInput');
+                
+//                //Iterating through each files selected in fileInput
+//                var formdata = new FormData();
+//                for (i = 0; i < fileInput.files.length; i++) {
+
+//                    var sfilename = fileInput.files[i].name;
+//                    var sfilesize = fileInput.files[i].size;
+//                    var POItype=$('#ddl_idProof option:selected' ).text();
+//                    let srandomid = Math.random().toString(36).substring(7);
+
+//                    formdata.append(sfilename, fileInput.files[i]);
+
+//                    var markup = "<tr id='" + srandomid + "'><td>" + sfilename + "</td><td>" + sfilesize + "</td><td>"+POItype+"</td><td><a href='#' onclick='DeleteFile(\"" + srandomid + "\",\"" + sfilename +
+//                     "\")'><span class='glyphicon glyphicon-remove red'></span></a></td><td><a href='#' onclick='OpenFile(\"" + srandomid + "\",\"" + sfilename +
+//                     "\")'><span class='glyphicon glyphicon-remove red'></span></a></td></tr>";
+//                }
+//                $('#fileInput').val('');
+//                $('#overlay_disabl').hide();
+
+
+//var idname = $('#ddl_idProof option:selected').text();
+//                var docvalue = $('#ddl_idProof').val();
+//                formdata.append('POIvalue', idname);
+//                formdata.append("ddl_idProof", docvalue);
+//                formdata.append("DocMainType", "DOCPOI");
+
+//                 if ($("#ddl_idProof").val() == '')
+//               {
+//                 $("#Digil1").css("display","none");
+               
+//                    swal("Please Select Identity Document");
+//                    return false();
+//                }
+//            $('#overlay_disabl').show();
+//                $.ajax({
+//                    url: '/DocumentDetails/UploadFiles1',
+//                    type: "POST",
+//                    contentType: false, // Not to set any content header
+//                    processData: false, // Not to process data
+//                    data: formdata,
+//                    async: false,
+//                    success: function (result) {
+//                        debugger;
+//                        $('#overlay_disabl').show();
+
+//                            if (result.indexOf("CropPdf") > -1)
+//                        {
+//                            var splitRslt = result.split('-');
+//                            var id = splitRslt[1];
+//                            var DocMainType="I";
+//                            $.ajax({
+//                                url: '/DocumentDetails/CropPdfDocument',
+//                                type: 'Get',
+//                                data: {
+//                                    custid: id,
+//                                    DocMainType: DocMainType
+//                                },
+//                                success: function (result) {
+//                                    debugger;
+//                                    $('#Viewport_disable1').hide();
+//                                    $('#Viewport_show').hide();
+//                                    $('#edit_disabl').hide();
+//                                    $("#l2Digi").hide();
+//                                    $('#overlay_disabl').hide();
+
+
+//                                    if (result == 'Document not available on DMS.Kindly scan document and upload manually.') {
+//                                        swal(result);
+//                                         $("#Digil1").css("display","none");
+//                                        //$("#l2Digi").hide();
+//                                        $('#overlay_disabl').hide();
+//                                    }
+//                                    else
+//                                        //swal("Ok");
+//                                    $('#CropPdfForm').html(result);
+//                                    $('#edit_disabl').hide();
+//                                    //$("#l2Digi").hide();
+//                                     $("#Digil1").css("display","none");
+//                                     $("body").attr('read-only', false);
+//                                    $('#overlay_disabl').hide();
+//                                }
+//                            })
+//                        }
+//                        else if (result != "") {
+//                                 $("#Digil1").css("display","none");
+//                                 $("body").attr('read-only', false);
+//                                swal({
+//                                    title: result,
+//                                    //text: "Delete Confirmation?",
+//                                    type: "success",
+//                                    showCancelButton: false,
+//                                    confirmButtonColor: "#DD6B55",
+//                                    confirmButtonText: "Ok",
+//                                    closeOnConfirm: false
+//                                },
+//                                    function () {
+//                                        var idname = $('#ddl_idProof option:selected').text();
+//                                        var docvalue = $('#ddl_idProof').val();
+//                                        formdata.append('POIvalue', idname);
+//                                        formdata.append("ddl_idProof", docvalue);
+//                                        formdata.append("DocMainType", "I");
+
+//                                        $.ajax({
+//                                            type: "post",
+//                                            url: '/DocumentDetails/DocExtratcion',
+//                                            type: "POST",
+//                                            contentType: false, // Not to set any content header
+//                                            processData: false, // Not to process data
+//                                            data: formdata,
+//                                            async: false,
+//                                            success: function (data) {
+//                                                 $("#Digil1").css("display","none");
+//                                                 $("body").attr('read-only', false);
+//                                                swal(data);
+//                                                 $('#overlay_disabl').hide();
+
+//                                            }
+//                                        })
+
+
+//}
+//                                );
+//                            var cutomerdetailid = '@ViewBag.CustomerDetailsId';
+//                            var DocMainType = "I";
+//                            $.ajax({
+//                                url: '/DocumentDetails/GetDocumentsForGridView?DocMainType=' + DocMainType,
+//                                type: "GET",
+//                                contentType: false, // Not to set any content header
+//                                processData: false, // Not to process data
+//                                data: { },
+//                                async: false,
+//                                success: function (result) {
+//                                    debugger;
+//                                    $('#docdetails').html(result);
+//                                    //$("#l2Digi").hide();
+//                                     $("#Digil1").css("display","none");
+//                                     $("body").attr('read-only', false);
+//                                    $('#overlay_disabl').hide();
+//                                },
+//                                error: function (err) {
+//                                    debugger;
+//                                     $("#Digil1").css("display","none");
+//                                    swal(err.statusText);
+
+//                                }
+//                            });
+
+
+//                        }
+//                     $("#Digil1").css("display","none");
+//                  $("body").attr('read-only', false);},
+
+//                    error: function (err) {
+//                         $("#Digil1").css("display","none");
+//                          $("body").attr('read-only', false);
+//                        swal(err.statusText);
+//                    }
+//                });
+//                $("html, body").animate({
+//                    scrollTop: $(
+//                        'html, body').get(0).scrollHeight
+//                }, 30);
+//                $(window).scrollTop($('#UTMAuditGridAD').position().top);
+
+//                };
+               
+
+//                    //-----Address Upload-------
+//  $(document).ready(function () {
+
+//            $("#corrAdd").on("change", function () {
+               
+//                //alert("Working");
+//                $("#Digil1").css("display","block");
+//                $("body").attr('read-only', true);
+//                //$('#overlay_disabl').show();
+
+//                setTimeout(function(){
+//                    //Code here
+//                    hello1();
+
+//                },1500);
+
+//            });
+//     });
+
+//               function  hello1(){
+//                var fileInput = document.getElementById('corrAdd');
+//                //Iterating through each files selected in fileInput
+//                var formdata = new FormData();
+//                for (i = 0; i < corrAdd.files.length; i++) {
+
+//                    var sfilename = corrAdd.files[i].name;
+//                    var sfilesize = corrAdd.files[i].size;
+//                    var POItype = $('#ddl_corrAdd option:selected' ).text();
+//                    let srandomid = Math.random().toString(36).substring(7);
+
+//                    formdata.append(sfilename, corrAdd.files[i]);
+
+//                    var markup = "<tr id='" + srandomid + "'><td>" + sfilename + "</td><td>" + sfilesize + "</td><td>"+POItype+"</td><td><a href='#' onclick='DeleteFile(\"" + srandomid + "\",\"" + sfilename +
+//                     "\")'><span class='glyphicon glyphicon-remove red'></span></a></td><td><a href='#' onclick='OpenFile(\"" + srandomid + "\",\"" + sfilename +
+//                     "\")'><span class='glyphicon glyphicon-remove red'></span></a></td></tr>"; // Binding the file name
+                   
+//                }
+//                //chkatchtbl();
+//                $('#corrAdd').val('');
+//               //$('#ddl_corrAdd' ).text('');
+//                $("#Addloder").hide();
+//                $('#overlay_disabl').hide();
+
+
+//                var idname = $('#ddl_corrAdd option:selected').text();
+//                var docvalue = $('#ddl_corrAdd').val();
+//                formdata.append('POIvalue', idname);
+//                formdata.append("ddl_idProof", docvalue);
+//                formdata.append("DocMainType", "DOCPOA");
+
+//                if ($("#ddl_corrAdd").val() == '')
+//               {
+//                 $("#Digil1").css("display","none");
+               
+//                    swal("Please Select Address Document");
+//                    return false();
+//                }
+//                $.ajax({
+//                    url: '/DocumentDetails/UploadFiles1',
+//                    type: "POST",
+//                    contentType: false, // Not to set any content header
+//                    processData: false, // Not to process data
+//                    data: formdata,
+//                    async: false,
+//                    success: function (result) {
+//                        debugger;
+//                         $("#Digil1").css("display","none");
+//                        $("#okloader").html("<div style='position: fixed;z-index: 5000;float: left;right: 50%;height: 50px;width: 50px;top:40%;'><img class='ajax-loader' src='../Images/loader/Dual Ring-1s-200px.gif' height='60px' width='60px' align='middle' alt='ajaxloadergif' /></div>");
+//                        $("#okloader").show();
+//                        $('#overlay_disabl').show();
+//                        if (result.indexOf("CropPdf") > -1) {
+//                            var splitRslt = result.split('-');
+//                            var id = splitRslt[1];
+//                            var DocMainType = "CA";
+//                            $.ajax({
+//                                url: '/DocumentDetails/CropPdfDocument',
+//                                type: 'Get',
+//                                data: {
+//                                    custid: id,
+//                                    DocMainType: DocMainType
+//                                },
+//                                success: function (result) {
+//                                    debugger;
+//                                    $('#Viewport_disable1').hide();
+//                                    $('#Viewport_show').hide();
+//                                    $('#edit_disabl').hide();
+//                                    $("#okloader").hide();
+//                                    $('#overlay_disabl').hide();
+//                                    if (result == 'Document not available on DMS.Kindly scan document and upload manually.') {
+//                                         $("#Digil1").css("display","none");
+//                                        swal(result);
+//                                        $("#okloader").hide();
+//                                        $('#overlay_disabl').hide();
+//                                    }
+//                                    else
+//                                        //swal("Ok");
+//                                    $('#CropPdfForm_CA').html(result);
+//                                    $('#edit_disabl').hide();
+//                                    $("#okloader").hide();
+//                                    $('#overlay_disabl').hide();
+//                                      $("#Digil1").css("display","none");
+//                                }
+//                            })
+//                        }
+
+//                             else if (result != "") {
+//                              $("#Digil1").css("display","none");
+//                            swal({
+//                                title: result,
+//                                //text: "Delete Confirmation?",
+//                                type: "success",
+//                                showCancelButton: false,
+//                                confirmButtonColor: "#DD6B55",
+//                                confirmButtonText: "Ok",
+//                                closeOnConfirm: false
+//                            },
+//                                function () {
+//                                    var idname = $('#ddl_corrAdd option:selected').text();
+//                                    var docvalue = $('#ddl_corrAdd').val();
+//                                    formdata.append('POIvalue', idname);
+//                                    formdata.append("ddl_idProof", docvalue);
+//                                    formdata.append("DocMainType", "CA");
+//                                    $.ajax({
+//                                        type: "post",
+//                                        url: '/DocumentDetails/DocExtratcion',
+
+//                                        type: "POST",
+//                                        contentType: false, // Not to set any content header
+//                                        processData: false, // Not to process data
+//                                        data: formdata,
+//                                        async: false,
+//                                        success: function (data) {
+//                                              $("#Digil1").css("display","none");
+//                                              $("body").attr('read-only', false);
+
+//                                            swal(data);
+
+//                                        }
+//                                    })
+
+//                                }
+//                            );
+//                        debugger;
+//                            var cutomerdetailid = '@ViewBag.CustomerDetailsId';
+//                            var DocMainType = "CA";
+//                            //var formdataAdd = new FormData();
+//                            $.ajax({
+//                                url: '/DocumentDetails/GetDocumentsForGridView?DocMainType=' + DocMainType,
+//                                type: "GET",
+//                                contentType: false, // Not to set any content header
+//                                processData: false, // Not to process data
+//                                data: {},
+//                                async: false,
+//                                success: function (result) {
+//                                    debugger;
+//                                      $("#Digil1").css("display","none");
+//                                    $('#docdetails_Add').html(result);
+//                                    $("#okloader").hide();
+//                                    $('#overlay_disabl').hide();
+//                                },
+//                                error: function (err) {
+//                                      $("#Digil1").css("display","none");
+//                                    swal(err.statusText);
+//                                }
+//                            });
+
+//                        }
+//                    },
+//                    error: function (err) {
+//                          $("#Digil1").css("display","none");
+//                        swal(err.statusText);
+//                    }
+//                });
+//                 $("html, body").animate({
+//                    scrollTop: $(
+//                        'html, body').get(0).scrollHeight
+//                }, 2000);
+//                $(window).scrollTop($('#AddSign').position().top);
+           
+//            }
+
+
+//              //Signature
+//               $(document).ready(function () {
+
+//            $("#AddSign").on("change", function () {
+               
+//                //alert("Working");
+//                $("#Digil1").css("display","block");
+//                //$('#overlay_disabl').show();
+
+//                setTimeout(function(){
+//                    //Code here
+//                    hello2();
+
+//                },1500);
+
+//            });
+//     });
+
+
+
+
+//              function  hello2(){
+//                  var fileInput = document.getElementById('AddSign');
+//                //Iterating through each files selected in fileInput
+//                var formdata = new FormData();
+//                  for (i = 0; i < AddSign.files.length; i++) {
+
+//                      var sfilename = AddSign.files[i].name;
+//                      var sfilesize = AddSign.files[i].size;
+//                    var POItype = $('#ddl_corrAdd option:selected' ).text();
+//                    let srandomid = Math.random().toString(36).substring(7);
+
+//                      formdata.append(sfilename, AddSign.files[i]);
+
+//                    var markup = "<tr id='" + srandomid + "'><td>" + sfilename + "</td><td>" + sfilesize + "</td><td>"+POItype+"</td><td><a href='#' onclick='DeleteFile(\"" + srandomid + "\",\"" + sfilename +
+//                     "\")'><span class='glyphicon glyphicon-remove red'></span></a></td><td><a href='#' onclick='OpenFile(\"" + srandomid + "\",\"" + sfilename +
+//                     "\")'><span class='glyphicon glyphicon-remove red'></span></a></td></tr>";
+//                }
+//                //chkatchtbl();
+//                  $('#AddSign').val('');
+//                  $("#Docsign").hide();
+//                  $('#overlay_disabl').hide();
+
+//                var idname = $('#ddl_corrAdd option:selected').text();
+//                var docvalue = 'Signature';
+//                formdata.append('POIvalue', idname);
+//                formdata.append("ddl_idProof", docvalue);
+//                formdata.append("DocMainType", "SI");
+//                $.ajax({
+//                    url: '/DocumentDetails/UploadFiles1',
+//                    type: "POST",
+//                    contentType: false, // Not to set any content header
+//                    processData: false, // Not to process data
+//                    data: formdata,
+//                    async: false,
+//                    success: function (result) {
+//                        debugger;
+//                        if (result=="Signature Uploaded Successfully")
+//                        {
+//                            swal("Signature Uploaded Successfully");
+//                        }
+//                        $("#oksign").html("<div style='position: fixed;z-index: 5000;float: left;right: 50%;height: 50px;width: 50px;top:40%;'><img class='ajax-loader' src='../Images/loader/Dual Ring-1s-200px.gif' height='60px' width='60px' align='middle' alt='ajaxloadergif' /></div>");
+//                        $("#oksign").show();
+//                        $('#overlay_disabl').show();
+//                        if (result != "") {
+//                             $("#Digil1").css("display","none");
+//                            //$('#dividtemp').append(result);
+//                            swal(result);
+
+
+//                            swal({
+//                                title: result,
+//                                //text: "Delete Confirmation?",
+//                                type: "success",
+//                                showCancelButton: false,
+//                                confirmButtonColor: "#DD6B55",
+//                                confirmButtonText: "Ok",
+//                                closeOnConfirm: false
+//                            },
+                                
+//                            );
+
+
+
+
+
+
+//                            var cutomerdetailid = '@ViewBag.CustomerDetailsId';
+//                            var DocMainType = "SI";
+//                            //var formdataAdd = new FormData();
+//                            $.ajax({
+//                                url: '/DocumentDetails/GetDocumentsForGridView?DocMainType=' + DocMainType,
+//                                type: "GET",
+//                                contentType: false, // Not to set any content header
+//                                processData: false, // Not to process data
+//                                data: {},
+//                                async: false,
+//                                success: function (result) {
+//                                    debugger;
+//                                     $("#Digil1").css("display","none");
+//                                    $('#docdetails_Sign').html(result);
+//                                    $("#oksign").hide();
+//                                    $('#overlay_disabl').hide();
+//                                },
+//                                error: function (err) {
+//                                     $("#Digil1").css("display","none");
+//                                    swal(err.statusText);
+//                                }
+//                            });
+
+//                        }
+//                    },
+//                    error: function (err) {
+//                         $("#Digil1").css("display","none");
+//                        alert(err.statusText);
+//                        $("#oksign").hide();
+//                        $('#overlay_disabl').hide();
+//                    }
+//                });
+//           }
+
+
+//             $(document).ready(function () {
+//            $("#btncropNew").click(function () {
+//                debugger;
+//                $.ajax({
+//                    @*url: '/DocumentDetails/CropDocument?custid=' + '@ViewBag.personalid',*@
+//                     url: '/DocumentDetails/CropDoc',
+//                    type: 'Get',
+//                    success: function (result)
+//                    {
+//                        debugger;
+//                        if (result == 'Document not available on DMS.Kindly scan document and upload manually.')
+//                        {
+//                            swal('If');
+//                            //swal(result);
+//                        }
+//                        else
+//                        {
+//                           swal('Else');
+//                            //swal(result);
+//                            $('#dividtemp').append(result);
+
+
+//                        }
+//                    }
+//                });
+//            });
+//     });
+//        function DeleteFile(Fileid, FileName) {
+//            formdata.delete(FileName)
+//            $("#" + Fileid).remove();
+//            chkatchtbl();
+//        }
+//        function OpenFile(Fileid, FileName) {
+//            formdata.get(FileName)
+//            $("#" + Fileid).loadImage();
+//           // chkatchtbl();
+//        }
+//        function chkatchtbl() {
+//            if ($('#FilesList tr').length > 1) {
+//                $("#FilesList").css("visibility", "visible");
+//            } else {
+//                $("#FilesList").css("visibility", "hidden");
+//            }
+//        }
+    </script>
+    <script>
+        debugger;
+        function uploadimg(img) {
+            debugger;
+            var canvas = document.getElementById("viewport");
+            var ctx = canvas.getContext("2d");
+            var img1 = img.src;
+            document.getElementById("myimage").src = img1;
+            ctx.drawImage(img, 100, 100);
+
+            magnify("myimage", 5);
+
+        };
+    </script>
+    <script>
+        function CropDocumentPdf(e, param) {
+            debugger;
+            var FileSave = "Yes";
+            var id1 = e.id;
+            var id2 = id1.split(' ');
+            var id = id2[0];
+            var DocMainType = id2[1];
+            $.ajax({
+                url: '/DocumentDetails/CropPdfDocument',
+                type: 'Get',
+                data: {
+                    custid: id,
+                    DocMainType: DocMainType,
+                    FileSave: FileSave
+                },
+                success: function (result) {
+                    debugger;
+                    $('#Viewport_disable1').hide();
+                    $('#Viewport_show').hide();
+                    $('#edit_disabl').hide();
+                    if (result == 'Document not available on DMS.Kindly scan document and upload manually.') {
+                        swal(result);
+                    }
+                    else
+                        //swal("Ok");
+                        $('#CropPdfForm').html(result);
+
+                    $('#edit_disabl').hide();
+                }
+            })
+        }
+    </script>
+    <script>
+        function CropDocument(e, param) {
+
+            debugger;
+            var id1 = e.id;
+            var id2 = id1.split(' ');
+            var id = id2[0];
+            var DocMainType = id2[1];
+
+            $("#Viewport_disable1").html("<div style='position : fixed; z-index: 1000; right : 50%; top : 45%;'><img class='ajax-loader' src='../../Templates/CNSBank/BlueTheme/Images/Ajaxloader/ajax-loadernew.gif' height='100px' width='100px' alt='ajaxloadergif' /></div>");
+            $('#Viewport_disable1').show();
+            $('#edit_disabl').show();
+            $('#Viewport_show').show();
+
+            $.ajax({
+                url: '/DocumentDetails/CropDocument',
+                type: 'Get',
+                data: {
+                    custid: id,
+                    DocMainType: DocMainType
+                },
+                success: function (result) {
+                    debugger;
+                    $('#Viewport_disable1').hide();
+                    $('#Viewport_show').hide();
+                    $('#edit_disabl').hide();
+                    if (result == 'Document not available on DMS.Kindly scan document and upload manually.') {
+                        swal(result);
+                    }
+                    else
+                        //swal("Ok");
+                        $('#ImageCropForm').html(result);
+                    $('#edit_disabl').hide();
+                }
+            })
+        }
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('#pdfpaging').hide();                   //Next ,Previous button hide
+            $('#cropbutton').hide();                   //hide crop button
+            $('#viewport1').hide();
+            $('#btncrop').hide();
+            $('#close').hide();
+            $('#closepoi').hide();
+            $('#savepoi').hide();
+            $('#views').hide();
+            $('#viewportpoa1').hide();
+            $('#pdfpagingpoa').hide();                   //Next ,Previous button hide
+            $('#cropbuttonpoa').hide();
+            $('#btncroppoa').hide();
+            $('#closepoa').hide();
+            $('#ViewNewpoa').hide();
+            $('#viewspoa').hide();
+            $("#DocRejecttxtforrekyc").hide();
+            $("#ReKycDOCsubmit").hide();
+
+                if ('@ViewBag.HRButton' == 'True')
+                {
+                $('#DocApproveforrekyc').hide();
+                $('#DocRejectforrekyc').hide();
+                $("#DocRejecttxtforrekyc").hide();
+            
+                }
+            
+
+        });
+    </script>
+
+
+    <script>
+        //for poi doc upload
+        var imagePath = "";
+        $(document).ready(function () {
+            var crop_max_width = 400;
+            var crop_max_height = 400;
+            var jcrop_api;
+            var canvas;
+            var context;
+            var image;
+
+            var prefsize = 0;
+            $("#views").empty();
+            //$("#views").hide();
+            $("#ViewNew").hide();
+            var img = document.getElementById('file1');
+
+            $("#BtnProofofIdCrop").click(function (e) {
+                debugger;
+                var image = img;
+                loadImage(image);
+
+            });
+
+            function loadImage(input) {
+                debugger;
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+                    canvas = null;
+                    reader.onload = function (e) {
+                        debugger;
+                        image = new Image();
+                        image.onload = validateImage;
+                        image.src = e.target.result;
+                    }
+
+                    reader.readAsDataURL(input.files[0]);
+                    var fileData = new FormData();
+
+                    //fileData = input.files[0];
+                    fileData.append(input.files[0].name, input.files[0]);
+
+
+                    $.ajax({
+                        url: "/DocumentDetails/ToSavePdf",
+                        type: "POST",
+                        contentType: false, // Not to set any content header
+                        processData: false,
+                        data: fileData,
+                        success: function (result) {
+                            debugger;
+                            $('#viewport1').hide();
+                            imagePath = result;
+                            $("#cropbutton").show();
+                            if (imagePath.indexOf('.pdf') != -1) {
+                                $('#pdfpaging').show();
+                                $('#closepoi').show();
+                                $('#savepoi').show();
+                            }
+                            else {
+                                $('#pdfpaging').hide();
+                                $('#dividtemp').show();
+                                $('#closepoi').show();
+                                $('#savepoi').show();
+                            }
+                            PDFJS.disableWorker = true;
+                            // PDFJS.workerSrc = '../../AratiWorking2020\INDOFinNet_Project\INDOFinNet_Project\ServiceProvider1\Scripts/pdf.worker.js';
+                            PDFJS.workerSrc = '../../Scripts/pdf.worker.js';
+                            var url = result;
+                            var pdfDoc = null,
+                                pageNum = 1,
+                                pageRendering = false,
+                                pageNumPending = null,
+                                //rotateangle=0,
+                                scale = 1;
+                            $('#viewcanvas').append('<div id="viewcanvas1" style="border: 2px solid #609fef;border-radius:7px;padding: 6px 14px 17px 16px;margin-right: 11px;margin-left: 11px;"></div>');
+                            $("#viewcanvas1").append('<canvas id="viewport" class="loaderckycimg" width="842" height="1190" style="border: 1px solid black;margin-left: 3% !important ;padding-top:6px;left: 37px;background-color:#fff"></canvas>');
+                            //$("#viewcanvas1").append('<canvas id="viewport" class="loaderckycimg" width="612" height="792" style="border: 1px solid black;margin-left: 3% !important ;left: 37px;background-color:#fff"></canvas>');
+                            var canvas = document.getElementById('viewport'),
+                                ctx = canvas.getContext('2d');
+
+
+                            function renderPage(num) {
+                                debugger;
+                                pageRendering = true;
+                                // Using promise to fetch the page
+                                pdfDoc.getPage(num).then(function (page) {
+                                    debugger;
+                                    var viewport = page.getViewport(scale);
+                                    canvas.height = viewport.height;
+                                    canvas.width = viewport.width;
+                                    var renderContext = {
+                                        canvasContext: ctx,
+                                        viewport: viewport,
+                                    };
+
+                                    var renderTask = page.render(renderContext);
+
+                                    renderTask.promise.then(function () {
+                                        debugger;
+                                        // renderTask = null;
+                                        pageRendering = false;
+
+                                        if (pageNumPending !== null) {
+                                            // New page rendering is pending
+                                            renderPage(pageNumPending);
+                                            pageNumPending = null;
+                                        }
+
+                                    });
+
+                                });
+
+                                // Update page counters
+                                document.getElementById('page_num').textContent = pageNum;
+                            }
+
+                            function queueRenderPage(num) {
+                                debugger;
+                                if (pageRendering) {
+                                    pageNumPending = num;
+                                } else {
+
+                                    renderPage(num);
+                                }
+                            }
+                            function onPrevPage() {
+                                debugger;
+                                if (pageNum <= 1) {
+                                    return;
+                                }
+                                pageNum--;
+                                queueRenderPage(pageNum);
+                            }
+                            document.getElementById('prev').addEventListener('click', onPrevPage);
+
+                            function onNextPage() {
+                                debugger;
+                                PDFJS.getDocument(imagePath).then(function (pdfDoc_) {
+                                    debugger;
+                                    pdfDoc = pdfDoc_;
+                                    if (pageNum >= pdfDoc.numPages) {
+                                        return;
+                                    }
+                                    pageNum++;
+                                    queueRenderPage(pageNum);
+
+                                });
+
+                            }
+                            document.getElementById('next').addEventListener('click', onNextPage);
+                            PDFJS.getDocument(imagePath).then(function (pdfDoc_) {
+                                debugger;
+                                pdfDoc = pdfDoc_;
+                                document.getElementById('page_count').textContent = pdfDoc.numPages;
+
+                                // Initial/first page rendering
+                                renderPage(pageNum);
+
+                            });
+
+
+                            function make_base() {
+                                debugger;
+                                context.clearRect(0, 0, canvas.width, canvas.height);
+                                var base_image = new Image();
+                                base_image.src = result;//'/Documents/aadhaar_registered_devices_2_0_1.pdf';
+                                base_image.onload = function () {
+                                    context.drawImage(base_image, 0, 0);
+                                }
+                            }
+
+                            var canvas = document.getElementById('viewport'),
+                                context = canvas.getContext('2d');
+                            make_base();
+
+                            $('#viewport').Jcrop({
+
+                                //onChange: updatePreview,
+                                onSelect: selectcanvas,
+                                onRelease: clearcanvas,
+                                allowSelect: true,
+                                boxWidth: 400,
+                                boxHeight: 400
+                            });
+
+                            function validateImage() {
+                                debugger;
+                                if (canvas != null) {
+                                    image = new Image();
+                                    image.onload = restartJcrop;
+                                    image.src = canvas.toDataURL("image/png");
+                                } else restartJcrop();
+                            }
+
+                        }
+                    });
+
+
+                    function validateImage() {
+                        debugger;
+                        if (canvas != null) {
+                            image = new Image();
+                            image.onload = restartJcrop;
+                            image.src = canvas.toDataURL("image/png");
+                        } else restartJcrop();
+                    }
+
+                    function restartJcrop() {
+                        debugger;
+                        if (jcrop_api != null) {
+                            jcrop_api.destroy();
+                        }
+                        $("#views").show();
+                        $("#views").empty();
+
+
+                        $("#views").append("<canvas id=\"canvasPOI\">");
+                        //   canvas = $("#canvasPOI")[0];
+                        canvas = $("#viewport")[0];
+                        context = canvas.getContext("2d");
+                        context.drawImage(image, 0, 0);
+
+                        $('#pdfpaging').show();
+                        $('#cropbutton').show();
+                        $('#closepoi').show();
+                        $('#savepoi').show();
+                        $("#viewport").Jcrop({
+                            onSelect: selectcanvas,
+                            onRelease: clearcanvas,
+                            boxWidth: crop_max_width,
+                            boxHeight: crop_max_height
+                        }, function () {
+                            jcrop_api = this;
+                        });
+                        clearcanvas();
+                    }
+
+
+                    function clearcanvas() {
+                        debugger;
+                        prefsize = {
+                            x: 0,
+                            y: 0,
+                            w: 0,
+                            h: 0,
+                            x2: 0,
+                            y2: 0,
+                            //w: canvas.width,
+                            //h: canvas.height,
+                        };
+
+                    }
+
+                    function selectcanvas(coords) {
+                        debugger;
+                        prefsize = {
+
+                            x: Math.round(coords.x),
+                            y: Math.round(coords.y),
+                            w: Math.round(coords.w),
+                            h: Math.round(coords.h)
+
+                        };
+                    }
+                    function applyCrop() {
+                        debugger;
+
+                        var imageObj = $("#viewport")[0];
+                        // $("#views").empty();
+                        $("#ViewNew").empty();
+                        $("#ViewNew").show();
+                        $("#ViewNew").append("<canvas id=\"canvas123\">");
+                        $("#ViewNew").css('border', '1px solid  #333333');
+                        $("#ViewNew").css('background-color', '#fff');
+                        canvas = $("#canvas123")[0];
+                        context = canvas.getContext("2d");
+                        canvas.width = prefsize.w;
+                        canvas.height = prefsize.h;
+                        context.drawImage(imageObj, prefsize.x, prefsize.y, prefsize.w, prefsize.h, 0, 0, canvas.width, canvas.height);
+
+                        $("#canvas123").Jcrop({
+                            onSelect: selectcanvas1,
+                            onRelease: clearcanvas,
+                            boxWidth: crop_max_width,
+                            boxHeight: crop_max_height
+                        }, function () {
+                            jcrop_api = this;
+                        });
+                        clearcanvas();
+
+                    }
+
+
+                    ////////////FOR   Masking after cropped image
+                    function selectcanvas1(coords) {
+                        debugger;
+                        prefsize = {
+                            x: Math.round(coords.x),
+                            y: Math.round(coords.y),
+                            w: Math.round(coords.w),
+                            h: Math.round(coords.h),
+
+                        };
+
+
+                        var alltab = "/DocumentDetails/ToMask?CordinateX=" + prefsize.x + "&CordinateY=" + prefsize.y + "&CordinateW=" + prefsize.w + "&CordinateH=" + prefsize.h + "&custDetailID=" + $("#CustomerDetailsID").val() + "&ddl_idProof=" + $("#ddl_idProof").val();
+
+
+                        $.ajax({
+                            url: alltab,
+                            //data: formdata1,
+                            success: function (data) {
+                                alert("Success");
+                                $.ajax({
+                                    // url: '/Home/togetimage',
+
+                                    contenttype: "application/json; charset=urf-8",
+                                    datatype: "json",
+                                    success: function (response) {
+                                        debugger;
+                                        document.getElementById("imgidforblur").src = response;      // pass source to img tag
+
+                                    }
+                                });
+                            },
+                            error: function (data) {
+                                alert("Error");
+                            },
+                            complete: function (data) { }
+                        });
+                    }
+                    ////////////
+                    $("#cropbutton").click(function (e) {
+                        debugger;
+                        applyCrop();
+                        MaskImageGet();
+                    });
+                    clearcanvas();
+
+                    ///  save croppe image in folder IndoFinCroppedImages on D:
+                    function MaskImageGet() {
+                        debugger;
+                        temppath = "";
+                        var canvas = document.getElementById('canvas123');
+
+                        // var canvas = document.getElementById('preview');
+
+                        var iii = document.getElementById('IMGDATA');
+                        iii.height = canvas.height;
+                        iii.width = canvas.width;
+                        var dataURL = canvas.toDataURL();
+
+                        iii.src = dataURL;
+
+                        var file = document.getElementById("IMGDATA").src;
+                        //}
+                        var docvalue = $('#ddl_idProof').val();
+                        var customerdetailid = $('#CustId').val();
+                        var formdata = new FormData();
+                        formdata.append("IMGDATA", file);
+                        formdata.append("ddl_idProof", docvalue);
+                        formdata.append("customerdetailid", customerdetailid);
+                        formdata.append("Imagepath", temppath)
+
+
+                        $.ajax({
+                            url: "/DocumentDetails/SaveCroppedDoc",
+                            type: "POST",
+                            data: formdata,
+                            cache: false,
+                            processData: false,
+                            contentType: false,
+                            success: function (result) {
+
+                                var canvas = document.getElementById('canvas123');
+                                swal(result);
+                            }
+                        })
+
+
+                    }
+                }
+            }
+        });
+
+        function ImageGet() {
+            debugger;
+            var temppath = imagePath;
+            if ($('#ddl_idProof').val() == 'Select')
+                swal("Please select document type");
+
+            else {
+                if (document.getElementById('canvas123') == null && ((imagePath.indexOf('.jpg') != -1) || (imagePath.indexOf('.jpeg') != -1))) {
+
+                    var file = "";
+                }
+                else if (document.getElementById('canvas123') == null && imagePath.indexOf('.pdf') != -1) {
+
+                    var canvas = document.getElementById('viewport');
+                    var dataURL = canvas.toDataURL("image/jpeg", 0.8);
+                    var file = dataURL;
+                    temppath = "";
+
+                }
+                else {
+                    temppath = "";
+                    var canvas = document.getElementById('canvas123');
+                    var iii = document.getElementById('IMGDATA');
+                    iii.height = canvas.height;
+                    iii.width = canvas.width;
+                    var dataURL = canvas.toDataURL();
+
+                    iii.src = dataURL;
+
+                    var file = document.getElementById("IMGDATA").src;
+                }
+                var docvalue = $('#ddl_idProof').val();
+                var customerdetailid = $('#CustId').val();
+                var formdata = new FormData();
+                formdata.append("IMGDATA", file);
+                formdata.append("ddl_idProof", docvalue);
+                formdata.append("customerdetailid", customerdetailid);
+                formdata.append("imagePath", temppath)
+                $.ajax({
+                    url: "/DocumentDetails/SaveDoc",
+                    type: "POST",
+                    data: formdata,
+                    cache: false,
+                    processData: false,
+                    contentType: false,
+                    success: function (result) {
+
+                        var canvas = document.getElementById('canvas123');
+                        if (canvas != null) {
+                            var context = canvas.getContext("2d");
+                            context.clearRect(0, 0, canvas.width, canvas.height);
+                            $("#views").empty();
+                        }
+                        document.getElementById("ddl_idProof").value = "Select";
+                        swal(result);
+                    }
+                })
+            }
+
+        }
+    </script>
+    <script>
+        function CreatePDF() {
+            $.ajax({
+                url: "/DocumentDetails/ToConvertToPDF",
+                type: "POST",
+                cache: false,
+                processData: false,
+                contentType: false,
+                success: function (result) {
+                    swal(result);
+                }
+            })
+        }
+    </script>
+
+    <script type="text/javascript">
+        function closebtnClick() {
+            $("#ViewNew").empty();
+            $("#ViewNew").hide();
+            $("#pdfpaging").hide();
+            $("#viewcanvas").hide();
+            $('#cropbutton').hide();
+            //$('#close').hide();
+            $('#views').hide();
+
+            $('#closepoi').hide();
+            $('#savepoi').hide();
+        }
+    </script>
+    <script type="text/javascript">
+
+        function ShowPreview(input) {
+            if (input.files && input.files[0]) {
+                var ImageDir = new FileReader();
+                ImageDir.onload = function (e) {
+                    $('#impPrev').attr('src', e.target.result);
+                }
+                ImageDir.readAsDataURL(input.files[0]);
+
+            }
+        }
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            debugger;
+
+            $('#POIDateDetailsDiv').hide();
+            $('#POADateDetailsDiv').hide();
+        })
+        function ProofIdChang() {
+            debugger;
+            var POIvalue = $('#ddl_idProof').val();
+            if (POIvalue == "1" || POIvalue == "6") {
+                $('#POIDateDetailsDiv').show();
+            } else {
+                $('#POIDateDetailsDiv').hide();
+            }
+        }
+        function ProofAddChang() {
+            debugger;
+            var POAvalue = $('#ddl_corrAdd').val();
+            if (POAvalue == "3" || POAvalue == "7") {
+                $('#POADateDetailsDiv').show();
+            } else {
+                $('#POADateDetailsDiv').hide();
+            }
+        }
+
+    </script>
+    <script type="text/javascript">
+        //function deleteDocDetails1(e, param) {
+        //    swal({
+        //        title: "Are you sure?",
+        //        text: "Do you want to Delete Document?",
+        //        type: "warning",
+        //        showCancelButton: true,
+        //        confirmButtonColor: "#DD6B55",
+        //        confirmButtonText: "Yes",
+        //        cancelButtonText: "No",
+        //        closeOnConfirm: false,
+        //        closeOnCancel: false
+        //    },
+        //        function (isConfirm) {
+        //            var id = e.id;
+        //            var idData = id.split('-');
+        //            if (isConfirm) {
+        //                $.ajax({
+        //                    url: '/DocumentDetails/deleteDocument?docId=' + idData[0],
+        //                    type: 'GET',
+        //                    data: '',
+        //                    cache: false,
+        //                    success: function (result) {
+        //                        debugger;
+        //                        var splitRslt = result.split('-');
+        //                        if (splitRslt[0] >= 0) {
+        //                            swal("Delete", "Document Deleted Successfully");
+        //                            $('#' + idData[0]).empty();
+        //                            $('#' + idData[1]).prop('disabled', false);
+        //                        }
+        //                    }
+        //                });
+        //            }
+        //            else {
+        //                swal("Cancelled", " Cancell your request  :)", "error");
+        //            }
+        //        })
+        //};
+    </script>
+    <script type="text/javascript">
+        function MaskingImg() {
+            debugger;
+            $.ajax({
+                url: '/DocumentDetails/Masking',
+                type: 'GET',
+                cache: false,
+                success: function (result) {
+                    debugger;
+                    $('#cropbag').show();
+                    debugger;
+                    $('#Crop_popup').show();
+                    $('#Crop_popup').html(result);
+                }
+            });
+        }
+    </script>
+    
+    <script>
+        function ProofofIdCrop() {
+            alert('You have cliked');
+
+        }
+    </script>
+    <script>
+        $(document).ready(function () {
+            $("#DocRejecttxt").hide();
+        });
+    </script>
+    <script>
+        $('#DocApprove').change(function () {
+            debugger;
+            $("#DocRejecttxt").hide();
+            $.ajax({
+
+                url: '/KYCQuickEnroll/GetApprovedFlag?selectedValue=' + $("#DocRejecttxt").val() + '&appType=' + 'Doc',
+                type: 'POST',
+                dataType: 'json',
+                data: '',
+                contentType: 'application/json; charset=utf-8',
+                success: function (data) { swal('Document Approved Successfully'); },
+                error: function (err) { alert(err); }
+            });
+        });
+
+
+        $('#DocApproveforrekyc').click(function () {
+            debugger;
+            $("#DocRejecttxtforrekyc").hide();
+            $.ajax({
+
+                url: '/KYCQuickEnroll/GetApprovedFlag?selectedValue=' + $("#DocRejecttxt").val() + '&appType=' + 'ReKycDoc',
+                type: 'POST',
+                dataType: 'json',
+                data: '',
+                contentType: 'application/json; charset=utf-8',
+                success: function (result) { 
+                    
+                    swal('Document Approved Successfully');
+                    $("html, body").animate({ scrollTop: 0 }, 600);
+                    swal('Document Approved Successfully');
+                    if (result == "1"){
+
+                        //alert("hello");
+                        $(".hello").css("display","block");
+
+                         $('#Litab8').show();
+                           $("#bg").addClass("bg-green");
+
+                    }else{
+                        swal('Please Approve CAF And Document Form');
+                        $('#Litab8').hide();
+                    }
+                },
+
+                error: function (err) { alert(err); }
+            });
+            $("#DocApproveforrekyc").addClass("bg-green");
+               $("#rekyct2").addClass("bg-green");
+
+
+        });
+
+
+
+    </script>
+    <script>
+        $('#DocReject').click(function () {
+            debugger;
+            $("#DocRejecttxt").show();
+            $("#Docsubmit").show();
+
+
+        });
+
+         $('#DocRejectforrekyc').click(function () {
+            debugger;
+            $("#DocRejecttxtforrekyc").show();
+           $("#ReKycDOCsubmit").show();
+
+        });
+    </script>
+
+      <script>
+        $('#DocRejecttxtforrekyc').blur(function () {
+            debugger;
+            var reasonDOC = $("#DocRejecttxtforrekyc").val();
+            $("#DocRejecttxtforrekyc").show();
+            $.ajax({
+
+                url: '/KYCQuickEnroll/GetApprovedFlag?selectedValue=' + $("#DocRejecttxtforrekyc").val() + '&appType=' + 'RDoc',
+                type: 'POST',
+                data: '',
+                contentType: 'application/json; charset=utf-8',
+                success: function (data) { 
+                    swal("Document rejected with reject reason " + reasonDOC); 
+                     setTimeout(function(){
+                    window.location.reload();
+                        }, 3000);
+                },
+                error: function (err) { alert(err); }
+            });
+        });
+    </script>
+
+    <script>
+        $('#DocRejecttxt').blur(function () {
+            debugger;
+            var reasonDOC = $("#DocRejecttxt").val();
+            $("#DocRejecttxt").show();
+            $.ajax({
+
+                url: '/KYCQuickEnroll/GetApprovedFlag?selectedValue=' + $("#DocRejecttxt").val() + '&appType=' + 'RDoc',
+                type: 'POST',
+                data: '',
+                contentType: 'application/json; charset=utf-8',
+                success: function (data) { swal("Document rejected with reject reason " + reasonDOC); },
+                error: function (err) { alert(err); }
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        function CustomerBankStatementView(e, param) {
+            debugger;
+            $("#bankbg").show();
+
+            $(".formBackground").slideUp();
+            //$(".rowid").remove();
+            var personId = e.id;
+            var url = '/DocumentDetails/BankStatement';
+            $.ajax({
+                url: url,
+                type: 'POST',
+                data: {
+                    personaldetailId: personId
+                },
+                cache: false,
+                success: function (result) {
+                    debugger;
+                    $("#viewbg").show();
+                    $('#viewbg').html(result);
+
+                }
+            });
+        }
+    </script>
+    <script>
+
+        $(function () {
+            debugger;
+            var canvas = document.getElementById('thecanvas');
+            var signaturePad = new SignaturePad(canvas);
+            drawSignatureLine();
+            $('button.save').click(function () {
+                debugger;
+                //window.open(signaturePad.toDataURL("image/png"));
+                var canvas = document.getElementById('thecanvas');
+                //canvas.width = 320;
+                //canvas.height = 240;
+                var docvalue = $('#ddl_idProof option:selected').text();
+                var IdProof = $('#ddl_idProof').val();
+                // canvas.getContext('2d').drawImage(canvas, 0, 0, 320, 240); // for drawing the video element on the canvas
+                var data = canvas.toDataURL('image/jpeg');
+                var base64 = $('#thecanvas')[0].toDataURL();
+                document.getElementById('DOC_resultSign').innerHTML =
+                    '<img id="base64DOC_Sign" src="' +
+                base64 +
+                    '"/>';
+                var formData = new FormData();
+                var POIImage = document.getElementById("base64DOC_Sign").src;  //Capture Code...
+                formData.append("base64DOC_Sign", POIImage);
+                $.ajax({
+                    url: '/DocumentDetails/DOCImageCapture?DocType=' + 'DOCSign' + "&POItype=" + docvalue + "&IdProof=" + IdProof,
+                    type: 'POST',
+                    data: formData,
+                    dataType: 'json',
+                    contentType: false,
+                    processData: false,
+                    success: function (Result) {
+                        debugger;
+                        if (Result == 'Success' ) {
+                            debugger;
+                            $('#div_DocSign_camera').hide();
+                            $('#CameraCustDA').hide();
+                            // $('#CorrImgExist').val('ImgExist');
+                            $('#CameraOpenViewMainAddrs').append($('#CameraOpenViewAddrsSign'));
+                            swal('Customer Signature Captured');
+                            var DocMainType = "SI";
+                            $.ajax({
+                                url: '/DocumentDetails/GetDocumentsForGridView?DocMainType=' + DocMainType,
+                                type: "GET",
+                                contentType: false, // Not to set any content header
+                                processData: false, // Not to process data
+                                data: {},
+                                async: false,
+                                success: function (result) {
+                                    debugger;
+                                    $('#docdetails_Sign').html(result);
+                                    $("#l2Digi").hide();
+                                    $('#overlay_disabl').hide();
+                                },
+                                error: function (err) {
+                                    debugger;
+                                    alert(err.statusText);
+
+                                }
+                            });
+
+                            
+
+                        }   
+                         
+                        else if (Result == 'Document not saved') {
+                            $('#POAC_camera').hide();
+                            $('#CameraCustDA').hide();
+                            $('#ImageUpload').val('');
+                            $('#CorrViewDoc').show();
+                            $('#CorrImgExist').val('ImgExist');
+                            $('#CameraOpenViewMainAddrs').append($('#CameraOpenViewAddrsSign'));
+                            swal('Document not saved');
+                        }
+                        else {
+                            swal('Try Again..!')
+                        }
+                    }
+                });
+
+            });
+            $('#btnclear').click(function () {
+                debugger;
+                signaturePad.clear();
+                drawSignatureLine();
+            });
+
+            function drawSignatureLine() {
+                var context = canvas.getContext('2d');
+                context.lineWidth = .5;
+                context.strokeStyle = '#333';
+                context.beginPath();
+                context.moveTo(0, 150);
+                context.lineTo(500, 150);
+                context.stroke();
+            }
+        });
+        
+    </script>
+    <script>
+        $(document).ready(function () {
+            $("#DocRejecttxt").hide();
+            $("#Docsubmit").hide();
+        });
+    </script>
+        <script>
+        $('#DocApprove').click(function () {
+            debugger;
+            $("#DocRejecttxt").hide();
+            $.ajax({
+
+                url: '/KYCQuickEnroll/GetApprovedFlag?selectedValue=' + $("#DocRejecttxt").val() + '&appType=' + 'Doc',
+                type: 'POST',
+                dataType: 'json',
+                data: '',
+                contentType: 'application/json; charset=utf-8',
+                success: function (data) { 
+                    
+                     swal('Document Approved Successfully');
+                    $("html, body").animate({ scrollTop: 0 }, 600);
+                    swal('Document Approved Successfully');
+                     $("#bg3").addClass("bg-green");
+                     $("#DocApprove").addClass("bg-green");
+
+
+                    if (result == "1"){
+
+                        //alert("hello");
+                         $('#Litab8').show();
+                           $("#bg").addClass("bg-green");
+
+                    }else{
+                        
+                        $('#Litab8').hide();
+                    }
+
+                
+                
+                },
+                error: function (err) { alert(err); }
+            });
+        });
+    </script>
+    <script>
+        $('#DocReject').change(function () {
+            debugger;
+            $("#DocRejecttxt").show();
+
+        });
+    </script>
+    <script>
+        $('#DocRejecttxt').blur(function () {
+            debugger;
+            var reasonDOC = $("#DocRejecttxt").val();
+            $("#DocRejecttxt").show();
+            $.ajax({
+
+                url: '/KYCQuickEnroll/GetApprovedFlag?selectedValue=' + $("#DocRejecttxt").val() + '&appType=' + 'RDoc',
+                type: 'POST',
+                data: '',
+                contentType: 'application/json; charset=utf-8',
+                success: function (data) { swal("Document rejected with reject reason " + reasonDOC); },
+                error: function (err) { alert(err); }
+            });
+        });
+    </script>
+
+     <style>
+         .dsopct{
+             opacity:0;
+         }
+        .ldrdesign{
+            border-radius:50%;
+            border-bottom:5px dotted grey;
+            border-top:5px dotted black;
+            border-right:5px dotted black;
+            border-left:5px dotted black;
+            height:80px;
+            width:80px;
+            margin: 20% 50%;
+        }
+       
+    @@media only screen and (max-device-width:600px) and (min-device-width:300px){
+        .savebtn{
+            margin-bottom:6px;
+               width: 94%;
+        }
+    }
+    </style>
+    <link href="~/css/multiclass.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container-fluid pdcon" style="clear:both">
+        <div class="documentBx">
+
+                @Html.AntiForgeryToken()
+
+                <div class="mrgntpadmn" style="float:right;margin-top: -22px;">
+                    <label>Customer Reference Number :</label>
+                    <label>@ViewBag.CustomerDetailId</label>
+                </div>
+
+                <input type="hidden" id="POICam" />
+                <input type="hidden" id="POACam" />
+                <input type="hidden" id="SignCam" />
+                <div class="panel-heading pdpan" style="padding:6px!important;text-align:left;">
+                    <h3 class="panel-title">Captured Image</h3>
+                </div>
+                <div class="panel-body cddbrdr1" id="idpanel" >
+
+                    @Html.HiddenFor(model => model.CustomerDetailId)
+
+
+                    <div class="row">
+                     <div class="col-xl-2 col-lg-2 col-md-2 col-sm-6">
+                            <label>Image Photo</label>
+                             </div>
+                             <div class="col-xl-2 col-lg-2 col-md-2 col-sm-6">
+                                    <img  src="@ViewBag.liveimage" id="imagebtn" class="appl_photo zoomDocument photoimg" style=""/>
+                            </div>
+                     
+                  </div>
+                </div>
+                <div class="space35doc"></div>
+                @if (ViewBag.poi == "Y")
+                {
+                    <div class="" style="">
+                        <div class="panel-heading pdpan rkyclft" style="padding:6px!important;text-align:left;">
+                            <h3 class="panel-title">Upload Identity Document</h3>
+                        </div>
+                        <div class="panel-body cddbrdr1" id="idpanel">
+                            <div class="row">
+                                <div class="col-xl-2 col-lg-2 col-md-2 col-sm-6">
+                                    <label>Proof of identity <img src="assets/img/info-tip.png" data-toggle="tooltip" data-placement="top" title="" data-original-title="Identity proof documents"></label>
+                                </div>
+                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6">
+                                    @if (ViewBag.poi == "Y")
+                                    {
+                                        @* @if (ViewBag.DocPOI != null)
+                                            {
+                                            @Html.TextBox("ddl_idProof",(string)ViewBag.DocPOI,new { @id = "ddl_idProof", @class = "form-control txtboxfnt_sz inputsectbx fnt-input", @disabled="true"})
+                                            }
+                                            else
+                                            {*@
+
+                                        @* @Html.DropDownListFor(model => model.ProofOfIdCode, ViewBag.proofOfId as SelectList, "--Select--", new { @class = "form-control dropdownfnt_sz", @id = "ddl_idProof", @onchange = "ProofIdChang(this)" })*@
+                                        if (ViewBag.AdminFlag != "AdminFlag")
+                                        {
+                                            @Html.DropDownListFor(model =>  model.ProofOfIdCode, (IEnumerable <SelectListItem>)ViewBag.proofOfId,  "--Select--", new
+                                            {
+                                             @id = "ddl_idProof",
+                                              @onchange = "ProofIdChang(this)",
+                                           @class = "form-control dropdownfnt_sz select2"})
+                                        }
+                                        @*}*@
+
+
+                                    }
+                                    else
+                                    {
+                                        @*    @Html.DropDownListFor(model => model.ProofOfIdCode, ViewBag.proofOfId as SelectList, "--Select--", new { @class = "form-control dropdownfnt_sz", @id = "ddl_idProof", @disabled = true, @onchange = "ProofIdChang(this)" })*@
+                                        if (ViewBag.AdminFlag != "AdminFlag")
+                                        {
+                                            @Html.DropDownListFor(model =>  model.ProofOfIdCode, (IEnumerable <SelectListItem>)ViewBag.proofOfId,  "--Select--", new
+                                            {
+                                             @id = "ddl_idProof",
+                                              @onchange = "ProofIdChang(this)",
+                                               @disabled = true,
+                                           @class = "form-control dropdownfnt_sz select2"@*, @maxlength = 50*@})
+                                        }
+                                    }
+                                    @Html.ValidationMessageFor(model => model.ProofOfIdCode, "", new { @class = "text-danger" })
+                                </div>
+                                @if (ViewBag.poi == "Y")
+                                {
+
+                                    if (ViewBag.AdminFlag != "AdminFlag")
+                                    {
+
+                                        <div class="col-xl-2 col-lg-2 col-md-2 col-sm-4 ">
+                                            <div class="txtalgnC" id="validate_poi">
+                                                @* <a class="flt_lft uploadbtn-primary choose_filebtn signupldwrp nmneupldlnk" href='javascript:;' style="">
+                                                    <img src="~/Content/imgs/icons/upload.png" class="nmneupldimg uploadImgeIcon " />
+                                                    @ * <input type="file" id="fileInput" multiple class="upload_filein nmneeupldinpt" name="UploadprfOfId" size="40" data-val="true">* @
+                                                    <input type="file" class="upload_filein nmneeupldinpt" name="UploadprfOfId" size="40" id="fileInput" data-val="true" style="margin-left:28px">
+                                                    </a>*@
+
+
+                                                <div>
+                                                    @*<label for="fileInput" class="btn btn-primary" style="margin-left: 20px;">Upload</label>*@
+                                                    @*<img src="~/Images/Image/red_upload_final.png" style="width: 52px;" />*@
+                                                    <i class="fa-solid fa-file-arrow-up doc_icons"></i>
+                                                    <input id="fileInput" style="opacity: 0;;margin-top: -41px;width: 35%;margin-left: 66px;cursor: pointer;" data-val="true" type="file">
+                                                </div>
+
+
+                                                @Html.ValidationMessageFor(model => model.UploadprfOfId, "", new { @class = "text-danger" })
+                                                <span class='label-info word_break' id="upload-idProof-info" style=""></span>
+
+                                                <div class="clear"></div>
+                                                <label class="upload_cq_textnew" style="">Max Size 5 MB<br />Supported Files<br />JPEG,JPG,PNG</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xl-1 col-lg-1 col-md-1 col-sm-4 init_cam_div" style="">
+                                           @* <img src="~/Images/Image/cam.png" id="CapturePOI" class="cstimgcam float_nn flt_lft" style="width:65px;height:auto;cursor: pointer;" onclick="OpenPOIcamera();" />*@
+                                            <i class="fa-solid fa-camera cstimgcam float_nn flt_lft doc_icons" onclick="OpenPOIcamera();"></i>
+                                           <label class="init_click" style="">Click Here</label>
+                                        </div>
+                                    }
+                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4  alert alert-info pic-cords  altop dsopct dsopct">
+                                        <div class="cap-img ">
+                                            <div id="DOC_resultPOI" class="color_blue captrimg" style="float: left;text-align:left;font-size:14px">Your captured image will appear here...</div>
+                                        </div>
+
+                                    </div>
+                                    <div id="CameraPOIView"></div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                    <div id="CropPdfForm"></div>
+                    <div id="docdetails"></div>
+                    <div id="docdetailsForcamera"></div>
+                    <div id="Digil1" style="position:fixed;background-color: #cdcdcd5e;">
+                        <i class=" fa fa-pulse fa-fw dgldr ldrdesign" style="height:70px;width:70px;">  
+
+                        </i>
+
+                    </div>
+                    <div id="Addloder"></div>
+                    <div id="Docsign">
+                        <img src="~/Images/loader/Dual Ring-1s-200px.gif">
+                    </div>
+                    <div id="overlay_disabl"></div>
+                    //for cropping view poi
+
+
+                }
+
+                @if (ViewBag.poca == "Y")
+                {
+                    <div class="">
+                        <div class="panel-heading pdpan cddmrgnh rkyclft" style="padding:6px!important;text-align:left;">
+                            <h3 class="panel-title">Upload Address Document</h3>
+                        </div>
+                        <div class="panel-body cddbrdr1" id="idpanel">
+                            <div class="row">
+                                @if (ViewBag.sa == "Y")
+                                {
+                                    <div class="col-xl-2 col-lg-2 col-md-2 col-sm-6">
+                                        <label>Proof Of Address <img src="assets/img/info-tip.png" data-toggle="tooltip" data-placement="top" title="" data-original-title="Proof Of Address"></label>
+                                    </div>
+
+                                }
+                                else
+                                {
+                                    @Html.LabelFor(model => model.ProofOfCorrAddCode, htmlAttributes: new { @class = "col-xl-2 col-lg-2 col-md-2 col-sm-6 paddress", style = "" })
+                                }
+                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6">
+                                    @if (ViewBag.poca == "Y")
+                                    {
+                                        @*@if (ViewBag.DocPOA != null)
+                                            {
+                                            @Html.TextBox("ddl_corrAdd",(string)ViewBag.DocPOA,new { @id = "ddl_corrAdd", @class = "form-control txtboxfnt_sz inputsectbx fnt-input", @disabled="true"})
+                                            }
+                                            else
+                                            {*@
+                                        if (ViewBag.AdminFlag != "AdminFlag")
+                                        {
+                                            @Html.DropDownListFor(model =>  model.ProofOfCorrAddCode, (IEnumerable <SelectListItem>)ViewBag.proofOfCorrAdd,  "--Select--", new
+                                            {
+                                             @id = "ddl_corrAdd",
+                                             @onchange = "ProofAddChang(this)",
+                                            @class = "form-control dropdownfnt_sz select2"})
+                                        }
+                                        @*}*@
+
+
+                                    }
+                                    else
+                                    {
+                                        @*   @Html.DropDownListFor(model => model.ProofOfCorrAddCode, ViewBag.proofOfCorrAdd as SelectList, "--Select--", new { @class = "form-control dropdownfnt_sz", @id = "ddl_corrAdd", @disabled = true, @onchange = "ProofAddChang(this)" })*@
+                                        if (ViewBag.AdminFlag != "AdminFlag")
+                                        {
+                                            @Html.DropDownListFor(model =>  model.ProofOfCorrAddCode, (IEnumerable <SelectListItem>)ViewBag.proofOfCorrAdd,  "--Select--", new
+                                            {
+                                             @id = "ddl_corrAdd",
+                                             @onchange = "ProofAddChang(this)",
+                                              @disabled = true,
+                                            @class = "form-control dropdownfnt_sz select2"@*, @maxlength = 50*@})
+                                        }
+                                    }
+
+                                    @Html.ValidationMessageFor(model => model.ProofOfCorrAddCode, "", new { @class = "text-danger" })
+                                </div>
+                                @if (ViewBag.poca == "Y")
+                                {
+                                    if (ViewBag.AdminFlag != "AdminFlag")
+                                    {
+                                        <div class="col-xl-2 col-lg-2 col-md-2 col-sm-4" style="">
+                                            <div class="txtalgnC" id="validate_poca">
+                                                @*<a class='uploadbtn-primary choose_filebtn nmneupldlnk' href='javascript:;' style="">
+                                                    <img src="~/Content/imgs/icons/upload.png" class="nmneupldimg upImag " />
+                                                    <input type="file" id="corrAdd" multiple class="upload_filein1 nmneeupldinpt" name="UploadprfOfCorrAdd" size="40" data-val="true">
+                                                    <input type="file" class="upload_filein nmneeupldinpt" name="UploadprfOfCorrAdd" size="40" id="corrAdd" data-val="true" style="margin-left:28px">
+                                                    </a>*@
+
+                                                <div>
+                                                    @* <label for="corrAdd" class="btn btn-primary" style="margin-left: 20px;">Upload</label>*@
+
+                                                    @*<img src="~/Images/Image/red_upload_final.png" style="width: 52px;"/>*@
+                                                    <i class="fa-solid fa-file-arrow-up doc_icons"></i>
+                                                    <input id="corrAdd" style="opacity: 0;margin-top: -41px;width: 35%;margin-left: 66px;cursor: pointer;" data-val="true" type="file">
+                                                </div>
+
+                                                @Html.ValidationMessageFor(model => model.UploadprfOfCorrAdd, "", new { @class = "text-danger pddnglft8" })
+                                                <span class='label-info word_break' id="upload-corrAdd-info" style=""></span>
+
+                                                <div class="clear"></div>
+                                                <label class="upload_cq_text" style="">Max Size 5 MB<br />Supported Files<br />JPEG,JPG,PNG</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xl-1 col-lg-1 col-md-1 col-sm-4 init_cam_div" style="">
+                                            @*<img src="~/Images/Image/cam.png" id="CapturePOA" class="cstimgcam float_nn flt_lft" style="width:65px;height:auto;cursor: pointer;margin-top: -6px;" onclick="OpenPOAcamera();" />*@
+                                            <i class="fa-solid fa-camera cstimgcam float_nn flt_lft doc_icons" onclick="OpenPOAcamera();"></i>
+                                            <label class="init_click" style="">Click Here</label>
+                                        </div>
+                                    }
+                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4  alert alert-info pic-cords  altop dsopct">
+                                        <div class="cap-img ">
+                                            <div id="DOC_resultPOA" class="color_blue captrimg" style="float: left;text-align: center;font-size:14px">Your captured image will appear here...</div>
+                                        </div>
+
+                                    </div>
+
+                                  
+                                    <div id="CameraPOAView" style="width:100%"></div>
+                                }
+
+                            </div>
+                        </div>
+                    </div>
+                     <div id="Digil1" style="position:fixed;background-color: #cdcdcd5e;">
+                        <i class=" fa fa-pulse fa-fw dgldr ldrdesign" style="height:70px;width:70px;">  
+                        </i>
+                    </div>
+                    <div class="clear"></div>
+                    <div id="CropPdfForm_CA"></div>
+                    <div id="docdetails_Add"></div>
+                    <div id="docdetails_AddForCamera"></div>
+                    <div id="l2Digi"></div>
+                    <div id="okloader">
+                        <img src="~/Images/loader/Dual Ring-1s-200px.gif">
+                    </div>
+                    <div id="oksign">
+                        <img src="~/Images/loader/Dual Ring-1s-200px.gif">
+                    </div>
+                    <div id="overlay_disabl"></div>
+                }
+
+                @if (ViewBag.poca == "Y")
+                {
+                    <div class="signdiv">
+                        <div class="panel-heading pdpan cddmrgnh rkyclft" style="padding:6px!important;text-align:left;">
+                            <h3 class="panel-title">Upload Signature Document</h3>
+                        </div>
+                        <div class="panel-body cddbrdr1" id="idpanel">
+                            <div class="row">
+                                @if (ViewBag.sa == "Y")
+                                {
+                                    <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12">
+                                        <label>Signature<img src="assets/img/info-tip.png" data-toggle="tooltip" data-placement="top" title="" data-original-title="Signature"></label>
+                                    </div>
+
+                                }
+                                else
+                                {
+                                    @Html.LabelFor(model => model.Signature, htmlAttributes: new { @class = "col-xl-2 col-md-2 col-sm-2", style = "" })
+                                }
+
+                                @if (ViewBag.poca == "Y")
+                                {
+                                    if (ViewBag.AdminFlag != "AdminFlag")
+                                    {
+                                        <div class="col-xl-2 col-lg-2 col-md-2 col-sm-4" style="">
+                                            <div class="txtalgnC" id="validate_poca">
+                                                @*<a class='uploadbtn-primary choose_filebtn nmneupldlnk' href='javascript:;' style="">*@
+                                                @*<img src="~/Content/imgs/icons/upload.png" class="nmneupldimg upSign" />*@
+                                                @*<input type="button" value="upload"/>*@
+                                                @*<input type="file" id="AddSign" class="upload_filein1 nmneeupldinpt" name="UploadprfOfSign" size="40" data-val="true" style="left:102px;margin-top:-1px!important">*@
+                                                @*<input type="file" class="upload_filein nmneeupldinpt" name="Signature" size="40" id="AddSign" data-val="true" style="margin-left:28px">*@
+                                                @* </a>*@
+                                                <div>
+                                                    @*<label for="AddSign" class="btn btn-primary" style="margin-left: 20px;">Upload</label>*@
+                                                   @* <img src="~/Images/Image/red_upload_final.png" style="width: 52px;"/>*@
+                                                    <i class="fa-solid fa-file-arrow-up doc_icons"></i>
+                                                    <input id="AddSign" style="opacity: 0;margin-top: -41px;width: 35%;margin-left: 66px;cursor: pointer;" data-val="true" type="file">
+                                                </div>
+
+                                                @Html.ValidationMessageFor(model => model.Signature, "", new { @class = "text-danger pddnglft8" })
+                                                <span class='label-info word_break' id="upload-corrAdd-info" style=""></span>
+
+                                                <div class="clear"></div>
+                                                <label class="upload_cq_text" style="">Max Size 5 MB<br />Supported Files<br />JPEG,JPG,PNG</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xl-1 col-lg-1 col-md-1 col-sm-4 init_cam_div" style="">
+                                           @* <img src="~/Images/Image/cam.png" id="CapturePOA" class="cstimgcam float_nn flt_lft " style="width:65px;height:auto;cursor: pointer;" onclick="OpenSigncamera();" />*@
+                                            <i class="fa-solid fa-camera cstimgcam float_nn flt_lft doc_icons" id="CapturePOA" onclick="OpenSigncamera();"></i>
+                                           <label class="init_click" style="">Click Here</label>
+                                        </div>
+                                    }
+                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-4  alert alert-info pic-cords altop dsopct" style="height:100%;position: inherit;">
+                                        <div class="cap-img ">
+                                            <div id="DOC_resultSign" class="color_blue captrimg" style="float: left;text-align: center;font-size:14px">Your captured image will appear here...</div>
+                                        </div>
+
+                                    </div>
+                                    <div id="CameraSignView" style="width:100%"></div>
+                                    <div id="SignaturePadImage"></div>
+
+
+
+                                }
+
+                            </div>
+                            <div style="width:100%;float:left;display:none;">
+                                <section class="signature-component">
+
+                                    <h2 class="sign" style="width:100%">Draw Signature with Mouse or Touch @*<img src="~/Content/imgs/signcanvas.png" class="signcanvs" />*@ <img src="../Content/imgs/signcanvas12.png" class="signcanvs" /></h2>
+
+
+                                    <div class="col-md-12 colwidth"></div>
+                                    <div class="col-md-12 colwidth">
+                                        <canvas id="thecanvas" class="signature_box" style="width:100%;border:1px  solid black;margin-left:0%;cursor:pointer"></canvas>
+                                    </div>
+                                </section>
+                                <div class="buttons " style="float: left;width: 100%;padding-left: 11px;margin-top:-2px">
+                                    <button type="button" class="save btn btn-primary right1 bbutton savebtn" style="">Save</button>
+                                    <button type="button" id="btnclear" class="clearbtn btn btn-primary right1 bbutton savebtn" style="">Clear</button>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                    <div id="docdetails_Sign"></div>
+                    <div id="docdetails_SignForCamera"></div>
+
+                }
+                
+
+                @if (ViewBag.AdminFlag != "AdminFlag")
+                {
+                    <div class="">
+                        <input type="hidden" value="@ViewBag.CustomerDetailsId" id="CustomerDetailsId" />
+                        <input type="Submit" id="sacon"  value="Save & Continue" class="btn btn-primary right1 custSubtn bbutton scbutton" style="margin-top:1%;float:right;height:45px;margin-bottom:10px;" onclick="saveofDecumentValidation()"/>
+                    </div>
+                }
+            
+
+            <div class="apprejbox appBox" style="width:100%;">
+                        @if (ViewBag.Admin == "DocumentFlag")
+                        {
+                    @if (ViewBag.userid != null)
+                    {
+                        <script>
+                            $(document).ready(function(){
+                                $(".progressbar").hide();
+                            });
+                        </script>
+                        <div class="digibtns btnsdigi1" style="margin-bottom:10px;margin-left: 65%;">  
+                            <input type="button"  class=" radioBtn btn btn-primary apprjct" id = "DocApprove" style = "margin-left:-67%" value="Approve" name="isAccountApproveOrReject"  />
+
+                            <input type="button"   class=" radioBtn btn btn-primary  apprjct" id = "DocReject" style = "margin-left:-45%" value="Reject" name="isAccountApproveOrReject"  />
+
+                            <input class="digitext" type="text" id="DocRejecttxt" name="DigiRejecttxt1">
+                            <input type="button" class="btn btn-primary" id="Docsubmit" value="Submit" />
+                        </div>
+                    }
+                }
+                    </div>
+
+                    <div class="apprejbox appBox" style="width:100%;">
+                        @if (ViewBag.Admin == "DocumentFlag")
+                        {
+                    @if (ViewBag.REKYCQ != null)
+                    {
+                        <script>
+                            $(document).ready(function(){
+                                $(".progressbar").hide();
+                            });
+                        </script>
+                        <div class="digibtns btnsdigi1" style="margin-bottom:10px;margin-left: 65%;">  
+                            <input type="button"  class=" radioBtn btn btn-primary apprjct" id = "DocApprove" style = "margin-left:-67%" value="Approve" name="isAccountApproveOrReject"  />
+
+                            <input type="button"   class=" radioBtn btn btn-primary  apprjct" id = "DocReject" style = "margin-left:-45%" value="Reject" name="isAccountApproveOrReject"  />
+
+                            <input class="digitext" type="text" id="DocRejecttxt" name="DigiRejecttxt1">
+                            <input type="button" class="btn btn-primary" id="Docsubmit" value="Submit" />
+                        </div>
+                    }
+                }
+                    </div>
+
+
+                    <div class="apprejbox appBox" style="width:100%;">
+                        @if (ViewBag.rekycrekyc == "DocumentFlag")
+                        {
+                    
+                        <div class="digibtns btnsdigi1" style="margin-bottom:10px;margin-left: 65%;">  
+                            <input type="button"  class=" radioBtn btn btn-primary apprjct init_btn_app" id = "DocApproveforrekyc" style = "margin-left:-67%" value="Approve" name="isAccountApproveOrReject"  />
+
+                            <input type="button"   class=" radioBtn btn btn-primary  apprjct init_btn_app" id = "DocRejectforrekyc" style = "margin-left:-45%" value="Reject" name="isAccountApproveOrReject"  />
+
+                            <input class="digitext" type="text" id="DocRejecttxtforrekyc" name="DigiRejecttxt1" style = "margin-left:2%;margin-left: 2%;font-size: 16px;" >
+                            <input type="button" class="btn btn-primary" id="ReKycDOCsubmit" value="Submit" style ="margin-left:2%;margin-left: 2%; font-size: 16px;"/>
+                           
+                        </div>
+                    
+                }
+                    </div>
+                    
+
+        </div>
+        <img src="#" id="IMGDATA" alt="Alternate Text" hidden="hidden" />
+        <img src="" id="Image1" alt="" style="display: none" />
+        <div id="Crop_popup" />
+        <div id="DigiCertiDD"></div>
+        <div id="DIGIbagDD"></div>
+        <div id="ImageCropForm"> </div>
+        <div id="bankbg"></div>
+        <div id="viewbg"></div>
+    </div>
+   
+</body>
+
+</html>

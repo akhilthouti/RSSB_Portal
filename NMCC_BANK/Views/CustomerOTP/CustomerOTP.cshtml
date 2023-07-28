@@ -1,0 +1,270 @@
+﻿@model INDO_FIN_NET.Models.VKYC.CustomerModel
+
+
+@{
+    ViewBag.Title = "Customer OTP";
+}
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content1/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content1/responsive.css" rel="stylesheet" />
+    <link href="~/Content1/ " rel="stylesheet" />
+    <script src="~/Scripts1/jquery-3.3.1.min.js"></script>
+
+    <script type="text/javascript">
+
+        function Display() {
+            debugger;
+
+            var OTP = $('#Txt_Otp').val();
+
+            debugger;
+            $.ajax({
+
+                url: '/CustomerOTP/VerifyOTP?Otp=' + OTP,
+                type: 'POST',
+                cache: 'false',
+
+                success: function (result) {
+                    debugger;
+                    if (result == true) {
+                        alert("OTP Verified Successfully !");
+                    } else {
+                        alert("Enter Valid OTP");
+                    }
+                }
+            });
+
+        }
+    </script>
+
+    <style>
+        #topbar{
+            display: none!important;}
+        @@media screen and (max-width:1000px) {
+            .init_img_vkyc {
+                margin-left: 0px !important;
+                height: 226px !important;
+                margin-bottom: 17px !important;
+            }
+
+            .init_text_div {
+                display: flex1 !important;
+                justify-content: center !important;
+                flex-direction: column !important;
+                align-items: center !important;
+            }
+
+            .init_h {
+                text-align: center !important;
+                font-size: 18px!important;
+            }
+
+            .init_vkyc_btn_cus {
+                font-weight: 500!important;
+            }
+        }
+
+        #VerifyBtn:hover {
+            color: #333 !important;
+            background-color: #939191 !important;
+            border-color: #adadad;
+        }
+
+        .row {
+            /*display: flex;
+                    align-items: center;
+                    justify-content: center;*/
+            margin: 35px 0 100px 0px;
+        }
+
+        .init_img_vkyc {
+            margin-left: 200px;
+            /* height: 407px;*/
+        }
+
+        .init_text_div {
+            display: flex;
+            flex-direction: column;
+            /* justify-items: center; */
+            justify-content: center;
+        }
+
+        .init_h {
+            font-size: 26px;
+            font-weight: 600;
+            color: #534b4b;
+            font-family: cursive !important;
+            margin-bottom: 12px;
+        }
+
+        .init_vkyc_btn_cus {
+            font-size: 18px;
+            font-weight: 700;
+            padding: 4px 29px;
+            width: 130px;
+        }
+
+        .init_img_div_otp {
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+
+</head>
+
+
+<body>
+    <div class="init_vky">
+    </div>
+    @*<div class="container-fluid" style="padding:0px;">
+    <div class="row" style="margin:0%">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light dashboard-menu" style="padding: -0.4rem 1rem !important;">
+    <button class="navbar-toggler posmob" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent" style="font-size: 15px;">
+    <ul class="navbar-nav mr-auto" style=" ">
+    <li class="nav-item">
+    <a class="nav-link" href="#">Digital KYC</a>
+    </li>
+    <li class="nav-item">
+    <a class="nav-link" href="#">Digital KYC</a>
+    </li>
+    <li class="nav-item">
+    <a class="nav-link" href="#">Data Verification</a>
+    </li>
+    <li class="nav-item">
+    <a class="nav-link" href="#">Update Digital KYC Data</a>
+    </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+    <a class="nav-link" href="#" onclick="LogOut()">Logout</a>
+    </form>
+    </div>
+    </nav>
+    </div>
+    </div>*@
+
+
+
+    @*<header id="header" class="">
+    <div class="container-fluid d-flex align-items-center">
+    </div>
+    </header>*@
+
+
+
+    @* <div class="container-fluid " style="height:390px;padding:0px;">
+    <div class="col-lg-12" style="text-align:center;background-color:blue;color:#fff;">
+    <h2>Customer OTP Verification Process </h2>
+    </div>
+    <div class="col-lg-12 d-flex" style="margin-top: 10px;justify-content: center;">
+
+    <div class="col-lg-5 " style="height: 274px; background-color:#dddef7;">
+    <div style="text-align:center">
+
+    <h3>Customer OTP Verification </h3>
+
+
+    <div class="form-group" style=" ">
+
+
+    <div class="" style="margin-bottom: 8px;">
+    @Html.Label("Mobile NO: ")*@
+    @*@Html.Label("Mobile NO: ", new { @class = "control-label  float_left  pdd_zero paddLeft  col-lg-4" })*@
+    @* <div class="col-lg-8">
+    @Html.TextBoxFor(m => m.Mobile, new { @id = "Txt_Mob_no", @class = "form-control ", @readonly = "readonly" })
+    </div>
+    </div>
+    </div>*@
+
+    @* <div id="DivEmail" class="form-group  " style="padding-top:2%" onclick="showhide()">
+
+    <div class="" style="margin-bottom: 8px;">
+    @Html.Label("Email ID: ")*@
+    @*@Html.Label("Email ID: ", new { @class = "control-label  float_left pdd_emaiid paddLeft  col-lg-4" })*@
+    @* <div class="col-lg-8">
+
+    @Html.TextBoxFor(m => m.Email_Id, new { @id = "", @class = "form-control ", @readonly = "readonly" })
+    </div>
+    </div>
+    </div>*@
+
+
+
+    @*   <div class="form-group " style="padding-top:2%">
+
+    <div class="" style="margin-bottom: 8px;">
+    @Html.Label("Enter OTP: ")*@
+    @*@Html.Label("Enter OTP: ", new { @class = "control-label  float_left  pdd_zero paddLeft col-lg-4" })*@
+    @*  <div class="col-lg-8">
+    @Html.TextBox("Enter OTP", "", new { @id = "Txt_Otp", @class = "form-control " })
+    </div>
+    </div>
+
+    </div>
+    *@
+
+
+
+
+
+    @*   <div class="btn_margin col-sm-4" style="padding-left: 75px;margin-top: 16px;">
+
+    <input type="submit" name="name" value="Verify OTP" id="VerifyBtn" class=" btn1 btn btn-default" style="background-color: blue;color: white;" onclick="Display()" />
+
+    </div>
+
+    @using (Html.BeginForm("CustVKYC", "CustomerOTP", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+    <div style=" " class="col-12">
+
+    <div class="col-sm-4">
+    </div>
+
+
+
+    </div>
+    }
+
+
+    </div>
+    </div>
+
+    </div>
+    </div>*@
+    @using (Html.BeginForm("CustVKYC", "CustomerOTP", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <div class="row">
+            <div class="col-lg-6 col-md-12 col-sm-12 init_img_div_otp">
+               <img src="~/Content/votp.jpg" class="init_img_vkyc" />
+             
+            </div>
+            <div class="col-lg-6 col-md-12 col-sm-12 init_text_div">
+                <h1 class="init_h">Click on VKYC button to Proceed further...</h1>
+                <input type="submit" name="name" value="VKYC" id="VKycbtn" style="font-size: 18px;font-weight: 700;padding: 4px 29px;" class="btn btn-primary init_vkyc_btn_cus" />
+            </div>
+        </div>
+    }
+    <script>
+        $(document).ready(function () {
+            $("hr").hide();
+            $("#footer").hide();
+        });
+    </script>
+</body>
+
+
+</html>
+
+
+
+

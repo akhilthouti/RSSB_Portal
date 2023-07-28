@@ -1,0 +1,224 @@
+﻿@model ServiceProvider1.Models.UserDetails.ClsPdf
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+   
+</head>
+<body>
+    <div id="Pdf">
+        <div id="SummeryDataView">
+
+            <div class="mgbtm_2">
+
+                <fieldset class="panel panel-primary list-panel">
+
+                    <div class="panel-heading list-panel-heading">
+
+                        <h3 class="panel-title list-panel-title IPV_wdth">Summery Sheet Verification Details</h3>
+
+                     
+                    </div>
+                    <!--start page1 (pdf page:1)-->
+                    <div class="start-pg1 page_brk ovfl_at">
+                   
+                        <div class="clearfix"></div>
+
+                        <table class="dmtsct_tabel_row PDF_tb">
+                            <tbody>
+                                <tr class="table_bg">
+                                    <td>
+                                        Sr.<br />  No.
+                                    </td>
+                                    <td>DESCRIPTION</td>
+                                    <td colspan="5">DETAILS</td>
+                                    <td>Verify</td>
+                                </tr>
+                                <tr>
+                                    <td rowspan="7">1</td>
+                                    <td class="light_blu">PHOTOGRAPH</td>
+                                    <td class="light_blu" colspan="5">CUSTOMER ENTERED DETAILS</td>
+                                    <td class="light_blu"></td>
+                                </tr>
+                                <tr>
+
+                                    <td rowspan="6" class="Pick_txt">
+                                        <img src="data:image/jpg;base64,@(Html.Raw(Model.CPhoto))" alt="" id="PANphoto" class="appl_photo" />
+                                    </td>
+                                    <td>NAME</td>
+                                    <td>
+                                        @Html.TextBoxFor(m => m.CFirstName, new { @class = "BRD_none" })
+                                    </td>
+                                    <td colspan="2">
+                                        @Html.TextBoxFor(m => m.CMiddleName, new { @class = "BRD_none" })
+                                    </td>
+                                    <td>
+                                        @Html.TextBoxFor(m => m.CLastName, new { @class = "BRD_none" })
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>DATE OF BIRTH</td>
+                                    <td>
+                                        @Html.TextBoxFor(m => m.CDateOfBirth, new { @class = "BRD_none" })
+
+                                    </td>
+                                    <td></td>
+                                    <td>GENDER</td>
+                                    <td>
+                                        @Html.TextBoxFor(m => m.CGender, new { @class = "BRD_none" })
+                                    </td>
+                                    <td></td>
+
+                                </tr>
+                                <tr>
+                                    <td>ADDRESS</td>
+                                    <td>
+                                        @Html.TextBoxFor(m => m.CAddress, new { @class = "BRD_none" })
+                                    </td>
+                                
+
+                                </tr>
+                        
+                                <tr>
+                                    <td>EMAIL ID</td>
+                                    <td colspan="3">
+                                        @Html.TextBoxFor(m => m.CEmailId, new { @class = "BRD_none" })
+
+                                    </td>
+                                    @if (@ViewBag.IsMobileV == 1)
+                                    {
+                                        <td colspan="1" class="green_txt">MAIL SYSTEM VERIFIED </td>
+                                    }
+                                    else
+                                    {
+                                        <td colspan="1" class="green_txt">NOT VERIFIED </td>
+                                    }
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>MOBILE NO.</td>
+                                    <td colspan="2">
+                                        @Html.TextBoxFor(m => m.CMobileNo, new { @class = "BRD_none" })
+
+                                    </td>
+                                    @if (@ViewBag.IsEmailV == 1)
+                                    {
+                                        <td colspan="2" class="green_txt">MOBILE - OTP VERIFIED</td>
+                                    }
+                                    else
+                                    {
+                                        <td colspan="2" class="green_txt">Not VERIFIED</td>
+                                    }
+                                    <td></td>
+                                </tr>
+
+                                <tr>
+                                    <td rowspan="6">3.</td>
+                                    <td class="light_blu">AADHAAR CARD NO.</td>
+                                    <td class="light_blu">
+                                        @Html.TextBoxFor(m => m.AadharNumber, new { @class = "pan_carDTL" })
+
+                                    </td>
+                                    <td colspan="4" class="light_blu">
+                                        AADHAAR CARD DETAILS
+                                    </td>
+                                    <td class="light_blu"></td>
+                                </tr>
+                                <tr>
+                                    @if (Model.AadharPhoto != null)
+                                    {
+                                        <td rowspan="5" colspan="2" class="Pick_txt">
+
+                                            <img src="data:image/jpg;base64,@(Html.Raw(Model.AadharPhoto))" alt="" id="Aadharphoto" class="appl_photo IMG_hgWd" />
+                                        </td>
+                                    }
+
+                                    <td>NAME</td>
+                                    <td colspan="2">
+                                        @Html.TextBoxFor(m => m.AadharName, new { @class = "aadhar_pc" })
+                                    </td>
+                                    @if (Model.AadharName != null)
+                                    {
+                                        <td colspan="1">
+                                            ON-LINE VERIFIED
+                                        </td>
+                                    }
+                                    else
+                                    {
+                                        <td colspan="1">
+                                            NOT VERIFIED
+                                        </td>
+                                    }
+                                    <td></td>
+                                </tr>
+
+                                <tr>
+                                    <td>DATE OF BIRTH</td>
+                                    <td colspan="2">
+                                        @Html.TextBoxFor(m => m.AadharDOB, new { @class = "pan_txt30" })
+                                    </td>
+                                    @if (Model.AadharDOB != null)
+                                    {
+                                        <td colspan="1">
+                                            ON-LINE VERIFIED
+                                        </td>
+                                    }
+                                    else
+                                    {
+                                        <td colspan="1">
+                                            NOT VERIFIED
+                                        </td>
+                                    }
+                                    <td></td>
+                                </tr>
+
+                                <tr>
+                                    @*<td colspan="3">MATCH VALUE OF PHOTOGRAPH</td>
+                                    <td colspan="1">70%</td>*@
+                                    <td></td>
+
+                                </tr>
+
+                                <tr>
+                                    <td rowspan="2">ADDRESS</td>
+                                    <td class="green_txt">
+                                        @Html.TextBoxFor(m => m.AadharHouse, new { @class = "pan_txt30" })
+                                    </td>
+                                    <td class="green_txt">@Html.TextBoxFor(m => m.AadharVtc, new { @class = "pan_txt30" }) </td>
+                                    <td class="green_txt">@Html.TextBoxFor(m => m.AadharStreet, new { @class = "pan_txt30" })</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td class="green_txt">@Html.TextBoxFor(m => m.AadharCountry, new { @class = "pan_txt30" })</td>
+                                    <td class="green_txt">@Html.TextBoxFor(m => m.AadharState, new { @class = "pan_txt30" })</td>
+                                    <td class="green_txt">@Html.TextBoxFor(m => m.AadharPin_Code, new { @class = "pan_txt30" })</td>
+                                    <td></td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+
+                        <div class="clearfix"></div>
+                  
+
+
+                    </div>
+                    <!--end page1 (pdf page:1)-->
+                    <div class="clearfix"></div>
+                    <!--start page2 (pdf page:2)-->
+                    <!--start page2 (pdf page:2)-->
+                    <div class="clearfix"></div>
+
+                </fieldset>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

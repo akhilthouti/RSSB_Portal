@@ -1,0 +1,418 @@
+﻿@model INDO_FIN_NET.Models.clsCustAadharDataA
+
+@{
+    ViewBag.Title = "DigilockerAadharpdf";
+    Layout = null;
+}
+
+<html>
+<head>
+    @*@if (Model.Photo != null && Model.Photo != ".pdf")
+    {
+    <div style="font-size:15px; page-break-before:always;">
+    <img src="data:image/png;base64,@Model.Photo" />
+    </div>
+    }*@
+    <link href="~/Content/PDF/PDF.css" rel="stylesheet" />
+    @*@Styles.Render("~/bundles/Navidation")
+
+    @* @Styles.Render("~/bundles/LayoutCss")*@
+    @*@Scripts.Render("~/bundles/SweetAlertJs")
+    @Styles.Render("~/bundles/css")*@
+    <style>
+        .DOBCS {
+            width: 2%;
+        }
+    </style>
+</head>
+<body style="font-family:Arial;font-size:15px;padding:1%">
+    <div style="width:100%;float:left">
+        <div class="wdth60 AdharPdf" style="margin:0px;">
+
+            <img src="~/Content/imgs/Addudia.png" class="logopdf logoAdharPdf" />
+            @*<img src="~/Content/imgs/indofinnet_logo.png" class="logopdf" />*@
+
+
+        </div>
+    </div>
+    <div style="width: 96%;margin: 0% 2%;float:left;/*padding: 1%;*/background:#D8D8D8">
+        <h4 class="headWordSpace" style="color:#107ff6; text-align:center;"> <u><strong>AADHAR EKYC VERIFICATION</strong> </u></h4>
+
+    </div>
+    <div style="width: 100%;margin: 3% 3%;float:left;">
+        <div style="width: 50%;margin: 0% 0% 0% 4% ;float:left;  ">
+            @*<h5 style="margin: 1% 0% 0% 4%" class="headWordSpace"> For Bank use Only</h5>*@
+        </div>
+        <div style="width: 40%;height: auto;padding: 3% 2%;margin: 1% 1% 1% 2%;float: left;border: 1px solid black;">
+            <div style="border-bottom:1px solid black;border-bottom: none; width:100%;">
+
+                <div style="margin:1% 0% 0% 2%;">
+                    <table style="font-size:15px;">
+                        <tr>
+                            <td class="addharPadd ">
+                                Aaadhar Number:
+                            </td>
+                            <td class="addharPadd paddLeftTd">
+                                <input type="text" value="@Model.AadharNumber" class="brall flt_none" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="addharPadd">
+                                QuickEnroll Number:
+                            </td>
+                            <td class="addharPadd paddLeftTd">
+                                <input type="text" value="@Model.QuickEnrollNumber" class="brall flt_none" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="addharPadd">
+                                Transaction date:
+                            </td>
+                            <td class="addharPadd paddLeftTd">
+                                <input type="text" value="@DateTime.Now.ToString("dd/MM/yyyy")" class="brall flt_none" />
+                                @*<input type="text" class="bralltxt" style="width:48%" value="@DateTime.Now.ToString("dd/MM/yyyy")" />*@
+
+                            </td>
+                        </tr>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+        <div style="margin: 0% 0% 0% 9%;float:left;">
+        </div>
+        <div class="" style="width:20%;margin: 0.5% 1% 1% 11%;float:right;">
+
+            <div class="" style="width:100%;margin: 1% 14% 1% 4%; float: right;border: 1px solid black; height:auto">
+                <table>
+                    <tr>
+                        <td style="text-align:center"> Aaadhar Photo</td>
+                    </tr>
+                    <tr>
+
+                        <td class="camera-view" style="padding-left:0px">
+                            @if (Model.Photo != null)
+                            {
+                                <img src="data:image/png;base64,@Model.Photo " id="Livephoto" />
+                                <br />
+                                <br />
+                            }
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div style="width: 96%;margin: 0% 2%;float:left;/*padding: 1%;*/background:#D8D8D8;">
+        <h4 class="headWordSpace" style=" margin-left:2%;text-align:left;">
+            <strong>KYC Details </strong>
+        </h4>
+
+    </div>
+    <div style="width: 100%;margin: 0% 2% 3%;float:left;/*padding: 1%;*">
+        <table style="margin: 1% 0% 0% 2%;font-size:15px;">
+            <tr>
+                <td class="nameTable">
+                    Name
+                </td>
+                <td colspan="3" class="nameTable paddLeftTd"> <input type="text" value="@Model.FullName " class="brall flt_none"> </td>
+                @*<td>
+                &nbsp; &nbsp; &nbsp;
+                @if (Model.FullName != null)
+                {
+
+                foreach (char data in (Model.FullName.Length >= 48) ? Model.FullName.Substring(0, 48).PadRight(48, ' ') : Model.FullName.PadRight(Model.FullName.Length, ' '))
+                {
+                <input type="text" value="@data" class="accNumber" />
+                }
+                } else
+                {
+                foreach (char data in "                      ")
+                {
+
+                }
+                }
+                @*<input type="text" class="accNumber" />
+                <input type="text" class="accNumber" />
+                <input type="text" class="accNumber" />
+                <input type="text" class="accNumber" />
+                <input type="text" class="accNumber" />
+                <input type="text" class="accNumber" />
+                <input type="text" class="accNumber" />
+                <input type="text" class="accNumber" />
+                <input type="text" class="accNumber" />
+                <input type="text" class="accNumber" />
+                <input type="text" class="accNumber" />
+                <input type="text" class="accNumber" />
+                <input type="text" class="accNumber" />
+                <input type="text" class="accNumber" />
+                <input type="text" class="accNumber" />
+                <input type="text" class="accNumber" />
+                <input type="text" class="accNumber" />
+
+                </td>*@
+            </tr>
+            <tr>
+                <td class="nameTable">
+                    DOB
+                </td>
+                <td class="paddLeftTd">
+                    &nbsp;
+
+                    @if (Model.Day == null)
+                    {
+                        foreach (char data in "")
+                        {
+                            <input type="text" class="accNumber DOBCS" value="@data">
+
+                        }
+                    }
+
+
+                    else
+                    {
+                        foreach (char data in Model.Day)
+                        {
+                            <input type="text" class="accNumber DOBCS" value="@data" />
+
+                        }
+                    }
+                    <span class="accNumber" style="padding:3px;">/</span>
+                    @if (Model.Month == null)
+                    {
+                        foreach (char data in " ")
+                        {
+                            <input type="text" class="accNumber DOBCS" value="@data" />
+
+                        }
+                    }
+                    else
+                    {
+                        foreach (char data in Model.Month)
+                        {
+                            <input type="text" class="accNumber DOBCS" value="@data" />
+                        }
+                    }
+                    <span class="accNumber" style="padding:3px;">/</span>
+                    @if (Model.Year == null)
+                    {
+                        foreach (char data in " ")
+                        {
+                            <input type="text" value='@data' class="accNumber DOBCS" />
+                        }
+                    }
+                    else
+                    {
+
+                        //a = a.PadRight(3, ' ');
+                        foreach (char data in Model.Year)
+                        {
+                            <input type="text" value='@data' class="accNumber DOBCS" />
+                        }
+                    }
+
+                </td>
+
+            </tr>
+            <tr>
+                <td class="nameTable">
+                    Gender
+                </td>
+
+                @if (Model.gender == "M")
+                {
+                    <td width="100%" class="pad_o nameTable paddLeftTd" colspan="2">
+                        Male
+                    </td>
+                }
+                else
+                {
+                    <td width="100%" class="pad_o nameTable  paddLeftTd" colspan="2">
+                        Female
+                    </td>
+                }
+                @*@if (Model.gender == "M")
+                {
+                <td>
+                &nbsp; &nbsp; &nbsp;
+                <input type="text" class="accNumber" value="M">
+                <input type="text" class="accNumber" value="A">
+                <input type="text" class="accNumber" value="L">
+                <input type="text" class="accNumber" value="E">
+
+
+
+                </td>
+                }
+                else
+                {
+                <td>
+                &nbsp; &nbsp; &nbsp;
+                <input type="text" class="accNumber" vlaue="F">
+                <input type="text" class="accNumber" value="E">
+                <input type="text" class="accNumber" value="M">
+                <input type="text" class="accNumber" value="A">
+                <input type="text" class="accNumber" value="L">
+                <input type="text" class="accNumber" value="E">
+
+
+                </td>
+                }*@
+            </tr>
+
+            <tr>
+                <td class="nameTable">
+                    House
+                </td>
+                <td width="100%" class="pad_o nameTable paddLeftTd" colspan="3"> <input type="text" value="@Model.House" class="brall flt_none" /></td>
+
+            </tr>
+            <tr>
+                <td class="nameTable">
+                    Street
+                </td>
+                <td width="100%" class="pad_o nameTable paddLeftTd" colspan="3">
+                    <input type="text" value="@Model.street" class="brall flt_none" />
+                </td>
+
+            </tr>
+            <tr>
+                <td class="nameTable">
+                    Locality
+                </td>
+                <td width="100%" class="pad_o nameTable paddLeftTd" colspan="3"> <input type="text" value="@Model.Locality" class="brall flt_none" /></td>
+
+            </tr>
+            @*<tr>
+            <td class="nameTable">
+            Aadhar Number
+            </td>
+            <td width="120" class="pad_o nameTable" colspan="3">
+            <input type="text" value="@Model.AadharNumber" class="brall flt_none" />
+            </td>
+
+            </tr>*@
+
+            <tr>
+                <td class="nameTable">
+                    District
+                </td>
+                <td width="100%" class="pad_o nameTable paddLeftTd" colspan="3">
+                    <input type="text" value="@Model.District" class="brall flt_none" />
+                </td>
+
+            </tr>
+
+            <tr>
+                <td class="nameTable">
+                    Sub District
+                </td>
+                <td width="100%" class="pad_o nameTable paddLeftTd" colspan="3">
+                    <input type="text" value=" " class="brall flt_none" />
+                </td>
+
+            </tr>
+            <tr>
+                <td class="nameTable" width="20%">
+                    Communication  Address
+                </td>
+                <td width="100%" colspan="3" class="nameTable paddLeftTd"> <input type="text" value="@Model.address" class="brall flt_none"> </td>
+
+            </tr>
+            <tr>
+                <td class="nameTable">
+                    State
+                </td>
+                <td width="100%" class="pad_o nameTable paddLeftTd" colspan="2">
+                    <input type="text" value="@Model.state" class="brall flt_none" />
+                </td>
+
+
+                @*<td>
+                &nbsp; &nbsp; &nbsp;
+                @if (Model.state != null)
+                {
+
+                foreach (char data in (Model.state.Length >= 48) ? Model.state.Substring(0, 48).PadRight(48, ' ') : Model.state.PadRight(Model.state.Length, ' '))
+                {
+                <input type="text" value="@data" class="accNumber" />
+                }
+                }
+                else
+                {
+                foreach (char data in "                      ")
+                {
+
+                }
+                }
+
+
+                </td>*@
+            </tr>
+
+            <tr>
+                <td class="nameTable">
+                    Country
+                </td>
+                <td width="100%" class="pad_o nameTable paddLeftTd" colspan="3"><input type="text" value="@Model.Country" class="brall flt_none" /></td>
+                @*<td>
+                &nbsp; &nbsp; &nbsp;
+                @if (Model.Country != null)
+                {
+
+                foreach (char data in (Model.Country.Length >= 48) ? Model.Country.Substring(0, 48).PadRight(48, ' ') : Model.Country.PadRight(Model.Country.Length, ' '))
+                {
+                <input type="text" value="@data" class="accNumber" />
+                }
+                }
+                else
+                {
+                foreach (char data in "                      ")
+                {
+
+                }
+                }
+
+
+
+                </td>*@
+            </tr>
+            <tr>
+                <td class="nameTable">
+                    Pincode
+                </td>
+                <td width="100%" class="pad_o nameTable paddLeftTd" colspan="3"> <input type="text" value="@Model.Pincode" class="brall flt_none" /></td>
+                @*<td>
+                &nbsp; &nbsp; &nbsp;
+                @if (Model.Pincode != null)
+                {
+
+                foreach (char data in (Model.Pincode.Length >= 48) ? Model.Pincode.Substring(0, 48).PadRight(48, ' ') : Model.Pincode.PadRight(Model.Pincode.Length, ' '))
+                {
+                <input type="text" value="@data" class="accNumber" />
+                }
+                }
+                else
+                {
+                foreach (char data in "                      ")
+                {
+
+                }
+                }
+
+
+                </td>*@
+            </tr>
+
+        </table>
+
+    </div>
+    </div>
+</body>
+
+
+</html>
+

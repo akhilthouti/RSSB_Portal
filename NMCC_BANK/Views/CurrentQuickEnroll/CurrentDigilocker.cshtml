@@ -1,0 +1,324 @@
+﻿<!DOCTYPE html>
+@{
+    ViewBag.Title = "Digilocker";
+    Layout = "~/Views/Shared/AgentLayoutPage.cshtml";
+}
+
+<html>
+<head>
+    <title>Digilocker</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <link href="~/Content/Navigation/style.css" rel="stylesheet" />
+    <link href="http://localhost:58474/Content/Fonts/font-awesome.css" rel="stylesheet" />
+    <link href="~/Content/Navigation/css/font-awesome.min.css" rel="stylesheet">
+    <link href="~/Content/Navigation/vendor/animate.css/animate.min.css" rel="stylesheet">
+    <link href="~/Content/Navigation/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/snewcss.css" rel="stylesheet" />
+
+    <style>
+        #footer {
+            display: none;
+        }
+
+        html, body {
+            /*background: #e1e5ea;*/
+            background: #faf9f9;
+            /*background: blue;*/
+            /*background: #097ef3;*/
+            width: 100%;
+            overflow-x: hidden;
+            overflow-y: hidden;
+        }
+
+        /*.bar {
+                            position: relative;
+                            height: 2px;
+                            width: 784px;
+                            margin: 0 auto;
+                            background: #fff;
+                            margin-top: 207px;
+                        }
+
+                        .circle {
+                            position: absolute;
+                            top: -60px;
+                            margin-left: -30px;
+                            height: 50px;
+                            width: 50px;
+                            left: 0;
+                            background: #bff321;
+                            border-radius: 22%;
+                            -webkit-animation: move 7s infinite;
+                        }*/
+
+
+
+        p {
+            position: absolute;
+            top: -40px;
+            right: 11px;
+            text-transform: uppercase;
+            color: #fff;
+            font-family: helvetica, sans-serif;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        /*body {
+                            background-color: black;
+                        }*/
+
+        .rectangle {
+            /*width: 100px;*/
+            /*height: 100%;*/
+            /*border-radius: 5px;
+                            background-color: #fff;*/
+            text-align: center;
+        }
+
+        .vertical-center {
+            position: fixed;
+            top: 400px;
+            left: 50%;
+            transform: translate(-50%,-50%);
+        }
+
+        strong {
+            color: #000;
+            font-size: 17px;
+            margin-left: 1%;
+        }
+
+        bold {
+            color: #000;
+            font-size: 13px;
+            text-align: center;
+            margin-top: 12%;
+            font-weight: 600;
+        }
+
+        hr {
+            display: none;
+        }
+
+        .dgldr {
+            font-size: 74px !important;
+            color: #626060 !important;
+            border-top: 5px dotted #726e6e !important;
+            border-bottom: 5px dotted #726e6e !important;
+            border-left: 5px dotted #726e6e !important;
+            border-right: 5px dotted #c7c5c5 !important;
+            height: 80px !important;
+            width: 80px !important;
+            border-radius: 50% !important;
+        }
+
+        /* .loaders{
+                            height:55px;
+                            width:55px;
+                        }
+                        .ldr11{
+                            display:flex;
+                            justify-content:center;
+                        }*/
+        /* .loader {
+                            border: 3px dotted #c1bebe;
+                            border-radius: 50%;
+                            border-top: 3px dotted#65686a;
+                            width: 60px;
+                            height: 60px;
+                            -webkit-animation: spin 2s linear infinite;
+                            animation: spin 2s cubic-bezier(0.18, 0.24, 1, 1) infinite;
+                        }
+                        0% {
+                            transform: rotate(0deg);
+                        }
+
+                        100% {
+                            transform: rotate(360deg);
+                        }*/
+
+
+    </style>
+
+
+
+
+    @*<h2>Digilocker</h2>*@
+    <script type="text/javascript">
+        $(document).ready(function () {
+            ValidatefuneralDate();
+        });
+
+    </script>
+    <script>
+        function ValidatefuneralDate() {
+            debugger;
+            //$("#DigiLoader").html("<div style='position: fixed;z-index: 5000;float: left;right: 50%;height: 50px;width: 50px;top:40%;'><img class='ajax-loader' src='../Images/loader/Dual Ring-1s-200px.gif' height='60px' width='60px' align='middle' alt='ajaxloadergif' /></div>");
+            //$("#DigiLoader").show();
+            //$('#overlay_disabl').show();
+
+            var DigiLocker = "DigiLocker";
+            $.ajax({
+                url: '/CurrentQuickEnroll/GetDocument',
+                type: 'GET',
+                cache: false,
+                success: function (result) {
+                    debugger;
+                    if (result == "PDF") {
+
+                        //window.location.href = '/ServiceProviderMainHome/QuickEnrollDashboard?DigiLocker=' + DigiLocker + '&NewCJourney=yes';
+                        window.location.href = '/CurrentQuickEnroll/CurrentQuickEnrollment';
+
+                    }
+                    else if (result == "No response from Diglocker as the Pan no is not valid") {
+                        swal({
+                            title: "No response from Diglocker as the Pan no is not valid",
+
+                            type: "warning",
+                            showCancelButton: false,
+                            confirmButtonColor: "#DD6B55",
+                            confirmButtonText: "Yes",
+
+                            closeOnConfirm: true,
+                            closeOnCancel: true
+                        },
+                            function (isConfirm) {
+                                if (isConfirm) {
+
+                                    window.location.href = '/CurrentQuickEnroll/CurrentQuickEnrollment';
+
+                                }
+                                else {
+
+                                }
+                            }
+                        );
+                        //swal("No response from Diglocker as the Pan no is not valid");
+                        //window.location.href = '/KYCQuickEnroll/CustomerQuickEnrollment';
+
+                    }
+                    else if (result == "Your Date of birth as per Aadhaar did not match with document details.Please contact concerned department for correction (if needed).") {
+                        swal({
+                            title: "Your Date of birth as per Aadhaar did not match with document details.Please contact concerned department for correction (if needed).",
+
+                            type: "warning",
+                            showCancelButton: false,
+                            confirmButtonColor: "#DD6B55",
+                            confirmButtonText: "Yes",
+
+                            closeOnConfirm: true,
+                            closeOnCancel: true
+                        },
+                            function (isConfirm) {
+                                if (isConfirm) {
+
+                                    window.location.href = '/CurrentQuickEnroll/CurrentQuickEnrollment';
+
+                                }
+                                else {
+
+                                }
+                            }
+                        );
+
+                        //swal("Your Date of birth as per Aadhaar did not match with document details.Please contact concerned department for correction (if needed).");
+                        //window.location.href = '/KYCQuickEnroll/CustomerQuickEnrollment';
+                    }
+                    else if (result == "No Response from digilocker") {
+
+
+                        swal({
+                            title: "No Response from digilocker",
+
+                            type: "warning",
+                            showCancelButton: false,
+                            confirmButtonColor: "#DD6B55",
+                            confirmButtonText: "Yes",
+
+                            closeOnConfirm: true,
+                            closeOnCancel: true
+                        },
+                            function (isConfirm) {
+                                if (isConfirm) {
+
+                                    window.location.href = '/CurrentQuickEnroll/CurrentQuickEnrollment';
+
+                                }
+                                else {
+
+                                }
+                            }
+                        );
+
+                    }
+                    else {
+
+                        swal({
+                            title: "No Response .Please Try Again After Some Time",
+
+                            type: "warning",
+                            showCancelButton: false,
+                            confirmButtonColor: "#DD6B55",
+                            confirmButtonText: "Yes",
+
+                            closeOnConfirm: true,
+                            closeOnCancel: true
+                        },
+                            function (isConfirm) {
+                                if (isConfirm) {
+
+                                    window.location.href = '/CurrentQuickEnroll/CurrentQuickEnrollment';
+
+                                }
+                                else {
+
+                                }
+                            }
+                        );
+                    }
+
+                    //window.location.href = '/ServiceProviderMainHome/QuickEnrollDashboard' ;
+
+
+
+                }
+            });
+        }
+    </script>
+
+
+
+</head>
+
+<body>
+    <div id="DigiLoader"></div>
+
+
+    @*<div class="bar">
+    <div class="circle"></div>
+    <p>........Waiting for Minute's , the Page is Loading</p>
+    </div>*@
+    <div class="container-fluid">
+        <span class="vertical-center" style="    text-align: center;">
+
+            <strong class="ldr11">Loading....</strong>
+            <br>
+            <i class="fa fa-pulse fa-fw dgldr" aria-hidden="true" style="font-size: 74px;color:#626060" ; align="center"></i>
+            @* <div class="loader"></div>   *@
+            @* <div class="d-flex justify-content-center">
+            <div class="spinner-border loaders" role="status">
+            <span class="visually-hidden"></span>
+            </div>
+            </div>*@
+            <br>
+            <b> Fetching Details From DigiLocker, Please Wait For Sometime</b>
+
+
+        </span>
+
+    </div>
+
+</body>
+</html>
+

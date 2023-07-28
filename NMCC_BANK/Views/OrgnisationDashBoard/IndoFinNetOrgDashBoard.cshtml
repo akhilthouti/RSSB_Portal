@@ -1,0 +1,127 @@
+﻿
+@{
+    ViewBag.Title = "OrgnisationDashBoard";
+}
+<html>
+<head>
+    <link href="~/Content/Dashcss/dashboard.css" rel="stylesheet" />
+    <script>
+        function GotoView(e) {
+            debugger;
+            var dashboard = e.id;
+            var url = null;
+            if (dashboard == "btnKycQuick") {
+                url = '/KYCQuickEnroll/CustomerQuickEnrollment';
+            } else if (dashboard == "btnData") {
+                url = '/DataVerify/SummerySheet';
+            } else if (dashboard == "btnDoc") {
+                url = '/DocumentDetails/CustomerDocumentDetails';
+            }
+            $.ajax({
+                url: url,
+                type: 'get',
+                success: function (result) {
+                    debugger;
+                    $("#Indo_Dashboard").hide();
+                    $('#QuickEnrollview').html(result);
+
+                }
+            });
+        }
+
+    </script>
+</head>
+<body style="background-color:red;">
+    <div id="Indo_Dashboard">
+
+        <div class="container padding" id="dashboardhide">
+            <div class="responsive">
+                <div class="gallery">
+
+                    <div id="btnKycQuick" onclick="GotoView(this)">
+                        @*<div id="btnDEMAT1" onclick="fetchgrid(this)" data-toggle="windowjs" class="col-lg-4 col-sm-4 col-md-4 col-xs-12 dnpcust_container">*@
+                        <div id="btnKycQuick1" class="bg">
+
+                            <a>
+                                <img src="../Images/Dashboard/data verify.png" width="600" height="400" id="btnData1" onclick="GotoView(this)" />
+                            </a>
+
+                            <div class="text">
+                                Kyc Quick Enrollment
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+                </div>
+
+            </div>
+
+
+
+            <div class="responsive">
+                <div class="gallery">
+                    <div id="btnIPV" onclick="GotoView(this)">
+                        @*<div id="btnNPS1" onclick="fetchgrid(this)" class="col-lg-4 col-sm-4 col-md-4 col-xs-12 dnpcust_container">*@
+                        <div id="btnIPv1" class="bg" @*onclick="GotoView(this)"*@>
+
+                            <a>
+
+                                <img src="../Images/Dashboard/data verify.png" width="600" height="400" id="btnIPV2" @*onclick="GotoView(this)"*@ />
+                            </a>
+                            <div class="text">
+                                IPV
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="responsive">
+                <div class="gallery">
+                    <div id="btnDoc" onclick="GotoView(this)">
+
+                        @*<div id="btnUCM" onclick="getUCM()"*@ @*class="col-lg-4 col-sm-4 col-md-4 col-xs-12 dnpcust_container">*@
+                        <div id="f1_card" class="bg">
+                            <a>
+                                <img src="~/Images/Dashboard/id details.png" width="600" height="400" />
+                            </a>
+                            <div class="text">
+                                Document Details
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="responsive">
+                <div class="gallery">
+
+                    <div id="btnData" onclick="GotoView(this)">
+                        @*<div id="btnUCM" onclick="getUCM()"*@ @*class="col-lg-4 col-sm-4 col-md-4 col-xs-12 dnpcust_container">*@
+                        <div id="f1_card" class="bg">
+                            <a>
+                                <img src="~/Images/Dashboard/id details.png" width="600" height="400" />
+                            </a>
+                            <div class="text">
+                                Data Verification
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+
+        </div>
+    </div>
+    <div id="QuickEnrollview"></div>
+</body>
+</html>
+

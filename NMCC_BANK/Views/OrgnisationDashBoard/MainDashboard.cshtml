@@ -1,0 +1,801 @@
+﻿@{
+    /**/
+
+
+    // ViewBag.Title = "MainDashboard";
+    Layout = "~/Views/Shared/_AdminLayoutPage.cshtml";
+}
+<html>
+<head>
+    <script src="~/content/navigation/js/chart.min.js"></script>
+    @* PieChart CSS*@
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    <style>
+        .init_date_div {
+            margin-top: 12px;
+            background: #fff;
+            padding-top: 12px;
+            padding-bottom: 12px;
+            margin-bottom: 20px;
+        }
+
+        .init_radio {
+            margin: 0;
+            transform: scale(1.5);
+        }
+
+        .pie-chart {
+            background: radial-gradient( circle closest-side, transparent 66%, white 0 ), conic-gradient( from 277deg, #4e79a7 0, #4e79a7 27.1%, #f28e2c 0, #f28e2c 43.5%, #e15759 0, #e15759 54.9%, #76b7b2 0, #76b7b2 62%, #59a14f 0, #59a14f 66.3%, #edc949 0, #edc949 71.3%, #af7aa1 0, #af7aa1 78.4%, #ff9da7 0, #ff9da7 88.4%, #9c755f 0, #9c755f 99.8% );
+            position: relative;
+            width: 500px;
+            min-height: 350px;
+            margin: 0;
+            outline: 1px solid #ccc;
+            margin-left: 40px;
+        }
+
+            .pie-chart h2 {
+                position: absolute;
+                margin: 1rem;
+            }
+
+            .pie-chart cite {
+                position: absolute;
+                bottom: 0;
+                font-size: 80%;
+                padding: 1rem;
+                color: gray;
+            }
+
+            .pie-chart figcaption {
+                position: absolute;
+                bottom: 1em;
+                right: 1em;
+                . font-size: smaller;
+                text-align: right;
+            }
+
+            .pie-chart span:after {
+                display: inline-block;
+                content: "";
+                width: 0.8em;
+                height: 0.8em;
+                margin-left: 0.4em;
+                height: 0.8em;
+                border-radius: 0.2em;
+                background: currentColor;
+            }
+    </style>
+
+    <style>
+        #icon-test {
+            height: 22px;
+            opacity: 0.7;
+            float: right;
+        }
+
+        @@media screen and (max-width:767px) {
+            .init_details {
+                margin: 0;
+                display: flex;
+                flex-direction: column;
+            }
+
+            .init_dashboard {
+                margin-left: 0px !important;
+            }
+        }
+
+        .init_main_space {
+            display: flex;
+            justify-content: space-between;
+            margin: 0;
+        }
+
+        .init_dash_div {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .init_dashboard, .init_user {
+            color: #fff;
+        }
+
+        .init_dashboard {
+            margin-left: 50px;
+        }
+
+        .init_user {
+            float: right;
+            color: #fff;
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        .init_agent {
+            margin-right: 22px;
+        }
+
+        .cqepopupmn {
+            position: fixed;
+            top: 90%;
+            left: 20%;
+            transform: translate(-50%, -50%);
+            margin-top: -19%;
+            width: 41%;
+            display: none;
+            z-index: 2;
+            background-color: white;
+            box-shadow: 1px 1px 13.5px grey;
+            position: absolute;
+            margin-left: 30%;
+        }
+    </style>
+    <style>
+        .icndsgn {
+            color: white;
+            display: flex;
+            justify-content: center;
+            font-size: 42px;
+            padding: 10px;
+        }
+
+        .bxdsgn {
+            border: 1px solid #d467d4;
+            background-color: #d467d4;
+            padding-top: 4px;
+            padding-bottom: 8px;
+            border-radius: 9px;
+            padding-left: 3px;
+            padding-right: 0px;
+        }
+
+        .bxtext {
+            color: white;
+            font-weight: 700;
+            font-size: 14px;
+            border-top: 2px solid white;
+            border-bottom: 1px solid white;
+            padding: 6px;
+            margin-top: 6px;
+        }
+
+        .numdt {
+            color: white;
+            font-weight: 700;
+            font-size: 25px !important;
+            text-align: center;
+        }
+
+        .bxdsply {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .bxtext2 {
+            width: 62%;
+            margin-right: 0px;
+            margin-left: -1px;
+            display: flex;
+            padding-left: 18px;
+            justify-content: center;
+        }
+
+        .bxdsgn2 {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .bxdsgn3 {
+            padding: 15px 40px;
+            background-color: #87cb94;
+        }
+
+        .bxtext3 {
+            width: 101%;
+        }
+
+        .bxdsgn4 {
+            width: 15%;
+        }
+
+            .bxdsgn4:hover {
+                background: linear-gradient(130deg, #4b7bd0 0%, #84a9ea 100%);
+                box-shadow: none;
+            }
+
+        .bxdsgn3:hover {
+            background: linear-gradient(130deg, #4b7bd0 0%, #84a9ea 100%);
+            box-shadow: none;
+        }
+    </style>
+    <style>
+        .init_a_nav:hover {
+            background: #d55959;
+            transition: ease-in-out 0.3s;
+        }
+
+        .init_href {
+            font-size: 16px;
+            padding: 5px 12px;
+            color: #fff !important;
+            cursor: pointer;
+        }
+
+            .init_href:hover {
+                border-radius: 3px;
+                transition: all 0.4s ease;
+            }
+    </style>
+    <link href="~/css/multiclass.css" rel="stylesheet" />
+    <link href="~/Content/snewcss.css" rel="stylesheet" />
+    <link href="~/Content/Dashcss/dashboard.css" rel="stylesheet" />
+    <script>
+        function GetData() {
+            debugger;
+            $("#DigiCerti").html("<div style='position: fixed;z-index: 5000;float: left;right: 50%;height: 50px;width: 50px;top:40%;'><i class='fa fa-pulse fa-fw dgldr ldrdesign' style='height:70px;width:70px;border-radius:50%;border-bottom:5px dotted grey;border-top:5px dotted black;border-right:5px dotted black;border-left:5px dotted black;height:80px;width:80px;position:absolute;margin: 20% 50%;'></i></div>");
+            $("#DigiCerti").show();
+            $("#DIGIbag").show();
+
+            var PostData = "";
+
+            $("#DigiCerti").hide();
+            $("#DIGIbag").hide();
+            window.location.href = "/KYCQuickEnroll/CustomerQuickEnrollment?NewCJourney=" + PostData;
+
+        }
+    </script>
+
+
+    <script>
+        function getLoandetails() {
+
+            window.location.href = '/OrgnisationDashBoard/LoanDetails';
+
+        }
+        function getRejectdetails() {
+
+            window.location.href = '/OrgnisationDashBoard/RejectedCustomerDashboard';
+
+        }
+        function getcustdetails() {
+
+            window.location.href = '/OrgnisationDashBoard/ReportsDownload';
+
+        }
+    </script>
+    <script type="text/javascript">
+        function Logout() {
+            debugger;
+            $.ajax({
+                url: "/OrganisationLogin/Logout",
+                type: 'Get',
+                cache: false,
+                success: function (result) {
+                    debugger;
+                    if (result == "Logout")
+                        window.location.href = "/OrganisationLogin/OrganisationDetails";
+                }
+            })
+        }
+    </script>
+    <script type="text/javascript">
+        function CustLogout() {
+            debugger;
+            $.ajax({
+                url: "/CustomerRegistration/CustomerFlowLogout",
+                type: 'Get',
+                cache: false,
+                success: function (result) {
+                    debugger;
+                    if (result == "Logout")
+                        window.location.href = "/CustomerRegistration/CustomerRegistration";
+                }
+            })
+        }
+    </script>
+    <script>
+
+        function GetDataforcurrent() {
+            debugger;
+            $("#DigiCerti").html("<div style='position: fixed;z-index: 5000;float: left;right: 50%;height: 50px;width: 50px;top:40%;'><i class='fa fa-pulse fa-fw dgldr ldrdesign' style='height:70px;width:70px;border-radius:50%;border-bottom:5px dotted grey;border-top:5px dotted black;border-right:5px dotted black;border-left:5px dotted black;height:80px;width:80px;position:absolute;margin: 20% 50%;'></i></div>");
+            $("#DigiCerti").show();
+            $("#DIGIbag").show();
+
+            var PostData = "";
+
+            $("#DigiCerti").hide();
+            $("#DIGIbag").hide();
+            window.location.href = "/CurrentQuickEnroll/CurrentQuickEnrollment?NewCJourney=" + PostData;
+
+        }
+    </script>
+
+    <script>
+        function GotoView(e) {
+            debugger;
+            $("#DigiCerti").html("<div style='position: fixed;z-index: 5000;float: left;right: 50%;height: 50px;width: 50px;top:40%;'><i class='fa fa-pulse fa-fw dgldr ldrdesign' style='height:70px;width:70px;border-radius:50%;border-bottom:5px dotted grey;border-top:5px dotted black;border-right:5px dotted black;border-left:5px dotted black;height:80px;width:80px;position:absolute;margin: 20% 50%;'></i></div>");
+            $("#DigiCerti").show();
+            $("#DIGIbag").show();
+            var dashboard = e.id;
+            var url = null;
+            if (dashboard == "btnKycQuick") {
+                url = '/KYCQuickEnroll/CustomerQuickEnrollment';
+                //} else if (dashboard == "btnData") {
+                //    url = '/DataVerify/SummarySheetData';
+                //} else if (dashboard == "btnData") {
+                //   url = '/DataVerify/IncompleteRecords';
+
+            } else if (dashboard == "btnDoc") {
+                url = '/DocumentDetails/CustomerDocumentDetails';
+            } else if (dashboard == "btnUpdateKYCData") {
+                url = '/DataVerify/UpdateKYCData';
+            }
+            $.ajax({
+                url: url,
+                type: 'get',
+                success: function (result) {
+                    debugger;
+                    $("#DigiCerti").hide();
+                    $("#DIGIbag").hide();
+                    $("#MainDashboard").hide();
+                    $('#QuickEnrollview').html(result);
+                }
+            });
+        }
+        function ShowDigitalCaDetails(e) {
+            debugger;
+            $("#DigiCerti").html("<div style='position: fixed;z-index: 5000;float: left;right: 50%;height: 50px;width: 50px;top:40%;'><i class='fa fa-pulse fa-fw dgldr ldrdesign' style='height:70px;width:70px;border-radius:50%;border-bottom:5px dotted grey;border-top:5px dotted black;border-right:5px dotted black;border-left:5px dotted black;height:80px;width:80px;position:absolute;margin: 20% 50%;'></i><i class='fa fa-pulse fa-fw dgldr ldrdesign' style='height:70px;width:70px;border-radius:50%;border-bottom:5px dotted grey;border-top:5px dotted black;border-right:5px dotted black;border-left:5px dotted black;height:80px;width:80px;position:absolute;margin: 20% 50%;'></i></div>");
+            $("#DigiCerti").show();
+            $("#DIGIbag").show(); var dashboard = e.id;
+            var url = '/OrgCaCertificateCreation/CaCertificateGrid';
+
+            $.ajax({
+                url: url,
+                type: 'get',
+                success: function (result) {
+                    debugger;
+
+                    if (result == 'Session Expired') {
+                        window.location.href = '/OrganisationLogin/OrganisationDetails';
+                    } else {
+
+                        $("#DigiCerti").hide();
+                        $("#DIGIbag").hide();
+                        $("#MainDashboard").hide();
+                        $('#OrgCaCertificateDetails').html(result);
+
+                    }
+                }
+            });
+        }
+        function ShowDropedOutDetails(e) {
+            debugger;
+            $("#DigiCerti").html("<div style='position: fixed;z-index: 5000;float: left;right: 50%;height: 50px;width: 50px;top:40%;'><i class='fa fa-pulse fa-fw dgldr ldrdesign' style='height:70px;width:70px;border-radius:50%;border-bottom:5px dotted grey;border-top:5px dotted black;border-right:5px dotted black;border-left:5px dotted black;height:80px;width:80px;position:absolute;margin: 20% 50%;'></i></div>");
+            $("#DigiCerti").show();
+            $("#DIGIbag").show();
+            $('#Emailbakdrop').show();
+            var dashboard = e.id;
+
+            var url = '/DataVerify/IncompleteRecords';
+
+            $.ajax({
+                url: url,
+                //url: '/DataVerify/IncompleteRecords',
+                type: 'GET',
+                datatype: 'json',
+                cache: false,
+                success: function (result) {
+                    debugger;
+
+                    if (result == 'Session Expired') {
+                        window.location.href = '/OrganisationLogin/OrganisationDetails';
+                    }
+                    else {
+                        $("#DigiCerti").hide();
+                        $("#DIGIbag").hide();
+                        $('#Emailbakdrop').hide()
+                        $("#MainDashboard").hide();
+
+                        $('#DropDetailsDiv').html(result);
+                    }
+                }
+            });
+        }
+        function ShowPendingSignDetails(e) {
+            debugger;
+            $("#DigiCerti").html("<div style='position: fixed;z-index: 5000;float: left;right: 50%;height: 50px;width: 50px;top:40%;'><i class='fa fa-pulse fa-fw dgldr ldrdesign' style='height:70px;width:70px;border-radius:50%;border-bottom:5px dotted grey;border-top:5px dotted black;border-right:5px dotted black;border-left:5px dotted black;height:80px;width:80px;position:absolute;margin: 20% 50%;'></i></div>");
+            $("#DigiCerti").show();
+            $("#DIGIbag").show();
+            $('#Emailbakdrop').show();
+            var dashboard = e.id;
+
+            var url = '/DataVerify/IncompleteCustForAgentSign';
+
+            $.ajax({
+                url: url,
+                //url: '/DataVerify/IncompleteRecords',
+                type: 'GET',
+                datatype: 'json',
+                cache: false,
+                success: function (result) {
+                    debugger;
+
+                    if (result == 'Session Expired') {
+                        window.location.href = '/OrganisationLogin/OrganisationDetails';
+                    }
+                    else {
+                        $("#DigiCerti").hide();
+                        $("#DIGIbag").hide();
+                        $('#Emailbakdrop').hide()
+                        $("#MainDashboard").hide();
+
+                        $('#DropDetailsDiv').html(result);
+                    }
+                }
+            });
+        }
+    </script>
+    <style>
+        .digital-clock {
+        }
+
+        .init_details_div {
+            /* display: grid;
+                    justify-content: end;*/
+        }
+
+        .init_div {
+            display: flex;
+        }
+        .loanicon{
+                    height: 84px;
+        margin: 18px 10px;
+        }
+    </style>
+    <script>
+        $(document).ready(function () {
+            clockUpdate();
+            setInterval(clockUpdate, 1000);
+        })
+
+        function clockUpdate() {
+            var date = new Date();
+            $('.digital-clock').css({ 'color': '#fff' });
+            function addZero(x) {
+                if (x < 10) {
+                    return x = '0' + x;
+                } else {
+                    return x;
+                }
+            }
+
+            function twelveHour(x) {
+                if (x > 12) {
+                    return x = x - 12;
+                } else if (x == 0) {
+                    return x = 12;
+                } else {
+                    return x;
+                }
+            }
+
+            var h = addZero(twelveHour(date.getHours()));
+            var m = addZero(date.getMinutes());
+            var s = addZero(date.getSeconds());
+
+            $('.digital-clock').text(h + ':' + m + ':' + s)
+        }
+    </script>
+    <script>
+        function GetExcel() {
+            debugger;
+            $("#DigiCerti").html("<div style='position: fixed;z-index: 5000;float: left;right: 50%;height: 50px;width: 50px;top:40%;'><i class='fa fa-pulse fa-fw dgldr ldrdesign' style='height:70px;width:70px;border-radius:50%;border-bottom:5px dotted grey;border-top:5px dotted black;border-right:5px dotted black;border-left:5px dotted black;height:80px;width:80px;position:absolute;margin: 20% 50%;'></i></div>");
+            $("#DigiCerti").show();
+            let b = document.getElementById("Pending").checked;
+            let c = document.getElementById("Success").checked;
+            let d = document.getElementById("Reject").checked;
+            var FromDate = $("#FromDate").val();
+            var ToDate = $("#ToDate").val();
+            url = '/VerifyBulkPAN/AgentReportExcel';
+            $.ajax({
+                url: url,
+                type: "POST",
+                data: {
+                    FromDate: FromDate,
+                    Pending: b,
+                    Success: c,
+                    Reject: d,
+                    ToDate: ToDate
+                },
+                success: function (result) {
+                    debugger;
+                    $("#DigiCerti").hide();
+
+                    downloadexcel();
+                },
+            });
+        }
+        function downloadexcel() {
+            debugger;
+            window.location.href = '/VerifyBulkPAN/DownloadAgentPendingExcel';
+        }
+    </script>
+    <link href="~/css/multiclass.css" rel="stylesheet" />
+</head>
+<body>
+    <section class="breadcrumbs" style="padding: 0;">
+        <div class="container-fluid">
+            <div class="row init_main_space">
+                <div class="init_dash_div">
+                    <span class="init_dashboard">Dashboard</span>
+                </div>
+                <div class="">
+                    <div class="row init_details">
+                        <div class="init_details_div" style="display:none">
+                            <div class="digital-clock">00:00:00</div>
+                        </div>
+                        <div class="init_details_div">
+                            @*<div class="init_div">
+                            <span class="init_user">Agent Name :</span>
+                            <span class="init_user">@ViewBag.agnet</span>
+                            </div>*@
+                            <div class="init_div" style="display:none">
+                                <span class="init_user">Login Time :</span>
+                                <span class="init_user">@ViewBag.Time</span>
+                            </div>
+                        </div>
+                        @if (ViewBag.CustomerFlow == true)
+                        {
+                            <div>
+                                <a href="#wcs" onclick="CustLogout()">Home</a>
+                            </div>
+                        }
+                        else
+                        {
+                            <div>
+                                <a href="#wcs" onclick="Logout()">Home</a>
+                            </div>
+                        }
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="dashboard-menu" style="display:none">
+        <div class="container-fluied">
+            <div class="row" style="margin:0%">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light dashboard-menu" style="padding: -0.4rem 1rem !important;">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Digital KYC</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Digital CA Certificate</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Data Verification</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Update Digital KYC Data</a>
+                            </li>
+                        </ul>
+                        <form class="form-inline my-2 my-lg-0">
+                            <a class="nav-link" href="#" onclick="LogOut()">Logout</a>
+                        </form>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="services" style="display:none;">
+        <div class="container-fluid pddash" style=" padding-right:51px;padding-left:39px">
+            <div class="row">
+                <p class="mndshbord" style="text-align:justify">
+                    1.The Unique Identification Authority of India recently detected many people trying to make fake Aadhaar Cards. To avoid problems related to this, UID verification facility has been provided.<br />
+                    2.With the help of the simple verification process, you can not only ensure your Aadhaar card is original, but also if the details are correct.<br />
+                    3.If you fail to verify your Aadhaar card, there is a high probability that someone might be misusing a copy of your card and this will fail the entire purpose to have a card.
+                </p>
+            </div>
+        </div>
+    </section>
+    <section id="why-us" class="why-us">
+        <div id="MainDashboard">
+
+            <div class="container">
+                <div class="row" style="margin: 0;">
+                    <div class="d-flex align-items-stretch  mndashbrdmn" style="width:100%">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 icon-boxes d-flex flex-column justify-content-center" id="dashboardhide" style="width:100%">
+                            <div class="row" style="margin: 0;display: flex;justify-content: center;align-items: center;">
+                                <div class="containerrw">
+
+                                    @*<div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 ser zoomIn maindashbox" id="btnKyc" onclick="GetData()">
+                                        <div id="btnKycQuick">
+                                            <div id="btnKycQuick1" class="bg">
+                                                <a><img src="~/Content/Navigation/img/digital-kyc.jpg" style="" class="mdashbox"></a>
+                                            </div>
+                                        </div>
+                                    </div>*@
+
+                                    <div class="box" id="btnKyc" onclick="GetData()">
+                                        <div id="btnKycQuick" class="boxContent">
+                                            @*<i class='fas fa-rupee-sign' style='font-size:30px;color:#fff'></i>*@
+                                            @*<i class='fas fa-hand-holding' style='font-size:64px;margin-top: -21px;color:#fff'></i>*@
+                                            <img src="~/images/image/saving.png" id="btnKycQuick1" class="loanicon" />
+                                            <h1 class="title" style="margin-top: 6px;">Saving Account</h1>
+                                        </div>
+                                        <a href="#"></a>
+                                        <a href="#"></a>
+                                    </div>
+
+                                    @*<div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 ser zoomIn maindashbox" id="btncurrent" onclick="GetDataforcurrent()">
+                                        <div id="btncurrentQuick">
+                                            <div id="btncurrentQuick1" class="bg">
+                                                <a><img src="~/Content/Navigation/img/current Account.jpg" style="" class="mdashbox"></a>
+                                            </div>
+                                        </div>
+                                    </div>*@
+
+                                    <div class="box" id="btncurrent" onclick="GetDataforcurrent()" style="display:none;">
+                                        <div id="btncurrentQuick" class="boxContent">
+                                            @*<i class='fas fa-rupee-sign' style='font-size:30px;color:#fff'></i>*@
+                                            @*<i class='fas fa-hand-holding' style='font-size:64px;margin-top: -21px;color:#fff'></i>*@
+                                            <img src="~/images/image/current.png" id="btncurrentQuick1" class="loanicon" />
+                                            <h1 class="title" style="margin-top: 6px;">Current Account</h1>
+                                        </div>
+                                        <a href="#"></a>
+                                        <a href="#"></a>
+                                    </div>
+
+
+                                    <div class="box" id="cdetails" onclick="getLoandetails()" style="display:none;">
+                                        <div class="boxContent">
+                                            @*<i class='fas fa-rupee-sign' style='font-size:30px;color:#fff'></i>*@
+                                            @*<i class='fas fa-hand-holding' style='font-size:64px;margin-top: -21px;color:#fff'></i>*@
+                                            <img src="~/images/image/loan.png" class="loanicon"/>
+                                            <h1 class="title" style="margin-top: 6px;">Loan Account</h1>
+                                        </div>
+                                        <a href="#"></a>
+                                        <a href="#"></a>
+                                    </div>
+                                    <div class="box2" id="cdetails" style="display:none;" onclick="getRejectdetails()">
+                                        <div class="boxContent">
+                                            <i class="fa  fa-ban icon"></i>
+
+                                            <h1 class="title">Rejected Customer</h1>
+                                        </div>
+                                        <a href="#"></a>
+                                        <a href="#"></a>
+                                    </div>
+                                    @if (ViewBag.CustomerFlow == false)
+                                    {
+                                        <div class="box" id="cdetails" onclick="getcustdetails()" style="display:none;">
+                                            <div class="boxContent">
+                                                <i class="fa fa-file-text icon"></i>
+
+                                                <h1 class="title">Reports</h1>
+                                            </div>
+                                            <a href="#"></a>
+                                            <a href="#"></a>
+                                        </div>
+                                    }
+
+                                </div>
+                                <div id="orgregresult"></div>
+                                <ul id="list"></ul>
+
+                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 ser zoomIn maindashbox" id="btnKyc" onclick="GetData()" style="display:none;">
+                                    <canvas id="myChart" style="width:100%;max-width:660px"></canvas>
+                                </div>
+
+
+
+                                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 ser maindashbox" style="display: none;">
+                                    <div id="btnData" onclick="ShowDropedOutDetails(this)" style="display:none;">
+                                        <div id="f1_card" class="bg3">
+                                            @*<a><img src="~/Content/Navigation/img/data-verification.jpg"*@
+                                            <a>
+                                                <img src="~/Content/Navigation/img/dropout.png" style="" class="mdashbox">
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="clearfix"></div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="steps" class="steps" style="display:none">
+        <div class="container">
+            <div class="row">
+                <div class="steps-container">
+                    <h5><strong>Section 1-&nbsp; </strong>Follow the Five step's:</h5>
+                    <div class="container px-5 py-5">
+                        <div class="row">
+                            <div class="col mx-1 ser-box">
+                                <h5><strong>Step 1</strong></h5>
+                                <p>QuickEnroll<br />Detail</p>
+                            </div>
+                            <div class="col mx-1 ser-box">
+                                <h5><strong>Step 2</strong></h5>
+                                <p>CAF<br />(Customer Account Form)</p>
+                            </div>
+                            <div class="col mx-1 ser-box">
+                                <h5><strong>Step 3</strong></h5>
+                                <p>Document<br />Details</p>
+                            </div>
+                            <div class="col mx-1 ser-box">
+                                <h5><strong>Step 4</strong></h5>
+                                <p>Video<br />KYC</p>
+                            </div>
+                            <div class="col mx-1 ser-box">
+                                <h5><strong>Step 5</strong></h5>
+                                <p>CAF<br />Summary</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div id="DIGIbag"></div>
+    <div id="DigiCerti"></div>
+    <div id="Emailbakdrop"></div>
+    <div id="QuickEnrollview"></div>
+    <div id="OrgCaCertificateDetails"></div>
+    <div id="DropDetailsDiv"></div>
+
+    @*Piechart Script*@
+
+    <script>
+        $(document).ready(function () {
+            debugger;
+            var xValues = ["Total Customer", "Pending", "Approved", "Rejected"];
+            var yValues = [@ViewBag.TotalCount, @ViewBag.PendingCustForagentCnt, @ViewBag.approveCustForagentCnt, @ViewBag.rejectCustForagentCnt];
+            var barColors = ["#073b4c", "#ffd166", "#06d6a0", "#ef476f"];
+
+            new Chart("myChart", {
+                type: "bar",
+                data: {
+                    labels: xValues,
+                    datasets: [{
+                        backgroundColor: barColors,
+                        data: yValues
+                    }]
+                },
+                options: {
+                    legend: { display: false },
+                    title: {
+                        display: true,
+                        text: "Welcome @ViewBag.agnet !",
+                        font: "18px"
+                    }
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
+
+

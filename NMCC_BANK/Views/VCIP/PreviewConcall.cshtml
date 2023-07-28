@@ -1,0 +1,50 @@
+﻿{
+    ViewBag.Title = "PreviewConcall";
+}
+<html>
+<head>
+
+    <script src="~/Scripts/jquery-1.11.0.min.js"></script>
+    <script src="~/Scripts/sweetalert.min.js"></script>
+    <link href="~/Content/VCIP/sweetalert.css" rel="stylesheet" />
+    <link href="~/Content/VCIP/sweetalert.min.css" rel="stylesheet" />
+
+    <script>
+    </script>
+    <script>
+        function Searchfun() {
+            debugger;
+            var customerid = document.getElementById("customerid").value;
+            $.ajax({
+                url: '/VCIP/VideoView',
+                type: 'GET',
+                //headers: headers,
+                data: { customerid: customerid },
+                cache: false,
+                success: function (result) {
+                    debugger;
+
+                    if (result != null) {
+                        debugger;
+                        $('#testid').show();
+                        $('#testid').html(result);
+                        swal('result 1');
+
+                    }
+                    else {
+                        swal('result -1');
+                    }
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+    <div>
+        <input type="text" id="customerid" placeholder="Enter CustomerID" />
+        <input type="submit" value="Search" onclick="Searchfun()" />
+    </div>
+
+    <div id="testid"></div>
+</body>
+</html>

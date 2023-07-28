@@ -1,0 +1,217 @@
+﻿@{
+    /**/
+    Layout = null;
+}
+<div id="imagecapture">
+    <html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>WebcamJS Test Page</title>
+        @*<link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />*@
+        <link href="~/Content/bootstrap.css" rel="stylesheet" />
+        <link href="~/Scripts/sweetalert.css" rel="stylesheet" />
+        <script src="~/Scripts/sweetalert.min.js"></script>
+        <link href="~/css/multiclass.css" rel="stylesheet" />
+        <style>
+             .btnornge {
+                background-color: #bf5252;
+                /*box-shadow: inset 0 0 31px #4e2424 !important;*/
+                outline-color: none !important;
+            }
+            .btnornge:hover {
+                    background-color: #bf5252;
+                    /*box-shadow: inset 0 0 31px #4e2424 !important;*/
+                    background-image: repeating-linear-gradient(225deg, #761717, transparent 100px);
+                    transition: 0.2s all;
+            }
+
+
+            .alert-info {
+               /* color: #31708f;
+                background-color: #f7d9d9;
+                border-color: #f1bcbc;*/
+            }
+        </style>
+    </head>
+    <body class="container">
+        <br />
+        <div class="row">
+            <div class="col-xl-5 mg_tp-2 pd111">
+                <div class="camera-div">
+                    <h3 style="font-size:18px">Camera</h3>
+                    <div class="">
+                        <div class="camera-view">
+                            <div id="my_camera" style="">
+                                @*<img src="~/Images/imgcam1.jpg" style="float:left;height:40px" />*@
+                            </div>
+                        </div>
+                        <!-- A button for taking snaps -->
+                        <form class="wdth100flt">
+                            <input type="button" class="btn btn-warning btnornge" value="Take Photo" onClick="take_snapshot()">
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-1 mg_tp-2 clsmob" style="">
+                <img src="~/Images/IPV/rigthdigit.png" class="righterro" />
+            </div>
+            <div class="col-xl-5 mg_tp-2 mg_tp-22 pd111" style=" ">
+                <div class="camera-div">
+                    <h3 style="font-size:18px">Agent Photo</h3>
+                    <div class="camera-view">
+                        <div id="results" class="">Your captured image will appear here...</div>
+                    </div>
+                </div>
+
+                <div id="demo" class="alert alert-info pic-cords" style="padding:3px;width:80%;text-align:center;font-size:13px">Click the button to get your position:</div>
+                <div id="demo1" class="alert alert-info pic-cords" style="padding:3px;width:80%;text-align:center;font-size:13px">Prediction:</div>
+                <div id="mapholder"></div>
+            </div>
+        </div>
+        <!-- First, include the Webcam.js JavaScript Library -->
+        <script src="~/Scripts/webcam.js"></script>
+        <!-- Configure a few settings and attach camera -->
+        <script language="JavaScript">
+            Webcam.set({
+                width: 238,
+                height: 194,
+
+                image_format: 'jpeg',
+                jpeg_quality: 90
+            });
+            // Webcam.attach('#my_camera');
+            Webcam.on('error', function (err) {
+                swal("Webcam access or connection error!"); // an error occurred (see 'err')
+                //return false;
+                //$('#QuickEnrollSubmitid').hide();
+                $('#CaptureImage').hide();
+            });
+            Webcam.attach('#my_camera');
+            //try {
+            //    Webcam.attach('#my_camera');
+            //}
+            //catch (exp) {
+            //    console.error(exp);
+            //    $Error("Webcam access error! Try to use https:// protocol");
+            //}
+        </script>
+        <!-- Code to handle taking the snapshot and displaying it locally -->
+        <script language="JavaScript">
+            function take_snapshot() {
+                debugger;
+                Webcam.snap(function (data_uri) {
+                    debugger;
+                    document.getElementById('results').innerHTML =
+                        '<img id="base64img" src="' +
+                        data_uri +
+                        '"/>';
+                    getLocation();
+                    Livelinessnew();
+                    Webcam.upload(data_uri,
+                        '/Camera/Capture',
+                        function (code, text) {
+                            debugger;
+                            swal('Photo Captured');
+                        });
+                });
+            }
+            var x = document.getElementById("demo");
+            function getLocation() {
+                debugger;
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(showPosition);
+
+                } else {
+                    x.innerHTML = "Geolocation is not supported by this browser.";
+                }
+            }
+            function showPosition(position) {
+                debugger;
+                var vendorId = "1";
+                var pass = "Birla@123";
+                var latitude = position.coords.latitude;
+                var Longitude = position.coords.longitude;
+
+                //x.innerHTML = "Latitude: " + position.coords.latitude +
+                //    "&nbsp;Longitude: " + position.coords.longitude;
+                $.ajax({
+                    //  url: '/DataVerify/ShowAddress/',
+                    url: "/DataVerify/ShowAddress?vendorId=" + vendorId + "&pass=" + pass + "&latitude=" + latitude + "&Longitude=" + Longitude,
+
+                    type: 'GET',
+
+                    success: function (result) {
+                        debugger;
+                        x.innerHTML = "Latitude: " + position.coords.latitude +
+                            "&nbsp;Longitude: " + position.coords.longitude + "&nbsp;Current Address:" + result;
+                        //swal(result);
+
+                    }
+                });
+
+                //x.innerHTML = "Latitude: " + position.coords.latitude +
+                //    "&nbsp;Longitude: " + position.coords.longitude;
+                //var latlondata = position.coords.latitude + "," + position.coords.longitude;
+                //var img_url = "http://maps.googleapis.com/maps/api/staticmap?center="
+                //    + latlondata + "&zoom=14&size=400x300&sensor=false";
+                // document.getElementById("mapholder").innerHTML = "<img src='" + img_url + "' />";
+            }
+            function showError(error) {
+                if (error.code == 1) {
+                    x.innerHTML = "User denied the request for Geolocation."
+                }
+                else if (err.code == 2) {
+                    x.innerHTML = "Location information is unavailable."
+                }
+                else if (err.code == 3) {
+                    x.innerHTML = "The request to get user location timed out."
+                }
+                else {
+                    x.innerHTML = "An unknown error occurred."
+                }
+            }
+        </script>
+
+        <script type="text/javascript">
+
+            function Livelinessnew() {
+                debugger;
+                var x = document.getElementById("demo1");
+                var formData = new FormData();
+                var POIImage = document.getElementById("base64img").src;  //Capture Code...
+                formData.append("base64img", POIImage);
+                // var Photo = "img";                    //escape(POIImage)
+                //var Photo = "img";                    //escape(POIImage)
+                //var formData = new FormData();
+                // var totalFiles = document.getElementById("base64img").files.length;
+                //var file = document.getElementById("base64img").files[0];
+               
+                var formCollection = formData.serialize();  
+                $.ajax({
+
+
+                    url: '/DataVerify/Liveliness',
+                    type: "POST",
+                    //data: {},
+                    data: formCollection,
+                    //dataType: 'json',
+                    //contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                    processData: false,
+
+
+                    success: function (result) {
+                        debugger;
+                        x.innerHTML = result;
+
+
+                    }
+                });
+
+            }
+        </script>
+
+    </body>
+</html>
+</div>
+
+

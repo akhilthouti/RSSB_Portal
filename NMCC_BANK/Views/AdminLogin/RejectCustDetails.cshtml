@@ -1,0 +1,236 @@
+﻿@{
+    Layout = "~/Views/Shared/_AdminLayoutPage.cshtml";
+
+}
+
+<html>
+<head>
+    @*  <script src="~/Scripts/jquery-1.11.0.min.js"></script>*@
+    <script src="~/Scripts/DataTable/jquery.dataTables.min.js"></script>
+    <script src="~/Scripts/DataTable/dataTables.bootstrap.js"></script>
+    <link href="~/Scripts/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="~/Scripts/webGridStyle.css" rel="stylesheet" />
+    <script>
+        function VerifyCustDataReject(tr) {
+            debugger;
+            $("#verifyloaderReject").html("<div style='position: fixed;z-index: 5000;float: left;right: 50%;height: 50px;width: 50px;top:40%;'><img class='ajax-loader' src='../Images/loader/Dual Ring-1s-200px.gif' height='60px' width='60px' align='middle' alt='ajaxloadergif' /></div>");
+            $("#verifyloaderReject").show();
+            $("#verifybagReject").show();
+             var temp = $($(tr).children())[0].id;
+             temp = temp.split(',');
+            window.location.href = '/ServiceProviderMainHome/QuickEnrollDashboard?RejectCustId=' + personId;
+        }
+    </script>
+    <script type="text/javascript">
+        var assetListVM;
+        $(function () {
+            debugger;
+            assetListVM = {
+                dt: null,
+                init: function () {
+                    debugger;
+                    dt = $('#assets-data-table').DataTable({
+                        "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+                        "ordering": false,
+                        "Searching": true,
+                        "ajax": {
+                            url: '/AdminLogin/RejectCustGRID',
+                            type: 'POST'
+                        },
+                        "columns": [
+                            { "title": "CustomerDetailId", "data": "CustomerDetailId", "searchable": true },
+                            { "title": "FIRST NAME", "data": "FirstName" },
+                            { "title": "MIDDLE NAME", "data": "MiddleName" },                           
+                            { "title": "LAST NAME", "data": "LastName" },
+                            { "title": "REJECT REASON ", "data": "RejectedReason" },
+                            { "title": "REJECT DATE ", "data": "RejectedDate" },
+                             { "title": "OPEN", "data": null }
+                        ],
+                        columnDefs: [{
+                             targets: 6,
+                            render: function (a, b, data, d) {
+                                debugger;
+                                return '<input type="button" value="Verify" data-toggle="modal" data-target="#myModal1" id="btnVerifyrejectDetails" class="btn btn-primary" onclick="VerifyCustDataReject(this)" style="float:none !important;text-align:center;font-size:12px"><a href="#"  id=' + data.personalDetailId + ' style="padding-left:0px;width:100%;padding:0px;text-align:center;float:left;background-color: transparent" </a> '
+                                //return '<img src='@Url.Content("~/Image/icons/view.png")' style="height: 22px" />'
+                            }
+                        },
+                        {
+                                    targets: [6],
+                                    render: function (data) {
+                                        debugger;
+                                        var date = new Date(data);
+                                        var month = date.getMonth() + 1;
+                                        return date.getDate() + "-" + (month.toString().length > 1 ? month : "0" + month) + "-" + date.getFullYear(); /*+ "&nbsp;&nbsp;" + (date.getHours() < 10 ? ("0" + date.getHours()) : date.getHours()) + ":" + (date.getMinutes() < 10 ? ("0" + date.getMinutes()) : date.getMinutes());*/
+
+                                    }
+                        }     
+                        ]
+                    })
+                }
+            }
+            assetListVM.init();
+        });
+       
+    </script>
+    <script>
+        function LogOut(){
+           window.location.href = '/AdminLogin/UserDetails'; 
+        }
+        </Script>
+
+  <script>
+        function Home(){
+           window.location.href = '/AdminDashBoardNew/IndoFinAdminDashBoard'; 
+        }
+        </Script>
+    <script>
+        function backtoview() {
+            window.location.href = "/AdminDashBoardNew/IndoFinAdminDashBoard";
+        }
+    </script>
+
+    <style>   
+        #assets-data-table_wrapper row {
+            float: left;
+            width: 100%
+        }
+        #assets-data-table {
+            font-size: 14px;
+            width: 100%
+        }
+        #assets-data-table_info row {
+            float: left;
+            width: 100%;
+        }
+        #assets-data-table_paginate ul {
+            float: right;
+            width: 100%
+        }
+        .panel-body row {
+            width: 100%;
+        }
+        #assets-data-table_length tr {
+            width: 100% !important;
+        }
+        #assets-data-table_wrapper {
+            float: left;
+            width: 100%;
+        }
+            #assets-data-table_wrapper row {
+                width: 100%;
+                float: left;
+            }
+        #assets-data-table_info {
+            width: 100%;
+        }
+        .panel-body table, tr {
+            width: 100%;
+        }
+        .panel-body .row {
+            float: left;
+            width: 100%
+        }
+
+        .row {
+            width: 100%
+        }
+    </style>
+    @if (ViewBag.AdminFlag == "AdminFlag")
+    {
+        <style>
+            .panel-body .row {
+                float: left;
+                width: 100%
+            }
+
+            .panel-body row {
+                width: 100%;
+            }
+
+            .panel-body table tr {
+                float: left;
+                width: 100%
+            }
+
+            th {
+                font-size: 14px;
+            }
+        </style>
+    }
+     <style>
+        .init_a_nav:hover{
+            background: #d55959;
+            transition: ease-in-out 0.3s;
+        }
+         .init_href {
+            font-size: 16px;
+            padding: 5px 12px;
+            color: #fff !important;
+            cursor:pointer;
+        }
+
+            .init_href:hover {
+                border-radius: 3px;
+                transition: all 0.4s ease;
+            }
+    </style>
+      <link href="~/css/multiclass.css" rel="stylesheet" />
+</head>
+<body>
+    <section id="dashboard-menu" style="padding:0!important">
+        <div class="dashboard-menu">
+            <div class="" id="navbarSupportedContent" style="font-size: 15px;display: flex;align-items: center;padding: 12px;">
+                <div class="container-fluid">
+                   <h3 style="color:#fff;font-size:20px;margin-bottom: 0;">Dashboard</h3>
+                </div>
+                <div style="display: flex;flex-direction: row;">
+                    <a class="init_href" style="" href="#" onclick="Home()">Home</a>
+                    <a class="init_href" style="margin-left: 15px;" href="#" onclick="LogOut()">Logout</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    @*<section id="dashboard-menu">
+        <div class="container-fluied">
+            <div class="row" style="margin:0%">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light dashboard-menu" style="padding: -0.4rem 1rem !important;">
+                    <button class="navbar-toggler posmob" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent" style="font-size: 15px;">
+                        <div class="container-fluid">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h3 style="color:#fff;font-size:20px;margin-bottom: 0;">Dashboard</h3>
+                            </div>
+                        </div>
+
+                        <form class="form-inline my-2 my-lg-0" style="margin-right: 16px;">
+                            <a class="nav-link" style="box-shadow: 0 2px 4px 0 rgb(0 0 0 / 20%) !important;border: 1px solid rgba(255,255,255,0.1);" href="#" onclick="Home()">Home</a>
+                        </form>
+                        <form class="form-inline my-2 my-lg-0">
+                            <a class="nav-link" style="box-shadow: 0 2px 4px 0 rgb(0 0 0 / 20%) !important;border: 1px solid rgba(255,255,255,0.1);" href="#" onclick="LogOut()">Logout</a>
+                        </form>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </section>*@
+
+    <div class="panel panel-primary list-panel" id="list-panel">
+        <div class="panel-body">
+            <div class="form_rowsales" style="padding-top: 0px;padding-left: 1.5%;float:left">
+                <form></form>
+            </div>
+            <table id="assets-data-table" class="table table-striped table-bordered" style="width:100%;">  </table>
+        </div>
+    </div>
+    <div id="CustAllDataReject"></div>
+    <div id="DataTable"></div>
+    <div id="verifyloaderReject"></div>
+    <div id="verifybagReject"></div>
+    <div id="VerifyResultReject"></div>
+    <div id="testidReject"></div>
+</body>
+</html>
+
+

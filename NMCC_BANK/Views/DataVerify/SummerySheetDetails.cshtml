@@ -1,0 +1,1391 @@
+﻿@model ServiceProvider1.Models.UserDetails.ClsSummeryDetails
+@{
+        if(@ViewBag.rekycview=="1")
+    {
+        Layout = null;
+    }
+    else{
+        Layout = "~/Views/Shared/_Multiagent.cshtml";
+    }
+}
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <script src="~/bundlejs/bundlingofsummarysheet.min.js"></script>
+    <script src="~/js/encryption.js"></script>
+    
+     <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+     <link href="~/Content/Navigation/style.css" rel="stylesheet" />
+    <link href="~/Content/PDF/PDF.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+        <link href="~/Scripts/sweetalert.css" rel="stylesheet" />
+        <script src="~/Scripts/sweetalert.min.js"></script>
+        <link href="~/Content/snewcss.css" rel="stylesheet"/>
+    @if(@ViewBag.rekycview=="1")
+    {
+       <style>
+           .rkyclft{
+               text-align:left;
+           }
+       </style>
+    }
+    @if(@ViewBag.jointChanges=="true")
+    {
+        <script>
+            $(document).ready(function(){
+                SaveaccPage();
+            });
+        </script>
+    }
+
+     <style>
+          .init_logo_main {
+            height: 53px;
+        }
+         @@media screen and (max-width:900px){
+             .init_summery_div{
+                  display: flex;
+                  flex-direction: column-reverse;
+                  padding: 0;
+                  align-items: center;
+             }
+             .init_btn_sp{
+                 width: 100%;
+                 font-size: 16px!important;
+               /* width: 104.5%;
+                margin-left: 5px;*/
+             }
+
+  .init_row_sm{
+                 width:100%;
+                 margin: 0;
+             }
+             .init_row_{
+                 margin:0;
+             }
+            
+         }
+
+        .active_digi_caf_doc_ipv_sum::after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            top: 20px; 
+            left: -50%;
+            z-index: -1;
+        }
+
+        .active_digi_caf_doc_ipv_sum::after {
+            content: none;
+        }
+
+        .active_digi_caf_doc_ipv_sum::before {
+            
+             background: #3ed718 !important;
+            color: #fff !important;
+            content: "\2713" !important;
+            font-size: 23px;
+            font-weight: 900;
+        }
+
+    </style>
+    <script>
+    $(document).ready(function(){
+            debugger;
+            var caf_doc_ipv = @ViewBag.progressbarqcdv;
+
+            if (caf_doc_ipv == 1) {
+            document.getElementById("Agentlitab1").classList.add("active_digi_caf_doc_ipv_sum");
+            $("#Agentlitab1").addClass("active_digi_caf_doc_ipv_sum");
+
+            document.getElementById("Agentlitab2").classList.add("active_digi_caf_doc_ipv_sum");
+                $("#Agentlitab2").addClass("active_digi_caf_doc_ipv_sum");
+
+             document.getElementById("Agentlitab3").classList.add("active_digi_caf_doc_ipv_sum");
+                $("#Agentlitab3").addClass("active_digi_caf_doc_ipv_sum");
+
+            document.getElementById("Agentlitab4").classList.add("active_digi_caf_doc_ipv_sum");
+                $("#Agentlitab4").addClass("active_digi_caf_doc_ipv_sum");
+
+                $("#Agentlitab2").removeClass("init_disable_li");
+                $("#Agentlitab3").removeClass("init_disable_li");
+                $("#Agentlitab4").removeClass("init_disable_li");
+                $("#Agentlitab5").removeClass("init_disable_li");
+        }
+        })
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('#btnback').prop('disabled',true);
+        });
+    </script>
+    
+
+    <style>
+         #icon-test{
+            height: 22px;
+            opacity: 0.7;
+            float:right;
+
+        }
+        table.ex1 {
+            empty-cells: hide;
+        }
+
+        table.ex2 {
+            empty-cells: show;
+        }
+        .livept1{
+                padding: 0%;
+            height: 138px;
+            width: 110px;
+            }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        .geeks {
+            border-right: hidden;
+        }
+
+        .gfg {
+            border-collapse: separate;
+            border-spacing: 0 4px;
+        }
+
+        tabel, td {
+            color: #413f3f;
+        }
+
+        .approve_popup {
+            position: fixed !important;
+            z-index: 999 !important;
+            background-color: #f9f7f7 !important;
+            top: 4% !important;
+            width: 32% !important;
+            margin: 8% 8%;
+            padding: 0px 7px;
+            border-radius: 4px;
+        }
+
+        .newspaper {
+            column-count: 3;
+            width: 43%;
+            float: left;
+            padding: 2px;
+        }
+
+        /* schnges*/
+
+          label{
+            font-size: 1.5rem;
+        }
+
+        .headingback{
+            background-color: #e1e0e0;
+        }
+        .livepth2{
+            width: 112px;
+        }
+        .lvpt3{
+                background-color: #1761e6;
+                border-color: #1761e6;
+                color: #fff;
+                font-size: 18px!important;
+                width: 50%!important;
+                margin: 0 auto 3px!important;
+                padding: 5px;
+        }
+        .titlesc{
+    font-family: Roboto,Arial,sans-serif !important;
+    letter-spacing: 0;
+    line-height: 32px;
+    display: inline-block;
+    color: #434444 !important;
+    font-size: 17px !important;
+    padding: 3px 10px !important;
+    font-weight: 600 !important;
+    margin-bottom: 0px !important;
+        }
+
+        .pdrow{
+            padding: 0px 25px 0px 25px;
+        }
+
+        .labelfr{
+           margin:5px;
+        }
+
+        .pdr{
+            padding: 10px;
+        }
+
+        .divfst{
+            border:1px solid #dadddd;
+            background-color: white;
+        }
+        
+        .liveimg{
+            background-color: #337ab7;
+            color: white;
+            text-align: center;
+            float:initial;
+        }
+        
+        .detdiv{
+           /* background-color: #e3bfbfde;*/
+            border-radius: 5px;
+        }
+        .alert-primary {
+    color: #850000;
+    background-color: #ffe5e5;
+    border-color: #b8daff;
+}
+        .paradet{
+            color: #023036;
+        }
+
+        .detailsbox{
+            float: left;
+            width: 100%;
+            box-sizing: border-box;
+            border: 1px solid lightgrey;
+            background-color: white;
+        }
+
+        
+        .amndiv{
+            float: left;
+            width: 100%;
+            margin-top: 0px;
+            background-color: white;
+            border: 1px solid lightgrey;
+        }
+
+
+        .livephoto{
+            padding:0px !important;
+        }
+
+    </style>
+    <meta name="viewport" content="width=device-width" />
+    <script>
+        function CloseForm() {
+            $.ajax({
+                url: "/DataVerify/SummerySheet",
+                type: "Get",
+                cache: false,
+                success: function (result) {
+                    debugger;
+                    $("#Indo_Dashboard").hide();
+                    $('#QuickEnrollview').html(result);
+                }
+            })
+        }
+    </script>
+     @if(ViewBag.Rekyc=="true")
+    {
+       <script type="text/javascript">
+         $(document).ready(function(){
+              $('#pdfcrt').css('display', 'none');
+           $('.rekyc1').css('display', 'none');
+         });
+       </script>
+           
+           
+
+    }
+    @if (ViewBag.AdminFlag == "AdminFlag")
+    {
+        <script>
+             $(document).ready(function(){
+             $('.AgentsMobile').css('display', 'none');
+             $('.AgentsMobile1').css('display', 'none');
+             $('#pdfcrt').css('display', 'none');
+             $('.rekyc1').css('display', 'none');
+             $('.exit').css('display', 'none');
+             $('#pdfcrt').css('display', 'none');
+             $('#CustMobileNoButton_id').css('display', 'none');
+             $(".titlesc").hide();
+             $(".amndiv").hide();
+
+
+
+         });
+        </script>
+    }
+
+    <script>
+       
+        function savePhoto() {
+            debugger;
+            var base64I;
+            var imageInnerHtml;
+            var b;
+            var resultvalues;
+            if ($('#CaptureUserImage').is(':visible') == true) {
+                if ($('#results').is(':visible') == true) {
+                    if (document.getElementById('results').innerHTML != "Your captured image will appear here...") {
+                        base64I = (document.getElementById("results").innerHTML);
+                        imageInnerHtml = base64I.split(",");
+                        b = imageInnerHtml[1];
+                        b = b.substring(0, b.length - 2);
+                        resultvalues = demo.textContent;
+                    }
+                }
+                else {
+                    swal("Capture photo");
+                    return false;
+                    event.preventDefault();
+                }
+            }
+            $('#Userphotoid').val(b);
+            $('#BC_latitudelongitude').val(resultvalues);
+            var BC_latitudelongitude = $('#BC_latitudelongitude').val();
+            var datatest = $('#Userphotoid').val();//new Object();
+            var capture = { "test": $('#Userphotoid').val() };
+            $.ajax({
+                url: '/DataVerify/SaveBCPhoto/',
+                type: 'POST',
+                data: JSON.stringify({ datatestdemo: datatest, BCLatitude_Longitude: BC_latitudelongitude }),
+                contentType: "application/json; charset=utf-8",
+                success: function (result) {
+                    debugger;
+                    swal(result);
+                    $('#CAFbtndownload').show();
+                }
+              });
+            var resultvalues = "dssfsdf54641561";
+        }
+        function UserVerifyOTP() {
+            debugger;
+            var MobileNumber = $('#UserMobileNo').val();
+            var OTP= $('#UserOTP').val();;
+            if (OTP == '') {
+                swal("Enter valid OTP...");
+                return false;
+            }
+            if (OTP.length > 6) {
+                swal("Enter 6 digit Valid OTP...");
+                $('#QEMobileauth').val('');
+
+                return false;
+            }
+            $.ajax({
+                url: '/KYCQuickEnroll/QEMobileOTPAuthenticate',
+                type: "Get",
+                data: {
+                    OTP: OTP,
+                    MobileNumber:MobileNumber
+                },
+                cache: false,
+                success: function (result) {
+                    debugger;
+                    
+                    if (result == "Verified Successfully") {
+                        swal(result);
+                        $('#isMobileVerify2').show();
+                        $('#MobileVerify2').show();
+                        $('#UserVerifyButton').hide();
+                        $('#SUMobileVerify').show();
+
+                        swal(result);
+                        $("#UserMobileNoButton_id").prop('disabled', true);
+                        $("#UserVerifyButton").prop('disabled', true);
+                    }
+                    else {
+                        swal(result);
+                  
+                    }
+                    if (resultdata[1] == "1") {
+                        $('#adrbtnid').show();
+
+                    }
+                }
+
+
+
+            })
+        }
+    </script>
+    <script>
+        $(document).ready(function () {
+            //  window.location = "/PaymntReceipt/ShowPaymentReceipt" + "?ajaxcall=" + $('#NPSPaymentReceipt').val();
+            debugger;
+            $("#btnApprove").hide();
+            $("#btnReject").hide();
+            $('#DARejectDiv').hide();
+            $('#AuthMobolieNos').hide();
+            //$('#custOtpDiv').hide();
+            $('#userOtpDiv').hide();
+            //   $('#adrbtnid').hide();
+            $('#btnPdf').click(function () {
+                debugger;
+                // window.location = "/DataVerify/dowanloadpdf";
+                var url = window.location.protocol + "//" + window.location.host + "/DataVerify/dowanloadpdf";
+                window.open(url, '_blank');
+            })
+            $('#closeformdata').click(function () {
+                debugger;
+                $('#SummeryDataView').hide();
+            })
+
+
+
+          
+        })
+    </script>
+    <script>
+        $(document).ready(function () {
+            $("#agr").prop("checked", true);
+        });
+    </script>
+    <script>
+        function Custaadharsubmit() {
+             debugger;
+            $('#TabCafpdf').addClass('active');
+            var url = window.location.protocol + "//" + window.location.host + "/DataVerify/Custdownloadpdf";
+        window.open(url, '_blank');
+        }
+
+        function backtoview() {
+            window.location.href = '/CustomerAccount/CustomerAccForm';
+        }
+    </script>
+    <script>
+        function aadharsubmit(e) {
+            debugger;
+            $('#TabCafpdf').addClass('active');
+            var url = window.location.protocol + "//" + window.location.host + "/DataVerify/dowanloadpdf";
+            window.open(url, '_blank');
+            setTimeout(function () {
+                window.location.reload(1);
+            }, 5000);
+            
+            $('#isCAFPDFActive').is('active');
+        }
+        
+        function agreeconsent() {
+            debugger;
+            $('#AuthMobolieNos').show();
+        }
+         
+       
+           
+    </script>
+     
+    @if (ViewBag.AdminFlag != "AdminFlag")
+    {
+        <script type="text/javascript">
+            $(document).ready(function () {
+                debugger;
+                $('#DARejectDiv').hide();
+                $("#btnApprove").hide();
+                $("#btnReject").hide();
+            });
+        </script>
+    }
+    @if (ViewBag.AdminFlag == "")
+    {
+        <script type="text/javascript">
+            $(document).ready(function () {
+                debugger;
+                $('#DARejectDiv').hide();
+                $("#btnApprove").hide();
+                $("#btnReject").hide();
+            });
+        </script>
+    }
+    <script>
+        //$("#btnRejectMe").click(function () {
+        function funReject() {
+            debugger;
+            swal({
+                title: "Are you sure?",
+                text: "You want to reject " + $("#CustomerId").val() + "  customerId !",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Yes, Reject it!",
+                closeOnConfirm: false
+            },
+                function (isConfirm) {
+                    if (isConfirm) {
+                        swal({
+                            title: "An input!",
+                            text: "Enter Reject Reason For " + $("#CustomerId").val() + " customerId",
+                            type: "input",
+                            showCancelButon: true,
+                            closeOnConfirm: false,
+                            animation: "slide-from-top",
+                            inputPlaceholder: "Write something"
+                        },
+                            function (inputValue) {
+                                if (inputValue === false)
+                                    return false;
+                                if (inputValue === "" || inputValue.trim().length == 0) {
+                                    swal.showInputError("You need to write something!");
+                                    return false;
+                                }
+                                if (inputValue === null) {
+                                    swal.showInputError("You need to write something!");
+                                    return false;
+                                }
+                                var accountNumber = inputValue;
+                                swal({
+                                    title: "",
+                                    text: "Reject Reason : " + accountNumber + " has been successfully assigned to customerId " + $("#CustomerId").val() + " ",
+                                    type: "info",
+                                    confirmButtonColor: "#DD6B55",
+                                    confirmButtonText: "Ok!",
+                                    closeOnConfirm: false,
+                                },
+                                    function (isConfirm) {
+                                        if (isConfirm) {
+                                            $.ajax({
+                                                url: "/KYCQuickEnroll/CKYCApplicationApproval?appId=" + $("#CustomerId").val() + "-R" + accountNumber + "&emailId=" + $("#CEmailId").val(),
+                                                type: 'GET',
+                                                data: '',
+                                                cache: false,
+                                                success: function (result) {
+                                                    if (result == 'Session Expired') {
+                                                        window.location.href = '/AccountLogin/AccountDetails?strLoginDetail=LogIn';
+                                                    }
+                                                    else {
+                                                        swal({
+                                                            title: "",
+                                                            text: result,
+                                                            type: "success",
+                                                        },
+                                                            function () {
+                                                                window.location.reload();
+                                                            })
+                                                    }
+                                                }
+                                            });
+                                        }
+                                    })
+                            })
+                    }
+                })
+        }
+        
+        }
+        
+        }
+    </script>
+    <script>
+        $(document).ready(function () {
+            $("#CAFPDFRejecttxt").hide();
+        });
+    </script>
+    <script>
+        $('#CAFPDFApprove').change(function () {
+            $("#CAFPDFRejecttxt").hide();
+            debugger;
+            // alert("Good job");
+            $.ajax({
+                url: "/KYCQuickEnroll/FinalApproveCheck?selectedValue=" + "",
+                type: 'POST',
+                data: '',
+                cache: false,
+                success: function (result) {
+                    if (result == 'Approve') {
+                        $("#btnApprove").hide();
+                    }
+                    else {
+                        $("#btnApprove").hide();
+                        if (result.QuickReason != "") {
+                            $('#QuickEnrollDetailsRejectedReason').val(result.QuickReason);
+                            $("#IsQuickEnrollDetailsRejected").prop("checked", true);
+                        }
+                        if (result.DigiReason != "") {
+                            $('#CAFDetailsRejectedReason').val(result.DigiReason);
+                            $("#IsCAFDetailsRejected").prop("checked", true);
+                        }
+                        if (result.DocReason != "") {
+                            $('#DocumentDetailsRejectedReason').val(result.DocReason);
+                            $("#IsDocumentDetailsRejected").prop("checked", true);
+                        }
+                        if (result.CafPdfReason != "") {
+                            $('#CAFPDFRejectedReason').val(result.CafPdfReason);
+                            $("#CAFPDFReject").prop("checked", true);
+                        }
+                        if (result.IPVReason != "") {
+                            $('#IPVRejectedReason').val(result.IPVReason);
+                            $("#IsIPVRejected").prop("checked", true);
+                        }
+                        $("#btnReject").hide();
+                    }
+                }
+            });
+        });
+    </script>
+    <script>
+        $('#CAFPDFReject1').change(function () {
+            $("#CAFPDFRejecttxt").hide();
+        });
+    </script>
+    <script>
+        $('#CAFPDFRejecttxt').blur(function () {
+            debugger;
+            $.ajax({
+                url: "/KYCQuickEnroll/FinalApproveCheck?selectedValue=" + $("#CAFPDFRejecttxt").val(),
+                type: 'POST',
+                data: '',
+                cache: false,
+                success: function (result) {
+                    $("#btnApprove").hide();
+                    if (result.QuickReason != "") {
+                        $('#QuickEnrollDetailsRejectedReason').val(result.QuickReason);
+                        $("#IsQuickEnrollDetailsRejected").prop("checked", true);
+                    }
+                    if (result.DigiReason != "") {
+                        $('#CAFDetailsRejectedReason').val(result.DigiReason);
+                        $("#IsCAFDetailsRejected").prop("checked", true);
+                    }
+                    if (result.DocReason != "") {
+                        $('#DocumentDetailsRejectedReason').val(result.DocReason);
+                        $("#IsDocumentDetailsRejected").prop("checked", true);
+                    }
+                    if (result.CafPdfReason != "") {
+                        $('#CAFPDFRejectedReason').val(result.CafPdfReason);
+                        $("#CAFPDFReject").prop("checked", true);
+                    }
+                    if (result.IPVReason != "") {
+                        $('#IPVRejectedReason').val(result.IPVReason);
+                        $("#IsIPVRejected").prop("checked", true);
+                    }
+                    $("#btnReject").hide();
+                }
+            });
+        });
+    </script>
+    <script>
+        function LogOut(){
+           window.location.href = '/OrganisationLogin/OrganisationDetails'; 
+        }
+        </Script>
+    <script>
+        function SaveaccPage() {
+            debugger;
+            $('#SummeryDataView').hide();
+            $('#pdfcrt').hide();
+            $('#btnback').hide();
+            $('.exit').hide();
+            $('#Litab4').removeClass("active");
+            $('#tab4').addClass("hide");
+            $('#tab4').removeClass("active");
+            $('#Litab7').addClass("active");
+            $('#tab7').addClass("active");
+            $('#tab7').removeClass("hide");
+            $("#DigiCerti").html("<div style='position: fixed;z-index: 5000;float: left;right: 50%;height: 50px;width: 50px;top:40%;'>  <i class='fa fa-pulse fa-fw dgldr ldrdesign' style='height:70px;width:70px;border-radius:50%;border-bottom:5px dotted grey;border-top:5px dotted black;border-right:5px dotted black;border-left:5px dotted black;height:80px;width:80px;position:absolute;margin: 20% 50%;'></i> </div>");
+            $("#DigiCerti").show();
+            $("#DIGIbag").show();
+            $.ajax({
+                url: '/CustomerAccount/CustomerAccForm?msg=' + "1",
+                type: "GET",
+                data: {},
+                success: function (result) {
+                    debugger;
+                    $("#DigiCerti").hide();
+                    $("#DIGIbag").hide();
+                    //$('#tabShow').empty();
+                    $('#tabShow').show();
+                    $('#tabShow').html(result);
+                }
+
+            })
+        }
+    </script>
+    <script>
+        function generatepdf() {
+            debugger;
+            $('#btnback').prop('disabled', false);
+            var url = window.location.protocol + "//" + window.location.host + "/DataVerify/Generatepdf";
+            window.open(url, '_blank');
+        }
+    </script>
+</head>
+<body>
+    <div id="SummeryDataView">
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.BCPhoto, new { id = "Userphotoid" })
+        @Html.HiddenFor(model => model.BC_Latitude_Longitude, new { id = "BC_latitudelongitude" })
+        <div class="mgbtm_2">
+           
+                <div class="container">
+                    <div class="">
+                        <div class="row">
+                            <div class="col-xl-6">
+                                 <img src="~/content/logos/RSSB_bank.jpg"  class="init_logo_main" alt="Bank Logo" />
+                            </div>
+                            <div class="col-xl-6">
+                               <div class="mrgntpadmn" style="float:right;margin-top: 26px;">
+                    <label>Customer Reference Number :</label>
+                    <label> @Model.CustomerId</label>
+                </div>
+
+
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="wdth100p">
+                        <div class="panel-heading headingback">
+                            <h3 class="panel-title titlesc">CUSTOMER APPLICATION FORM</h3>
+                        </div>
+                        <div class="clearfix">
+                         
+                
+                        </div>
+                        <div class="panel-body caf-pdf-form" style="">
+                            <div class="row init_summery_div">
+                                <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 paddcaf">
+                                    <div class="row">
+                                        <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 labelfr  cafPDf" style="padding:0">
+                                            <label>Name</label>
+                                        </div>
+                                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12" style="padding:0px">
+                                            @if (Model.CFirstName != null)
+                                            {
+                                                <input type="text" value="@Model.CFirstName"  class="inputfont1" disabled="" style = "text-transform: uppercase;">
+                                            }
+                                            else
+                                            {
+                                                <input type="text" value="@Model.CFirstName"  class="inputfont1" disabled="" style = "text-transform: uppercase;">
+                                            }
+                                        </div>
+                                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6  cafPDf" style="padding:0px">
+                                            @if (Model.CMiddleName != null)
+                                            {
+                                                <input type="text" value="@Model.CMiddleName"  class="inputfont1" disabled="" style = "text-transform: uppercase;">
+                                            }
+                                            else
+                                            {
+                                                <input type="text" value="@Model.CMiddleName" class="inputfont1" disabled="" style = "text-transform: uppercase;">
+                                            }
+                                        </div>
+                                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6" style="padding:0px">
+                                            @if (Model.CMiddleName != null)
+                                            {
+                                                <input type="text" value="@Model.CLastName"  class="inputfont1" disabled="" style = "text-transform: uppercase;">
+                                            }
+                                            else
+                                            {
+                                                <input type="text" value="@Model.CLastName" class="inputfont1" disabled="" style = "text-transform: uppercase;">
+                                            }
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 labelfr  cafPDf" style="padding:0">
+                                            <label>Gender</label>
+                                        </div>
+                                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12" style="padding:0px">
+                                            @if (@Model.CGender == "M" || @Model.CGender == "Male")
+                                            {
+                                                <input type="text" value="Male" class="inputfont1" disabled="" style = "text-transform: uppercase;">
+                                                @*<p style="font-size:13px;padding-left: 37%;padding-right: 0%;padding-top:3px;">Male</p>*@
+                                            }
+                                            else if (@Model.CGender == "F" || @Model.CGender == "Female")
+                                            {
+                                                <input type="text" value="Female" class="inputfont1" disabled="" style = "text-transform: uppercase;">
+                                            }
+                                            else if (@Model.CGender == "O" || @Model.CGender == "Other")
+                                            {
+                                                <input type="text" value="Other" class="inputfont1" disabled="" style = "text-transform: uppercase;">
+                                            }
+                                        </div>
+                                        <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 labelfr  cafPDf" style="padding:0">
+                                            <label>DOB</label>
+                                        </div>
+                                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12" style="padding:0px">
+                                            @if (Model.DOB_DD != null)
+                                            {
+                                                var DD = "";
+                                                if (Model.DOB_DD.Length == 1)
+                                                {
+                                                    DD = '0' + Model.DOB_DD;
+                                                }
+                                                else
+                                                {
+                                                    DD = Model.DOB_DD;
+                                                }
+                                                foreach (char data in (DD.Length >= 2) ? DD.Substring(0, 2).PadRight(2, ' ') : DD.PadRight(2, ' '))
+                                                {
+                                                    <input type="text" value='@data' class="inputfont1 wdbox1"  disabled style="width:10.3%" />
+                                                }
+                                            }
+                                            else
+                                            {
+                                                foreach (char data in "DD")
+                                                {
+                                                    <input type="text" value='@data' class=" inputfont1 wdbox" disabled style="width:10.3%" />
+                                                }
+                                            }
+                                            @if (Model.DOB_MM != null)
+                                            {
+                                                var MM = "";
+                                                if (Model.DOB_MM.Length == 1)
+                                                {
+                                                    MM = '0' + Model.DOB_MM;
+                                                }
+                                                else
+                                                {
+                                                    MM = Model.DOB_MM;
+                                                }
+                                                foreach (char data in (MM.Length >= 2) ? MM.Substring(0, 2).PadRight(2, ' ') : MM.PadRight(2, ' '))
+                                                {
+                                                    <input type="text" value='@data' class="inputfont1 wdbox" disabled style="width:10.3%" />
+                                                }
+                                            }
+                                            else
+                                            {
+                                                foreach (char data in "MM")
+                                                {
+                                                    <input type="text" value='@data' class="inputfont1 wdbox" disabled style="width:10.3%" />
+                                                }
+                                            }
+                                            @if (Model.DOB_yyyy != null)
+                                            {
+                                                foreach (char data in (Model.DOB_yyyy.Length >= 4) ? Model.DOB_yyyy.Substring(0, 4).PadRight(4, ' ') : Model.DOB_yyyy.PadRight(4, ' '))
+                                                {
+                                                    <input type="text" value='@data' class="inputfont1 wdbox" disabled style="width:10.3%" style = "text-transform: uppercase;" />
+                                                }
+                                            }
+                                            else
+                                            {
+                                                foreach (char data in "yyyy")
+                                                {
+                                                    <input type="text" value='@data' class="inputfont1 wdbox" disabled style="width:10.3%" style = "text-transform: uppercase;" />
+                                                }
+                                            }
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 labelfr  cafPDf" style="padding:0">
+                                            <label>Mobile No.</label>
+                                        </div>
+                                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12" style="padding:0px">
+                                            <input type="text" class="inputfont1" value="@Model.CMobileNo" disabled="" >
+                                        </div>
+                                        <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 labelfr  cafPDf" style="padding:0">
+                                            <label>Email ID</label>
+                                        </div>
+                                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12" style="padding:0px">
+                                            <input type="text"  class="inputfont1" value="@Model.CEmailId" id="CEmailId" disabled="">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 labelfr cafPDf" style="padding:0">
+                                            <label>PAN No.</label>
+                                        </div>
+                                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12" style="font-size:12px;padding:0px">
+                                            @if (Model.ManualPanNo != null)
+                                            { 
+                                                    <input type="text"  class="inputfont1" value="@Model.ManualPanNo" disabled  style = "text-transform: uppercase;"/>
+                                               
+                                            }
+                                            else
+                                            {
+                                               
+                                                    <input type="text"  class="inputfont1" value="@Model.ManualPanNo" disabled  style = "text-transform: uppercase;"/>
+                                               
+                                            }
+                                        </div>
+                                        <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 labelfr  cafPDf" style="padding:0">
+                                            <label>Address</label>
+                                        </div>
+                                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12" style="padding:0px">
+                                            @if (Model.CAddress != null)
+                                            {
+                                                <input type="text"  class="inputfont1" value="@Model.CAddress" disabled  style = "text-transform: uppercase;"/>
+                                            }
+                                            else
+                                            {
+                                                <input type="text" class="inputfont1" value="@Model.CAddress" disabled style = "text-transform: uppercase;" />
+                                            }
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 labelfr  cafPDf" style="padding:0">
+                                            <label>Pincode</label>
+                                        </div>
+                                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12" style="padding:0px">
+                                            @if (Model.Pin_Code != null)
+                                            {
+                                            
+                                                <input type="text"  class="inputfont1" value="@Model.Pin_Code" disabled="" />
+
+                                            }
+                                            else
+                                            {
+                                                <input type="text"  class="inputfont1" value="@Model.Pin_Code" disabled ="" />
+
+                                            }
+                                        </div>
+                                        <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 labelfr cafPDf" style="padding:0">
+                                            <label>Country</label>
+                                        </div>
+                                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12" style="padding:0px">
+                                            <input type="text" class="inputfont1" value="@Model.QECountry" disabled="" style = "text-transform: uppercase;">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 labelfr cafPDf" style="padding:0">
+                                            <label>State</label>
+                                        </div>
+                                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12" style="padding:0px">
+                                            <input type="text" class="inputfont1" value="@Model.QEState" disabled="" style = "text-transform: uppercase;">
+                                        </div>
+                                        <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 labelfr cafPDf" style="padding:0">
+                                            <label>City</label>
+                                        </div>
+                                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12" style="padding:0px">
+                                            <input type="text"  class="inputfont1" value="@Model.QECity" disabled="" style = "text-transform: uppercase;">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 pdlft  paddcaf12liv">
+                                    <div class="camera-div">
+                                        <h3 class="liveimg lvpt3">Live Photo</h3>
+                                        <div class="camera-view livephoto livepth2" >
+                                            <img src="@ViewBag.liveimage" id="Livephoto" style="padding:0%;"class="photoimg livept1">
+                                        </div>
+                                    </div>
+                                </div>
+                              
+                            </div>
+                        </div>
+
+                        <div class="" style="margin-top: 8px;">
+                            @if (Model.IsAadharVerify == true)
+                            {
+                                <div class="digibox">
+                                    <div>
+                                        <div class="panel-heading">
+                                            <h3 class="panel-title">AADHAAR REVERIFICATION</h3>
+                                        </div>
+                                        <div class="panel-body caf-pdf-form" style="float:left;width:100%;margin-top:8px">
+                                            <div class="row">
+                                                <div class="col-xl-9 paddcafnew">
+                                                    <div class="row">
+                                                        <div class="col-xl-3 paddcaf12">
+                                                            <label>Full Name</label>
+                                                        </div>
+                                                        <div class="col-xl-9 paddcaf12">
+                                                            <input type="text"  class="inputfont1" value="@Model.AadharName" disabled="" style = "text-transform: uppercase;">
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-xl-3 paddcaf12">
+                                                            <label>DOB</label>
+                                                        </div>
+                                                        <div class="col-xl-3 paddcaf12">
+                                                            <input type="text"  class="inputfont1" value="@Model.Aadhar_DateOfBirth" disabled="" >
+                                                        </div>
+                                                        <div class="col-xl-3 paddcaf12">
+                                                            <label>Gender</label>
+                                                        </div>
+                                                        <div class="col-xl-3 paddcaf12">
+                                                            <input type="text"  class="inputfont1" value="@Model.Aadhar_Gender" disabled="" style = "text-transform: uppercase;">
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-xl-3 paddcaf12">
+                                                            <label>Address</label>
+                                                        </div>
+                                                        <div class="col-xl-3 paddcaf12">
+                                                            <input type="text"  class="inputfont1" value="@Model.Aadhar_Address" disabled="" style = "text-transform: uppercase;">
+                                                        </div>
+                                                        <div class="col-xl-3 paddcaf12">
+                                                            <label>Country</label>
+                                                        </div>
+                                                        <div class="col-xl-3 paddcaf12">
+                                                            <input type="text" class="inputfont1" value="@Model.AadharCountry" disabled="" style = "text-transform: uppercase;">
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-xl-3 paddcaf12">
+                                                            <label>Locality</label>
+                                                        </div>
+                                                        <div class="col-xl-3 paddcaf12">
+                                                            <input type="text" class="inputfont1"  value="@Model.Aadhar_Locality" disabled="" style = "text-transform: uppercase;">
+                                                        </div>
+                                                        <div class="col-xl-3 paddcaf12">
+                                                            <label>State</label>
+                                                        </div>
+                                                        <div class="col-xl-3 paddcaf12">
+                                                            <input type="text"  class="inputfont1" value="@Model.AadharState" disabled="" style = "text-transform: uppercase;">
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-xl-3 paddcaf12">
+                                                            <label>House</label>
+                                                        </div>
+                                                        <div class="col-xl-3 paddcaf12">
+                                                            <input type="text"  class="inputfont1" value="@Model.AadharHouse" disabled="" style = "text-transform: uppercase;">
+                                                        </div>
+                                                        <div class="col-xl-3 paddcaf12">
+                                                            <label>Street</label>
+                                                        </div>
+                                                        <div class="col-xl-3 paddcaf12">
+                                                            <input type="text" class="inputfont1" value="@Model.AadharStreet" disabled="" style = "text-transform: uppercase;">
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-xl-3 paddcaf12">
+                                                            <label>District</label>
+                                                        </div>
+                                                        <div class="col-xl-3 paddcaf12">
+                                                            <input type="text" class="inputfont1" value="@Model.Aadhar_District" disabled="" style = "text-transform: uppercase;">
+                                                        </div>
+                                                        <div class="col-xl-3 paddcaf12">
+                                                            <label>Pincode</label>
+                                                        </div>
+                                                        <div class="col-xl-3 paddcaf12">
+                                                            <input type="text" class="inputfont1" value="@Model.Aadhar_Pincode" disabled="" >
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-3 paddcaf123">
+                                                    <div class="camera-div">
+                                                        <h3>Aadhar Photo</h3>
+                                                        <div class="camera-view">
+                                                            <img src="@(Html.Raw(Model.AadharPhoto))" id="Livephoto" class="lvphtaadhaar" style="width:100%;padding:1%">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            }
+                        </div>
+
+                        <div class="panel-body detailsbox" style="float:left;width:100%;display: none;">
+                            <div class="row">
+                                <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12 detdiv paddcaf">
+                                    <div class="alert alert-primary" role="alert" style="margin-bottom:0px!important">
+                                        <p class="inputfont1 paradet">Details verified by <strong>@Model.UserName</strong> and <strong>@Model.CustomerName</strong></p>
+                                    </div>
+                                </div>
+                                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
+                                    <label id="agr1" class="agr122 agreedcheck" style="margin-top:5px"><input type="radio" name="agree" value="Agree" id="agr" onclick="agreeconsent()" class="agreerd1 agreerd2"> &nbsp;Agree</label>
+                                </div>
+                            </div>
+                        </div>
+                        @if (ViewBag.AgentAndCustPDFDown == true)
+                        {
+                            <div class="panel-heading headingback AgentsMobile" style="margin-top: 8px;display: none;">
+                                <h3 class="panel-title titlesc">Agents's Mobile No</h3>
+                            </div>
+                            <div class="panel-body amndiv AgentsMobile1" style="float:left;width:100%;margin-top:0px;display: none;">
+                                <div class="row">
+                                    <div class="ol-xl-4 col-lg-4 col-md-12 col-sm-12 cusMargin cafseppadd">
+                                        <input type="text" class="inputfont1" value="@Model.UserName"  disabled />
+                                    </div>
+                                    <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12  cusMargin cafseppadd">
+                                        <input type="Text" class="inputfont1" name="Ekyc" id="UserMobileNo_id" value="@Model.User_MobileNo" disabled />
+                                    </div>
+                                    <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 cusMargin texali cafseppadd">
+                                        <button type="button" id="UserMobileNoButton_id" value="Send OTP" class="btn btn-primary uppcase" onclick="UserMobileOTPGenerate()" disabled>SEND OTP</button>
+                                        @*<input type="button" id="UserMobileNoButton_id" value="Send OTP" class="btn btn-primary" onclick="UserMobileOTPGenerate()" />*@
+                                    </div>
+                                    @*<div class="col-xl-2  cusMargin">*@
+                                    <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12   cusMargin cafseppadd">
+                                        <input type="password" name="UserOTp" class="" id="UserOTP_id" readonly="readonly"/>
+                                    </div>
+                                    <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12  cusMargin texali cafseppadd">
+                                        <input type="button" value="Verify" id="UserVerifyButton" class="btn btn-primary uppcase" onclick="CCVerifyOTP()" disabled/>
+                                        <label id="isMobileVerify2" style="float:left;padding-right:10px;display:none"><input type="checkbox" id="MobileVerify2" checked="checked" readonly="readonly" style="display:none" />Mobile Verified</label>
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+                            <div class="panel-heading heading1back" style="margin-top: 8px;display: none;">
+                                <h3 class="panel-title titlesc">Customer Mobile Number</h3>
+                            </div>
+                            <div class="panel-body amndiv" style="float:left;width:100%;margin-top:0px;display: none;">
+                                <div class="row">
+                                    <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 cusMargin cafseppadd">
+                                        <input type="text" value="@Model.CustomerName" class="inputfont1" disabled  style = "text-transform: uppercase;"/>
+                                    </div>
+                                    <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 cusMargin cafseppadd">
+                                        <input type="Text" name="Ekyc"  class="inputfont1" id="CustMobileNo_id" value="@Model.CMobileNo" disabled  />
+                                    </div>
+                                    <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 cusMargin texali cafseppadd">
+                                        <button type="button" id="CustMobileNoButton_id" value="Send OTP" class="btn btn-primary uppcase" onclick="CustMobileOTPGenerate()" disabled>SEND OTP</button>
+                                        @*<input type="button" id="CustMobileNoButton_id" value="Send OTP" class="btn btn-primary" onclick="CustMobileOTPGenerate()" />*@
+                                    </div>
+                                    <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 cusMargin cafseppadd">
+                                        <input type="password" name="CustOTp" class="inputfont1" id="CustOTP_id" readonly="readonly"/>
+                                    </div>
+                                    <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 cusMargin texali cafseppadd">
+                                        <input type="button" value="Verify" id="CVerifyButton" class="btn btn-primary inputfont1 uppcase" onclick="CCVerifyOTP()" disabled/>
+                                        <label id="SMobileVerify1" style="float:left;padding-right:10px;display:none"><input type="checkbox" id="SisMobileVerify1" checked="checked" readonly="readonly" style="display:none" />Mobile Verified</label>
+                                    </div>
+
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="panel-heading headingback" style="margin-top: 8px;display: none;">
+                                <h3 class="panel-title titlesc">Customer Mobile Number</h3>
+                            </div>
+                            <div class="panel-body amndiv"  style="float:left;width:100%;margin-top:0px;display: none;">
+                                <div class="row">
+                                    <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 cusMargin cafseppadd">
+                                        <input type="text" value="@Model.CustomerName" class="inputfont1" disabled style = "text-transform: uppercase;" />
+                                    </div>
+                                    <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12  cusMargin cafseppadd">
+                                        <input type="Text" name="Ekyc" id="CustMobileNo_id" class="inputfont1" value="@Model.CMobileNo" disabled />
+                                    </div>
+                                    <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12  cusMargin texali cafseppadd">
+                                        <button type="button" id="CustMobileNoButton_id" value="Send OTP" class="btn btn-primary uppcase" onclick="CustMobileOTPGenerate()" disabled>SEND OTP</button>
+                                        @*<input type="button" id="CustMobileNoButton_id" value="Send OTP" class="btn btn-primary" onclick="CustMobileOTPGenerate()" />*@
+                                    </div>
+                                    <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12  cusMargin cafseppadd">
+                                        <input type="password" name="CustOTp" class="inputfont1" id="CustOTP_id" readonly="readonly"/>
+                                    </div>
+                                    <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12  cusMargin texali cafseppadd">
+                                        <input type="button" value="Verify" id="CustCVerifyButton" class="btn btn-primary inputfont1 uppcase" onclick="CustCVerifyOTP()" disabled/>
+                                        <label id="SMobileVerify1" style="float:left;padding-right:10px;display:none"><input type="checkbox" id="SisMobileVerify1" checked="checked" readonly="readonly" style="display:none" />Mobile Verified</label>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        }
+
+                    </div>
+
+ @if (ViewBag.AdminFlag != "AdminFlag")
+                    {
+
+                        <div class="faq shdowaccor" style="display: none;">
+                            <div class="faqitem">
+                                <div class="header">
+                                    <div class="hrddigi headingback">
+
+                                        @if (ViewBag.CustPDFDown == true)
+                                        {
+                                            <div class="titlesc">
+                                            <i class="fa fa-camera"></i> Customer Photo
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div class="titlesc">
+                                            <i class="fa fa-camera"></i> Agent Photo
+                                            </div>
+                                        }
+
+                                    </div>
+   
+                                </div>
+                                <div class="content" style="display:block">
+                                    <div class="panel-body" style="6px!important;">
+                                        <div id="DigiQuickCamera"> 
+                                            <fieldset>
+                                                <div class="">
+                                                    <div id="DigiImageCapturediv_id" class="row mgtpbtm">
+                                                        <div class="col-xl-2 starcameraBtn">
+                                                            <div class="buttoncam getkcybg wdth16 btn btn-primary" onclick="captureimage()" id="capButton" style="cursor: pointer;"><span class="fa fa-camera" style="color: #ff6a00;" aria-hidden="true"></span> Start Camera</div>
+                                                           
+                                                           
+
+                                                        </div>
+                                                        <div id="DigitCaptureImage" class="captureimg col-xl-9 wstart "></div>
+                                                        @*<img alt="" class="zoomDocument" src="" id="livephoto" />*@
+                                                    </div>
+                                                </div>
+                                            </fieldset>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+           
+        </div>
+        </div>
+        <div class="container" style="width:100%;">
+            <div class="row init_row_" id="">
+                <div class="col-xl-2 cusMargin texali" style="display:none" id="CAFbtndownload">
+                    <button class="btn btn-primary uppcase" id="adrbtnid" type="button" onclick="aadharsubmit(this);" style="">Download PDF</button>
+                </div>
+                <div class="col-xl-2 cusMargin texali" style="display:none" id="CustCAFbtndownload">
+                    <button class="btn btn-primary uppcase" id="Custadrbtnid" type="button" onclick="Custaadharsubmit(this);" style="">Download PDF</button>
+                </div>
+                <div class="row init_row_sm">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12"  style="">
+                     <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 cusMargin texali cafseppadd" style="display: flex;justify-content: center;">
+                          <button type="button" id="pdfcrt" value="Generate PDF" class="btn btn-primary uppcase init_btn_sp" onclick="generatepdf()" >Generate Pdf With E-Sign</button>
+                         @*<input type="button" id="UserMobileNoButton_id" value="Send OTP" class="btn btn-primary" onclick="UserMobileOTPGenerate()" />*@
+                     </div>
+                    <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 cusMargin texali" style="display: flex;justify-content: center;">
+                        <button class="btn btn-primary uppcase rekyc1 init_btn_sp" id="btnback" onclick="SaveaccPage()" type="button">GO to Saving Account</button>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 cusMargin texali" style="display: flex;justify-content: center;">
+                        <button class="btn btn-primary uppcase exit init_btn_sp" id="btnback" onclick="LogOut()" type="button">Exit</button>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+   
+    <script>
+        function CloseModal() {
+            $('#DARejectDiv').hide();
+            $('#blackbg1aprv').hide();
+        }
+        document.getElementById('IsQuickEnrollDetailsRejected').onchange = function () {
+            if (document.getElementById('IsQuickEnrollDetailsRejected').checked === true) {
+                $("#QuickEnrollDiv").show();
+            }
+            else {
+                $("#QuickEnrollDetailsRejectedReason").val('');
+                $("#QuickEnrollDiv").hide();
+            }
+        };
+        document.getElementById('IsCAFDetailsRejected').onchange = function () {
+            if (document.getElementById('IsCAFDetailsRejected').checked === true) {
+                $("#CAFDiv").hide();
+            }
+            else {
+                $("#CAFDetailsRejectedReason").val('');
+                $("#CAFDiv").hide();
+            }
+        };
+        document.getElementById('IsDocumentDetailsRejected').onchange = function () {
+            if (document.getElementById('IsDocumentDetailsRejected').checked === true) {
+                $("#DocumentDetailDiv").show();
+            }
+            else {
+                $("#DocumentDetailsRejectedReason").val('');
+                $("#DocumentDetailDiv").hide();
+            }
+        };
+        document.getElementById('CAFPDFReject').onchange = function () {
+            if (document.getElementById('CAFPDFReject').checked === true) {
+                $("#CAFPDFDiv").show();
+            }
+            else {
+                $("#CAFPDFRejectedReason").val('');
+                $("#CAFPDFDiv").hide();
+            }
+        };
+        document.getElementById('IsIPVRejected').onchange = function () {
+            if (document.getElementById('IsIPVRejected').checked === true) {
+                $("#IPVDiv").show();
+            }
+            else {
+                $("#IPVRejectedReason").val('');
+                $("#IPVDiv").hide();
+            }
+        };
+    </script>
+    <div id="DARejectDiv" class="rejpop col-lg-4 col-md-4 col-sm-4 col-xs-12 approve_popup fadeInDown animated wow" style="display:none">
+        <form id="ApprovalForm" clss="">
+            <div class="selectseltg" style=" width: 431px;height:40px;border-radius: 1px;margin-left: -7px;background-color: #548dd4;">
+                <div class="sele_txt retxt" style=" float: left;padding-top:7px; text-align: center;font-size: 16px;margin-left: 27%;color:#fff;">Select Rejected Details</div>
+                <div class="cros_ic" onclick="CloseModal()">
+                    <img src="~/Images/crossimg1.jpg" class="cros" style="padding-left: 92%;height:24px; margin-top: -10%;" />
+                </div>
+            </div>
+            <div class="form-group" style="padding:1%">
+
+                <fieldset class=" tradinggg lgndrej">
+                    @*<p class="parameter_lgnd">Reject Process</p>*@
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pd_lft0 mg_rej">
+                        <div class="col-lg-6 col-md-5 col-sm-5 col-xs-12 pd_lft0 pd_tp2" style="padding:0px!important">
+                            @Html.CheckBoxFor(model => model.IsQuickEnrollDetailsRejected, htmlAttributes: new { @class = "check", @id = "IsQuickEnrollDetailsRejected", style = "margin-top:5px;" })
+                            <label class="flt_lft" style="padding: 1px 17px 2px 3px;"><span>QuickEnroll Details<span style="color:red"></span></span></label>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-sm-6 col-xs-12" id="QuickEnrollDiv" style="display:none">
+                            @Html.TextBoxFor(mode => Model.QuickEnrollDetailsRejectedReason, htmlAttributes: new { @class = "drop", placeholder = "Quick Enroll Details Reject Reason", style = "margin-top: 8px;padding: 2px 2px 2px 2px;color: #000;padding-left:5px!important;border-radius:3px!important;text-transform: uppercase;" })
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pd_lft0 mg_rej">
+                        <div class="col-lg-6 col-md-5 col-sm-5 col-xs-12 pd_lft0 pd_tp2" style="padding:0px!important">
+                            @Html.CheckBoxFor(model => model.IsCAFDetailsRejected, htmlAttributes: new { @class = "check", @id = "IsCAFDetailsRejected", style = "margin-top:5px;" })
+                            <label class="flt_lft" style="padding: 1px 65px 2px 3px;">
+                                <span>CAF Details<span style="color:red"></span></span>
+                            </label>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-sm-6 col-xs-12" id="CAFDiv" style="display:none">
+                            @Html.TextBoxFor(mode => Model.CAFDetailsRejectedReason, htmlAttributes: new { @class = "drop", placeholder = "CAF Details Reject Reason", style = "margin-top: 8px;padding: 2px 2px 2px 2px;color: #000;padding-left:5px!important;border-radius:3px!important;text-transform: uppercase;" })
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pd_lft0 mg_rej">
+                        <div class="col-lg-6 col-md-5 col-sm-5 col-xs-12 pd_lft0 pd_tp2" style="padding:0px!important">
+                            @Html.CheckBoxFor(model => model.IsDocumentDetailsRejected, htmlAttributes: new { @class = "check", @id = "IsDocumentDetailsRejected", style = "margin-top:5px;margin-left:15%" })
+                            <label class="flt_lft" style="padding: -1px 26px 2px 3px;">
+                                <span>Document Details <span style="color:red"></span></span>
+                            </label>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-sm-6 col-xs-12" id="DocumentDetailDiv" style="display:none">
+                            @Html.TextBoxFor(mode => Model.DocumentDetailsRejectedReason, htmlAttributes: new { @class = "drop", placeholder = "Document Detail Reject Reason", style = "margin-top: 8px;padding: 2px 2px 2px 2px;color: #000;padding-left:5px!important;border-radius:3px!important;text-transform: uppercase;" })
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pd_lft0 mg_rej">
+                        <div class="col-lg-6 col-md-5 col-sm-5 col-xs-12 pd_lft0 pd_tp2" style="padding:0px!important">
+                            @Html.CheckBoxFor(model => model.CAFPDFReject, htmlAttributes: new { @class = "check", @id = "CAFPDFReject", style = "margin-top:5px;" })
+                            <label class="flt_lft" style="padding: 1px 82px 2px 3px;"><span>CAF PDF<span style="color:red"></span></span></label>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-sm-6 col-xs-12" id="CAFPDFDiv" style="display:none">
+                            @Html.TextBoxFor(mode => Model.CAFPDFRejectedReason, htmlAttributes: new { @class = "drop", placeholder = "CAF PDF Reject Reason", style = "margin-top: 8px;padding: 2px 2px 2px 2px;color: #000;padding-left:5px!important;border-radius:3px!important;text-transform: uppercase;" })
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pd_lft0 mg_rej">
+                        <div class="col-lg-6 col-md-5 col-sm-5 col-xs-12 pd_lft0 pd_tp2" style="padding:0px!important">
+                            @Html.CheckBoxFor(model => model.IsIPVRejected, htmlAttributes: new { @class = "check", @id = "IsIPVRejected", style = "margin-top:5px;" })
+                            <label class="flt_lft" style="padding: 1px 69px 2px 3px;"><span>IPV Details<span style="color:red"></span></span></label>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-sm-6 col-xs-12" id="IPVDiv" style="display:none">
+                            @Html.TextBoxFor(mode => Model.IPVRejectedReason, htmlAttributes: new { @class = "drop", placeholder = "IPV Reject Reason", style = "margin-top: 8px;padding: 2px 2px 2px 2px;color: #000;padding-left:5px!important;border-radius:3px!important;text-transform: uppercase;" })
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="rejectBT" style="width: 100%;float: left;text-align: center;margin:2% 0%">
+                        <button type="button" id="btnReject1" class="btn btn-primary" onclick="DARejectClick()">Reject</button>
+                        <button type="button" onclick="CloseModal()" class="btn btn-primary">Close</button>
+                    </div>
+                </fieldset>
+            </div>
+        </form>
+    </div>
+
+
+
+
+    <div hidden>
+        <input type="text" value="@Model.CustomerId" id="CustomerId" disabled="">
+    </div>
+    <div id="overlay_disablotp1"></div>
+    <div id="prDAApprove"></div>
+    <div id="blackbg1"></div>
+    <div id="blackbg1aprv"></div>
+    <div id="overlay_prDAApprove"></div>
+    <div id="loaderDAReject"></div>
+    <div id="overlay_DAReject"></div>
+    <div id="DigiCerti"></div>
+    <div id="DIGIbag"></div>
+    <div id="tabShow"></div>
+</body>
+</html>

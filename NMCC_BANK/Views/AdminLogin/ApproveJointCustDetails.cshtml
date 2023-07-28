@@ -1,0 +1,239 @@
+﻿@{
+    Layout = "~/Views/Shared/_AdminLayoutPage.cshtml";
+
+}
+
+<html>
+<head>
+     @*<script src="~/Scripts/jquery-1.11.0.min.js"></script>*@
+    <script src="~/Scripts/DataTable/jquery.dataTables.min.js"></script>
+    <script src="~/Scripts/DataTable/dataTables.bootstrap.js"></script>
+    <link href="~/Scripts/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="~/Scripts/webGridStyle.css" rel="stylesheet" />
+    <script>
+        function VerifyCustData(tr) {
+            debugger;
+            $("#verifyloaderApprove").html("<div style='position: fixed;z-index: 5000;float: left;right: 50%;height: 50px;width: 50px;top:40%;'><img class='ajax-loader' src='../Images/loader/Dual Ring-1s-200px.gif' height='60px' width='60px' align='middle' alt='ajaxloadergif' /></div>");
+            $("#verifyloaderApprove").show();
+            $("#verifybagApprove").show();
+            var personId = $($(tr).parent().parent())[0].id;
+            $.ajax({
+                url: "/ServiceProviderMainHome/QuickEnrollDashboard",
+                type: "GET",
+                cache: false,
+                data: {
+                    AdminCustId: personId
+                },
+                success: function (result) {
+                    debugger;
+                    $("#verifyloaderApprove").hide();
+                    $("#verifybagApprove").hide();
+                    $('#VerifyResultApprove').html(result);
+                    $('#VerifyResultApprove').show();
+                    document.getElementById("ddl_corrAdd").style.pointerEvents = "none";
+                    document.getElementById("NSDL_pannumber").style.pointerEvents = "none";
+                    document.getElementById("CustPanVerify").style.pointerEvents = "none";
+                }
+            })
+        }
+    </script>
+    <script>
+        function GetCustData(tr) {
+            debugger;
+            var personId = $($(tr).parent().parent())[0].id;
+            $.ajax({
+                url: "/AdminLogin/DataVerificationTabView",
+                type: "GET",
+                cache: false,
+                data: {
+                    CustomerDetailId: personId
+                },
+                success: function (result) {
+                    debugger;
+                    $('#DataTable').hide();
+                    $('#CustAllDataApprove').html(result);
+                }
+            })
+        }
+    </script>
+    <script>
+        function LogOut(){
+           window.location.href = '/AdminLogin/UserDetails'; 
+        }
+        </Script>
+
+    <script>
+        function Home(){
+           window.location.href = '/AdminDashBoardNew/IndoFinAdminDashBoard'; 
+        }
+        </Script>
+    <script>
+        function Searchfun(tr) {
+            debugger;
+            var customerid = $($(tr).parent().parent())[0].id;
+             $.ajax({
+                url: '/VCIP/VideoView',
+                type: 'GET',
+                data: { customerid: customerid },
+                cache: false,
+                success: function (result) {
+                    debugger;
+
+                    if (result != null) {
+                        debugger;
+                        $('#testidApprove').show();
+                        $('#testidApprove').html(result);
+                        swal('result 1');
+                    }
+                    else {
+                        swal('result -1');
+                    }
+                }
+        })
+        }
+    </script>
+    <script>
+        function viewDeatils() {
+            window.location.href = '/DataVerify/SummerySheetdata';
+        }
+    </script>
+    <script type="text/javascript">
+        var assetListVM;
+        $(function () {
+            debugger;
+            assetListVM = {
+                dt: null,
+                init: function () {
+                    debugger;
+                    dt = $('#assets-data-table').DataTable({
+                        "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+                        "ordering": false,
+                        "Searching": true,
+                        "ajax": {
+                            url: '/AdminLogin/ApproveJointCustGRID',
+                            type: 'POST'
+                        },
+                        "columns": [
+                               //{ "title": "Customer Reference No.", "data": "Customer_ID", "searchable": true },
+                           { "title": "Account No","data": "Account_no", "searchable": true },
+                            { "title": "PrimaryCustName", "data": "PrimaryCustName" },
+                            { "title": "JointCustName1", "data": "JointCustName1" },
+                            { "title": "JointCust_No1", "data": "JoinCust_No1" },
+                            { "title": "JointCustName2", "data": "JointCustName2" },
+                            { "title": "JointCust_No2", "data": "JoinCust_No2" },
+                            { "title": "APPROVE DATE ", "data": "ApproveDate" }
+                        ]
+                        //,
+                        //columnDefs: [
+                        //          {
+                        //            targets: 8,
+                        //            render: function (a, b, data, d) {
+                        //                debugger;
+                        //                //return '<img src='@Url.Content("~/Image/icons/view.png")' style="height: 22px" />'
+                        //            }
+                        //    },
+                        //    {
+                        //            targets: [7],
+                        //            render: function (data) {
+                        //                debugger;
+                        //                var date = new Date(data);
+                        //                var month = date.getMonth() + 1;
+                        //                return date.getDate() + "-" + (month.toString().length > 1 ? month : "0" + month) + "-" + date.getFullYear(); 
+                        //            }
+                        //}     
+                        //     ]                
+                    });
+                }
+            }
+            assetListVM.init();
+        });
+    </script>
+    <script>
+        function backtoview() {
+            window.location.href = "/AdminDashBoardNew/IndoFinAdminDashBoard";
+        }
+    </script>
+    <script>
+        function Playvideo() {
+            document.getElementById('playvideo').play();
+            document.getElementById('playvideo2').play();
+        }
+    </script>
+     <style>
+        .init_a_nav:hover{
+            background: #d55959;
+            transition: ease-in-out 0.3s;
+        }
+         .init_href {
+            font-size: 16px;
+            padding: 5px 12px;
+            color: #fff !important;
+            cursor:pointer;
+        }
+
+            .init_href:hover {
+                border-radius: 3px;
+                transition: all 0.4s ease;
+            }
+    </style>
+    <link href="~/css/multiclass.css" rel="stylesheet" />
+</head>
+<body>
+    <section id="dashboard-menu" style="padding:0!important">
+        <div class="dashboard-menu">
+            <div class="" id="navbarSupportedContent" style="font-size: 15px;display: flex;align-items: center;padding: 12px;">
+                <div class="container-fluid">
+                   <h3 style="color:#fff;font-size:20px;margin-bottom: 0;">Dashboard</h3>
+                </div>
+                <div style="display: flex;flex-direction: row;">
+                    <a class="init_href" style="" href="#" onclick="Home()">Home</a>
+                    <a class="init_href" style="margin-left: 15px;" href="#" onclick="LogOut()">Logout</a>
+                </div>
+            </div>
+        </div>
+    </section>
+  @*  <section id="dashboard-menu">
+        <div class="container-fluied">
+            <div class="row" style="margin:0%">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light dashboard-menu" style="padding: -0.4rem 1rem !important;">
+                    <button class="navbar-toggler posmob" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent" style="font-size: 15px;">
+                        <div class="container-fluid">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h3 style="color:#fff;font-size:20px;margin-bottom: 0;">Dashboard</h3>
+                            </div>
+                        </div>
+
+                        <form class="form-inline my-2 my-lg-0" style="margin-right: 16px;">
+                            <a class="nav-link" style="box-shadow: 0 2px 4px 0 rgb(0 0 0 / 20%) !important;border: 1px solid rgba(255,255,255,0.1);" href="#" onclick="Home()">Home</a>
+                        </form>
+                        <form class="form-inline my-2 my-lg-0">
+                            <a class="nav-link" style="box-shadow: 0 2px 4px 0 rgb(0 0 0 / 20%) !important;border: 1px solid rgba(255,255,255,0.1);" href="#" onclick="LogOut()">Logout</a>
+                        </form>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </section>*@
+    <div class="panel panel-primary list-panel panelwd" id="list-panel" style="overflow:auto;width:100%;">
+        <div class="panel-body">
+            <div class="form_rowsales" style="padding-top: 0px;padding-left: 1.5%;float:left">
+                <form>  
+                </form>
+            </div>
+            <table id="assets-data-table" class="table table-striped table-bordered" style="width:100%;">  </table>
+        </div>
+    </div>
+    <div id="CustAllDataApprove"></div>
+    <div id="DataTable"></div>
+    <div id="verifyloaderApprove"></div>
+    <div id="verifybagApprove"></div>
+    <div id="VerifyResultApprove"></div>
+    <div id="testidApprove"></div>  
+</body>
+</html>
+
+
+

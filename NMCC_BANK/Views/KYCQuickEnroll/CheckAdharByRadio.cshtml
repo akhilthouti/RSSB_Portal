@@ -1,0 +1,168 @@
+﻿@model INDO_FIN_NET.Models.QuickEnroll.ClsDigitalKYC
+@{
+    // ViewBag.Title = "CheckAdharByRadio";
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = null;
+}
+<link href="~/Content/Site.css" rel="stylesheet" />
+<link href="~/Content/Navigation/style.css" rel="stylesheet" />
+<link href="~/Content/Dashcss/dashboard.css" rel="stylesheet" />
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/Navigation/animate.css" rel="stylesheet" />
+<script>
+    $(document).ready(function () {
+        $('#ocrchk').hide();
+    });
+    function chkocr(e) {
+        debugger;
+        var ocrradioid = e.id;
+        var url = null;
+        if (ocrradioid == "ocryes") {
+            url = '/KYCQuickEnroll/DigitalKYCOCR';
+        }
+        if (ocrradioid == "ocrno") {
+            //window.location.href = '/SelectedServicesByBank/SelectedServicesByBank1?alphaservicename=' + temp[0]
+            //    + "&ServiceProvider=" + temp[1] + "&CategoryName=" + temp[2] + "&ProductName=" + temp[3];
+            url = '/KYCQuickEnroll/DigitalQuickEnrollment?proceedwithOCR=' + $('#ocrno').val() +  '&shareAadharNumber=' + $('#radiono').val();
+        }
+        $.ajax({
+            url: url,
+            type: 'get',
+            success: function (result) {
+                debugger;
+                // $("#AadharRadio").hide();
+                $('#OCRView').show();
+                $('#OCRView').html('');
+                $('#OCRView').html(result);
+            }
+        });
+    }
+    function chkadharcard(e) {
+        debugger;
+        var radioid = e.id;
+        var url = null;
+       // if (radioid == "radioyes") {
+            url = '/KYCQuickEnroll/CustomerQuickEnrollment?proceedwithOCR=' + $('#ocrno').val() + '&shareAadharNumber=' + $('#radioyes').val();
+            $.ajax({
+                url: url,
+                type: 'get',
+                success: function (result) {
+                    debugger;
+                    // $("#AadharRadio").hide();
+                    $('#Aadharview').show();
+                    $('#Aadharview').html(result);
+                }
+            });
+            $('#ocrchk').hide();
+            $('#OCRView').html('');
+            $('#OCRView').hide();
+       // }
+        if (radioid == "radiono") {
+            $('#nextCAF').show();
+            //url = '/KYCQuickEnroll/DigitalQuickEnrollment?proceedwithOCR=' + $('#ocrno').val() + '&shareAadharNumber=' + $('#radiono').val()
+            //    + '&PersonalId=' + 0;
+            //$.ajax({
+            //    url: url,
+            //    type: 'get',
+            //    success: function (result) {
+            //        debugger;
+            //        // $("#AadharRadio").hide();
+            //        $('#Aadharview').show();
+            //        $('#Aadharview').html(result);
+            //    }
+            //});
+        }
+    }
+    //function GetCustomerData (e) {
+    //    debugger;
+    //    url = '/KYCQuickEnroll/DigitalQuickEnrollment?proceedwithOCR=' + $('#ocrno').val() + '&shareAadharNumber=' + $('#radiono').val() + '&PersonalId=' + $('#custID').val(),
+    //    $.ajax({
+    //        url: url,
+    //        type: 'get',
+    //        success: function (result) {
+    //            debugger;
+    //            // $("#AadharRadio").hide();
+    //            $('#Aadharview').show();
+    //            $('#Aadharview').html(result);
+    //        }
+    //    });
+    //}
+</script>
+<script>
+    $(document).ready(function () {
+        debugger;
+        $('#showoption').hide();
+        $('#nextCAF').hide();
+        $('#nextCAF').click(function () {
+            debugger;
+            window.location.href = "/ServiceProviderMainHome/QuickEnrollDashboard?ShareAadharOrNot=" + $('#radiono').val();
+        })
+    })
+</script>
+<script>
+    function SelectAadharOption() {
+        debugger;
+        if ($('#selectAadhar').prop('checked') == true) {
+            $('#showoption').show();
+        }
+    }
+</script>
+<div class="XML_QRCode" id="AadharRadio" style="background-color: #fff;width: 99%; box-shadow:rgb(204, 204, 204) 3px 2px 14px 0px;margin: 0% 0% 1% 0.5%;">
+    @*<div class="adharque" style="padding-left: 1%;"><div class="adharH">Do you want to share your Aadhar Number ?</div></div>*@
+    @*<div class="adharcheck">
+            <input type="checkbox" class="intro_check mglft" id="selectAadhar" onclick="SelectAadharOption()" /><text class="intro_text">Aadhar Number</text>
+            @*<div id="showoption">
+                <p class="national_text mg_lft1B">Yes</p>
+                @Html.RadioButtonFor(model => model.shareAadharNumber, "Y", new { id = "radioyes", onclick = "chkadharcard(this)", @class = "adharrd" })
+                <p class="national_text1">No</p>
+                @Html.RadioButtonFor(model => model.shareAadharNumber, "N", new { id = "radiono", onclick = "chkadharcard(this)", @class = "adharrd" })
+                @Html.ValidationMessageFor(model => model.shareAadharNumber, "", new { @class = "text-danger", style = "margin-top:4px" })
+                <br />
+            </div>
+            <input type="checkbox" class="intro_check" id="showpandata" onclick="SelectpanOption()" /><text class="intro_text">Pan Card</text>
+            <input type="checkbox" class="intro_check" id="checkCKYC" onclick="SelectCKYCoption()" /><text class="intro_text">CKYC</text>
+
+        </div>*@
+
+    <div><input type="button" value="next" id="nextCAF" /></div>
+    @*<p class="national_text mg_lft1B">Yes</p>
+        @Html.RadioButtonFor(model => model.shareAadharNumber, "Y", new { id = "radioyes", onclick = "chkadharcard(this)", @class = "adharrd" })
+        <p class="national_text1">No</p>
+        @Html.RadioButtonFor(model => model.shareAadharNumber, "N", new { id = "radiono", onclick = "chkadharcard(this)", @class = "adharrd" })
+        @Html.ValidationMessageFor(model => model.shareAadharNumber, "", new { @class = "text-danger", style = "margin-top:4px" })
+        <br />*@
+    @*<input type="checkbox" class="intro_check" id="selectAadhar" onclick="SelectAadharOption()" /><text class="intro_text">Aadhar Number</text>
+        <div id="showoption">
+            <p class="national_text mg_lft1B">Yes</p>
+            @Html.RadioButtonFor(model => model.shareAadharNumber, "Y", new { id = "radioyes", onclick = "chkadharcard(this)", @class = "adharrd" })
+            <p class="national_text1">No</p>
+            @Html.RadioButtonFor(model => model.shareAadharNumber, "N", new { id = "radiono", onclick = "chkadharcard(this)", @class = "adharrd" })
+            @Html.ValidationMessageFor(model => model.shareAadharNumber, "", new { @class = "text-danger", style = "margin-top:4px" })
+            <br />
+        </div>
+
+        <input type="checkbox" class="intro_check" /><text class="intro_text">Pan Card</text>
+        <input type="checkbox" class="intro_check" /><text class="intro_text">CKYC</text>*@
+
+</div>
+@*<div class="md-form">
+        <label for="PersonalId"><div class="label_val fontpfhndr">Customer ID</div></label>
+        @Html.TextBoxFor(model => model.PersonalId, new { @id = "custID", @class = "form-control txtboxfnt_sz", @maxlength = 10 })
+        @Html.ValidationMessageFor(model => model.PersonalId, "", new { @class = "text-danger" })
+        <div class="CustRowbtm">
+            <input type="button" value="Get Data" class="hvr-grow-shadow" id="GetCustData" onclick="GetCustomerData(this)" />
+        </div>
+    </div>*@
+@*<input type="radio" onclick="chkadharcard(this);" id="radioyes" name="Choice" value="Yes" class="radio_Btn XML_QRCode_radiobtn radio_shadow" /><div class="national_text">Yes</div>
+    <input type="radio" onclick="chkadharcard(this);" id="radiono" name="Choice" value="No" class="radio_Btn XML_QRCode_radiobtn radio_shadow" /><div class="national_text">No</div>*@
+@*<div class="XML_QRCode fadeInRight animated" id="ocrchk" style="background-color: #fff;width: 99%; box-shadow:rgb(204, 204, 204) 3px 2px 14px 0px;margin: 0% 0% 1% 0.5%;">
+        <p class="pdlfttpB"><b>  Do you want to proceed with OCR</b></p>
+        <p class="national_text mg_lft1B">Yes</p>
+        @Html.RadioButtonFor(model => model.proceedwithOCR, "Y", new { id = "ocryes", onclick = "chkocr(this)", @class = "adharrd"})
+        <p class="national_text1">No</p>
+        @Html.RadioButtonFor(model => model.proceedwithOCR, "N", new { id = "ocrno", onclick = "chkocr(this)", @class = "adharrd" })
+        @Html.ValidationMessageFor(model => model.proceedwithOCR, "", new { @class = "text-danger", style = "margin-top:4px" })
+    </div>*@
+<div id="Aadharview"></div>
+<div id="OCRView"></div>
+

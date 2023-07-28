@@ -1,0 +1,369 @@
+﻿@{
+    /**/
+
+
+    // ViewBag.Title = "MainDashboard";
+    Layout = "~/Views/Shared/_AdminLayoutPage.cshtml";
+}
+<html>
+<head>
+    <script src="~/content/navigation/js/chart.min.js"></script>
+    @* PieChart CSS*@
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    <style>
+        .init_date_div {
+            margin-top: 12px;
+            background: #fff;
+            padding-top: 12px;
+            padding-bottom: 12px;
+            margin-bottom: 20px;
+        }
+
+        .init_radio {
+            margin: 0;
+            transform: scale(1.5);
+        }
+
+        .pie-chart {
+            background: radial-gradient( circle closest-side, transparent 66%, white 0 ), conic-gradient( from 277deg, #4e79a7 0, #4e79a7 27.1%, #f28e2c 0, #f28e2c 43.5%, #e15759 0, #e15759 54.9%, #76b7b2 0, #76b7b2 62%, #59a14f 0, #59a14f 66.3%, #edc949 0, #edc949 71.3%, #af7aa1 0, #af7aa1 78.4%, #ff9da7 0, #ff9da7 88.4%, #9c755f 0, #9c755f 99.8% );
+            position: relative;
+            width: 500px;
+            min-height: 350px;
+            margin: 0;
+            outline: 1px solid #ccc;
+            margin-left: 40px;
+        }
+
+            .pie-chart h2 {
+                position: absolute;
+                margin: 1rem;
+            }
+
+            .pie-chart cite {
+                position: absolute;
+                bottom: 0;
+                font-size: 80%;
+                padding: 1rem;
+                color: gray;
+            }
+
+            .pie-chart figcaption {
+                position: absolute;
+                bottom: 1em;
+                right: 1em;
+                . font-size: smaller;
+                text-align: right;
+            }
+
+            .pie-chart span:after {
+                display: inline-block;
+                content: "";
+                width: 0.8em;
+                height: 0.8em;
+                margin-left: 0.4em;
+                height: 0.8em;
+                border-radius: 0.2em;
+                background: currentColor;
+            }
+    </style>
+
+    <style>
+        #icon-test {
+            height: 22px;
+            opacity: 0.7;
+            float: right;
+        }
+
+        @@media screen and (max-width:767px) {
+            .init_details {
+                margin: 0;
+                display: flex;
+                flex-direction: column;
+            }
+
+            .init_dashboard {
+                margin-left: 0px !important;
+            }
+        }
+
+        .init_main_space {
+            display: flex;
+            justify-content: space-between;
+            margin: 0;
+        }
+
+        .init_dash_div {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .init_dashboard, .init_user {
+            color: #fff;
+        }
+
+        .init_dashboard {
+            margin-left: 50px;
+        }
+
+        .init_user {
+            float: right;
+            color: #fff;
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        .init_agent {
+            margin-right: 22px;
+        }
+
+        .cqepopupmn {
+            position: fixed;
+            top: 90%;
+            left: 20%;
+            transform: translate(-50%, -50%);
+            margin-top: -19%;
+            width: 41%;
+            display: none;
+            z-index: 2;
+            background-color: white;
+            box-shadow: 1px 1px 13.5px grey;
+            position: absolute;
+            margin-left: 30%;
+        }
+    </style>
+    <style>
+        .icndsgn {
+            color: white;
+            display: flex;
+            justify-content: center;
+            font-size: 42px;
+            padding: 10px;
+        }
+
+        .bxdsgn {
+            border: 1px solid #d467d4;
+            background-color: #d467d4;
+            padding-top: 4px;
+            padding-bottom: 8px;
+            border-radius: 9px;
+            padding-left: 3px;
+            padding-right: 0px;
+        }
+
+        .bxtext {
+            color: white;
+            font-weight: 700;
+            font-size: 14px;
+            border-top: 2px solid white;
+            border-bottom: 1px solid white;
+            padding: 6px;
+            margin-top: 6px;
+        }
+
+        .numdt {
+            color: white;
+            font-weight: 700;
+            font-size: 25px !important;
+            text-align: center;
+        }
+
+        .bxdsply {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .bxtext2 {
+            width: 62%;
+            margin-right: 0px;
+            margin-left: -1px;
+            display: flex;
+            padding-left: 18px;
+            justify-content: center;
+        }
+
+        .bxdsgn2 {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .bxdsgn3 {
+            padding: 15px 40px;
+            background-color: #87cb94;
+        }
+
+        .bxtext3 {
+            width: 101%;
+        }
+
+        .bxdsgn4 {
+            width: 15%;
+        }
+
+            .bxdsgn4:hover {
+                background: linear-gradient(130deg, #4b7bd0 0%, #84a9ea 100%);
+                box-shadow: none;
+            }
+
+        .bxdsgn3:hover {
+            background: linear-gradient(130deg, #4b7bd0 0%, #84a9ea 100%);
+            box-shadow: none;
+        }
+    </style>
+    <style>
+        .init_a_nav:hover {
+            background: #d55959;
+            transition: ease-in-out 0.3s;
+        }
+
+        .init_href {
+            font-size: 16px;
+            padding: 5px 12px;
+            color: #fff !important;
+            cursor: pointer;
+        }
+
+            .init_href:hover {
+                border-radius: 3px;
+                transition: all 0.4s ease;
+            }
+    </style>
+    <link href="~/css/multiclass.css" rel="stylesheet" />
+    <link href="~/Content/snewcss.css" rel="stylesheet" />
+    <link href="~/Content/Dashcss/dashboard.css" rel="stylesheet" />
+
+
+    <script>
+        function getEMIdetails() {
+
+            window.location.href = '/Loan/EmiCalculator';
+
+        }
+        function getPerLoandetails() {
+
+            window.location.href = '/Loan/PersonalLoanQuickEnroll';
+
+        }
+        function getHouseLoandetails() {
+
+            window.location.href = '/Loan/HouseLoanQuickEnroll';
+
+        }
+
+    </script>
+
+
+    <style>
+        .digital-clock {
+        }
+
+        .init_details_div {
+            /* display: grid;
+                                    justify-content: end;*/
+        }
+
+        .init_div {
+            display: flex;
+        }
+        .loanicon{
+                    height: 84px;
+        margin: 18px 10px;
+        }
+    </style>
+
+
+    <link href="~/css/multiclass.css" rel="stylesheet" />
+</head>
+<body>
+    <section class="breadcrumbs" style="padding: 0;">
+        <div class="container-fluid">
+            <div class="row init_main_space">
+                <div class="init_dash_div">
+                    <span class="init_dashboard">Loan Dashboard</span>
+                </div>
+
+
+            </div>
+        </div>
+    </section>
+
+
+
+    <section id="why-us" class="why-us">
+        <div id="MainDashboard">
+
+            <div class="container">
+                <div class="row" style="margin: 0;">
+                    <div class="d-flex align-items-stretch  mndashbrdmn" style="width:100%">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 icon-boxes d-flex flex-column justify-content-center" id="dashboardhide" style="width:100%">
+                            <div class="row" style="margin: 0;display: flex;justify-content: center;align-items: center;">
+                                <div class="containerrw">
+
+                                    <div class="box" id="cdetails" onclick="getHouseLoandetails()">
+                                        <div class="boxContent">
+                                           @* <i class='fas fa-landmark' style='font-size:81px;color:#fff'></i>*@
+                                            <img src="~/images/image/house.png" class="loanicon" />
+                                            <h1 class="title" style="margin-top: 6px;">Housing Loan</h1>
+                                        </div>
+                                        <a href="#"></a>
+                                        <a href="#"></a>
+                                    </div>
+                                    <div class="box" id="cdetails" onclick="getPerLoandetails()">
+                                        <div class="boxContent">
+                                            @*<i class='fas fa-money-bill-alt' style='font-size:81px;color:#fff'></i>*@
+                                            <img src="~/images/image/rupee.png" class="loanicon" />
+                                            <h1 class="title" style="margin-top: 6px;">Personal Loan</h1>
+                                        </div>
+                                        <a href="#"></a>
+                                        <a href="#"></a>
+                                    </div>
+                                    <div class="box" id="cdetails" onclick="getEMIdetails()">
+                                        <div class="boxContent">
+                                           @* <i class='fas fa-chart-pie' style='font-size:81px;color:#fff'></i>*@
+                                            <img src="~/images/image/piechart.png" class="loanicon" />
+                                            <h1 class="title" style="margin-top: 6px;">EMI Calculator</h1>
+                                        </div>
+                                        <a href="#"></a>
+                                        <a href="#"></a>
+                                    </div>
+
+
+                                </div>
+                                <div id="orgregresult"></div>
+                                <ul id="list"></ul>
+
+
+
+
+
+
+
+                                <div class="clearfix"></div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="DIGIbag"></div>
+    <div id="DigiCerti"></div>
+    <div id="Emailbakdrop"></div>
+    <div id="QuickEnrollview"></div>
+    <div id="OrgCaCertificateDetails"></div>
+    <div id="DropDetailsDiv"></div>
+
+    @*Piechart Script*@
+
+
+</body>
+</html>
+

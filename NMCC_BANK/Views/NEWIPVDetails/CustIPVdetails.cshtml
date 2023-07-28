@@ -1,0 +1,796 @@
+﻿@model INDO_FIN_NET.Models.Organisation.ClsCustIPVDetails
+@{
+    //ViewBag.Title = "CustIPVdetails";
+    Layout = "~/Views/Shared/AgentLayoutPage.cshtml";
+    //Layout = null;
+
+}
+
+<html>
+<head>
+    @*<link href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>*@
+    <link href="~/Content/VCIP/jquery.datetimepicker.css" rel="stylesheet" />
+    <script src="~/Content/VCIP/jquery.datetimepicker.full.min.js"></script>
+    <script src="~/Content/VCIP/IPVscript/jquery-3.3.1.js"></script>
+    <script src="~/Content/VCIP/IPVscript/sweetalert.min.js"></script>
+    <link href="~/Content/VCIP/sweetalert.css" rel="stylesheet" />
+    <link href="~/Content/VCIP/sweetalert.min.css" rel="stylesheet" />
+    <link href="~/Content/Dashcss/dashboard.css" rel="stylesheet" />
+    <link href="~/Content/snewcss.css" rel="stylesheet"/>
+
+     <style>
+        
+        .init_ipv_main{
+            /*box-shadow: 0 6px 8px 0 rgb(0 0 0 / 10%);*/
+            padding-bottom: 50px;
+        }
+        .init_ipv_label{
+            font-weight: 700;
+            font-size: 14px;
+            margin-bottom: 0;
+        }
+        .init_ipv_head{
+            font-family: Roboto,Arial,sans-serif !important;
+            letter-spacing: 0;
+            line-height: 32px;
+            display: inline-block;
+            color: #434444 !important;
+            font-size: 17px !important;
+            padding: 3px 10px !important;
+            font-weight: 600 !important;
+            margin-bottom: 0px !important;
+            padding: 2px 11px !important;
+            background: #e1e0e0;
+            border: 1px solid #e1e1e0 !important;
+            width: 100%;
+        }
+        @@media only screen and (max-width: 768px){
+        .btnrow1 {
+/*          padding-left:0px;*/
+            width: 100% !important;
+            margin-top: 17px;
+        }
+        }
+    </style>
+
+    <script>
+        function startIPV(tr) {
+            debugger;
+            $.ajax({
+                //// url: "/VKYC/POST",
+                url: "/VKYC/SELFVKYC?Source=" + "CP1" + '&Password=' + "fdhffhd" + '&TxnId=' + "123" + '&Userid=' + "123" + '&ApplicationID=' + "123" + '&Mobileno=' + @ViewBag.QEMobileNo + '&EmailID=' + @ViewBag.QEEmailId + '&name=' + @ViewBag.QEFirstName + '&VkycType=' + "Assisted" + '&MeetingTime=' + "immediate",
+
+                type: "GET",
+
+                cache: false,
+                success: function (result) {
+                    debugger;
+                    CUSTOMERLOGIN1();
+
+
+                }
+
+            });
+
+        }
+        function CUSTOMERLOGIN1() {
+            debugger;
+
+            window.location.href = "/VKYC/SelfCustom";
+        }
+
+    </script>
+    <script>
+        $(function () {
+            debugger;
+            $('.datetimepicker').on('click', function () {
+                debugger;
+                jQuery('#datetimepicker1').datetimepicker({
+                    format: 'd.m.Y H:i',
+                    inline: false,
+                    lang: 'ru'
+                });
+                // jQuery(this).datetimepicker();
+            });
+        });
+        function getFormattedDate(date) {
+            var day = date.getDate();
+            var month = date.getMonth() + 1;
+            var year = date.getFullYear().toString().slice(2);
+            return day + '-' + month + '-' + year;
+        }
+        function reshedule(tr) {
+            debugger;
+            $("#reschLoader").html("<div style='position: fixed;z-index: 5000;float: left;right: 50%;height: 50px;width: 50px;top:40%;'><i class='fa fa-pulse fa-fw dgldr ldrdesign' style='height:70px;width:70px;border-radius:50%;border-bottom:5px dotted grey;border-top:5px dotted black;border-right:5px dotted black;border-left:5px dotted black;height:80px;width:80px;position:absolute;margin: 20% 50%;'></i></div>");
+            $("#reschLoader").show();
+            $('#overlay_disabl').show();
+            $('#btnSave2').show();
+            $('#datetimepicker1').show();
+            $("#reschLoader").hide();
+            $('#overlay_disabl').hide();
+
+        }
+    </script>
+    <script>
+        function VideoKYC(tr) {
+            debugger;
+            $("#videoLoader").html("<div style='position: fixed;z-index: 5000;float: left;right: 50%;height: 50px;width: 50px;top:40%;'><i class='fa fa-pulse fa-fw dgldr ldrdesign' style='height:70px;width:70px;border-radius:50%;border-bottom:5px dotted grey;border-top:5px dotted black;border-right:5px dotted black;border-left:5px dotted black;height:80px;width:80px;position:absolute;margin: 20% 50%;'></i></div>");
+            $("#videoLoader").show();
+            $('#overlay_disabl').show();
+            var newWindow;
+            var RefID = nyzRmLlLLS;
+
+            $.ajax({
+                url: '/CPO/CPO',
+                data: {
+                    RefID=nyzRmLlLLS
+
+                },
+            })
+        }
+    </script>
+    
+    <script>
+        function testsummary() {
+            window.location.href = "/NEWVCIP/SkipIpv";
+        };
+    </script>
+    <script>
+        function DoitNow(tr) {
+            debugger;
+            $("#DoLoader").html("<div style='position: fixed;z-index: 5000;float: left;right: 50%;height: 50px;width: 50px;top:40%;'><i class='fa fa-pulse fa-fw dgldr ldrdesign' style='height:70px;width:70px;border-radius:50%;border-bottom:5px dotted grey;border-top:5px dotted black;border-right:5px dotted black;border-left:5px dotted black;height:80px;width:80px;position:absolute;margin: 20% 50%;'></i></div>");
+            $("#DoLoader").show();
+            $('#overlay_disabl').show();
+
+            var newWindow;
+            $.ajax({
+                url: '/NEWVCIP/customer?custid=' + @ViewBag.PersonalId,
+                cache: false,
+                success: function (result) {
+                    debugger;
+                    $('#customerIpv').hide();
+                    $('#showipvdiv').hide();
+                    $('#StartIPVVideo1').show();
+                    $('#StartIPVVideo1').html(result);
+                }
+            });
+            $("#DoLoader").hide();
+            $('#overlay_disabl').hide();
+        }
+    </script>
+    <script>
+        function VKYCMEETINDID() {
+            debugger;
+
+            //window.location.href = "/VKYC/Post";
+
+            //CPOVKYCMEETINDID();
+
+
+            $.ajax({
+                //// url: "/VKYC/POST",
+                url: "/VKYC/POST?Source=" + "CP1" + '&Password=' + "fdhffhd" + '&TxnId=' + "123" + '&Userid=' + "123" + '&ApplicationID=' + "123" + '&Mobileno=' + @ViewBag.QEMobileNo + '&EmailID=' + @ViewBag.QEEmailId + '&name=' + @ViewBag.QEFirstName + '&VkycType=' + "Assisted" + '&MeetingTime=' + "immediate",
+
+                type: "GET",
+                data: {
+
+                    // Source:CP1,
+                    // Password: fdhffhd,
+
+                    // TxnId:123,
+                    // Userid:123,
+                    // ApplicationID: 123,
+                    // Mobileno: Mobileno,
+                    // EmailID: EmailID,
+                    // name: name,
+                    // VkycType:Assisted,
+                    //MeetingTime:immediate
+
+                },
+                cache: false,
+                success: function (result) {
+                    debugger;
+                    CUSTOMERLOGIN();
+                    //if (nayab == "CUSTOMERLOGIN")
+                    //{
+                    //    window.location.href = "/NEWVCIP/CPOVKYC";
+
+                    //}
+
+
+                    //    window.location.href = "/CUSTOMEROTP/CUSTVKYC";
+
+
+                    //window.location.href = "/NEWVCIP/CPOVKYC";
+                    //alert("Success");
+                    //  url: "/NEWVCIP/CustomerOtherData?FirstNameOther=" + $("#FirstNameOther").val() + '&MiddleNameOther=' + $("#MiddleNameOther").val() + '&LastNameOther=' + $("#LastNameOther").val() + '&GenderOther=' + $('[name="GenderOther"]:checked').val() + '&DateOfBirthOther=' + $("#DateOfBirthOther").val() + '&AddressLine1=' + $("#Oaddressline1").val() + '&AddressLine2=' + $("#Oaddressline2").val() + '&City=' + $("#Other_City").val() + '&PinCode=' + $("#Other_PinCode").val() + '&State=' + $("#Other_State").val() + '&CountryCode=' + $("#Other_CountryCode").val() + '&DocType=' + $("#Other_DocType").val() + '&DocNo=' + $("#Other_DocNum").val(),
+
+                }
+
+            });
+
+
+        }
+        function CUSTOMERLOGIN() {
+            debugger;
+
+            window.location.href = "/VKYC/Custom";
+        }
+    </script>
+    <script>
+        function RescheduleVCIP(tr) {
+            debugger;
+            $("#ResLoader").html("<div style='position: fixed;z-index: 5000;float: left;right: 50%;height: 50px;width: 50px;top:40%;'><i class='fa fa-pulse fa-fw dgldr ldrdesign' style='height:70px;width:70px;border-radius:50%;border-bottom:5px dotted grey;border-top:5px dotted black;border-right:5px dotted black;border-left:5px dotted black;height:80px;width:80px;position:absolute;margin: 20% 50%;'></i></div>");
+            $("#ResLoader").show();
+            $('#overlay_disabl').show();
+
+            var CustID = @ViewBag.custid;
+            var RefID = nyzRmLlLLS;
+            var newWindow;
+            $.ajax({
+                url: '/CPO/CPO',
+                data: {
+                    RefID=nyzRmLlLLS
+
+                },
+
+            })
+        }
+    </script>
+    <script>
+
+        $(document).ready(function () {
+            debugger;
+            $('#reupload').hide();
+            //$('#showipvdiv').hide();
+            //$('#ipvdiv').hide();
+            if ('@ViewBag.filepath3' != '') {
+                debugger;
+                if ('@ViewBag.ipvrecordflag' == 'True') {
+                    debugger;
+                    $('#playvideo2').show();
+                    var data = 'data:video/webm;base64,' + '@ViewBag.filepath3';
+                    document.getElementById('playvideosrc2').src = data;
+                    $('#playvideo2')[0].currentSrc = data;
+                    //document.getElementById('playvideo').play();
+                    document.getElementById("playvideo2").load();
+                }
+            }
+            //$('#ipvdiv').hide();
+
+        })
+
+        $(document).ready(function () {
+            debugger;
+            $('#reupload').hide();
+            //$('#showipvdiv').hide();
+            //$('#ipvdiv').hide();
+            if ('@ViewBag.filepath1' != '') {
+                debugger;
+                if ('@ViewBag.ipvrecordflag' == 'True') {
+                    debugger;
+                    $('#playvideo').show();
+                    var data = 'data:video/webm;base64,' + '@ViewBag.filepath1';
+                    document.getElementById('playvideosrc').src = data;
+                    $('#playvideo')[0].currentSrc = data;
+                    document.getElementById('playvideo').play();
+                    document.getElementById("playvideo").load();
+                }
+            }
+            //$('#ipvdiv').hide();
+
+        })
+        $(document).ready(function () {
+            debugger;
+            $('#reupload').hide();
+            //$('#showipvdiv').hide();
+            //$('#ipvdiv').hide();
+            if ('@ViewBag.filepath2' != '') {
+                debugger;
+                if ('@ViewBag.ipvrecordflag' == 'True') {
+                    debugger;
+                    $('#playvideo1').show();
+                    var data = 'data:video/webm;base64,' + '@ViewBag.filepath2';
+                    document.getElementById('playvideosrc1').src = data;
+                    $('#playvideo1')[0].currentSrc = data;
+                    //document.getElementById('playvideo').play();
+                    document.getElementById("playvideo1").load();
+                }
+            }
+            //$('#ipvdiv').hide();
+
+        })
+        function PreviewIPV(e) {
+            debugger;
+            $("#DigiCerti1").html("<div style='position: fixed;z-index: 5000;float: left;right: 50%;height: 50px;width: 50px;top:40%;'><i class='fa fa-pulse fa-fw dgldr ldrdesign' style='height:70px;width:70px;border-radius:50%;border-bottom:5px dotted grey;border-top:5px dotted black;border-right:5px dotted black;border-left:5px dotted black;height:80px;width:80px;position:absolute;margin: 20% 50%;'></i></div>");
+            $("#DigiCerti1").show();
+            $("#DIGIbag1").show();
+            if ('@ViewBag.filepath3' == '') {
+                $.ajax({
+                    url: '/NEWIPVDetails/showVideo',
+                    cache: false,
+                    success: function (result) {
+                        debugger;
+                        $("#DigiCerti1").hide();
+                        $("#DIGIbag1").hide();
+                        $('#showvideo').show();
+                        $('#showvideo').html(result);
+
+                    }
+                })
+            } else {
+                document.getElementById('playvideo').play();
+                document.getElementById('playvideo1').play();
+                document.getElementById('playvideo2').play();
+            }
+
+
+        }
+
+
+        $(function () {
+            $('#ipvconfirm').click(function () {
+                debugger;
+                var token = $('input[name="__RequestVerificationToken"]').val();
+                $.ajax({
+                    url: '/NEWIPVDetails/ConfirmIPVvideo?personalDetailId=' + '@ViewBag.PersonalId',
+                    type: 'POST',
+                    data: { __RequestVerificationToken: token },
+                    cache: false,
+                    success: function (result) {
+                        debugger;
+
+                        //swal(result);
+                        // $('#aadhaarHide').html(result);
+                        //window.location.url = '/EsignAdhar/Aadhaar';
+                        //$('#aadhaarHide').show(result);
+                        window.location.href = '/ServiceProviderMainHome/QuickEnrollDashboard';
+                        swal("IPV recorded Sucessfully");
+                    }
+                })
+            })
+
+
+        });
+    </script>
+    <script>
+        function showIPV(tr) {
+            debugger;
+            $('#showipvdiv').show();
+        }
+
+        function DeleteIPV(e, param) {
+            debugger;
+            swal({
+                title: "Are you sure?",
+                text: "Do you want to Delete IPV Recording?",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Yes",
+                cancelButtonText: "No",
+                closeOnConfirm: false,
+                closeOnCancel: false
+            },
+                function (isConfirm) {
+                    debugger;
+                    var id = e.id;
+                    var idData = id.split('-');
+
+                    if (isConfirm) {
+                        $.ajax({
+                            url: '/NEWIPVDetails/deleteIpvVideo?personalDetailId=' + '@ViewBag.PersonalId',
+                            type: 'GET',
+                            data: '',
+                            cache: false,
+                            success: function (result) {
+                                debugger;
+                                //var splitRslt = result.split('-');
+                                if (result >= 0) {
+                                    swal("Delete", "Video Deleted Successfully");
+                                    //$('#ipvVideorecord').hide();
+                                    //$('#deleteipv').hide();
+                                    $('#showipvdiv').hide();
+                                    window.location.href = '/ServiceProviderMainHome/QuickEnrollDashboard';
+
+                                    // $('#ipvvideodetails').show();
+
+                                    //$('#reupload').show();
+                                    // $('#customerIpv').show();
+                                    //$('#' + idData[0]).empty();
+                                    //$('#' + idData[1]).prop('disabled', false);
+                                }
+                            }
+                        });
+
+                    }
+                    else {
+                        swal("Cancelled", " Cancel your request  :)", "error");
+                    }
+                })
+        };
+    </script>
+
+    <script>
+        function reshedulesave() {
+            debugger;
+            $("#DigiCerti").html("<div style='position: fixed;z-index: 5000;float: left;right: 50%;height: 50px;width: 50px;top:40%;'><i class='fa fa-pulse fa-fw dgldr ldrdesign' style='height:70px;width:70px;border-radius:50%;border-bottom:5px dotted grey;border-top:5px dotted black;border-right:5px dotted black;border-left:5px dotted black;height:80px;width:80px;position:absolute;margin: 20% 50%;'></i></div>");
+            $("#DigiCerti").show();
+            $("#DIGIbag").show();
+            $("#blackbg2").show();
+            var RescheduledDate = $('#datetimepicker1').val();
+            var CustId = @ViewBag.PersonalId;
+            $.ajax({
+                url: '/NEWVCIP/Index',
+                type: 'POST',
+                data: {
+                    rescheduledate: RescheduledDate, custid: CustId
+                },
+                cache: false,
+                success: function (result) {
+                    debugger;
+                    $("#DigiCerti").hide();
+                    $("#DIGIbag").hide();
+                    $("#blackbg2").hide();
+                    if (result == "success") {
+                        debugger;
+                        swal({
+                            title: "Reschedule Successfully",
+                            confirmButtonClass: "btn-danger",
+                            confirmButtonText: "Ok",
+
+                        },
+                            function () {
+
+                                window.location.href = '/ServiceProviderMainHome/QuickEnrollDashboard';
+                            });
+
+
+                    }
+                    else {
+                        swal("Try Again");
+                    }
+                }
+            });
+            //swal('ok');
+        }
+
+    </script>
+    <style>
+        .green{
+            background-color:green!important;
+        }
+    </style>
+    <script>
+        $(document).ready(function () {
+            $("#IPVRejecttxt").hide();
+            $('#btnSave2').hide();
+            $('#datetimepicker1').hide();
+            $("#IPVgetSumbit").hide();
+        });
+    </script>
+    <script>
+        $('#IPVApprove').click(function () {
+            $("#IPVApprove").addClass("green");
+            $("#bg4").addClass("green");
+            $("#IPVRejecttxt").hide();
+            $("#IPVgetSumbit").hide();
+            debugger;
+            $.ajax({
+                url: '/KYCQuickEnroll/GetApprovedFlag?selectedValue=' + $("#QuickRejecttxt").val() + '&appType=' + 'IPV',
+                type: 'POST',
+                dataType: 'json',
+                data: '',
+                contentType: 'application/json; charset=utf-8',
+                success: function (data) { swal('IPV Approved Successfully');
+                    $("#IPVApprove").css("background-color", "green");
+                    $("#bg4").css("background-color", "green");
+
+
+                },
+                error: function (err) { alert(err); }
+            });
+        });
+    </script>
+    <script>
+        $('#IPVReject').click(function () {
+            debugger;
+            $("#IPVRejecttxt").show();
+            $("#IPVgetSumbit").show();
+
+        });
+    </script>
+    <script>
+        function PreviewIPVForadmin(e) {
+            debugger;
+            $("#DigiCerti1").html("<div style='position: fixed;z-index: 5000;float: left;right: 50%;height: 50px;width: 50px;top:40%;'><i class='fa fa-pulse fa-fw dgldr ldrdesign' style='height:70px;width:70px;border-radius:50%;border-bottom:5px dotted grey;border-top:5px dotted black;border-right:5px dotted black;border-left:5px dotted black;height:80px;width:80px;position:absolute;margin: 20% 50%;'></i></div>");
+            $("#DigiCerti1").show();
+            $("#DIGIbag1").show();
+            if ('@ViewBag.filepath3' == '') {
+                $.ajax({
+                    url: '/NEWVCIP/showVideo',
+                    cache: false,
+                    success: function (result) {
+                        debugger;
+                        var data = 'data:video/webm;base64,' + result;
+                        document.getElementById('playvideo').src = data;
+                        $("#DigiCerti1").hide();
+                        $("#DIGIbag1").hide();
+                        $('#playvideo').show();
+                        $('#playvideo').html(data);
+
+                    }
+                })
+            }
+            else {
+                document.getElementById('playvideo').play();
+                document.getElementById('playvideo1').play();
+                document.getElementById('playvideo2').play();
+            }
+        }
+    </script>
+    <script>
+        $('#IPVRejecttxt').blur(function () {
+            debugger;
+            var reasonIPV = $("#IPVRejecttxt").val();
+            $("#QuickRejecttxt").show();
+            $.ajax({
+                url: '/KYCQuickEnroll/GetApprovedFlag?selectedValue=' + $("#IPVRejecttxt").val() + '&appType=' + 'RIPV',
+                type: 'POST',
+                data: '',
+                contentType: 'application/json; charset=utf-8',
+                success: function (data) {
+                    swal("IPV rejected with reject reason " + reasonIPV);
+                },
+                error: function (err) { alert(err); }
+            });
+        });
+    </script>
+
+    @if (ViewBag.AdminFlag == "AdminFlag")
+    {
+        <style>
+
+            #ipvVideorecord {
+                display: flex;
+                justify-content: center;
+            }
+            li{
+                text-align: initial;
+            }
+        </style>
+    }
+    <style>
+        th, td {
+            padding: 1px !important;
+        }
+
+        li {
+            text-align: initial;
+        }
+        xdsoft_monthpicker
+        .xdsoft_datetimepicker .xdsoft_calendar table th, td {
+            color: #000000;
+            padding: 1px !important;
+            text-align: center;
+        }
+    </style>
+    <link href="~/css/multiclass.css" rel="stylesheet" />
+</head>
+<body>
+    @*@using (Html.BeginForm("PostRecordedAudioVideo", "IPVDetails", FormMethod.Post, new { enctype = "multipart/form-data", name = "custIPvDetails", id = "custIPvDetails", autocomplete = "off" }))
+    {*@
+    <div class="container-fluid init_ipv_main" style="padding:0">
+
+        <div id="IPVvideoId" class="panel panel-primary">
+
+            @if (ViewBag.ipvrecordflag == true)
+            {
+
+
+
+                <div class="panel-body">
+                    <div class="row text-center">
+
+                        <div id="showipvdiv">
+                            @if (ViewBag.AdminFlag != "AdminFlag")
+                            {
+
+
+                                <div class="col-lg-12 col-md-12 col-sm-11 col-xs-12 ipvidowrp perbtnali" style=" ">
+                                    @*<button type="button" id="recordS" disabled class=" btn btn-primary hvr-grow-shadow custSubtn">Start Recording</bxxutton>
+                            <button type="button" id="stopS" disabled class=" btn btn-primary hvr-grow-shadow custSubtn">Stop / Save Recording</button>*@
+                                    @*<button type="button" id="deleteipv" class=" btn btn-primary  custSubtn btnwidth" onclick="DeleteIPV(this)">Delete Video</button>
+                            <button type="button" id="custPerview" class=" btn btn-primary  custSubtn btnwidth marginZero" onclick="PreviewIPV(this)" style="margin-left:1%">Preview</button>*@
+                                    @*<input type="button" id="ipvconfirm" class="btn btn-primary hvr-grow-shadow custSubtn" value="Confirm" style="margin-left:1%" />*@
+                                    <input type="button" id="ipvproceed" onclick="NextTab()" class="btn btn-primary custSubtn btnwidth marginZero" value="Confirm and Proceed" style="margin-left:1%" />
+                                </div>
+                            }
+                            @if (ViewBag.AdminFlag == "AdminFlag")
+                            {
+
+
+                                <div class="col-lg-12 col-md-12 col-sm-11 col-xs-12 ipvidowrp perbtnali" style=" ">
+                                    @*<button type="button" id="recordS" disabled class=" btn btn-primary hvr-grow-shadow custSubtn">Start Recording</button>
+                            <button type="button" id="stopS" disabled class=" btn btn-primary hvr-grow-shadow custSubtn">Stop / Save Recording</button>*@
+                                    @*<button type="button" id="deleteipv" class=" btn btn-primary hvr-grow-shadow custSubtn" onclick="DeleteIPV(this)">Delete Video</button>*@
+                                    <button type="button" id="custPerviewForAdmin" class=" btn btn-primary hvr-grow-shadow custSubtn" onclick="PreviewIPVForadmin(this)" style="margin-left:1%">Preview</button>
+                                    @*<input type="button" id="ipvconfirm" class="btn btn-primary hvr-grow-shadow custSubtn" value="Confirm" style="margin-left:1%" />*@
+                                    @*<input type="button" id="ipvproceed" onclick="NextTab()" class="btn btn-primary hvr-grow-shadow custSubtn" value="Confirm and Proceed" style="margin-left:1%" />*@
+                                </div>
+                            }
+                            <div class="video-frame col-lg-12 col-md-12 col-sm-12 col-xs-12 videoFrame" id="ipvVideorecord" style="margin-top:1%">
+                                <video id="playvideo" class="plyvido" oncontextmenu="return false;" controls style="float:left;display:none">
+                                    <source id="playvideosrc" src="" type="video/webm" />
+                                </video>
+                                <video id="playvideo1" class="paymob1 ipvvid1" oncontextmenu="return false;" controls style="float:left;display:none">
+                                    <source id="playvideosrc1" src="" type="video/webm" />
+                                </video>
+                                <video id="playvideo2" class="paymob1 ipvvid2" oncontextmenu="return false;" controls style="float:left;display:none">
+                                    <source id="playvideosrc2" src="" type="video/webm" />
+                                </video>
+                                @*<video id="playvideo1" class=" " oncontextmenu="return false;" controls style="float:left;margin-left:1%">
+                            <source id="playvideosrc1" src="" type="video/webm" />
+                            </video>*@
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            }
+            else
+            {
+                <div class="custidpv" style="text-align: end;padding: 7px;">
+                    <label class="init_ipv_label">Customer ID :</label>
+                    <label class="init_ipv_label">@ViewBag.PersonalId</label>
+                </div>
+
+
+                <div id="ipvvideodetails" class="xs12 md8">
+                    <div class="panel-body">
+                        <div class="init_ipv_head col-xs-12">
+                            <div class="adharHD1">
+                                <div class="category">Customer Video KYC </div>
+                            </div>
+                            @*<div class="heading1">Customer IPV</div>*@
+                        </div>
+
+                        <div class="row" style="display: flex;justify-content: center;">
+                            <div id="customerIpv" class="clearB" style="width:99%;float:left">
+                                <div class="row" style="">
+                                        <div class="col-lg-4  custpadding" style="display:inline-block">
+                                            <center class="custipvctr">
+                                                <img src="~/Images/IPV/upload.png" class="custicon zoom" /><br />
+                                                <div class="text2 padding">
+                                                    Keep ready with your Original   <br /> Documents for Verification
+                                                </div>
+                                            </center>
+                                        </div>
+                                    
+                                        <div class="col-lg-4 custpadding" style="display:inline-block">
+                                            <center class="custipvctr">
+                                                <img src="~/Images/IPV/video.png" class="custicon  zoom" /><br />
+                                                <div class="text2 padding">Show your Original Documents in front of <br /> Video Recording</div>
+                                            </center>
+                                        </div>
+                                        <div class="col-lg-4  custpadding" style="display:inline-block">
+                                            <center class="custipvctr">
+                                                <img src="~/Images/IPV/right.png" class="custicon  zoom" /><br />
+                                                <div class="text2 padding">
+                                                    Complete Process and Press <br /> Confirm button
+                                                </div>
+                                            </center>
+                                        </div>
+                                    </div>
+
+
+                                <div class="col-lg-12 col-xs-12">
+                                    <center class="padding">
+                                        @*<div class="pan-header XML_txt txtcnt">UPLOADED DOCUMENT LIST</div>*@
+                                        @*<hr class="ipvhr" />*@
+                                    </center>
+                                </div>
+
+                                @if (ViewBag.CustomerFlow == true)
+                                {
+                                    <div class="col-lg-12 btnrow topB  btnrow1" id="ipvdiv">
+                                        <div class="row LpvCnter ">
+                                            <div class="col-lg-4 ColNone">
+                                            </div>
+                                            <div class="col-lg-2 IpvCameraBtn">
+                                                <center><input type="button" class="hvr-grow-shadow btn btn-primary reswidthbtn" value="Self V-KYC" onclick="startIPV(this)" style="width:90%" /></center>
+                                            </div>
+                                            <div class="col-lg-2 IpvCameraBtn">
+                                                
+                                                <center><input type="button" class="hvr-grow-shadow btn btn-primary reswidthbtn" value="Skip Video KYC" onclick="testsummary()" style="width:90%" /></center>
+                                            </div>
+
+                                            <div class="col-lg-4  ColNone">
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="col-lg-12 btnrow topB  btnrow1" id="ipvdiv">
+                                        <div class="row LpvCnter ">
+                                            <div class="col-lg-4 ColNone">
+                                            </div>
+                                            <div class="col-lg-2 IpvCameraBtn">
+                                                <center><input type="button" class="hvr-grow-shadow btn btn-primary reswidthbtn" value="Self V-KYC" onclick="startIPV(this)" style="width:90%" /></center>
+                                            </div>
+                                            <div class="col-lg-2 IpvCameraBtn">
+                                                
+                                                <center><input type="button" class="hvr-grow-shadow btn btn-primary reswidthbtn" value="Skip Video KYC" onclick="testsummary()" style="width:90%" /></center>
+                                            </div>
+                                            <div class="col-lg-2 IpvCameraBtn">
+                                                <center><input type="button" class="hvr-grow-shadow btn btn-primary reswidthbtn" value="Assisted V-KYC" onclick="DoitNow(this)" style="width:90%" /></center>
+                                            </div>
+                                            <div class="col-lg-2 IpvCameraBtn">
+                                                <center><input type="button" class="hvr-grow-shadow btn btn-primary reswidthbtn" value="Reschedule VCIP" onclick="reshedule(this)" style="width:90%" /></center>
+                                            </div>
+                                            <div>
+
+                                                <input id="datetimepicker1" type="text" class="datetimepicker" placeholder="YYYY/MM/DD HH:MM">
+                                                <input id="btnSave2" type="button" name="Show" value="Save Date" onclick="reshedulesave()" class="submit-button" style="margin-top:2%" />
+                                            </div>
+
+                                            <div class="col-lg-4  ColNone">
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                                <div id="StartIPVVideo1"></div>
+                                <div id="skipLoader"></div>
+                                <div id="DoLoader"></div>
+
+
+                        </div>
+                    </div>
+                </div>
+            }
+            <div class="apprejbox" style="float:left;">
+                @if (ViewBag.AdminFlag == "AdminFlag")
+                {
+
+                   <div class="init_preview_btn" style="display:flex;flex-direction:row;justify-content:center;align-items:center;">
+                       <button class="btn btn-primary" id = "IPVApprove">Approve</button>
+                       <button class="btn btn-primary" id = "IPVReject">Reject</button> 
+                   </div>
+                    @*@Html.RadioButtonFor(model => model.isIPVApproveOrReject, "A", new { id = "IPVApprove", @class = "radioBtn", style = "float:left;margin-left:2%" })
+
+                    <p class="national_textapp">Approve</p>
+                    @Html.RadioButtonFor(model => model.isIPVApproveOrReject, "R", new { id = "IPVReject", @class = "radioBtn", style = "float:left" })
+
+                    <p class="national_textapp">Reject</p>
+                    <input type="text" id="IPVRejecttxt" name="IPVRejecttxt1">
+                    <div>
+                        <button type="button" onclick="GetButton ()" id="IPVgetSumbit">Sumbit </button>
+                    </div>*@
+                }
+            </div>
+        </div>
+    </div>
+
+    <div id="DigiCerti"></div>
+    <div id="DIGIbag"></div>
+    <div id="blackbg2"></div>
+    <div id="DigiCerti1"></div>
+    <div id="DIGIbag1"></div>
+    <div id="showvideo"></div>
+    <div id="startLoader"></div>
+    <div id="videoLoader"></div>
+    <div id="skipLoader"></div>
+    <div id="DoLoader"></div>
+    <div id="ResLoader"></div>
+    <div id="reschLoader"></div>
+
+    @*}*@
+</body>
+</html>
+
+
+

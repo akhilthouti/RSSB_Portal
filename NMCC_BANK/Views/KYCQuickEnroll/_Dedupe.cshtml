@@ -1,0 +1,144 @@
+﻿@model INDO_FIN_NET.DEDUPE_GRID_MAIN
+
+@{
+    List<dedupegridlist> list = new List<dedupegridlist>();
+
+    DEDUPE_GRID_MAIN obj = new DEDUPE_GRID_MAIN();
+    list = Model.dedupegridlists;
+}
+@{
+    Layout = null;
+}
+  <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+  <link href="~/Scripts/sweetalert.css" rel="stylesheet" />
+  <script src="~/Scripts/sweetalert.min.js"></script>
+
+
+
+<script type="text/javascript">
+     function dedupe_CustNo(){
+        debugger;
+        //$("#myModal").hide();
+        $("#DigiCerti").html("<div style='position: fixed;z-index: 5000;float: left;right: 50%;height: 50px;width: 50px;top:40%;'><i class='fa fa-pulse fa-fw dgldr ldrdesign' style='height:70px;width:70px;border-radius:50%;border-bottom:5px dotted grey;border-top:5px dotted black;border-right:5px dotted black;border-left:5px dotted black;height:80px;width:80px;position:absolute;margin: 20% 50%;'></i></div>");
+        $("#DigiCerti").show();
+         var radiobutton = $("input[name='Kycdedupe']:checked").attr('id');
+                 $.ajax({
+                 url: '/KYCQuickEnroll/Dedupeacc',
+                 type: 'POST',
+                 data: {
+                     CBSValue : radiobutton
+                       },
+                 cache: false,
+                 success: function (data) {
+                      debugger;
+                      $('#myModalContent1').html(data);
+                     //$('#myModal').modal(options);
+                $("#DigiCerti").hide();
+                $("#init-main").hide();
+                     $('#myModal2').show();
+               
+                    
+
+
+
+                 }
+         });
+    }
+
+</script>
+
+<style>
+    .init-title {
+        text-align: center;
+        background-color: #bf5252;
+        color: #fff;
+        padding: 5px 1px;
+    }
+
+    .init-table-container {
+        display: flex;
+        justify-content: center;
+    }
+
+    .init-td {
+        text-align: center;
+    }
+
+    .init-table {
+        width: 90%;
+        margin-top: 26px;
+    }
+
+    .init-btn {
+        margin-left: 43%;
+        padding: 5px 17px;
+    }
+
+    .init-input {
+        margin-left: 43%;
+    }
+
+    .init-table-head {
+        background: #e1e0e0;
+    }
+    /*  td:nth-child(even){
+            background-color: rgb(243, 243, 243,0.7);
+        }*/
+</style>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+<div id="init-main">
+
+
+    <h4 class="init-title">Dedupe Customer Number</h4>
+
+    <div class="init-table-container">
+        <table id="dedupe" cellpadding="0" cellspacing="0" border="1" class="init-table">
+
+            <tr>
+                <th class="init-td init-table-head">Select</th>
+                <th class="init-td init-table-head">Customer Number</th>
+               <th class="init-td init-table-head">Customer Name</th>
+               <th class="init-td init-table-head">Pan No</th>
+
+            </tr>
+            @foreach (var item in list)
+            {
+
+                <tr>
+                    <td class="init-td"><input type="radio" name="Kycdedupe" class="init-input" id="@item.DedupeRadioFlag,@item.custNo"></td>
+                    <td id="test001" class="init-td">"@item.custNo"</td>
+                    <td id="test001" class="init-td">"@item.name"</td>
+                    <td id="test001" class="init-td">"@item.panNo"</td>
+                </tr>
+            }
+
+
+
+        </table>
+    </div>
+    <br />
+    <button type="button" onclick="dedupe_CustNo()" class="btn btn-primary init-btn" id="init-btn">SAVE</button>
+    <br />
+    <br />
+ </div>  
+
+    <div id='myModal2' class='modal'>
+        <div class="modal-dialog">
+            <div class="modal-content" style="min-height:490px;">
+                <div id='myModalContent1' style="overflow: auto;height: 500px;"></div>
+            </div>
+        </div>
+
+</body>
+</html>
+
+
+

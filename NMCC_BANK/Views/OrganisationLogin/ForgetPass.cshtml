@@ -1,0 +1,1075 @@
+﻿@model INDO_FIN_NET.Controllers.Organisation.ClsOrgLogin
+
+@{
+    ViewBag.Title = "OrganisationDetails";
+    Layout = null;
+}
+
+<html>
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    @*//NEW CSS//*@
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <link href="~/Content/Navigation/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Content/Navigation/vendor/animate.css/animate.min.css" rel="stylesheet">
+    <link href="~/Content/Navigation/vendor/animate.css/animate.min.css" rel="stylesheet">
+    <link href="~/Content/Navigation/css/style.css" rel="stylesheet">
+    <link href="~/Content/Navigation/css/custom.css" rel="stylesheet">
+    <link href="~/Content/Navigation/css/font-awesome.min.css" rel="stylesheet">
+    
+    @*//NEW CSS//*@
+    @*//StartNavigationPart//*@
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <link href="~/fonts/font-awesome.css" rel="stylesheet" />
+    <link href="~/Content/Navigation/animate.css" rel="stylesheet" />
+    <link href="~/Content/Navigation/bootsnav.css" rel="stylesheet" />
+    <link href="~/Content/Navigation/style.css" rel="stylesheet" />
+    <link href="~/Content/HoverEffect/hover.css" rel="stylesheet" />
+    <script src="~/Content/Navigation/jquery.min.js"></script>
+    @*<script src=~/Content/Navigation/bootsnav.js"></script> *@
+    @*//EndNavigationPart//*@
+    @*/*newcss*/*@
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <link href="~/Content/Navigation/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Content/Navigation/vendor/animate.css/animate.min.css" rel="stylesheet">
+    <link href="~/Content/Navigation/vendor/animate.css/animate.min.css" rel="stylesheet">
+    <link href="~/Content/Navigation/css/style.css" rel="stylesheet">
+    <link href="~/Content/Navigation/css/custom.css" rel="stylesheet">
+    <link href="~/Content/Navigation/css/font-awesome.min.css" rel="stylesheet">
+    <script src="~/Content/Navigation/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/Content/Navigation/vendor/jquery.easing/jquery.easing.min.js"></script>
+    <script src="~/Content/Navigation/vendor/venobox/venobox.min.js"></script>
+    <script src="~/Content/Navigation/js/main.js"></script>
+    <link href="~/Content/Navigation/css/admindqe.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <link href="~/Content/Navigation/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Content/Navigation/vendor/animate.css/animate.min.css" rel="stylesheet">
+    <link href="~/Content/Navigation/vendor/animate.css/animate.min.css" rel="stylesheet">
+    <link href="~/Content/Navigation/css/style.css" rel="stylesheet">
+    <link href="~/Content/Navigation/css/custom.css" rel="stylesheet">
+    <link href="~/Content/Navigation/css/font-awesome.min.css" rel="stylesheet">
+    @*//NEW CSS//*@
+    <script src="~/Content/Navigation/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/Content/Navigation/vendor/jquery.easing/jquery.easing.min.js"></script>
+    <script src="~/Content/Navigation/vendor/venobox/venobox.min.js"></script>
+    <script src="~/Content/Navigation/js/main.js"></script>
+    @* s new chnges here*@
+    <link href="~/Content/Navigation/nestyle.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <link href="~/Scripts/sweetalert.css" rel="stylesheet" />
+    <script src="~/Scripts/sweetalert.min.js"></script>
+    <link href="~/Scripts/sweetalert.css" rel="stylesheet" />
+    <link href="~/Content/Navigation/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/js/encryption.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        .init_in {
+            margin-bottom: 9px !important;
+        }
+    </style>
+    <script>
+        $(document).ready(function () {
+            $("#OTPdiv").hide();
+            $("#Password").hide();
+        })
+    </script>
+    <script>
+        function PassValidation(id) {
+            var inputtxt = $('#' + id).val();
+            var pattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!$%^&*()\-_=+{};:,<.>]).*$/;
+            if (inputtxt.match(pattern)) {
+              
+            } else {
+              swal("Password should contain at least one uppercase letter, one lowercase letter, one symbol, and one number.");
+            }
+        }
+    </script>
+    <script>
+        function encryptText(textToEncrypt, encryptionKey, IV) {
+            const key = CryptoJS.enc.Utf8.parse(encryptionKey);
+            const iv = CryptoJS.enc.Utf8.parse(IV);
+            const encrypted = CryptoJS.TripleDES.encrypt(textToEncrypt, key, {
+                iv: iv,
+                mode: CryptoJS.mode.CBC,
+                padding: CryptoJS.pad.Pkcs7
+            });
+            return encrypted.toString();
+        }
+        function decryptText(textToDecrypt, encryptionKey, IV) {
+            const key = CryptoJS.enc.Utf8.parse(encryptionKey);
+            const iv = CryptoJS.enc.Utf8.parse(IV);
+            const decrypted = CryptoJS.TripleDES.decrypt(textToDecrypt, key, {
+                iv: iv,
+                mode: CryptoJS.mode.CBC,
+                padding: CryptoJS.pad.Pkcs7
+            });
+            return decrypted.toString(CryptoJS.enc.Utf8);
+        }
+    </script>
+    <script>
+        function Passwordval(id) {
+            debugger;
+            // Allow: backspace, delete, tab, escape, enter and .
+            var inputtxt = $('#' + id).val();
+            
+            if (inputtxt.indexOf(' ') != -1) {
+                $("#DigiCerti").hide();
+                swal("Password should not contain spaces.");
+                return false;
+            }
+        }
+    </script>
+    <script>
+        function numericOnly(id) {
+            debugger;
+            // Allow: backspace, delete, tab, escape, enter and .
+            var inputtxt = $('#' + id).val();
+            var pattern = /^[a-zA-Z0-9]*$/;
+            var numbers = /^[0-9]{0,9}$/;
+            if (!numbers.test(inputtxt)) {
+                swal('Only Numeric Numbers Can Be Enter ');
+                $('#' + id).val('');
+                document.form1.text1.focus();
+                return true;
+            }
+            else if (!pattern.test(inputtxt)) {
+              swal("Special characters are not allowed.");
+              return false; // Prevent form submission or any further action
+            }
+             else if (inputtxt.indexOf(' ') != -1) {
+                $("#DigiCerti").hide();
+                swal("Password should not contain spaces.");
+                return false;
+            }
+        }
+    </script>
+    <script>
+  function validationforpass(id){
+    debugger;
+    var data = $('#' + id).val();
+    var regexPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\w\s])[^\s]{8,}$/;
+
+
+    if (regexPattern.test(data)) {
+
+    } else {
+      swal("Enter a Password Should Contain One Upper Case ,One Number and One Symbol");
+      $('#' + id).val('');
+    }
+      };
+</script>
+    <script>
+        function test() {
+            debugger;
+            var Userid = $('#UserId').val();
+            if($("#UserId").val() == '')
+            {
+                swal("Enter UserID");
+            }
+            else
+            {
+                $.ajax({
+                    url: '/OrganisationLogin/CheckUserId',
+                    type: 'POST',
+                    data: {
+                        Userid: Userid
+                    },
+                    cache: false,
+                    success: function (result) {
+                        debugger;
+                        var Message = result.split(',')[0];
+                        const textToEncrypt = result.split(',')[1];
+                        const encryptedMobileNo = encryptText(textToEncrypt, encryptionKey, IV);
+                        if (Message == "Success") {
+                            debugger;
+                            swal("User Verified Successfully");
+                            $('#QEMobilecode').val(encryptedMobileNo);
+                            $.ajax({
+                                url: '/KYCQuickEnroll/QEMoblieOTPSend',
+                                type: 'POST',
+                                data: {
+                                    MobileNumber: encryptedMobileNo
+                                },
+                                cache: false,
+                                success: function (result) {
+                                
+                                    if (result != null) {
+                                    
+                                        swal(result);
+                                        $("#OTPdiv").show();
+                                        $("#UserId").prop('disabled', true);
+                                        $("#btnLogin").prop('disabled', true);
+                                        $("#QEMobileGetOtp").html('RESEND OTP');
+                                        $("#QEMobileGetOtp").prop('disabled', true);
+                                        setTimeout(function () {
+                                            $("#QEMobileGetOtp").prop('disabled', false); // enable the button after 5 seconds
+                                        }, 600000);
+
+                                    } else {
+                                        swal('OTP does not send.try again..');
+                                    }
+
+                                }
+                            });
+                        }
+                        else {
+                            swal("Your UserId is Incorrect!");
+                        }
+
+                    }
+                });
+            }
+
+        }
+    </script>
+    <script>
+        function ChangePass() {
+            debugger;
+
+
+            var Pass = $('#password').val();
+            var ConPass = $('#ConPassword').val();
+            if($("#password").val() == '')
+            {
+                swal("Enter Password");
+            }
+            else if($("#ConPassword").val() == '')
+            {
+                swal("Enter Confirm Password");
+            }
+            else if (Pass != ConPass) {
+                swal("Password and Confirm Password Should Be Match");
+
+            }
+            
+            else {
+                $.ajax({
+                    url: '/OrganisationLogin/ChangePass',
+                    type: 'POST',
+                    data: {
+                        Pass: Pass
+                    },
+                    cache: false,
+                    success: function (result) {
+                        if (result == "Success") {
+                            swal("Password Changed Successfully");
+                            window.location.href = "/OrganisationLogin/OrganisationDetails";
+                        }
+                        else {
+                            swal("There is Some Technical Please Try Again Later");
+                            window.location.href = "/OrganisationLogin/ForgetPass";
+                        }
+
+
+                    }
+                });
+            }
+        }
+    </script>
+    <script>
+
+
+        function OTPMobileAuthenticate() {
+            debugger;
+            $("#DIGIbag").show();
+            var OTP = $('#OTP').val();
+            var MobileNumber = $('#QEMobilecode').val();
+
+            //swal("Authenticate Successfully... ");
+            $("#Mobileform").hide();
+
+            $('#OTP').val('');
+            $("")
+            if (OTP == '') {
+                swal("Enter valid OTP...");
+                return false;
+            }
+            if (OTP.length > 6) {
+                swal("Enter 6 digit Valid OTP...");
+                $('#OTP').val('');
+
+                return false;
+            }
+            $.ajax({
+                //url: '/KYCQuickEnroll/OTPAutheticate',
+                url: '/KYCQuickEnroll/QEMobileOTPAuthenticate',
+                type: 'GET',
+                data: {
+                    OTP: OTP,
+                    MobileNumber: MobileNumber
+                },
+                cache: false,
+                success: function (result) {
+                    debugger;
+
+                    if (result == "Verified Successfully") {
+                        swal("Verified Successfully");
+                        $("#Password").show();
+                        
+                        $("#OTP").prop('disabled', true);
+                        $("#QEMobilecode").prop('disabled', true);
+                        $("#OtpAuth").prop('disabled', true);
+                        $("#OtpAuth").attr("disabled", true);
+                        $("#QEMobileGetOtp").attr("disabled", true);
+                    }
+                    else if (result == "Index was outside the bounds of the array.") {
+                        swal("Please check ur Mobile No");
+                    }
+                    else if(result == "Error:Invalid OTP")
+                    {
+                        swal("Please Enter Valid OTP");
+                    }
+                    else {
+
+                        swal("Please check ur Mobile No");
+
+                    }
+
+                }
+            });
+
+        }
+    </script>
+    <script>
+        function QEGetMobileOTP() {
+            debugger;
+            $("#DigiCerti").html("<div style='position: fixed;z-index: 5000;float: left;right: 50%;height: 50px;width: 50px;top:40%;'><i class='fa fa-pulse fa-fw dgldr ldrdesign' style='height:70px;width:70px;border-radius:50%;border-bottom:5px dotted grey;border-top:5px dotted black;border-right:5px dotted black;border-left:5px dotted black;height:80px;width:80px;position:absolute;margin: 20% 50%;'></i></div>");
+            $("#DigiCerti").show();
+            $("#DIGIbag").show();
+            $("#QEMobilecode").hide();
+
+
+            var MobileNumber = $('#QEMobilecode').val();
+            
+            $.ajax({
+                url: '/KYCQuickEnroll/QEMoblieOTPSend',
+                type: 'POST',
+                data: {
+                    MobileNumber: MobileNumber
+                },
+                cache: false,
+                success: function (result) {
+                    debugger;
+                    $("#DigiCerti").hide();
+                    $("#DIGIbag").hide();
+                    //$("#QEEmailbaknew1").hide();
+                    if (result != null) {
+                        debugger;
+                        swal("OTP Send Successfully");
+                        $(".init_mail").show();
+                        // var elem = document.getElementById("QEMobileGetOtp");
+                        // $('#QEMobileGetOtp').val('Resend OTP');
+                        $("#QEMobileGetOtp").html('RESEND OTP');
+                        $("#QEMobileGetOtp").prop('disabled', true);
+                        setTimeout(function () {
+                            $("#QEMobileGetOtp").prop('disabled', false); // enable the button after 5 seconds
+                        }, 600000);
+                        // if (elem.value == "GET OTP") elem.value = "Resend OTP";
+                    } else {
+                        swal('OTP does not send.try again..');
+
+                    }
+                    // $('#DigitCaptureImage').html(result);
+                }
+            });
+
+        }
+    </script>
+    <script>
+        function LogOut(){
+           window.location.href = '/AdminLogin/UserDetails'; 
+        }
+        </Script>
+        <script>
+        function Home(){
+           window.location.href = '/AdminLogin/UserDetails';  
+        }
+        </Script>
+    <style>
+        /*#new_bg{
+                            background-image:url("../images/new_bg.png");
+                            background-repeat:no-repeat;
+                        }*/
+        .otpbtndv {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .mrgnotp {
+            margin: 5px;
+        }
+        .eyeIcon{
+         position: absolute;
+       margin-left: -6%;
+    margin-top: 2.5%;
+    color: grey;
+ }
+        .dsfxotp {
+            display: flex;
+            margin-bottom: 30px;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #otp_div {
+            position: fixed;
+            width: 100%; /* Full width (cover the whole page) */
+            height: 100%; /* Full height (cover the whole page) */
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 1;
+            background-color: #999999;
+            display: none;
+        }
+        /*.sweet-overlay{
+                            opacity:1!important;
+                        }*/
+        .border_rd {
+            border: 1px solid #dadce0 !important;
+        }
+
+        .init_cross {
+            position: absolute;
+            right: 18px;
+            top: -18px;
+            color: grey;
+            font-size: 20px;
+        }
+
+        .init_head {
+            text-align: center;
+            font-weight: 600;
+            font-size: 20px;
+            font-family: 'Poppins';
+            margin-top: 30px;
+            color: #212121;
+        }
+
+        .init_email {
+            color: grey;
+            text-align: center;
+            padding: 1px 25px 1px 25px;
+            font-size: 15px;
+            display: none;
+        }
+
+        .init_submit_btn {
+            /*background: #fb641b;*/
+            background-color: #bf5252 !important;
+            /*box-shadow: inset 0 0 31px #4e2424 !important;*/
+            border: none;
+            color: #fff;
+            border: none;
+            width: 100%;
+            height: 42px;
+            font-size: 15px;
+            box-shadow: 0 2px 4px 0 rgb(0 0 0 / 20%);
+            border: none;
+            padding: 4px 4px;
+            color: #fff;
+            letter-spacing: 1px;
+            border-radius: 3px;
+        }
+
+        .init_input {
+            /* .form-group input[type=text], .form-group input[type=password] {*/
+            width: 100%;
+            box-shadow: none !important;
+            color: #555;
+            padding: 10px !important;
+            background-color: #fff !important;
+            padding: 12px;
+            display: inline-block;
+            font-size: 14px;
+            margin-bottom: 0 !important;
+            line-height: 1 !important;
+            box-shadow: none;
+            border: 1px solid #dadce0 !important;
+            border-radius: 5px !important;
+            font-weight: 500;
+            font-family: 'Poppins';
+        }
+
+        .init_login_label {
+            color: #555;
+            text-align: start;
+            margin-top: 10px;
+            position: absolute;
+            margin-left: 21px;
+            /* font-size: 15px; */
+            font-weight: 500;
+            font-family: 'Poppins';
+            box-shadow: none !important;
+            font-size: 15px;
+        }
+
+        .init_input:focus, .form-control:focus {
+            border: 2px solid #e9a0a0 !important;
+            box-shadow: none !important;
+        }
+
+            .init_input:focus ~ .init_login_label {
+                margin-top: -9px;
+                color: #007bff;
+                background-color: #fff;
+                padding: 0px 10px;
+                margin-left: 8px;
+                box-shadow: none !important;
+                font-size: 13px;
+                transition: all 0.3s;
+                position: absolute;
+            }
+
+        .active1 {
+            margin-top: -9px;
+            color: #c76262;
+            background-color: #fff;
+            padding: 0px 10px;
+            margin-left: 8px;
+            box-shadow: none !important;
+            font-size: 13px;
+            transition: all 0.3s;
+            position: absolute;
+        }
+
+        .form-group {
+            margin-bottom: 0 !important;
+        }
+
+        #agent_login_form {
+            background: rgba(255,255,255,1.00);
+            padding: 5px 35px 0px 35px;
+            border: none;
+            margin: 0px 35px 25px 35px !important;
+            box-shadow: rgb(0 0 0 / 15%) 0px 5px 15px 0px;
+            width: 80%;
+            border-radius: 14px;
+        }
+
+        .init_login_title {
+            color: #4d5156;
+            font-size: 21px;
+            font-family: poppins,sans-serif !important;
+            margin: 12px 5px 30px 5px;
+        }
+
+        .form-control:focus {
+            border: 2px solid #ffd5d5 !important;
+            box-shadow: none !important;
+        }
+
+        .lablesize {
+            color: grey !important;
+            accent-color: #bf5252 !important;
+        }
+
+        #please {
+            color: grey;
+            text-align: left;
+            margin-bottom: 5px;
+        }
+
+        .init_retest {
+            cursor: pointer;
+            color: red;
+        }
+
+        .captchaField {
+            margin: 0 auto;
+            /* margin-top: 15%;*/
+            /*border: 1px solid #ccc;*/
+            /* padding: 15px;*/
+            width: 88%;
+            padding: 8px;
+            background-color: #f3f3f3;
+            /*border-radius: 5px;*/
+            margin-bottom: 12px;
+            box-shadow: 0 1px 2px 0 rgb(0 0 0 / 20%);
+        }
+
+        .CaptchaWrap {
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .CaptchaTxtField {
+            border-radius: 5px;
+            /*border: 1px solid #ccc; */
+            display: block;
+            box-sizing: border-box;
+        }
+
+        #UserCaptchaCode {
+            padding: 9px 10px;
+            outline: none;
+            font-size: 18px;
+            font-weight: normal;
+            font-family: 'Open Sans', sans-serif;
+            width: 120px;
+            height: 46px;
+            letter-spacing: 3px;
+            font-weight: 600;
+        }
+
+        #CaptchaImageCode {
+            text-align: center;
+            /* margin-top: 15px;*/
+            padding: 0px 0;
+            /*width: 300px;*/
+            overflow: hidden;
+        }
+
+        .capcode {
+            font-size: 46px;
+            display: block;
+            -moz-user-select: none;
+            -webkit-user-select: none;
+            user-select: none;
+            cursor: default;
+            letter-spacing: 1px;
+            color: #ccc;
+            font-family: 'Roboto Slab', serif;
+            font-weight: 100;
+            font-style: italic;
+            width: 163px;
+            border: 1px solid #000;
+            border-radius: 5px;
+        }
+
+        .ReloadBtn {
+            background: url('https://webdevtrick.com/wp-content/uploads/recaptcha.png') left top no-repeat;
+            background-size: 100%;
+            width: 32px;
+            height: 32px;
+            border: 0px;
+            outline none;
+            /* position: absolute; */
+            bottom: 30px;
+            left: 310px;
+            outline: none;
+            cursor: pointer; /**/
+        }
+
+        .btnSubmit {
+            margin-top: 15px;
+            border: 0px;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 18px;
+            background-color: #1285c4;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .error {
+            color: red;
+            font-size: 14px;
+            /*display: none;*/
+            text-align: left;
+            display: block;
+        }
+
+        .success {
+            color: green;
+            font-size: 18px;
+            margin-bottom: 15px;
+            display: none;
+        }
+    </style>
+
+
+
+
+    <style>
+        .init_otp_btn {
+            background-color: #bf5252 !important;
+            /* box-shadow: inset 0 0 31px #4e2424 !important;*/
+            color: #fff !important;
+        }
+
+        .init_password {
+            position: relative;
+        }
+
+        .init_eye_div {
+            color: #555;
+            opacity: 0.7;
+            position: absolute;
+            top: 23px;
+            right: 41px;
+        }
+
+        .cqepopupmn1 {
+            position: fixed;
+            top: 50%;
+            left: 49%;
+            transform: translate(-50%, -50%);
+            /* margin-top: -19%; */
+            width: 35%;
+            /*display: none;*/
+            z-index: 2;
+            background-color: white;
+            border-radius: 14px;
+            /*box-shadow: 1px 1px 13.5px grey;*/
+            /* position: absolute;*/
+        }
+
+    </style>
+    <style>
+        .orgdeticon {
+            position: absolute;
+            margin-top: 2%;
+            margin-left: 3%;
+            height: 15px;
+            width: 20px;
+        }
+
+        .logonew {
+            height: 60px !important;
+            width: 220px !important;
+            margin-top: 11px !important;
+            margin-left: 25px;
+        }
+
+        .form-control {
+            HEIGHT: 42PX;
+            font-size: 15px;
+        }
+
+        .init_otp_btn {
+            HEIGHT: 36PX;
+        }
+
+        @@media screen and (min-device-width: 300px) and (max-device-width: 768px) {
+
+            .footerLog {
+                font-size: 14px !important;
+            }
+
+            #btnLogin {
+                height: 36px !important;
+            }
+
+            #please {
+                font-size: 14px;
+            }
+
+            #Password {
+                font-size: 22px;
+                height: 36px;
+            }
+
+            #UserId {
+                font-size: 14px;
+                height: 36px;
+            }
+
+            .adminrsp {
+                justify-content: center;
+            }
+
+            .dsfxotp {
+                display: flex;
+                margin-bottom: 30px;
+                flex-direction: column;
+            }
+
+            .otpbtn123 {
+                font-size: 20px;
+            }
+
+            .cqepopup {
+                font-size: 16px;
+            }
+
+            .cqein {
+                width: 80%;
+            }
+
+            .init_head {
+                font-size: 22px;
+            }
+
+            .init_email {
+                font-size: 14px;
+            }
+
+            #QEMobileGetOtp {
+                height: 37px;
+                margin-top: 8px;
+                font-size: 12px !important;
+                width: 100px;
+            }
+
+            #MobileAuthOtp {
+                height: 37px;
+                margin-top: 8px;
+                font-size: 12px !important;
+                width: 100px;
+            }
+
+            .cqepopupmn1 {
+                width: 80%;
+            }
+
+            .orgdeticon {
+                position: absolute;
+                margin-top: 2%;
+                margin-left: 4%;
+                height: 40px;
+                width: 50px;
+            }
+
+            .agntloginform {
+                padding: 0% 9.3% !important;
+            }
+
+            .agntlogfnt {
+                font-size: 3rem;
+            }
+
+            .agntlogfont {
+                font-size: 14px !important;
+            }
+
+            .agntlogckbx {
+                height: 14px;
+                width: 17px;
+            }
+
+            .agntlogbtn {
+                height: 70px !important;
+            }
+        }
+
+        @@media screen and (min-device-width: 600px) and (max-device-width: 898px) {
+            .agentlog {
+                margin-top: 15%;
+            }
+        }
+    </style>
+    <script>
+    function ShowPassOTP() {
+        debugger
+      var x = document.getElementById("password");
+      if (x.type === "password") {
+          $("#init_eye2").removeClass("fa-eye-slash");
+          $("#init_eye2").addClass("fa fa-fw fa-eye field-icon toggle-password");
+        x.type = "text";
+      } else {
+          $("#init_eye2").removeClass("fa fa-fw fa-eye field-icon toggle-password");
+          $("#init_eye2").addClass("fa-eye-slash");
+        x.type = "password";
+      }
+    }
+
+     function ShowNewPassOTP() {
+        debugger
+      var x = document.getElementById("password");
+      if (x.type === "password") {
+          $("#init_eye").removeClass("fa-eye-slash");
+          $("#init_eye").addClass("fa fa-fw fa-eye field-icon toggle-password");
+        x.type = "text";
+      } else {
+          $("#init_eye").removeClass("fa fa-fw fa-eye field-icon toggle-password");
+          $("#init_eye").addClass("fa-eye-slash");
+        x.type = "password";
+      }
+    }
+</script>
+</head>
+
+<body>
+    <!-- ======= Top Bar ======= -->
+
+    <div id="topbar" class="d-none d-lg-flex align-items-center">
+        <div class="container-fluid pdcon">
+            <div class="contact-info">
+                <p>Customer Care  +91-89288-00412</p>
+            </div>
+        </div>
+    </div>
+
+
+
+    <header id="header" class="">
+
+        <div class="container-fluid d-flex align-items-center">
+
+
+            <h1 class="logo mr-auto" style="height:83px">
+                <img src="~/content/logos/RSSB_bank.jpg" class="logonew logonewbb res-logo mainlogo hmlogomain" alt="#" style="height: 176px;
+    width: 239px;
+    margin-top: -41px;" />
+            </h1>
+
+
+            <nav class="nav-menu d-none d-lg-block">
+                <ul>
+
+                    <li style="margin-top:0px"><a onclick="Home()" class="active" id="HomeClicked">Home</a></li>
+
+
+
+
+                </ul>
+
+            </nav><!-- .nav-menu -->
+            &nbsp;&nbsp; <img src="~/Content/imgs/download.png" onclick="LogOut()" class="logouttxt hvr-sink logoutWi" style="width:33px;height:33px" /> <br />
+
+        </div>
+    </header>
+
+    <section id="" class="" style=" ">
+        <div class="container consize containerLogin">
+            <div class="row" style="margin:0">
+                @*<div class="col-lg-7">
+                <div class="pdtx1">
+                <h3>Now complete Your <strong>KYC</strong></h3>
+                <h3>Its Digital Now!</h3>
+                </div>
+                </div>*@
+                <div class="col-lg-6 col-md-10 slide-box agentlog" style="margin-top:10px; ">
+                    <div id="agent_login_form">
+                        <div style="">
+                            <h3 class="init_login_title">Reset your Password</h3>
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                            <div class="">
+                                @*<span style="color:#414040;font-size:13px;float:left;padding-left:4.4%;margin-bottom:1px" class="fontSizeInput">Username</span>*@
+
+                                <div class="form-group">
+                                    @* <i class="fa-ifn fa fa-user  iconSize "></i>*@
+                                    @* <img src="~/Images/Image/user2icon.png" style="opacity:0.5" class="orgdeticon">*@
+                                    @*<input type="text" value="" id="UserId" name="log" placeholder="Enter ID">*@
+                                    <label class="init_login_label active1">User Id</label>
+                                    @Html.EditorFor(model => model.UserId, new
+                                    {
+                                    htmlAttributes = new
+                                    {
+                                    @id = "UserId",
+                                    @class = "init_input init_input_test",
+                                    @style="border-radius: 5px!important;padding-left: 20px !important;",
+                                    @onkeyup = "numericOnly(this.id)"
+                                    //@class = "form-control border_rd pdlftr8user agntlogfont",
+                                    //placeholder = "UserId"
+                                                                @*placeholder = "UserId"*@}
+                                    })
+                                    @Html.ValidationMessageFor(model => model.UserId, "", new { @class = "text-danger validation" })
+                                    <div class="form-group mtp11" style="padding: 0;margin-top: 5px;">
+                                        <button type="submit" class="init_submit_btn" id="btnLogin" onclick="test();">Submit</button>
+                                    </div>
+                                </div>
+                                <div class="form-group init_password" id="OTPdiv">
+                                    <h5 class="" style=" color: #000;text-align: center;margin-bottom: 22px;color: #4d5156;font-family: poppins,sans-serif !important;">
+                                        RSSB has sent a temporary OTP to your Registered Mobile No(Valid for 10 mins).
+                                    </h5>
+                                    <label class="init_login_label active1">OTP</label>
+                                    @Html.EditorFor(model => model.Password, new
+                                    {
+                                    htmlAttributes = new
+                                    {
+                                    @id = "OTP",
+                                    @Password = "Password",
+                                    @type = "password",
+                                    @class = "init_input",
+                                    @style="border-radius: 5px!important;padding-left: 20px !important;",
+                                    @maxlength="6",
+                                    //placeholder = "Password"
+                                                                @*placeholder = "UserId"*@}
+                                    })
+                                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger validation" })
+
+                                    <div class="md-form" style="display:none;">
+                                        @*<label style="" for="QEMobilecode" id="Mobileotp" class="label_val fontpfhndr active">MOBILE NUMBER</label>*@
+                                        <input type="text" id="QEMobilecode" class="form-control border_rd pdlftr8user" placeholder="Enter Mobile No." ReadOnly="true" />
+                                    </div>
+                                    <div class="form-group mtp11" style="padding: 0;
+    margin-top: 5px;">
+                                        <button type="submit" class="init_submit_btn" id="OtpAuth" onclick="OTPMobileAuthenticate();">Authenticate</button>
+
+                                    </div>
+                                    <div class="form-group mtp11" style="padding: 0;
+    margin-top: 5px;">
+
+                                        <button type="button" onclick="QEGetMobileOTP()" class="btn  get1 cqepopup init_otp_btn" id="QEMobileGetOtp">&nbsp;&nbsp;RESEND OTP&nbsp;&nbsp;</button>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="form-group" style=" padding: 0;" id="Password">
+
+                                    <div class="form-group">
+                                        @*<div class="">*@
+                                        <label for="model.Password" class="init_login_label active1"> New Password </label>
+                                        @* </div>*@
+                                        @* <div class="">*@
+                                        @Html.TextBoxFor(model => model.Password, new { @type = "password", @id = "password", @class = "init_input text-box single-line init_in",@onkeyup = "Passwordval(this.id)" ,@maxlength="8", @onblur="validationforpass(this.id)" })
+                                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = " col-sx-6 text-danger validation " })
+                                        <i class="fa-solid eyeIcon fa-eye-slash" id="init_eye" onclick="ShowNewPassOTP()"></i>
+                                    </div>
+
+                                    <div class="form-group" style="">
+                                        <label for="ConfirmPassword" class="init_login_label active1"> confirm Password </label>
+                                        @* </div>
+                                        <div class="">*@
+                                        @Html.TextBoxFor(model => model.ConfirmPassword, new { @type = "password", @id = "ConPassword", @class = "init_input text-box single-line init_in",@onkeyup = "Passwordval(this.id)" ,@maxlength="8", @onblur="validationforpass(this.id)" })
+                                        @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger validation" })
+                                        @*<i class="fa-solid eyeIcon fa-eye-slash" id="init_eye2" onclick="ShowPassOTP()"></i>*@
+                                    </div>
+                                    <div class="form-group mtp11" style="margin-top: -12px;">
+                                        <button type="submit" class="init_submit_btn" id="ChangePass" onclick="ChangePass()">Change Password</button>
+
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="preloader">
+        <div id="Digil1" style="position: fixed; background-color: #cdcdcd5e; margin-top: 19%; margin-left: 47%;">
+            <i class=" fa fa-pulse fa-fw dgldr ldrdesign" style="height:70px;width:70px;border-radius:50%;
+            border-bottom:5px dotted grey;
+            border-top:5px dotted black;
+            border-right:5px dotted black;
+            border-left:5px dotted black;
+            height:80px;
+            width:80px;
+            position:absolute;
+            margin: 20% 50%;">
+            </i>
+        </div>
+    </div>
+    <div id="DigiCerti"></div>
+    <a href="#" class="back-to-top">
+
+        @* <i class="fa fa-chevron-up"></i>*@
+        <img src="~/Content/imgs/icons/uparrow1.png" height="35px" width="35px" />
+
+    </a>
+
+
+    <script src="~/Content/Navigation/vendor/bootstrap/js/bootstrap.bundle.min.js">
+        </>
+            <script src="~/Content/Navigation/vendor/jquery.easing/jquery.easing.min.js"></script>
+    <script src="~/Content/Navigation/vendor/venobox/venobox.min.js"></script>
+    <script src="~/Content/Navigation/js/main.js"></script>
+</body>
+</html>
+

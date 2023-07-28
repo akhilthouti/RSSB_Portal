@@ -1,0 +1,228 @@
+﻿/*ONLY RSSB BANK*/
+
+/* 1. FOR LOGOS DIMENSION logo views are Mainhome, userdetails, orgdetails, summerysheet, _pdf agentlayoutpage multiagent*/
+.init_logo_main {
+    height: 40px;
+}
+
+
+/*TRASPARENT*/
+.init_div_nav, .init_div_sp, .headerlay {
+    background-color: #fff !important;
+    /*coloured Navbar*/
+}
+
+.init_div {
+    background-color: #fff0 !important;
+}
+
+.init_a {
+    color: #bf5252 !important;
+}
+.submit-button {
+    background-color: #bf5252 !important;
+}
+/*variables for primary color */
+:root {
+    --main_primary: #bf5252 !important;
+    --progressbar_dropdown_top_bar_li_btnhover: #bf5252 !important;
+    --top_bar_li_hover: #de7171 !important;
+    --light_bg: #e19898 !important;
+}
+
+.sweet-alert button {
+    background: var(--main_primary) !important;
+}
+
+
+/*PRIMARY COLOR  - MAIN PORTAL COLOUR----------------------------------------------------------------------------------*/
+.init_login_btn {
+    background: var(--main_primary) !important;
+    /*Home page login btn*/
+}
+
+.init_submit_btn {
+    background-color: var(--main_primary) !important;
+    /*submit btn of Agent and Admin login page */
+}
+
+.init_otp_btn {
+    background-color: var(--main_primary) !important;
+    /*Mobile two otp btn both side*/
+}
+
+.breadcrumbs {
+    background: var(--main_primary) !important;
+    /* Admin Special Header*/
+}
+
+.btn-primary {
+    border-color: var(--main_primary) !important;
+    background: var(--main_primary) !important;
+    /*all btns of the portal*/
+}
+
+table.dataTable thead th, table.dataTable thead td {
+    background: var(--main_primary) !important;
+    /*Data tables*/
+}
+
+.header_all_agent, .headerlay {
+    /* background: var(--main_primary) !important;*/
+    /*Agent header*/
+}
+
+.trstyle {
+    background-color: var(--main_primary) !important;
+}
+
+.zoom {
+    background-color: var(--main_primary) !important;
+}
+
+input.largerCheckbox {
+    accent-color: var(--main_primary) !important;
+    /* checkbox select color*/
+}
+
+input[type=radio] {
+    accent-color: var(--main_primary) !important;
+    /*radio select color*/
+}
+
+.nav-tabs {
+    background-color: var(--main_primary) !important;
+}
+
+.dashboard-menu {
+    background-color: var(--main_primary) !important;
+}
+
+.camera-div h3 {
+    background: var(--main_primary) !important;
+    border-color: var(--main_primary) !important;
+    /*Live photo*/
+}
+
+.active1 {
+    color: var(--main_primary) !important;
+    /* Admin overview tab li's*/
+}
+
+.init_input:focus, .init_capcha_input:focus {
+    border: 2px solid var(--main_primary) !important;
+    box-shadow: none !important;
+    /*Both side login page only*/
+}
+
+.table.dataTable.no-footer {
+    border: 1px solid var(--main_primary) !important;
+    /* Datatable border*/
+}
+
+.tocheck {
+    background: var(--main_primary) !important;
+    /* Header for pan and aadhar verify*/
+}
+
+.btnornge {
+    background: var(--main_primary) !important;
+}
+
+.doc_icons {
+    font-size: 40px;
+    color: var(--main_primary) !important;
+    /*Icons used in the document details*/
+}
+
+.control-label2 {
+    background-color: var(--main_primary) !important;
+    /*text header*/
+}
+
+
+
+
+/*SECONDARY - HOVER  - COLOUR----------------------------------------------------------------------------------*/
+.init_href {
+    background-color: var(--top_bar_li_hover) !important;
+    /*Nav links*/
+}
+
+.init_submit_btn:hover, .btn-primary:hover {
+    background-color: var(--progressbar_dropdown_top_bar_li_btnhover) !important;
+    /* Hover of Admin Agnet submit btn*/
+}
+
+.init_otp_btn:hover {
+    background-color: var(--progressbar_dropdown_top_bar_li_btnhover) !important;
+    /*mobile opt btn both side*/
+}
+
+.btn-primary:hover {
+    color: #fff !important;
+    border-color: var(--progressbar_dropdown_top_bar_li_btnhover) !important;
+    background: var(--progressbar_dropdown_top_bar_li_btnhover) !important;
+    /*all btns on hover*/
+}
+
+.progressbar {
+    background-color: var(--progressbar_dropdown_top_bar_li_btnhover) !important;
+    /*This is progress bar in agent side lighter color the Main Primary color*/
+}
+
+.btnornge:hover {
+    background-color: var(--progressbar_dropdown_top_bar_li_btnhover) !important;
+    border: none !important;
+}
+
+div.text2 {
+    background: var(--progressbar_dropdown_top_bar_li_btnhover) !important;
+}
+
+.name1 {
+    background: var(--progressbar_dropdown_top_bar_li_btnhover) !important;
+}
+
+
+/*SPECIAL HOVER form HOME OPTIONS - HOME li */
+.dropdown-menu_custom > li:focus, .dropdown-menu_custom > li:hover {
+    background-color: var(--top_bar_li_hover) !important;
+}
+
+.init_href:hover {
+    background-color: var(--top_bar_li_hover) !important;
+}
+
+.nav > li > a:focus, .nav > li > a:hover {
+    background-color: var(--top_bar_li_hover) !important;
+    /*Hover of Progressbar agent side tabs*/
+}
+
+
+
+
+/*OPTIONS SECONDARY*/
+.progressbar li:before {
+    color: var(--light_bg) ;
+    border: 1px solid var(--main_primary) !important;
+    /*progressbar before color*/
+}
+
+.dropdown-menu_custom {
+    background-color: var(--progressbar_dropdown_top_bar_li_btnhover) !important;
+    /*Home Page dropdown*/
+}
+
+
+
+.alert-info {
+    background-color: var(--light_bg) !important;
+    border-color: var(--main_primary) !important;
+    /*location div*/
+}
+
+.alert-primary {
+    background-color: var(--light_bg) !important;
+    /*Summerysheet detais verified light color bg*/
+}

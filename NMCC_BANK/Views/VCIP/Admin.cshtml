@@ -1,0 +1,54 @@
+﻿<head>
+    <link href="~/Content/vedio.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <link href="~/fonts/font-awesome.css" rel="stylesheet" />
+    <link href="~/Content/Navigation/animate.css" rel="stylesheet" />
+    <link href="~/Content/Navigation/bootsnav.css" rel="stylesheet" />
+    <link href="~/Content/Navigation/style.css" rel="stylesheet" />
+   @* t_P_URL <link href="~/Content/HoverEffect/hover.css" rel="stylesheet" />*@
+
+    <script src="~/Content/VCIP/IPVscript/Scripts/jquery-3.3.1.js"></script>
+    <script>
+        function attendcall(id) {
+            debugger;
+            //alert("Hello");
+            var Key = id;//$(this).attr('id');
+            $.ajax({
+                url: '/VCIP/StartResponceCamera',
+                type: 'GET',
+                data: {
+                    Key: Key
+                },
+                cache: false,
+                success: function (result) {
+                    debugger;
+                    window.open('/VCIP/StartResponceCamera#' + Key);
+                    // swal('Connected');
+                }
+
+            });
+        }
+    </script>
+    <script type="text/JavaScript">
+        function timeRefresh(timeoutPeriod) {
+            setTimeout("location.reload(true);", timeoutPeriod);
+        }
+    </script>
+</head>
+<body onLoad="JavaScript:timeRefresh(5000);">
+    <div class="admintab">
+        <div class="conadmin" style="margin-top:1px;margin-bottom:0%">
+            <div style="text-align:center;">
+
+                <p class="hedadm" style="margin-top:2%"><img src="~/Image/admin.png" class="img2" />Admin Incoming call information</p>
+            </div>
+            <div style="text-align:center;font-size:17px;color:#20a316">
+                <label> Vkyc Verifier</label>
+            </div>
+            <fieldset class="vedadmin">
+            </fieldset>
+        </div>
+    </div>
+    </body>
+
+

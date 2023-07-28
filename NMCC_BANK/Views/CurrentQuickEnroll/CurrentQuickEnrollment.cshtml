@@ -1,0 +1,971 @@
+﻿@model INDO_FIN_NET.Models.CurrentModels.Current_Verification
+
+@{
+    Layout = "~/Views/Shared/Components/_CurrentAccountLayout.cshtml";
+}
+@{
+    var dataList = ViewBag.Data as List<INDO_FIN_NET.Models.CurrentModels.DataItem>;
+    var selectList = new SelectList(dataList, "org_type", "org_type");
+    string defaultCategory = ViewData["toCheckPartner"] != null && (bool)ViewData["toCheckPartner"] ? "Partnership" : string.Empty;
+
+    //string defaultCategory = (bool)ViewData["toCheckPartner"] ? "Partnership" : string.Empty;
+
+}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    @*CSS FILE local and global*@
+    <link href="~/css/current_quickenroll.css" rel="stylesheet" />
+    <link href="~/css/multiclass.css" rel="stylesheet" />
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        function CQuickData() {
+            if ($("#CFirstNameID").val() == "") {
+                swal("Please Enter Customer First Name");
+            }
+            else if ($("#CMiddleNameID").val() == "") {
+                swal("Please Enter Customer Middle Name");
+
+            }
+            else if ($("#CLastNameID").val() == "") {
+                swal("Please Enter Customer Last Name");
+
+            }
+            else if ($("#CFullNameID").val() == "") {
+                swal("Please Enter Customer Full Name");
+
+            }
+            else if ($("#CMobileNoID").val() == "") {
+                swal("Please Enter Customer First Name");
+
+            }
+            else if ($("#CEmailID").val() == "") {
+                swal("Please Enter Customer EmailId Name");
+
+            }
+            else if ($("#CIDTYPEID").val() == "") {
+                swal("Please Select Id Type");
+
+            }
+            else if ($("#CTypeTextboxID").val() == "") {
+                swal("Please Enter Id Type Details");
+
+            }
+            else if ($("#CATTYPEID").val() == "") {
+                swal("Please Select Category");
+            }
+            else {
+
+                $("#IdVerificationDiv").show();
+                $("#SubmitID").show();
+            }
+        }
+    </script>
+
+    <script>
+        function SubmitOnQuick() {
+            var aadharVerificationChecked = document.getElementById('checkforAadharVerificationID').checked;
+            var digilockerChecked = document.getElementById('checkforDigilockerID').checked;
+            if (!aadharVerificationChecked && !digilockerChecked) {
+                swal('Error', 'Please select at least one ID verification option.', 'error');
+            }
+            else {
+                var formData = new FormData();
+                formData.append("FirstName", $("#CFirstNameID").val());
+                formData.append("LastName", $("#CLastNameID").val());
+                formData.append("MobileNO", $("#CMobileNoID").val());
+                formData.append("EmailID", $("#CEmailID").val());
+                formData.append("VerificationType", $("#CIDTYPEID").val());
+                formData.append("VerificationTypeValue", $("#CTypeTextboxID").val());
+                formData.append("Category", $("#CATTYPEID").val());
+                $.ajax({
+                    url: '/CurrentQuickEnroll/CurrentQuickEnrollment',
+                    type: 'POST',
+                    data: formData,
+                    dataType: 'json',
+                    contentType: false,
+                    processData: false,
+                    success: function (result) {
+                        if (result == "Success") {
+                            swal("Data Saved Successfully");
+                            //window.location.href = '/CurrentCAF/CurrentCAF';
+                            window.location.href = "/CurrentindividualDocumentDetails/CurrentIndividualDocument";
+                        }
+                        else {
+                            swal("please try Again");
+                        }
+
+                    }
+                });
+            }
+        }
+    </script>
+
+
+
+    <script>
+        $(document).ready(function () {
+            $("#checkforPanID").click(function () {
+                debugger;
+                if ($(this).is(":checked")) {
+                    if ($("#CIDTYPEID").val() == "Pan No") {
+
+                        $("#valueofidtypeforPANID").val($("#CTypeTextboxID").val());
+                    }
+                    $("#idtypeforPANID").val("Pan Card");
+                    $("#PANDIV").show();
+                    $("#SubmitID").show();
+                }
+                else {
+                    $("#PANDIV").hide();
+
+
+                }
+            });
+
+            $("#checkforCINID").click(function () {
+                debugger;
+                if ($(this).is(":checked")) {
+                    if ($("#CIDTYPEID").val() == "CIN") {
+
+                        $("#valueofidtypeofCINID").val($("#CTypeTextboxID").val());
+                    }
+                    $("#idtypeofCINID").val("Corporate Identification Number");
+                    $("#CINDIV").show();
+                    $("#SubmitID").show();
+                }
+                else {
+                    $("#CINDIV").hide();
+
+                }
+            });
+            $("#checkforMSMEID").click(function () {
+                debugger;
+                if ($(this).is(":checked")) {
+                    if ($("#CIDTYPEID").val() == "MSME") {
+
+                        $("#valueofidtypeofMSMEID").val($("#CTypeTextboxID").val());
+                    }
+                    $("#idtypeofMSMEID").val("Ministry of Micro, Small & Medium Enterprises Number");
+                    $("#MSMEDIV").show();
+                    $("#SubmitID").show();
+                }
+                else {
+                    $("#MSMEDIV").hide();
+                }
+            });
+            $("#checkforGSTINID").click(function () {
+                debugger;
+                if ($(this).is(":checked")) {
+                    if ($("#CIDTYPEID").val() == "GSTIN") {
+
+                        $("#valueofidtypeofGSTINID").val($("#CTypeTextboxID").val());
+                    }
+                    $("#idtypeofGSTINID").val("Goods and Services Tax Identification Number");
+                    $("#GSTINDIV").show();
+                    $("#SubmitID").show();
+                }
+                else {
+                    $("#GSTINDIV").hide();
+                }
+            });
+        });
+
+        //function isAlphabetic(evt) {
+        //    evt = evt || window.event;
+        //    var charCode = evt.keyCode || evt.which;
+        //    var charStr = String.fromCharCode(charCode);
+
+        //    // Only allow alphabetical characters (uppercase and lowercase)
+        //    if (!/^[a-zA-Z]+$/.test(charStr)) {
+        //        if (evt.preventDefault) {
+        //            evt.preventDefault();
+        //        } else {
+        //            evt.returnValue = false;
+        //        }
+        //        return false;
+        //    }
+        //}
+
+        function isAlphabetic(evt) {
+            debugger;
+            evt = evt || window.event;
+            var charCode = evt.keyCode || evt.which;
+            var charStr = String.fromCharCode(charCode);
+
+            // Only allow alphabetical characters (uppercase and lowercase)
+            if (!/^[a-zA-Z]+$/.test(charStr)) {
+                if (!/^\d+$/.test(charStr)) { // Check if the character is numerical
+                    evt.preventDefault();
+
+                }
+                swal("PLEASE ENTER ALPHABETICAL VALUES");
+                return false;
+            }
+        }
+
+
+
+    </script>
+
+    @*  <script>
+    function SubmitOnQuick() {
+    var companyforCIN = $('#CompanyNameID').val();
+    var companyforMSME = $('#CompanyNamesID').val();
+    if (companyforCIN == companyforMSME) {
+    window.location.href = "/CurrentCAF/CurrentCAF";
+    }
+    else {
+
+    swal({
+    title: "Fetched Company Name Is Not Matching",
+
+    type: 'warning',
+
+    confirmButtonColor: '#DD6B55',
+    confirmButtonText: 'Ok',
+
+    closeOnConfirm: false,
+    closeOnCancel: false
+    },
+    function (isConfirm) {
+
+    if (isConfirm) {
+    window.location.href = "/CurrentCAF/CurrentCAF";
+
+    } else {
+    swal("Cancelled", "please Enter Correct Company Name");
+    }
+    });
+    }
+
+    }
+    </script>*@
+
+
+    <script>
+
+        function Fethch() {
+            debugger;
+            var DocType1 = $('#DocType').val();
+
+
+            if ($("#PanCard").prop('checked') == true) {
+                var Verificationtxt3 = $('#Verificationtxt3').val();
+                if (Verificationtxt3 == "") {
+                    swal("enter valid pan no");
+                    return false;
+                }
+                else {
+                    var regex = /([A-Z]){5}([0-9]){4}([A-Z]){1}$/;
+                    if (regex.test($("#Verificationtxt3").val().toUpperCase())) {
+
+
+                    } else {
+                        swal("enter valid pan no");
+                        return false;
+                    }
+                }
+            }
+            if ($("#DrivingLic").prop('checked') == true) {
+                var Verificationtxt4 = $('#Verificationtxt4').val();
+                if (Verificationtxt4 == "") {
+                    swal("enter valid Driving Licence no");
+                    return false;
+                }
+                else {
+                    var regexdrive = /([A-Z]){2}([0-9]){12}/;
+                    if (regexdrive.test($("#Verificationtxt4").val())) {
+
+
+                    } else {
+                        swal("enter Driving Licence no");
+                        return false;
+                    }
+                }
+            }
+
+            var Verificationtxt3 = $('#Verificationtxt3').val();
+            var Verificationtxt4 = $('#Verificationtxt4').val();
+            var Verificationtxt6 = $('#Verificationtxt6').val();
+            var Verificationtxt8 = $('#Verificationtxt8').val();
+
+            var lfckv1 = document.getElementById("PanCard").checked;
+            var lfckv2 = document.getElementById("DrivingLic").checked;
+            var lfckv3 = document.getElementById("Aadharxml").checked;
+
+            window.location.href = '/CurrentQuickEnroll/FetchDoc?DocType1=' + DocType1 + '&Verificationtxt3=' + Verificationtxt3 + '&Verificationtxt4=' + Verificationtxt4 + '&Verificationtxt6=' + Verificationtxt6 + '&Verificationtxt8=' + Verificationtxt8 + '&DrivingLic=' + lfckv2 + '&PanCard=' + lfckv1 + '&Aadharxml=' + lfckv3;
+
+        }
+    </script>
+    <script>
+        function isNumeric(evt) {
+            debugger;
+            var charCode = (evt.which) ? evt.which : evt.keyCode;
+            if (charCode != 46 && charCode > 31 && (charCode < 48 || charCode > 57)) {
+                swal("PLEASE ENTER NUMERIC VALUES");
+                return false;
+            }
+            if (evt.target.value.length >= 10) {
+                return false;
+            }
+            return true;
+        }
+        $(document).ready(function () {
+            debugger;
+            $("#CIDTYPEID").on("change", function () {
+                var selectedValue = $(this).val();
+                var input = $("#CTypeTextboxID");
+                var placeholderText = "";
+                var pattern = "";
+
+                if (selectedValue === "Pan No") {
+                    placeholderText = "Enter PAN No";
+                    pattern = "^[A-Z]{5}[0-9]{4}[A-Z]{1}$";
+                    input.attr("maxlength", 10);
+                    input.on("input", function () {
+                        $(this).val($(this).val().toUpperCase());
+                    });
+                } else if (selectedValue === "Aadhar") {
+                    placeholderText = "Enter Aadhaar No";
+                    pattern = "^[2-9]{1}[0-9]{11}$";
+                    input.attr("maxlength", 12);
+                    input.off("input");
+                } else {
+                    input.hide();
+                    return;
+                }
+
+                input.attr("placeholder", placeholderText).attr("pattern", pattern).show();
+            });
+
+            $("#CTypeTextboxID").on("blur", function () {
+                debugger;
+                var inputValue = $(this).val();
+                var pattern = $(this).attr("pattern");
+
+                if (inputValue && !inputValue.match(pattern)) {
+                    swal("Invalid Number", "Please enter a valid number.", "warning");
+                    $(this).val("").focus();
+                }
+            });
+
+        });
+
+    </script>
+
+    @{
+        var DigiDoc = ViewBag.DigiDoc;
+    }
+
+
+
+    <script>
+
+        // hide unhide function for digilocker checkbox
+        $(function () {
+            $('#checkforDigilockerID').change(function () {
+
+                myFunction();
+            });
+        });
+        $(document).ready(function () {
+            myFunction();
+        });
+
+        function myFunction() {
+            $('#CustDigi').toggle($('#checkforDigilockerID').is(':checked'));
+        }
+
+        // hide unhide function for pancard checkbox
+        $(document).ready(function () {
+            debugger;
+            $('#PanCard').change(function () {
+                if ($(this).is(':checked')) {
+                    $('#Verificationtxt1').show();
+                    $('#Verificationtxt7').show();
+                    $('#DegiVerificationbtn').show();
+
+                } else {
+                    $('#Verificationtxt1').hide();
+                    $('#Verificationtxt7').hide();
+                    $('#DegiVerificationbtn').hide();
+                }
+            });
+
+        });
+
+        //hide unhide function for driving licence checkbox
+        $(document).ready(function () {
+            $('#DrivingLic').change(function () {
+                if ($(this).is(':checked')) {
+                    $('#Verificationtxt2').show();
+                    $('#DegiVerificationbtn').show();
+
+                } else {
+                    $('#Verificationtxt2').hide();
+                    $('#DegiVerificationbtn').hide();
+
+                }
+            });
+        });
+
+
+        //hide unhide function for adhaar  checkbox
+        $(document).ready(function () {
+            $('#Aadharxml').change(function () {
+                if ($(this).is(':checked')) {
+                    $('#DegiVerificationbtn').show();
+                } else {
+                    $('#DegiVerificationbtn').hide();
+                }
+            });
+        });
+
+        //manipulate textbox value
+        $(document).ready(function () {
+            $("#CFirstNameID").on("input", function () {
+                var sourceValue = $(this).val();
+                $("#Verificationtxt8").val(sourceValue);
+            });
+        });
+
+
+        $(document).ready(function () {
+            debugger;
+            if ('@ViewBag.Digidoc' == 'PAN') {
+                $('#CustDigilockerVerify').show();
+
+            }
+            else if ('@ViewBag.Digidoc' == 'PANwithxml') {
+                $('#CustDigilockerVerify').show();
+                $('#DigiAadharxml').show();
+            }
+            else if ('@ViewBag.Digidoc' == 'AADHAAR_XML') {
+                $('#DigiAadharxml').show();
+            }
+
+        });
+
+
+
+
+
+
+    </script>
+
+
+</head>
+<body>
+    <div class="init_current_acc_main_div">
+        <div class="init_curr_text_header">
+            <div class="init_curr_text">Current Account</div>
+        </div>
+        <div class="inner_wrapper">
+            <div class="init_select_div">
+                <p class="">Please Select Type :</p>
+                <div class="row">
+                    <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-xs-12">
+                        <input type="radio" name="newCustomer" id="newCustomerID" class="" onclick="onRadioChange(this)">
+                        <label for="" style="" class="">New Customer</label>
+                    </div>
+                    <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-xs-12">
+                        <input type="radio" value="" name="Re-KycCustomer" id="RekycCustomerID" class="" onclick="onRadioChange(this)">
+                        <label for="" style="" class="">Re-KYC</label>
+                    </div>
+                </div>
+            </div>
+            <div class="init_curr_main_content_div">
+                <div class="row">
+                    <div class="col-lg-3 col-md-12 col-sm-12">
+                        @* <input class="form-control" data-val="true" data-val-length="Should not exceed 50 characters" data-val-length-max="20" id="CFirstNameID" maxlength="50" name="CFirstNameID" onkeypress="CharacterOnly(event)" onkeyup="alphabetOnly(this.id);" placeholder="Customer First Name" type="text" value="">*@
+                        <input class="form-control" data-val="true" data-val-length="Should not exceed 50 characters" data-val-length-max="20" id="CFirstNameID" maxlength="50" name="CFirstNameID" onkeypress="return isAlphabetic(event)" onkeyup="alphabetOnly(this.id);" placeholder="Customer First Name" type="text" value="">
+                    </div>
+                    <div class="col-lg-3 col-md-12 col-sm-12">
+                        <input class="form-control" data-val="true" data-val-length="Should not exceed 50 characters" data-val-length-max="20" data-val-required="Required" id="CLastNameID" maxlength="50" name="CLastName" onkeypress="return isAlphabetic(event)" onkeyup="alphabetOnly(this.id);" placeholder="Customer Last Name" type="text" value="">
+                    </div>
+                    <div class="col-lg-3">
+                        @*<input class="form-control" data-val="true" data-val-length="Mobile Number must be 10 char long." data-val-length-max="10" data-val-length-min="10" data-val-range="Mobile Number should Start with 6,7,8 or 9" data-val-range-max="9999999999999" data-val-range-min="5999999999" data-val-regex="Only Numeric Numbers Can be Enter" data-val-regex-pattern="^[0-9]{0,10}$" id="CMobileNoID" maxlength="10" name="CMobileNo" onkeyup="numericOnly(this.id)" placeholder="Mobile No" type="text" value="">*@
+                        <input class="form-control" id="CMobileNoID" name="CMobileNo" type="text" placeholder="Mobile No" onkeypress="return isNumeric(event)" maxlength="10" asp-for="CMobileNo">
+                        <div class="init_btn_curr_top">
+                            <button type="button" onclick="QEMobileAuth()" class="btn btn-primary" id="QEAuthMobileGetOtp">Verify Mobile No. </button>
+                            <label id="CisMobileVerify" style="float:left;padding-right:10px;display:none" class="hell real"><input type="checkbox" class="largerCheckbox" id="CMobileVerifyID" checked="checked" readonly="readonly">Mobile Verified</label>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <input class="form-control" data-val="true" data-val-email="invalid Email Address" data-val-required="Enter Email ID" id="CEmailID" name="QEEmailId" onblur="EmailValiddation(this.id)" placeholder="Email ID" type="text" value="">
+
+                        <div class="init_btn_curr_top">
+                            <button type="button" onclick="QEOTPAuth()" class="btn btn-primary" id="QEEmailGetOtp">Verify Email</button>
+
+                            <label id="CisEmailVerify" style="float:left;padding-right:10px;display:none"><input type="checkbox" class="largerCheckbox" checked="checked" id="CisEmailVerifyCheckboxID" readonly="readonly" style="display:none">Email Verified</label>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row init_id_type_div">
+                    <div class="col-lg-3">
+                        <select class="form-control dropdiv" id="CIDTYPEID" name="CType" asp-for="CType">
+                            <option value="">--ID Type--</option>
+                            <option value="Pan No">Pan Card</option>
+                            <option value="Aadhar">Aadhaar Card</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-3">
+                        <input class="form-control" id="CTypeTextboxID" maxlength="15" name="CTypeTextbox" style="display: none;" type="text" value="" asp-for="CTypeTextbox" required>
+                        <span class="text-danger" style="display: none;">Please enter a value for this field.</span>
+                    </div>
+                    <div class="col-lg-3">
+                        @Html.DropDownList("CType", new SelectList(selectList, "Value", "Text", defaultCategory), "--Category--", new { @class = "form-control dropdiv", id = "CATTYPEID"})
+                        @*@Html.DropDownList("CType", selectList, "--Category--", new { @class = "form-control dropdiv", id = "CATTYPEID" })*@
+                    </div>
+
+                    <div class="col-lg-3">
+                        <input type="button" id="SavedCDataID" value="Save" class="btn btn-primary" onclick="CQuickData()">
+                        <input type="button" id="ClearCDataID" value="Clear" onclick="QEDataClear(this);" class="btn btn-primary" style="" disabled="disabled">
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <div id="IdVerificationDiv" class="init_current_acc_main_div" style="display:none">
+        <div class="init_curr_text_header">
+            <div class="init_curr_text">SELECT THE OPTION TO VERIFY</div>
+        </div>
+        <div class="inner_wrapper">
+            <div class="init_select_div">
+                <div class="row">
+                    <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-xs-12">
+                        <input type="checkbox" id="checkforAadharVerificationID" name="checkforAadharVerification">
+                        <label for="checkforAadharVerification">AadharVerificationType</label>
+                    </div>
+                    <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-xs-12">
+                        <input type="checkbox" id="checkforDigilockerID" name="checkforDigilocker">
+                        <label for="checkforDigilocker">DigiLocker</label>
+                    </div>
+                    <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-xs-12" style="display:none;">
+                        <input type="checkbox" id="checkforPanVerificationID" name="checkforPanVerification">
+                        <label for="checkforPanVerification">PanVerificationType</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="CustDigi" class="init_current_acc_main_div" style="display: none;">
+        <div class="panel-heading quickenroll">
+            <h3 class="panel-title"> SELECT THE OPTION</h3>
+        </div>
+        <div class="panel-body quickenroll">
+
+
+            <div class="row">
+                <div class="form-group chekleft pdfil12">
+
+                    <label id="PanDigi" class="form-check-label">
+                        <input class="form-check-input largerCheckbox" data-val="true" data-val-required="The PanCard field is required." group="pd" id="PanCard" name="PanCard" type="checkbox" value="true"><input name="PanCard" type="hidden" value="false">
+
+                        Pan Card
+                    </label>
+
+
+
+                    <label id="AadharxmlDigi" class="form-check-label">
+                        <input class="form-check-input largerCheckbox" data-val="true" data-val-required="The Aadharxml field is required." group="pd" id="Aadharxml" name="Aadharxml" type="checkbox" value="true"><input name="Aadharxml" type="hidden" value="false">
+
+                        Aadhaar Xml
+                    </label>
+                    <label id="DrivingDigi" class=" form-check-label">
+                        <input class="form-check-input largerCheckbox" data-val="true" data-val-required="The DrivingLic field is required." group="pd" id="DrivingLic" name="DrivingLic" type="checkbox" value="true"><input name="DrivingLic" type="hidden" value="false">
+
+                        Driving Licence
+                    </label>
+                </div>
+
+            </div>
+            <div class="row">
+
+                <div class="col-lg-3 pddTopLo martop pdfil12 pdquick" id="Verificationtxt1" style="float: left; display: none; ">
+                    <label for="Enter_Pan_Number">Enter Pan Number</label>
+
+                    <input class="form-control" data-val="true" data-val-length="Pan Number must be 10 char long." data-val-length-max="10" data-val-length-min="10" id="Verificationtxt3" maxlength="10" name="digilockerpan" style="height: 45px !important;" type="text" value="">
+                    <span class="text-danger field-validation-valid" data-valmsg-for="digilockerpan" data-valmsg-replace="true"></span>
+
+                </div>
+
+
+
+
+
+                <div class="col-lg-3 pddTopLo martop pdfil12 pdquick" id="Verificationtxt7" style="float: left; display: none;">
+                    <label for="Enter_Pan_Full_Name">Enter Pan Full Name</label>
+
+                    <input class="form-control" id="Verificationtxt8" name="digifullname" onkeyup="alphabetOnly(this.id)" style="height: 45px !important;" type="text" value="">
+                    <span class="text-danger field-validation-valid" data-valmsg-for="digifullname" data-valmsg-replace="true"></span>
+
+                </div>
+
+                <div class="" style="" id="Verificationtxt5">
+                </div>
+
+                <div class="col-lg-3 pddTopLo martop pdfil12 pdquick" id="Verificationtxt2" style="float: left;  display: none;">
+                    <label for="Enter_Driving_Licence_Number">Enter Driving Licence Number</label>
+
+                    <input class="form-control" data-val="true" data-val-length="Driving Licence Number must be 15 char long." data-val-length-max="15" data-val-length-min="15" id="Verificationtxt4" maxlength="15" name="digilockerdrlic" style="height: 45px !important;" type="text" value="">
+                    <span class="text-danger field-validation-valid" data-valmsg-for="digilockerdrlic" data-valmsg-replace="true"></span>
+                </div>
+
+
+                <div class="col-lg-3 pddTopLo martop pdfil12 pdquick" id="DegiVerificationbtn" style="margin-top:30px;  display: none;">
+                    <input type="button" value="Fetch Details From DigiLocker" onclick="Fethch()" id="FetchDigi" class="col-lg-7 btn btn-primary right1 valid" style="height: 45px !important;">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="CustDigilockerVerify" class="init_current_acc_main_div" style="display: none;">
+
+        <div class="panel-heading">
+            <h3 class="panel-title">PAN VERIFICATION</h3>
+        </div>
+        <div class="panel-body  pdquick ">
+            <div class="row">
+                <div class="col-lg-3 pddTopLo martop pdfil12 pdquick">
+                    <label>Enter Pan Number</label>
+                    <input type="text" class="form-control" readonly value="@ViewBag.PANNo" />
+                </div>
+                <div class="col-lg-3 pddTopLo martop pdfil12 pdquick">
+                    <label>First Name</label>
+                    <input type="text" class="form-control" readonly value="@ViewBag.FNAME" />
+                </div>
+                <div class="col-lg-3 pddTopLo martop pdfil12 pdquick">
+                    <label>Middle Name</label>
+                    <input type="text" class="form-control" readonly value="@ViewBag.MNAME" />
+                </div>
+
+                <div class="col-lg-3 pddTopLo martop pdfil12 pdquick">
+                    <label>Last Name</label>
+                    <input type="text" class="form-control" readonly value="@ViewBag.LNAME" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-3 pddTopLo martop pdfil12 pdquick">
+                    <label>Country</label>
+                    <input type="text" class="form-control" readonly value="@ViewBag.Country" />
+                </div>
+                <div class="col-lg-3 pddTopLo martop pdfil12 pdquick">
+                    <label>ORG_Name</label>
+                    <input type="text" class="form-control" readonly value="@ViewBag.Orgname" />
+                </div>
+
+                @*<div class="col-lg-3 pddTopLo martop pdfil12 pdquick">
+                <label class="col-lg-12 col-sm-4 col-xs-12 flt_lft">Gender</label>
+
+                <div class="col-lg-6" style="padding-top:9px;float:left;">
+                <input class="radioBtn" id="Gendermale" name="GenderForOthers" style="float:left;" type="radio" value="M"><p class="national_textgen4">Male</p>
+                </div>
+                <div class="col-lg-6" style=" padding-top:9px;float:right;">
+                <input class="radioBtn" id="Genderfemale" name="GenderForOthers" type="radio" value="F"><p class="national_textgen4">Female</p>
+                <span class="text-danger field-validation-valid" data-valmsg-for="GenderForOthers" data-valmsg-replace="true" style=""></span>
+                </div>
+                </div>*@
+
+                <div class="col-lg-3 pddTopLo martop pdfil12 pdquick">
+                    <label class="col-lg-12 col-sm-4 col-xs-12 flt_lft">Gender</label>
+
+                    <div class="col-lg-6" style="padding-top:9px;float:left;">
+                        <input class="radioBtn" id="Gendermale" name="GenderForOthers" style="float:left;" type="radio" value="M" @(ViewBag.Gender == "MALE" ? "checked" : "")><p class="national_textgen4">Male</p>
+                    </div>
+                    <div class="col-lg-6" style=" padding-top:9px;float:right;">
+                        <input class="radioBtn" id="Genderfemale" name="GenderForOthers" type="radio" value="F" @(ViewBag.Gender == "FEMALE" ? "checked" : "")><p class="national_textgen4">Female</p>
+                        <span class="text-danger field-validation-valid" data-valmsg-for="GenderForOthers" data-valmsg-replace="true" style=""></span>
+                    </div>
+                </div>
+
+
+                <div class="col-lg-3 pddTopLo martop pdfil12 pdquick">
+                    <label>Date of Birth</label>
+                    <input type="text" class="form-control" readonly value="@ViewBag.DOB" />
+                </div>
+            </div>
+            <div class="row">
+            </div>
+
+        </div>
+    </div>
+
+    <div id="DigiAadharxml" class="init_current_acc_main_div" style="display: none;">
+        <div class="panel-heading">
+            <h3 class="panel-title">Aadhaar Details From Digilocker </h3>
+        </div>
+        <div class="panel-body  pdquick" id="formid" style="width:100%;margin-bottom:20px;">
+            <div class="row">
+                <div class="col-lg-3 pddTopLo martop pdfil12 pdquick" style="float:left;">
+                    <label class="control-label" for="FirstName" style="">First Name </label>
+
+                    <input class="form-control " id="Afirstname" maxlength="20" name="FirstName" onkeyup="alphabetOnly(this.id)" style="height:45px!important;" type="text" readonly value="@ViewBag.AdhaarFname">
+                    <span class="text-danger field-validation-valid" data-valmsg-for="FirstName" data-valmsg-replace="true"></span>
+
+                </div>
+                <div class="col-lg-3 pddTopLo martop pdfil12 pdquick" style="float:left;">
+                    <label class="control-label" for="MiddleName1" style="">Middle  Name </label>
+
+                    <input class="form-control " id="Amiddlename" maxlength="20" name="MiddleName1" onkeyup="alphabetOnly(this.id)" style="height:45px!important;" type="text" readonly value="@ViewBag.AdhaarMname">
+                    <span class="text-danger field-validation-valid" data-valmsg-for="MiddleName1" data-valmsg-replace="true"></span>
+
+                </div>
+                <div class="col-lg-3 pddTopLo martop pdfil12 pdquick" style="float:left;">
+                    <label class="control-label" for="LastName1" style="">Last  Name </label>
+
+                    <input class="form-control " id="Alastname" maxlength="20" name="LastName1" onkeyup="alphabetOnly(this.id)" style="height:45px!important;" type="text" readonly value="@ViewBag.AdhaarLname">
+                    <span class="text-danger field-validation-valid" data-valmsg-for="LastName1" data-valmsg-replace="true"></span>
+
+                </div>
+                <div class="col-lg-3 pddTopLo martop pdfil12 pdquick" style="float:left;">
+                    <label class="control-label " for="DateOfBirth1" style="">Date of Birth </label>
+                    <div id="custdob">
+                        <input class="form-control " id="Adob" name="DateOfBirth1" style="height:45px!important;" type="text" readonly value="@ViewBag.AdhaarDOB">
+                        <span class="text-danger field-validation-valid" data-valmsg-for="DateOfBirth1" data-valmsg-replace="true"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                @* <div class="col-lg-3 pddTopLo martop pdfil12 pdquick" style="float:left;">
+
+                <label class="col-lg-12 col-md-12 col-sm-12 col-xs-12 flt_lft paddnglt0" style="padding-left: 0px;color: #666767;">
+                <span class="label_val fontpfhndr lblfont_sz11 pdtp1gen" style="padding-top:7px">Gender</span>
+                <span class="validation_sign111 custgnderval" style="color: #ec0909!important;">*</span>
+                </label>
+                <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 flt_lft g_rowright" style="padding-top:9px;float:left;">
+                <input class="radioBtn " id="GENDER3" name="Gender2" type="radio" value="M"><p class="national_textgen pdllnew1gen maleMargin maleAlign"> &nbsp; &nbsp; Male</p>
+                </div>
+                <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 flt_lft g_rowright" style="padding-top:9px;float:right;">
+                <input class="radioBtn " id="GENDER4" name="Gender2" type="radio" value="F"><p class="national_textgen pdllnew1gen fmale fMarign"> &nbsp; &nbsp;Female</p>
+                </div>
+                <span class="text-danger field-validation-valid" data-valmsg-for="Gender2" data-valmsg-replace="true" style="margin-top:4px"></span>
+
+
+                </div>*@
+
+                <div class="col-lg-3 pddTopLo martop pdfil12 pdquick" style="float:left;">
+                    <label class="col-lg-12 col-md-12 col-sm-12 col-xs-12 flt_lft paddnglt0" style="padding-left: 0px;color: #666767;">
+                        <span class="label_val fontpfhndr lblfont_sz11 pdtp1gen" style="padding-top:7px">Gender</span>
+                        <span class="validation_sign111 custgnderval" style="color: #ec0909!important;">*</span>
+                    </label>
+                    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 flt_lft g_rowright" style="padding-top:9px;float:left;">
+                        <input class="radioBtn " id="GENDER3" name="Gender2" type="radio" value="M" @(ViewBag.AdhaarGender == "M" ? "checked" : "")><p class="national_textgen pdllnew1gen maleMargin maleAlign"> &nbsp; &nbsp; Male</p>
+                    </div>
+                    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 flt_lft g_rowright" style="padding-top:9px;float:right;">
+                        <input class="radioBtn " id="GENDER4" name="Gender2" type="radio" value="F" @(ViewBag.AdhaarGender == "F" ? "checked" : "")><p class="national_textgen pdllnew1gen fmale fMarign"> &nbsp; &nbsp;Female</p>
+                    </div>
+                    <span class="text-danger field-validation-valid" data-valmsg-for="Gender2" data-valmsg-replace="true" style="margin-top:4px"></span>
+                </div>
+
+                <div class="col-lg-3 pddTopLo martop pdfil12 pdquick" style="float:left;">
+                    <label for="AadharNo" class="control-label"><div class="label_val pddng0 control-label fontpfhndr pdtp1addhr " style="">Aadhaar No</div></label>
+                    <div class="">
+                        <input class="form-control " id="Digiaadharno" maxlength="12" name="AadharNo" readonly="readonly" style="height:45px!important" type="text" readonly value="@ViewBag.AdhaarNo">
+                        <span class="text-danger field-validation-valid" data-valmsg-for="AadharNo" data-valmsg-replace="true"></span>
+                    </div>
+                </div>
+
+
+                <div class="col-lg-3 pddTopLo martop pdfil12 pdquick" style="float:left;">
+                    <label class="control-label" for="House">House</label>
+
+                    <input class="form-control" id="Ahouse" name="House" onkeyup="numericOnly(this.id)" style="height:45px!important" type="text" readonly value="@ViewBag.AdhaarHouse">
+                    <span class="text-danger field-validation-valid" data-valmsg-for="House" data-valmsg-replace="true"></span>
+
+                </div>
+
+                <div class="col-lg-3 pddTopLo martop pdfil12 pdquick" style="float:left;">
+                    <label class="control-label" for="Address">Address</label>
+
+                    <input class="form-control" id="Aaddress" name="Address" onkeyup="alphabetOnly(this.id)" style="height:45px!important" type="text" readonly value="@ViewBag.AdhaarLocality">
+                    <span class="text-danger field-validation-valid" data-valmsg-for="Address" data-valmsg-replace="true"></span>
+
+                </div>
+
+
+
+
+            </div>
+            <div class="row">
+                <div class="col-lg-3 pddTopLo martop pdfil12 pdquick cqepht" style="float:left;">
+                    <label class="control-label pdtp1 pddng0 col-lg-4 col-md-4 col-sm-4 col-xs-12 flt_lft" style="">Photo</label>
+                    <div id="ImageDialog" class="imgifrm">
+                        <img src="data:image;base64,@ViewBag.AdhaarPhoto" alt="Image" id="photo" class="appl_photo" style="height:138px; width:100px">
+                    </div>
+                </div>
+                <div class="col-lg-3 pddTopLo martop pdfil12 pdquick" style="float:left;">
+                    <label class="control-label" for="Street" style="">Street</label>
+
+                    <input class="form-control" id="Astreet" name="Street" onkeyup="alphabetOnly(this.id)" style="height:45px!important" type="text" readonly value="@ViewBag.AdhaarStreet">
+                    <span class="text-danger field-validation-valid" data-valmsg-for="Street" data-valmsg-replace="true"></span>
+
+                </div>
+
+                <div class="col-lg-3 pddTopLo martop pdfil12 pdquick" style="float:left;">
+                    <label class="control-label" for="Locality">Locality</label>
+
+                    <input class="form-control " id="Alocality" name="Locality" onkeyup="alphabetOnly(this.id)" style="height:45px!important" type="text" readonly value="@ViewBag.AdhaarLocality">
+                    <span class="text-danger field-validation-valid" data-valmsg-for="Locality" data-valmsg-replace="true"></span>
+
+                </div>
+
+                <div class="col-lg-3 pddTopLo martop pdfil12 pdquick" style="float:left;">
+                    <label class="control-label" for="District" style="">District/City</label>
+
+                    <input class="form-control " id="Adistrict" name="District" onkeyup="alphabetOnly(this.id)" style="height:45px!important" type="text" readonly value="@ViewBag.AdhaarDistrict">
+                    <span class="text-danger field-validation-valid" data-valmsg-for="District" data-valmsg-replace="true"></span>
+
+                </div>
+
+                <div class="col-lg-3 pddTopLo martop pdfil12 pdquick cqemrgnstt cqetopchng" style="float:left;">
+                    <label class="control-label" for="State" style="">State</label>
+
+                    <input class="form-control" id="Astate" name="State" onkeyup="alphabetOnly(this.id)" style="height:45px!important" type="text" readonly value="@ViewBag.AdhaarState">
+                    <span class="text-danger field-validation-valid" data-valmsg-for="State" data-valmsg-replace="true"></span>
+
+                </div>
+
+
+
+                <div class="col-lg-3 pddTopLo martop pdfil12 pdquick cqetopchng" style="float:left;">
+                    <label class="control-label" for="Country" style="">Country</label>
+
+                    <input class="form-control" id="Acountry" name="Country" onkeyup="alphabetOnly(this.id)" style="height:45px!important" type="text" readonly value="@ViewBag.AdhaarCountry">
+                    <span class="text-danger field-validation-valid" data-valmsg-for="Country" data-valmsg-replace="true"></span>
+
+                </div>
+
+                <div class="col-lg-3 pddTopLo martop pdfil12 pdquick cqetopchng" style="float:left;">
+                    <label class="control-label" for="Pincode1" style="">Pincode</label>
+
+                    <input class="form-control" id="Apincode" maxlength="6" name="Pincode1" onkeyup="numericOnly(this.id)" style="height:45px!important" type="text" readonly value="@ViewBag.AdhaarPincode">
+                    <span class="text-danger field-validation-valid" data-valmsg-for="Pincode1" data-valmsg-replace="true"></span>
+
+                </div>
+
+
+
+
+            </div>
+
+
+            <div id="custimgs">
+                <img class="adhar_img KYCW_H" id="photoimgs">
+            </div>
+            <div class="col-lg-3 pddTopLo martop pdfil12 pdquick" style="float:left;">
+                <div class="addimg1">
+                </div>
+            </div>
+            <div class="col-lg-12 " id="goForNextCAF" style="text-align: center;">
+                <input type="submit" value="Submit" id="orgregsubmit" onclick="regsubmit(this)" class="col-lg-2 col-sm-12 btn btn-primary right1 custSubtn quickEnrollSumbit " style="float:right;">
+            </div>
+        </div>
+    </div>
+
+    <div id="CustDigiDriving" class="init_current_acc_main_div" style=" display: none; ">
+        <div class="panel-heading">
+            <h3 class="panel-title">Driving Licence</h3>
+        </div>
+        <div class="panel-body  pdquick ">
+            <div class="row col-lg-12">
+                <div class="col-xl-2">
+                    <label class="" for="Digi_DFirstName" style="">First Name </label>
+                </div>
+                <div class="col-xl-2">
+                    <input class="form-control" data-val="true" data-val-length="Should not exceed 50 characters" data-val-length-max="20" id="Digi_Dfirstname" maxlength="20" name="Digi_DFirstName" type="text" value="">
+                    <span class="text-danger field-validation-valid" data-valmsg-for="Digi_FirstName" data-valmsg-replace="true"></span>
+                </div>
+                <div class="col-xl-2">
+                    <label class="" for="Digi_Dswd" style="">Middle Name</label>
+                </div>
+                <div class="col-xl-2">
+                    <input class="form-control" data-val="true" data-val-length="Should not exceed 50 characters" data-val-length-max="20" id="Digi_Dswd" maxlength="20" name="Digi_Dswd" type="text" value="">
+                    <span class="text-danger field-validation-valid" data-valmsg-for="Digi_Dswd" data-valmsg-replace="true"></span>
+                </div>
+                <div class="col-xl-2">
+                    <label class="" for="Digi_DLastName" style="">Last Name </label>
+                </div>
+                <div class="col-xl-2">
+                    <input class="form-control" data-val="true" data-val-length="Should not exceed 50 characters" data-val-length-max="20" id="Digi_Dlastname" maxlength="20" name="Digi_DLastName" type="text" value="">
+                    <span class="text-danger field-validation-valid" data-valmsg-for="Digi_DLastName" data-valmsg-replace="true"></span>
+                </div>
+            </div>
+            <div class="row col-lg-12">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 flt_lft pd0 txtbxrow clear addimgwid">
+                    <label class="control-label pdtp1 pddng0 col-lg-4 col-md-4 col-sm-4 col-xs-12 flt_lft drvngpht" style="">Photo</label>
+                    <div id="ImageDialog1" class="imgifrm" style="float: left; text-align: center;">
+                        <img alt="" id="DPhoto" class="imagesz" style="height:138px; width:100px">
+                    </div>
+                </div>
+                <div class="col-xl-2">
+                    <label class="control-label" for="DateOfBirth" style="">Date of Birth</label>
+                </div>
+
+                <div class="col-xl-2" id="custdob">
+                    <input class="form-control flt_lft" id="Digidob2" name="DigiDateOfBirth" type="text" value="">
+                    <span class="text-danger field-validation-valid" data-valmsg-for="DigiDateOfBirth" data-valmsg-replace="true"></span>
+                </div>
+
+
+
+                <div class="col-xl-2">
+                    <label class="control-label" for="Digi_DRVLC" style="">Driving Number</label>
+                </div>
+                <div class="col-xl-2">
+                    <input class="form-control" id="Digi_DRVLC" maxlength="20" name="Digi_DRVLC" readonly="True" type="text" value="">
+                    <span class="text-danger field-validation-valid" data-valmsg-for="Digi_DRVLC" data-valmsg-replace="true"></span>
+                </div>
+
+            </div>
+            <div class="row">
+
+                <div class="drvngaddrss col-lg-12">
+                    <div class="col-xl-2">
+                        <label class="" for="Digi_DAddress" style="">Address </label>
+                    </div>
+                    <div class="col-xl-6">
+                        <input class="form-control wdth" id="Digi_DAddress" name="Digi_DAddress" type="text" value="">
+                        <span class="text-danger field-validation-valid" data-valmsg-for="Digi_DAddress" data-valmsg-replace="true"></span>
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 cntry">
+                    <div class="col-xl-2 col-md-12 col-sm-12 col-xs-12">
+                        <label class="control-label" for="Digi_Dcountry" style="">Country</label>
+                    </div>
+                    <div class="col-xl-2 col-md-12 col-sm-12 col-xs-12">
+                        <input class="form-control" id="Digi_Dcountry" maxlength="20" name="Digi_Dcountry" readonly="True" type="text" value="">
+                        <span class="text-danger field-validation-valid" data-valmsg-for="Digi_Dcountry" data-valmsg-replace="true"></span>
+                    </div>
+                    <div class="col-xl-2 col-md-12 col-sm-12 col-xs-12">
+                        <label class="" for="Digi_DORGname" style="">ORG_Name </label>
+                    </div>
+                    <div class="col-xl-2 col-md-12 col-sm-12 col-xs-12">
+                        <input class="form-control" data-val="true" data-val-length="Should not exceed 60 characters" data-val-length-max="40" id="Digi_DORGname" maxlength="50" name="Digi_DORGname" type="text" value="">
+                        <span class="text-danger field-validation-valid" data-valmsg-for="Digi_ORGname" data-valmsg-replace="true"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <button type="button" id="SubmitID" onclick="SubmitOnQuick()" class="btn btn-primary" style="float:right;margin-right:20px; display:none">Save & Submit</button>
+    </div>
+    <div id="init_loader" style="display: none;">
+        <i class='fa fa-pulse fa-fw loader_css'></i>
+    </div>
+</body>
+

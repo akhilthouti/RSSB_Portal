@@ -1,0 +1,398 @@
+﻿@{
+    //ViewData["Title"] = "CBSUpload";
+    //Layout = null;
+    Layout = "~/Views/Shared/_AdminLayoutPage.cshtml";
+}
+<link href="~/content/navigation/css/custom.css" rel="stylesheet" />
+<link href="~/content/navigation/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<link href="~/content/navigation/vendor/bootstrap/css/bootstrap.css" rel="stylesheet" />
+<script src="~/content/accordion/jquery.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $("#load").hide();
+        //$("#date").hide();
+        //$("#all").click(function(){
+        //     $("#date").show();
+        //});
+        debugger;
+        if ($("#all").attr(checked)) {
+            $("#date").show();
+        }
+        $("#Success").click(function () {
+            $("#date").show();
+        });
+        $("#Reject").click(function () {
+            $("#date").show();
+        });
+    });
+</script>
+<script>
+        function Home(){
+           window.location.href = '/AdminDashBoardNew/IndoFinAdminDashBoard'; 
+        }
+        </Script>
+        <script>
+        function LogOut(){
+           window.location.href = '/AdminLogin/UserDetails'; 
+        }
+        </Script>
+
+
+<script>
+    function bulkUpload() {
+        debugger;
+        $("#DigiCerti").html("<div style='position: fixed;z-index: 5000;float: left;right: 50%;height: 50px;width: 50px;top:40%;'><i class='fa fa-pulse fa-fw dgldr ldrdesign' style='height:70px;width:70px;border-radius:50%;border-bottom:5px dotted grey;border-top:5px dotted black;border-right:5px dotted black;border-left:5px dotted black;height:80px;width:80px;position:absolute;margin: 20% 50%;'></i></div>");
+        $("#DigiCerti").show();
+        let b = document.getElementById("all").checked;
+        let d = document.getElementById("Success").checked;
+        let c = document.getElementById("Reject").checked;
+        var FromDate = $("#FromDate").val();
+        var ToDate = $("#ToDate").val();
+         if (ToDate <= FromDate) {
+   swal("From-Date should be Less than To-Date");
+   $("#FromDate").val('');
+   $("#ToDate").val('');
+  }
+  else{
+        url = '/VerifyBulkPAN/CBSUpload1';
+        $.ajax({
+            url: url,
+            type: "POST",
+            data: {
+                FromDate: FromDate,
+                all: b,
+                Success: d,
+                Reject: c,
+                ToDate: ToDate
+            },
+            success: function (result) {
+                debugger;
+                $("#DigiCerti").hide();
+
+                downloadexcel();
+            },
+        });
+  }
+    }
+    function downloadexcel() {
+        debugger;
+        window.location.href = '/VerifyBulkPAN/btnDownload_Click';
+    }
+
+    function Show() {
+        debugger;
+        window.location.href = '/AdminLogin/PANCustGRIDCustDetails';
+    }
+
+    function Getverifypan() {
+        debugger;
+        var inputtxt = $('#panno').val();
+        var numbers = /([A-Z]){5}([0-9]){4}([A-Z]){1}$/;
+        if (!numbers.test(inputtxt)) {
+            swal('Please Enter Valid PAN Number');
+            $('#panno').val('');
+            document.form1.text1.focus();
+            return true;
+        }
+
+    }
+    function alphabetOnly(id) {
+    debugger;
+    // Allow: backspace, delete, tab, escape, enter and .
+    var inputtxt = $('#' + id).val();
+    var alpha = /^[A-Z-a-z]+$/;
+    if (!alpha.test(inputtxt)) {
+        swal('Only Alphabet Can Be Enter ');
+        $('#' + id).val('');
+        document.form1.text1.focus();
+        return true;
+    }
+
+}
+
+    function showSingleDiv() {
+        var singleDiv = document.getElementById("single_div");
+        singleDiv.style.display = "block";
+
+        var BulkDiv = document.getElementById("quickEnrollDiv");
+        BulkDiv.style.display = "none";
+    }
+    function showBulkDiv() {
+        var BulkDiv = document.getElementById("quickEnrollDiv");
+        BulkDiv.style.display = "block";
+
+        var singleDiv = document.getElementById("single_div");
+        singleDiv.style.display = "none";
+    }
+
+    function individualpanverification() {
+        debugger;
+        $("#DigiCerti").html("<div style='position: fixed;z-index: 5000;float: left;right: 50%;height: 50px;width: 50px;top:40%;'><i class='fa fa-pulse fa-fw dgldr ldrdesign' style='height:70px;width:70px;border-radius:50%;border-bottom:5px dotted grey;border-top:5px dotted black;border-right:5px dotted black;border-left:5px dotted black;height:80px;width:80px;position:absolute;margin: 20% 50%;'></i></div>");
+        $("#DigiCerti").show();
+        var PAN = $("#panno").val();
+        var FNAME = $("#firstname").val();
+        var MNAME = $("#middlename").val();
+        var LNAME = $("#lastname").val();
+        if(PAN==null || PAN=="")
+        {
+            swal("Please Enter PAN Number");
+        }
+        else if(FNAME==null ||  FNAME=="")
+        {
+            swal("Please Enter First Name");
+        }        
+        else if(MNAME==null || MNAME=="")
+        {
+            swal("Please Enter Middle Name");
+        }        
+        else if(LNAME==null || LNAME=="")
+        {
+            swal("Please Enter Last Name");
+        }
+        else{
+        url = '/VerifyBulkPAN/individualpanverification';
+        $.ajax({
+            url: url,
+            type: "POST",
+            data: {
+                PAN: PAN,
+                FNAME: FNAME,
+                MNAME: MNAME,
+                LNAME: LNAME
+            },
+            success: function (result) {
+                debugger;
+                swal(result);
+                $("#panno").val('');
+                $("#firstname").val('');
+                $("#middlename").val('');
+                $("#lastname").val('');
+            },
+        });
+        }
+    }
+    function upload(){
+        debugger;
+        $("#load").show();
+    };
+   
+
+
+</script>
+
+
+<style>
+    .showbtn {
+        margin: 0px 100px;
+    }
+
+    .quickenroll {
+        margin-top: 20px;
+        padding: 4px 4px;
+        margin: 1% 1%;
+        border-radius: 5px;
+    }
+
+    .init_input {
+        margin-right: 12px !important;
+        width: 18px;
+        height: 18px;
+    }
+
+    .init_flex {
+        display: flex;
+    }
+
+    .init_label {
+        font-size: 17px;
+        font-weight: 400;
+        line-height: 1.5;
+    }
+
+    input, .init_btn {
+        font-size: 17px !important;
+    }
+
+    hr {
+        display: none;
+    }
+
+    .init_date_div {
+        margin-top: 46px;
+    }
+
+    .panel-body {
+        height: auto;
+    }
+
+    .init_radio {
+        width: 18px;
+        height: 18px;
+        margin-right: 12px !important;
+    }
+
+    .init_adjust {
+        margin-left: 23px;
+    }
+
+    #single_div, #quickEnrollDiv {
+        display: none;
+    }
+
+    .btn_special_div {
+        display: flex;
+        align-items: flex-end;
+    }
+
+    .show_sp {
+        margin-left: 110px;
+    }
+</style>
+
+<section id="dashboard-menu">
+        <div class="container-fluied">
+            <div class="row" style="margin:0%">
+                <nav class="navbar navbar-expand-lg navbar-light dashboard-menu" style="padding: -0.4rem 1rem !important;">
+                    <button class="navbar-toggler posmob" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent" style="font-size: 15px;">
+                        <div class="container-fluid">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h3 style="color:#fff;font-size:20px;margin-bottom: 0;">Dashboard</h3>
+                            </div>
+                        </div>
+                       
+                        <form class="form-inline my-2 my-lg-0" style="margin-right: 16px;">
+                            <a class="nav-link" style="box-shadow: 0 2px 4px 0 rgb(0 0 0 / 20%) !important;border: 1px solid rgba(255,255,255,0.1);" href="#" onclick="Home()">Home</a>
+                        </form>
+                        <form class="form-inline my-2 my-lg-0">
+                            <a class="nav-link" style="box-shadow: 0 2px 4px 0 rgb(0 0 0 / 20%) !important;border: 1px solid rgba(255,255,255,0.1);" href="#" onclick="LogOut()">Logout</a>
+                        </form>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </section>
+
+
+<div class="init_bulk_select quickenroll">
+    <div class="panel-heading">
+        <h3 class="panel-title">Pan Verification</h3>
+    </div>
+    <div class="panel-body pdfil12 pdquick">
+        <div class="row" style="padding-left: 10px;">
+            <div class="col-md-1">
+                <input type="radio" id="bulk" name="mode" class="form-check-input init_radio" value="bulk" onclick="showBulkDiv()">
+                <label class="init_label" for="bulk">Bulk</label>
+            </div>
+            <div class="col-md-1">
+                <input type="radio" id="single" class="form-check-input init_radio" name="mode" value="single" onclick="showSingleDiv()">
+                <label class="init_label" for="single">Individual </label>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="single_div" class="quickenroll">
+    <div class="panel-heading">
+        <h3 class="panel-title">Enter Details</h3>
+    </div>
+    <div class="panel-body pdfil12 pdquick">
+        <div class="row">
+            <div class="col-md-3">
+                <label for="panno">PAN Number:</label>
+                <input type="text" id="panno" name="panno" onblur="Getverifypan()" oninput="this.value = this.value.toUpperCase()" maxlength="10"><br>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3">
+                <label for="firstname">First Name:</label>
+                <input type="text" id="firstname" name="firstname", onkeyup="alphabetOnly(this.id)"><br>
+            </div>
+            <div class="col-md-3">
+                <label for="middlename">Middle Name:</label>
+                <input type="text" id="middlename" name="middlename" , onkeyup="alphabetOnly(this.id)"><br>
+            </div>
+            <div class="col-md-3">
+                <label for="lastname">Last Name:</label>
+                <input type="text" id="lastname" name="lastname" , onkeyup="alphabetOnly(this.id)"><br>
+            </div>
+            <div class="col-md-3 btn_special_div">
+                <button type="submit" name="submit" class="btn btn-primary showbtn" onclick="individualpanverification()">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div id="quickEnrollDiv" class="quickenroll">
+    <div class="panel-heading">
+        <h3 class="panel-title">Upload Document</h3>
+    </div>
+    <div class="panel-body pdfil12 pdquick">
+        <form method="post" asp-action="CBSUpload" asp-controller="VerifyBulkPAN" enctype="multipart/form-data">
+            <div class="init_upload row">
+                <div class="col-2">
+                    <input type="file" name="FormFile" accept=".xlsx" id="choose_file" style="line-height: 19px;" class="form-control" />
+                </div>
+                <div class="col-3" style="display: flex;align-content: center;align-items: center;">
+                    <input type="submit" class="btn btn-primary" value="upload" onclick="upload()" />
+                </div>
+                <div class="col-3">
+                    <input type="button" class="btn btn-primary showbtn show_sp" value="show" onclick="Show()" style="" />
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+
+    <div class="panel-heading" style="margin-top: 26px;">
+        <h3 class="panel-title">Bulk Upload Details</h3>
+    </div>
+    <div class="panel-body pdfil12 pdquick">
+        <div class="row" id="imp">
+            <div class="col-2 init_flex init_adjust">
+                @*<input type="radio" id="all" class="init_input" checked>*@
+
+                <input class="form-check-input init_radio" type="radio" name="exampleRadios" id="all">
+
+                <label class="init_label" for="New">All</label>
+            </div>
+            <div class="col-2 init_flex">
+                @*<input type="radio" class="init_input" id="Success">*@
+                <input class="form-check-input init_radio" type="radio" name="exampleRadios" id="Success">
+                <label for="New" class="init_label">Verified</label>
+            </div>
+            <div class="col-2 init_flex">
+                @* <input type="radio" id="Reject" class="init_input">*@
+                <input class="form-check-input init_radio" type="radio" name="exampleRadios" id="Reject">
+                <label for="New" class="init_label">Not-verified</label>
+            </div>
+        </div>
+        <div class="row init_date_div" id="date">
+            <div class="col-md-3">
+                <label class="init_label">From Date:</label>
+                <input type="date" id="FromDate" class="form-control" />
+            </div>
+            <div class="col-md-3">
+                <label class="init_label">To Date:</label>
+                <input type="date" id="ToDate" class="form-control" />
+            </div>
+            <div class="" style="display: flex;align-content: center;align-items: center;align-items: flex-end;">
+                <button class="btn btn-primary init_btn" onclick="bulkUpload()">Submit</button>
+            </div>
+            <div class="col-4" style="display: flex;align-content: center;align-items: center;opacity:0;">
+                <button id="downloadexcel" class="btn btn-primary init_btn" onclick="downloadexcel()">download</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="load">
+    <div style='position: fixed;z-index: 5000;float: left;right: 50%;height: 50px;width: 50px;top:40%;'><i class='fa fa-pulse fa-fw dgldr ldrdesign' style='height:70px;width:70px;border-radius:50%;border-bottom:5px dotted grey;border-top:5px dotted black;border-right:5px dotted black;border-left:5px dotted black;height:80px;width:80px;position:absolute;margin: 20% 50%;'></i></div>");
+</div>

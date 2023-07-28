@@ -1,0 +1,709 @@
+﻿@model INDO_FIN_NET.Models.CurrentModels.Current_Verification
+
+@{
+    Layout = "~/Views/Shared/Components/_CurrentAccountLayout.cshtml";
+
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CurrentServices</title>
+    <link href="~/css/current_services.css" rel="stylesheet" />
+    <script>
+        function GetPancard() {
+            debugger;
+            $("#init_loader").show();
+            var pancard = $("#valueofidtypeforPANID").val();
+            if (pancard != "") {
+                $.ajax({
+                    url: '/CurrentServices/IDVerifyforPan?Idvalue=' + pancard + "&IdType=PanCard",
+                    type: 'POST',
+                    cache: false,
+                    dataType: "json",
+                    contentType: 'application/json; charset=utf-8',
+                    success: function (result) {
+                        debugger;
+                        $("#init_loader").hide();
+                        if (result == "Failed") {
+                            swal("No Responce From API,Please try after Sometime");
+
+                        }
+                        if (result != "") {
+                            $("#PANDIVID").show();
+
+                            swal("PanCard Verified Successfully");
+                            $("#CONSTITUTIONOFBUSINESSID").val(result.constitutionofbusiness);
+                            $("#GSTINID").val(result.gstin);
+                            $("#LEGALNAMEOFBUSINESSID").val(result.legalnameofbusiness);
+                            $("#StateID").val(result.state);
+                            $("#StatusID").val(result.status);
+                            $("#created_atID").val(result.created_at);
+                            $("#ref_idforPANID").val(result.ref_id);
+                            $("#statusMessagesforPANID").val(result.statusmessageforPAN);
+
+                        }
+                        else {
+                            swal("please try Again");
+                        }
+
+                    }
+                });
+            }
+            else {
+                swal("please Enter PanCard Number");
+            }
+        };
+
+        function GetCIN() {
+            debugger;
+            $("#init_loader").show();
+            var CIN = $("#valueofidtypeofCINID").val();
+            if (CIN != "") {
+                $.ajax({
+                    url: '/CurrentServices/IDVerifyforCIN?Idvalue=' + CIN + "&IdType=CIN",
+                    type: 'POST',
+                    cache: false,
+                    success: function (result) {
+                        $("#init_loader").hide();
+                        if (result == "Failed") {
+                            swal("No Responce From API,Please try after Sometime");
+
+                        }
+                        else if (result != "") {
+                            $("#CINDIVID").show();
+                            $("#ActiveComplianceID").val(result.activeCompliance);
+                            $("#AddressotherthanRegisteredofficeID").val(result.addressotherthanRegisteredoffice);
+                            $("#AuthorizedCapitalID").val(result.authorizedCapital);
+                            $("#BalanceSheetDateID").val(result.balanceSheetDate);
+                            $("#CINID").val(result.cin);
+                            $("#CategoryID").val(result.category);
+                            $("#ClassID").val(result.class);
+                            $("#CompanyNameID").val(result.companyName);
+                            $("#CompanyTypeID").val(result.companyType);
+                            $("#DateofIncorporationID").val(result.dateofIncorporation);
+                            $("#LastAnnualGeneralMeetingDateID").val(result.lastAnnualGeneralMeetingDate);
+                            $("#ListedorUnlistedID").val(result.listedorUnlisted);
+                            $("#NumberofDirectorsID").val(result.numberofDirectors);
+                            $("#NumberofMembersID").val(result.numberofMembers);
+                            $("#PaidUpCapitalID").val(result.paidUpCapital);
+                            $("#ROCOfficeID").val(result.rocOffice);
+                            $("#RegisteredAddressID").val(result.registeredAddress);
+                            $("#RegisteredEmailIdID").val(result.registeredEmailId)
+                            $("#RegistrationNumberID").val(result.registrationNumber);
+                            $("#StatusForEfilingID").val(result.statusForEfiling);
+                            $("#SubCategoryID").val(result.subCategory);
+                            $("#SuspendedatstockexchangeID").val(result.suspendedatstockexchange);
+                            $("#DIN1ID").val(result.din);
+                            $("#DateofAppointment1ID").val(result.dateofAppointment);
+                            $("#Enddate1ID").val(result.enddate);
+                            $("#Name1ID").val(result.name);
+                            $("#SurrenderedDIN1ID").val(result.surrenderedDIN);
+                            $("#DIN2ID").val(result.diN2);
+                            $("#DateofAppointment2ID").val(result.dateofAppointment2);
+                            $("#Name2ID").val(result.name2);
+                            $("#SurrenderedDIN2ID").val(result.surrenderedDIN2);
+                            swal("Corporate Identification Number Verified Successfully");
+                        }
+                        else {
+                            swal("please try Again");
+                        }
+
+                    }
+                });
+            }
+            else {
+                swal("please Enter Corporate Identification Number");
+            }
+        };
+
+        function GetMSME() {
+            $("#init_loader").show();
+            debugger;
+            var MSME = $("#valueofidtypeofMSMEID").val();
+            if (MSME != "") {
+                $.ajax({
+                    url: '/CurrentServices/IDVerifyforMSME?Idvalue=' + MSME + "&IdType=DIN",
+                    type: 'POST',
+                    success: function (result) {
+                        debugger;
+                        $("#init_loader").hide();
+                        if (result == "Failed") {
+                            swal("No Responce From API,Please try after Sometime");
+
+                        }
+                        if (result != "") {
+                            $("#MSMEDIVID").show();
+                            $("#CategoryforMSMEID").val(result.category);
+                            $('#CompanyNamesID').val(result.company_name);
+                            $('#created_atforMSMEID').val(result.created_at);
+                            $('#DateofCommencementID').val(result.dateofCommencement);
+                            $('#DistrictID').val(result.district);
+                            $('#messageforMSMEID').val(result.message);
+                            $('#StatesforMSMEID').val(result.state);
+                            $('#statusID').val(result.status);
+                            swal("MSME Number Verified Successfully");
+
+                        }
+                        else {
+                            swal("please try Again");
+                        }
+
+                    }
+                });
+            }
+            else {
+                swal("please Enter MSME Number");
+            }
+        };
+
+        function GetGSTIN() {
+            debugger;
+            $("#init_loader").show();
+            var GSTIN = $("#valueofidtypeofGSTINID").val();
+            if (GSTIN != "") {
+                $.ajax({
+                    url: '/CurrentServices/IDVerifyforGSTIN?Idvalue=' + GSTIN + "&IdType=GSTIN",
+                    type: 'POST',
+                    cache: false,
+                    success: function (result) {
+                        debugger;
+                        $("#init_loader").hide();
+                        if (result == "Failed") {
+                            swal("No Responce From API,Please try after Sometime");
+
+                        }
+                        else if (result != "") {
+                            $("#GSTINDIVID").show();
+                            $("#PANID").val(result.pan);
+                            $("#CreatedByforGSTINID").val(result.created_at);
+                            $("#ref_idforGSTINID").val(result.ref_id);
+                            $("#statusMessageforGSTINID").val(result.statusMessage);
+
+                            swal("Goods and Services Tax Identification Number Verified Successfully");
+                        }
+                        else {
+                            swal("please try Again");
+                        }
+
+                    }
+                });
+            }
+            else {
+                swal("please Enter Goods and Services Tax Identification Number");
+            }
+        };
+
+
+    </script>
+    <script>
+        function SubmitofServices() {
+
+            var panNumber = $("#valueofidtypeforPANID").val().trim().toUpperCase();
+            if (panNumber === "") {
+                swal("Please Enter PAN Number");
+                return false;
+            }
+
+            // Regular expression pattern for PAN validation
+            var panPattern = /^([A-Z]){5}([0-9]){4}([A-Z]){1}?$/;
+
+            if (!panPattern.test(panNumber)) {
+                swal("Invalid PAN Number", "Please enter a valid PAN Number", "error");
+                return false;
+            }
+
+            //if ($("#valueofidtypeforPANID").val() == "") {
+            //    swal("Please Enter PanNumber");
+            //    return false;
+            //}
+
+            var panPattern = /^([a-zA-Z]{5})(\d{4})([a-zA-Z]{1})$/;
+            if (!panPattern.test(panNumber)) {
+                swal("Invalid PAN Number", "Please enter a valid PAN Number", "error");
+                return false;
+            }
+
+            var checkboxes = document.querySelectorAll(".check_boxservice");
+            var isChecked = false;
+
+            checkboxes.forEach(function (checkbox) {
+                if (checkbox.checked) {
+                    isChecked = true;
+                }
+            });
+
+            if (!isChecked) {
+                // Display an error message using SweetAlert
+                swal("Error", "Please select at least one checkbox.", "error");
+                return false;
+            }
+
+
+            var companyforCIN = $('#CompanyNameID').val();
+            var companyforMSME = $('#CompanyNamesID').val();
+            if (companyforCIN == companyforMSME) {
+                window.location.href = "/CurrentCAF/CurrentCAF";
+            }
+            else {
+
+                swal({
+                    title: "Fetched Company Name Is Not Matching",
+
+                    type: 'warning',
+
+                    confirmButtonColor: '#DD6B55',
+                    confirmButtonText: 'Ok',
+
+                    closeOnConfirm: false,
+                    closeOnCancel: false
+                },
+                    function (isConfirm) {
+
+                        if (isConfirm) {
+                            window.location.href = "/CurrentCAF/CurrentCAF";
+
+                        } else {
+                            swal("Cancelled", "please Enter Correct Company Name");
+                        }
+                    });
+            }
+
+        }
+    </script>
+    <style>
+
+        .checkbox_div {
+            display: flex;
+            justify-content: center;
+            flex-wrap: nowrap;
+            flex-direction: row;
+            align-items: baseline;
+        }
+
+        .check_boxservice {
+            height: 14px;
+            width: 15px;
+        }
+
+        .coldsfx {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .uppercase-input {
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body>
+    <div class="init_current_acc_main_div" id="" style="">
+        <div class="init_curr_text_header" id="init_click_header1">
+            <div class="init_curr_text">PAN VERIFY</div>
+            <img src="~/images/image/angle-down-solid.svg" id="drop_down_angle_icon" />
+        </div>
+        <div class="inner_wrapper" id="inner_wrapper1">
+            <div class="init_curr_main_content_div">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-12">
+                        <input class="form-control" data-val="true" data-val-length-max="20" id="idtypeforPANID" maxlength="50" type="text" value="PanCard Number">
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-12">
+                        <input class="form-control uppercase-input" data-val="true" data-val-length-max="20" id="valueofidtypeforPANID" maxlength="50" type="text" value="">
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-12">
+                        <button class="btn btn-primary" id="verifyforPANID" onclick="GetPancard()">VERIFY</button>
+                    </div>
+                </div>
+            </div>
+            <div class="init_sub_div_inner" id="PANDIVID" style="display:none">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-12">
+                        <label>CONSTITUTION OF BUSINESS</label>
+                        @Html.TextBoxFor(model => model.CONSTITUTIONOFBUSINESS, new { @id = "CONSTITUTIONOFBUSINESSID", @class = "form-control"})
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-12">
+                        <label>GSTIN</label>
+                        @Html.TextBoxFor(model => model.GSTIN, new { @id = "GSTINID", @class = "form-control"})
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-12">
+                        <label>LEGAL NAME OF BUSINESS</label>
+                        @Html.TextBoxFor(model => model.LEGALNAMEOFBUSINESS, new { @id = "LEGALNAMEOFBUSINESSID", @class = "form-control"})
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-12">
+                        <label>State</label>
+                        @Html.TextBoxFor(model => model.State, new { @id = "StateID", @class = "form-control"})
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-12">
+                        <label>Status</label>
+                        @Html.TextBoxFor(model => model.Status, new { @id = "StatusID", @class = "form-control"})
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-12">
+                        <label>Created Date</label>
+                        @Html.TextBoxFor(model => model.created_at, new { @id = "created_atID", @class = "form-control"})
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-12">
+                        <label>Reference ID</label>
+                        @Html.TextBoxFor(model => model.ref_idforPAN, new { @id = "ref_idforPANID", @class = "form-control"})
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-12">
+                        <label>StatusMessage</label>
+                        @Html.TextBoxFor(model => model.statusMessageforPAN, new { @id = "statusMessagesforPANID", @class = "form-control"})
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="init_current_acc_main_div">
+        <div class="init_curr_text_header" id="other_services">
+            <div class="init_curr_text">Other Services</div>
+            <img src="~/images/image/angle-down-solid.svg" id="drop_down_angle_icon" />
+        </div>
+        <div id="other_service">
+            <div class="">
+                <div class="checkbox_div">
+                    <input type="checkbox" class="check_boxservice" id="init_click_header2" />
+                    <label class="col-lg-11">Corporate Identification Number Verify</label>
+                </div>
+
+                <div class="checkbox_div">
+                    <input type="checkbox" class="check_boxservice" id="init_click_header3" />
+                    <label class="col-lg-11">Ministry of Micro, Small & Medium Enterprises Verify</label>
+                </div>
+
+                <div class="checkbox_div">
+                    <input type="checkbox" class="check_boxservice" id="init_click_header4" />
+                    <label class="col-lg-11">Goods and Services Tax Identification Number Verify</label>
+                </div>
+            </div>
+            <div class="coldsfx inner_wrapper">
+
+                <div class="init_curr_acc_main_check" id="" style="">
+                    @* <div class="init_curr_acc_main_check" id="init_click_header2">*@
+
+
+                    @* </div>*@
+                    <div class="inner_wrapper" id="inner_wrapper2">
+                        <div class="init_curr_main_content_div">
+                            <div class="row">
+                                <div class="col-lg-3 col-md-3 col-sm-12">
+                                    <input class="form-control" data-val="true" data-val-length-max="20" id="idtypeofCINID" maxlength="50" type="text" value="CIN number">
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-12">
+                                    <input class="form-control" data-val="true" data-val-length-max="20" id="valueofidtypeofCINID" maxlength="50" type="text" value="">
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-12">
+                                    <button class="btn btn-primary" id="verifyforCINID" onclick="GetCIN()">VERIFY</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="init_sub_div_inner" id="CINDIVID" style="display:none">
+                            <div class="row">
+                                <div class="col-lg-3 col-md-3 col-sm-12">
+                                    <label>Active Compliance</label>
+                                    @Html.TextBoxFor(model => model.ActiveCompliance, new { @id = "ActiveComplianceID", @class = "form-control"})
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-12">
+                                    <label>Address other than Registered office</label>
+                                    @Html.TextBoxFor(model => model.AddressotherthanRegisteredoffice, new { @id = "AddressotherthanRegisteredofficeID", @class = "form-control"})
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-12">
+                                    <label>Authorized Capital</label>
+                                    @Html.TextBoxFor(model => model.AuthorizedCapital, new { @id = "AuthorizedCapitalID", @class = "form-control"})
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-12">
+                                    <label>Balance Sheet Date</label>
+                                    @Html.TextBoxFor(model => model.BalanceSheetDate, new { @id = "BalanceSheetDateID", @class = "form-control"})
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-12">
+                                    <label>CIN</label>
+                                    @Html.TextBoxFor(model => model.CIN, new { @id = "CINID", @class = "form-control"})
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-12">
+                                    <label>Category</label>
+                                    @Html.TextBoxFor(model => model.CategoryforCIN, new { @id = "CategoryforCINID", @class = "form-control"})
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-12">
+                                    <label>Class</label>
+                                    @Html.TextBoxFor(model => model.Class, new { @id = "ClassID", @class = "form-control"})
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-12">
+                                    <label>Suspended at stock exchange</label>
+                                    @Html.TextBoxFor(model => model.Suspendedatstockexchange, new { @id = "SuspendedatstockexchangeID", @class = "form-control"})
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-12">
+                                    <label>Date of Incorporation</label>
+                                    @Html.TextBoxFor(model => model.DateofIncorporation, new { @id = "DateofIncorporationID", @class = "form-control"})
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-12">
+                                    <label>Last Annual General Meeting Date</label>
+                                    @Html.TextBoxFor(model => model.LastAnnualGeneralMeetingDate, new { @id = "LastAnnualGeneralMeetingDateID", @class = "form-control"})
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-12">
+                                    <label>Company Name</label>
+                                    @Html.TextBoxFor(model => model.CompanyName, new { @id = "CompanyNameID", @class = "form-control",style="width: 541px;"})
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-3 col-md-3 col-sm-12">
+                                    <label>Sub Category</label>
+                                    @Html.TextBoxFor(model => model.SubCategory, new { @id = "SubCategoryID", @class = "form-control"})
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-12">
+                                    <label>Company Type</label>
+                                    @Html.TextBoxFor(model => model.CompanyType, new { @id = "CompanyTypeID", @class = "form-control"})
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-12">
+                                    <label>Listed or Unlisted</label>
+                                    @Html.TextBoxFor(model => model.ListedorUnlisted, new { @id = "ListedorUnlistedID", @class = "form-control"})
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-12">
+                                    <label>Number of Directors</label>
+                                    @Html.TextBoxFor(model => model.NumberofDirectors, new { @id = "NumberofDirectorsID", @class = "form-control"})
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-12">
+                                    <label>Number of Members</label>
+                                    @Html.TextBoxFor(model => model.NumberofMembers, new { @id = "NumberofMembersID", @class = "form-control"})
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-12">
+                                    <label>Paid Up Capital</label>
+                                    @Html.TextBoxFor(model => model.PaidUpCapital, new { @id = "PaidUpCapitalID", @class = "form-control"})
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-12">
+                                    <label>ROC Office</label>
+                                    @Html.TextBoxFor(model => model.ROCOffice, new { @id = "ROCOfficeID", @class = "form-control"})
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-12">
+                                    <label>Status For E-filing</label>
+                                    @Html.TextBoxFor(model => model.StatusForEfiling, new { @id = "StatusForEfilingID", @class = "form-control"})
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-12">
+                                    <label>Registered Email Id</label>
+                                    @Html.TextBoxFor(model => model.RegisteredEmailId, new { @id = "RegisteredEmailIdID", @class = "form-control"})
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-12">
+                                    <label>Registration Number</label>
+                                    @Html.TextBoxFor(model => model.RegistrationNumber, new { @id = "RegistrationNumberID", @class = "form-control"})
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-12">
+                                    <label>Registered Address</label>
+                                    @Html.TextBoxFor(model => model.RegisteredAddress, new { @id = "RegisteredAddressID", @class = "form-control",style="width: 541px;"})
+                                </div>
+
+
+                            </div>
+                            <p>director_details</p>
+                            <div class="row">
+                                <div class="col-lg-3 col-md-3 col-sm-12">
+                                    <label>DIN</label>
+                                    @Html.TextBoxFor(model => model.DIN1, new { @id = "DIN1ID", @class = "form-control"})
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-12">
+                                    <label>Date of Appointment</label>
+                                    @Html.TextBoxFor(model => model.DateofAppointment1, new { @id = "DateofAppointment1ID", @class = "form-control"})
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-12">
+                                    <label>Name</label>
+                                    @Html.TextBoxFor(model => model.Name1, new { @id = "Name1ID", @class = "form-control"})
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-12">
+                                    <label>Surrendered DIN</label>
+                                    @Html.TextBoxFor(model => model.SurrenderedDIN1, new { @id = "SurrenderedDIN1ID", @class = "form-control"})
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-3 col-md-3 col-sm-12">
+                                    <label>DIN</label>
+                                    @Html.TextBoxFor(model => model.DIN2, new { @id = "DIN2ID", @class = "form-control"})
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-12">
+                                    <label>Date of Appointment</label>
+                                    @Html.TextBoxFor(model => model.DateofAppointment2, new { @id = "DateofAppointment2ID", @class = "form-control"})
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-12">
+                                    <label>Name</label>
+                                    @Html.TextBoxFor(model => model.Name2, new { @id = "Name2ID", @class = "form-control"})
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-12">
+                                    <label>Surrendered DIN</label>
+                                    @Html.TextBoxFor(model => model.SurrenderedDIN2, new { @id = "SurrenderedDIN2ID", @class = "form-control"})
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="init_curr_acc_main_check" id="" style="">
+
+
+                    <div class="inner_wrapper" id="inner_wrapper3">
+                        <div class="init_curr_main_content_div">
+                            <div class="row">
+                                <div class="col-lg-3 col-md-3 col-sm-12">
+                                    <input class="form-control" data-val="true" data-val-length-max="20" id="idtypeofMSMEID" maxlength="50" type="text" value="MSME Number">
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-12">
+                                    <input class="form-control" data-val="true" data-val-length-max="20" id="valueofidtypeofMSMEID" maxlength="50" type="text" value="">
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-12">
+                                    <button class="btn btn-primary" id="verifyforMSMEID" onclick="GetMSME()">VERIFY</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="init_sub_div_inner" id="MSMEDIVID" style="display:none">
+                            <div class="row">
+                                <div class="col-lg-3 col-md-3 col-sm-12">
+                                    <label>Category</label>
+                                    @Html.TextBoxFor(model => model.CategoryforMSME, new { @id = "CategoryforMSMEID", @class = "form-control"})
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-12">
+                                    <label>DateofCommencement</label>
+                                    @Html.TextBoxFor(model => model.DateofCommencement, new { @id = "DateofCommencementID", @class = "form-control"})
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-12">
+                                    <label>District</label>
+                                    @Html.TextBoxFor(model => model.District, new { @id = "DistrictID", @class = "form-control"})
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-12">
+                                    <label>Company Name</label>
+                                    @Html.TextBoxFor(model => model.CompanyName, new { @id = "CompanyNamesID", @class = "form-control"})
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-3 col-md-3 col-sm-12">
+                                    <label>State</label>
+                                    @Html.TextBoxFor(model => model.StateforMSME, new { @id = "StatesforMSMEID", @class = "form-control"})
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-12">
+                                    <label>Message</label>
+                                    @Html.TextBoxFor(model => model.messageforMSME, new { @id = "messageforMSMEID", @class = "form-control"})
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-12">
+                                    <label>Status</label>
+                                    @Html.TextBoxFor(model => model.status, new { @id = "statusID", @class = "form-control"})
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-12">
+                                    <label>Created Date</label>
+                                    @Html.TextBoxFor(model => model.created_atforMSME, new { @id = "created_atforMSMEID", @class = "form-control"})
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="init_curr_acc_main_check" id="" style="">
+
+
+                    <div class="inner_wrapper" id="inner_wrapper4">
+                        <div class="init_curr_main_content_div">
+                            <div class="row">
+                                <div class="col-lg-3 col-md-3 col-sm-12">
+
+                                    <input class="form-control" data-val="true" data-val-length-max="20" id="idtypeofGSTINID" maxlength="50" type="text" value="GST Number">
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-12">
+
+                                    <input class="form-control" data-val="true" data-val-length-max="20" id="valueofidtypeofGSTINID" maxlength="50" type="text" value="">
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-12">
+
+                                    <button class="btn btn-primary" id="verifyforGSTINID" onclick="GetGSTIN()">VERIFY</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="init_sub_div_inner" id="GSTINDIVID" style="display:none">
+                            <div class="row">
+                                <div class="col-lg-3 col-md-3 col-sm-12">
+                                    <label>PAN Number</label>
+                                    @Html.TextBoxFor(model => model.PAN, new { @id = "PANID", @class = "form-control"})
+                                </div>
+
+                                <div class="col-lg-3 col-md-3 col-sm-12">
+                                    <label>Created Date</label>
+                                    @Html.TextBoxFor(model => model.CreatedByforGSTIN, new { @id = "CreatedByforGSTINID", @class = "form-control"})
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-12">
+                                    <label>Reference ID</label>
+                                    @Html.TextBoxFor(model => model.ref_idforGSTIN, new { @id = "ref_idforGSTINID", @class = "form-control"})
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-12">
+                                    <label>StatusMessage</label>
+                                    @Html.TextBoxFor(model => model.statusMessageforGSTIN, new { @id = "statusMessageforGSTINID", @class = "form-control"})
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <button type="button" id="SubmitID" onclick="SubmitofServices()" class="btn btn-primary" style="float:right;margin-right:20px;">Save & Submit</button>
+    </div>
+    <div id="init_loader">
+        <i class='fa fa-pulse fa-fw loader_css'></i>
+    </div>
+    <script>
+        $(document).ready(function () {
+            $("#init_loader").hide();
+            $("#init_click_header1").click(function () {
+                $("#inner_wrapper1").slideToggle(200);
+            })
+            $("#other_services").click(function () {
+                $("#other_service").slideToggle(200);
+            })
+            $("#init_click_header2").click(function () {
+                $("#inner_wrapper2").slideToggle(200);
+                $("#inner_wrapper3").hide(200);
+                $("#inner_wrapper4").hide(200);
+                $('#init_click_header3').prop('checked', false);
+                $('#init_click_header4').prop('checked', false);
+            })
+            $("#init_click_header3").click(function () {
+                $("#inner_wrapper2").hide(200);
+                $("#inner_wrapper3").slideToggle(200);
+                $("#inner_wrapper4").hide(200);
+                $('#init_click_header2').prop('checked', false);
+                $('#init_click_header4').prop('checked', false);
+            })
+            $("#init_click_header4").click(function () {
+                $("#inner_wrapper2").hide(200);
+                $("#inner_wrapper3").hide(200);
+                $("#inner_wrapper4").slideToggle(200);
+                $('#init_click_header3').prop('checked', false);
+                $('#init_click_header2').prop('checked', false);
+            })
+        });
+    </script>
+    <script>
+        let dataForpan = "@ViewBag.dataforPan";
+        if (dataForpan == "true") {
+            $("#PANDIVID").show();
+        }
+        let dataForCIN = "@ViewBag.dataforCIN";
+        if (dataForCIN == "true") {
+            $("#CINDIVID").show();
+        }
+        let dataForGSTIN = "@ViewBag.dataforGSTIN";
+        if (dataForGSTIN == "true") {
+            $("#GSTINDIVID").show();
+        }
+        let dataForMSME = "@ViewBag.dataforMSME";
+        if (dataForMSME == "true") {
+            $("#MSMEDIVID").show();
+        }
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,27 @@
+﻿
+
+<head>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Size</th>
+                <th>Type</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var file in Model)
+            {
+                <tr>
+                    <td>@file.Name</td>
+                    <td>@file.Length bytes</td>
+                    <td>@file.Extension</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</head>
+
+<body>
+
+</body>

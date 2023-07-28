@@ -1,0 +1,474 @@
+﻿@model ServiceProvider1.Models.Admin.ClsDataVerification
+
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/Navigation/nestyle.css" rel="stylesheet" />
+
+    <style>
+        .lab-sm{
+            padding: 0;
+        }
+        @@media screen and (max-width:767px){
+            .panbx{
+                width: 96%!important;
+                margin: auto;
+                margin-bottom: 12px;
+            }
+                    .btnsdigi1 {
+            margin-left: 24%;
+        }
+        }
+    </style>
+
+
+    <script>
+        $(document).ready(function () {
+            $("#PANRejecttxt").hide();
+            $("#PangetSumbit").hide();
+        });
+    </script>
+    <script>
+        $('#PANApprove').click(function () {
+            $("#PANRejecttxt").hide();
+            debugger;
+            $.ajax({
+                url: '/KYCQuickEnroll/GetApprovedFlag?selectedValue=' + $("#PANRejecttxt").val() + '&appType=' + 'PAN',
+                type: 'POST',
+                dataType: 'json',
+                data: '',
+                contentType: 'application/json; charset=utf-8',
+               success: function (result) {
+                    swal('PAN Card data Approved Successfully');
+                    $("html, body").animate({ scrollTop: 0 }, 600);
+                    swal('PAN Card data Approved Successfully');
+                    if (result == "1"){
+                    }else{
+                    }
+                },
+                error: function (err) { alert(err); }
+            });
+        });
+    </script>
+    <script>
+        $('#PANReject').click(function () {
+            debugger;
+            $("#PANRejecttxt").show();
+            $("#PangetSumbit").show();
+        });
+    </scrip
+    <script>
+        $('#PANRejecttxt').blur(function () {
+            debugger;
+            var reasonPAN = $("#PANRejecttxt").val();
+            $("#QuickRejecttxt").show();
+            $.ajax({
+                url: '/KYCQuickEnroll/GetApprovedFlag?selectedValue=' + $("#PANRejecttxt").val() + '&appType=' + 'RPAN',
+                type: 'POST',
+                data: '',
+                contentType: 'application/json; charset=utf-8',
+                success: function (data) {
+                    swal("PAN Card Data rejected with reject reason " + reasonPAN);
+                },
+                error: function (err) { alert(err); }
+            });
+        });
+    </script>
+    <link href="~/css/multiclass.css" rel="stylesheet" />
+</head>
+<style>
+    #pandivComp {
+        margin: auto;
+        box-shadow: 0 2px 4px 0 rgb(0 0 0 / 8%);
+        padding-top: 20px;
+        padding-bottom: 20px;
+        background-color: #fff;
+    }
+    label {
+        color: #5d5c5c;
+        font-weight: 600;
+        font-size: 14px;
+    }
+    .init_flex {
+        display: flex;
+    }
+    .init_row {
+        display: flex;
+        justify-content: space-around;
+        margin: 0;
+    }
+    .panbx {
+        border: 1px solid #ccc;
+        width: 45%;
+        border-radius: 0 0 4px 4px;
+    }
+    .green {
+        background-color: green;
+        border: 1px solid green;
+    }
+    .control-label2 {
+        background-color: #bf5252;
+        color: #fff;
+        padding: 5px;
+        text-align: center;
+        font-family: "Open Sans", sans-serif;
+        font-weight: 600;
+        margin-bottom: 12px;
+    }
+    .init_live {
+        font-size: 15px;
+        background-color: #e1e1e0;
+        padding: 0 15px;
+        margin-top: 4px;
+    }
+    .init_photo {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .init_img {
+        height: 121px;
+        width: 106px !important;
+    }
+
+    .form-control {
+        height: 30px !important;
+    }
+    /*.row{
+                padding:inherit;
+                margin:0;
+
+            }
+            .col-6,.col-md-6{
+                margin:0;
+                padding:0;
+            }*/
+    .green_icon{
+        height: 26px;
+        }
+</style>
+
+<body>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-horizontal mgbtm_2 brd_mgtp">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger", @id = "PAN" })
+            <fieldset class="panel panel-primary" id="PANArti">
+                <div class="panel-heading">
+                    <div class="panel-title">PAN Verification Details</div>
+                </div>
+                <div class="clearfix"></div>
+                <div id="pandivComp">
+                    <fieldset class="init_pan_wrapper">
+                        <div class="row init_row">
+                            <div class="panbx">
+                                <div class="control-label2 quk_dtl">CAF Form Details</div>
+                                <div class="border_pan2 brd_quk">
+                                    <div class="col-md-6">
+                                    </div>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="row" style="margin: 0;">
+                                            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                                                <div class="col-12 init_photo">
+                                                    @if (Model.QELive_Photo != null)
+                                                    {
+                                                        <img src="data:image/jpg;base64,@(Html.Raw(Model.QELive_Photo))" alt="" id="photo" class="init_img" />
+                                                        @Html.LabelFor(model => model.QELive_Photo, htmlAttributes: new { @class = "init_live"})
+                                                    }
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12" style="padding: 0;">
+                                                <div class="row" style="margin: 0;">
+                                                    @Html.LabelFor(model => model.QEFirstName, htmlAttributes: new { @class = "col-5 lab-sm" })
+                                                    <div class="col-lg-6 col-md-7 col-sm-7 col-xs-12" style="padding: 0;">
+                                                        @Html.EditorFor(model => model.QEFirstName, new { htmlAttributes = new { @class = "form-control", id = "fn", ReadOnly = "true" } })
+                                                        @Html.ValidationMessageFor(model => model.QEFirstName, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                                <div class="row" style="margin: 0;">
+                                                    @Html.LabelFor(model => model.QEMiddleName, htmlAttributes: new { @class = "col-5 lab-sm" })
+                                                    <div class="col-lg-6 col-md-7 col-sm-7 col-xs-12" style="padding: 0;">
+                                                        @Html.EditorFor(model => model.QEMiddleName, new { htmlAttributes = new { @class = "form-control", ReadOnly = "true" } })
+                                                        @Html.ValidationMessageFor(model => model.QEMiddleName, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                                <div class="row" style="margin: 0;">
+                                                    @Html.LabelFor(model => model.QELastName, htmlAttributes: new { @class = "col-5 lab-sm" })
+                                                    <div class="col-lg-6 col-md-7 col-sm-7 col-xs-12" style="padding: 0;">
+                                                        @Html.EditorFor(model => model.QELastName, new { htmlAttributes = new { @class = "form-control", ReadOnly = "true" } })
+                                                        @Html.ValidationMessageFor(model => model.QELastName, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                                <div class="row" style="margin: 0;">
+                                                    @Html.LabelFor(model => model.QEPanNo, htmlAttributes: new { @class = "col-5 lab-sm" })
+                                                    <div class="col-lg-6 col-md-7 col-sm-7 col-xs-12" style="padding: 0;">
+                                                        @Html.EditorFor(model => model.QEPanNo, new { htmlAttributes = new { @class = "form-control", ReadOnly = "true" } })
+                                                        @Html.ValidationMessageFor(model => model.QEPanNo, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row" style="margin: 0;">
+                                            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12" style="padding: 0;">
+                                                <div class="row" style="margin: 0;">
+                                                    @Html.LabelFor(model => model.QEFatherName, htmlAttributes: new { @class = "col-lg-5 col-md-5 col-sm-5 col-xs-12  lab-sm" })
+                                                    <div class="col-lg-6 col-md-7 col-sm-7 col-xs-12" style="padding: 0;">
+                                                        @Html.EditorFor(model => model.QEFatherName, new { htmlAttributes = new { @class = "form-control", ReadOnly = "true" } })
+                                                        @Html.ValidationMessageFor(model => model.QEFatherName, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12" style="padding: 0;">
+                                                <div class="row" style="margin: 0;">
+                                                    @Html.LabelFor(model => model.QEMobileNo, htmlAttributes: new { @class = "col-lg-5 col-md-5 col-sm-5 col-xs-12  lab-sm" })
+                                                    <div class="col-lg-6 col-md-7 col-sm-7 col-xs-12" style="padding: 0;">
+                                                        @Html.EditorFor(model => model.QEMobileNo, new { htmlAttributes = new { @class = "form-control", ReadOnly = "true" } })
+                                                        @Html.ValidationMessageFor(model => model.QEMobileNo, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row" style="margin: 0;">
+                                            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12" style="padding: 0;">
+                                                <div class="row" style="margin: 0;">
+                                                    @Html.LabelFor(model => model.QEEmailId, htmlAttributes: new { @class = "col-md-5 lab-sm" })
+                                                    <div class="col-lg-6 col-md-7 col-sm-7 col-xs-12" style="padding: 0;">
+                                                        @Html.EditorFor(model => model.QEEmailId, new { htmlAttributes = new { @class = "form-control", ReadOnly = "true" } })
+                                                        @Html.ValidationMessageFor(model => model.QEEmailId, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12" style="padding: 0;">
+                                                <div class="row" style="margin: 0;">
+                                                    @Html.LabelFor(model => model.QECLIENT_ADDRESS_1, htmlAttributes: new { @class = "col-md-5 lab-sm" })
+                                                    <div class="col-lg-6 col-md-7 col-sm-7 col-xs-12" style="padding: 0;">
+                                                        @Html.EditorFor(model => model.QECLIENT_ADDRESS_1, new { htmlAttributes = new { @class = "form-control", ReadOnly = "true" } })
+                                                        @Html.ValidationMessageFor(model => model.QECLIENT_ADDRESS_1, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row" style="margin: 0;">
+                                            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12" style="padding: 0;">
+                                                <div class="row" style="margin: 0;">
+                                                    @Html.LabelFor(model => model.QECLIENT_ADDRESS_2, htmlAttributes: new { @class = "col-md-5 lab-sm" })
+                                                    <div class="col-lg-6 col-md-7 col-sm-7 col-xs-12" style="padding: 0;">
+                                                        @Html.EditorFor(model => model.QECLIENT_ADDRESS_2, new { htmlAttributes = new { @class = "form-control", ReadOnly = "true" } })
+                                                        @Html.ValidationMessageFor(model => model.QECLIENT_ADDRESS_2, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12" style="padding: 0;">
+                                                <div class="row" style="margin: 0;">
+                                                    @Html.LabelFor(model => model.QECLIENT_ADDRESS_3, htmlAttributes: new { @class = "col-md-5 lab-sm" })
+                                                    <div class="col-lg-6 col-md-7 col-sm-7 col-xs-12" style="padding: 0;">
+                                                        @Html.EditorFor(model => model.QECLIENT_ADDRESS_3, new { htmlAttributes = new { @class = "form-control", ReadOnly = "true" } })
+                                                        @Html.ValidationMessageFor(model => model.QECLIENT_ADDRESS_3, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row" style="margin: 0;">
+                                            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12" style="padding: 0;">
+                                                <div class="row" style="margin: 0;">
+                                                    @Html.LabelFor(model => model.QECountry, htmlAttributes: new { @class = "col-md-5 lab-sm" })
+                                                    <div class="col-lg-6 col-md-7 col-sm-7 col-xs-12" style="padding: 0;">
+                                                        @Html.EditorFor(model => model.QECountry, new { htmlAttributes = new { @class = "form-control", ReadOnly = "true" } })
+                                                        @Html.ValidationMessageFor(model => model.QECountry, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12" style="padding: 0;">
+                                                <div class="row" style="margin: 0;">
+                                                    @Html.LabelFor(model => model.QECity, htmlAttributes: new { @class = "col-md-5 lab-sm" })
+                                                    <div class="col-lg-6 col-md-7 col-sm-7 col-xs-12" style="padding: 0;">
+                                                        @Html.EditorFor(model => model.QECity, new { htmlAttributes = new { @class = "form-control", ReadOnly = "true" } })
+                                                        @Html.ValidationMessageFor(model => model.QECity, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row" style="margin: 0;">
+                                            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12" style="padding: 0;">
+                                                <div class="row" style="margin: 0;">
+                                                    @Html.LabelFor(model => model.QEPin, htmlAttributes: new { @class = "col-md-5 lab-sm" })
+                                                    <div class="col-lg-6 col-md-7 col-sm-7 col-xs-12" style="padding: 0;">
+                                                        @Html.EditorFor(model => model.QEPin, new { htmlAttributes = new { @class = "form-control", ReadOnly = "true" } })
+                                                        @Html.ValidationMessageFor(model => model.QEPin, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12" style="padding: 0;">
+                                                <div class="row" style="margin: 0;">
+                                                    @Html.LabelFor(model => model.QECLIENT_PERM_ADDRESS_1, htmlAttributes: new { @class = "col-md-5 lab-sm" })
+                                                    <div class="col-lg-6 col-md-7 col-sm-7 col-xs-12" style="padding: 0;">
+                                                        @Html.EditorFor(model => model.QECLIENT_PERM_ADDRESS_1, new { htmlAttributes = new { @class = "form-control", style = "padding-left: 6%;padding - right: 9%;", ReadOnly = "true" } })
+                                                        @Html.ValidationMessageFor(model => model.QECLIENT_PERM_ADDRESS_1, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row" style="margin: 0;">
+                                            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12" style="padding: 0;">
+                                                <div class="row" style="margin: 0;">
+                                                    @Html.LabelFor(model => model.QECLIENT_PERM_ADDRESS_2, htmlAttributes: new { @class = "col-md-5 lab-sm" })
+                                                    <div class="col-lg-6 col-md-7 col-sm-7 col-xs-12" style="padding: 0;">
+                                                        @Html.EditorFor(model => model.QECLIENT_PERM_ADDRESS_2, new { htmlAttributes = new { @class = "form-control", style = "padding-left: 6%;padding - right: 9%;", ReadOnly = "true" } })
+                                                        @Html.ValidationMessageFor(model => model.QECLIENT_PERM_ADDRESS_2, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12" style="padding: 0;">
+                                                <div class="row" style="margin: 0;">
+                                                    @Html.LabelFor(model => model.QECLIENT_PERM_ADDRESS_3, htmlAttributes: new { @class = "col-md-5 lab-sm" })
+                                                    <div class="col-lg-6 col-md-7 col-sm-7 col-xs-12" style="padding: 0;">
+                                                        @Html.EditorFor(model => model.QECLIENT_PERM_ADDRESS_3, new { htmlAttributes = new { @class = "form-control", style = "padding-left: 6%;padding - right: 9%;", ReadOnly = "true" } })
+                                                        @Html.ValidationMessageFor(model => model.QECLIENT_PERM_ADDRESS_3, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row" style="margin: 0;">
+                                            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12" style="padding: 0;">
+                                                <div class="row" style="margin: 0;">
+                                                    @Html.LabelFor(model => model.QECLIENT_PERM_CITY, htmlAttributes: new { @class = "col-md-5 lab-sm" })
+                                                    <div class="col-lg-6 col-md-7 col-sm-7 col-xs-12" style="padding: 0;">
+                                                        @Html.EditorFor(model => model.QECLIENT_PERM_CITY, new { htmlAttributes = new { @class = "form-control", ReadOnly = "true" } })
+                                                        @Html.ValidationMessageFor(model => model.QECLIENT_PERM_CITY, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12" style="padding: 0;">
+                                                <div class="row" style="margin: 0;">
+                                                    @Html.LabelFor(model => model.QECLIENT_PERM_COUNTRY, htmlAttributes: new { @class = "col-md-5 lab-sm" })
+                                                    <div class="col-lg-6 col-md-7 col-sm-7 col-xs-12" style="padding: 0;">
+                                                        @Html.EditorFor(model => model.QECLIENT_PERM_COUNTRY, new { htmlAttributes = new { @class = "form-control", ReadOnly = "true" } })
+                                                        @Html.ValidationMessageFor(model => model.QECLIENT_PERM_COUNTRY, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panbx">
+                                <div class="control-label2 quk_dtl">Pan Verification Details</div>
+                                <div class="border_pan2 quk_brd">
+                                    <div>
+                                        @Html.HiddenFor(model => model.PanDocumentType)
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 init_flex">
+                                            @Html.LabelFor(model => model.PanComFirstName, htmlAttributes: new { @class = "col-md-5" })
+                                            <div class="col-lg-6 col-md-7 col-sm-7 col-xs-12">
+                                                @Html.EditorFor(model => model.PanComFirstName, new { htmlAttributes = new { @class = "form-control", ReadOnly = "true" } })
+                                                @Html.ValidationMessageFor(model => model.PanComFirstName, "", new { @class = "text-danger" })
+                                            </div>
+                                            @if (@Model.FirstNameStatus == "Match")
+                                            {
+                                                <div class="green_vld">
+                                                    <img src="~/images/image/tick.png" class="green_icon" />
+                                                </div>
+                                            }
+                                            else
+                                            {
+                                                <div class="red_vld">
+                                                    <img src="~/images/image/wrong.png" class="green_icon" />
+                                                </div>
+                                            }
+                                        </div>
+                                        <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 init_flex">
+                                            @Html.LabelFor(model => model.PanComMiddleName, htmlAttributes: new { @class = "col-md-5" })
+                                            <div class="col-lg-6 col-md-7 col-sm-7 col-xs-12">
+                                                @Html.EditorFor(model => model.PanComMiddleName, new { htmlAttributes = new { @class = "form-control", ReadOnly = "true" } })
+                                                @Html.ValidationMessageFor(model => model.PanComMiddleName, "", new { @class = "text-danger" })
+                                            </div>
+                                            @if (@Model.MiddleNameStatus == "Match")
+                                            {
+                                                <div class="green_vld">
+                                                    <img src="~/images/image/tick.png" class="green_icon" />
+                                                </div>
+                                            }
+                                            else
+                                            {
+                                                <div class="red_vld">
+                                                    <img src="~/images/image/wrong.png" class="green_icon" />
+                                                </div>
+                                            }
+                                        </div>
+                                        <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 init_flex">
+                                            @Html.LabelFor(model => model.PanComLastName, htmlAttributes: new { @class = "col-md-5" })
+                                            <div class="col-lg-6 col-md-7 col-sm-7 col-xs-12">
+                                                @Html.EditorFor(model => model.PanComLastName, new { htmlAttributes = new { @class = "form-control", ReadOnly = "true" } })
+                                                @Html.ValidationMessageFor(model => model.PanComLastName, "", new { @class = "text-danger" })
+                                            </div>
+                                            @if (@Model.LastNameStatus == "Match")
+                                            {
+                                                <div class="green_vld">
+                                                    <img src="~/images/image/tick.png" class="green_icon" />
+                                                </div>
+                                            }
+                                            else
+                                            {
+                                                <div class="red_vld">
+                                                    <img src="~/images/image/wrong.png" class="green_icon" />
+                                                </div>
+                                            }
+                                        </div>
+                                        <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 init_flex">
+                                            @Html.LabelFor(model => model.PanComNo, htmlAttributes: new { @class = "col-md-5" })
+                                            <div class="col-lg-6 col-md-7 col-sm-7 col-xs-12">
+                                                @Html.EditorFor(model => model.PanComNo, new { htmlAttributes = new { @class = "form-control", ReadOnly = "true" } })
+                                                @Html.ValidationMessageFor(model => model.PanNo, "", new { @class = "text-danger" })
+                                            </div>
+                                            @if (@Model.PanNoStatus == "Match")
+                                            {
+                                                <div class="green_vld">
+                                                    <img src="~/images/image/tick.png" class="green_icon" />
+                                                </div>
+                                            }
+                                            else
+                                            {
+                                                <div class="red_vld">
+                                                    <img src="~/images/image/wrong.png" class="green_icon" />
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="form-group2 mg_rgt1">
+                    <div>
+                    </div>
+                </div>
+            </fieldset>
+            <div style="display: flex;justify-content: center;margin: 12px;">
+                <input type="button"  class="btn btn-primary" id = "PANApprove" style = "" value="Approve" name="isAccountApproveOrReject"  />
+                <input type="button"   class="btn btn-primary" id = "PANReject" style = "margin-left:2%" value="Reject" name="isAccountApproveOrReject"  />
+                <input class="digitext" type="text" id="PANRejecttxt" name="PANRejecttxt1">
+                <input type="button" class="btn btn-primary" id="PangetSumbit" value="Submit" />
+            </div>
+            <div class="apprejbox" style="float:left;width:100%;text-align:center;display:none;">
+                <input type="button" class=" radioBtn btn btn-primary apprjct" id="PANApprove" style="margin-left:2%" value="Approve" name="isAccountApproveOrReject" />
+                <input type="button" class=" radioBtn btn btn-primary  apprjct" id="PANReject" style="margin-left:2%" value="Reject" name="isAccountApproveOrReject" />
+                @Html.RadioButtonFor(model => model.isPanApproveOrReject, "A", new { id = "PANApprove", @class = "radioBtn", style = "float:left;margin-left:2%" })<p class="national_textapp">Approve</p>
+                @Html.RadioButtonFor(model => model.isPanApproveOrReject, "R", new { id = "PANReject", @class = "radioBtn", style = "float:left" })<p class="national_textapp">Reject</p>
+                <input type="text" id="PANRejecttxt" name="PANRejecttxt1">
+                <button type="button" onclick="GetButton()" id="PangetSumbit">Sumbit </button>
+            </div>
+        </div>
+    }
+    <div id="loader_mdl"></div>
+    <div id="backgrounddisable"></div>
+</body>
+</html>
+

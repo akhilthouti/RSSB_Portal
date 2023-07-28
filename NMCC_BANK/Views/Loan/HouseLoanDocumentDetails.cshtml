@@ -1,0 +1,616 @@
+﻿<i class="fa fa-pulse fa-fw dgldr" aria-hidden="true" style="font-size: 74px;color:#626060" ; align="center"></i>
+
+
+@model INDO_FIN_NET.Models.ClsDocumentDetails
+@{
+    Layout = "~/Views/Shared/LoanLayout.cshtml";
+
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+
+    <link href="~/Scripts/sweetalert.css" rel="stylesheet" />
+    <script src="~/Scripts/sweetalert.min.js"></script>
+    <link href="~/Content/HoverEffect/hover.css" rel="stylesheet" />
+    <link href="~/Content/Navigation/style.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/Navigation/css/newcss.css" rel="stylesheet" />
+    <link href="~/Content/snewcss.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        @@media screen and (max-width:767px) {
+            .zoomDocument:hover {
+                height: 10px !important;
+                width: 15px !important;
+            }
+
+            #DocApprove {
+                margin-left: -135% !important;
+            }
+        }
+
+        .init_click {
+            font-size: 11px;
+            font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol" !important;
+            color: red;
+            font-weight: 700;
+        }
+
+        .init_cam_div {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .active_digi_caf_doc::after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            /*background: #5186e5;*/
+            top: 20px;
+            left: -50%;
+            z-index: -1;
+        }
+
+        .active_digi_caf_doc::after {
+            content: none;
+        }
+
+        .active_digi_caf_doc::before {
+            background: #3ed718 !important;
+            color: #fff !important;
+            content: "\2713" !important;
+            font-size: 23px;
+            font-weight: 900;
+        }
+
+        .init_btn_app {
+            font-size: 16px !important;
+            padding: 5px 15px !important;
+        }
+    </style>
+
+
+    <style>
+        #viewport {
+            border: 1px solid #000 !important;
+        }
+
+        #Digil1 {
+            position: absolute;
+            display: none; /* Hidden by default */
+            width: 100%; /* Full width (cover the whole page) */
+            height: 100%; /* Full height (cover the whole page) */
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .img-adjust {
+            height: 60px;
+            width: 60px;
+            margin-left: 50%;
+            margin-top: 50%;
+        }
+
+        #Docsign {
+            display: none;
+        }
+
+        #okloader {
+            display: none;
+        }
+
+        #oksign {
+            display: none;
+        }
+
+        .zoomDocument {
+            height: 40px;
+            width: 40px;
+            cursor: pointer;
+        }
+
+            .zoomDocument:hover {
+                ms-transform: scale(12);
+                -webkit-transform: scale(25);
+                transform: scale(25);
+                /* margin-left: 1854%; */
+                float: left;
+                left: 49%;
+                /* margin-top: 1126%; */
+                position: absolute;
+                z-index: 999;
+                /* top: 47%; */
+                height: 15px;
+                width: 21px;
+                cursor: pointer;
+                top: 48% !important;
+                position: fixed;
+                border: 1px solid grey !important;
+            }
+
+        #docdetails_Sign {
+            width: 100% !important;
+            float: left;
+        }
+
+        #docdetails_Sign {
+            width: 100% !important;
+            float: left;
+            margin-top: 5px;
+        }
+
+        #docdetails_Add {
+            width: 100% !important;
+            float: left;
+            margin-top: 5px;
+        }
+
+        #docdetails {
+            width: 100% !important;
+            float: left;
+            margin-top: -2px;
+        }
+
+        #DOC_resultSign img {
+            width: 95px;
+            margin-left: 100% !important;
+        }
+
+        #thecanvas {
+            cursor: url('../../Content/imgs/penimg.png') !important;
+            /*background-image: url('../../Content/imgs/penimg.png');*/
+        }
+
+        label {
+            font-size: 16px;
+        }
+
+        .thstyle {
+            color: white;
+            font-size: 14px;
+            padding: 17px;
+            border: 1px solid white;
+        }
+
+        .trstyle {
+            background-color: #bf5252;
+            border: 1px solid black;
+            text-align: center;
+            /*line-height: 0.2;*/
+        }
+
+        .tdstyle {
+            border: 1px solid #afacac;
+            background-color: white;
+            font-size: 14px;
+        }
+
+        .select2 {
+            height: 30px !important;
+        }
+
+        .bg-green {
+            background-color: green !important;
+        }
+
+    </style>
+    <style>
+        .brdgrey {
+            display: none;
+        }
+
+        :before,
+        :after {
+            box-sizing: border-box;
+        }
+
+        html {
+            font: 18px 'Helvetica Neue', sans-serif;
+        }
+
+        .signature-component {
+            text-align: left;
+            display: inline-block;
+            /*max-width: 100%;*/
+
+            h1
+
+        {
+            margin-bottom: 0;
+        }
+
+        h2 {
+            margin: 0;
+            font-size: 100%;
+        }
+
+        button {
+            padding: 1em;
+            background: transparent;
+            box-shadow: 2px 2px 4px #777;
+            margin-top: .5em;
+            border: 1px solid #777;
+            font-size: 1rem;
+            &.toggle
+
+        {
+            background: rgba(red, .2);
+        }
+
+        }
+
+        canvas {
+            display: block;
+            position: relative;
+            border: 1px solid;
+        }
+
+        img {
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+    </style>
+
+    <style>
+        .dsopct {
+            opacity: 0;
+        }
+
+        .ldrdesign {
+            border-radius: 50%;
+            border-bottom: 5px dotted grey;
+            border-top: 5px dotted black;
+            border-right: 5px dotted black;
+            border-left: 5px dotted black;
+            height: 80px;
+            width: 80px;
+            margin: 20% 50%;
+        }
+
+        @@media only screen and (max-device-width:600px) and (min-device-width:300px) {
+            .savebtn {
+                margin-bottom: 6px;
+                width: 94%;
+            }
+        }
+    </style>
+    <link href="~/css/multiclass.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container-fluid pdcon" style="clear:both">
+        <div class="documentBx">
+            @using (Html.BeginForm("HouseLoanDocumentDetails", "Loan", FormMethod.Post, new { enctype = "multipart/form-data", name = "custDoc", id = "custDoc", autocomplete = "off" }))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="mrgntpadmn" style="float:right;margin-top: -22px;">
+                    <label>Customer Reference Number :</label>
+                    <label>@ViewBag.CustomerDetailId</label>
+                </div>
+
+                <input type="hidden" id="DOC1" />
+                <input type="hidden" id="DOC2" />
+                <input type="hidden" id="DOC3" />
+                <input type="hidden" id="DOC4" />
+
+                <div class="space35doc"></div>
+                <div class="" style="">
+                    <div class="panel-heading pdpan rkyclft" style="padding:6px!important;text-align:left;">
+                        <h3 class="panel-title">Upload Property Papers</h3>
+                    </div>
+                    <div class="panel-body cddbrdr1" id="idpanel">
+                        <div class="row">
+                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-6">
+                                <label>Proof for Property Papers <img src="assets/img/info-tip.png" data-toggle="tooltip" data-placement="top" title="" data-original-title="Identity proof documents"></label>
+                            </div>
+                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6">
+
+
+                                @Html.DropDownListFor(model =>  model.ProofOfIdCode, (IEnumerable <SelectListItem>)ViewBag.proofOfId,  "--Select--", new
+                            {
+                            @id = "ddl_idProof",
+                            @onchange = "ProofIdChang(this)",
+                            @class = "form-control dropdownfnt_sz select2"})
+
+
+
+
+                                @Html.ValidationMessageFor(model => model.ProofOfIdCode, "", new { @class = "text-danger" })
+                            </div>
+
+
+
+
+                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-4 ">
+                                <div class="txtalgnC" id="validate_poi">
+
+
+
+                                    <div>
+
+                                        <i class="fa-solid fa-file-arrow-up doc_icons"></i>
+                                        <input id="fileInput" style="opacity: 0;;margin-top: -41px;width: 35%;margin-left: 66px;cursor: pointer;" data-val="true" type="file">
+                                    </div>
+
+
+                                    @Html.ValidationMessageFor(model => model.UploadprfOfId, "", new { @class = "text-danger" })
+                                    <span class='label-info word_break' id="upload-idProof-info" style=""></span>
+
+                                    <div class="clear"></div>
+                                    <label class="upload_cq_textnew" style="">Max Size 5 MB<br />Supported Files<br />JPEG,JPG,PNG</label>
+                                </div>
+                            </div>
+
+
+
+
+                            <div id="CameraPPView"></div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="clear"></div>
+                <div id="CropPdfForm"></div>
+                <div id="docdetails"></div>
+                <div id="docdetailsForcamera"></div>
+                <div id="Digil1" style="position:fixed;background-color: #cdcdcd5e;">
+                    <i class=" fa fa-pulse fa-fw dgldr ldrdesign" style="height:70px;width:70px;">
+
+                    </i>
+
+                </div>
+                <div id="Addloder"></div>
+                <div id="Docsign">
+                    <img src="~/Images/loader/Dual Ring-1s-200px.gif">
+                </div>
+                <div id="overlay_disabl"></div>
+
+
+
+
+
+
+                <div class="">
+                    <div class="panel-heading pdpan cddmrgnh rkyclft" style="padding:6px!important;text-align:left;">
+                        <h3 class="panel-title">Upload Account Statement</h3>
+                    </div>
+                    <div class="panel-body cddbrdr1" id="idpanel">
+                        <div class="row">
+
+                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-6">
+                                <label>Proof for Account Statement <img src="assets/img/info-tip.png" data-toggle="tooltip" data-placement="top" title="" data-original-title="Proof Of Address"></label>
+                            </div>
+
+
+
+                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6">
+
+
+                                @Html.DropDownListFor(model =>  model.ProofOfCorrAddCode, (IEnumerable <SelectListItem>)ViewBag.proofOfId,  "--Select--", new
+                            {
+                            @id = "ddl_corrAdd",
+                            @onchange = "ProofAddChang(this)",
+                            @class = "form-control dropdownfnt_sz select2"})
+
+
+                                @Html.ValidationMessageFor(model => model.ProofOfCorrAddCode, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-4" style="">
+                                <div class="txtalgnC" id="validate_poca">
+
+
+                                    <div>
+
+                                        <i class="fa-solid fa-file-arrow-up doc_icons"></i>
+                                        <input id="corrAdd" style="opacity: 0;margin-top: -41px;width: 35%;margin-left: 66px;cursor: pointer;" data-val="true" type="file">
+                                    </div>
+
+                                    @Html.ValidationMessageFor(model => model.UploadprfOfCorrAdd, "", new { @class = "text-danger pddnglft8" })
+                                    <span class='label-info word_break' id="upload-corrAdd-info" style=""></span>
+
+                                    <div class="clear"></div>
+                                    <label class="upload_cq_text" style="">Max Size 5 MB<br />Supported Files<br />JPEG,JPG,PNG</label>
+                                </div>
+                            </div>
+
+
+
+
+                            <div id="CameraAccountStatementView" style="width:100%"></div>
+
+
+                        </div>
+                    </div>
+                </div>
+                <div class="" style="">
+                    <div class="panel-heading pdpan rkyclft" style="padding:6px!important;text-align:left;">
+                        <h3 class="panel-title">Upload Income Proof For Salaried Applicant</h3>
+                    </div>
+                    <div class="panel-body cddbrdr1" id="idpanel">
+                        <div class="row">
+                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-6">
+                                <label>Proof of Income For Salaried Applicant <img src="assets/img/info-tip.png" data-toggle="tooltip" data-placement="top" title="" data-original-title="Identity proof documents"></label>
+                            </div>
+                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6">
+
+
+                                @Html.DropDownListFor(model =>  model.ProofOfIdCode, (IEnumerable <SelectListItem>)ViewBag.proofOfId,  "--Select--", new
+                            {
+                            @id = "ddl_idProof",
+                            @onchange = "ProofIdChang(this)",
+                            @class = "form-control dropdownfnt_sz select2"})
+
+
+
+
+
+                                @Html.ValidationMessageFor(model => model.ProofOfIdCode, "", new { @class = "text-danger" })
+                            </div>
+
+
+                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-4 ">
+                                <div class="txtalgnC" id="validate_poi">
+
+
+
+                                    <div>
+
+                                        <i class="fa-solid fa-file-arrow-up doc_icons"></i>
+                                        <input id="fileInput" style="opacity: 0;;margin-top: -41px;width: 35%;margin-left: 66px;cursor: pointer;" data-val="true" type="file">
+                                    </div>
+
+
+                                    @Html.ValidationMessageFor(model => model.UploadprfOfId, "", new { @class = "text-danger" })
+                                    <span class='label-info word_break' id="upload-idProof-info" style=""></span>
+
+                                    <div class="clear"></div>
+                                    <label class="upload_cq_textnew" style="">Max Size 5 MB<br />Supported Files<br />JPEG,JPG,PNG</label>
+                                </div>
+                            </div>
+
+
+                            <div id="CameraincomeforSalariedView"></div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="" style="">
+                    <div class="panel-heading pdpan rkyclft" style="padding:6px!important;text-align:left;">
+                        <h3 class="panel-title">Upload Income Proof For Non-Salaried Applicant</h3>
+                    </div>
+                    <div class="panel-body cddbrdr1" id="idpanel">
+                        <div class="row">
+                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-6">
+                                <label>Proof of Income For Non-Salaried Applicant <img src="assets/img/info-tip.png" data-toggle="tooltip" data-placement="top" title="" data-original-title="Identity proof documents"></label>
+                            </div>
+                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6">
+
+
+                                @Html.DropDownListFor(model =>  model.ProofOfIdCode, (IEnumerable <SelectListItem>)ViewBag.proofOfId,  "--Select--", new
+                            {
+                            @id = "ddl_idProof",
+                            @onchange = "ProofIdChang(this)",
+                            @class = "form-control dropdownfnt_sz select2"})
+
+                                @Html.ValidationMessageFor(model => model.ProofOfIdCode, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-4 ">
+                                <div class="txtalgnC" id="validate_poi">
+
+
+
+                                    <div>
+
+                                        <i class="fa-solid fa-file-arrow-up doc_icons"></i>
+                                        <input id="fileInput" style="opacity: 0;;margin-top: -41px;width: 35%;margin-left: 66px;cursor: pointer;" data-val="true" type="file">
+                                    </div>
+
+
+                                    @Html.ValidationMessageFor(model => model.UploadprfOfId, "", new { @class = "text-danger" })
+                                    <span class='label-info word_break' id="upload-idProof-info" style=""></span>
+
+                                    <div class="clear"></div>
+                                    <label class="upload_cq_textnew" style="">Max Size 5 MB<br />Supported Files<br />JPEG,JPG,PNG</label>
+                                </div>
+                            </div>
+
+
+
+
+                            <div id="CameraIncomeForNonSalariedView"></div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="" style="">
+                    <div class="panel-heading pdpan rkyclft" style="padding:6px!important;text-align:left;">
+                        <h3 class="panel-title">Upload Signature Document</h3>
+                    </div>
+                    <div class="panel-body cddbrdr1" id="idpanel">
+                        <div class="row">
+                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-6">
+                                <label>Proof of Signature <img src="assets/img/info-tip.png" data-toggle="tooltip" data-placement="top" title="" data-original-title="Identity proof documents"></label>
+                            </div>
+
+
+                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-4 ">
+                                <div class="txtalgnC" id="validate_poi">
+
+
+
+                                    <div>
+
+                                        <i class="fa-solid fa-file-arrow-up doc_icons"></i>
+                                        <input id="fileInput" style="opacity: 0;;margin-top: -41px;width: 35%;margin-left: 66px;cursor: pointer;" data-val="true" type="file">
+                                    </div>
+
+
+                                    @Html.ValidationMessageFor(model => model.UploadprfOfId, "", new { @class = "text-danger" })
+                                    <span class='label-info word_break' id="upload-idProof-info" style=""></span>
+
+                                    <div class="clear"></div>
+                                    <label class="upload_cq_textnew" style="">Max Size 5 MB<br />Supported Files<br />JPEG,JPG,PNG</label>
+                                </div>
+                            </div>
+
+
+
+
+                            <div id="CameraSIView"></div>
+
+                        </div>
+                    </div>
+                </div>
+                <div id="Digil1" style="position:fixed;background-color: #cdcdcd5e;">
+                    <i class=" fa fa-pulse fa-fw dgldr ldrdesign" style="height:70px;width:70px;">
+                    </i>
+                </div>
+                <div class="clear"></div>
+                <div id="CropPdfForm_CA"></div>
+                <div id="docdetails_Add"></div>
+                <div id="docdetails_AddForCamera"></div>
+                <div id="l2Digi"></div>
+                <div id="okloader">
+                    <img src="~/Images/loader/Dual Ring-1s-200px.gif">
+                </div>
+                <div id="oksign">
+                    <img src="~/Images/loader/Dual Ring-1s-200px.gif">
+                </div>
+                <div id="overlay_disabl"></div>
+
+
+
+
+
+
+            }
+            <div class="">
+                <input type="hidden" value="@ViewBag.CustomerDetailsId" id="CustomerDetailsId" />
+                <input type="Submit" id="sacon" value="Save & Exit" class="btn btn-primary right1 custSubtn bbutton scbutton" style="margin-top:1%;float:right;height:45px;margin-bottom:10px;" />
+            </div>
+
+
+
+
+
+        </div>
+        <img src="#" id="IMGDATA" alt="Alternate Text" hidden="hidden" />
+        <img src="" id="Image1" alt="" style="display: none" />
+        <div id="Crop_popup" />
+        <div id="DigiCertiDD"></div>
+        <div id="DIGIbagDD"></div>
+        <div id="ImageCropForm"> </div>
+        <div id="bankbg"></div>
+        <div id="viewbg"></div>
+    </div>
+
+</body>
+
+</html>

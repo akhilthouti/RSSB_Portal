@@ -1,0 +1,687 @@
+﻿@model INDO_FIN_NET.Models.clsAddNewUser
+
+@{
+    // ViewBag.Title = "AddNewUser";
+    Layout = "~/Views/Shared/_AdminLayoutPage.cshtml";
+}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+@*@Scripts.Render("~/bundles/jqueryval")*@
+<link href="~/Content/textbox/compiled.min.css" rel="stylesheet" />
+@*<link href="~/Content/Navigation/style.css" rel="stylesheet" />*@
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<link href="~/Content/Site.css" rel="stylesheet" />
+<link href="~/Content/Form/Form.css" rel="stylesheet" />
+<link href="~/Content/addnewuser.css" rel="stylesheet" />
+<link href="~/Scripts/sweetalert.css" rel="stylesheet" />
+<script src="~/Scripts/sweetalert.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+  <link href="~/css/multiclass.css" rel="stylesheet" />
+<style>
+ .eyeIcon{
+         position: absolute;
+    margin-left: -13%;
+    margin-top: 4%;
+ }
+     .init_href {
+            font-size: 16px;
+            padding: 5px 12px;
+            color: #fff !important;
+            cursor:pointer;
+        }
+        .digitalcertifiicate {
+            box-shadow: 4px 2px 8px 1px #dedede;
+            float: left;
+            width: 91%;
+            margin-left: 4.5%;
+            margin-bottom: 1%;
+            margin-top: 1%;
+        }
+        .ckyctxt {
+            color: #ffffff;
+            padding: 2px 2px 2px 23px;
+            font-weight: 700;
+            font-size: 16px;
+        }
+            .init_href:hover {
+                border-radius: 3px;
+                transition: all 0.4s ease;
+            }
+            .ehitbg3 {
+                background:white;
+                width: 100%;
+                padding: 16px 16px 16px 16px;
+                border-radius: 4px;
+                border: 0px solid #1919cf;
+                margin: 0%;
+            }
+</style>
+<script>
+    $(document).ready(function () {
+        $("#blackbg2").hide();
+        if ('@ViewBag.msg' != "") {
+            swal('@ViewBag.msg');
+        }
+    })
+</script>
+<script>
+    $(document).ready(function () {
+        $("#QEMobileform").hide();
+
+    })
+</script>
+<script>
+        function Home(){
+           window.location.href = '/AdminDashBoardNew/IndoFinAdminDashBoard'; 
+        }
+        </Script>
+<script>
+    function Setpassword(e) {
+        debugger;
+        var isValid = true;
+        var RegionList_Id = $('#RegionList_Id').val();
+        var BranchList_Id = $('#BranchList_Id').val();
+        var DepartmentList_Id = $('#DepartmentList_Id').val();
+        var RoleList_Id = $('#RoleList_Id').val();
+        var UserId = $('#UserId').val();
+        var Username = $('#Username').val();
+        var Address = $('#Address').val();
+        var MobileNo = $('#MobileNo').val();
+        var EmailId = $('#EmailId').val();
+        var Branch = $('#Branch').val();
+        var password = $('#password').val();
+        var OTPAuth = $('#Conpassword').val();
+        $("#adduserdetails").find("input[type=text]").each(function () {
+            debugger;
+            if ($.trim($(this).prop('value')) == "" || $.trim($(this).prop('value')) == null) {
+                isValid = false;
+            }
+            else {
+            }
+            if (isValid == false) {
+                swal("All Fields  Are Required");
+                return false;
+            }
+            else {
+            }
+            if (RegionList_Id == "" || BranchList_Id == "" || DepartmentList_Id == "" || RoleList_Id == "" || UserId == "" || Username == "" || Address == "" || MobileNo == "" || EmailId == "" || Branch == "" || password == "" || OTPAuth == "") {
+                swal("All Fields  Are Required");
+                return false;
+            }
+            else {
+                $.ajax({
+                    url: '/AdminLogin/AddNewUser',
+                    type: 'POST',
+                    cache: false,
+                    success: function (result) {
+                        debugger;
+                        if (result == "Success") {
+                            swal("User Created Successfully");
+                            window.location.href = '/AdminLogin/AddNewUser';
+                        }
+                        else {
+                            swal("User Already exist");
+                        }
+                    }
+                });
+            }
+        })
+    }
+</script>
+<script>
+    $(document).ready(function() {
+      $('#btnnext').click(function() {
+        var Userid = $('#UserId').val();
+        var Username = $('#Username').val();
+        var Address = $('#Address').val();
+        var MobileNo = $('#MobileNo').val();
+        var Emailid = $('#EmailId').val();
+        var RegionId = $('#RegionList_Id').val();
+        var Branch = $('#Branch').val();
+        var branchlist = $('#BranchList_Id').val();
+        var DepList = $('#DepartmentList_Id').val();
+        var RoleList = $('#RoleList_Id').val();
+        var Password = $('#password').val();
+        var ConPassword = $('#Conpassword').val();
+        if (Userid == "") {
+          //$('#UserIdError').show();
+          swal("Please Enter User ID");
+          return false; 
+        }
+        else if(Username == "") {
+          //$('#UsernameError').show();
+          swal("Please Enter User Name");
+          return false; 
+        }
+        else if(Address == "") {
+          //$('#AddressError').show();
+          swal("Please Enter Address");
+          return false; 
+        }
+        else if(MobileNo == "") {
+          //$('#MobileNoError').show();
+          swal("Please Enter MobileNo");
+          return false; 
+        }
+        else if(Emailid == "") {
+          //$('#EmailIdError').show();
+          swal("Please Enter Email ID");
+          return false; 
+        }
+        else if(RegionId == "") {
+          //$('#RegionError').show();
+          swal("Please Enter Region");
+          return false; 
+        }
+        else if(Branch == "") {
+          //$('#BranchidError').show();
+          swal("Please Enter Branch");
+          return false; 
+        }
+        else if(branchlist == "") {
+          //$('#BranchError').show();
+          swal("Please Enter Branch");
+          return false; 
+        }
+        else if(DepList == "") {
+          //$('#DepError').show();
+          swal("Please Enter Department");
+          return false; 
+        }
+        else if(RoleList == "") {
+          //$('#RoleError').show();
+          swal("Please Enter Role");
+          return false; 
+        }
+        else if(Password == "") {
+          //$('#PasswordError').show();
+          swal("Please Enter Password");
+          return false; 
+        }
+        else if(ConPassword == "") {
+         // $('#ConPassError').show();
+         swal("Please Enter Confirm Password");
+          return false; 
+        }
+        
+      });
+    });
+
+</script>
+<script>
+    function QEMobileAuth() {
+        debugger;
+        $("#DigiCerti").html("<div style='position: fixed;z-index: 5000;float: left;right: 50%;height: 50px;width: 50px;top:40%;'><i class='fa fa-pulse fa-fw dgldr ldrdesign' style='height:70px;width:70px;border-radius:50%;border-bottom:5px dotted grey;border-top:5px dotted black;border-right:5px dotted black;border-left:5px dotted black;height:80px;width:80px;position:absolute;margin: 20% 50%;'></i></div>");
+        $("#DigiCerti").show();
+        $("#DIGIbag").show();
+        if ($('#MobileNo').val() == '') {
+            swal("Enter Valid Mobile Number");
+            $('#QEEmailbaknew1').hide();
+            $('#DigiCerti').hide();
+            $('#DIGIbag').hide();
+        } else {
+            //$("body").css('overflow', 'auto');
+            $("#DigiCerti").hide();
+            $('#QEEmailbaknew1').show();
+            $('#QEMobileform').show();
+
+            $('#QEMobilecode').val($('#MobileNo').val());
+        }
+
+
+    }
+    function QEGetMobileOTP() {
+        debugger;
+        $("#DigiCerti").html("<div style='position: fixed;z-index: 5000;float: left;right: 50%;height: 50px;width: 50px;top:40%;'><i class='fa fa-pulse fa-fw dgldr ldrdesign' style='height:70px;width:70px;border-radius:50%;border-bottom:5px dotted grey;border-top:5px dotted black;border-right:5px dotted black;border-left:5px dotted black;height:80px;width:80px;position:absolute;margin: 20% 50%;'></i></div>");
+        $("#DigiCerti").show();
+        $("#DIGIbag").show();
+
+        var MobileNumber = $('#QEMobilecode').val();
+        $.ajax({
+            url: '/KYCQuickEnroll/QEMoblieOTPSend',
+            type: 'POST',
+            data: {
+                MobileNumber: MobileNumber
+            },
+            cache: false,
+            success: function (result) {
+                debugger;
+                $("#DigiCerti").hide();
+                $("#DIGIbag").hide();
+                if (result != null) {
+                    debugger;
+                    swal(result);
+                    $("#QEMobileGetOtp").html('RESEND OTP');
+                    $("#QEMobileGetOtp").prop('disabled', true);
+                    setTimeout(function () {
+                        $("#QEMobileGetOtp").prop('disabled', false); // enable the button after 5 seconds
+                    }, 10000);
+                } else {
+                    swal('OTP does not send.try again..');
+                }
+            }
+        });
+
+    }
+
+    function OTPQEMobileAuthenticate() {
+        debugger;
+        $("#DIGIbag").show();
+        var OTP = $('#QEMobileauth').val();
+        var MobileNumber = $('#QEMobilecode').val();
+        $(".hello").hide();
+        $(".hell").css("display", "block");
+        //swal("Authenticate Successfully... ");
+        $("#QEMobileform").hide();
+        $("#QEEmailbaknew1").css("display", "none");
+        $('#QEMobileauth').val('');
+        $("")
+        if (OTP == '') {
+            swal("Enter valid OTP...");
+            return false;
+        }
+        if (OTP.length > 6) {
+            swal("Enter 6 digit Valid OTP...");
+            $('#QEMobileauth').val('');
+
+            return false;
+        }
+        $.ajax({
+            //url: '/KYCQuickEnroll/OTPAutheticate',
+            url: '/KYCQuickEnroll/QEMobileOTPAuthenticate',
+            type: 'GET',
+            data: {
+                OTP: OTP,
+                MobileNumber: MobileNumber
+            },
+            cache: false,
+            success: function (result) {
+                debugger;
+                $("#DIGIbag").hide();
+                if (result == "Verified Successfully") {
+                    swal(result);
+                    $('#QEMobileNo').prop("readonly", "readonly");
+                    $("#DigiCerti").hide();
+                    $("#DIGIbag").hide();
+                    $('#Emailbaknew1').hide();
+                    $('#QEMobileform').hide();
+                    $('#EmailGetOtp').hide();
+                    //$('#QEisMobileVerify').show();
+                    $('#QEMobileVerify').show();
+                    $('#SaveQEData').prop('disabled', false);
+                    $('#QEAuthMobileGetOtp').hide();
+
+
+
+                } else {
+                    swal(result);
+                    $('#Emailbaknew1').hide();
+                    $('#emailauth').val('');
+                    $('#QEMobileVerify').hide();
+                    $('#QEisMobileVerify').hide();
+                    $('#QEAuthMobileGetOtp').show();
+                }
+
+            }
+        });
+
+    }
+    function closeQEMobile() {
+        $("#DigiCerti").hide();
+        $("#DIGIbag").hide();
+        $('#QEMobileform').hide();
+
+    }
+</script>
+<script>
+    function Show() {
+        debugger;
+        $("#DigiCerti").html("<div style='position: fixed;z-index: 5000;float: left;right: 50%;height: 50px;width: 50px;top:40%;'><img class='ajax-loader' src='../Images/loader/Dual Ring-1s-200px.gif' height='60px' width='60px' align='middle' alt='ajaxloadergif' /></div>");
+        $("#DigiCerti").show();
+        $.ajax({
+            url: '/AdminLogin/AddUserGrid',
+            type: 'GET',
+            cache: false,
+            success: function (result) {
+                debugger;
+                $('#NewUser1').html(result);
+            }
+        });
+        //window.location.href = '/AdminLogin/AddUserGrid' ;
+    }
+</script>
+<script type="text/javascript">
+    $(function () {
+        $("#RegionList_Id").change(function () {
+            if ($("#RegionList_Id").val() != "") {
+                $.ajax({
+                    url: '/UserLogin/GetBranchDetails?RegionList=' + $('#RegionList_Id').val(),
+                    type: 'GET',
+                    success: function (data) {
+                        debugger;
+                        $("#BranchList_Id").empty();
+                        var items = '<option value=' + '' + '>--Select--</option>';
+                        $.each(data, function (i, branch) {
+                            items += "<option value='" + branch.Value + "'>" + branch.Text + "</option>";
+                            var a = branch.Text;
+                        });
+                        $('#BranchList_Id').html(items);
+                    }
+                });
+            }
+        });
+    });
+    $(function () {
+        $("#BranchList_Id").change(function () {
+            if ($("#BranchList_Id").val() != "") {
+                $.ajax({
+                    url: '/UserLogin/GetDepartmentDetails?BranchList=' + $('#BranchList_Id').val(),
+                    type: 'GET',
+                    success: function (data) {
+                        debugger;
+                        $("#DepartmentList_Id").empty();
+                        var items = '<option value=' + '' + '>--Select--</option>';
+                        $.each(data, function (i, department) {
+                            items += "<option value='" + department.Value + "'>" + department.Text + "</option>";
+                            var a = department.Text;
+                        });
+                        $('#DepartmentList_Id').html(items);
+                    }
+                });
+            }
+        });
+    });
+    $(function () {
+        $("#DepartmentList_Id").change(function () {
+            if ($("#DepartmentList_Id").val() != "") {
+                $.ajax({
+                    url: '/UserLogin/GetUserRoleDetails?DepartmentList=' + $('#DepartmentList_Id').val(),
+                    type: 'GET',
+                    success: function (data) {
+                        debugger;
+                        $("#RoleList_Id").empty();
+                        var items = '<option value=' + '' + '>--Select--</option>';
+                        $.each(data, function (i, role) {
+                            items += "<option value='" + role.Value + "'>" + role.Text + "</option>";
+                            var a = role.Text;
+                        });
+                        $('#RoleList_Id').html(items);
+                    }
+                });
+            }
+        });
+    });
+</script>
+<script>
+    function ShowPass() {
+        debugger
+      var x = document.getElementById("password");
+      if (x.type === "password") {
+          $("#init_eye").removeClass("fa-eye-slash");
+          $("#init_eye").addClass("fa fa-fw fa-eye field-icon toggle-password");
+        x.type = "text";
+      } else {
+          $("#init_eye").removeClass("fa fa-fw fa-eye field-icon toggle-password");
+          $("#init_eye").addClass("fa-eye-slash");
+        x.type = "password";
+      }
+    }
+</script>
+<script>
+    function ShowConPass() {
+        debugger;
+      var x = document.getElementById("Conpassword");
+      if (x.type === "password") {
+          $("#init_eye2").removeClass("fa-eye-slash");
+          $("#init_eye2").addClass("fa fa-fw fa-eye field-icon toggle-password");
+        x.type = "text";
+      } else {
+          $("#init_eye2").removeClass("fa fa-fw fa-eye field-icon toggle-password");
+          $("#init_eye2").addClass("fa-eye-slash");
+        x.type = "password";
+      }
+    }
+</script>
+<script>
+    function Show() {
+        debugger;
+        $("#DigiCerti").html("<div style='position: fixed;z-index: 5000;float: left;right: 50%;height: 50px;width: 50px;top:40%;'><img class='ajax-loader' src='../Images/loader/Dual Ring-1s-200px.gif' height='60px' width='60px' align='middle' alt='ajaxloadergif' /></div>");
+        $("#DigiCerti").show();
+        $.ajax({
+            url: '/AdminLogin/AddUserGrid',
+            type: 'GET',
+            cache: false,
+            success: function (result) {
+                debugger;
+                $('#NewUser1').html(result);
+            }
+        });
+        //window.location.href = '/AdminLogin/AddUserGrid' ;
+    }
+</script>
+<script>
+    function IndoUserBackToMainpage() {
+        debugger;
+        window.location.href = "/AdminDashBoardNew/IndoFinAdminDashBoard";
+    }
+</script>
+
+ <section id="dashboard-menu" style="padding:0!important">
+        <div class="dashboard-menu">
+            <div class="" id="navbarSupportedContent" style="font-size: 15px;display: flex;align-items: center;padding: 12px;">
+                <div class="container-fluid">
+                   <h3 style="color:#fff;font-size:20px;margin-bottom: 0;">Dashboard</h3>
+                </div>
+                <div style="display: flex;flex-direction: row;">
+                    <a class="init_href" style="" href="#" onclick="Home()">Home</a>
+                    <a class="init_href" style="margin-left: 15px;" href="#" onclick="LogOut()">Logout</a>
+                </div>
+            </div>
+        </div>
+    </section>
+@using (Html.BeginForm("AddNewUser", "AdminLogin", FormMethod.Post, new { id = "Adduserform" }))
+{
+    @Html.AntiForgeryToken()
+    ;
+
+
+
+    <div id="adduserdetails" class="digitalcertifiicate">
+        <div class="ckychd1">
+            <div class="ckyctxt">User Creation</div>
+        </div>
+        <div class="ehitbg3">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 fltleft" style="padding-top: 1%;">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 col-lg-4 ">
+                    <label class="control-label12">User Id</label>
+                    <span class="validation_sign addcatnamval" style="width:1%;float:right">*</span>
+                </div>
+                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 col-lg-6addfirst fltleft1">
+                    @Html.TextBoxFor(model => model.UserId, new { @id = "UserId", @class = "form-control2" })
+                    @Html.ValidationMessageFor(model => model.UserId, "", new { @class = "text-danger validation " })
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 fltleft" style="padding-top: 1%;">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+                    <label class="control-label12">User Name </label>
+                    <span class="validation_sign addcatnamval" style="width:1%;float:right">*</span>
+                </div>
+                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 col-lg-6add fltleft1">
+                    @Html.TextBoxFor(model => model.Username, new { @id = "Username", @class = "form-control2" })
+                    @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger validation " })
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 fltleft" style="padding-top: 1%;">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+                    <label class="control-label12">Address</label>
+                     <span class="validation_sign addcatnamval" style="width:1%;float:right">*</span> 
+                </div>
+                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 col-lg-6add fltleft1">
+                    @Html.TextBoxFor(model => model.Address, new { @id = "Address", @class = "form-control2" })
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 fltleft" style="padding-top: 1%; clear:both">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+                    <label class="control-label12">MobileNo</label>
+                     <span class="validation_sign addcatnamval" style="width:1%;float:right">*</span>
+                </div>
+                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 col-lg-6add fltleft1">
+                    @Html.TextBoxFor(model => model.MobileNo, new { @id = "MobileNo", @class = "form-control2" })
+                    @Html.ValidationMessageFor(model => model.MobileNo, "", new { @class = " col-sx-6 text-danger validation " })
+                    <div id="savebtn1" class=" col-lg-6 col-md-12 col-sm-12 col-xs-12 flt_lft  pdfil12 pdquick" style="padding-left:0px;padding-right:0px;display:none;">
+                        <button type="button" onclick="QEMobileAuth()" class="btn btn-primary get1 right1 hello real" id="QEAuthMobileGetOtp" style="width: 241px;margin-left: 0px;">
+                            Verify Mobile No.
+                        </button>
+
+                        <label id="QEisMobileVerify" style="float:left;padding-right:10px;display:none" class="hell real"><input type="checkbox" class="largerCheckbox" id="QEMobileVerify" checked="checked" readonly="readonly" />Mobile Verified</label>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 fltleft" style="padding-top: 1%;">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12  ">
+                    <label class="control-label12">EmailId  </label>
+                    <span class="validation_sign addcatnamval" style="width:1%;float:right">*</span>
+                </div>
+                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 fltleft1">
+                    @Html.TextBoxFor(model => model.EmailId, new { @id = "EmailId", @class = "form-control2" })
+                    @Html.ValidationMessageFor(model => model.EmailId, "", new { @class = " col-sx-6 text-danger validation " })
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 fltleft" style="padding-top: 1%;">
+
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+
+                    <label class="control-label12">Region</label>
+                     <span class="validation_sign addcatnamval" style="width:1%;float:right">*</span> 
+                </div>
+                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 fltleft1">
+                    @Html.DropDownListFor(model => model.RegionList, (IEnumerable <SelectListItem>)ViewBag.Region /*as SelectList*/,  new { @placeholder = "Please select Region", @id = "RegionList_Id", @class = "form-control form-control-lg rounded-0" })
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 fltleft" style="padding-top: 1%;clear:both">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+                    <label class="control-label12">Branch</label>
+                     <span class="validation_sign addcatnamval" style="width:1%;float:right">*</span> 
+                </div>
+                @if (ViewBag.isbankadmin == "True")
+                {
+                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 fltleft1">
+                        @Html.TextBoxFor(model => model.Branch, new { @id = "Branch",@class = "form-control2" })
+                        @Html.ValidationMessageFor(model => model.Branch, "", new { @class = " col-sx-6 text-danger validation " })
+                    </div>
+                }
+                else
+                {
+                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 fltleft1">
+                        @Html.DropDownListFor(model => model.BranchList,(IEnumerable <SelectListItem>) ViewBag.Branch /*as SelectList*/, "--Select--", new { @placeholder = "Please select Branch", @id = "BranchList_Id", @class = "form-control form-control-lg rounded-0" })
+
+                    </div>
+                }
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 fltleft" style="padding-top: 1%;">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+                    <label class="control-label12">Department</label>
+                     <span class="validation_sign addcatnamval" style="width:1%;float:right">*</span> 
+                </div>
+                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 fltleft1">
+                    @Html.DropDownListFor(model => model.DepartmentList,(IEnumerable <SelectListItem>) ViewBag.Department /*as SelectList*/,  new { @placeholder = "Please select Department", @id = "DepartmentList_Id", @class = "form-control form-control-lg rounded-0" })
+                    @Html.ValidationMessageFor(model => model.DepartmentList, "", new { @class = " col-sx-6 text-danger validation " })
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 fltleft" style="padding-top: 1%;">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+                    <label class="control-label12">Role</label>
+                     <span class="validation_sign addcatnamval" style="width:1%;float:right">*</span> 
+                </div>
+                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 fltleft1">
+                    @Html.DropDownListFor(model => model.RoleList, (IEnumerable <SelectListItem>)ViewBag.Role /*as SelectList*/,  new { @placeholder = "Please select Role", @id = "RoleList_Id", @class = "form-control form-control-lg rounded-0" })
+                    @Html.ValidationMessageFor(model => model.RoleList, "", new { @class = " col-sx-6 text-danger validation " })
+                </div>
+            </div>
+            
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 fltleft" style="padding-top: 1%; clear:both">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 pd_lft0">
+                    <label for="model.Password" class="control-label12">Password </label>
+                    <span class="validation_sign addcatnamval" style="width:1%;float:right">*</span> 
+                </div>
+                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 fltleft1">
+                    @Html.TextBoxFor(model => model.Password, new { @type = "password", @id = "password", @class = "form-control2 flt_lft", @maxlength = "8"})
+                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = " col-sx-6 text-danger validation " })
+                    @*<input type="checkbox" onclick="ShowPass()">Show Password*@
+                    <i class="fa-solid fa-eye-slash eyeIcon" id="init_eye" onclick="ShowPass()"></i>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 fltleft" style="padding-top: 1%;">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+                    <label for="ConfirmPassword" class="control-label12">confirm Password</label>
+                    <span class="validation_sign addcatnamval" style="width:1%;float:right;">*</span> 
+                </div>
+                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 fltleft1">
+                    @Html.TextBoxFor(model => model.ConfirmPassword, new { @type = "password", @id = "Conpassword", @class = "form-control2 flt_lft",@maxlength = "8" })
+                    @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger validation" })
+                    @*<input type="checkbox" onclick="ShowConPass()">Show Password*@
+                     <i class="fa-solid fa-eye-slash eyeIcon" id="init_eye2" onclick="ShowConPass()"></i>
+                </div>
+            </div>
+
+
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 fltleft" style="padding-top: 1%;">
+                <div class="col-lg-4 pddng0 passwordbtn btnrow" style="padding-top: 1%;padding-left: 5px;">
+                    <input type="submit" value="Submit" id="btnnext" @*onclick="Setpassword(this)"*@ class="catgrybtnadd btnnext1" style="padding: 7px 10px;" />
+                </div>
+                <div class="col-lg-4 pddng0 passwordbtn btnrow" style="padding-top: 1%;">
+                    <input type="button" value="ShowGrid" id="btnshowgrid" onclick="Show()" class="catgrybtnadd btnnext1" style="padding: 7px 10px;" />
+                </div>
+                <div class="col-lg-4 pddng0 passwordbtn btnrow" style="padding-top: 1%;">
+                    <input type="button" value="Back" id="btnIndoUserMainPage" onclick="IndoUserBackToMainpage()" style="float: right;margin-right: 7%;padding: 7px 10px;margin: 0;" />
+                </div>
+            </div>
+
+            
+            
+           
+        </div>
+        <div class="pddngaddbtn1">
+        </div>
+        </div>
+
+    <div id="NewUser1"></div>
+
+}
+
+<div id="QEMobileform" class="seconddialognew fadeInDown animated wow cqepopupmn">
+    <div class="form-header goipopuphead form_header tocheck" style="background-color: #bf5252 ;display: flex;justify-content: space-around;align-items: center;flex-wrap: nowrap;position: relative;">
+        <div class="pan-header cqeotp" style="text-align:center!important; color: white;padding: 6px 0px 6px 0px;">OTP VERIFICATION MOBILE</div>
+        <img src="~/Content/imgs/icons/Red-Close-Button.png" style=" height:20px;width:20px;position: absolute;right: 15px;" onclick="closeQEMobile()" class="">
+    </div>
+    <div style="margin-top:2.8%;">
+        <div class=" col-lg-12 col-md-12 col-sm-12 cqedivpup" style="display: flex;">
+            <div class="col-lg-9 col-md-8 pd0 cqein" style="margin-bottom:1%">
+                <div class="md-form">
+                    @*<label style="" for="QEMobilecode" id="Mobileotp" class="label_val fontpfhndr active">MOBILE NUMBER</label>*@
+                    <input type="text" id="QEMobilecode" class="form-control border_rd pdlftr8user" readonly="readonly" placeholder="Enter Mobile No." />
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 cqebtnw" style="padding-right: 0px;padding-left: 0px;">
+                <button type="button" onclick="QEGetMobileOTP()" class="btn btn-primary get1 cqepopup" id="QEMobileGetOtp">&nbsp;&nbsp;GET OTP&nbsp;&nbsp;</button>
+            </div>
+        </div>
+        <div class="col-lg-12 col-sm-12 cqedivpup" style="display: flex;margin-bottom:10px;">
+            <div class="col-lg-9 col-md-8 pd0 cqein" style="margin-bottom:1%">
+                <div class="md-form" style="">
+                    @*<label style="" for="QEMobileauth" class="label_val fontpfhndr">OTP</label>*@
+                    <input type="text" id="QEMobileauth" class="form-control border_rd pdlftr8user" placeholder="Enter OTP" maxlength="6" style="" />
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-4 auth1 cqebtnw" style="padding-right: 0px;padding-left: 0px;">
+                <button type="button" id="MobileAuthOtp" class="btn btn-primary get1 cqepopup" onclick="OTPQEMobileAuthenticate()">AUTHENTICATE</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="blackbg2"></div>
+<div id="DIGIbag"></div>
+<div id="Emailbak"></div>

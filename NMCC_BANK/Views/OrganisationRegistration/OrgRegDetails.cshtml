@@ -1,0 +1,414 @@
+﻿@model INDO_FIN_NET.Models.OrganisationReg
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    //Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+
+    @* <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link href="~/Content/Style.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery.min.js"></script>
+    <meta name="viewport" content="width=device-width" />*@
+
+
+
+    <script type="text/javascript">
+        function Submitpage() {
+            //alert("hee");
+            debugger;
+
+            var formData = new FormData();
+
+            formData.append("OrganizationName", $("#OrganizationName").val());
+            formData.append("OrganizationLogo", $("#fileInput").val());
+            formData.append("ContactPerEmailId", $("#OrgEmail").val());
+            formData.append("Fname", $("#fname").val());
+            formData.append("mname", $("#mname").val());
+            formData.append("Lname", $("#lname").val());
+            formData.append("FaxNo", $("#OrgFax").val());
+            formData.append("OrgDescription", $("#OrgDescription").val());
+            formData.append("AdminUserName", $("#adminuser").val());
+            formData.append("ContactPerMobNo", $("#custmobile").val());
+            formData.append("HOadddress", $("#hoaddress").val());
+            formData.append("Password", $("#password").val());
+            formData.append("ConfirmPassword", $("#conpass").val());
+
+            debugger;
+            $.ajax({
+                url: '/OrganisationRegistration/OrgRegDetails',
+                type: 'POST',
+                data: formData,
+                dataType: 'json',
+                contentType: false,
+                processData: false,
+                success: function (result) {
+                    debugger;
+                    if (result == "Organisation Register successfully") {
+                        alert("Organisation Register successfully");
+                        window.location.href = "/OrganisationRegisteration/OrganisationRegisteration";
+
+                    }
+                    else if (result == "Organisation Already Register") {
+                        alert("Organisation Already Registered");
+
+                        //swal({
+                        //    title: 'Organisation Already Registered',
+                        //    text: "I will close in 4 seconds.",
+                        //    timer: 10000,
+                        //    showConfirmButton: false,
+                        //});
+                        window.location.href = "/OrganisationRegisteration/OrganisationRegisteration";
+                    }
+                }
+            })
+
+        };
+    </script>
+
+    <script>
+        //function BrowseLogoImg() {
+        //    debugger;
+        //    var fuData = document.getElementById("fileInput");
+        //    var FileUploadPath = fuData.value;
+        //    var Extension = FileUploadPath.substring(
+        //        FileUploadPath.lastIndexOf('.') + 1).toLowerCase();
+        //    if (Extension == "png" || Extension == "jpeg" || Extension == "jpg") {
+
+        //        var FileSize = document.getElementById("fileInput").files[0].size / 1024 / 1024; // in MB
+        //        if (FileSize > 2) {
+        //            swal.fire('File size exceeds 2 MB');
+        //        }
+
+        //        var formData = new FormData();
+        //        var totalFiles = document.getElementById("fileInput").files.length;
+        //        var file = document.getElementById("fileInput").files[0];
+        //        formData.append("fileInput", file);
+        //        $.ajax({
+        //            url: '/OrganisationRegisteration/BrowseLogoImage',
+        //            type: 'POST',
+        //            data: formData,
+        //            dataType: 'json',
+        //            contentType: false,
+        //            processData: false,
+        //            success: function (result) {
+        //                debugger;
+
+        //                alert("image uploaded");
+
+        //            }
+        //        });
+        //    }
+        //    else {
+
+        //        swal.fire("Allows only PNG, JPG and JPEG type of Images");
+        //        $("fileInput").val("");
+        //    }
+        //}
+    </script>
+    <script>
+        //function OrgBackpage() {
+        //    debugger;
+        //    window.location.href = "/DigitalSignWithOtpAndAadhaar/HomePage";
+        //}
+    </script>
+
+    <script type="text/javascript">
+        //function Check() {
+
+        //    debugger;
+        //    var text = document.getElementById('fname').value;
+        //    var text1 = document.getElementById('lname').value;
+        //    var text2 = document.getElementById('OrgName').value
+        //    if ($('#fname').val() != null && $('#lname').val() != null && $('#OrgName').val() != null) {
+        //        $('#adminuser').val(text + '.' + text1 + '@@' + text2 + '.com');
+
+        //    }
+
+        //}
+    </script>
+
+    <style>
+
+        .register {
+            background: -webkit-linear-gradient(left, #3931af, #00c6ff);
+            margin-top: 3%;
+            padding: 3%;
+        }
+
+        .register-heading {
+            text-align: center;
+            margin-top: 8%;
+            margin-bottom: -15%;
+            color: #495057;
+            margin-left: 228px;
+            font-weight: 900;
+            font-size: 25px;
+        }
+
+        /*.register .nav-tabs {
+                            margin-top: 3%;
+                            border: none;
+                            background: #0062cc;
+                            border-radius: 1.5rem;
+                            width: 28%;
+                            float: right;
+                        }*/
+
+        .register .register-form {
+            padding: 10%;
+            margin-top: 10%;
+        }
+
+        .register-right {
+            background: #f8f9fa;
+            border-top-left-radius: 10% 50%;
+            border-bottom-left-radius: 10% 50%;
+            float: right;
+        }
+
+
+        .register-left input {
+            border: none;
+            border-radius: 1.5rem;
+            padding: 2%;
+            width: 60%;
+            background: #f8f9fa;
+            font-weight: bold;
+            color: #383d41;
+            margin-top: 30%;
+            margin-bottom: 3%;
+            cursor: pointer;
+        }
+
+        .btnRegister1 {
+            float: right;
+            border: none;
+            padding: 2%;
+            background: #0062cc;
+            color: #fff;
+            font-weight: 600;
+            width: 50%;
+            cursor: pointer;
+            outline: 0
+        }
+
+        .btnRegister {
+            float: left;
+            margin-top: 4%;
+            /*margin-left: 20%;*/
+            border: none;
+            padding: 2%;
+            background: #0062cc;
+            color: #fff;
+            font-weight: 600;
+            width: 46%;
+            cursor: pointer;
+            outline: 0
+        }
+
+
+        /*label {
+                            display: inline-block;
+                            max-width: 100%;
+                            margin-bottom: 5px;
+                            font-weight: 700;
+                        }*/
+    </style>
+
+    <script>
+        function BrowseLogoImg() {
+            debugger;
+            var fuData = document.getElementById("fileInput");
+            var FileUploadPath = fuData.value;
+            var Extension = FileUploadPath.substring(
+                FileUploadPath.lastIndexOf('.') + 1).toLowerCase();
+            if (Extension == "png" || Extension == "jpeg" || Extension == "jpg") {
+
+                //var FileSize = document.getElementById("fileInput").files[0].size / 1024 / 1024; // in MB
+                //if (FileSize > 2) {
+                //    swal.fire('File size exceeds 2 MB');
+                //}
+
+                var formData = new FormData();
+                var totalFiles = document.getElementById("fileInput").files.length;
+                var file = document.getElementById("fileInput").files[0];
+                formData.append("fileInput", file);
+                $.ajax({
+                    url: '/OrganisationRegistration/BrowseLogoImage',
+                    type: 'POST',
+                    data: formData,
+                    dataType: 'json',
+                    contentType: false,
+                    processData: false,
+                    success: function (result) {
+                        debugger;
+
+                        alert("image uploaded");
+
+                    }
+                });
+            }
+            else {
+                swal.fire("Allows only PNG, JPG and JPEG type of Images");
+                $("fileInput").val("");
+            }
+        }
+
+    </script>
+
+
+</head>
+<body>
+
+
+    @using (Html.BeginForm("OrgRegDetails", "OrganisationRegistration", FormMethod.Post, new { id = "orgform" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="container register">
+            <div class="col-md-9 register-right">
+                <div class="row">
+                    <h2 class="register-heading">Organization Registration Details</h2>
+                </div>
+
+                <div class="row register-form ">
+                    <div class="col-md-6">
+                        @*<div class="col-xl-12   paddingleftCaf equalSpace">
+                            @Html.LabelFor(m => m.OrganizationName)
+                            @Html.DropDownListFor(model => model.OrganizationName, (IEnumerable<SelectListItem>)ViewBag.OrgName, "--Select--", new
+                        {
+                        @id = "Org_Name",
+                        @class = "form-control DigiSelectwidth"})
+                            @Html.ValidationMessageFor(model => model.OrganizationName, "", new { @class = "text-danger" })
+                        </div>*@
+                        <div class="col-xl-1 paddingleftCaf equalSpace">
+                            <label>Organization Name<span style="color:red">*</span></label>
+                        </div>
+                        <div class="col-xl-2   paddingleftCaf equalSpace">
+                            @Html.DropDownListFor(model => model.OrganizationName, (IEnumerable <SelectListItem>) ViewBag.OrgName, "--Select--", new
+                        {
+                        @id = "OrganizationName",
+                        @class = "form-control DigiSelectwidth inputsectbx"@*, @maxlength = 50*@})
+                            @Html.ValidationMessageFor(model => model.OrganizationName, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.OrganizationLogo)
+                            <input type="file" class="upload_filein nmneeupldinpt" name="UploadprfOfId" id="fileInput" onchange="BrowseLogoImg()"; data-val="true">
+                            @* @Html.TextBoxFor(m => m.Organisation_logo, new { id = "Logo", @class = "form-control" })*@
+                        </div>
+
+
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.ContactPerEmailId)
+                            @Html.TextBoxFor(m => m.ContactPerEmailId, new { id = "OrgEmail", @class = "form-control input100" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.FaxNo)
+                            @Html.TextBoxFor(m => m.FaxNo, new { id = "OrgFax", @class = "form-control input100" })
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Fname)
+                            @Html.TextBoxFor(m => m.Fname, new { id = "fname", @class = "form-control input100" })
+                            @Html.ValidationMessageFor(model => model.Fname, "", new { @class = "text-danger validation" })
+
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.mname)
+                            @Html.TextBoxFor(m => m.mname, new { id = "mname", @class = "form-control input100" })
+
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Lname)
+                            @Html.TextBoxFor(m => m.Lname, new { id = "lname", @class = "form-control input100", /*@onchange = "Check()"*/ })
+                            @Html.ValidationMessageFor(model => model.Lname, "", new { @class = "text-danger validation" })
+
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+
+                            @Html.LabelFor(m => m.OrgDescription)
+
+                            @Html.TextBoxFor(m => m.OrgDescription, new { id = "OrgDescription", @class = "form-control input100" })
+
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.AdminUserName)
+                            @Html.TextBoxFor(m => m.AdminUserName, new { id = "adminuser", @class = "form-control input100"})   @*onchange = "myFunction(this.value)" })*@
+                        </div>
+                        <div class="form-group">
+
+                            @Html.LabelFor(m => m.ContactPerMobNo)
+
+                            @Html.TextBoxFor(m => m.ContactPerMobNo, new { id = "custmobile", @class = "form-control input100" })
+
+                        </div>
+                        <div class="form-group">
+
+                            @Html.LabelFor(m => m.HOadddress)
+
+                            @Html.TextBoxFor(m => m.HOadddress, new { id = "hoaddress", @class = "form-control input100" })
+
+                        </div>
+                        <div class="form-group">
+
+                            @Html.LabelFor(m => m.Password)
+
+
+                            @Html.EditorFor(model => model.Password, new { htmlAttributes = new {id="password", @class = "form-control border_rd pdlftr8user text-box single-line",
+                        style = " ",
+                        @type = "password"
+                        } })
+                            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+
+                        </div>
+                        <div class="form-group">
+
+                            @Html.LabelFor(m => m.ConfirmPassword)
+
+
+                            @Html.EditorFor(model => model.ConfirmPassword, new { htmlAttributes = new {id="conpass", @class = "form-control border_rd pdlftr8user text-box single-line",
+                        style = " ",
+
+                        @type = "password"
+                        } })
+                            @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
+
+                        </div>
+                        <div class="col-lg-12">
+                            <input type="submit" value="Submit" class="btnRegister1" @*id="BtnOtp"*@ onclick="Submitpage(this)" />
+
+                            <input type="button" value="Back" id="Btnorgpageback" onclick="OrgBackpage()" style="margin-top: 0.5%;" />
+
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+    }
+
+
+</body>
+</html>

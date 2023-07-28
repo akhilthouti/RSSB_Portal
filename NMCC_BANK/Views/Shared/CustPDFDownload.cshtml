@@ -1,0 +1,1026 @@
+﻿@model INDO_FIN_NET.Models.clsCustAadharDataA
+
+@{
+    ViewBag.Title = "CustPDFDownload";
+    Layout = null;
+}
+
+<html>
+<head>
+    @*@if (Model.Photo != null && Model.Photo != ".pdf")
+        {
+            <div style="font-size:15px; page-break-before:always;">
+                <img src="data:image/png;base64,@Model.Photo" />
+            </div>
+        }*@
+    <link href="~/Content/PDF/PDF.css" rel="stylesheet" />
+    @*@Styles.Render("~/bundles/Navidation")*@
+   
+    @*@Styles.Render("~/bundles/LayoutCss")*@
+    @*@Scripts.Render("~/bundles/SweetAlertJs")*@
+    @*@Styles.Render("~/bundles/css")*@
+    <style>
+
+        table.ex1 {
+            empty-cells: hide;
+        }
+
+        table.ex2 {
+            empty-cells: show;
+        }
+
+        /*.approve_popup {
+            position: fixed !important;
+            z-index: 999 !important;
+            background-color: #f9f7f7 !important;
+            top: 4% !important;
+            width: 32% !important;
+            margin: 8% 8%;
+            padding: 0px 7px;
+            border-radius: 4px;
+        }*/
+
+        .pad_o {
+            padding: 4px 0px;
+        }
+
+        .bbnew {
+            width: 33px !important;
+            text-align: center !important;
+            margin-left: -5px !important;
+            text-transform: uppercase !important;
+            border-color: #000 !important;
+            height: 25px !important;
+            border-width: 1px !important;
+            border-image-width: 0px !important;
+            border: 1px solid #000 !important;
+            padding-right: 6px !important;
+        }
+
+        .bralltxt {
+            width: 40%;
+            color: #000;
+            /* border: none; */
+            border-bottom: 1px solid #757474;
+            border: 1px solid #ccc;
+            border-left: none;
+            border-top: none;
+            border-right: none;
+        }
+        
+
+        .dmtsctopfrm_tabel_row td {
+            padding-left: 1%;
+            padding-top: 0.6%;
+            padding-bottom: 0.6%;
+        }
+
+        .dmtsctopfrm_tabel_row {
+            width: 100%;
+            border: 1px solid #000;
+            border-collapse: collapse;
+        }
+        .flt_wdth {
+            float: left;
+            width: 100%;
+        }
+        .flt_none {
+            float: none !important;
+        }
+
+        .brall {
+            width: 100%;
+            /* border: none; */
+            border-bottom: 1px solid #757474;
+            border: 1px solid #ccc;
+            border-left: none;
+            border-top: none;
+            border-right: none;
+            color: #000;
+        }
+
+            .brall:focus {
+                width: 100%;
+                /* border: none; */
+                border-bottom: 1px solid #757474 !important;
+                border: 1px solid #ccc;
+                border-left: none !important;
+                border-top: none !important;
+                border-right: none !important;
+                color: #000;
+            }
+
+        .bralltxt {
+            width: 40%;
+            color: #000;
+            /* border: none; */
+            border-bottom: 1px solid #757474;
+            border: 1px solid #ccc;
+            border-left: none;
+            border-top: none;
+            border-right: none;
+        }
+
+        .toprightheadbox {
+            width: 41% !important;
+            margin-left: 13px;
+            font-size: 15px;
+            height: 34px !important;
+            border: 2px solid #4b514f !important;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body style="font-family:Arial;font-size:15px;">
+    @*@Html.ActionLink("KYCQuickEnroll", "downloadpdfWithoutSign")*@
+    <div class="start-pg1" style="page-break-after: always;font-size:15px;font-family:sans-serif,verdana;">
+
+        
+
+      <div style="width: 96%;border: 1px solid #ccc;margin: 0% 2%;float:left;padding: 1%;">
+
+    
+
+      
+        <div style="width:100%;float:left">
+            <div class="wdth60 AdharPdf" style="margin:0px;">
+
+                <img src="~/Content/imgs/Addudia.png" class="logopdf logoAdharPdf" />
+                @*<img src="~/Content/imgs/indofinnet_logo.png" class="logopdf" />*@
+
+
+            </div>
+
+            @*<div class="" style="width:39%;float:left;font-size:26px;margin-left:8%;letter-spacing: normal"><h3>Pdf for customer</h3></div>*@
+            @*<div class="" style="width:39%;font-size:26px;margin-left:-5%"><h3>The Cosmos CO-OP. BANK LTD.</h3></div>*@
+
+        </div>
+        <div style="width: 96%;margin: 0% 2%;float:left;/*padding: 1%;*/background:#D8D8D8">
+            <h4 class="headWordSpace" style="color:#107ff6; text-align:center;"> <u><strong>AADHAR EKYC VERIFICATION</strong> </u></h4>
+
+        </div>
+        <div style="width: 100%;margin: 1%;float:left;">
+            <div style="width: 50%;margin: 0% 0% 0% 4% ;float:left;  ">
+                @*<h5 style="margin: 1% 0% 0% 4%" class="headWordSpace"> For Bank use Only</h5>*@
+            </div>
+            <div style="width: 40%;
+    height: auto;
+    padding: 3% 2%;
+    margin: 1% 1% 1% 2%;
+    float: left;
+    border: 1px solid black;">
+                <div style="border-bottom:1px solid black;border-bottom: none; width:100%;">
+
+                    <div style="margin:1% 0% 0% 2%;">
+                        <table style="font-size:15px;">
+                            <tr>
+                                <td class="addharPadd ">
+                                    Aaadhar Number:
+                                </td>
+                                <td class="addharPadd paddLeftTd">
+                                    <input type="text" value="@Model.AadharNumber" class="brall flt_none" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="addharPadd">
+                                    QuickEnroll Number:
+                                </td>
+                                <td class="addharPadd paddLeftTd">
+                                    <input type="text" value="@Model.QuickEnrollNumber" class="brall flt_none" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="addharPadd">
+                                    Transaction date:
+                                </td>
+                                <td class="addharPadd paddLeftTd">
+                                    <input type="text" value="@DateTime.Now.ToString("dd/MM/yyyy")" class="brall flt_none" />
+                                    @*<input type="text" class="bralltxt" style="width:48%" value="@DateTime.Now.ToString("dd/MM/yyyy")" />*@
+
+                                </td>
+                            </tr>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+            <div style="margin: 0% 0% 0% 9%;float:left;">
+
+            </div>
+            <div class="" style="width:20%;margin: 0.5% 1% 1% 11%;float:right;">
+
+                <div class="" style="width:100%;margin: 1% 14% 1% 4%;
+    float: right;
+    border: 1px solid black; height:auto">
+                    <table>
+                        <tr>
+                            <td style="text-align:center"> Aaadhar Photo</td>
+                        </tr>
+                        <tr>
+
+                            <td class="camera-view" style="padding-left:16px">
+                                @if (Model.Photo != null)
+                                {
+                                    <img src="data:image/png;base64,@Model.Photo " id="Livephoto"  />
+                                    <br />
+                                    <br />
+                                }
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+            </div>
+           
+        </div>
+
+        <div style="width: 96%;margin: 0% 2%;float:left;/*padding: 1%;*/background:#D8D8D8;">
+            <h4 class="headWordSpace" style=" margin-left:2%;text-align:left;">
+                <strong>KYC Details </strong>
+            </h4>
+
+        </div>
+        <div style="width: 100%;margin: 0% 2% 3%;float:left;/*padding: 1%;*">
+            <table style="margin: 1% 0% 0% 2%;font-size:15px;">
+                <tr>
+                    <td class="nameTable">
+                        Name
+                    </td>
+                    <td colspan="3" class="nameTable paddLeftTd"> <input type="text" value="@Model.FullName " class="brall flt_none"> </td>
+                    @*<td>
+            &nbsp; &nbsp; &nbsp;
+            @if (Model.FullName != null)
+            {
+
+                foreach (char data in (Model.FullName.Length >= 48) ? Model.FullName.Substring(0, 48).PadRight(48, ' ') : Model.FullName.PadRight(Model.FullName.Length, ' '))
+                {
+                    <input type="text" value="@data" class="accNumber" />
+                }
+            } else
+            {
+                foreach (char data in "                      ")
+                {
+
+                }
+            }
+                    @*<input type="text" class="accNumber" />
+                    <input type="text" class="accNumber" />
+                    <input type="text" class="accNumber" />
+                    <input type="text" class="accNumber" />
+                    <input type="text" class="accNumber" />
+                    <input type="text" class="accNumber" />
+                    <input type="text" class="accNumber" />
+                    <input type="text" class="accNumber" />
+                    <input type="text" class="accNumber" />
+                    <input type="text" class="accNumber" />
+                    <input type="text" class="accNumber" />
+                    <input type="text" class="accNumber" />
+                    <input type="text" class="accNumber" />
+                    <input type="text" class="accNumber" />
+                    <input type="text" class="accNumber" />
+                    <input type="text" class="accNumber" />
+                    <input type="text" class="accNumber" />
+
+                        </td>*@
+                </tr>
+                <tr>
+                    <td class="nameTable">
+                        DOB
+                    </td>
+                    <td class="paddLeftTd">
+                        &nbsp;
+
+                        @if (Model.Day == null)
+                        {
+                            foreach (char data in "")
+                            {
+                                <input type="text" class="accNumber" value="@data">
+
+                            }
+                        }
+
+
+                        else
+                        {
+                            foreach (char data in Model.Day)
+                            {
+                                <input type="text" class="accNumber" value="@data" />
+
+                            }
+                        }
+                        <span class="accNumber" style="padding:3px;">/</span>
+                        @if (Model.Month == null)
+                        {
+                            foreach (char data in " ")
+                            {
+                                <input type="text" class="accNumber" value="@data" />
+
+                            }
+                        }
+                        else
+                        {
+                            foreach (char data in Model.Month)
+                            {
+                                <input type="text" class="accNumber" value="@data" />
+                            }
+                        }
+                        <span class="accNumber" style="padding:3px;">/</span>
+                        @if (Model.Year == null)
+                        {
+                            foreach (char data in " ")
+                            {
+                                <input type="text" value='@data' class="accNumber" />
+                            }
+                        }
+                        else
+                        {
+
+                            //a = a.PadRight(3, ' ');
+                            foreach (char data in Model.Year)
+                            {
+                                <input type="text" value='@data' class="accNumber" />
+                            }
+                        }
+
+                    </td>
+
+                </tr>
+                <tr>
+                    <td class="nameTable">
+                        Gender
+                    </td>
+
+                    @if (Model.gender == "M")
+                    {
+                        <td width="100%" class="pad_o nameTable paddLeftTd" colspan="2">
+                            Male
+                        </td>
+                    }
+                    else
+                    {
+                        <td width="100%" class="pad_o nameTable  paddLeftTd" colspan="2">
+                            Female
+                        </td>
+                    }
+                    @*@if (Model.gender == "M")
+            {
+                <td>
+                    &nbsp; &nbsp; &nbsp;
+                    <input type="text" class="accNumber" value="M">
+                    <input type="text" class="accNumber" value="A">
+                    <input type="text" class="accNumber" value="L">
+                    <input type="text" class="accNumber" value="E">
+
+
+
+                </td>
+            }
+            else
+            {
+                <td>
+                    &nbsp; &nbsp; &nbsp;
+                    <input type="text" class="accNumber" vlaue="F">
+                    <input type="text" class="accNumber" value="E">
+                    <input type="text" class="accNumber" value="M">
+                    <input type="text" class="accNumber" value="A">
+                    <input type="text" class="accNumber" value="L">
+                    <input type="text" class="accNumber" value="E">
+
+
+                </td>
+            }*@
+                </tr>
+
+                <tr>
+                    <td class="nameTable">
+                        House
+                    </td>
+                    <td width="100%" class="pad_o nameTable paddLeftTd" colspan="3"> <input type="text" value="@Model.House" class="brall flt_none" /></td>
+
+                </tr>
+                <tr>
+                    <td class="nameTable">
+                        Street
+                    </td>
+                    <td width="100%" class="pad_o nameTable paddLeftTd" colspan="3">
+                        <input type="text" value="@Model.street" class="brall flt_none" />
+                    </td>
+
+                </tr>
+                <tr>
+                    <td class="nameTable">
+                        Locality
+                    </td>
+                    <td width="100%" class="pad_o nameTable paddLeftTd" colspan="3"> <input type="text" value="@Model.Locality" class="brall flt_none" /></td>
+
+                </tr>
+                @*<tr>
+            <td class="nameTable">
+                Aadhar Number
+            </td>
+            <td width="120" class="pad_o nameTable" colspan="3">
+                <input type="text" value="@Model.AadharNumber" class="brall flt_none" />
+            </td>
+
+        </tr>*@
+
+                <tr>
+                    <td class="nameTable">
+                        District
+                    </td>
+                    <td width="100%" class="pad_o nameTable paddLeftTd" colspan="3">
+                        <input type="text" value="@Model.District" class="brall flt_none" />
+                    </td>
+
+                </tr>
+
+                <tr>
+                    <td class="nameTable">
+                        Sub District
+                    </td>
+                    <td width="100%" class="pad_o nameTable paddLeftTd" colspan="3">
+                        <input type="text" value=" " class="brall flt_none" />
+                    </td>
+
+                </tr>
+                <tr>
+                    <td class="nameTable" width="20%">
+                        Communication  Address
+                    </td>
+                    <td width="100%" colspan="3" class="nameTable paddLeftTd"> <input type="text" value="@Model.address" class="brall flt_none"> </td>
+
+                </tr>
+                <tr>
+                    <td class="nameTable">
+                        State
+                    </td>
+                    <td width="100%" class="pad_o nameTable paddLeftTd" colspan="2">
+                        <input type="text" value="@Model.state" class="brall flt_none" />
+                    </td>
+
+                   
+                    @*<td>
+                &nbsp; &nbsp; &nbsp;
+                @if (Model.state != null)
+                {
+
+                    foreach (char data in (Model.state.Length >= 48) ? Model.state.Substring(0, 48).PadRight(48, ' ') : Model.state.PadRight(Model.state.Length, ' '))
+                    {
+                        <input type="text" value="@data" class="accNumber" />
+                    }
+                }
+                else
+                {
+                    foreach (char data in "                      ")
+                    {
+
+                    }
+                }
+
+
+            </td>*@
+                </tr>
+
+                <tr>
+                    <td class="nameTable">
+                        Country
+                    </td>
+                    <td width="100%" class="pad_o nameTable paddLeftTd" colspan="3"><input type="text" value="@Model.Country" class="brall flt_none" /></td>
+                    @*<td>
+                &nbsp; &nbsp; &nbsp;
+                @if (Model.Country != null)
+                {
+
+                    foreach (char data in (Model.Country.Length >= 48) ? Model.Country.Substring(0, 48).PadRight(48, ' ') : Model.Country.PadRight(Model.Country.Length, ' '))
+                    {
+                        <input type="text" value="@data" class="accNumber" />
+                    }
+                }
+                else
+                {
+                    foreach (char data in "                      ")
+                    {
+
+                    }
+                }
+
+
+
+            </td>*@
+                </tr>
+                <tr>
+                    <td class="nameTable">
+                        Pincode
+                    </td>
+                    <td width="100%" class="pad_o nameTable paddLeftTd" colspan="3"> <input type="text" value="@Model.Pincode" class="brall flt_none" /></td>
+                    @*<td>
+                &nbsp; &nbsp; &nbsp;
+                @if (Model.Pincode != null)
+                {
+
+                    foreach (char data in (Model.Pincode.Length >= 48) ? Model.Pincode.Substring(0, 48).PadRight(48, ' ') : Model.Pincode.PadRight(Model.Pincode.Length, ' '))
+                    {
+                        <input type="text" value="@data" class="accNumber" />
+                    }
+                }
+                else
+                {
+                    foreach (char data in "                      ")
+                    {
+
+                    }
+                }
+
+
+            </td>*@
+                </tr>
+
+            </table>
+
+        </div>
+        @*<div style="width: 96%;margin: 1% 2% 2% 2%;float:left;/*padding: 1%;*/background:lightgrey;">
+            <h4 class="headWordSpace" style=" margin-left:2%;text-align:left;"> <strong>PAN Details </strong> </h4>
+
+        </div>
+
+        <div style="width: 100%;margin: 2% 3% 2% 2%;float:left;/*padding: 1%;*">
+            <table style="margin: 0% 0% 0% 2%;">
+                <tr>
+                    <td class="nameTable">
+                        First Name
+                    </td>
+                    <td class="nameTable1">
+                        &nbsp; &nbsp; &nbsp;
+                        <input type="text" class="accNumber" />
+                        <input type="text" class="accNumber" />
+                        <input type="text" class="accNumber" />
+                        <input type="text" class="accNumber" />
+                        <input type="text" class="accNumber" />
+                        <input type="text" class="accNumber" />
+                        <input type="text" class="accNumber" />
+                        <input type="text" class="accNumber" />
+                        <input type="text" class="accNumber" />
+                        <input type="text" class="accNumber" />
+
+
+                    </td>
+                    <td>
+                        &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
+                    </td>
+                    <td class="nameTable">
+
+                        Middle Name
+                    </td>
+                    <td class="nameTable1">
+                        &nbsp; &nbsp; &nbsp;
+                        <input type="text" class="accNumber" />
+                        <input type="text" class="accNumber" />
+                        <input type="text" class="accNumber" />
+                        <input type="text" class="accNumber" />
+                        <input type="text" class="accNumber" />
+                        <input type="text" class="accNumber" />
+                        <input type="text" class="accNumber" />
+                        <input type="text" class="accNumber" />
+                        <input type="text" class="accNumber" />
+                        <input type="text" class="accNumber" />
+
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="nameTable">
+                        Last Name
+                    </td>
+                    <td class="nameTable1">
+                        &nbsp; &nbsp; &nbsp;
+                        <input type="text" class="accNumber" />
+                        <input type="text" class="accNumber" />
+                        <input type="text" class="accNumber" />
+                        <input type="text" class="accNumber" />
+                        <input type="text" class="accNumber" />
+                        <input type="text" class="accNumber" />
+                        <input type="text" class="accNumber" />
+                        <input type="text" class="accNumber" />
+                        <input type="text" class="accNumber" />
+                        <input type="text" class="accNumber" />
+
+
+                    </td>
+                    <td>
+                        &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
+                    </td>
+                    <td class="nameTable">
+                        Pan Number
+                    </td>
+                    <td class="nameTable1">
+                        &nbsp; &nbsp; &nbsp;
+                        <input type="text" class="accNumber" />
+                        <input type="text" class="accNumber" />
+                        <input type="text" class="accNumber" />
+                        <input type="text" class="accNumber" />
+                        <input type="text" class="accNumber" />
+                        <input type="text" class="accNumber" />
+                        <input type="text" class="accNumber" />
+                        <input type="text" class="accNumber" />
+                        <input type="text" class="accNumber" />
+                        <input type="text" class="accNumber" />
+
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="nameTable">
+                        status
+                    </td>
+                    <td class="nameTable1">
+                        &nbsp; &nbsp; &nbsp;
+                        <input type="text" class="accNumber" />
+                        <input type="text" class="accNumber" />
+                        <input type="text" class="accNumber" />
+                        <input type="text" class="accNumber" />
+                        <input type="text" class="accNumber" />
+                        <input type="text" class="accNumber" />
+                        <input type="text" class="accNumber" />
+                        <input type="text" class="accNumber" />
+                        <input type="text" class="accNumber" />
+                        <input type="text" class="accNumber" />
+
+
+                    </td>
+                    <td>
+                        &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
+                    </td>
+                    <td class="nameTable">
+                        NSDL status
+                    </td>
+                    <td class="nameTable1">
+                        &nbsp; &nbsp; &nbsp;
+                        <input type="text" class="accNumber" />
+                        <input type="text" class="accNumber" />
+                        <input type="text" class="accNumber" />
+                        <input type="text" class="accNumber" />
+                        <input type="text" class="accNumber" />
+                        <input type="text" class="accNumber" />
+                        <input type="text" class="accNumber" />
+                        <input type="text" class="accNumber" />
+                        <input type="text" class="accNumber" />
+                        <input type="text" class="accNumber" />
+
+
+                    </td>
+                </tr>
+            </table>
+            <table style="margin-left:2%;">
+                <tr>
+                    <td class="nameTable">
+                        Customer Name <br />
+                        on PAN
+                    </td>
+                    <td>
+                        &nbsp; &nbsp; &nbsp;
+                        <input type="text" class="accNumber" />
+                        <input type="text" class="accNumber" />
+                        <input type="text" class="accNumber" />
+                        <input type="text" class="accNumber" />
+                        <input type="text" class="accNumber" />
+                        <input type="text" class="accNumber" />
+                        <input type="text" class="accNumber" />
+                        <input type="text" class="accNumber" />
+                        <input type="text" class="accNumber" />
+                        <input type="text" class="accNumber" />
+                        <input type="text" class="accNumber" />
+                        <input type="text" class="accNumber" />
+                        <input type="text" class="accNumber" />
+                        <input type="text" class="accNumber" />
+                        <input type="text" class="accNumber" />
+                        <input type="text" class="accNumber" />
+                        <input type="text" class="accNumber" />
+                        <input type="text" class="accNumber" />
+                        <input type="text" class="accNumber" />
+                        <input type="text" class="accNumber" />
+                        <input type="text" class="accNumber" />
+                        <input type="text" class="accNumber" />
+                        <input type="text" class="accNumber" />
+                        <input type="text" class="accNumber" />
+                        <input type="text" class="accNumber" />
+                        <input type="text" class="accNumber" />
+                        <input type="text" class="accNumber" />
+                        <input type="text" class="accNumber" />
+                        <input type="text" class="accNumber" />
+                        <input type="text" class="accNumber" />
+
+
+                    </td>
+
+                </tr>
+            </table>
+        </div>*@
+
+        <div style="width: 96%;margin: 0% 2% 2% 2%;float:left;/*padding: 1%;*/background:#D8D8D8;">
+            <h4 class="headWordSpace" style="color:#107ff6; text-align:center;"> <u><strong>Consent for Authentication </strong> </u></h4>
+            <div style="padding:0% 6% 1% 4%;">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                "I, the holder of Aadhaar Number,hereby give my consent to <strong style="color:#107ff6">COSMOS BANK </strong>to obtain my XML UIDAI Name for Authentication ,<strong style="color:#107ff6">COSMOS BANK</strong> has informed me that  my identify information would only be used for <strong style="color:#107ff6">Offline KYC </strong>and also informed that myXML which was downloaded form UIDAI will not be shared".
+
+            </div>
+            <div style="width:30%;margin: 0% 2% 2% 2%; padding-left:5%;float:right;/*padding: 1%;*/">
+                <input type="checkbox" checked="checked" style="margin:7px;padding:2px;">Agree
+                <input type="checkbox" style="margin:7px;padding:2px">Disagree
+            </div>
+        </div>
+         
+          
+    
+    @*<div>*@
+  
+
+   
+    @*<div style="width: 96%;margin: 5% 2% 2% 2%;float:left;/*padding: 1%;*/background:lightgrey;">
+        <h4 class="headWordSpace" style="color:red; text-align:center;"> <u><strong>Documents </strong> </u></h4>
+    </div>
+    <div style="width: 96%;margin:1% 1% 0% 1%;float:left;/*padding: 1%;*/text-align:center">
+        <div style="width: 40%;margin: 1% 2% 0% 5%;float:left; background:lightgrey;border:1px solid black;">
+            <div style="width: 100%;margin: 1%;float:left;">
+                <strong>Proof of identiy Photo</strong>
+            </div>
+
+        </div>
+
+        <div style="width: 40%;margin: 1% 2% 0% 10%;float:left;background:lightgrey;border:1px solid black;">
+            <div style="width: 100%;margin: 1% ;float:right;">
+                <strong>Proof of Address Photo</strong>
+            </div>
+        </div>
+    </div>*@
+
+    @*<div style="width: 96%; margin:0% 0% 1% 0%;float:left;">*@
+        @*<div style="width: 40%;margin: 0% 2% 0% 6%;float:left; border:1px solid black;">
+            <div style="width: 100%;margin: 1%;float:left;">
+                
+            </div>
+
+        </div>
+
+        <div style="width: 40%;margin: 0% 2% 0% 10%;float:left;border:1px solid black;">
+            <div style="width: 100%;margin: 1% ;float:right;">
+                
+            </div>
+        </div>*@
+    @*</div>*@
+    <div id="ConsentForm" class="adharformpdf adharDelPdf" style="border:none;">
+        <div class="Consent_row">
+            <div style="float: left; width: 100%;" class="heddingDel">
+                <h4 class="adrauthconsent_headerpdf headWordSpace" style="text-align:center;color:#107ff6">Declaration</h4>
+
+            </div>
+            <div class="clearfix"></div>
+            <div class="consent_maintext" style="padding:0% 0% 1% 1%;">
+                &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                "I, hereby declare that all the information submitted by me in the application form is correct, true and valid. I will present the supporting documents as and when required by <b style="font-size: 14px"><font color='#107ff6'>CosmosBank.com</font></b>"
+
+            </div>
+        </div>
+        <div style="width:96%;margin: 0% 2%;float:left;">
+            <div style="width:96%;margin:0% 2%;float:left;">
+                <table>
+                    <tr  style="width:120" class="pad_o" colspan="3">
+                        <td >
+                            Date: &nbsp;&nbsp;&nbsp;
+                            <input type="text" class="bralltxt" style="width:48%" value="@DateTime.Now.ToString("dd/MM/yyyy") " />
+
+                        </td>
+                   
+                        
+                    </tr>
+                    <tr>
+                        <td width="120" class="pad_o" colspan="3">
+                            Place: &nbsp;&nbsp;
+                            <input type="text" class="bralltxt" style="width:48%" />
+                        </td>
+                    </tr>
+                    
+                </table>
+            </div>
+            <div style="margin: 0% 2%;float:right;">
+                <table>
+                    <tr>
+                        <td>
+                            _______________________________
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align:center;">
+                            Signature
+                        </td>
+
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+    </div>
+
+    @*<div style="width: 96%;margin: 0% 2%;border: 1px solid #ccc;margin: 0% 2%;float:left;padding: 1%;">*@
+        @*<div class="">
+                <span class="btext"><h3 style="margin:2px;font-size:17px;line-height:100%;letter-spacing: normal;width:100%"><strong>Customer(s) Details [in block letters]</strong></h3></span>
+            </div>*@
+
+        @*<table class="dmtsctopfrm_tabel_row" border="1" style="margin-top:20px;font-size:14px;">
+
+            <tbody>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <tr>
+                    <td colspan="4"><strong> Applicant Details</strong></td>
+                </tr>
+                <tr>
+                    <td style="width:170px"> Name in full</td>
+                    <td width="120" colspan="3"> <input type="text" value="@Model.FullName " class="brall flt_none"> </td>
+
+
+
+                </tr>
+                <tr>
+                    <td> Gender *</td>
+                    @if (Model.gender == "M")
+                    {
+                        <td width="120" class="pad_o" colspan="2">
+                            Male
+                        </td>
+                    }
+                    else
+                    {
+                        <td width="120" class="pad_o" colspan="2">
+                            Female
+                        </td>
+                    }
+
+                </tr>
+                <tr>
+                    <td>Date of Birth</td>
+                    <td colspan="3">
+                        &nbsp;&nbsp;&nbsp;
+
+                        @if (Model.Day == null)
+                        {
+                            foreach (char data in "")
+                            {
+                                <input type="text" value='@data' class="bbnew" />
+                            }
+                        }
+                        else
+                        {
+                            foreach (char data in Model.Day)
+                            {
+                                <input type="text" value='@data' class="bbnew" />
+                            }
+                        }
+
+                        <span>-</span>
+
+                        @if (Model.Month == null)
+                        {
+                            foreach (char data in " ")
+                            {
+                                <input type="text" value='@data' class="bbnew" />
+                            }
+                        }
+                        else
+                        {
+                            foreach (char data in Model.Month)
+                            {
+                                <input type="text" value='@data' class="bbnew" />
+                            }
+                        }
+
+
+
+                        <span>-</span>
+
+
+
+                        @if (Model.Year == null)
+                        {
+                            foreach (char data in " ")
+                            {
+                                <input type="text" value='@data' class="bbnew" />
+                            }
+                        }
+                        else
+                        {
+
+                            //a = a.PadRight(3, ' ');
+                            foreach (char data in Model.Year)
+                            {
+                                <input type="text" value='@data' class="bbnew" />
+                            }
+                        }
+
+                    </td>
+
+                </tr>
+                @*<tr>
+                        <td>Pan No.</td>
+
+                        <td width="120" class="pad_o" colspan="3"> <input type="text" value="@Model. " class="brall flt_none" /></td>
+
+                    @*</tr>*@
+        @*@*<tr>
+                        <td>PinCode.</td>
+
+                        <td width="120" class="pad_o"> <input type="text" value="@Model.Pincode" class="brall flt_none" /></td>
+
+                    </tr>
+                    <tr>
+                        <td>Aadhar Number</td>
+
+                        <td width="120" class="pad_o" colspan="3"> <input type="text" value="@Model.AadharNumber" class="brall flt_none" /></td>
+
+                    </tr>
+                    <tr>
+                        <td>Country</td>
+                        <td width="120" class="pad_o" colspan="3"><input type="text" value="@Model.Country" class="brall flt_none" /></td>
+
+                    </tr>
+                    <tr>
+                        <td rowspan="3">Communication Address</td>
+
+                        <td width="120" class="pad_o" colspan="3"> <input type="text" value="@Model.address" class="brall flt_none" /></td>
+
+                    </tr>
+                    <tr>
+                        <td width="120" class="pad_o" colspan="3">  <input type="text" value=" " class="brall flt_none" /></td>
+
+
+                    </tr>
+                    <tr>
+                        <td width="120" class="pad_o" colspan="3">  <input type="text" value=" " class="brall flt_none" /></td>
+                    </tr>
+
+                    <tr>
+                        <td>Locality</td>
+                        <td width="120" class="pad_o" colspan="3"> <input type="text" value="@Model.Locality" class="brall flt_none" /></td>
+                    </tr>
+                    <tr>
+                        <td> City</td>
+                        <td width="120" class="pad_o" colspan="3"> <input type="text" value="@Model.City" class="brall flt_none" /></td>
+                    </tr>
+                    <tr>
+                        <td> House</td>
+                        <td width="120" class="pad_o" colspan="3"> <input type="text" value="@Model.House" class="brall flt_none" /></td>
+                    </tr>
+                    <tr>
+                        <td> Street</td>
+                        <td width="120" class="pad_o" colspan="3"> <input type="text" value="@Model.street" class="brall flt_none" /></td>
+                    </tr>
+                    <tr>
+                        <td> State</td>
+
+                        <td width="120" class="pad_o" colspan="2">
+                            <input type="text" value="@Model.state" class="brall flt_none" />
+                        </td>
+
+                        <td width="120" class="pad_o" colspan="2">
+                            <input type="text" value=" " class="brall flt_none" />
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td> Aadhar Photo</td>
+                        <td class="camera-view">
+                            @if (Model.Photo != null)
+                            {
+                                <img src="data:image/png;base64,@Model.Photo " id="Livephoto" style="padding:2%;width:25%;">
+                                <br />
+                                <br />
+                            }
+                        </td>
+                    </tr>
+                </tbody>
+            </table>*@*@*@
+            </div>
+
+            @*<div id="ConsentForm" class="adharformpdf adharDelPdf">
+                <div class="Consent_row">
+                    <div style="float: left; width: 100%;" class="heddingDel">
+                        <h4 class="adrauthconsent_headerpdf headWordSpace">Declaration</h4>
+
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="consent_maintext" style="padding:0% 0% 1% 0%;">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        "I, hereby declare that all the information submitted by me in the application form is correct, true and valid. I will present the supporting documents as and when required by <b style="font-size: 14px"><font color='#FF0000'>IndoFinNet.com</font></b>"
+
+                    </div>
+                </div>
+
+            </div>*@
+
+
+
+            @*</div>*@
+    </body>
+</html>
+

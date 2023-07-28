@@ -1,0 +1,152 @@
+﻿@{
+    Layout = "~/Views/Shared/_AdminLayoutPage.cshtml";
+
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="~/Scripts/DataTable/jquery.dataTables.min.js"></script>
+    <script src="~/Scripts/DataTable/dataTables.bootstrap.js"></script>
+    <link href="~/Scripts/jquery.dataTables.min.css" rel="stylesheet" />
+    <script>
+        function VerifyCustData(tr) {
+            debugger;
+            $("#verifyloader").html("<div style='position: fixed;z-index: 5000;float: left;right: 50%;height: 50px;width: 50px;top:40%;'><i class='fa fa-pulse fa-fw dgldr ldrdesign' style='height:70px;width:70px;border-radius:50%;border-bottom:5px dotted grey;border-top:5px dotted black;border-right:5px dotted black;border-left:5px dotted black;height:80px;width:80px;position:absolute;margin: 20% 50%;'></i></div>");
+            $("#verifyloader").show();
+            $("#verifybag").show();
+            $("#blackbg").show();
+            $("preloader").hide();
+            var personId = tr.id;
+            alert(personId);
+            $.ajax({
+                url: "/ServiceProviderMainHome/QuickEnrollDashboard",
+                type: "GET",
+                cache: false,
+                data: {
+                    AdminCustId: personId
+                },
+                success: function (result) {
+                    debugger;
+                    $("#verifyloader").hide();
+                    $("#verifybag").hide();
+                    $("#blackbg").hide();
+                    $('#VerifyResult').html(result);
+                    $('#VerifyResult').show();
+                    SubmitToFinacleCheck1(personId);
+                }
+            })
+        };
+    </script>
+    <script type="text/javascript">
+        var assetListVM;
+        $(function () {
+            debugger;
+            assetListVM = {
+                dt: null,
+                init: function () {
+                    debugger;
+                    dt = $('#assets-data-table').DataTable({
+                        "serverSide": true,
+                        "processing": true,
+                        "bDestroy": true,
+                        "searching": false,
+                        "lengthMenu": [[10, 25, 50, 100], [10, 25, 50, 100]],
+                        "sPaginationType": "full_numbers",
+                        "ajax": {
+                            url: '/AdminLogin/JointGRID',
+                            type: 'POST'
+                        },
+                        "columns": [
+                            { "title": "CustomerDetailId", "data": "CustomerID", "searchable": true },
+                            { "title": "FIRST NAME", "data": "CustomerFName" },
+                            { "title": "MIDDLE NAME", "data": "CustomerMName" },
+                            { "title": "LAST NAME", "data": "CustomerLName" },
+                            { "title": "CREATE DATE ", "data": "CreatedDate" },
+                            { "title": "Data Verify " },
+                            { "title": "Video" },
+                            { "title": "Self Video" }
+                        ],
+                        columnDefs: [
+                            {
+                                targets: 5,
+                                render: function (a, b, data, d) {
+                                    debugger;
+                                    return '<input type="button" value="Verify" data-toggle="modal" data-target="#myModal1" id="' + data.CustomerID + '"class="btn btn-primary" onclick="VerifyCustData(this)" style="float:none !important;text-align:center;font-size:12px;color:#fff"><a href="#"  id=' + data.CustomerID + ' style="padding-left:0px;width:100%;padding:0px;text-align:center;float:left;background-color: transparent" </a> '
+                                    //return '<img src='@Url.Content("~/Image/icons/view.png")' style="height: 22px" />'
+                                }
+                            },
+                            {
+                                targets: [6],
+                                render: function (a, b, data, d) {
+                                    debugger;
+                                    return '<input type="button" value="Show" data-toggle="modal" data-target="#myModal1" id="btnVideo" class="btn btn-primary" onclick="Searchfun(this)" style="float:none !important;text-align:center;font-size:12px"><a href="#"  id=' + data.personalDetailId + ' style="padding-left:0px;width:100%;padding:0px;text-align:center;float:left;background-color: transparent" </a> '
+                                }
+                            },
+                            {
+                                targets: [4],
+                                render: function (data) {
+                                    debugger;
+                                    var date = new Date(data);
+                                    var month = date.getMonth() + 1;
+                                    return date.getDate() + "-" + (month.toString().length > 1 ? month : "0" + month) + "-" + date.getFullYear();
+                                }
+                            },
+                            {
+                                targets: [7],
+                                render: function (a, b, data, d) {
+                                    debugger;
+                                    return '<input type="button" value="Show" data-toggle="modal" data-target="#myModal1" id="btnSelfVideo" class="btn btn-primary" onclick="GetIpvVideo(this)" style="float:none !important;text-align:center;font-size:12px"><a href="#"  id=' + data.personalDetailId + ' style="padding-left:0px;width:100%;padding:0px;text-align:center;float:left;background-color: transparent" </a> '
+                                }
+                            }
+                        ]
+
+                    });
+                }
+            }
+            assetListVM.init();
+        });
+    </script>
+</head>
+<body>
+    <section class="breadcrumbs">
+        <div class="container-fluid">
+            <div class="d-flex justify-content-between align-items-center">
+                <h3 style="color:#fff;font-size:20px">Data Details</h3>
+            </div>
+        </div>
+    </section>
+    <div class="table-responsive panel panel-primary list-panel" id="list-panel" style="">
+        <div class="panel-body">
+            <div class="form_rowsales" style="padding-top: 0px;padding-left: 1.5%;float:left">
+                <form>
+                </form>
+            </div>
+            <table id="assets-data-table" class="table table-striped table-bordered" style="width:100%;border: 1px solid #1f4e79;">
+                <tbody style="font-size:14px">
+                    <tr>
+                        <th>CustomerDetailId</th>
+                        <th>FirstName</th>
+                        <th>MiddleName</th>
+                        <th>LastName</th>
+                        <th>CreatedDate</th>
+                        <th>Data Verify</th>
+                        <th>Video</th>
+                        <th>Self Video</th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div id="VerifyResult"></div>
+    <div id="CustAllData"></div>
+    <div id="tabShow"></div>
+    <div id="DataTable"></div>
+    <div id="verifyloader"></div>
+    <div id="verifybag"></div>
+    <div id="testid"></div>
+    <div id="clrdtlgrid_popuppg1"></div>
+    <div id="IPV_Video" class="clrdtlgridrowmsg" hidden="hidden"></div>
+    <div id="showIPV"></div>
+
+</body>
+</html>

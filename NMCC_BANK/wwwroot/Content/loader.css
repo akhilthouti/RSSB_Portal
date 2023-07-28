@@ -1,0 +1,121 @@
+﻿#footer {
+    display: none;
+}
+
+html, body {
+    /*background: #e1e5ea;*/
+    background: #faf9f9;
+    /*background: blue;*/
+    /*background: #097ef3;*/
+    width: 100%;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+/*.bar {
+            position: relative;
+            height: 2px;
+            width: 784px;
+            margin: 0 auto;
+            background: #fff;
+            margin-top: 207px;
+        }
+
+        .circle {
+            position: absolute;
+            top: -60px;
+            margin-left: -30px;
+            height: 50px;
+            width: 50px;
+            left: 0;
+            background: #bff321;
+            border-radius: 22%;
+            -webkit-animation: move 7s infinite;
+        }*/
+
+
+
+p {
+    position: absolute;
+    top: -40px;
+    right: 11px;
+    text-transform: uppercase;
+    color: #fff;
+    font-family: helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 18px;
+}
+/*body {
+            background-color: black;
+        }*/
+
+.rectangle {
+    /*width: 100px;*/
+    /*height: 100%;*/
+    /*border-radius: 5px;
+            background-color: #fff;*/
+    text-align: center;
+}
+
+.vertical-center {
+    position: fixed;
+    top: 400px;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+strong {
+    color: #000;
+    font-size: 17px;
+    margin-left: 1%;
+}
+
+bold {
+    color: #000;
+    font-size: 13px;
+    text-align: center;
+    margin-top: 12%;
+    font-weight: 600;
+}
+
+hr {
+    display: none;
+}
+
+.dgldr {
+    font-size: 74px !important;
+    color: #626060 !important;
+    border-top: 2px dotted #726e6e !important;
+    border-bottom: 2px dotted #726e6e !important;
+    border-left: 2px dotted #726e6e !important;
+    border-right: 2px dotted #c7c5c5 !important;
+    height: 55px !important;
+    width: 55px !important;
+    border-radius: 50% !important;
+}
+
+/* .loaders{
+            height:55px;
+            width:55px;
+        }
+        .ldr11{
+            display:flex;
+            justify-content:center;
+        }*/
+/* .loader {
+            border: 3px dotted #c1bebe;
+            border-radius: 50%;
+            border-top: 3px dotted#65686a;
+            width: 60px;
+            height: 60px;
+            -webkit-animation: spin 2s linear infinite;
+            animation: spin 2s cubic-bezier(0.18, 0.24, 1, 1) infinite;
+        }
+        0% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }*/
+

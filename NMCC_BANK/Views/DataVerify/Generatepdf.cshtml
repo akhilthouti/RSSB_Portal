@@ -1,0 +1,389 @@
+﻿@model INDO_FIN_NET.Models.forpdfeneration
+@{
+    //Layout = null;
+    Layout = "~/Views/Shared/_pdf.cshtml";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+
+        .headingback {
+            background-color: #e1e0e0;
+            text-align: center;
+        }
+
+        .titlesc {
+            font-family: Roboto,Arial,sans-serif !important;
+            letter-spacing: 0;
+            line-height: 32px;
+            display: inline-block;
+            color: #434444 !important;
+            font-size: 17px !important;
+            padding: 3px 10px !important;
+            font-weight: 600 !important;
+            margin-bottom: 0px !important;
+        }
+
+        .labelr {
+            background-color: #ebe9e9;
+            margin: 5px !important;
+            text-align: center;
+            border: 10px solid white;
+        }
+
+        .tdiv {
+            margin: 2px;
+            background-color: white;
+            border: 2px solid lightgrey;
+            padding: 2px;
+        }
+
+        .table1 {
+            /*border:1px solid lightgrey;*/
+            padding: 3px;
+            width: 96%;
+        }
+
+        input {
+            border-right: 0px;
+            border-left: 0px;
+            border-top: 0px;
+            width: 90%;
+        }
+
+        /* td{
+                        padding:1%;
+                    }*/
+        table {
+            border-spacing: 40px;
+        }
+
+        .cuslive {
+            display: flex !important;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+
+        tr {
+            margin-top: 2% !important;
+        }
+
+        .table2 {
+            width: 22%;
+        }
+    </style>
+
+    <script>
+        var cusid = "@Model.CustomerID";
+        var fullname = document.getElementById("CustID");
+        fullname.innerHTML += cusid;
+
+    </script>
+</head>
+<body>
+    <div class="tdiv">
+        <header>
+            <div class="headingback">
+                <h2 class="titlesc">Customer KYC Details</h2>
+            </div>
+        </header>
+
+        <div class="cuslive">
+            <div>
+                <header style="margin-top:10px;margin-bottom:15px!important;">
+                    <div class="headingback">
+                        <h2 class="titlesc">Customer Detail ID:@Model.CustomerID </h2>
+                    </div>
+                </header>
+            </div>
+            <div id="livephoto" style="float:right; padding-right:101px;margin-bottom: 5px; margin-top:-5px;position: absolute;margin-top: 10%;margin-left: 80%;">
+                <div style="background-color:lightgrey; text-align:center;">Live photo</div>
+                <img src="@Html.Raw(@Model.LivePhoto)" style="height:138px; width:100px ; border:1px solid grey;" />
+            </div>
+
+        </div>
+        <div class="">
+            <table style="width:100%" class="table1 tdiv">
+                <tr>
+                    <td></td>
+                    <td>(FirstName)</td>
+                    <td>(MiddleName)</td>
+                    <td>(LastName)</td>
+                </tr>
+                <tr>
+                    <th class="labelr table2"><span style="background-color: #ebe9e9; width:103%;">Name</span></th>
+                    <td>
+                        <div>
+                            <input type="text" id="fname" value="@Model.CDfirstname" />
+                        </div>
+                    </td>
+                    <td><div><input type="text" id="fname" value="@Model.CDmiddlename" /></div></td>
+                    <td><div><input type="text" id="lname" value="@Model.CDlastname" /></div></td>
+                </tr>
+                <tr>
+                    <th class="labelr"><span style="background-color: #ebe9e9; width:100%;">Date Of Birth</span></th>
+                    <td colspan="2"><div><input type="text" id="dob" value="@Model.CDdob" /></div></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th class="labelr"><span style="background-color: #ebe9e9;">Gender</span></th>
+                    <td colspan="2"><div><input type="text" id="gndr" value="@Model.CDgender" /></div></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th class="labelr"><span style="background-color: #ebe9e9; width:100%;">Address</span></th>
+                    <td colspan="2"><div><input type="text" id="addr" value="@Model.CDaddress" /></div></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th class="labelr"><span style="background-color: #ebe9e9;">Email ID</span></th>
+                    <td colspan="2"><div><input type="text" id="email" value="@Model.CDemail" /></div></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th class="labelr"><span style="background-color: #ebe9e9;">PinCode</span></th>
+                    <td colspan="2"><div><input type="text" id="pin" value="@Model.CDpincode" /></div></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th class="labelr"><span style="background-color: #ebe9e9;">Mobile</span></th>
+                    <td colspan="2"><div><input type="text" id="mob" value="@Model.CDmobile" /></div></td>
+                    <td></td>
+                </tr>
+                
+                <tr>
+                    <th class="labelr"><span style="background-color: #ebe9e9;">Pan No.</span></th>
+                    <td colspan="2"><div><input type="text" id="lname" value="@Model.CDPan" /></div></td>
+                    <td></td>
+                </tr>
+
+
+            </table>
+        </div>
+    </div>
+
+    @if (Model.digia == "digia")
+    {
+        <div class="tdiv" id="xyz">
+            <header>
+                <div class="headingback">
+                    <h2 class="titlesc">Digital Aadhaar Details</h2>
+                </div>
+            </header>
+            <div id="aadhrphoto" style="float:right; padding-right:101px; padding-top:10px;">
+                <div style="background-color:lightgrey; text-align:center;">Aadhar photo</div>
+                <img src="@Html.Raw(@Model.AadhaarPhoto)" style="height:138px; width:103px; border:1px solid grey;" />
+            </div>
+            <table style="width:75%" class="">
+                <tr>
+                    <th class="labelr table2"><span style="background-color: #ebe9e9;">Name</span></th>
+                    <td colspan="2"><div><input type="text" id="alname" value="@Model.Aname" /></div></td>
+                    <td></td>
+                </tr>
+
+                <tr>
+                    <th class="labelr table2"><span style="background-color: #ebe9e9;">Date Of Birth</span></th>
+                    <td colspan="2"><div><input type="text" id="adob" value="@Model.Adob" /></div></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th class="labelr table2"><span style="background-color: #ebe9e9;">Gender</span></th>
+                    <td colspan="2"><div><input type="text" id="agndr" value="@Model.Agender" /></div></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th class="labelr table2"><span style="background-color: #ebe9e9;">Address</span></th>
+                    <td colspan="2"><div><input type="text" id="aaddr" value="@Model.Aaddress" /></div></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th class="labelr table2"><span style="background-color: #ebe9e9;">PinCode</span></th>
+                    <td colspan="2"><div><input type="text" id="apin" value="@Model.Apincode" /></div></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th class="labelr table2"><span style="background-color: #ebe9e9;">District</span></th>
+                    <td colspan="2"><div><input type="text" id="adist" value="@Model.Adistrict" /></div></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th class="labelr table2"><span style="background-color: #ebe9e9;">State</span></th>
+                    <td colspan="2"><div><input type="text" id="astate" value="@Model.Astate" /></div></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th class="labelr table2"><span style="background-color: #ebe9e9;">Country</span></th>
+                    <td colspan="2"><div><input type="text" id="acon" value="@Model.Acountry" /></div></td>
+                    <td></td>
+                </tr>
+
+                <tr>
+                    <th class="labelr table2"><span style="background-color: #ebe9e9;">Aadhaar No.</span></th>
+                    <td colspan="2"><div><input type="text" id="aadhr" value="@Model.Aadhaar" /></div></td>
+                    <td></td>
+                </tr>
+            </table>
+
+        </div>
+    }
+
+
+
+    @if (Model.digip == "digip")
+    {
+        <div class="tdiv">
+            <header>
+                <div class="headingback">
+                    <h2 class="titlesc">Digital Pan Details</h2>
+                </div>
+            </header>
+
+            <table style="width:75%" class="">
+                <tr>
+                    <th class="labelr table2"><span style="background-color: #ebe9e9;">Name</span></th>
+                    <td colspan="2"><div><input type="text" id="alname" value="@Model.Aname" /></div></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th class="labelr table2"><span style="background-color: #ebe9e9;">Date Of Birth</span></th>
+                    <td colspan="2"><div><input type="text" id="adob" value="@Model.Adob" /></div></td>
+                    <td></td>
+                </tr>
+
+
+
+
+                <tr>
+                    <th class="labelr table2"><span style="background-color: #ebe9e9;">Gender</span></th>
+                    <td colspan="2"><div><input type="text" id="agndr" value="@Model.Agender" /></div></td>
+                    <td></td>
+                </tr>
+
+                <tr>
+                    <th class="labelr table2"><span style="background-color: #ebe9e9;">Country</span></th>
+                    <td colspan="2"><div><input type="text" id="acon" value="@Model.Acountry" /></div></td>
+                    <td></td>
+                </tr>
+            </table>
+
+        </div>
+    }
+
+    @if (Model.pan == "pan")
+    {
+        <div class="tdiv">
+            <header>
+                <div class="headingback">
+                    <h2 class="titlesc">Pan Details</h2>
+                </div>
+            </header>
+
+            <table style="width:75%" class="">
+                <tr>
+                    <th class="labelr table2"><span style="background-color: #ebe9e9;">Name</span></th>
+                    <td colspan="2"><div><input type="text" id="alname" value="@Model.Aname" /></div></td>
+                    <td></td>
+                </tr>
+
+                <tr>
+                    <th class="labelr table2"><span style="background-color: #ebe9e9;">Gender</span></th>
+                    <td colspan="2"><div><input type="text" id="agndr" value="@Model.Agender" /></div></td>
+                    <td></td>
+                </tr>
+            </table>
+
+        </div>
+    }
+
+    @if (Model.xml == "xml")
+    {
+        <div class="tdiv">
+            <header>
+                <div class="headingback">
+                    <h2 class="titlesc">Offline Aadhaar xml Details</h2>
+                </div>
+            </header>
+            <div id="aadhrphoto" style="float:right; padding-right:101px; padding-top:10px;">
+                <div style="background-color:lightgrey; text-align:center;">Aadhar photo</div>
+                <img src="@Html.Raw(@Model.AadhaarPhoto)" style="height:138px; width:103px; border:1px solid grey;" />
+            </div>
+            <table style="width:75%" class="">
+                <tr>
+                    <th class="labelr table2"><span style="background-color: #ebe9e9;">Name</span></th>
+                    <td colspan="2"><div><input type="text" id="alname" value="@Model.Aname" /></div></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th class="labelr table2"><span style="background-color: #ebe9e9;">Date Of Birth</span></th>
+                    <td colspan="2"><div><input type="text" id="adob" value="@Model.Adob" /></div></td>
+                    <td></td>
+                </tr>
+
+                <tr>
+                    <th class="labelr table2"><span style="background-color: #ebe9e9;">Gender</span></th>
+                    <td colspan="2"><div><input type="text" id="agndr" value="@Model.Agender" /></div></td>
+                    <td></td>
+                </tr>
+
+                <tr>
+                    <th class="labelr table2"><span style="background-color: #ebe9e9;">Address</span></th>
+                    <td colspan="2"><div><input type="text" id="aaddr" value="@Model.Aaddress" /></div></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th class="labelr table2"><span style="background-color: #ebe9e9;">District</span></th>
+                    <td colspan="2"><div><input type="text" id="adist" value="@Model.Adistrict" /></div></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th class="labelr table2"><span style="background-color: #ebe9e9;">State</span></th>
+                    <td colspan="2"><div><input type="text" id="astate" value="@Model.Astate" /></div></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th class="labelr table2"><span style="background-color: #ebe9e9;">PinCode</span></th>
+                    <td colspan="2"><div><input type="text" id="apin" value="@Model.Apincode" /></div></td>
+                    <td></td>
+                </tr>
+
+
+                <tr>
+                    <th class="labelr table2"><span style="background-color: #ebe9e9;">Country</span></th>
+                    <td colspan="2"><div><input type="text" id="acon" value="@Model.Acountry" /></div></td>
+                    <td></td>
+                </tr>
+
+                <tr>
+                    <th class="labelr table2"><span style="background-color: #ebe9e9;">Aadhaar No.</span></th>
+                    <td colspan="2"><div><input type="text" id="aadhr" value="@Model.Aadhaar" /></div></td>
+                    <td></td>
+                </tr>
+            </table>
+
+        </div>
+    }
+
+    <div class="tdiv">
+        <table>
+            <tr>
+                <td>
+                    <div id="poi" style="margin: 10px 32px;">
+                        <img src="@Html.Raw(@Model.POI)" style="height:150px;" />
+                    </div>
+                </td>
+                <td>
+                    <div id="poa" style="margin: 10px 32px;">
+                        <img src="@Html.Raw(@Model.POA)" style="height:150px;" />
+                    </div>
+                </td>
+                <td>
+                    <div id="sig" style="margin: 10px 32px;">
+                        <img src="@Html.Raw(@Model.Signature)" style="height:150px;" />
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

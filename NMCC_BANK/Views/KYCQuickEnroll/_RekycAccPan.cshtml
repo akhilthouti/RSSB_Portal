@@ -1,0 +1,179 @@
+﻿@model INDO_FIN_NET.Rekyc_GRID_MAIN1
+
+@{
+    List<Rekycgridlists> list = new List<Rekycgridlists>();
+
+    Rekyc_GRID_MAIN1 obj = new Rekyc_GRID_MAIN1();
+    list = Model.Rekycgridlistss;//Model.dedupegridlistss;
+}
+@{
+    Layout = null;
+}
+
+<script type="text/javascript">
+    function Rekyc_AccNo1() {
+        debugger;
+        $("#DigiCerti").html("<div style='position: fixed;z-index: 5000;float: left;right: 50%;height: 50px;width: 50px;top:40%;'><i class='fa fa-pulse fa-fw dgldr ldrdesign' style='height:70px;width:70px;border-radius:50%;border-bottom:5px dotted grey;border-top:5px dotted black;border-right:5px dotted black;border-left:5px dotted black;height:80px;width:80px;position:absolute;margin: 20% 50%;'></i></div>");
+        $("#DigiCerti").show();
+        $("#init-btn").hide();
+        $("#myModal").hide();
+
+        var radiobutton1 = $("input[name='dedupe']:checked").attr('id');
+        var AccountNo = document.getElementById("test002").innerText;
+
+        $.ajax({
+            //url: '/KYCQuickEnroll/GetCBSDatadedupe',
+            url: '/KYCQuickEnroll/GetCBSData12',
+            type: 'POST',
+            data: {
+                CBSValue1: radiobutton1
+
+            },
+            cache: false,
+            success: function (data) {
+                debugger;
+                $("#DigiCerti").hide();
+                swal("Data Fetched Successfully");
+
+                $('#RekycDiv').show();
+                $("#QEFirstName").prop('disabled', false);
+                $("#QELastName").prop('disabled', false);
+                $("#QEMobileNo").prop('disabled', false);
+                $("#QEEmailId").prop('disabled', false);
+                $("#VTYPE").prop('disabled', false);
+                $("#QEVTypeTextboxId").prop('disabled', false);
+
+                $('#LblFirstName').addClass('active');
+                $("#FirstNameReKyc").val(data.firstNameReKyc);
+                $('#LblMiddleName').addClass('active');
+                $("#MiddleNameReKyc").val(data.middleNameReKyc);
+                $('#LblLastName').addClass('active');
+                $("#LastNameReKyc").val(data.lastNameReKyc);
+                $("#MobileReKyc").val(data.mobileReKyc);
+                $("#EmailIdReKyc").val(data.emailIdReKyc);
+                if (data.GenderReKyc == 'F') {
+                    $("#ReKycgender2").prop('checked', true);
+                } else {
+                    $("#ReKycgender1").prop('checked', true);
+                }
+                $("#LastNameReKyc").val(data.lastNameReKyc);
+                $("#ReKyc_addressline1").val(data.reKyc_AddressLine1);
+                $("#ReKyc_dressline2").val(data.reKyc_AddressLine2);
+                $("#ReKyc_dressline3").val(data.reKyc_AddressLine3);
+                $("#ReKyc_City").val(data.reKyc_City);
+                $("#ReKyc_AnnualRevenue").val(data.reKyc_AnnualRevenue);
+                $("#ReKyc_Occupation").val(data.reKyc_Occupation);
+                $("#ReKyc_PinCode").val(data.reKyc_PinCode);
+                $("#DateOfBirthReKyc").val(data.dateOfBirthReKyc);
+                if (data.ReKyc_AADHA == "AADHA") {
+                    $('#Aadhaar_Card').attr("checked", true);
+                    $('#Aadharverificationtype').attr("checked", true);
+                }
+                if (data.ReKyc_PANR == "PANR") {
+                    $('#Pan_Card').attr("checked", true);
+                    $('#Panverificationtype').attr("checked", true);
+
+                }
+                if (data.ReKyc_ELECD == "ELECD") {
+                    $('#Voter_Card').attr("checked", true);
+                    $('#DigiLocker').attr("checked", true);
+                }
+                if (data.ReKyc_PASSP == "PASSP") {
+                    $('#Passport').attr("checked", true);
+                    $('#DigiLocker').attr("checked", true);
+                }
+                if (data.ReKyc_DRLIC == "DRLIC") {
+                    $('#Driving_licence').attr("checked", true);
+                    $('#DigiLockerAadharverificationtype').attr("checked", true);
+
+                }
+
+
+            }
+        });
+    }
+
+
+</script>
+<style>
+    .init-title {
+        text-align: center;
+        background-color: #bf5252;
+        color: #fff;
+        padding: 5px 1px;
+    }
+
+    .modal{
+        overflow:auto!important;
+    }
+    .init-table-container {
+        display: flex;
+        justify-content: center;
+    }
+
+    .init-td {
+        text-align: center;
+    }
+
+    .init-table {
+        width: 70%;
+        margin-top: 26px;
+    }
+
+    .init-btn {
+        margin-left: 43%;
+        padding: 5px 17px;
+    }
+
+    .init-input {
+        margin-left: 43%;
+    }
+
+    .init-table-head {
+        background: #e1e0e0;
+    }
+    /*  td:nth-child(even){
+                    background-color: rgb(243, 243, 243,0.7);
+                }*/
+</style>
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <h4 class="init-title">ReKyc Account Number</h4>
+
+    <div class="init-table-container">
+        <table id="dedupe" cellpadding="0" cellspacing="0" border="1" class="init-table">
+            <tr>
+                <th class="init-td init-table-head">Select</th>
+                <th class="init-td init-table-head">AccountNo</th>
+
+            </tr>
+            @foreach (var item in list)
+            {
+
+                <tr>
+                    <td class="init-td"><input type="radio" name="dedupe" class="init-input" id="@item.RekycAccFlags,@item.AccountNo"></td>
+                    <td id="test002" class="init-td">"@item.AccountNo"</td>
+                </tr>
+            }
+
+
+
+        </table>
+    </div>
+    <br />
+    <button type="button" class="btn btn-primary init-btn" onclick="Rekyc_AccNo1()">Submit</button>
+    <br />
+    <br />
+</body>
+</html>
+
+
+

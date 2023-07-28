@@ -1,0 +1,1342 @@
+﻿@model INDO_FIN_NET.Models.CurrentModels.Current_Verification
+
+@{
+    Layout = "~/Views/Shared/Components/_CurrentAccountLayout.cshtml";
+
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CurrentCAF</title>
+    <link href="~/css/current_caf.css" rel="stylesheet" />
+    <link href="~/Content/snewcss.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+
+    <link href="~/Scripts/sweetalert.css" rel="stylesheet" />
+    <script src="~/Scripts/sweetalert.min.js"></script>
+    <script src="~/Scripts/bootstrap-multiselect.js"></script>
+    <link href="~/Content/Navigation/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="~/Content/Accordion/Accordion1/Accordiondegital1.css" rel="stylesheet" />
+
+    <script src="../Content/Accordion/Accordion1/jquery-accordion.js"></script>
+
+    <link href="../Content/Accordion/Accordion1/Accordiondegital1.css" rel="stylesheet" />
+    <link href="../Content/Accordion/Accordion1/jquerysctipttop.css" rel="stylesheet" />
+    <link href="~/Content/snewcss.css" rel="stylesheet" />
+    <script src="../Content/Accordion/Accordion1/jquery-accordion.js"></script>
+    <style>
+
+        .green {
+            background-color: #04AA6D !important;
+        }
+
+        .init-rekyc {
+            width: 40% !important;
+            border-radius: 6px !important;
+        }
+
+        #hide-text {
+            opacity: 0;
+            margin-left: 21px !important;
+        }
+
+        #pop-img {
+            height: 44px;
+            position: RELATIVE;
+            margin-top: -509px;
+            margin-left: 46%;
+        }
+
+        .width-ex {
+            width: 86% !important;
+        }
+
+        .input-sp {
+            background-color: white !important;
+        }
+
+    </style>
+    <link href="~/Content/snewcss.css" rel="stylesheet" />
+    <script src="~/bundlejs/bundlingofcaf.min.js"></script>
+
+
+    <meta name="viewport" content="width=device-width" />
+
+    <style>
+        .lab-init {
+            font-size: 14px;
+        }
+
+        #icon-test {
+            height: 22px;
+            opacity: 0.7;
+            float: right;
+        }
+
+        label {
+            font-size: 13px;
+        }
+
+        .img-rekyc {
+            height: 32px;
+            margin-left: 12px;
+        }
+
+    </style>
+
+    <style>
+        .buttoncam span {
+            cursor: pointer;
+            display: inline-block;
+            position: relative;
+            transition: 0.5s;
+        }
+
+            .buttoncam span:after {
+                /*content: "\f030";*/
+                /*content: "\f095";*/
+                content: '\00bb';
+                position: absolute;
+                opacity: 0;
+                top: 0;
+                right: 19px;
+                transition: 0.5s;
+                color: white;
+                margin-top: -6px;
+                font-size: 19px;
+                font-weight: 800;
+            }
+
+        .buttoncam:hover span {
+            padding-right: 24px;
+        }
+
+            .buttoncam:hover span:after {
+                opacity: 2;
+                right: 0;
+            }
+
+        .seconddialog {
+            transition: transform 0.3s ease-out 0s, -webkit-transform 0.3s ease-out 0s;
+            transform: translate(0px, -25%);
+            position: fixed;
+            width: 500px;
+            margin: 0.5rem;
+            background-color: rgb(255, 255, 255);
+            z-index: 999;
+            left: 29%;
+            top: 50%;
+            box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+            border-radius: 7px;
+        }
+
+        .pdbted {
+            margin-bottom: 15px !important;
+        }
+
+        .bg-green {
+            background-color: green !important;
+        }
+
+        .active:active {
+            color: green;
+        }
+
+        .active:focus {
+            color: green;
+        }
+
+        #getAadharData :focus :active {
+            outline: 1px solid green !important;
+            background-color: green;
+            color: #fff;
+        }
+
+        #getPanData {
+            outline: 1px solid green !important;
+            background-color: green;
+            color: #fff;
+        }
+
+        #getPanData1 {
+            //outline: 1px solid green !important;
+            background-color: green;
+            color: #fff;
+        }
+
+        #getOtherData:focus :active {
+            outline: 1px solid green !important;
+            background-color: green;
+            color: #fff;
+        }
+
+        #getCKYCData:focus :active {
+            outline: 1px solid green !important;
+            background-color: green;
+            color: #fff;
+        }
+
+        .sheadbk {
+            background-color: #bf5252;
+            border: 2px solid #8b0000;
+        }
+
+        .shead {
+            color: white !important;
+        }
+
+
+        .stextinp {
+            background-color: #e9e7e7;
+            border-radius: 4px;
+            height: 34px !important;
+            width: 72%;
+            padding: 8px !important;
+            border-radius: 3px !important;
+            border: solid 1px #b7b7b7;
+        }
+
+
+        .init-label {
+            font-size: 12px;
+            //float:left;
+            //margin-left:41px;
+        }
+
+        .init-w {
+            font-weight: 700;
+        }
+
+        .init-re-input {
+            height: 28px !important;
+            width: 88% !important;
+        }
+
+        .init-input {
+            height: 45px !important;
+            width: 72%;
+            padding: 8px !important;
+            border-radius: 3px !important;
+            border: solid 1px #b7b7b7;
+        }
+
+
+
+        .df1 {
+            display: flex;
+            margin: 5px 0px 5px 0px;
+        }
+
+
+
+        .strtdiv {
+            border: 1px solid lightgrey;
+            padding: 0px 0px 0px 0px !important;
+        }
+
+        .marg1 {
+            width: 45%;
+            margin-left: 29px;
+        }
+
+        .marg2 {
+            margin-left: 22px;
+            width: 45% !important;
+        }
+
+        @@media screen and (min-device-width:320px) and (max-device-width:768px) {
+            .dqefntslct {
+                font-size: 10px !important;
+            }
+        }
+    </style>
+
+    <style>
+        .agnttpmrgn {
+            margin-top: -20px;
+        }
+
+        .mrgnadmn {
+            margin-top: 0px;
+        }
+
+        .mrgns {
+            margin-bottom: 10px;
+        }
+
+        .dqeval {
+            display: flex;
+            flex-direction: row;
+        }
+
+        .valbox {
+            border: 0px solid;
+            margin-left: 10px;
+            width: 76%;
+            background-color: transparent;
+        }
+
+        .rekycdss {
+            margin-left: 5px;
+            margin-right: 5px;
+        }
+
+        .rekyc12 {
+            float: left !important;
+            margin-left: 26px;
+        }
+
+        .rekycbtn {
+            float: left;
+            font-size: 14px;
+            padding: 6px;
+            margin-top: 50px;
+            margin-left: 42%;
+        }
+
+        .header {
+            margin: 10px 0px;
+        }
+
+        .btn {
+            font-size: 14px !important;
+        }
+
+        input {
+            font-size: 14px !important;
+        }
+
+        select {
+            font-size: 14px !important;
+        }
+
+        .df12 {
+            margin: 6px 0px 5px 0px;
+        }
+
+        .rkycsbmt {
+            margin-right: 206px;
+            margin-top: 16px;
+            float: right;
+            margin-bottom: 53px;
+        }
+    </style>
+
+    <script>
+        function curr_submitbtn(e) {
+            var base64I;
+            var imageInnerHtml;
+            var b;
+            var resultvalues;
+            var resultvalues1;
+            if ($('#DigitCaptureImage').is(':visible') == true) {
+
+                if ($('#results').is(':visible') == true) {
+                    if (document.getElementById('results').innerHTML != "Your captured image will appear here...") {
+                        base64I = (document.getElementById("results").innerHTML);
+                        imageInnerHtml = base64I.split(",");
+                        b = imageInnerHtml[1];
+                        b = b.substring(0, b.length - 2);
+                        resultvalues = demo.textContent;
+                        resultvalues1 = demo1.textContent;
+
+
+                    }
+                }
+            }
+            $('#digiphotoid').val(b);
+            $('#latitudelongitude_id').val(resultvalues);
+            $('#Prediction_id').val(resultvalues1);
+            $("html, body").animate({
+                scrollTop: $(
+                    'html, body').get(0).scrollHeight
+            }, 2000);
+
+
+
+            var cls =
+            {
+                "company_name": $("#company_name").val(),
+                "Industrytype": $("#Industrytype").val(),
+                "BusinessTL": $("#BusinessTL").val(),
+                "DOE": $("#DOE").val(),
+                "POE": $("#POE").val(),
+                "Branches": $("#Branches").val(),
+                "NOE": $("#NOE").val(),
+                "Turnover": $("#Turnover").val(),
+                "Email": $("#Email").val(),
+                "Mobile": $("#Mobile").val(),
+                "Landline": $("#Landline").val(),
+                "PAddress1": $("#PAddress1").val(),
+                "PAddress2": $("#PAddress2").val(),
+                "PAddress3": $("#PAddress3").val(),
+                "PCity": $("#PCity").val(),
+                "PPincode": $("#PPincode").val(),
+                "PState": $("#PState").val(),
+                "PCountry": $("#PCountry").val(),
+                "CAddress1": $("#CAddress1").val(),
+                "CAddress2": $("#CAddress2").val(),
+                "CAddress3": $("#CAddress3").val(),
+                "CCity": $("#CCity").val(),
+                "CState": $("#CState").val(),
+                "CCountry": $("#CCountry").val(),
+                "CINCAF": $("#CINCAF").val(),
+                "DINCAF": $("#DINCAF").val(),
+                "PanCAF": $("#PanCAF").val(),
+                "GSTNCAF": $("#GSTNCAF").val(),
+                "UdyogAadhaarCAF": $("#UdyogAadhaarCAF").val(),
+                "PB": $("#PB").val(),
+                "AML": $("#AML").val(),
+                "DigitCaptureImage": $("#DigitCaptureImage").val(),
+                "CPincode": $("#CPincode").val(),
+                "DigiKYCPhoto": $("#digiphotoid").val(),
+            }
+            $.post("/CurrentCAF/CurrentCAF", cls).done(function (result) {
+                if (result == "Success") {
+                    swal("Data Save Successfully");
+                    window.location.href = "/CurrentDocumentDetails/CurrentDocumentDetail";
+                }
+                else {
+                    swal("Failed To Save Data");
+                }
+
+            })
+        };
+
+    </script>
+    <script>
+        function CheckPinExistenceLC() {
+            debugger;
+
+            $("#PState").prop("disabled", true);
+
+
+            var countrycount = $('#PPincode').val();
+
+            $.ajax({
+                url: '/CustomerAccount/GetStateAndDistrictByPINCode?countrycount=' + countrycount,
+                type: 'GET',
+                success: function (result) {
+                    debugger;
+                    if (result != null) {
+
+                        var district = result.district;
+                        var state = result.state_Code;
+                        var country = result.country;
+
+                        $("#PCity").val(district);
+                        $("#PState").val(state);
+                        $("#PCountry").val(country);
+
+                    }
+                    else if (result == "INVALID PIN") {
+                        swal("Entered PIN is Invalid..!!");
+                    }
+                    else {
+
+                    }
+                }
+            })
+
+
+
+        }
+    </script>
+    <script>
+        function CheckCPExistenceLC() {
+            debugger;
+
+            $("#CState").prop("disabled", true);
+
+
+            var countrycount = $('#CPincode').val();
+
+            $.ajax({
+                url: '/CustomerAccount/GetStateAndDistrictByPINCode?countrycount=' + countrycount,
+                type: 'GET',
+                success: function (result) {
+                    debugger;
+                    if (result != null) {
+
+                        var district = result.district;
+                        var state = result.state_Code;
+                        var country = result.country;
+
+                        $("#CCity").val(district);
+                        $("#CState").val(state);
+                        $("#CCountry").val(country);
+
+                    }
+                    else if (result == "INVALID PIN") {
+                        swal("Entered PIN is Invalid..!!");
+                    }
+                    else {
+
+                    }
+                }
+            })
+
+
+
+        }
+    </script>
+
+    <script>
+
+
+        $(document).ready(function () {
+            var timeoutId;
+
+            $('#PPincode').on('input', function () {
+                var pincode = $(this).val();
+
+                // Clear the previous timeout (if any)
+                clearTimeout(timeoutId);
+
+                // Set a new timeout to delay the AJAX request
+                timeoutId = setTimeout(function () {
+                    $.ajax({
+                        url: '/CurrentCAF/GetPincodeData',
+                        type: 'POST',
+                        data: { pincode: pincode },
+                        success: function (result) {
+                            if (result.error) {
+                                // Handle the error case
+                                console.log(result.error);
+                            } else {
+                                // Assign the retrieved district and state values to the respective textboxes
+                                $('#PCity').val(result.district);
+                                $('#PState').val(result.state);
+                            }
+                        },
+                        error: function (error) {
+                            console.log(error);
+                        }
+                    });
+                }, 3000);
+            });
+        });
+
+
+
+        $(document).ready(function () {
+            debugger;
+            var checkbox = document.getElementById('sameascorres');
+            var PAdd1 = document.getElementById('PAddress1');
+            var CAdd1 = document.getElementById('CAddress1');
+            var PAdd2 = document.getElementById('PAddress2'); // Fixed typo here
+            var CAdd2 = document.getElementById('CAddress2');
+            var PAdd3 = document.getElementById('PAddress3');
+            var CAdd3 = document.getElementById('CAddress3');
+            var pcity = document.getElementById('PCity');
+            var ccity = document.getElementById('CCity');
+            var ppincode = document.getElementById('PPincode');
+            var cpincode = document.getElementById('CPincode');
+            var pstate = document.getElementById('PState');
+            var cstate = document.getElementById('CState');
+            var pcountry = document.getElementById('PCountry');
+            var ccountry = document.getElementById('CCountry');
+
+            checkbox.onclick = function () {
+                if (checkbox.checked) {
+                    CAdd1.value = PAdd1.value;
+                    CAdd2.value = PAdd2.value;
+                    CAdd3.value = PAdd3.value;
+                    ccity.value = pcity.value;
+                    cpincode.value = ppincode.value;
+                    cstate.value = pstate.value;
+                    ccountry.value = pcountry.value;
+
+                } else {
+                    CAdd1.value = "";
+                    CAdd2.value = "";
+                    CAdd3.value = "";
+                    ccity.value = "";
+                    cpincode.value = "";
+                    cstate.value = "";
+                    ccountry.value = "";
+                }
+            };
+        });
+
+
+    </script>
+
+
+    <link href="~/css/multiclass.css" rel="stylesheet" />
+    <style>
+        .arrow {
+            height: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid pdcon btnmrgin" style="clear:both">
+
+        @using (Html.BeginForm("CurrentCAF", "CurrentCAF", FormMethod.Post, new { @Id = "DigiForm", enctype = "multipart/form-data" }))
+        {
+            <div class="digi_up_margin">
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(model => model.DigiKYCPhoto, new { id = "digiphotoid" })
+                @Html.HiddenFor(model => model.Latitude_Longitude, new { id = "latitudelongitude_id" })
+                @Html.HiddenFor(model => model.Prediction, new { id = "Prediction_id" })
+                <div class="mrgnadmn mrgnagnt" style="float:right;margin-right:6.6%;margin-top:2%;">
+                    <label class="lab-init init-w">Customer Reference Number :</label>
+                    <label class="lab-init init-w">@ViewBag.PersonalId</label>
+                </div>
+
+
+                <div class="space35btn1"></div>
+
+                <div id="emailformOTP" class="seconddialog fadeInDown animated wow" style="display:none">
+                    <div class="form-header goipopuphead form_header">
+                        <div class="pan-header" style="text-align:center!important">OTP Verification</div>
+                    </div>
+                    <div style="margin-bottom:6%;margin-top:2.8%">
+                        <div class="col-lg-12">
+                            <div class="col-lg-8" style="margin-top:1.5%">
+                                <div class="md-form">
+                                    <label style="top: 14px;padding-left:0%" for="emailcode" id="emlotp" class="label_val fontpfhndr active">Email Id</label>
+                                    <input type="text" id="emailcodeOTP" readonly="readonly" style="margin-left:8%" />
+
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <button type="button" onclick="GetOTP()" class="btn btn-primary get1" id="EmailGetOtp" style=" ">Get Otp</button>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="col-lg-8" style="margin-top:1.5%">
+                                <div class="md-form">
+                                    <label style="top: 14px; padding-left:7%" for="emailauth" class="label_val fontpfhndr">OTP</label>
+                                    <input type="text" id="emailauth" style="margin-left:9%" />
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4" style="margin-top:1%">
+                                <button type="button" id="EmailAuthOtp" class="btn btn-primary" onclick="OTPAuthenticate()">Authenticate</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group" style="margin-top:1%;margin-left:14%;float:left">
+                        <div class="col-md-offset-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 clear" style="text-align:center">
+                            <button type="button" class="btn btn-primary" onclick="closeemail()">Close</button>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div id="DigiQuick" class="clearfix agnttpmrgn">
+
+                    <fieldset class="customerSd" style="width:100%">
+
+
+
+                        <div id="tohideDigilockerdetails">
+                            <div class="space351"></div>
+
+                            <div class="faq" style="">
+                                <div class="faqitem shdowaccor">
+                                    <div class="header" id="init_click_header0" style="background: #e1e0e0;padding: 4px 11px !important;border: 1px solid #e1e1e0 !important;font-size: 16px;display:none">
+                                        <div class="hrddigi" style="font-family: Roboto,Arial,sans-serif !important;letter-spacing: 0;line-height: 32px;display: inline-block;color: #434444 !important;font-size: 17px !important;padding: 3px 10px !important;font-weight: 600 !important;margin-bottom: 0px !important;">
+
+                                            <img src="~/Images/Image/user2icon.png" width="15px" height="15px">
+
+                                            Personal Details
+                                        </div>
+                                        <img src="~/images/image/angle-down-solid.svg" id="icon-test" class="arrow" />
+
+                                    </div>
+
+                                    <div class="content" id="inner_wrapper0">
+
+                                        <div class="panel-body">
+
+                                            <div class="row">
+
+                                                <div class="col-xl-1 paddingleftCaf equalSpace">
+                                                    <label>Sub-Title<span style="color:red">*</span></label>
+
+                                                </div>
+                                                <div class="col-xl-2 paddingleftCaf equalSpace">
+                                                    <input type="text" id="Comapnyname" class="digifont inputsectbx fnt-input" />
+                                                </div>
+                                                <div class="col-xl-1 paddingleftCaf equalSpace">
+                                                    <label>First Name<span style="color:red">*</span></label>
+                                                </div>
+                                                <div class="col-xl-2 paddingleftCaf equalSpace">
+                                                    <input type="text" id="Comapnyname" class="digifont inputsectbx fnt-input" />
+                                                </div>
+                                                <div class="col-xl-1 paddingleftCaf equalSpace">
+                                                    <label>Middle Name<span style="color:red">*</span></label>
+                                                </div>
+                                                <div class="col-xl-2 paddingleftCaf equalSpace">
+                                                    <input type="text" id="Comapnyname" class="digifont inputsectbx fnt-input" />
+                                                </div>
+                                                <div class="col-xl-1 paddingleftCaf ">
+                                                    <label>Last Name<span style="color:red">*</span></label>
+                                                </div>
+
+                                                <div class="col-xl-2 paddingleftCaf marBottmD mrgns">
+                                                    <input type="text" id="Comapnyname" class="digifont inputsectbx fnt-input" />
+                                                </div>
+                                            </div>
+                                            <div class="row">
+
+                                                <div class="col-xl-1 paddingleftCaf equalSpace">
+                                                    <label>Date of Birth<span style="color:red">*</span></label>
+                                                </div>
+                                                <div class="col-xl-2   paddingleftCaf equalSpace">
+                                                    <input type="text" id="Comapnyname" class="digifont inputsectbx fnt-input" />
+                                                </div>
+                                                <div class="col-xl-1 paddingleftCaf equalSpace">
+                                                    <label>Gender<span style="color:red">*</span></label>
+                                                </div>
+                                                <div class="col-xl-2   paddingleftCaf equalSpace">
+                                                    <input type="text" id="Comapnyname" class="digifont inputsectbx fnt-input" />
+                                                </div>
+
+                                                <div class="col-xl-1 paddingleftCaf equalSpace">
+                                                    <label>Religion<span style="color:red">*</span></label>
+                                                </div>
+                                                <div class="col-xl-2   paddingleftCaf equalSpace">
+                                                    <input type="text" id="Comapnyname" class="digifont inputsectbx fnt-input" />
+                                                </div>
+
+                                                <div class="col-xl-1 paddingleftCaf equalSpace">
+                                                    <label>Marital Status<span style="color:red">*</span></label>
+                                                </div>
+                                                <div class="col-xl-2   paddingleftCaf equalSpace">
+                                                    <input type="text" id="Comapnyname" class="digifont inputsectbx fnt-input" />
+                                                </div>
+                                                <div class="col-xl-2 disp1">
+                                                    <p></p>
+                                                </div>
+                                                <div class="col-xl-2 disp1">
+                                                    <p></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            <div class="faq" style="">
+                                <div class="faqitem shdowaccor">
+                                    <div class="header" id="init_click_header1" style="background: #e1e0e0;padding: 4px 11px !important;border: 1px solid #e1e1e0 !important;font-size: 16px;">
+                                        <div class="hrddigi" style="font-family: Roboto,Arial,sans-serif !important;letter-spacing: 0;line-height: 32px;display: inline-block;color: #434444 !important;font-size: 17px !important;padding: 3px 10px !important;font-weight: 600 !important;margin-bottom: 0px !important;">
+
+                                            <img src="~/Images/Image/user2icon.png" width="15px" height="15px">
+
+                                            Company Details
+                                        </div>
+                                        <img src="~/images/image/angle-down-solid.svg" id="icon-test" class="arrow" />
+
+                                    </div>
+
+                                    <div class="content" id="inner_wrapper1">
+
+                                        <div class="panel-body">
+
+                                            <div class="row">
+
+                                                <div class="col-xl-1 paddingleftCaf equalSpace">
+                                                    <label>Comapny Name<span style="color:red">*</span></label>
+
+                                                </div>
+                                                <div class="col-xl-2 paddingleftCaf equalSpace">
+                                                    @*<input type="text" id="Comapnyname" class="digifont inputsectbx fnt-input" />*@
+                                                    @Html.TextBoxFor(model => model.LEGALNAMEOFBUSINESS, new { @id = "company_name", @class = "form-control txtboxfnt_sz"})
+                                                    @Html.ValidationMessageFor(model => model.LEGALNAMEOFBUSINESS, "", new { @class = "text-danger" })
+
+                                                </div>
+                                                <div class="col-xl-1 paddingleftCaf equalSpace">
+                                                    <label>Org / Industry Type<span style="color:red">*</span></label>
+                                                </div>
+                                                <div class="col-xl-2 paddingleftCaf equalSpace">
+                                                    @*<input type="text" id="Industrytype" class="digifont inputsectbx fnt-input" />*@
+                                                    @Html.TextBoxFor(model => model.CONSTITUTIONOFBUSINESS, new { @id = "Industrytype", @class = "form-control txtboxfnt_sz"})
+                                                    @Html.ValidationMessageFor(model => model.CONSTITUTIONOFBUSINESS, "", new { @class = "text-danger" })
+                                                </div>
+                                                <div class="col-xl-1 paddingleftCaf equalSpace">
+                                                    <label>Business Type/Line<span style="color:red">*</span></label>
+                                                </div>
+                                                <div class="col-xl-2 paddingleftCaf equalSpace">
+                                                    @*<input type="text" id="BusinessTL" class="digifont inputsectbx fnt-input" />*@
+                                                    @Html.TextBoxFor(model => model.BusinessTL, new { @id = "BusinessTL", @class = "form-control txtboxfnt_sz"})
+                                                    @Html.ValidationMessageFor(model => model.BusinessTL, "", new { @class = "text-danger" })
+                                                </div>
+                                                <div class="col-xl-1 paddingleftCaf ">
+                                                    <label>Date Of Estd<span style="color:red">*</span></label>
+                                                </div>
+
+                                                <div class="col-xl-2 paddingleftCaf marBottmD mrgns">
+                                                    @*<input type="text" id="DOE" class="digifont inputsectbx fnt-input" />*@
+                                                    @Html.TextBoxFor(model => model.DateofIncorporation, new { @id = "DOE", @class = "form-control txtboxfnt_sz"})
+                                                    @Html.ValidationMessageFor(model => model.DateofIncorporation, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="row">
+
+                                                <div class="col-xl-1 paddingleftCaf equalSpace">
+                                                    <label>Place of Estd<span style="color:red">*</span></label>
+                                                </div>
+                                                <div class="col-xl-2   paddingleftCaf equalSpace">
+                                                    @*<input type="text" id="POE" class="digifont inputsectbx fnt-input" />*@
+                                                    @Html.TextBoxFor(model => model.ROCOffice, new { @id = "POE", @class = "form-control txtboxfnt_sz"})
+                                                    @Html.ValidationMessageFor(model => model.ROCOffice, "", new { @class = "text-danger" })
+                                                </div>
+                                                <div class="col-xl-1 paddingleftCaf equalSpace">
+                                                    <label>No. of Branches<span style="color:red">*</span></label>
+                                                </div>
+                                                <div class="col-xl-2   paddingleftCaf equalSpace">
+                                                    @*<input type="text" id="Branches" class="digifont inputsectbx fnt-input" />*@
+                                                    @Html.TextBoxFor(model => model.Branches, new { @id = "Branches", @class = "form-control txtboxfnt_sz"})
+                                                    @Html.ValidationMessageFor(model => model.Branches, "", new { @class = "text-danger" })
+                                                </div>
+
+                                                <div class="col-xl-1 paddingleftCaf equalSpace">
+                                                    <label>No. of Employees<span style="color:red">*</span></label>
+                                                </div>
+                                                <div class="col-xl-2   paddingleftCaf equalSpace">
+                                                    @*<input type="text" id="NOE" class="digifont inputsectbx fnt-input" />*@
+                                                    @Html.TextBoxFor(model => model.NOE, new { @id = "NOE", @class = "form-control txtboxfnt_sz"})
+                                                    @Html.ValidationMessageFor(model => model.NOE, "", new { @class = "text-danger" })
+                                                </div>
+
+                                                <div class="col-xl-1 paddingleftCaf equalSpace">
+                                                    <label>Turnover<span style="color:red">*</span></label>
+                                                </div>
+                                                <div class="col-xl-2   paddingleftCaf equalSpace">
+                                                    @*<input type="text" id="Turnover" class="digifont inputsectbx fnt-input" />*@
+                                                    @Html.TextBoxFor(model => model.AuthorizedCapital, new { @id = "Turnover", @class = "form-control txtboxfnt_sz"})
+                                                    @Html.ValidationMessageFor(model => model.AuthorizedCapital, "", new { @class = "text-danger" })
+                                                </div>
+                                                <div class="col-xl-2 disp1">
+                                                    <p></p>
+                                                </div>
+                                                <div class="col-xl-2 disp1">
+                                                    <p></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="faq" style="">
+                                <div class="faqitem shdowaccor" style="">
+                                    <div class="header" id="init_click_header2" style="background: #e1e0e0;padding: 4px 11px !important;border: 1px solid #e1e1e0 !important;font-size: 16px;">
+                                        <div class="hrddigi" style="font-family: Roboto,Arial,sans-serif !important;letter-spacing: 0;line-height: 32px;display: inline-block;color: #434444 !important;font-size: 17px !important;padding: 3px 10px !important;font-weight: 600 !important;margin-bottom: 0px !important;">
+
+                                            @* <i class="fa fa-phone-square"></i> *@
+                                            <img src="~/Images/Image/phoneicon.png" width="15px" height="15px">
+                                            Contact Details
+
+                                        </div>
+                                        <img src="~/images/image/angle-down-solid.svg" id="icon-test" class="arrow" />
+                                    </div>
+                                    <div class="content" id="inner_wrapper2">
+                                        <div class="panel-body">
+                                            <div class="row">
+                                                <div class="col-xl-1 paddingleftCaf equalSpace">
+                                                    <label>Email Id<span style="color:red">*</span></label>
+                                                </div>
+                                                <div class="col-xl-2 paddingleftCaf equalSpace" style="">
+                                                    @*<input type="text" id="Email" class="digifont inputsectbx fnt-input" />*@
+                                                    @Html.TextBoxFor(model => model.RegisteredEmailId, new { @id = "Email", @class = "form-control txtboxfnt_sz"})
+                                                    @Html.ValidationMessageFor(model => model.RegisteredEmailId, "", new { @class = "text-danger" })
+                                                </div>
+
+                                                <div class="col-xl-1 paddingleftCaf equalSpace" style="padding-right:0px">
+                                                    <label>Mobile No<span style="color:red">*</span></label>
+                                                </div>
+                                                <div class="col-xl-2 paddingleftCaf equalSpace">
+                                                    @*<input type="text" id="Mobile" class="digifont inputsectbx fnt-input" />*@
+                                                    @Html.TextBoxFor(model => model.Mobile, new { @id = "Mobile", @class = "form-control txtboxfnt_sz"})
+                                                    @Html.ValidationMessageFor(model => model.Mobile, "", new { @class = "text-danger" })
+                                                </div>
+                                                <div class="col-xl-2 paddingleftCaf equalSpace">
+                                                    <label>Landline No.<span style="color:red">*</span></label>
+                                                </div>
+
+                                                <div class="col-xl-2 paddingleftCaf equalSpace">
+                                                    @*<input type="text" id="Landline" class="digifont inputsectbx fnt-input" />*@
+                                                    @Html.TextBoxFor(model => model.Landline, new { @id = "Landline", @class = "form-control txtboxfnt_sz"})
+                                                    @Html.ValidationMessageFor(model => model.Landline, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="faq shdowaccor" style="">
+                                <div class="faqitem">
+                                    <div class="header" id="init_click_header3" style="background: #e1e0e0;
+    padding: 4px 11px !important;
+    border: 1px solid #e1e1e0 !important;
+    font-size: 16px;">
+                                        <div class="hrddigi" style="font-family: Roboto,Arial,sans-serif !important;
+    letter-spacing: 0;
+    line-height: 32px;
+    display: inline-block;
+    color: #434444 !important;
+    font-size: 17px !important;
+    padding: 3px 10px !important;
+    font-weight: 600 !important;
+    margin-bottom: 0px !important;">
+                                            @*<i class="fa fa-file-text"></i> *@
+                                            <img src="~/Images/Image/address.png" width="15px" height="15px">
+                                            Address Details
+                                            @*<div class="hrdigitxt">Address Details</div>*@
+                                        </div>
+                                        <img src="~/images/image/angle-down-solid.svg" id="icon-test" class="arrow" />
+                                    </div>
+                                    <div class="content aadhar-verify" id="inner_wrapper3">
+                                        <div class="panel-body">
+                                            <div id="EditCorresPOA">
+
+                                                <fieldset class="accopenfrontend" id="CorrFieldset">
+                                                    <div class="row">
+                                                        <h3>Permanent Address</h3>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-xl-2 paddingleftCaf">
+                                                            <label>Address 1<span style="color:red">*</span></label>
+                                                        </div>
+                                                        <div class="col-xl-10 paddingleftCaf">
+                                                            @*<input type="text" id="PAddress1" class="digifont inputsectbx fnt-input" />*@
+                                                            @Html.TextBoxFor(model => model.RegisteredAddress, new { @id = "PAddress1", @class = "form-control txtboxfnt_sz"})
+                                                            @Html.ValidationMessageFor(model => model.RegisteredAddress, "", new { @class = "text-danger" })
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-xl-2 paddingleftCaf">
+                                                            <label>Address 2<span style="color:red">*</span></label>
+                                                        </div>
+                                                        <div class="col-xl-10 paddingleftCaf">
+                                                            @*<input type="text" id="PAddress2" class="digifont inputsectbx fnt-input" />*@
+                                                            @Html.TextBoxFor(model => model.PAddress2, new { @id = "PAddress2", @class = "form-control txtboxfnt_sz"})
+                                                            @Html.ValidationMessageFor(model => model.PAddress2, "", new { @class = "text-danger" })
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-xl-2 paddingleftCaf">
+                                                            <label>Address 3<span style="color:red"></span></label>
+                                                        </div>
+                                                        <div class="col-xl-10 paddingleftCaf">
+                                                            @*<input type="text" id="PAddress3" class="digifont inputsectbx fnt-input" />*@
+                                                            @Html.TextBoxFor(model => model.PAddress3, new { @id = "PAddress3", @class = "form-control txtboxfnt_sz"})
+                                                            @Html.ValidationMessageFor(model => model.PAddress3, "", new { @class = "text-danger" })
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-xl-2 paddingleftCaf equalSpace">
+                                                            <label>City<span style="color:red">*</span></label>
+                                                        </div>
+                                                        <div class="col-xl-4 paddingleftCaf equalSpace">
+                                                            @*<input type="text" id="PCity" class="digifont inputsectbx fnt-input" />*@
+                                                            @Html.TextBoxFor(model => model.PCity, new { @id = "PCity", @class = "form-control txtboxfnt_sz"})
+                                                            @Html.ValidationMessageFor(model => model.PCity, "", new { @class = "text-danger" })
+                                                        </div>
+                                                        <div class="col-xl-2 paddingleftCaf equalSpace">
+                                                            <label>Pincode<span style="color:red">*</span></label>
+                                                        </div>
+                                                        <div class="col-xl-4 paddingleftCaf equalSpace">
+                                                            @*<input type="text" id="PPincode" class="digifont inputsectbx fnt-input" />*@
+                                                            @Html.TextBoxFor(model => model.PPincode, new { @id = "PPincode", @class = "form-control txtboxfnt_sz" ,@onchange="CheckPinExistenceLC()"})
+                                                            @Html.ValidationMessageFor(model => model.PPincode, "", new { @class = "text-danger" })
+                                                        </div>
+                                                    </div>
+                                                    <div class="row rowMrgin">
+                                                        <div class="col-xl-2 paddingleftCaf equalSpace">
+                                                            <label>State<span style="color:red">*</span></label>
+                                                        </div>
+
+                                                        <div class="col-xl-4 paddingleftCaf equalSpace mrgns">
+                                                            @*<input type="text" id="PState" class="digifont inputsectbx fnt-input" />*@
+                                                            @Html.TextBoxFor(model => model.PState, new { @id = "PState", @class = "form-control txtboxfnt_sz"})
+                                                            @Html.ValidationMessageFor(model => model.PState, "", new { @class = "text-danger" })
+                                                        </div>
+
+
+                                                        <div class="col-xl-2 paddingleftCaf equalSpace">
+                                                            <label>Country<span style="color:red">*</span></label>
+                                                        </div>
+
+                                                        <div class="col-xl-4 paddingleftCaf equalSpace mrgns" id="countryorg">
+                                                            @*<input type="text" id="PCountry" class="digifont inputsectbx fnt-input" />*@
+                                                            @Html.TextBoxFor(model => model.PCountry, new { @id = "PCountry", @class = "form-control txtboxfnt_sz"})
+                                                            @Html.ValidationMessageFor(model => model.PCountry, "", new { @class = "text-danger" })
+                                                        </div>
+                                                        @*
+                                                    <div class="col-xl-2 paddingleftCaf equalSpace" style="">
+                                                    <label>Residence<span style="color:red">*</span></label>
+                                                    </div>
+                                                    <div class="col-xl-4   paddingleftCaf equalSpace mrgns">
+                                                    <input type="text" id="" class="digifont inputsectbx fnt-input" />
+                                                    </div>
+
+                                                    <div class="col-xl-2 paddingleftCaf equalSpace" style="">
+                                                    <label>Residence Document<span style="color:red">*</span></label>
+                                                    </div>
+
+                                                    <div class="col-xl-4   paddingleftCaf equalSpace mrgns">
+                                                    <input type="text" id="" class="digifont inputsectbx fnt-input" />
+                                                    </div>
+
+                                                    <div class="col-xl-2 paddingleftCaf equalSpace" style=" ">
+
+                                                    <label>Residential Status<span style="color:red">*</span></label>
+                                                    </div>
+                                                    <div class="col-xl-4 paddingleftCaf equalSpace mrgns">
+                                                    <input type="text" id="" class="digifont inputsectbx fnt-input" />
+                                                    </div>
+
+
+
+                                                    <div class="col-xl-2 paddingleftCaf equalSpace" style="">
+                                                    <label>Residence Y/N<span style="color:red">*</span></label>
+                                                    </div>
+                                                    <div class="col-xl-4   paddingleftCaf equalSpace">
+                                                    <input type="text" id="" class="digifont inputsectbx fnt-input" />
+                                                    </div>
+                                                    *@
+
+                                                    </div>
+                                                </fieldset>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xl-12">
+                                                    <input type="checkbox" id="sameascorres" class="digifont inputsectbx fnt-input" />
+                                                    Same as Permanent Address
+                                                </div>
+                                            </div>
+                                            <fieldset class="accopenfrontend" id="EditPermPOA">
+                                                <div class="row">
+                                                    <h3>Correspondence Address</h3>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-xl-2 paddingleftCaf">
+                                                        <label>Address 1<span style="color:red">*</span></label>
+                                                    </div>
+                                                    <div class="col-xl-10 paddingleftCaf">
+                                                        @* <input type="text" id="CAddress1" class="digifont inputsectbx fnt-input" />*@
+                                                        @Html.TextBoxFor(model => model.CAddress1, new { @id = "CAddress1", @class = "form-control txtboxfnt_sz"})
+                                                        @Html.ValidationMessageFor(model => model.CAddress1, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-xl-2 paddingleftCaf">
+                                                        <label>Address 2<span style="color:red">*</span></label>
+                                                    </div>
+                                                    <div class="col-xl-10 paddingleftCaf">
+                                                        @*<input type="text" id="CAddress2" class="digifont inputsectbx fnt-input" />*@
+                                                        @Html.TextBoxFor(model => model.CAddress2, new { @id = "CAddress2", @class = "form-control txtboxfnt_sz"})
+                                                        @Html.ValidationMessageFor(model => model.CAddress2, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-xl-2 paddingleftCaf">
+                                                        <label>Address 3<span style="color:red"></span></label>
+                                                    </div>
+                                                    <div class="col-xl-10 paddingleftCaf">
+                                                        @*<input type="text" id="CAddress3" class="digifont inputsectbx fnt-input" />*@
+                                                        @Html.TextBoxFor(model => model.CAddress3, new { @id = "CAddress3", @class = "form-control txtboxfnt_sz"})
+                                                        @Html.ValidationMessageFor(model => model.CAddress3, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-xl-2 paddingleftCaf equalSpace">
+                                                        <label>City<span style="color:red">*</span></label>
+                                                    </div>
+                                                    <div class="col-xl-4 paddingleftCaf equalSpace">
+                                                        @*<input type="text" id="CCity" class="digifont inputsectbx fnt-input" />*@
+                                                        @Html.TextBoxFor(model => model.CCity, new { @id = "CCity", @class = "form-control txtboxfnt_sz"})
+                                                        @Html.ValidationMessageFor(model => model.CCity, "", new { @class = "text-danger" })
+                                                    </div>
+                                                    <div class="col-xl-2 paddingleftCaf equalSpace">
+                                                        <label>Pincode<span style="color:red">*</span></label>
+                                                    </div>
+                                                    <div class="col-xl-4 paddingleftCaf equalSpace">
+                                                        @* <input type="text" id="CPincode" class="digifont inputsectbx fnt-input" />*@
+                                                        @Html.TextBoxFor(model => model.CPincode, new { @id = "CPincode", @class = "form-control txtboxfnt_sz" ,@onchange="CheckCPExistenceLC()"})
+                                                        @Html.ValidationMessageFor(model => model.CPincode, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                                <div class="row rowMrgin">
+                                                    <div class="col-xl-2 paddingleftCaf equalSpace">
+                                                        <label>State<span style="color:red">*</span></label>
+                                                    </div>
+                                                    <div class="col-xl-4 paddingleftCaf equalSpace">
+                                                        @*<input type="text" id="CState" class="digifont inputsectbx fnt-input" />*@
+                                                        @Html.TextBoxFor(model => model.CState, new { @id = "CState", @class = "form-control txtboxfnt_sz"})
+                                                        @Html.ValidationMessageFor(model => model.CState, "", new { @class = "text-danger" })
+                                                    </div>
+
+
+                                                    <div class="col-xl-2 paddingleftCaf equalSpace">
+                                                        <label>Country<span style="color:red">*</span></label>
+                                                    </div>
+                                                    <div class="col-xl-4 paddingleftCaf equalSpace" id="dropprem">
+                                                        @*<input type="text" id="CCountry" class="digifont inputsectbx fnt-input" />*@
+                                                        @Html.TextBoxFor(model => model.CCountry, new { @id = "CCountry", @class = "form-control txtboxfnt_sz"})
+                                                        @Html.ValidationMessageFor(model => model.CCountry, "", new { @class = "text-danger" })
+                                                    </div>
+
+                                                </div>
+                                            </fieldset>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="faq shdowaccor" style="">
+                                <div class="faqitem" style="">
+                                    <div class="header" id="init_click_header4" style="background: #e1e0e0;
+                                         padding: 4px 11px !important;
+                                            border: 1px solid #e1e1e0 !important;
+                                                font-size: 16px;">
+                                        <div class="hrddigi" style="font-family: Roboto,Arial,sans-serif !important;
+    letter-spacing: 0;
+    line-height: 32px;
+    display: inline-block;
+    color: #434444 !important;
+    font-size: 17px !important;
+    padding: 3px 10px !important;
+    font-weight: 600 !important;
+    margin-bottom: 0px !important;">
+                                            @*<i class="fa fa-file-text"></i>*@
+                                            <img src="~/Images/Image/otherdtls.png" width="15px" height="15px">
+                                            Other Details(Pan Number is Mandatory)
+                                            @*<div class="hrdigitxt">Other Details</div>*@
+                                        </div>
+                                        <img src="~/images/image/angle-down-solid.svg" id="icon-test" class="arrow" />
+                                    </div>
+                                    <div class="content" id="inner_wrapper4">
+                                        <div class="panel-body">
+                                            <div class="row">
+                                                <div class="col-xl-2 paddingleftCaf equalSpace">
+                                                    <label>CIN No.</label>
+                                                </div>
+                                                <div class="col-xl-2 paddingleftCaf equalSpace">
+                                                    @*<input type="text" id="CINCAF" class="digifont inputsectbx fnt-input" />*@
+                                                    @Html.TextBoxFor(model => model.CIN, new { @id = "CINCAF", @class = "form-control txtboxfnt_sz"})
+                                                    @Html.ValidationMessageFor(model => model.CIN, "", new { @class = "text-danger" })
+                                                </div>
+                                                <div class="col-xl-2 paddingleftCaf equalSpace">
+                                                    <label>Company Pan</label>
+                                                </div>
+                                                <div class="col-xl-2 paddingleftCaf equalSpace">
+                                                    @*<input type="text" id="DINCAF" class="digifont inputsectbx fnt-input" />*@
+                                                    @Html.TextBoxFor(model => model.DINCAF, new { @id = "DINCAF", @class = "form-control txtboxfnt_sz"})
+                                                    @Html.ValidationMessageFor(model => model.DINCAF, "", new { @class = "text-danger" })
+                                                </div>
+                                                <div class="col-xl-2 paddingleftCaf equalSpace">
+                                                    <label>Registration No.<span style="color:red">*</span></label>
+                                                </div>
+                                                <div class="col-xl-2 paddingleftCaf equalSpace">
+                                                    @*<input type="text" id="PanCAF" class="digifont inputsectbx fnt-input" />*@
+                                                    @Html.TextBoxFor(model => model.PanCAF, new { @id = "PanCAF", @class = "form-control txtboxfnt_sz"})
+                                                    @Html.ValidationMessageFor(model => model.PanCAF, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="row rowMrgin">
+                                                <div class="col-xl-2 paddingleftCaf equalSpace">
+                                                    <label>GSTN No.</label>
+                                                </div>
+                                                <div class="col-xl-2 paddingleftCaf equalSpace">
+                                                    @*<input type="text" id="GSTNCAF" class="digifont inputsectbx fnt-input" />*@
+                                                    @Html.TextBoxFor(model => model.GSTIN, new { @id = "GSTNCAF", @class = "form-control txtboxfnt_sz"})
+                                                    @Html.ValidationMessageFor(model => model.GSTIN, "", new { @class = "text-danger" })
+                                                </div>
+                                                <div class="col-xl-2 paddingleftCaf equalSpace">
+                                                    <label>Udyog Aadhaar No.</label>
+                                                </div>
+                                                <div class="col-xl-2 paddingleftCaf equalSpace">
+                                                    @*<input type="text" id="UdyogAadhaarCAF" class="digifont inputsectbx fnt-input" />*@
+                                                    @Html.TextBoxFor(model => model.UdyogAadhaarCAF, new { @id = "UdyogAadhaarCAF", @class = "form-control txtboxfnt_sz"})
+                                                    @Html.ValidationMessageFor(model => model.UdyogAadhaarCAF, "", new { @class = "text-danger" })
+                                                </div>
+                                                <div class="col-xl-2 paddingleftCaf equalSpace">
+                                                    <label>DIN No.<span style="color:red">*</span></label>
+                                                </div>
+                                                <div class="col-xl-2 paddingleftCaf equalSpace">
+                                                    <input type="text" id="AdharCAF" class="digifont inputsectbx fnt-input" />
+                                                </div>
+                                            </div>
+
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="faq" style="">
+                                <div class="faqitem shdowaccor" style="">
+                                    <div class="header" id="init_click_header5" style="background: #e1e0e0;
+    padding: 4px 11px !important;
+    border: 1px solid #e1e1e0 !important;
+    font-size: 16px;">
+                                        <div class="hrddigi" style="font-family: Roboto,Arial,sans-serif !important;
+    letter-spacing: 0;
+    line-height: 32px;
+    display: inline-block;
+    color: #434444 !important;
+    font-size: 17px !important;
+    padding: 3px 10px !important;
+    font-weight: 600 !important;
+    margin-bottom: 0px !important;">
+
+                                            @*  <i class="fa fa-phone-square"></i> *@
+                                            <img src="~/Images/Dashboard/id details.png" width="15px" height="15px">
+                                            Account Details
+                                            @*<div class="hrdigitxt">Account Details</div>*@
+                                        </div>
+                                        <img src="~/images/image/angle-down-solid.svg" id="icon-test" class="arrow" />
+                                    </div>
+                                    <div class="content" id="inner_wrapper5">
+                                        <div class="panel-body">
+                                            <div class="row">
+
+                                                <div class="col-xl-2 paddingleftCaf equalSpace">
+                                                    <label>Phone Banking<span style="color:red">*</span></label>
+                                                </div>
+
+                                                <div class="col-xl-2   paddingleftCaf equalSpace">
+                                                    @*<input type="text" id="PB" class="digifont inputsectbx fnt-input" />*@
+                                                    @Html.TextBoxFor(model => model.PB, new { @id = "PB", @class = "form-control txtboxfnt_sz"})
+                                                    @Html.ValidationMessageFor(model => model.PB, "", new { @class = "text-danger" })
+                                                </div>
+
+                                                <div class="col-xl-2 paddingleftCaf equalSpace">
+                                                    <label>AMLRating<span style="color:red">*</span></label>
+                                                </div>
+
+                                                <div class="col-xl-2   paddingleftCaf equalSpace">
+                                                    <select class="form-control txtboxfnt_sz" id="NomineePrefixid" maxlength="6" name="NomineePrefix" onkeyup="alphabetOnly(this.id)" placeholder="Ms/Mr" style="text-transform: uppercase;">
+                                                        <option value="">Low</option>
+                                                        <option value="1">Medium</option>
+                                                        <option value="2">High</option>
+                                                    </select>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="apprejbox appBox" style="width:100%;margin-bottom:30px;">
+                            </div>
+
+                        </div>
+
+                        <div class="faq shdowaccor" style="display:none;">
+                            <div class="faqitem">
+                                <div class="header" id="init_click_header6" style="background: #e1e0e0;padding: 4px 11px !important;border: 1px solid #e1e1e0 !important;font-size: 16px;">
+                                    <div class="hrddigi" style="font-family: Roboto,Arial,sans-serif !important;letter-spacing: 0;line-height: 32px;display: inline-block;color: #434444 !important;font-size: 17px !important;padding: 3px 10px !important;font-weight: 600 !important;margin-bottom: 0px !important;">
+
+                                        @* <i class="fa fa-camera"></i>*@
+                                        <img src="~/Images/Image/camerad.png" width="15px" height="15px">
+                                        Customer Photo
+
+                                    </div>
+                                    <img src="~/images/image/angle-down-solid.svg" id="icon-test" />
+                                </div>
+                                <div class="content" id="inner_wrapper6">
+                                    <div class="panel-body">
+                                        <div id="DigiQuickCamera">
+                                            <fieldset>
+                                                <div class="">
+                                                    <div id="DigiImageCapturediv_id" class="row mgtpbtm" style="display: flex;justify-content: center;">
+                                                        <div class="col-xl-2 starcameraBtn">
+                                                            <div class="buttoncam getkcybg wdth16 btn btn-primary fnt-input" onclick="captureimage()" id="capButton" style="cursor: pointer;"><span class="fa fa-camera" style="color: #ff6a00;" aria-hidden="true"></span> Start Camera</div>
+                                                        </div>
+                                                        <div id="DigitCaptureImage" class="captureimg col-xl-9 wstart "></div>
+                                                        @*<img alt="" class="zoomDocument" src="" id="livephoto" />*@
+                                                    </div>
+                                                </div>
+                                            </fieldset>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+                        <button type="button" class="btn btn-primary EmailGetOtpnew DigiSelectwidth marEmBtn rekycbtn rkycbtn2 rkycsbmt" onclick="curr_submitbtn(this)" id="Submit" style="">Submit</button>
+
+
+                    </fieldset>
+                </div>
+
+
+
+
+            </div>
+            <div id="AadharRadio"></div>
+            <div id="Emailbaknew1"></div>
+
+
+
+            <div id="DigiCerti1"></div>
+            <div id="DIGIbag1"></div>
+        }
+
+    </div>
+    <script>
+        $(document).ready(function () {
+            $("#init_loader").hide();
+            $("#init_click_header0").click(function () {
+                $("#inner_wrapper0").slideToggle(200);
+            })
+            $("#init_click_header1").click(function () {
+                $("#inner_wrapper1").slideToggle(200);
+            })
+            $("#init_click_header2").click(function () {
+                $("#inner_wrapper2").slideToggle(200);
+            })
+            $("#init_click_header3").click(function () {
+                $("#inner_wrapper3").slideToggle(200);
+            })
+            $("#init_click_header4").click(function () {
+                $("#inner_wrapper4").slideToggle(200);
+            })
+            $("#init_click_header5").click(function () {
+                $("#inner_wrapper5").slideToggle(200);
+            })
+            $("#init_click_header6").click(function () {
+                $("#inner_wrapper6").slideToggle(200);
+            })
+        });
+    </script>
+</body>
+</html>

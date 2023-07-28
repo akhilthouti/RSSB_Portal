@@ -1,0 +1,136 @@
+﻿
+@{
+    /**/
+
+    Layout = null;
+}
+<div id="imagecapture">
+    <html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>WebcamJS Test Page</title>
+        <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+        <style type="text/css">
+
+            body {
+                font-family: Helvetica, sans-serif;
+            }
+
+            h2, h3 {
+                margin-top: 0;
+            }
+
+            form {
+                margin-top: 0px;
+            }
+
+                form > input {
+                    margin-right: 15px;
+                }
+
+
+            #buttonhide {
+                background: transparent;
+                border: none !important;
+                font-size: 0;
+            }
+
+            #my_camera {
+                width: 231px !important;
+                height: auto !important;
+            }
+        </style>
+
+    </head>
+    <body class="container">
+        <br />
+
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 mg_tp-2 cameraB">
+            <div class="panel panel-default" style="height: auto;">
+                <div class="panel-heading">Camera</div>
+                <div class="panel-body">
+                    <div id="my_camera"></div>
+                    <!-- A button for taking snaps -->
+                    <form class="wdth100flt">
+                        <input type="button" class="takephoto hvr-grow-shadow" value="Take Photo" onClick="take_snapshot()">
+                    </form>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 mg_tp-2 cameraB">
+            <div class="panel panel-default" style="height: auto;">
+                <div class="panel-heading">Captured Photo</div>
+                <div class="panel-body">
+                    <div id="Digiresults" class="blueclr">Your captured image will appear here...</div>
+                </div>
+                <br />
+                <br />
+            </div>
+        </div>
+
+
+        <!-- First, include the Webcam.js JavaScript Library -->
+        <script src="~/Scripts/webcam.js"></script>
+
+        <!-- Configure a few settings and attach camera -->
+        <script language="JavaScript">
+            Webcam.set({
+                width: 265,
+                height: 239,
+                image_format: 'jpeg',
+                jpeg_quality: 90
+            });
+           // Webcam.attach('#my_camera');
+
+            Webcam.on('error', function (err) {
+                swal("Webcam access or connection error!"); // an error occurred (see 'err')
+                //return false;
+
+                //$('#QuickEnrollSubmitid').hide();
+                $('#DigitCaptureImage').hide();
+
+            });
+
+            Webcam.attach('#my_camera');
+
+
+
+
+
+
+
+            //try {
+            //    Webcam.attach('#my_camera');
+            //}
+            //catch (exp) {
+            //    console.error(exp);
+            //    $Error("Webcam access error! Try to use https:// protocol");
+            //}
+
+        </script>
+
+        <!-- Code to handle taking the snapshot and displaying it locally -->
+        <script language="JavaScript">
+            function take_snapshot() {
+                Webcam.snap(function (data_uri) {
+                    debugger;
+                    document.getElementById('Digiresults').innerHTML =
+                        '<img src="' +
+                        data_uri +
+                        '"/>';
+
+                    Webcam.upload(data_uri,
+                        '/Camera/Capture',
+                        function (code, text) {
+                            alert('Photo Captured');
+
+                        });
+                });
+            }
+        </script>
+    </body>
+</html>
+</div>
+
+

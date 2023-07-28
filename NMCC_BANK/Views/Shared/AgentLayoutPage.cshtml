@@ -1,0 +1,278 @@
+﻿
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+
+
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <link href="~/Content/Navigation/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Content/Navigation/vendor/animate.css/animate.min.css" rel="stylesheet">
+    <link href="~/Content/Navigation/vendor/animate.css/animate.min.css" rel="stylesheet">
+    <link href="~/Content/Navigation/css/style.css" rel="stylesheet">
+    <link href="~/Content/Navigation/css/custom.css" rel="stylesheet">
+    <link href="~/Content/Navigation/css/font-awesome.min.css" rel="stylesheet">
+    @*//NEW CSS//*@
+    <script src="~/Content/Navigation/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/Content/Navigation/vendor/jquery.easing/jquery.easing.min.js"></script>
+    <script src="~/Content/Navigation/vendor/venobox/venobox.min.js"></script>
+    <script src="~/Content/Navigation/js/main.js"></script>
+
+    @*<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>*@
+    <link href="~/Scripts/sweetalert.css" rel="stylesheet" />
+    <script src="~/Scripts/sweetalert.min.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    @*<script src="~/Scripts/bootstrap.min.js"></script>*@
+    @*<script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>*@
+
+    @*<script src="~/wwwroot/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>*@
+
+    <script>
+        function RedirectToBankLoginPage() {
+            debugger;
+            window.location.href = "/BankRegistration/RedirectToBankLoginPage";
+        }
+
+    </script>
+
+
+    <script type="text/javascript">
+        function Logout() {
+            debugger;
+            $.ajax({
+                url: "/OrganisationLogin/Logout",
+                type: 'Get',
+                cache: false,
+                success: function (result) {
+                    debugger;
+                    if (result == "Logout")
+                        window.location.href = "/OrganisationLogin/OrganisationDetails";
+                }
+            })
+        }
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            /*function idleTimer() {*/   //For Session TimeOut
+            var t;
+            //window.onload = resetTimer;
+            window.onmousemove = resetTimer; // catches mouse movements
+            window.onmousedown = resetTimer; // catches mouse movements
+            window.onclick = resetTimer;     // catches mouse clicks
+            window.onscroll = resetTimer;    // catches scrolling
+            window.onkeypress = resetTimer;  //catches keyboard actions
+
+            function Logout() {
+                debugger;
+                alert("Session expired");
+                $.ajax({
+                    url: "/OrganisationLogin/Logout",
+                    type: 'Get',
+                    cache: false,
+                    success: function (result) {
+                        if (result == "Logout")
+                            window.location.href = "/OrganisationLogin/OrganisationDetails";
+                    }
+                })
+            }
+
+
+
+            function resetTimer() {
+                clearTimeout(t);
+                t = setTimeout(logout, 30 * 60 * 1000);  // time is in milliseconds (1000 is 1 second)
+            }
+            //}
+        })
+        //idleTimer();
+    </script>
+    <script>
+        function LOGOUT() {
+            debugger;
+            window.location.href = "/OrganisationLogin/OrganisationDetails";
+        }
+
+
+    </script>
+    @if (ViewBag.AdminFlag == "AdminFlag")
+    {
+        <style>
+            #header {
+                display: none;
+            }
+
+            .coninn {
+                display: none;
+            }
+
+            #topbar {
+                display: none;
+            }
+
+            #footer {
+                display: none;
+            }
+        </style>
+    }
+
+    <style>
+        .init_div {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 90px;
+        }
+
+        .init_logo_div {
+            margin-left: 40px;
+        }
+        .init_logo_layout{
+            height: 53px;
+        }
+        .init_ul {
+            display: flex;
+            flex-direction: row;
+            margin-bottom: 0;
+            align-items: center;
+        }
+        .init_li {
+            padding: 2px;
+            list-style-type: none;
+        }
+         .init_a {
+            font-size: 15px;
+            font-weight: 600;
+            margin-right: 12px;
+            padding: 6px 8px;
+            text-decoration: none !important;
+            color:#fff;
+           
+        }
+        .init_a:hover{
+                color: #fff;
+            border-bottom:1px solid #fff!important;
+            transition: ease-in-out 0.3s;
+        }
+        .init_a:focus {
+            border: none !important;
+        }
+        .init-ul-parent{
+            margin-right:40px;
+        }
+        .init_logout_img{
+            cursor:pointer;
+            width:33px;
+            height:33px;
+        }
+        @@media screen and (max-width:768px){
+            .init_logo_div {
+                margin-left: 15px;
+            }
+
+            .init-ul-parent {
+                margin-right: 15px;
+            }
+
+            .init_logo_layout {
+                    height: 46px;
+                    width: 138px;
+            }
+            .init_a{
+                margin-right: 0px;
+            }
+           
+        }
+    </style>
+    <link href="~/css/multiclass.css" rel="stylesheet" />
+</head>
+<body>
+    @if (ViewBag.AdminFlag == "AdminFlag")
+    {
+        <div id="topbar" class="d-none d-lg-flex align-items-center">
+            <div class="container-fluid pdcon">
+                <div class="contact-info">
+                    <p>Customer Care +91-89288-00412</p>
+                </div>
+            </div>
+        </div>
+    }
+
+    <div id="header" class="header">
+        <div class="init_div init_div_sp">
+            <div class="init_logo_div">
+                @*<img src="~/images/shahu.png" class="init_logo_layout" alt="logo" />*@
+                <img src="~/content/logos/RSSB_bank.jpg" class="init_logo_layout" alt="Bank Logo" />
+            </div>
+            <div class="init-ul-parent" id="show-menu">
+                <ul class="init_ul">
+                    <li class="init_li">
+                        <a class="init_a" href="#wcs" onclick="LOGOUT()">Home</a>
+                    </li>
+                    <li class="init_li">
+                        <img src="~/Content/imgs/download.png" onclick="Logout()" class="init_logout_img" style="" />
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+    <header id="header" class="" style="display:none">
+        <div class="container-fluid pdcon d-flex align-items-center">
+            <h1 class="logo mr-auto">
+                <img src="~/Content/Logos/RSSB_bank.jpg" class="init_logo_main" />
+            </h1>
+            <nav class="nav-menu d-none d-lg-block">
+                <ul>
+                    <li><a onclick="LOGOUT()" style="cursor:pointer">Home</a></li>
+               
+                </ul>
+            </nav>
+            <img src="~/Content/imgs/download.png" onclick="Logout()" class="logouttxt hvr-sink" style="width:33px;height:33px;margin:0%" />
+           
+        </div>
+    </header>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="body-content" style="clear:both;">
+        @RenderBody()
+    </div>
+    @*<footer id="footer">
+    <div class="container">
+    <div class="row">
+    <div class="copyright">
+    <p><a href="">Terms of Use</a> | <a href="">Privacy Policy</a> | <a href="">Disclaimer</a></p>
+    <p>© Indo-FinNet. All Rights Reserved</p>
+    <p>Visit us at www.indofinnet.co.in</p>
+    </div>
+    </div>
+    </div>
+    </footer>*@
+
+    @*<div id="preloader"></div>*@
+   @* <a href="#" class="back-to-top">
+         <i class="fa fa-chevron-up"></i>
+        <img src="~/Content/imgs/icons/uparrow1.png" height="35px" width="35px" />
+    </a>*@
+</body>
+
+</html>
+

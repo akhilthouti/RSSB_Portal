@@ -1,0 +1,56 @@
+[
+  {
+    "outputFileName": "wwwroot/BundleJs/BundlingOfCAF.min.js",
+
+    "inputFiles": [
+      "wwwroot/BundleJs/BundlingOfCAF.js"
+
+    ]
+
+  },
+  {
+    "outputFileName": "wwwroot/BundleJs/BundlingOfOrganisationDetails.min.js",
+
+    "inputFiles": [
+      "wwwroot/BundleJs/BundlingOfOrganisationDetails.js"
+
+    ]
+
+  },
+  {
+    "outputFileName": "wwwroot/BundleJs/BundlingOfSavingAcc.min.js",
+
+    "inputFiles": [
+      "wwwroot/BundleJs/BundlingOfSavingAcc.js"
+
+    ]
+
+  },
+  {
+    "outputFileName": "wwwroot/BundleJs/BundlingOfSummarySheet.min.js",
+
+    "inputFiles": [
+      "wwwroot/BundleJs/BundlingOfSummarySheet.js"
+
+    ]
+
+  },
+  {
+    "outputFileName": "wwwroot/BundleJs/BundlingOfQuickEnrollment.min.js",
+
+    "inputFiles": [
+      "wwwroot/BundleJs/BundlingOfQuickEnrollment.js"
+
+    ]
+
+  },
+  {
+    "outputFileName": "wwwroot/BundleJs/BundlingOfDocumentsDetails.min.js",
+
+    "inputFiles": [
+      "wwwroot/BundleJs/BundlingOfDocumentsDetails.js"
+
+    ]
+
+  }
+]

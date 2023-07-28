@@ -1,0 +1,174 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+
+
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <link href="~/Content/Navigation/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Content/Navigation/vendor/animate.css/animate.min.css" rel="stylesheet">
+    <link href="~/Content/Navigation/vendor/animate.css/animate.min.css" rel="stylesheet">
+    <link href="~/Content/Navigation/css/style.css" rel="stylesheet">
+    <link href="~/Content/Navigation/css/custom.css" rel="stylesheet">
+    <link href="~/Content/Navigation/css/font-awesome.min.css" rel="stylesheet">
+    @*//NEW CSS//*@
+    <script src="~/Content/Navigation/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/Content/Navigation/vendor/jquery.easing/jquery.easing.min.js"></script>
+    <script src="~/Content/Navigation/vendor/venobox/venobox.min.js"></script>
+    <script src="~/Content/Navigation/js/main.js"></script>
+
+    @*<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>*@
+    <link href="~/Scripts/sweetalert.css" rel="stylesheet" />
+    <script src="~/Scripts/sweetalert.min.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    @*<script src="~/Scripts/bootstrap.min.js"></script>*@
+    @*<script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>*@
+
+    @*<script src="~/wwwroot/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>*@
+    <link href="~/Content/snewcss.css" rel="stylesheet" />
+    <script>
+        function RedirectToBankLoginPage() {
+            debugger;
+            window.location.href = "/BankRegistration/RedirectToBankLoginPage";
+        }
+
+    </script>
+    <script type="text/javascript">
+        function LogOut() {
+            debugger;
+            $.ajax({
+                url: "/AdminDashBoardNew/Logout",
+                type: 'Get',
+                cache: false,
+                success: function (result) {
+                    debugger;
+                    if (result == "Logout")
+                        window.location.href = "/AdminLogin/UserDetails";
+                }
+            })
+        }
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            /*function idleTimer() {*/   //For Session TimeOut
+            var t;
+            //window.onload = resetTimer;
+            window.onmousemove = resetTimer; // catches mouse movements
+            window.onmousedown = resetTimer; // catches mouse movements
+            window.onclick = resetTimer;     // catches mouse clicks
+            window.onscroll = resetTimer;    // catches scrolling
+            window.onkeypress = resetTimer;  //catches keyboard actions
+            
+            function logout() {
+                debugger;
+                alert("Session expired");
+                $.ajax({
+                    url: "/AdminDashBoardNew/Logout",
+                    type: 'Get',
+                    cache: false,
+                    success: function (result) {
+                        if (result == "Logout")
+                            window.location.href = "/AdminLogin/UserDetails";
+                    }
+                })
+            }
+
+            function resetTimer() {
+                clearTimeout(t);
+                t = setTimeout(logout, 30 * 60 * 1000);  // time is in milliseconds (1000 is 1 second)
+            }
+            //}
+        })
+        //idleTimer();
+    </script>
+    @if (ViewBag.AdminFlag == "AdminFlag")
+    {
+        <style>
+            #header {
+                display: none;
+            }
+
+            .coninn {
+                display: none;
+            }
+
+            #topbar {
+                display: none;
+            }
+
+            #footer {
+                display: none;
+            }
+        </style>
+    }
+    else
+    {
+        <style>
+            #header {
+                display: none;
+            }
+
+            .coninn {
+                display: none;
+            }
+
+            #topbar {
+                display: none;
+            }
+
+            #footer {
+                display: none;
+            }
+        </style>
+    }
+</head>
+<body>
+    @if (ViewBag.AdminFlag == "AdminFlag")
+    {
+        <div id="topbar" class="d-none d-lg-flex align-items-center" style="width:100%;">
+            <div class="container-fluid pdcon">
+                <div class="contact-info">
+                    <p>Customer Care +91-89288-00412</p>
+                </div>
+            </div>
+        </div>
+    }
+
+    <header id="header" class="" style="display:none">
+        <div class="container-fluid pdcon d-flex align-items-center">
+
+
+            @*<h1 class="logo mr-auto"><a href="index.html"><img src="~/Content/imgs/newlogoin.png" class="logohe"></a></h1>*@
+            @*<h1 class="logo mr-auto"><a href="index.html"><img src="~/Content/imgs/IndoFinnet logo-350x350-noBG.png" class="logohe1"></a></h1>*@
+            <h1 class="logo mr-auto">
+                @*<img src="../Content/imgs/INDO-FinNET-03.png" class="logohe1">*@
+                <img src="~/Content/Logos/RSSB_bank.jpg" class="init_logo_main" />
+            </h1>
+
+
+            <nav class="nav-menu d-none d-lg-block">
+                <ul>
+                    <li><a onclick="LogOut()" style="cursor:pointer">Home</a></li>
+                    @*<li class="active"><a href="index.html">Home</a></li>*@
+                    @*<li><a href="#">Customers</a></li>
+                    <li><a href="#">Partners</a></li>
+                    <li><a href="#">Services</a></li>*@
+
+                </ul>
+            </nav><!-- .nav-menu -->
+            <img src="~/Content/imgs/download.png" onclick="LogOut()" class="logouttxt hvr-sink" style="width:33px;height:33px;margin:0%" />
+            @* <a href="#" class="appointment-btn scrollto con12">CONTACT US</a>*@
+
+        </div>
+    </header>
+
+    <div class="body-content" @*style="clear:both;margin-top:3%;"*@>
+        @RenderBody()
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,524 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <link href="~/Content/Navigation/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Content/Navigation/vendor/animate.css/animate.min.css" rel="stylesheet">
+    <link href="~/Content/Navigation/vendor/animate.css/animate.min.css" rel="stylesheet">
+    <link href="~/Content/Navigation/css/style.css" rel="stylesheet">
+    <link href="~/Content/Navigation/css/custom.css" rel="stylesheet">
+    <link href="~/Content/Navigation/css/font-awesome.min.css" rel="stylesheet">
+    <link href="~/Content/snewcss.css" rel="stylesheet"/>
+    @*//NEW CSS//*@
+    <script src="~/Content/Navigation/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/Content/Navigation/vendor/jquery.easing/jquery.easing.min.js"></script>
+    <script src="~/Content/Navigation/vendor/venobox/venobox.min.js"></script>
+    <script src="~/Content/Navigation/js/main.js"></script>
+
+    @*<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>*@
+    <link href="~/Scripts/sweetalert.css" rel="stylesheet" />
+    <script src="~/Scripts/sweetalert.min.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    @*<script src="~/Scripts/bootstrap.min.js"></script>*@
+    @*<script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>*@
+
+    @*<script src="~/wwwroot/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>*@
+
+    <script>
+        function RedirectToBankLoginPage() {
+            debugger;
+            window.location.href = "/BankRegistration/RedirectToBankLoginPage";
+        }
+    </script>
+
+    <script type="text/javascript">
+        function Logout() {
+            debugger;
+            $.ajax({
+                url: "/OrganisationLogin/Logout",
+                type: 'Get',
+                cache: false,
+                success: function (result) {
+                    debugger;
+                    if (result == "Logout")
+                        window.location.href = "/OrganisationLogin/OrganisationDetails";
+                }
+            })
+        }
+    </script>
+    <script type="text/javascript">
+        function Home() {
+            debugger;
+            window.location.href = "/KYCQuickEnroll/CustomerQuickEnrollment";
+        }
+    </script>
+    <script type="text/javascript">
+        function Dashboard() {
+            debugger;
+            window.location.href = "/OrgnisationDashBoard/MainDashboard";
+        }
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            /*function idleTimer() {*/   //For Session TimeOut
+            var t;
+            //window.onload = resetTimer;
+            window.onmousemove = resetTimer; // catches mouse movements
+            window.onmousedown = resetTimer; // catches mouse movements
+            window.onclick = resetTimer;     // catches mouse clicks
+            window.onscroll = resetTimer;    // catches scrolling
+            window.onkeypress = resetTimer;  //catches keyboard actions
+
+            function Logout() {
+                debugger;
+                alert("Session expired");
+                $.ajax({
+                    url: "/OrganisationLogin/Logout",
+                    type: 'Get',
+                    cache: false,
+                    success: function (result) {
+                        if (result == "Logout")
+                            window.location.href = "/OrganisationLogin/OrganisationDetails";
+                    }
+                })
+            }
+
+
+
+            function resetTimer() {
+                clearTimeout(t);
+                t = setTimeout(logout, 30 * 60 * 1000);  // time is in milliseconds (1000 is 1 second)
+            }
+            //}
+        })
+        //idleTimer();
+    </script>
+    <script>
+        function testquick() {
+            window.location.href = "/KYCQuickEnroll/CustomerQuickEnrollment";
+        };
+        function testcaf() {
+            window.location.href = "/KYCQuickEnroll/DigitalQuickEnrollment";
+        };
+
+        function testdoc() {
+            window.location.href = "/DocumentDetails/CustomerDocumentDetails";
+        };
+
+        function testvkyc() {
+            window.location.href = "/NEWIPVDetails/CustIPVdetails";
+        };
+
+        function testsummary() {
+            window.location.href = "/DataVerify/SummerySheetDetails";
+        };
+
+        function testsaving() {
+            window.location.href = "/CustomerAccount/CustomerAccForm";
+        };
+
+        function LOGOUT() {
+            debugger;
+            window.location.href = "/OrganisationLogin/OrganisationDetails";
+        }
+
+
+    </script>
+    @if (ViewBag.AdminFlag == "AdminFlag")
+    {
+        <style>
+            #header {
+                display: none;
+            }
+
+            .coninn {
+                display: none;
+            }
+
+            #topbar {
+                display: none;
+            }
+
+            #footer {
+                display: none;
+            }
+        </style>
+    }
+
+    <style>
+        .init_disable_li {
+            pointer-events: none;
+        }
+
+        .lgouticon {
+            width: 33px;
+            height: 33px;
+            margin: 0%;
+        }
+
+        .logonew {
+            width: 240px;
+            height: 61px;
+            margin-top: 6px;
+            margin-left: 8%;
+        }
+
+
+
+        .bg-green {
+            background-color: green !important;
+        }
+
+
+        #tab1 {
+            width: 100% !important;
+            float: left !important;
+        }
+
+        .progressbar {
+            counter-reset: step;
+        }
+
+            .progressbar li {
+                position: relative;
+                list-style: none;
+                float: left;
+                color: #676665;
+                float: left;
+                /* width: 12.2%;*/
+                /* margin-left: 0.7%;*/
+                margin-left: 4.7%;
+                text-align: center;
+            }
+                /*.progressbar li:hover {
+                        background-color:#f76217;
+                        color:#0f7041;
+                    }*/
+                /* Circles */
+                .progressbar li:before {
+                    content: counter(step);
+                    counter-increment: step;
+                    width: 42px;
+                    height: 40px;
+                    border-top: none;
+                    display: block;
+                    border-radius: 50%;
+                    margin: -15px auto -9px auto;
+                    /* border-right: 83px; */
+                    background-color: #fff;
+                    line-height: 36px;
+                    MARGIN-BOTTOM: -3PX !important;
+                    font-weight: 600;
+                }
+
+
+                .progressbar li:after {
+                    content: "";
+                    position: absolute;
+                    width: 100%;
+                    height: 2px;
+                    /*background: #5186e5;*/
+                    top: 20px; /*half of height Parent (li) */
+                    left: -50%;
+                    z-index: -1;
+                }
+
+                .progressbar li:first-child:after {
+                    content: none;
+                }
+
+                .progressbar li.active:before {
+                    /*background: #238a58;*/
+                    background: #0f7041;
+                    content: "✔";
+                    color: #fff;
+                }
+
+        .agent_tab {
+            FONT-SIZE: 19PX;
+            FONT-WEIGHT: 700;
+        }
+        /*.progressbar li.active + li:after {
+                            background: #12653d;
+                            border:1px solid #12653d;
+                        }*/
+
+        #header {
+            top: 0 !important;
+        }
+
+        .nav-tabs > li {
+            z-index: 1000;
+        }
+
+        #topbar {
+            width: 100%;
+        }
+
+        @@media screen and (min-device-width:300px) and (max-device-width:768px) {
+            .lgouticon {
+                width: 25px;
+                height: 25px;
+                margin: 0%;
+            }
+
+            .logonew {
+                width: 186px !important;
+                height: 51px !important;
+                margin-top: 8px !important;
+                margin-left: 4% !important;
+            }
+
+            .agent_tab {
+                font-size: 12px !important;
+            }
+
+            .prgrsbrul {
+                width: 100%;
+            }
+
+            .prgrslst {
+                width: 18%;
+                margin-left: 0% !important;
+            }
+
+            .list-a {
+                font-size: 12px !important;
+            }
+
+            .progressbar li:before {
+                content: counter(step);
+                counter-increment: step;
+                width: 42px;
+                height: 40px;
+                border: 1px solid #852e2e;
+                border-top: none;
+                display: block;
+                color: #f71717;
+                border-radius: 50%;
+                box-shadow: -1px 2px 6px 0px rgb(129 48 48);
+                margin: -15px auto -9px auto;
+                /* border-right: 83px; */
+                background-color: #fff;
+                line-height: 36px;
+                MARGIN-BOTTOM: -3PX !important;
+                font-size: 14px;
+            }
+        }
+
+        @@media screen and (min-device-width:768px) and (max-device-width:1003px) {
+            .agent_tab {
+                font-size: 15px !important;
+            }
+
+            .prgrsbrul {
+                width: 100%;
+            }
+
+            .prgrslst {
+                width: 20%;
+                margin-left: 0% !important;
+            }
+
+            .list-a {
+                font-size: 12px !important;
+            }
+
+            .progressbar li:before {
+                content: counter(step);
+                counter-increment: step;
+                width: 42px;
+                height: 40px;
+                border: 1px solid #852e2e;
+                border-top: none;
+                display: block;
+                color: #f71717;
+                border-radius: 50%;
+                box-shadow: -1px 2px 6px 0px rgb(129 48 48);
+                margin: -15px auto -9px auto;
+                /* border-right: 83px; */
+                background-color: #fff;
+                line-height: 36px;
+                MARGIN-BOTTOM: -3PX !important;
+                font-size: 14px;
+            }
+        }
+    </style>
+    <style>
+        .init_div {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 90px;
+        }
+
+        .init_logo_div {
+            margin-left: 40px;
+        }
+
+        .init_logo_layout {
+            height: 53px;
+        }
+
+        .init_ul {
+            display: flex;
+            flex-direction: row;
+            margin-bottom: 0;
+            padding:0px;
+            align-items: center;
+        }
+
+        .init_li {
+            padding: 2px;
+            list-style-type: none;
+        }
+
+        .init_a {
+            font-size: 15px;
+            font-weight: 600;
+            margin-right: 12px;
+            padding: 6px 8px;
+            text-decoration: none !important;
+            color: #fff !important;
+        }
+
+            .init_a:hover {
+                border-bottom: 1px solid #fff !important;
+                transition: ease-in-out 0.3s;
+            }
+
+            .init_a:focus {
+                border: none !important;
+            }
+
+        .init-ul-parent {
+            margin-right: 40px;
+        }
+
+        .init_logout_img {
+            cursor: pointer;
+            width: 33px;
+            height: 33px;
+        }
+
+        @@media screen and (max-width:768px) {
+            .init_logo_div {
+                margin-left: 15px;
+            }
+
+            .init-ul-parent {
+                margin-right: 15px;
+            }
+
+            .init_logo_layout {
+                height: 44px;
+                width: 160px;
+            }
+
+            .init_a {
+                margin-right: 0px;
+            }
+        }
+    </style>
+    <link href="~/css/multiclass.css" rel="stylesheet" />
+</head>
+<body>
+    @if (ViewBag.AdminFlag == "AdminFlag")
+    {
+        <div id="topbar" class="d-none d-lg-flex align-items-center">
+            <div class="container-fluid pdcon">
+                <div class="contact-info">
+                    <p>Customer Care +91-89288-00412</p>
+                </div>
+            </div>
+        </div>
+    }
+
+    
+    <div id="header" class="headerlay">
+        <div class="init_div">
+            <div class="init_logo_div">
+                @*<img src="~/images/shahu.png" class="init_logo_layout" alt="logo" />*@
+                <img src="~/content/logos/RSSB_bank.jpg" class="init_logo_layout" alt="Bank Logo" />
+            </div>
+            <div class="init-ul-parent" id="show-menu">
+                <ul class="init_ul">
+                    @if(ViewBag.QuickEnrollment == true)
+                    {
+                        <li class="init_li">
+                            <a class="init_a" href="#wcs" onclick="Dashboard()">Dashboard</a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="init_li">
+                            <a class="init_a" href="#wcs" onclick="Home()">Home</a>
+                        </li>
+                    }
+                    <li class="init_li">
+                        <img src="~/Content/imgs/download.png" onclick="Logout()" class="init_logout_img" style="" />
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+    @if (ViewBag.AdminFlag != "AdminFlag")
+    {
+        <div class="">
+            @*containerbx*@
+            <div class="clear">
+
+                <ul class="nav nav-tabs pddinglft6px progressbar prgrsbrul" style="background-color:#bf5252;">
+
+                    <li Id="Agentlitab1" class="prgrslst">
+                        <a href="#Atab1" id="abg1" onclick="testquick()" style="width:100% !important;float:left" class="agent_tab list-a">QuickEnroll Details</a>
+                    </li>
+
+                    <li Id="Agentlitab2" class="prgrslst init_disable_li">
+                        <a href="#Atab2" onclick="testcaf()" id="abg2" style="width:100% !important;float:left" class="agent_tab list-a">CAF</a>
+                    </li>
+                    <li Id="Agentlitab3" class="prgrslst init_disable_li">
+                        <a href="#Atab3" onclick="testdoc()" id="abg3" style="width:100% !important;float:left" class="agent_tab list-a">Document Details</a>
+
+                    </li>
+                    <li Id="Agentlitab4" class="prgrslst init_disable_li">
+                        <a href="#Atab4" onclick="testvkyc()" id="abg4" style="width:100% !important;float:left" class="agent_tab list-a">V-KYC</a>
+                    </li>
+                    <li Id="Agentlitab5" class="prgrslst init_disable_li">
+                        <a href="#Atab5" onclick="testsummary()" id="abg5" style="width:100% !important;float:left" class="agent_tab list-a">Summary Sheet</a>
+                    </li>
+                    @*  <li Id="Agentlitab6">
+                <a href="#Atab6" id="abg6" onclick="testsaving()"  style="width:100% !important;float:left">Saving Account</a>
+                </li>*@
+                </ul>
+            </div>
+        </div>
+    }
+    <div class="body-content" style="clear:both;margin-top:3%;">
+        @RenderBody()
+    </div>
+    @*<footer id="footer">
+    <div class="container">
+    <div class="row">
+    <div class="copyright">
+    <p><a href="">Terms of Use</a> | <a href="">Privacy Policy</a> | <a href="">Disclaimer</a></p>
+    <p>© Indo-FinNet. All Rights Reserved</p>
+    <p>Visit us at www.indofinnet.co.in</p>
+    </div>
+    </div>
+    </div>
+    </footer>*@
+
+    @*<div id="preloader"></div>*@
+    <a href="#" class="back-to-top">
+        @* <i class="fa fa-chevron-up"></i>*@
+        <img src="~/Content/imgs/icons/uparrow1.png" height="35px" width="35px" />
+    </a>
+</body>
+
+</html>
+

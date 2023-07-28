@@ -1,0 +1,1377 @@
+﻿@model INDO_FIN_NET.Models.CurrentModels.Current_Verification
+
+@{
+    Layout = "~/Views/Shared/Components/_CurrentAccountLayout.cshtml";
+
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CurrentCAF</title>
+    <link href="~/css/current_caf.css" rel="stylesheet" />
+    <link href="~/Content/snewcss.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link href="~/Scripts/sweetalert.css" rel="stylesheet" />
+    <script src="~/Scripts/sweetalert.min.js"></script>
+    <script src="~/Scripts/bootstrap-multiselect.js"></script>
+    <link href="~/Content/Navigation/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="~/Content/Accordion/Accordion1/Accordiondegital1.css" rel="stylesheet" />
+
+    <script src="../Content/Accordion/Accordion1/jquery-accordion.js"></script>
+
+    <link href="../Content/Accordion/Accordion1/Accordiondegital1.css" rel="stylesheet" />
+    <link href="../Content/Accordion/Accordion1/jquerysctipttop.css" rel="stylesheet" />
+    <link href="~/Content/snewcss.css" rel="stylesheet" />
+    <script src="../Content/Accordion/Accordion1/jquery-accordion.js"></script>
+    <style>
+
+        .green {
+            background-color: #04AA6D !important;
+        }
+
+        .init-rekyc {
+            width: 40% !important;
+            border-radius: 6px !important;
+        }
+
+        #hide-text {
+            opacity: 0;
+            margin-left: 21px !important;
+        }
+
+        #pop-img {
+            height: 44px;
+            position: RELATIVE;
+            margin-top: -509px;
+            margin-left: 46%;
+        }
+
+        .width-ex {
+            width: 86% !important;
+        }
+
+        .input-sp {
+            background-color: white !important;
+        }
+
+    </style>
+    <link href="~/Content/snewcss.css" rel="stylesheet" />
+    <script src="~/bundlejs/bundlingofcaf.min.js"></script>
+
+
+    <meta name="viewport" content="width=device-width" />
+
+    <style>
+        .lab-init {
+            font-size: 14px;
+        }
+
+        #icon-test {
+            height: 22px;
+            opacity: 0.7;
+            float: right;
+        }
+
+        label {
+            font-size: 13px;
+        }
+
+        .img-rekyc {
+            height: 32px;
+            margin-left: 12px;
+        }
+
+    </style>
+
+    <style>
+        .buttoncam span {
+            cursor: pointer;
+            display: inline-block;
+            position: relative;
+            transition: 0.5s;
+        }
+
+            .buttoncam span:after {
+                /*content: "\f030";*/
+                /*content: "\f095";*/
+                content: '\00bb';
+                position: absolute;
+                opacity: 0;
+                top: 0;
+                right: 19px;
+                transition: 0.5s;
+                color: white;
+                margin-top: -6px;
+                font-size: 19px;
+                font-weight: 800;
+            }
+
+        .buttoncam:hover span {
+            padding-right: 24px;
+        }
+
+            .buttoncam:hover span:after {
+                opacity: 2;
+                right: 0;
+            }
+
+        .seconddialog {
+            transition: transform 0.3s ease-out 0s, -webkit-transform 0.3s ease-out 0s;
+            transform: translate(0px, -25%);
+            position: fixed;
+            width: 500px;
+            margin: 0.5rem;
+            background-color: rgb(255, 255, 255);
+            z-index: 999;
+            left: 29%;
+            top: 50%;
+            box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+            border-radius: 7px;
+        }
+
+        .pdbted {
+            margin-bottom: 15px !important;
+        }
+
+        .bg-green {
+            background-color: green !important;
+        }
+
+        .active:active {
+            color: green;
+        }
+
+        .active:focus {
+            color: green;
+        }
+
+        #getAadharData :focus :active {
+            outline: 1px solid green !important;
+            background-color: green;
+            color: #fff;
+        }
+
+        #getPanData {
+            outline: 1px solid green !important;
+            background-color: green;
+            color: #fff;
+        }
+
+        #getPanData1 {
+            //outline: 1px solid green !important;
+            background-color: green;
+            color: #fff;
+        }
+
+        #getOtherData:focus :active {
+            outline: 1px solid green !important;
+            background-color: green;
+            color: #fff;
+        }
+
+        #getCKYCData:focus :active {
+            outline: 1px solid green !important;
+            background-color: green;
+            color: #fff;
+        }
+
+        .sheadbk {
+            background-color: #bf5252;
+            border: 2px solid #8b0000;
+        }
+
+        .shead {
+            color: white !important;
+        }
+
+
+        .stextinp {
+            background-color: #e9e7e7;
+            border-radius: 4px;
+            height: 34px !important;
+            width: 72%;
+            padding: 8px !important;
+            border-radius: 3px !important;
+            border: solid 1px #b7b7b7;
+        }
+
+
+        .init-label {
+            font-size: 12px;
+            //float:left;
+            //margin-left:41px;
+        }
+
+        .init-w {
+            font-weight: 700;
+        }
+
+        .init-re-input {
+            height: 28px !important;
+            width: 88% !important;
+        }
+
+        .init-input {
+            height: 45px !important;
+            width: 72%;
+            padding: 8px !important;
+            border-radius: 3px !important;
+            border: solid 1px #b7b7b7;
+        }
+
+
+
+        .df1 {
+            display: flex;
+            margin: 5px 0px 5px 0px;
+        }
+
+
+
+        .strtdiv {
+            border: 1px solid lightgrey;
+            padding: 0px 0px 0px 0px !important;
+        }
+
+        .marg1 {
+            width: 45%;
+            margin-left: 29px;
+        }
+
+        .marg2 {
+            margin-left: 22px;
+            width: 45% !important;
+        }
+
+        @@media screen and (min-device-width:320px) and (max-device-width:768px) {
+            .dqefntslct {
+                font-size: 10px !important;
+            }
+        }
+    </style>
+
+    <style>
+        #inner_wrapper1 {
+            display: block
+        }
+
+        .agnttpmrgn {
+            margin-top: -20px;
+        }
+
+        .mrgnadmn {
+            margin-top: 0px;
+        }
+
+        .mrgns {
+            margin-bottom: 10px;
+        }
+
+        .dqeval {
+            display: flex;
+            flex-direction: row;
+        }
+
+        .valbox {
+            border: 0px solid;
+            margin-left: 10px;
+            width: 76%;
+            background-color: transparent;
+        }
+
+        .rekycdss {
+            margin-left: 5px;
+            margin-right: 5px;
+        }
+
+        .rekyc12 {
+            float: left !important;
+            margin-left: 26px;
+        }
+
+        .rekycbtn {
+            float: left;
+            font-size: 14px;
+            padding: 6px;
+            margin-top: 50px;
+            margin-left: 42%;
+        }
+
+        .header {
+            margin: 10px 0px;
+        }
+
+        .btn {
+            font-size: 14px !important;
+        }
+
+        input {
+            font-size: 14px !important;
+        }
+
+        select {
+            font-size: 14px !important;
+        }
+
+        .df12 {
+            margin: 6px 0px 5px 0px;
+        }
+
+        .rkycsbmt {
+            margin-right: 0px;
+            margin-top: 1px;
+            float: right;
+            margin-bottom: 53px;
+        }
+
+        .fieldsetPri {
+            font-size: 18px;
+            margin: -13px 0px 16px 22px;
+            position: absolute;
+            background: #fbfbfb;
+            width: 14%;
+            padding: 4px;
+            text-align: center;
+        }
+
+        .fieldsetmain {
+            margin: 4px 2px;
+            position: relative;
+            font-size: 20px;
+        }
+
+        .DataPerBtn {
+            float: right;
+            margin: 22px 10px 0px;
+        }
+
+        .branchdsgn {
+            padding: 10px;
+        }
+
+        .dsfx {
+            display: flex;
+        }
+    </style>
+
+
+    <link href="~/css/multiclass.css" rel="stylesheet" />
+    <style>
+        .arrow {
+            height: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid pdcon btnmrgin" style="clear:both">
+        <div class="digi_up_margin">
+
+            <div class="mrgnadmn mrgnagnt" style="float:right;margin-right:6.6%;margin-top:2%;">
+                <label class="lab-init init-w">Customer Reference Number :</label>
+                <label class="lab-init init-w">@ViewBag.PersonalId</label>
+            </div>
+
+
+            <div class="space35btn1"></div>
+
+            <div id="emailformOTP" class="seconddialog fadeInDown animated wow" style="display:none">
+                <div class="form-header goipopuphead form_header">
+                    <div class="pan-header" style="text-align:center!important">OTP Verification</div>
+                </div>
+                <div style="margin-bottom:6%;margin-top:2.8%">
+                    <div class="col-lg-12">
+                        <div class="col-lg-8" style="margin-top:1.5%">
+                            <div class="md-form">
+                                <label style="top: 14px;padding-left:0%" for="emailcode" id="emlotp" class="label_val fontpfhndr active">Email Id</label>
+                                <input type="text" id="emailcodeOTP" readonly="readonly" style="margin-left:8%" />
+
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <button type="button" onclick="GetOTP()" class="btn btn-primary get1" id="EmailGetOtp" style=" ">Get Otp</button>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="col-lg-8" style="margin-top:1.5%">
+                            <div class="md-form">
+                                <label style="top: 14px; padding-left:7%" for="emailauth" class="label_val fontpfhndr">OTP</label>
+                                <input type="text" id="emailauth" style="margin-left:9%" />
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4" style="margin-top:1%">
+                            <button type="button" id="EmailAuthOtp" class="btn btn-primary" onclick="OTPAuthenticate()">Authenticate</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group" style="margin-top:1%;margin-left:14%;float:left">
+                    <div class="col-md-offset-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 clear" style="text-align:center">
+                        <button type="button" class="btn btn-primary" onclick="closeemail()">Close</button>
+                    </div>
+
+                </div>
+            </div>
+
+            <div id="DigiQuick" class="clearfix agnttpmrgn">
+
+                <fieldset class="customerSd" style="width:100%">
+
+
+
+                    <div id="tohideDigilockerdetails">
+                        <div class="space351"></div>
+
+
+
+                        <div class="faq" style="">
+                            <div class="faqitem shdowaccor">
+
+
+
+                                <div class="header" id="init_click_header1" style="background: #e1e0e0;
+    padding: 4px 11px !important;
+    border: 1px solid #e1e1e0 !important;
+    font-size: 16px;">
+                                    <div class="hrddigi" style="font-family: Roboto,Arial,sans-serif !important;
+    letter-spacing: 0;
+    line-height: 32px;
+    display: inline-block;
+    color: #434444 !important;
+    font-size: 17px !important;
+    padding: 3px 10px !important;
+    font-weight: 600 !important;
+    margin-bottom: 0px !important;">
+                                        @*<i class="fa fa-file-text"></i> *@
+                                        <img src="~/Images/Image/user2icon.png" width="15px" height="15px">
+                                        Company Details
+                                        @*<div class="hrdigitxt">Address Details</div>*@
+                                    </div>
+                                    <img src="~/images/image/angle-down-solid.svg" id="icon-test" class="arrow" />
+                                </div>
+
+                                <div class="content" id="inner_wrapper1">
+
+                                    <div class="panel-body">
+
+                                        <div class="row">
+
+                                            <div class="col-xl-1 paddingleftCaf equalSpace">
+                                                <label>Comapny Name<span style="color:red">*</span></label>
+
+                                            </div>
+                                            <div class="col-xl-2 paddingleftCaf equalSpace">
+                                                <input type="text" class="form-control" value="@ViewData["CompanyName"]" />
+                                            </div>
+                                            <div class="col-xl-1 paddingleftCaf equalSpace">
+                                                <label>Org / Industry Type<span style="color:red">*</span></label>
+                                            </div>
+                                            <div class="col-xl-2 paddingleftCaf equalSpace">
+                                                <input type="text" class="form-control" value="@ViewData["IndustryType"]" />
+                                            </div>
+                                            <div class="col-xl-1 paddingleftCaf equalSpace">
+                                                <label>Business Type/Line<span style="color:red">*</span></label>
+                                            </div>
+                                            <div class="col-xl-2 paddingleftCaf equalSpace">
+                                                <input type="text" class="form-control" value="@ViewData["BusinessType"]" />
+                                            </div>
+                                            <div class="col-xl-1 paddingleftCaf ">
+                                                <label>Date Of Estd<span style="color:red">*</span></label>
+                                            </div>
+
+                                            <div class="col-xl-2 paddingleftCaf marBottmD mrgns">
+                                                <input type="text" class="form-control" value="@ViewData["DateESTD"]" />
+                                            </div>
+                                        </div>
+                                        <div class="row">
+
+                                            <div class="col-xl-1 paddingleftCaf equalSpace">
+                                                <label>Place of Estd<span style="color:red">*</span></label>
+                                            </div>
+                                            <div class="col-xl-2   paddingleftCaf equalSpace">
+                                                <input type="text" class="form-control" value="@ViewData["PlaceESTD"]" />
+                                            </div>
+                                            <div class="col-xl-1 paddingleftCaf equalSpace">
+                                                <label>No. of Branches<span style="color:red">*</span></label>
+                                            </div>
+                                            <div class="col-xl-2   paddingleftCaf equalSpace">
+                                                <input type="text" class="form-control" value="@ViewData["NoOfBranches"]" />
+                                            </div>
+
+                                            <div class="col-xl-1 paddingleftCaf equalSpace">
+                                                <label>No. of Employees<span style="color:red">*</span></label>
+                                            </div>
+                                            <div class="col-xl-2   paddingleftCaf equalSpace">
+                                                <input type="text" class="form-control" value="@ViewData["NoOfEmp"]" />
+                                            </div>
+
+                                            <div class="col-xl-1 paddingleftCaf equalSpace">
+                                                <label>Turnover<span style="color:red">*</span></label>
+                                            </div>
+                                            <div class="col-xl-2   paddingleftCaf equalSpace">
+                                                <input type="text" class="form-control" value="@ViewData["Turnover"]" />
+                                            </div>
+
+                                        </div>
+
+
+                                        <div class="row">
+                                            <div class="col-xl-1 paddingleftCaf">
+                                                <label>Address 1<span style="color:red">*</span></label>
+                                            </div>
+                                            <div class="col-xl-5 paddingleftCaf">
+                                                <input type="text" class="form-control" value="@ViewData["Address1"]" />
+                                            </div>
+
+                                            <div class="col-xl-1 paddingleftCaf">
+                                                <label>Address 2<span style="color:red">*</span></label>
+                                            </div>
+                                            <div class="col-xl-5 paddingleftCaf">
+                                                <input type="text" class="form-control" value="@ViewData["Address2"]" />
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-xl-1 paddingleftCaf equalSpace">
+                                                <label>City<span style="color:red">*</span></label>
+                                            </div>
+                                            <div class="col-xl-5 paddingleftCaf equalSpace">
+                                                <input type="text" class="form-control" value="@ViewData["City"]" />
+                                            </div>
+                                            <div class="col-xl-1 paddingleftCaf equalSpace">
+                                                <label>Pincode<span style="color:red">*</span></label>
+                                            </div>
+                                            <div class="col-xl-5 paddingleftCaf equalSpace">
+                                                <input type="text" class="form-control" value="@ViewData["Pincode"]" />
+                                            </div>
+                                        </div>
+                                        <div class="row rowMrgin">
+                                            <div class="col-xl-1 paddingleftCaf equalSpace">
+                                                <label>State<span style="color:red">*</span></label>
+                                            </div>
+                                            <div class="col-xl-5 paddingleftCaf equalSpace">
+                                                <input type="text" class="form-control" value="@ViewData["State"]" />
+                                            </div>
+
+
+                                            <div class="col-xl-1 paddingleftCaf equalSpace">
+                                                <label>Country<span style="color:red">*</span></label>
+                                            </div>
+                                            <div class="col-xl-5     paddingleftCaf equalSpace" id="dropprem">
+                                                <input type="text" class="form-control" value="@ViewData["Country"]" />
+                                            </div>
+
+                                        </div>
+
+
+                                        <div class="row">
+                                            <div class="col-xl-1 paddingleftCaf equalSpace">
+                                                <label>Email Id<span style="color:red">*</span></label>
+                                            </div>
+                                            <div class="col-xl-5 paddingleftCaf equalSpace" style="">
+                                                <input type="text" class="form-control" value="@ViewData["Email"]" />
+                                            </div>
+
+                                            <div class="col-xl-1 paddingleftCaf equalSpace" style="padding-right:0px">
+                                                <label>Mobile No<span style="color:red">*</span></label>
+                                            </div>
+                                            <div class="col-xl-5 paddingleftCaf equalSpace">
+                                                <input type="text" class="form-control" value="@ViewData["MobileNo"]" />
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-xl-1 paddingleftCaf equalSpace">
+                                                <label>Landline No.<span style="color:red">*</span></label>
+                                            </div>
+
+                                            <div class="col-xl-5 paddingleftCaf equalSpace">
+                                                <input type="text" class="form-control" value="@ViewData["LandlineNo"]" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="faq" style="">
+                            <div class="faqitem shdowaccor" style="">
+                                <div class="header" id="init_click_header2" style="background: #e1e0e0;
+    padding: 4px 11px !important;
+    border: 1px solid #e1e1e0 !important;
+    font-size: 16px;">
+                                    <div class="hrddigi" style="font-family: Roboto,Arial,sans-serif !important;
+    letter-spacing: 0;
+    line-height: 32px;
+    display: inline-block;
+    color: #434444 !important;
+    font-size: 17px !important;
+    padding: 3px 10px !important;
+    font-weight: 600 !important;
+    margin-bottom: 0px !important;">
+                                        @*<i class="fa fa-file-text"></i> *@
+                                        <img src="~/Images/Image/phoneicon.png" width="15px" height="15px">
+                                        Customer Details
+                                        @*<div class="hrdigitxt">Address Details</div>*@
+                                    </div>
+                                    <img src="~/images/image/angle-down-solid.svg" id="icon-test" class="arrow" />
+                                </div>
+
+                                <div class="content" id="inner_wrapper2">
+                                    <div class="panel-body">
+
+                                        <div class="col-lg-12 caform1" style="background-color: #f5f3f3;margin:1% 1%;width:98%;padding-right: 0px;padding-left: 0px;">
+
+                                            <div class="col-lg-12 caform1 test2 maiden" style="background-color: #fbfbfb;width:100%;padding-right: 0px;padding-left: 0px;border: 1px solid #d0d0d2;margin: 20px 0px;">
+                                                <fieldset class="seched" style="background-color:#fbfbfb;">
+                                                    <legend class="fieldsetPri marBottom sec2" style="">  Primary Customer</legend>
+                                                    <div class="col-lg-12 caform1 cecf" style="margin-left:1.5%;margin-top:21px">
+
+                                                        <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 flt_lft allMargin txtbxrow prefixall" style="">
+
+                                                            <label for="MaidenPrefixName" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pdtp11 cyesnommi"><div class="label_val fontpfhndr">Full Name </div><div class="validation_sign">*</div></label>
+
+                                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding:0px;clear:both">
+                                                                <input type="text" class="form-control" />
+                                                            </div>
+
+
+                                                        </div>
+                                                        <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12 flt_lft paddnglt0 txtbxrow padinfirt " style="">
+                                                            <label for="MaidenFName" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pdtp11 cyesnommi" style="padding: 1px;"><div class="label_val fontpfhndrnew">Primary Customer No.</div><div class="validation_sign">*</div></label>
+
+                                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding:0px;clear:both">
+                                                                <input type="text" class="form-control" />
+                                                            </div>
+
+                                                        </div>
+                                                </fieldset>
+                                            </div>
+
+
+                                            <div class="col-lg-12 caform1 test2 maiden" style="background-color: #fbfbfb;width:100%;padding-right: 0px;padding-left: 0px;border: 1px solid #d0d0d2;margin: 20px 0px;">
+                                                <fieldset class="seched" style="background-color:#fbfbfb;">
+                                                    <legend class="fieldsetPri marBottom sec2" style="">  First Customer</legend>
+                                                    <div class="col-lg-12 caform1 cecf" style="margin-left:1.5%;margin-top:21px">
+
+                                                        <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 flt_lft allMargin txtbxrow prefixall" style="">
+
+                                                            <label for="MaidenPrefixName" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pdtp11 cyesnommi"><div class="label_val fontpfhndr">Full Name </div><div class="validation_sign">*</div></label>
+
+                                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding:0px;clear:both">
+                                                                <input type="text" class="form-control" />
+                                                            </div>
+
+
+                                                        </div>
+                                                        <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12 flt_lft paddnglt0 txtbxrow padinfirt " style="">
+                                                            <label for="MaidenFName" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pdtp11 cyesnommi" style="padding: 1px;"><div class="label_val fontpfhndrnew">First Customer No.</div><div class="validation_sign">*</div></label>
+
+                                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding:0px;clear:both">
+                                                                <input type="text" class="form-control" />
+                                                            </div>
+
+                                                        </div>
+                                                </fieldset>
+                                            </div>
+
+                                            <div class="col-lg-12 caform1 test2 maiden" style="background-color: #fbfbfb;width:100%;padding-right: 0px;padding-left: 0px;border: 1px solid #d0d0d2;margin: 20px 0px;">
+                                                <fieldset class="seched" style="background-color:#fbfbfb;">
+                                                    <legend class="fieldsetPri marBottom sec2" style="">  Second Customer</legend>
+                                                    <div class="col-lg-12 caform1 cecf" style="margin-left:1.5%;margin-top:21px">
+
+                                                        <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 flt_lft allMargin txtbxrow prefixall" style="">
+
+                                                            <label for="MaidenPrefixName" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pdtp11 cyesnommi"><div class="label_val fontpfhndr">Full Name </div><div class="validation_sign">*</div></label>
+
+                                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding:0px;clear:both">
+                                                                <input type="text" class="form-control" />
+                                                            </div>
+
+
+                                                        </div>
+                                                        <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12 flt_lft paddnglt0 txtbxrow padinfirt " style="">
+                                                            <label for="MaidenFName" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pdtp11 cyesnommi" style="padding: 1px;"><div class="label_val fontpfhndrnew">Second Customer No.</div><div class="validation_sign">*</div></label>
+
+                                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding:0px;clear:both">
+                                                                <input type="text" class="form-control" />
+                                                            </div>
+
+                                                        </div>
+                                                </fieldset>
+                                            </div>
+
+
+                                            <div class="col-lg-12 caform1 test2 maiden" style="background-color: #fbfbfb;width:100%;padding-right: 0px;padding-left: 0px;border: 1px solid #d0d0d2;margin: 20px 0px;">
+                                                <fieldset class="seched" style="background-color:#fbfbfb;">
+                                                    <legend class="fieldsetPri marBottom sec2" style="">  Third Customer</legend>
+                                                    <div class="col-lg-12 caform1 cecf" style="margin-left:1.5%;margin-top:21px">
+
+                                                        <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 flt_lft allMargin txtbxrow prefixall" style="">
+
+                                                            <label for="MaidenPrefixName" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pdtp11 cyesnommi"><div class="label_val fontpfhndr">Full Name </div><div class="validation_sign">*</div></label>
+
+                                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding:0px;clear:both">
+                                                                <input type="text" class="form-control" />
+                                                            </div>
+
+
+                                                        </div>
+                                                        <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12 flt_lft paddnglt0 txtbxrow padinfirt " style="">
+                                                            <label for="MaidenFName" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pdtp11 cyesnommi" style="padding: 1px;"><div class="label_val fontpfhndrnew">Third Customer No.</div><div class="validation_sign">*</div></label>
+
+                                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding:0px;clear:both">
+                                                                <input type="text" class="form-control" />
+                                                            </div>
+
+                                                        </div>
+                                                </fieldset>
+                                            </div>
+
+                                        </div>
+
+                                        <input type="button" id="SavePersonal1" value="Save" onclick="DataPersonalSave(this);" class=" DataPerBtn btn btn-primary right1" />
+
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        </div>
+                    </div>
+            </div>
+
+        </div>
+
+
+        <div class="faq shdowaccor" style="">
+            <div class="faqitem" style="">
+                <div class="header" id="init_click_header4" style="background: #e1e0e0;
+                                         padding: 4px 11px !important;
+                                            border: 1px solid #e1e1e0 !important;
+                                                font-size: 16px;">
+                    <div class="hrddigi" style="font-family: Roboto,Arial,sans-serif !important;
+    letter-spacing: 0;
+    line-height: 32px;
+    display: inline-block;
+    color: #434444 !important;
+    font-size: 17px !important;
+    padding: 3px 10px !important;
+    font-weight: 600 !important;
+    margin-bottom: 0px !important;">
+                        @*<i class="fa fa-file-text"></i>*@
+                        <img src="~/Images/Image/otherdtls.png" width="15px" height="15px">
+                        Document Details
+                        @*<div class="hrdigitxt">Other Details</div>*@
+
+
+                    </div>
+                    <img src="~/images/image/angle-down-solid.svg" id="icon-test" class="arrow" />
+                </div>
+                <div class="content" id="inner_wrapper4">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-xl-2 paddingleftCaf equalSpace">
+                                <label>CIN No.</label>
+                            </div>
+                            <div class="col-xl-2 paddingleftCaf equalSpace">
+                                <input type="text" class="form-control" value="@ViewData["CinNo"]" />
+                            </div>
+                            <div class="col-xl-2 paddingleftCaf equalSpace">
+                                <label>Company Pan</label>
+                            </div>
+                            <div class="col-xl-2 paddingleftCaf equalSpace">
+                                <input type="text" class="form-control" value="@ViewData["CompanyPan"]" />
+                            </div>
+                            <div class="col-xl-2 paddingleftCaf equalSpace">
+                                <label>Registration No.<span style="color:red">*</span></label>
+                            </div>
+                            <div class="col-xl-2 paddingleftCaf equalSpace">
+                                <input type="text" class="form-control" value="@ViewData["PanNo"]" />
+                            </div>
+                        </div>
+                        <div class="row rowMrgin">
+                            <div class="col-xl-2 paddingleftCaf equalSpace">
+                                <label>GSTN No.</label>
+                            </div>
+                            <div class="col-xl-2 paddingleftCaf equalSpace">
+                                <input type="text" class="form-control" value="@ViewData["GSTNo"]" />
+                            </div>
+                            <div class="col-xl-2 paddingleftCaf equalSpace">
+                                <label>Udyog Aadhaar No.</label>
+                            </div>
+                            <div class="col-xl-2 paddingleftCaf equalSpace">
+                                <input type="text" class="form-control" value="@ViewData["UdyogAdhaarNo"]" />
+                            </div>
+                            <div class="col-xl-2 paddingleftCaf equalSpace">
+                                <label>DIN No.<span style="color:red">*</span></label>
+                            </div>
+                            <div class="col-xl-2 paddingleftCaf equalSpace">
+                                <input type="text" id="AdharCAF" class="digifont inputsectbx fnt-input" />
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="faq" style="">
+            <div class="faqitem shdowaccor" style="">
+                <div class="header" id="init_click_header5" style="background: #e1e0e0;
+    padding: 4px 11px !important;
+    border: 1px solid #e1e1e0 !important;
+    font-size: 16px;">
+                    <div class="hrddigi" style="font-family: Roboto,Arial,sans-serif !important;
+    letter-spacing: 0;
+    line-height: 32px;
+    display: inline-block;
+    color: #434444 !important;
+    font-size: 17px !important;
+    padding: 3px 10px !important;
+    font-weight: 600 !important;
+    margin-bottom: 0px !important;">
+
+                        @*  <i class="fa fa-phone-square"></i> *@
+                        <img src="~/Images/Dashboard/id details.png" width="15px" height="15px">
+                        Account Details
+                        @*<div class="hrdigitxt">Account Details</div>*@
+                    </div>
+                    <img src="~/images/image/angle-down-solid.svg" id="icon-test" class="arrow" />
+                </div>
+                <div class="content" id="inner_wrapper5">
+                    <div class="panel-body">
+                        <div class="row">
+
+                            <div class="col-xl-2 paddingleftCaf equalSpace">
+                                <label>Mode of Operation<span style="color:red">*</span></label>
+                            </div>
+
+                            <div class="col-xl-1   paddingleftCaf equalSpace">
+                                <input type="checkbox" class="" />
+                            </div>
+
+                            <div class="col-xl-2 paddingleftCaf equalSpace">
+                                <label>Name of Entity<span style="color:red">*</span></label>
+                            </div>
+
+                            <div class="col-xl-1   paddingleftCaf equalSpace">
+                                <input type="checkbox" class="" />
+                            </div>
+                            <div class="col-xl-3 dsfx  paddingleftCaf equalSpace">
+                                <label class="col-lg-4">Branch</label>
+                                <select class="form-select" aria-label="Default select example">
+                                    <option selected>Open this select menu</option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                </select>
+                            </div>
+
+                            <div class="col-xl-3 dsfx paddingleftCaf equalSpace">
+                                <label class="col-lg-4">Turnover</label>
+                                <select class="form-select" aria-label="Default select example">
+                                    <option selected>Open this select menu</option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="test4 branch branchdsgn brnchdsgn2">
+
+                            <div class="col-lg-12 caform1 pd0 cecf sav_mid_sm" style="">
+                                <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 flt_lft allMargin txtbxrow cecf " style=" ">
+                                    <label for="InitialDeposit" class="col-lg-6 col-md-12 col-sm-12 col-xs-12 cnommi1"><div class="label_val fontpfhndr">Initial Deposit</div><div class="validation_sign">*</div></label>
+                                    <div class="adharbn1 col-lg-3 wdth50 ccheckbox">
+                                        <input type="checkbox" class="form-check" />
+                                        <label id="" class="adharlbl lblchk cnommi1" style="position: relative;color: #4c4949;padding-top:5.7%">Cash</label>
+                                    </div>
+                                    <div class="adharbn1 col-lg-3 wdth50 ccheckbox" style="">
+                                        <input type="checkbox" class="form-check" />
+                                        <label id="" class="adharlbl lblchk cnommi1" style="position: relative;color: #4c4949;padding-top:5.7%">Cheque</label>
+                                    </div>
+
+                                </div>
+                                <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 flt_lft allMargin txtbxrow cecf" style=" ">
+                                    <label id="InitialDepositAmount" class="col-lg-6 col-md-12 col-sm-12 col-xs-12 cnommi1"><div class="label_val fontpfhndr">Amount</div><div class="validation_sign">*</div></label>
+                                    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12  ">
+                                        <input type="text" class="form-control" />
+                                    </div>
+
+                                </div>
+                                <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 flt_lft allMargin txtbxrow cecf" id="check" style=" ">
+                                    <label id="initialDepositCheque" class="col-lg-6 col-md-12 col-sm-12 col-xs-12 cnommi1"><div class="label_val fontpfhndr">Cheque No.</div><div class="validation_sign"></div></label>
+                                    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 pd0 ">
+                                        <input type="text" class="form-control" />
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                        <div class="row">
+
+                            <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12 flt_lft paddnglt0 txtbxrow " style="">
+                                <label for="MaidenFName" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pdtp11 cyesnommi" style="padding: 1px;"><div class="label_val fontpfhndrnew">Freeze Type</div><div class="validation_sign">*</div></label>
+
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding:0px;clear:both">
+                                    <input type="text" class="form-control">
+                                </div>
+
+                            </div>
+
+                            <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12 flt_lft paddnglt0 txtbxrow " style="">
+                                <label for="MaidenFName" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pdtp11 cyesnommi" style="padding: 1px;"><div class="label_val fontpfhndrnew">Account Type</div><div class="validation_sign">*</div></label>
+
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding:0px;clear:both">
+                                    <input type="text" class="form-control">
+                                </div>
+
+                            </div>
+
+                            <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12 flt_lft paddnglt0 txtbxrow " style="">
+                                <label for="MaidenFName" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pdtp11 cyesnommi" style="padding: 1px;"><div class="label_val fontpfhndrnew">ORG Type</div><div class="validation_sign">*</div></label>
+
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding:0px;clear:both">
+                                    <input type="text" class="form-control">
+                                </div>
+
+                            </div>
+
+                            <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12 flt_lft paddnglt0 txtbxrow " style="">
+                                <label for="MaidenFName" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pdtp11 cyesnommi" style="padding: 1px;"><div class="label_val fontpfhndrnew">Statement Frequency</div><div class="validation_sign">*</div></label>
+
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding:0px;clear:both">
+                                    <select class="form-select" aria-label="Default select example">
+                                        <option selected>Open this select menu</option>
+                                        <option value="1">Monthly</option>
+                                        <option value="2">Quarterly</option>
+                                        <option value="3">Annual</option>
+                                    </select>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="apprejbox appBox" style="width:100%;margin-bottom:30px;">
+                    </div>
+
+                </div>
+
+                <div class="faq shdowaccor" style="display:none">
+                    <div class="faqitem">
+                        <div class="header initHeader" id="init_click_header6">
+                            <div class="hrddigi" style="font-family: Roboto,Arial,sans-serif !important;letter-spacing: 0;line-height: 32px;display: inline-block;color: #434444 !important;font-size: 17px !important;padding: 3px 10px !important;font-weight: 600 !important;margin-bottom: 0px !important;">
+
+                                @* <i class="fa fa-camera"></i>*@
+                                <img src="~/Images/Image/camerad.png" width="15px" height="15px">
+                                Customer Photo
+
+                            </div>
+                            <img src="~/images/image/angle-down-solid.svg" id="icon-test" />
+                        </div>
+                        <div class="content" id="inner_wrapper6">
+                            <div class="panel-body">
+                                <div id="DigiQuickCamera">
+                                    <fieldset>
+                                        <div class="">
+                                            <div id="DigiImageCapturediv_id" class="row mgtpbtm" style="display: flex;justify-content: center;">
+                                                <div class="col-xl-2 starcameraBtn">
+                                                    <div class="buttoncam getkcybg wdth16 btn btn-primary fnt-input" onclick="captureimage()" id="capButton" style="cursor: pointer;"><span class="fa fa-camera" style="color: #ff6a00;" aria-hidden="true"></span> Start Camera</div>
+                                                </div>
+                                                <div id="DigitCaptureImage" class="captureimg col-xl-9 wstart "></div>
+                                                @*<img alt="" class="zoomDocument" src="" id="livephoto" />*@
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="faq shdowaccor">
+                    <div class="faqitem">
+                        <div class="header" id="init_click_header7" style="background: #e1e0e0;
+    padding: 4px 11px !important;
+    border: 1px solid #e1e1e0 !important;
+    font-size: 16px;">
+                            <div class="hrddigi" style="font-family: Roboto,Arial,sans-serif !important;
+    letter-spacing: 0;
+    line-height: 32px;
+    display: inline-block;
+    color: #434444 !important;
+    font-size: 17px !important;
+    padding: 3px 10px !important;
+    font-weight: 600 !important;
+    margin-bottom: 0px !important;">
+
+                                @*  <i class="fa fa-phone-square"></i> *@
+                                <img src="~/Images/Dashboard/id details.png" width="15px" height="15px">
+                                E-Banking Services
+                                @*<div class="hrdigitxt">Account Details</div>*@
+                            </div>
+                            <img src="~/images/image/angle-down-solid.svg" id="icon-test" class="arrow" />
+                        </div>
+                        <div class="content" id="inner_wrapper7" style="background-color: #fbfbfb;border:1px solid #eee;">
+                            <div class="col-lg-12 cecf" style=" margin-top:10px;">
+
+
+
+                                <div class="adharbn1 col-lg-3 cyesnommi">
+                                    <input type="checkbox" class="form-check">
+                                    <label id="" class="adharlbl chbxtop" style="position: relative;color: #4c4949;padding-top:2%">Visa-Debit Card</label>
+                                </div>
+
+                                <div class="adharbn1 col-lg-2 cyesnommi">
+                                    <input type="checkbox" class="form-check">
+                                    <label id="" class="adharlbl chbxtop" style="position: relative;color: #4c4949;padding-top:2%">UPI</label>
+                                </div>
+
+                                <div class="adharbn1 col-lg-2 cyesnommi">
+                                    <input type="checkbox" class="form-check">
+                                    <label id="" class="adharlbl chbxtop" style="position: relative;color: #4c4949;padding-top:2%">InternetBanking</label>
+                                </div>
+
+                                <div class="adharbn1 col-lg-2 cyesnommi">
+                                    <input type="checkbox" class="form-check">
+                                    <label id="" class="adharlbl chbxtop" style="position: relative;color: #4c4949;padding-top:2%">IMPS</label>
+                                </div>
+
+                            </div>
+                            <div class=" col-lg-12 col-md-12 col-sm-12 col-xs-12 cacusagebtn" style="margin-bottom:1%">
+                                <input type="button" id="SavePersonal3" value="Save" onclick="DataEbankSave(this);" class="btn btn-primary right1" />
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div class="faq shdowaccor">
+                    <div class="">
+                        <div class="faqitem shdowaccor" id="init_click_header8">
+                            <div class="header" id="init_click_header7" style="background: #e1e0e0;
+    padding: 4px 11px !important;
+    border: 1px solid #e1e1e0 !important;
+    font-size: 16px;">
+                                <div class="hrddigi" style="font-family: Roboto,Arial,sans-serif !important;
+    letter-spacing: 0;
+    line-height: 32px;
+    display: inline-block;
+    color: #434444 !important;
+    font-size: 17px !important;
+    padding: 3px 10px !important;
+    font-weight: 600 !important;
+    margin-bottom: 0px !important;">
+
+                                    @*  <i class="fa fa-phone-square"></i> *@
+                                    <img src="~/Images/Dashboard/id details.png" width="15px" height="15px">
+                                    <b class="bldwht">Existing Credit Facilites IF Any</b>
+                                    @*<div class="hrdigitxt">Account Details</div>*@
+                                </div>
+                                <img src="~/images/image/angle-down-solid.svg" id="icon-test" class="arrow" />
+                            </div>
+                        </div>
+                        <div class="content" id="inner_wrapper8">
+                            <div class="col-lg-12 cecf" style="padding-top:1%">
+                                <div class="adharbn1 col-lg-2 cyesnommi">
+                                    <input data-val="true" data-val-required="The CarLoan field is required." group="pd" id="CarLoanType" name="CarLoan" style="float:left;height: 20px !important;width:20px" type="checkbox" value="true">
+                                    <label id="" class="adharlbl chbxtop" style="position: relative;color: #4c4949;padding-top:2%">Car Loan</label>
+                                </div>
+                                <div class="adharbn1 col-lg-2 cyesnommi">
+                                    <input data-val="true" data-val-required="The ConsumerLoan field is required." group="pd" id="ConsumerLoanType" name="ConsumerLoan" style="float:left;height: 20px !important;width:20px" type="checkbox" value="true">
+                                    <label id="" class="adharlbl chbxtop" style="position: relative;color: #4c4949;padding-top:2%">Consumer Loan</label>
+                                </div>
+                                <div class="adharbn1 col-lg-2 cyesnommi">
+                                    <input data-val="true" data-val-required="The HomeLoan field is required." group="pd" id="HomeLoanType" name="HomeLoan" style="float:left;height: 20px !important;width:20px" type="checkbox" value="true">
+                                    <label id="" class="adharlbl chbxtop" style="position: relative;color: #4c4949;padding-top:2%">Home Loan</label>
+                                </div>
+                                <div class="adharbn1 col-lg-2 cyesnommi">
+                                    <input data-val="true" data-val-required="The BusinessLoan field is required." group="pd" id="BusinessLoanType" name="BusinessLoan" style="float:left;height: 20px !important;width:20px" type="checkbox" value="true">
+                                    <label id="" class="adharlbl chbxtop" style="position: relative;color: #4c4949;padding-top:2%">Business Loan</label>
+                                </div>
+                                <div class="adharbn1 col-lg-2 cyesnommi">
+                                    <input data-val="true" data-val-required="The EducationLoan field is required." group="pd" id="EducationLoanType" name="EducationLoan" style="float:left;height: 20px !important;width:20px" type="checkbox" value="true">
+                                    <label id="" class="adharlbl chbxtop" style="position: relative;color: #4c4949;padding-top:2%">Education Loan</label>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 cecf" style="pddTop1">
+                                <div class="adharbn1 col-lg-2 cyesnommi">
+                                    <input data-val="true" data-val-required="The Staff field is required." group="pd" id="StaffType" name="Staff" style="float:left;height: 20px !important;width:20px" type="checkbox" value="true">
+                                    <label id="" class="adharlbl chbxtop" style="position: relative;color: #4c4949;padding-top:2%">Staff</label>
+                                </div>
+                                <div class="adharbn1 col-lg-2 cyesnommi">
+                                    <input data-val="true" data-val-required="The RelativeFriend field is required." group="pd" id="RelativeFriendType" name="RelativeFriend" style="float:left;height: 20px !important;width:20px" type="checkbox" value="true">
+                                    <label id="" class="adharlbl chbxtop" style="position: relative;color: #4c4949;padding-top:2%">Relative/Friend</label>
+                                </div>
+                                <div class="adharbn1 col-lg-2 cyesnommi">
+                                    <input data-val="true" data-val-required="The OtherCreditFacility field is required." group="pd" id="OtherCreditFacilityType" name="OtherCreditFacility" style="float:left;height: 20px !important;width:20px" type="checkbox" value="true">
+                                    <label id="" class="adharlbl chbxtop" style="position: relative;color: #4c4949;padding-top:2%">Other</label>
+                                </div>
+                            </div>
+                            <div class=" col-lg-12 col-md-12 col-sm-12 col-xs-12 cacusagebtn" style="margin-bottom:1%">
+                                <input type="button" id="SavePersonal4" value="Save" onclick="DataFacilitySave(this);" class="btn btn-primary right11" disabled="">
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="faq jquery-accordion" style="">
+                    <div class="faqitem shdowaccor" id="init_click_header9">
+                        <div class="header" id="init_click_header7" style="background: #e1e0e0;
+    padding: 4px 11px !important;
+    border: 1px solid #e1e1e0 !important;
+    font-size: 16px;">
+                            <div class="hrddigi" style="font-family: Roboto,Arial,sans-serif !important;
+    letter-spacing: 0;
+    line-height: 32px;
+    display: inline-block;
+    color: #434444 !important;
+    font-size: 17px !important;
+    padding: 3px 10px !important;
+    font-weight: 600 !important;
+    margin-bottom: 0px !important;">
+
+                                @*  <i class="fa fa-phone-square"></i> *@
+                                <img src="~/Images/Dashboard/id details.png" width="15px" height="15px">
+                                <b class="bldwht">Nomination Form - DA -1</b>
+                                @*<div class="hrdigitxt">Account Details</div>*@
+                            </div>
+                            <img src="~/images/image/angle-down-solid.svg" id="icon-test" class="arrow" />
+                        </div>
+                    </div>
+                    <div class="content" id="inner_wrapper9">
+                        <div class="accbx1 col-lg-12 cnommi1" style="padding:7px 1px;border: 1px solid #d0d0d2;border-radius:4px;width:98%;margin:1% 1%;background-color:#dddddd;float:left">
+                            <div class="adharbn1 col-lg-4 cyesnommi">
+                                <input data-val="true" data-val-required="The NomineeForAccountYes field is required." group="pd" id="NomineeYes" name="NomineeForAccountYes" onclick="onNomineeClick(1)" style="float:left;height: 20px !important;width:20px" type="checkbox" value="true">
+                                <label id="" class="adharlbl cl-lg-4 lab92" style="position: relative;color: #4c4949;padding-top:1%;padding-left:3%">Yes , I/We wish to nominate</label>
+                            </div>
+                        </div>
+
+                        <div id="NomineeDetails" style="padding:7px 1px;border: 1px solid #d0d0d2;border-radius:4px;width:96%;margin:1% 2%;background-color:#dddddd;float:left">
+                            <div class="row">
+                                <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12 flt_lft txtbxrow paddnglt0">
+                                    <label for="NomineePrefix" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 paddnglt0 pdtp11 lab-display dsfx pad_left" style=""><div class="label_val fontpfhndr">Nominee prefix Name </div><div class="validation_sign" style="color:red">*</div></label>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <select class="form-control txtboxfnt_sz" id="NomineePrefixid" maxlength="6" name="NomineePrefix" onkeyup="alphabetOnly(this.id)" placeholder="Ms/Mr" style="text-transform: uppercase;">
+                                            <option value="">----Select----</option>
+                                            <option value="1">DR</option>
+                                            <option value="2">M/S</option>
+                                            <option value="3">MAST</option>
+                                            <option value="4">MISS</option>
+                                            <option value="5">MR</option>
+                                            <option value="6">MRS</option>
+                                            <option value="7">MS</option>
+                                            <option value="8">SHRI</option>
+                                            <option value="9">SMT</option>
+                                        </select>
+                                        <span class="text-danger field-validation-valid" data-valmsg-for="NomineePrefix" data-valmsg-replace="true"></span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12 flt_lft paddnglt0 txtbxrow">
+                                    <label for="NomineeFName" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pdtp11 lab-display dsfx pad_left" style=""><div class="label_val fontpfhndr">Nominee First Name</div> <div class="validation_sign" style="color:red">*</div> </label>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <input class="form-control txtboxfnt_sz" id="NomineeFNameid" maxlength="20" name="NomineeFName" onkeyup="alphabetOnly(this.id)" style="text-transform: uppercase;" type="text" value="">
+                                        <span class="text-danger field-validation-valid" data-valmsg-for="NomineeFName" data-valmsg-replace="true"></span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12 flt_lft paddnglt0 txtbxrow">
+                                    <label for="MaidenMName" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pdtp11 lab-display dsfx pad_left" style=""><div class="label_val fontpfhndr"> Nominee Middle Name</div> <div class="validation_sign" style="color:red">*</div> </label>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <input class="form-control txtboxfnt_sz" id="NomineeMNameid" maxlength="20" name="NomineeMName" onkeyup="alphabetOnly(this.id)" style="text-transform: uppercase;" type="text" value="">
+                                        <span class="text-danger field-validation-valid" data-valmsg-for="NomineeMName" data-valmsg-replace="true"></span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12 flt_lft paddnglt0 txtbxrow">
+                                    <label for="NomineeLName" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pdtp11 lab-display dsfx pad_left" style=" "><div class="label_val fontpfhndr">Nominee Last Name</div> <div class="validation_sign" style="color:red">*</div></label>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <input class="form-control txtboxfnt_sz" id="NomineeLNameid" maxlength="20" name="NomineeLName" onkeyup="alphabetOnly(this.id)" style="text-transform: uppercase;" type="text" value="">
+                                        <span class="text-danger field-validation-valid" data-valmsg-for="NomineeLName" data-valmsg-replace="true"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12 flt_lft paddnglt0 txtbxrow">
+                                    <label for="NomineeAge" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pdtp11 lab-display dsfx pad_left" style=" "><div class="label_val fontpfhndr">Nominee Age </div> <div class="validation_sign" style="color:red">*</div></label>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <input class="form-control txtboxfnt_sz" id="NomineeAge" maxlength="3" name="NomineeAge" onkeyup="numericOnly(this.id)" type="text" value="">
+                                        <span class="text-danger field-validation-valid" data-valmsg-for="NomineeAge" data-valmsg-replace="true"></span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12 flt_lft paddnglt0 txtbxrow">
+                                    <label for="NomineeRelation" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pdtp11 lab-display dsfx pad_left" style=" "><div class="label_val fontpfhndr">Relation </div> <div class="validation_sign" style="color:red">*</div></label>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <input class="form-control txtboxfnt_sz" id="NomineeRelation" maxlength="20" name="NomineeRelation" onkeyup="alphabetOnly(this.id)" style="text-transform: uppercase;" type="text" value="">
+                                        <span class="text-danger field-validation-valid" data-valmsg-for="NomineeRelation" data-valmsg-replace="true"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div id="NomineeAdd" style="padding:7px 1px;border: 1px solid #d0d0d2;border-radius:4px;width:96%;margin:1% 2%;background-color:#dddddd;float:left">
+                            <legend style="padding-left:2.5%">Nominee Address</legend>
+                            <div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mgtpper dsfx ">
+                                    <label for="Nominee_ADDRESS_1" class="col-lg-1 col-md-2 col-sm-12" style="display:flex">Address1<div class="validation_sign" style="color:red">*</div></label>
+                                    <div class="col-lg-11 col-md-10 col-sm-12">
+                                        <input class="form-control txtboxfnt_sz" data-val="true" data-val-required="Please Enter Your Address" id="Nominee_ADDRESS_1id" maxlength="45" name="Nominee_ADDRESS_1" onblur="return checkAddress(this)" rel="funcvalidate" style="width:100%;padding:2px 0px 3px 6px;text-transform: uppercase;" type="text" value="">
+                                        <span class="text-danger  field-validation-valid" data-valmsg-for="Nominee_ADDRESS_1" data-valmsg-replace="true"></span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mgtpper dsfx mrgn2">
+                                    <label for="Nominee_ADDRESS_2" class="col-lg-1 dsfx">Address2</label>
+                                    <div class="col-lg-11 col-md-10">
+                                        <input class="form-control txtboxfnt_sz" data-val="true" data-val-required="Please Enter Your Address" id="Nominee_ADDRESS_2id" maxlength="45" name="Nominee_ADDRESS_2" onblur="return checkAddress(this)" rel="funcvalidate" style="width:100%;padding:2px 0px 3px 6px;text-transform: uppercase;" type="text" value="">
+                                        <span class="text-danger field-validation-valid" data-valmsg-for="Nominee_ADDRESS_2" data-valmsg-replace="true"></span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mgtpper dsfx mrgn2">
+                                    <label for="Nominee_ADDRESS_3" class="col-lg-1 dsfx">Address3</label>
+                                    <div class="col-lg-11 col-md-10">
+                                        <input class="form-control txtboxfnt_sz" data-val="true" data-val-required="Please Enter Your Address" id="Nominee_ADDRESS_3id" maxlength="45" name="Nominee_ADDRESS_3" onblur="return checkAddress(this)" rel="funcvalidate" style="width:100%;padding:2px 0px 3px 6px;text-transform: uppercase;" type="text" value="">
+                                        <span class="text-danger field-validation-valid" data-valmsg-for="Nominee_ADDRESS_3" data-valmsg-replace="true"></span>
+                                    </div>
+                                </div>
+                                <div class="dsfx">
+                                    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 flt_lft txtbxrow dsfx mrgn2">
+                                        <label for="Nominee_CITY" class="col-lg-2 col-md-2 col-sm-12 col-xs-12 labelDsfx"><div class="label_val fontpfhndr">City</div><div class="validation_sign" style="color:red">*</div></label>
+                                        <div class="col-lg-10 col-md-10 textadr">
+                                            <input class="form-control txtboxfnt_sz pddTop1" data-val="true" data-val-required="Please Enter City" id="Nominee_CITYid" maxlength="20" name="Nominee_CITY" onkeyup="alphabetOnly(this.id)" rel="funcvalidate" style="text-transform: uppercase" type="text" value="">
+                                            <span class="text-danger field-validation-valid" data-valmsg-for="Nominee_CITY" data-valmsg-replace="true"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 flt_lft txtbxrow dsfx mrgn2">
+                                        <label for="Nominee_Pincode" class="col-lg-2 col-md-2 col-sm-12 col-xs-12 labelDsfx"><div class="label_val fontpfhndr">Pincode</div><div class="validation_sign" style="color:red">*</div></label>
+                                        <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
+                                            <input class="form-control txtboxfnt_sz" data-val="true" data-val-length="Pin Code must be 6 Number." data-val-length-max="6" data-val-length-min="6" data-val-regex="Enter Only Number and Length must be 6 Number" data-val-regex-pattern="^[0-9]{0,6}$" data-val-required="Enter Pin Code." id="Nominee_Pincodeid" maxlength="6" name="Nominee_Pincode" onchange="CheckPinExistenceLC()" onkeyup="numericOnly(this.id)" type="text" value="">
+                                            <span class="text-danger field-validation-valid" data-valmsg-for="Nominee_Pincode" data-valmsg-replace="true"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="dsfx">
+                                    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 flt_lft txtbxrow dsfx mrgn2">
+                                        <label class="col-lg-2 col-md-2 col-sm-12 col-xs-12 labelDsfx"><div class="label_val fontpfhndr ">State</div><div class="validation_sign" style="color:red">*</div></label>
+                                        <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
+                                            <select class="form-control dropdownfnt_sz" data-val="true" data-val-required="Select State." id="Nominee_STATEid" name="Nominee_STATE" style="text-transform: uppercase">
+                                                <option value="">--Select State--</option>
+                                                <option value="">----Select----</option>
+                                                <option value="001">Jammu and Kashmir</option>
+                                                <option value="002">Himachal Pradesh</option>
+                                                <option value="003">Punjab</option>
+                                                <option value="004">Chandigarh</option>
+                                                <option value="005">Uttarakhand</option>
+                                            </select>
+                                            <span class="text-danger field-validation-valid" data-valmsg-for="Nominee_STATE" data-valmsg-replace="true"></span>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 flt_lft txtbxrow dsfx mrgn2">
+                                        <label class="col-lg-2 col-md-2 col-sm-12 col-xs-12 labelDsfx "><div class="label_val fontpfhndr">Country</div><div class="validation_sign" style="color:red">*</div></label>
+                                        <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
+                                            <select class="form-control dropdownfnt_sz" data-val="true" data-val-required="Select Country." id="Nominee_COUNTRYid" name="Nominee_COUNTRY" style="text-transform: uppercase">
+                                                <option value="">--Select Country--</option>
+                                                <option value="">----Select----</option>
+                                                <option value="001">Afghanistan</option>
+                                                <option value="002">Aland Islands</option>
+                                                <option value="003">Albania</option>
+                                                <option value="004">Algeria</option>
+                                                <option value="005">American Samoa</option>
+                                            </select>
+                                            <span class="text-danger field-validation-valid" data-valmsg-for="Nominee_COUNTRY" data-valmsg-replace="true"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class=" col-lg-12 col-md-12 col-sm-12 col-xs-12 cacusagebtn" style="margin-bottom: 1%;margin-top: 3px;">
+                                <input type="button" id="SaveNominee" value="Save" onclick="DataNomineeSave(this);" class="btn btn-primary right1" disabled="">
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <button type="button" class="btn btn-primary EmailGetOtpnew DigiSelectwidth marEmBtn rekycbtn rkycbtn2 rkycsbmt" onclick="curr_submitbtn(this)" id="Submit" style="">Submit</button>
+
+
+                </fieldset>
+            </div>
+
+
+
+
+        </div>
+        <div id="AadharRadio"></div>
+        <div id="Emailbaknew1"></div>
+
+
+
+        <div id="DigiCerti1"></div>
+        <div id="DIGIbag1"></div>
+
+    </div>
+    <script>
+        $(document).ready(function () {
+            $("#init_loader").hide();
+            $("#inner_wrapper0").show(200);
+            $("#init_click_header0").click(function () {
+                $("#inner_wrapper0").slideToggle(200);
+            })
+            $("#init_click_header1").click(function () {
+                $("#inner_wrapper1").slideToggle(200);
+            })
+            $("#init_click_header2").click(function () {
+                $("#inner_wrapper2").slideToggle(200);
+            })
+            $("#init_click_header3").click(function () {
+                $("#inner_wrapper3").slideToggle(200);
+            })
+            $("#init_click_header4").click(function () {
+                $("#inner_wrapper4").slideToggle(200);
+            })
+            $("#init_click_header5").click(function () {
+                $("#inner_wrapper5").slideToggle(200);
+            })
+            $("#init_click_header6").click(function () {
+                $("#inner_wrapper6").slideToggle(200);
+            })
+            $("#init_click_header7").click(function () {
+                $("#inner_wrapper7").slideToggle(200);
+            })
+            $("#init_click_header8").click(function () {
+                $("#inner_wrapper8").slideToggle(200);
+            })
+            $("#init_click_header9").click(function () {
+                $("#inner_wrapper9").slideToggle(200);
+            })
+        });
+    </script>
+</body>
+</html>  

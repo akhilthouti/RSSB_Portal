@@ -1,0 +1,3132 @@
+﻿@model INDO_FIN_NET.Models.QuickEnroll.ClsDigitalKYC1
+
+@{
+    ViewData["Title"] = "GetREKYCDATA";
+    Layout = null;
+}
+
+<html>
+<head>
+    @*<script>
+    function toggleIcon(e) {
+    $(e.target)
+    .prev('.panel-heading')
+    .find(".more-less")
+    .toggleClass('glyphicon-plus glyphicon-minus');
+    }
+    $('.panel-group').on('hidden.bs.collapse', toggleIcon);
+    $('.panel-group').on('shown.bs.collapse', toggleIcon);
+    </script>*@
+
+    <meta name="viewport" content="width=device-width" />
+    @if (ViewBag.AdminFlag == "AdminFlag")
+    {
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    }
+    @if (ViewBag.AdminFlag != "AdminFlag")
+    {
+
+            <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+
+            <link href="~/Scripts/sweetalert.css" rel="stylesheet" />
+            <script src="~/Scripts/sweetalert.min.js"></script>
+            <script src="~/Scripts/bootstrap-multiselect.js"></script>
+            <link href="~/Content/Accordion/Accordion1/Accordiondegital1.css" rel="stylesheet" />
+
+            <script src="../Content/Accordion/Accordion1/jquery-accordion.js"></script>
+
+            <link href="../Content/Accordion/Accordion1/Accordiondegital1.css" rel="stylesheet" />
+            <link href="../Content/Accordion/Accordion1/jquerysctipttop.css" rel="stylesheet" />
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+             <link rel="stylesheet" href="~/Content/snewcss.css" />
+        }
+    else
+    {
+
+    }
+    <style>
+        .fa-circle-check,.tick{
+
+            color:#4caf50;
+        }
+        .fa-circle-xmark,.cross{
+
+            color:red;
+        }
+       
+    .tick{
+        height:16px;
+        width:16px;
+    }
+    #demo-test{
+        height: 26px;
+        margin-left: -155px;
+        position: absolute;
+        z-index: 1;
+        right: -23px;
+        margin-top: -33px;
+        height: 22px;
+    }
+     .green{
+            background-color:#04AA6D!important;
+        }
+    </style>
+     <script type="text/javascript">
+         debugger;
+          let a = ["@ViewBag.fnamerekyc","@ViewBag.Mnamerekyc","@ViewBag.Lnamerekyc","@ViewBag.DobStatus","@ViewBag.GenderStatus","@ViewBag.CLIENT_ADDRESS_1","@ViewBag.CLIENT_ADDRESS_2","@ViewBag.CLIENT_ADDRESS_3","@ViewBag.Pincode","@ViewBag.CStatus","@ViewBag.City","@ViewBag.State"];
+              const c =document.querySelectorAll("#demo-test");
+        for (let i = 0; i < a.length; i++){
+                 if (a[i]== "Match"){
+                      //c[i].style.color="green";  
+                     
+                      c[i].src="../images/image/tick.png";
+                 }else{
+                    //c[i].style.color="red";
+                    c[i].src="../images/image/wrong.png";
+                 }
+            
+        }
+            //    }
+
+
+
+            //if(a[i]=="Match"){
+               
+            //}else{
+        //    //    c[j].style.color="green";
+        //    }
+            
+        //};
+
+
+            //$(".test").css("color","green");
+                //b.style.color="green";
+                //document.getElementById("demo-test").style.color="green";
+            //}
+            //else{
+            //$(".test").css("color","red");
+                //b.style.color="red";
+               /* document.getElementById("demo-test")*//*c[j].style.color="red";*/
+            //}
+        //};
+        //if(a[i]=="Match"){
+        //    //$(".test").css("color","green");
+        //    b.style.color="green";
+        //}else{
+        //    //$(".test").css("color","red");
+        //     b.style.color="red";
+        //};
+
+
+
+    </script>
+
+
+
+    <script type="text/javascript">
+        function Panvalidation(id) {
+            debugger;
+            // Allow: backspace, delete, tab, escape, enter and .
+            var inputtxt = $('#' + id).val();
+
+            var numbers = /([A-Z]){5}([0-9]){4}([A-Z]){1}$/;
+            if (!numbers.test(inputtxt)) {
+                alert('Please Enter Valid PAN');
+                $('#' + id).val('');
+                document.form1.text1.focus();
+                return true;
+            }
+
+        }
+
+
+        function Aadharvalidation(id) {
+            debugger;
+            // Allow: backspace, delete, tab, escape, enter and .
+            var inputtxt = $('#' + id).val();
+            var alpha = /^[2-9]{1}[0-9]{11}$/;
+            if (!alpha.test(inputtxt)) {
+                alert('Please Enter Valid Aadhar Data ');
+                $('#' + id).val('');
+                document.form1.text1.focus();
+                return true;
+            }
+
+        }
+
+    </script>
+    <script>
+        $(document).ready(function () {
+            debugger;
+            //document.getElementById("myRadio").checked
+
+            //if ($('#Re-Kyc').is(":checked")=="true") {
+            //     $("#admincaf").show();
+            //     $("#REkycDivid").show();
+
+
+            // } else {
+            //     $("#admincaf").show();
+            //      $("#REkycDivid").show();
+
+        }
+                            $('#EditAadharCorr').hide();
+        $('#EditPerDetail').hide();
+        $('#EditPanPerDetail').hide();
+        $('#emailform').hide();
+        $('#isEmailVerify').hide();
+        if ('@ViewBag.HideEmailId' == "Hide") {
+            debugger;
+            $('#EmailGetOtpVerify').hide();
+        }
+                        });
+        function OTPAuth() {
+            debugger;
+
+            if ($('#emailId').val() == '') {
+                swal("Enter Valid EmailId");
+                $('#Emailbaknew1').show();
+                //$('#Emailbak').show();
+            } else {
+                $('#Emailbaknew1').show();
+                $('#Emailbak').show();
+                $('#emailformOTP').show();
+
+                $('#emailcodeOTP').val($('#emailId').val());
+            }
+
+
+        }
+        function closeemail() {
+            $('#emailformOTP').hide();
+            $('#Emailbaknew1').hide();
+        }
+        function GetOTP() {
+            debugger;
+            var EmailId = $('#emailcodeOTP').val();
+            $.ajax({
+                url: '/KYCQuickEnroll/EmailOTPSent',
+                type: 'POST',
+                data: {
+                    EmailId: EmailId
+                },
+                cache: false,
+                success: function (result) {
+                    debugger;
+                    if (result != null) {
+                        swal(result);
+                    } else {
+                        swal('OTP does not send.try again..');
+                    }
+                    // $('#DigitCaptureImage').html(result);
+                }
+            });
+
+        }
+        function OTPAuthenticate() {
+            debugger;
+            var OTP = $('#emailauth').val();
+            if (OTP == '') {
+                swal("Enter valid OTP...");
+                return false;
+            }
+            $.ajax({
+                url: '/KYCQuickEnroll/OTPAutheticate',
+                type: 'GET',
+                data: {
+                    OTP: OTP
+                },
+                cache: false,
+                success: function (result) {
+                    debugger;
+                    if (result == "Athenticate Successfully... ") {
+                        swal(result);
+                        $('#Emailbaknew1').hide();
+                        $('#emailformOTP').hide();
+                        $('#EmailGetOtp').hide();
+                        $('#isEmailVerify').show();
+
+
+                    } else {
+                        swal(result);
+                        $('#Emailbaknew1').hide();
+                        $('#emailauth').val('');
+
+                    }
+                    // $('#DigitCaptureImage').html(result);
+                }
+            });
+
+        }
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            debugger;
+            if ('@ViewBag.ISrekycTrue' == 'Yes') {
+                $("#admincaf").show();
+                $("#admincaf2").show();
+
+                $("#DigilockerDivid").show();
+
+                $("#REkycDivid").show();
+                $("#getRekycDataFRomCBS").show();
+                $("#RekycDetailsButton").show();
+
+
+                $("#tohideDigilockerdetails").hide();
+                $("#Tohide").hide();
+            }
+            else {
+                $("#tohideDigilockerdetails").show();
+                $("#admincaf").hide();
+                $("#REkycDivid").hide();
+
+                $("#RekycDetailsButton").hide();
+                $("#DigilockerDivid").hide();
+                $("#admincaf2").hide();
+                $("#REkycDivid").hide();
+                $("#getRekycDataFRomCBS").hide();
+            }
+
+            var t = document.getElementById('digi_pan').value;
+
+            if (t != "") {
+                document.getElementById("digi_pan").disabled = false;
+            }
+
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            debugger;
+            var e = document.getElementById('EmailId').value;
+
+            if (e != "") {
+                document.getElementById("EmailId").disabled = true;
+            }
+
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            debugger;
+            var m = document.getElementById('MobileNo').value;
+            if (m != "") {
+                document.getElementById("MobileNo").disabled = true;
+            }
+        });
+    </script>
+    <script>
+        function ToSaveChangedRekycDetails() {
+            debugger;
+            var RekycustomerNO = $('#RekycustomerNO').val();
+            var DRekycustomerFirstname = $("#DRekycustomerFirstname").val();
+            var DRekycustomerMiddlename = $("#DRekycustomerMiddlename").val();
+            var DRekycustomerLastname = $("#DRekycustomerLastname").val();
+            var DRekycustomerMobileno = $("#DRekycustomerMobileno").val();
+            var DRekycustomerEmailID = $("#DRekycustomerEmailID").val();
+            var DRekycustomerDOB = $("#DRekycustomerDOB").val();
+            var DRekycustomerGEnder = $("#DRekycustomerGEnder").val();
+            var DRekycustomerAdd1 = $("#DRekycustomerAdd1").val();
+            var DRekycustomerAdd2 = $("#DRekycustomerAdd2").val();
+            var DRekycustomerAdd3 = $("#DRekycustomerAdd3").val();
+            var DRekycustomerCity = $("#DRekycustomerCity").val();
+            var DRekycustomerPincode = $("#DRekycustomerPincode").val();
+            var DRekycustomerState = $("#DRekycustomerState").val();
+            var DRekycustomerCountryID = $("#DRekycustomerCountryID").val();
+
+            debugger;
+            $.ajax({
+                url: '/KYCQuickEnroll/TosaveChangedKYCdata',
+                type: 'POST',
+                cache: false,
+                data: {
+                    ChangedDetailCustID: RekycustomerNO,
+                    ChangedDetailFirstname: DRekycustomerFirstname,
+                    ChangedDetailMiddlename: DRekycustomerMiddlename,
+                    ChangedDetailLastname: DRekycustomerLastname,
+                    ChangedDetailMob: DRekycustomerMobileno,
+                    ChangedDetailEmail: DRekycustomerEmailID,
+                    ChangedDetailDOB: DRekycustomerDOB,
+                    ChangedDetailGender: DRekycustomerGEnder,
+                    ChangedDetailAdd1: DRekycustomerAdd1,
+                    ChangedDetailAdd2: DRekycustomerAdd2,
+                    ChangedDetailAdd3: DRekycustomerAdd3,
+                    ChangedDetailCity: DRekycustomerCity,
+                    ChangedDetailPincode: DRekycustomerPincode,
+                    ChangedDetailState: DRekycustomerState,
+                    ChangedDetailCountryID: DRekycustomerCountryID
+
+
+                },
+                success: function (result) {
+                    debugger;
+                    if (result != null) {
+                        swal(result);
+                        swal('Re-KYC Saved Successfully..');
+                        window.location.href = '@Url.Action("CustomerDocumentDetails", "DocumentDetails")'
+
+                        //  url: '/KYCQuickEnroll/TosaveChangedKYCdata'
+                    } else {
+                        swal('Re-KYC Failed..');
+                    }
+
+                }
+            });
+
+        }
+        //function DigitCaptureImage() {
+        //    debugger;
+        //    $.ajax({
+        //        url: '/KYCImageCapture/OpencameraForDigi',
+        //        type: 'GET',
+        //        cache: false,
+        //        success: function (result) {
+        //            debugger;
+        //            $('#DigitCaptureImage').html(result);
+        //        }
+        //    });
+        //}
+        function captureimage() {
+            debugger;
+            $.ajax({
+                url: '/KYCImageCapture/Opencamera',
+                type: 'GET',
+                cache: false,
+                success: function (result) {
+                    debugger;
+                    $('#DigitCaptureImage').html(result);
+                    $("html, body").animate({
+                        scrollTop: $(
+                            'html, body').get(0).scrollHeight
+                    }, 2000);
+                    $(window).scrollTop($('#orgresubmit').position().top);
+                }
+            });
+        }
+        //function SendPhoto(e) {
+        //    debugger;
+        //    $("#DigiCerti1").html("<div style='position: fixed;z-index: 5000;float: left;right: 50%;height: 50px;width: 50px;top:40%;'><img class='ajax-loader' src='../Images/loader/Dual Ring-1s-200px.gif' height='60px' width='60px' align='middle' alt='ajaxloadergif' /></div>");
+        //    $("#DigiCerti1").show();
+        //    $("#DIGIbag1").show();
+        //    var base64I;
+        //    var imageInnerHtml;
+        //    var b;
+        //    var resultvalues;
+        //    if ($('#DigitCaptureImage').is(':visible') == true) {
+        //        // if (document.getElementById('livephoto').src != '') {
+        //        if ($('#results').is(':visible') == true) {
+        //            debugger;
+        //            base64I = (document.getElementById("results").innerHTML);
+        //            if (base64I != "Your captured image will appear here...") {
+        //                if (document.getElementById('results').innerHTML != "Your captured image will appear here...") {
+        //                    base64I = (document.getElementById("results").innerHTML);
+        //                    imageInnerHtml = base64I.split(",");
+        //                    b = imageInnerHtml[1];
+        //                    b = b.substring(0, b.length - 2);
+        //                    resultvalues = demo.textContent;
+        //                }
+        //            } else {
+        //                swal("Capture photo");
+        //                 //event.preventDefault();
+        //            }
+        //        }
+
+        //        else {
+        //            swal("Capture photo");
+        //             //event.preventDefault();
+        //        }
+        //    } else {
+        //        swal("Capture photo");
+        //         //event.preventDefault();
+        //    }
+        //    $("#DigiCerti1").hide();
+        //    $("#DIGIbag1").hide();
+        //    $('#digiphotoid').val(b);
+        //    $('#latitudelongitude_id').val(resultvalues);
+        //}
+        //$('#GetCustData').click(function () {
+        //    debugger;
+        //    //var CustId = $('#custID').val();// PersonalId
+        //    $.ajax({
+        //      url ='/KYCQuickEnroll/DigitalQuickEnrollment?proceedwithOCR='+$('#ocrno').val()+'&shareAadharNumber='+$('#radiono').val()+'&PersonalId='+$('#custID').val(),
+        //      type: 'GET',
+        //      cache: false,
+        //      success: function (result) {
+        //        }
+        //    })
+        //})
+        function SendPhotoOfCamera(e) {
+            debugger;
+            //$("#DigiCerti1").html("<div style='position: fixed;z-index: 5000;float: left;right: 50%;height: 50px;width: 50px;top:40%;'><img class='ajax-loader' src='../Images/loader/Dual Ring-1s-200px.gif' height='60px' width='60px' align='middle' alt='ajaxloadergif' /></div>");
+            //$("#DigiCerti1").show();
+            //$("#DIGIbag1").show();
+            var base64I;
+            var imageInnerHtml;
+            var b;
+            var resultvalues;
+            var resultvalues1;
+
+            if ($('#DigitCaptureImage').is(':visible') == true) {
+                // if (document.getElementById('livephoto').src != '') {
+                if ($('#results').is(':visible') == true) {
+                    if (document.getElementById('results').innerHTML != "Your captured image will appear here...") {
+                        base64I = (document.getElementById("results").innerHTML);
+                        imageInnerHtml = base64I.split(",");
+                        b = imageInnerHtml[1];
+                        b = b.substring(0, b.length - 2);
+                        resultvalues = demo.textContent;
+                        resultvalues1 = demo1.textContent;
+
+
+                    }
+
+
+                } else {
+
+                    if ($("#digi_firstname").val() == '') {
+                        swal("Enter Mandatory Details");
+                        //event.preventDefault();
+                        return false;
+                    }
+
+                    if ($("#digi_middlename").val() == '') {
+                        swal("Enter Mandatory Details");
+                        //event.preventDefault();
+                        return false;
+                    }
+
+                    if ($("#digi_lastname").val() == '') {
+                        swal("Enter Mandatory Details");
+                        //event.preventDefault();
+                        return false;
+                    }
+
+                    if ($("#digi_DOB").val() == '') {
+                        swal("Enter Mandatory Details");
+                        //event.preventDefault();
+                        return false;
+                    }
+
+                    if ($("#digi_Gender").val() == '') {
+                        swal("Enter Mandatory Details");
+                        //event.preventDefault();
+                        return false;
+                    }
+
+                    if ($("#MobileDetails").val() == '') {
+                        swal("Enter Mandatory Details");
+                        //event.preventDefault();
+                        return false;
+                    }
+                    if ($("#emailId").val() == '') {
+                        swal("Enter Mandatory Details");
+                        //e.preventDefault();
+                        return false;
+                    }
+                    if ($("#mobileNo").val() == '') {
+                        swal("Enter Mandatory Details");
+                        //e.preventDefault();
+                        return false;
+                    }
+                    if ($("#digi_pan").val() == '') {
+                        swal("Enter Mandatory Details");
+
+                        //e.preventDefault();
+                        return false;
+
+                    }
+                    if ($("#digi_address1").val() == '') {
+                        swal("Enter Mandatory Details");
+
+                        //e.preventDefault();
+                        return false;
+
+                    }
+                    if ($("#digi_address2").val() == '') {
+                        swal("Enter Mandatory Details");
+
+                        //e.preventDefault();
+                        return false;
+
+                    }
+                    if ($("#digi_city").val() == '') {
+                        swal("Enter Mandatory Details");
+
+                        //e.preventDefault();
+                        return false;
+
+                    }
+                    if ($("#Add_ddlState").val() == '') {
+                        swal("Enter Mandatory Details");
+
+                        //e.preventDefault();
+                        return false;
+
+                    }
+                    if ($("#digi_pincode").val() == '') {
+                        swal("Enter Mandatory Details");
+
+                        //e.preventDefault();
+                        return false;
+
+                    }
+                    if ($("#Add_ddlCountry").val() == '') {
+                        swal("Enter Mandatory Details");
+
+                        //e.preventDefault();
+                        return false;
+
+                    }
+                    if ($("#digi_permAddress1").val() == '') {
+                        swal("Enter Mandatory Details");
+
+                        //e.preventDefault();
+                        return false;
+
+                    }
+                    if ($("#digi_permAddress2").val() == '') {
+                        swal("Enter Mandatory Details");
+
+                        //e.preventDefault();
+                        return false;
+
+                    }
+                    if ($("#digi_permCity").val() == '') {
+                        swal("Enter Mandatory Details");
+
+                        //e.preventDefault();
+                        return false;
+
+                    }
+                    if ($("#digi_PERM_pincode").val() == '') {
+                        swal("Enter Mandatory Details");
+
+                        //e.preventDefault();
+                        return false;
+                    }
+                    if ($("#PERM_ddlState").val() == '') {
+                        swal("Enter Mandatory Details");
+
+                        //e.preventDefault();
+                        return false;
+
+                    }
+                    if ($("#PERM_ddlCountry").val() == '') {
+                        swal("Enter Mandatory Details");
+
+                        //e.preventDefault();
+                        return false;
+
+                    }
+                    swal("Capture photo");
+                    //event.preventDefault();
+                    return false;
+
+                }
+            } else {
+
+                if ($("#digi_firstname").val() == '') {
+                    swal("Enter Mandatory Details");
+                    //event.preventDefault();
+                    return false;
+                }
+
+                if ($("#digi_middlename").val() == '') {
+                    swal("Enter Mandatory Details");
+
+                    //event.preventDefault();
+                    return false;
+                }
+
+                if ($("#digi_lastname").val() == '') {
+                    swal("Enter Mandatory Details");
+
+                    //event.preventDefault();
+                    return false;
+                }
+
+                if ($("#digi_DOB").val() == '') {
+                    swal("Enter Mandatory Details");
+
+                    //event.preventDefault();
+                    return false;
+                }
+
+
+                if ($("#digi_Gender").val() == '') {
+                    swal("Enter Mandatory Details");
+
+                    //event.preventDefault();
+                    return false;
+                }
+
+                if ($("#MobileDetails").val() == '') {
+                    swal("Enter Mandatory Details");
+
+                    //event.preventDefault();
+                    return false;
+                }
+                if ($("#emailId").val() == '') {
+                    swal("Enter Mandatory Details");
+
+                    //e.preventDefault();
+                    return false;
+                }
+                if ($("#mobileNo").val() == '') {
+                    swal("Enter Mandatory Details");
+
+                    //e.preventDefault();
+                    return false;
+                }
+                if ($("#digi_pan").val() == '') {
+                    swal("Enter Mandatory Details");
+
+                    //e.preventDefault();
+                    return false;
+
+                }
+                if ($("#digi_address1").val() == '') {
+                    swal("Enter Mandatory Details");
+
+                    //e.preventDefault();
+                    return false;
+
+                }
+                if ($("#digi_address2").val() == '') {
+                    swal("Enter Mandatory Details");
+
+                    //e.preventDefault();
+                    return false;
+
+                }
+                if ($("#digi_city").val() == '') {
+                    swal("Enter Mandatory Details");
+
+                    //e.preventDefault();
+                    return false;
+
+                }
+                if ($("#Add_ddlState").val() == '') {
+                    swal("Enter Mandatory Details");
+
+                    //e.preventDefault();
+                    return false;
+
+                }
+                if ($("#digi_pincode").val() == '') {
+                    swal("Enter Mandatory Details");
+
+                    //e.preventDefault();
+                    return false;
+
+                }
+                if ($("#Add_ddlCountry").val() == '') {
+                    swal("Enter Mandatory Details");
+
+                    //e.preventDefault();
+                    return false;
+
+                }
+                if ($("#digi_permAddress1").val() == '') {
+                    swal("Enter Mandatory Details");
+
+                    //e.preventDefault();
+                    return false;
+
+                }
+                if ($("#digi_permAddress2").val() == '') {
+                    swal("Enter Mandatory Details");
+
+                    //e.preventDefault();
+                    return false;
+
+                }
+                if ($("#digi_permCity").val() == '') {
+                    swal("Enter Mandatory Details");
+
+                    //e.preventDefault();
+                    return false;
+
+                }
+                if ($("#digi_PERM_pincode").val() == '') {
+                    swal("Enter Mandatory Details");
+
+                    //e.preventDefault();
+                    return false;
+                }
+                if ($("#PERM_ddlState").val() == '') {
+                    swal("Enter Mandatory Details");
+
+                    //e.preventDefault();
+                    return false;
+
+                }
+                if ($("#PERM_ddlCountry").val() == '') {
+                    swal("Enter Mandatory Details");
+
+                    //e.preventDefault();
+                    return false;
+
+                }
+                swal("Capture photo");
+                //event.preventDefault();
+                return false;
+            }
+
+            if ($("#digi_firstname").val() == '') {
+                swal("Enter Mandatory Details");
+
+                //event.preventDefault();
+                return false;
+            }
+
+            if ($("#digi_middlename").val() == '') {
+                swal("Enter Mandatory Details");
+
+                //event.preventDefault();
+                return false;
+            }
+
+            if ($("#digi_lastname").val() == '') {
+                swal("Enter Mandatory Details");
+
+                //event.preventDefault();
+                return false;
+            }
+
+            if ($("#digi_DOB").val() == '') {
+                swal("Enter Mandatory Details");
+
+                //event.preventDefault();
+                return false;
+            }
+
+            if ($("#digi_Gender").val() == '') {
+                swal("Enter Mandatory Details");
+
+                //event.preventDefault();
+                return false;
+            }
+
+            if ($("#MobileDetails").val() == '') {
+                swal("Enter Mandatory Details");
+
+                //event.preventDefault();
+                return false;
+            }
+            if ($("#emailId").val() == '') {
+                swal("Enter Mandatory Details");
+
+                //e.preventDefault();
+                return false;
+            }
+            if ($("#mobileNo").val() == '') {
+                swal("Enter Mandatory Details");
+
+                //e.preventDefault();
+                return false;
+            }
+            if ($("#digi_pan").val() == '') {
+                swal("Enter Mandatory Details");
+
+                //e.preventDefault();
+                return false;
+
+            }
+            if ($("#digi_address1").val() == '') {
+                swal("Enter Mandatory Details");
+
+                //e.preventDefault();
+                return false;
+
+            }
+            if ($("#digi_address2").val() == '') {
+                swal("Enter Mandatory Details");
+
+                //e.preventDefault();
+                return false;
+
+            }
+            if ($("#digi_city").val() == '') {
+                swal("Enter Mandatory Details");
+
+                //e.preventDefault();
+                return false;
+
+            }
+            if ($("#Add_ddlState").val() == '') {
+                swal("Enter Mandatory Details");
+
+                //e.preventDefault();
+                return false;
+
+            }
+            if ($("#digi_pincode").val() == '') {
+                swal("Enter Mandatory Details");
+
+                //e.preventDefault();
+                return false;
+
+            }
+            if ($("#Add_ddlCountry").val() == '') {
+                swal("Enter Mandatory Details");
+
+                //e.preventDefault();
+                return false;
+
+            }
+            if ($("#digi_permAddress1").val() == '') {
+                swal("Enter Mandatory Details");
+
+                //e.preventDefault();
+                return false;
+
+            }
+            if ($("#digi_permAddress2").val() == '') {
+                swal("Enter Mandatory Details");
+
+                //e.preventDefault();
+                return false;
+
+            }
+            if ($("#digi_permCity").val() == '') {
+                swal("Enter Mandatory Details");
+
+                //e.preventDefault();
+                return false;
+
+            }
+            if ($("#digi_PERM_pincode").val() == '') {
+                swal("Enter Mandatory Details");
+
+                //e.preventDefault();
+                return false;
+            }
+            if ($("#PERM_ddlState").val() == '') {
+                swal("Enter Mandatory Details");
+
+                //e.preventDefault();
+                return false;
+
+            }
+            if ($("#PERM_ddlCountry").val() == '') {
+                swal("Enter Mandatory Details");
+
+                //e.preventDefault();
+                return false;
+
+            }
+            if (i = 0) {
+                swal("Enter Mandatory Details");
+                //e.preventDefault();
+                return false;
+            }
+
+
+
+
+            //$("#DigiCerti1").hide();
+            //$("#DIGIbag1").hide();
+            $('#digiphotoid').val(b);
+            $('#latitudelongitude_id').val(resultvalues);
+            $('#Prediction_id').val(resultvalues1);
+            $("html, body").animate({
+                scrollTop: $(
+                    'html, body').get(0).scrollHeight
+            }, 2000);
+            // $(window).scrollTop($('#orgresubmit').position().top);
+
+
+            url = '/KYCQuickEnroll/CheckUser?digi_pan=' + $('#digi_pan').val();
+            $.ajax({
+                url: url,
+                type: 'Post',
+
+                success: function (result) {
+                    debugger;
+                    if (result == "Submitted Successfully") {
+
+
+                        alert("Submitted Successfully");
+                        $("#DigiForm").submit();
+
+                    }
+                    else {
+                        alert(result);
+                        window.location.href = '@Url.Action("CustomerQuickEnrollment", "KYCQuickEnroll")'
+                    }
+
+                }
+            });
+
+        }
+
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            debugger;
+
+            if ('@ViewBag.msg' != null && '@ViewBag.msg' != '') {
+                swal('@ViewBag.msg');
+            }
+            // livephoto
+            var livephotodata = 'data:video/webm;base64,' + '@ViewBag.livephoto';
+            document.getElementById('livephoto').src = livephotodata;
+
+
+            if ('@ViewBag.isshareAadharNumber' == 'N') {
+                $('#DigitalAadharRadio').show();
+                $('#AadharRadio').hide();
+            }
+            else {
+                $('#DigitalAadharRadio').hide();
+            }
+
+        });
+    </script>
+    <script type="text/javascript">
+        @*if ('@ViewBag.AdminFlag' == "AdminFlag")
+            {
+
+
+            }*@
+    </script>
+
+    <script>
+        //$(document).ready(function () {
+        //    debugger;
+        //    var me = $("#digi_DOB");
+        //    var dt = new Date();
+        //    dt.setFullYear(new Date().getFullYear() - 18);
+        //    var dt1 = new Date();
+        //    dt1.setFullYear(new Date().getFullYear() - 130);
+        //    me.datepicker({
+        //        showOn: "button",
+        //        buttonImage: "../../imgs/admindatepikcer.png",
+        //        buttonImageOnly: true,
+        //        buttonText: "Select date",
+        //        altFormat: "dd/mm/yy",
+        //        dateFormat: "dd/mm/yy",
+        //        minDate: dt1,
+        //        maxDate: dt,
+        //        yearRange: '-100:' + dt.getFullYear(),
+        //        changeYear: true,
+        //        changeMonth: true
+        //    }).mask('99/99/9999', { placeholder: "dd/mm/yyyy" });
+        //});
+        function GetCustomerData(e) {
+            debugger;
+            url = '/KYCQuickEnroll/DigitalQuickEnrollment?proceedwithOCR=' + $('#ocrno').val() + '&shareAadharNumber=' + $('#radiono').val() + '&PersonalId=' + $('#custID').val(),
+                $.ajax({
+                    url: url,
+                    type: 'get',
+                    success: function (result) {
+                        debugger;
+                        // $("#AadharRadio").hide();
+                        swal('@ViewBag.msg');
+                        $('#Aadharview').show();
+                        $('#Aadharview').html(result);
+                    }
+                });
+        }
+    </script>
+
+
+    @if (ViewBag.AdminFlag == "AdminFlag")
+    {
+            <script>
+                $(document).ready(function () {
+
+                    debugger;
+                    @*if ('@Model.KYCverificationType' == 'XML') {
+                        $('#getAadharData').show();
+                    }*@
+                    @*if {*@
+                    @*@*@*@*@*$('#getAadharData').show();
+                    @*}*@
+                    @*if ('@Model.PanVerificationType' == 'True') {*@
+                        @*$('#getPanData').show();
+
+
+                        //$('#getAadharData').hide();
+                        //$('#getCKYCData').hide();
+                    }
+                    else {
+                        $('#getPanData').hide();
+                    }
+                    if ('@Model.Otherverification' == 'True') {
+                        $('#getOtherData').show();
+                    }
+                    else {
+                        $('#getOtherData').hide();
+                    }
+                    if ('@Model.CKYCVerificationType' == 'True') {
+                        $('#getCKYCData').show();
+                    }
+                    else {
+                        $('#getCKYCData').hide();
+                    }
+                    if ('@Model.AadharVerificationType' == 'True') {
+                        $('#getAadharData').show();
+                    }
+                    else {
+                        $('#getAadharData').hide();
+                    }
+                    if ('@ViewBag.IsDigiPANSumbitted' == 'True') {
+                        debugger;
+                        $('#getDigiPanData').show();
+                    }
+                    else if ('@ViewBag.IsDigiPANSumbitted' == 'False') {
+
+                        $('#getDigiPanData').hide();
+                    }
+
+                    if ('@ViewBag.IsDigilDRLCSumbitted' == 'True') {
+
+                        $('#getDigiDrivingData').show();
+                    }
+                    else if ('@ViewBag.IsDigilDRLCSumbitted' == 'False') {
+
+                        $('#getDigiDrivingData').hide();
+                    }
+
+                    if ('@ViewBag.IsDigiAadharSumbitted' == 'True') {
+
+                        $('#getDigiAadharData').show();
+                    }
+                    else if ('@ViewBag.IsDigiAadharSumbitted' == 'False') {
+
+                        $('#getDigiAadharData').hide();
+                    }*@
+            @*if ('@Model.DigilockerType' == 'PAN') {
+                $('#getDigiPanData').show();
+                $('#getDigiDrivingData').hide();
+                $('#getDigiAadharData').hide();
+
+                }
+                else if ('@Model.DigilockerType' == 'DRIVINGLICENSE') {
+                $('#getDigiDrivingData').show();
+                $('#getDigiPanData').hide();
+                $('#getDigiAadharData').hide();
+                }
+                else if ('@Model.DigilockerType' == 'AADHAAR_XML') {
+                $('#getDigiAadharData').show();
+                $('#getDigiDrivingData').hide();
+                $('#getDigiPanData').hide();
+                }
+                else if ('@Model.DigilockerType' == 'Both') {
+                $('#getDigiPanData').show();
+                $('#getDigiDrivingData').show();
+                $('#getDigiAadharData').hide();
+                }
+                else if ('@Model.DigilockerType' == 'Bothwithxml') {
+                $('#getDigiPanData').show();
+                $('#getDigiDrivingData').show();
+                $('#getDigiAadharData').show();
+                }
+                else if ('@Model.DigilockerType' == 'PANwithxml') {
+                $('#getDigiPanData').show();
+                $('#getDigiAadharData').show();
+                $('#getDigiDrivingData').hide();
+                }
+                else if ('@Model.DigilockerType' == 'Drvlwithxml') {
+                $('#getDigiPanData').hide();
+                $('#getDigiAadharData').show();
+                $('#getDigiDrivingData').show();
+                }
+                else {
+                $('#getDigiPanData').hide();
+                $('#getDigiDrivingData').hide();
+                $('#getDigiAadharData').hide();
+                }*@
+
+
+
+
+                                    })
+            </script>
+    }
+    else
+    {
+            <script>
+                $(document).ready(function () {
+
+                    debugger;
+                    if ('@ViewBag.AdminFlag' != 'AdminFlag') {
+                        if ('@Model.KYCverificationType' == 'XML') {
+                            $('#getAadharData').show();
+                        }
+                        else {
+                            $('#getAadharData').hide();
+                        }
+                        if ('@Model.PanVerificationType' == 'True') {
+                            $('#getPanData').show();
+                        }
+                        else {
+                            $('#getPanData').hide();
+                        }
+                        if ('@Model.Otherverification' == 'True') {
+                            $('#getOtherData').show();
+                        }
+                        else {
+                            $('#getOtherData').hide();
+                        }
+                        if ('@Model.CKYCVerificationType' == 'True') {
+                            $('#getCKYCData').show();
+                        }
+                        else {
+                            $('#getCKYCData').hide();
+                        }
+                        if ('@Model.AadharVerificationType' == 'True') {
+                            $('#getAadharData').show();
+                        }
+                        else {
+                            $('#getAadharData').hide();
+                        }
+                        if ('@ViewBag.IsDigiPANSumbitted' == 'True') {
+                            debugger;
+                            $('#getDigiPanData').show();
+                        }
+                        else if ('@ViewBag.IsDigiPANSumbitted' == 'False') {
+
+                            $('#getDigiPanData').hide();
+                        }
+
+                        if ('@ViewBag.IsDigilDRLCSumbitted' == 'True') {
+
+                            $('#getDigiDrivingData').show();
+                        }
+                        else if ('@ViewBag.IsDigilDRLCSumbitted' == 'False') {
+
+                            $('#getDigiDrivingData').hide();
+                        }
+
+                        if ('@ViewBag.IsDigiAadharSumbitted' == 'True') {
+
+                            $('#getDigiAadharData').show();
+                        }
+                        else if ('@ViewBag.IsDigiAadharSumbitted' == 'False') {
+
+                            $('#getDigiAadharData').hide();
+                        }
+            @*if ('@Model.DigilockerType' == 'PAN') {
+                    $('#getDigiPanData').show();
+                    $('#getDigiDrivingData').hide();
+                    $('#getDigiAadharData').hide();
+
+                    }
+                    else if ('@Model.DigilockerType' == 'DRIVINGLICENSE') {
+                    $('#getDigiDrivingData').show();
+                    $('#getDigiPanData').hide();
+                    $('#getDigiAadharData').hide();
+                    }
+                    else if ('@Model.DigilockerType' == 'AADHAAR_XML') {
+                    $('#getDigiAadharData').show();
+                    $('#getDigiDrivingData').hide();
+                    $('#getDigiPanData').hide();
+                    }
+                    else if ('@Model.DigilockerType' == 'Both') {
+                    $('#getDigiPanData').show();
+                    $('#getDigiDrivingData').show();
+                    $('#getDigiAadharData').hide();
+                    }
+                    else if ('@Model.DigilockerType' == 'Bothwithxml')
+                    {
+                    $('#getDigiPanData').show();
+                    $('#getDigiDrivingData').show();
+                    $('#getDigiAadharData').show();
+                    }
+                    else if ('@Model.DigilockerType' == 'PANwithxml')
+                    {
+                    $('#getDigiPanData').show();
+                    $('#getDigiAadharData').show();
+                    $('#getDigiDrivingData').hide();
+                    }
+                    else if ('@Model.DigilockerType' == 'Drvlwithxml')
+                    {
+                    $('#getDigiPanData').hide();
+                    $('#getDigiAadharData').show();
+                    $('#getDigiDrivingData').show();
+                    }
+                    else {
+                    $('#getDigiPanData').hide();
+                    $('#getDigiDrivingData').hide();
+                    $('#getDigiAadharData').hide();
+                    }*@
+
+
+
+
+                                             }
+
+                    $('#sameascorres').change(function () {
+                        $("html, body").animate({
+                            scrollTop: $(
+                                'html, body').get(0).scrollHeight
+                        }, 2000);
+                        $(window).scrollTop($('#capButton').position().top);
+
+                        debugger;
+                        if ($('#sameascorres').is(":checked") == true) {
+                            $('#EditPermPOA').show();
+                            var digi_permAddress1 = $('#digi_address1').val();
+                            $('#digi_permAddress1').val(digi_permAddress1);
+                            var digi_permAddress2 = $('#digi_address2').val();
+                            $('#digi_permAddress2').val(digi_permAddress2);
+                            var digi_permAddress3 = $('#digi_address3').val();
+                            $('#digi_permAddress3').val(digi_permAddress3);
+                            var digi_city = $('#digi_city').val();
+                            $('#digi_permCity').val(digi_city);
+                            var digi_pincode = $('#digi_pincode').val();
+                            $('#digi_PERM_pincode').val(digi_pincode);
+                            var ddlState = $('#Add_ddlState').val();
+                            $('#PERM_ddlState').val(ddlState);
+                            var Add_ddlCountry = $('#Add_ddlCountry').val();
+                            $('#PERM_ddlCountry').val(Add_ddlCountry);
+
+                            if (digi_PERM_pincode != '') {
+                                $("#PERM_ddlState").rules("remove", "required");
+                                $("#digi_permCity").rules("remove", "required");
+                            }
+                            //$('#PERM_ddlState').removeAttr('checked');
+                            // $("#PERM_ddlState").prop("disabled", true);
+                        }
+                        else if ($('#sameascorres').is(":checked") == false) {
+                            $('#digi_permAddress1').val(''); $('#digi_permAddress2').val(''); $('#digi_permAddress3').val('');
+                            $('#digi_permCity').val(''); $('#digi_PERM_pincode').val(''); $('#PERM_ddlState').val(''); $('#PERM_ddlCountry').val('');
+                        }
+                        else {
+                            $('#EditPermPOA').show();
+                            $('#permPOA').show();
+                        }
+                    })
+                })
+            </script>
+    }
+
+    <script>
+        function TOtest() {
+            debugger;
+            //$("#DigiCerti1").html("<div style='position: fixed;z-index: 5000;float: left;right: 50%;height: 50px;width: 50px;top:40%;'><img class='ajax-loader' src='../Images/loader/Dual Ring-1s-200px.gif' height='60px' width='60px' align='middle' alt='ajaxloadergif' /></div>");
+            //$("#DigiCerti1").show();
+            //$("#DIGIbag1").show();
+            $.ajax({
+                url: '/KYCQuickEnroll/GetRekycDatafromCBS',
+                type: 'GET',
+                cache: false,
+                processData: false,
+                contentType: false,
+                success: function (result) {
+                    debugger;
+                    if (result != null) {
+
+                        $("#RekycustomerNO").val(result.rekycustomerNO);
+                        $("#RekycustomerFirstname").val(result.rekycustomerFirstname);
+                        $("#RekycustomerMiddlename").val(result.rekycustomerMiddlename);
+                        $("#RekycustomerLastname").val(result.rekycustomerLastname);
+                        $("#RekycustomerMobileno").val(result.rekycustomerMobileno);
+                        $("#RekycustomerEmailID").val(result.rekycustomerEmailID);
+                        $("#RekycustomerDOB").val(result.rekycustomerDOB);
+                        $("#RekycustomerGEnder").val(result.rekycustomerGEnder);
+                        $("#RekycustomerAdd1").val(result.rekycustomerAdd1);
+                        $("#RekycustomerAdd2").val(result.rekycustomerAdd2);
+                        $("#RekycustomerAdd3").val(result.rekycustomerAdd3);
+                        $("#RekycustomerCity").val(result.rekycustomerCity);
+                        $("#RekycustomerPincode").val(result.rekycustomerPincode);
+                        $("#RekycustomerState").val(result.rekycustomerState);
+                        $("#RekycustomerCountryID").val(result.rekycustomerCountryID);
+                        $("#RekycustomerAnnualIncome").val(result.rekycustomerAnnualIncome);
+                        $("#RekycustomerOccupation").val(result.rekycustomerOccupation);
+
+                        $("html, body").animate({
+                            scrollTop: $(
+                                'html, body').get(0).scrollHeight
+                        }, 2000);
+                        $(window).scrollTop($('#PersonalId').position().top);
+                    }
+                }
+            })
+        };
+    </script>
+
+    <script>
+
+
+        function GetAadharVerifyData() {
+            debugger;
+            //$("#DigiCerti1").html("<div style='position: fixed;z-index: 5000;float: left;right: 50%;height: 50px;width: 50px;top:40%;'><img class='ajax-loader' src='../Images/loader/Dual Ring-1s-200px.gif' height='60px' width='60px' align='middle' alt='ajaxloadergif' /></div>");
+            //$("#DigiCerti1").show();
+            //$("#DIGIbag1").show();
+            $.ajax({
+                url: '/KYCQuickEnroll/GetAadharVerification',
+                type: 'GET',
+                cache: false,
+                processData: false,
+                contentType: false,
+                success: function (result) {
+                    debugger;
+                    if (result != null) {
+                        $("#DigiCerti1").hide();
+                        $("#DIGIbag1").hide();
+                        $('#digi_firstname').val('');
+                        $('#digi_middlename').val('');
+                        $('#digi_lastname').val('');
+                        $('#digi_city').val('');
+
+                        $('#digi_firstname').val(result.Digi_FirstName);
+                        $('#digi_middlename').val(result.Digi_MiddleName);
+                        $('#digi_lastname').val(result.Digi_LastName);
+                        $('#digi_DOB').val(result.Digi_DOB);
+                        $('#digi_address1').val(result.CLIENT_ADDRESS_1);
+                        $('#digi_address2').val(result.CLIENT_ADDRESS_2);
+                        $('#digi_address3').val(result.CLIENT_ADDRESS_3);
+
+                        $('#digi_Gender').val(result.Digi_gender);
+                        $('#digi_pincode').val(result.Pincode);
+                        $('#Add_ddlState').val(result.clienT_STATE);
+                        $('#digi_city').val(result.clienT_CITY);
+                        // result.Add_ddlCountry = 101;
+                        //$('#Add_ddlCountry').val(result.Add_ddlCountry);
+
+                        //$('#Add_ddlCountry').val(result.Add_ddlCountry);
+                        $('#Add_ddlCountry').val(result.clienT_COUNTRY);
+                        // document.getElementById("CorrFieldset").disabled = true;
+                        $('#EditAadharCorr').show();
+
+                        //document.getElementById("digi_firstname").disabled = true;
+                        //document.getElementById("digi_middlename").disabled = true;
+                        //document.getElementById("digi_lastname").disabled = true;
+                        //document.getElementById("digi_DOB").disabled = true;
+                        //document.getElementById("digi_Gender").disabled = true;
+
+
+                        $('#EditPerDetail').show();
+                        $('#EditPanPerDetail').hide();
+
+                        $("html, body").animate({
+                            scrollTop: $(
+                                'html, body').get(0).scrollHeight
+                        }, 2000);
+                        $(window).scrollTop($('#PersonalId').position().top);
+                    }
+                }
+            })
+        };
+
+
+    </script>
+    <script>
+        
+        function GetCustAadharData() {
+            debugger;
+            //$("#DigiCerti1").html("<div style='position: fixed;z-index: 5000;float: left;right: 50%;height: 50px;width: 50px;top:40%;'><img class='ajax-loader' src='../Images/loader/Dual Ring-1s-200px.gif' height='60px' width='60px' align='middle' alt='ajaxloadergif' /></div>");
+            //$("#DigiCerti1").show();
+            //$("#DIGIbag1").show();
+            if ('@ViewBag.ISrekycTrue' == 'Yes') {
+                $.ajax({
+                    url: '/KYCQuickEnroll/GetDigiAadharVerification',
+                    type: 'GET',
+                    cache: false,
+                    processData: false,
+                    contentType: false,
+                    success: function (result) {
+                        debugger;
+
+                        if (result != null) {
+                            $("#DigiCerti1").hide();
+                            $("#DIGIbag1").hide();
+
+                            $('#digi_firstname').val('');
+                            $('#digi_middlename').val('');
+                            $('#digi_lastname').val('');
+                            $('#digi_city').val('');
+
+
+
+
+                            $("#DRekycustomerFirstname").val(result.digilock_Afirstname);
+                            $("#DRekycustomerMiddlename").val(result.digilock_Amiddlename);
+                            $("#DRekycustomerLastname").val(result.digilock_Alastname);
+                            //$("#RekycustomerMobileno").val(result.rekycustomerMobileno);
+                            //$("#RekycustomerEmailID").val(result.rekycustomerEmailID);
+                            $("#DRekycustomerDOB").val(result.digi_DOB);
+                            $("#DRekycustomerGEnder").val(result.digi_gender);
+                            $("#DRekycustomerAdd1").val(result.clienT_ADDRESS_1);
+                            $("#DRekycustomerAdd2").val(result.clienT_ADDRESS_2);
+                            $("#DRekycustomerAdd3").val(result.clienT_ADDRESS_3);
+                            $("#DRekycustomerCity").val(result.clienT_CITY);
+                            $("#DRekycustomerPincode").val(result.pincode);
+                            $("#DRekycustomerState").val(result.clienT_STATE);
+                            $("#DRekycustomerCountryID").val(result.clienT_COUNTRY);
+
+
+                            $('#EditAadharCorr').show();
+
+
+
+                            $('#EditPerDetail').show();
+                            $('#EditPanPerDetail').hide();
+
+                            $("html, body").animate({
+                                scrollTop: $(
+                                    'html, body').get(0).scrollHeight
+                            }, 2000);
+                            $(window).scrollTop($('#PersonalId').position().top);
+                        }
+                    }
+                })
+            }
+            else {
+                $.ajax({
+                    url: '/KYCQuickEnroll/GetDigiAadharVerification',
+                    type: 'GET',
+                    cache: false,
+                    processData: false,
+                    contentType: false,
+                    success: function (result) {
+                        debugger;
+
+                        if (result != null) {
+                            $("#DigiCerti1").hide();
+                            $("#DIGIbag1").hide();
+
+                            $('#digi_firstname').val('');
+                            $('#digi_middlename').val('');
+                            $('#digi_lastname').val('');
+                            $('#digi_city').val('');
+
+
+
+
+                            $('#digi_firstname').val(result.digilock_Afirstname);
+                            $('#digi_middlename').val(result.digilock_Amiddlename);
+                            $('#digi_lastname').val(result.digilock_Alastname);
+                            $('#digi_DOB').val(result.digi_DOB);
+                            $('#digi_address1').val(result.clienT_ADDRESS_1);
+                            $('#digi_address2').val(result.clienT_ADDRESS_2);
+                            $('#digi_address3').val(result.clienT_ADDRESS_3);
+
+                            $('#digi_Gender').val(result.digi_gender);
+                            $('#digi_pincode').val(result.pincode);
+                            $('#Add_ddlState').val(result.clienT_STATE);
+                            $('#digi_city').val(result.clienT_CITY);
+                            $('#Add_ddlCountry').val(result.clienT_COUNTRY);
+
+                            $('#EditAadharCorr').show();
+
+
+
+                            $('#EditPerDetail').show();
+                            $('#EditPanPerDetail').hide();
+
+                            $("html, body").animate({
+                                scrollTop: $(
+                                    'html, body').get(0).scrollHeight
+                            }, 2000);
+                            $(window).scrollTop($('#PersonalId').position().top);
+                        }
+                    }
+                })
+            }
+
+        };
+        function GetCustDigiPanData() {
+            debugger;
+            $.ajax({
+                url: '/KYCQuickEnroll/GetDigilockerPan',
+                type: 'GET',
+                cache: false,
+                processData: false,
+                contentType: false,
+                success: function (result) {
+                    debugger;
+                    if (result != null) {
+                        $("#DigiCerti1").hide();
+                        $("#DIGIbag1").hide();
+                        $('#digi_firstname').val('');
+                        $('#digi_middlename').val('');
+                        $('#digi_lastname').val('');
+                        $('#digi_DOB').val('');
+                        $('#digi_address1').val('');
+                        $('#digi_address2').val('');
+                        $('#digi_address3').val('');
+                        //$('#digi_Gender').val('');
+                        $('#digi_pincode').val('');
+                        $('#digi_pan').val('');
+
+                        $('#digi_lastname').val(result.digilock_lastname);
+                        $('#digi_firstname').val(result.digilock_firstname);
+                        $('#digi_middlename').val(result.digilock_middlename);
+                        $('#digi_pan').val(result.digilock_PANNo);
+                        //$('#digi_lastname').val(result.Digi_lastName);
+                        $('#digi_DOB').val(result.dob1lock);
+                        //$('#digi_Gender').val(result.Digilockgender);
+                        $('#digi_Gender').empty();
+                        if (result.digilockgender == "MALE") {
+                            $("#digi_Gender").append("<option value='" + "M" + "'>" + "Male" + "</option>");
+                        } else if (result.digilockgender == "FEMALE") {
+                            $("#digi_Gender").append("<option value='" + "F" + "'>" + "Female" + "</option>");
+                        } else {
+                            $("#digi_Gender").append("<option value='" + "O" + "'>" + "Others" + "</option>");
+                        }
+                        //$('#Digi_Gender').append(result.Digilockgender);
+
+
+
+
+
+                    };
+                }
+            })
+        };
+
+
+
+
+
+
+        function GetCustDigiDrivingData() {
+            debugger;
+            $.ajax({
+                url: '/KYCQuickEnroll/GetDigilockerDriving',
+                type: 'GET',
+                cache: false,
+                processData: false,
+                contentType: false,
+                success: function (result) {
+                    debugger;
+                    if (result != null) {
+                        $("#DigiCerti1").hide();
+                        $("#DIGIbag1").hide();
+                        $('#digi_firstname').val('');
+                        $('#digi_middlename').val('');
+                        $('#digi_lastname').val('');
+                        $('#digi_DOB').val('');
+                        $('#digi_address1').val('');
+                        $('#digi_address2').val('');
+                        $('#digi_address3').val('');
+                        $('#digi_Gender').val('');
+                        $('#digi_pincode').val('');
+                        $('#Add_ddlCountry').val('');
+
+
+
+
+                        $('#digi_firstname').val(result.digi_Dfirstname);
+                        $('#digi_middlename').val(result.digi_Dswd);
+                        $('#digi_lastname').val(result.digi_Dlastname);
+                        $('#digi_address1').val(result.digi_DAddress);
+                        $('#digi_DOB').val(result.digidob2);
+                        $('#digi_address1').val(result.clienT_ADDRESS_1);
+                        $('#digi_address2').val(result.clienT_ADDRESS_2);
+                        $('#digi_address3').val(result.clienT_ADDRESS_3);
+                        $('#Add_ddlCountry').val(result.clienT_COUNTRY);
+                        $('#Add_ddlState').val(result.clienT_STATE);
+
+
+
+                        $('#digi_pincode').val(result.Pincode);
+
+
+                    };
+                }
+            })
+        };
+
+        function GetCustOtherData() {
+            debugger;
+            //$("#DigiCerti1").html("<div style='position: fixed;z-index: 5000;float: left;right: 50%;height: 50px;width: 50px;top:40%;'><img class='ajax-loader' src='../Images/loader/Dual Ring-1s-200px.gif' height='60px' width='60px' align='middle' alt='ajaxloadergif' /></div>");
+            //$("#DigiCerti1").show();
+            //$("#DIGIbag1").show();
+            $.ajax({
+                url: '/KYCQuickEnroll/GetOtherData',
+                type: 'GET',
+                cache: false,
+                processData: false,
+                contentType: false,
+                success: function (result) {
+                    debugger;
+                    if (result != null) {
+                        $('#digi_firstname').val('');
+                        $('#digi_middlename').val('');
+                        $('#digi_lastname').val('');
+
+                        $('#digi_firstname').val(result.FirstNameOther);
+                        $('#digi_middlename').val(result.MiddleNameOther);
+                        $('#digi_lastname').val(result.LastNameOther);
+                        $('#digi_DOB').val(result.DateOfBirthOther);
+                        $('#digi_address1').val(result.Oaddressline1);
+                        $('#digi_address2').val(result.Oaddressline2);
+                        $('#digi_address3').val(result.CLIENT_ADDRESS_3);
+                        //$('#digi_Gender').val(result.Digi_gender);
+                        $('#digi_pincode').val(result.Other_PinCode);
+                        $('#digi_city').val(result.Other_City);
+                        $('#Add_ddlState').val(result.CLIENT_STATE);
+                        $('#Add_ddlCountry').val(result.CLIENT_COUNTRY);
+
+                        $('#digi_Gender').empty();
+                        if (result.Othergender == "M") {
+                            $("#digi_Gender").append("<option value='" + "M" + "'>" + "Male" + "</option>");
+                        } else if (result.Othergender == "F") {
+                            $("#digi_Gender").append("<option value='" + "F" + "'>" + "Female" + "</option>");
+                        } else {
+                            $("#digi_Gender").append("<option value='" + "O" + "'>" + "Others" + "</option>");
+                        }
+
+                        // document.getElementById("CorrFieldset").disabled = true;
+                        $('#EditAadharCorr').show();
+
+                    }
+                }
+            })
+        };
+
+
+        function GetCustCKYCData() {
+            debugger;
+            //$("#DigiCerti1").html("<div style='position: fixed;z-index: 5000;float: left;right: 50%;height: 50px;width: 50px;top:40%;'><img class='ajax-loader' src='../Images/loader/Dual Ring-1s-200px.gif' height='60px' width='60px' align='middle' alt='ajaxloadergif' /></div>");
+            //$("#DigiCerti1").show();
+            //$("#DIGIbag1").show();
+            $.ajax({
+                url: '/KYCQuickEnroll/GetCKYCData',
+                type: 'GET',
+                cache: false,
+                processData: false,
+                contentType: false,
+                success: function (result) {
+                    debugger;
+                    if (result != null) {
+                        $("#DigiCerti1").hide();
+                        $("#DIGIbag1").hide();
+                        $('#digi_firstname').val('');
+                        $('#digi_middlename').val('');
+                        $('#digi_lastname').val('');
+
+                        $('#digi_firstname').val(result.digi_FirstName);
+                        $('#digi_middlename').val(result.digi_MiddleName);
+                        $('#digi_lastname').val(result.digi_LastName);
+                        $('#digi_DOB').val(result.digi_DOB);
+                        $('#digi_address1').val(result.clienT_ADDRESS_1);
+                        $('#digi_address2').val(result.clienT_ADDRESS_2);
+                        $('#digi_address3').val(result.clienT_ADDRESS_3);
+                        $('#digi_Gender').val(result.Digi_gender);
+                        $('#digi_pincode').val(result.Pincode);
+                        $('#Add_ddlState').val(result.clienT_STATE);
+
+                        $('#digi_permAddress1').val(result.clienT_PERM_ADDRESS_1);
+                        $('#digi_permAddress2').val(result.clienT_PERM_ADDRESS_2);
+                        $('#digi_permAddress3').val(result.clienT_PERM_ADDRESS_3);
+                        $('#digi_permCity').val(result.clienT_PERM_CITY);
+                        $('#PERM_ddlState').val(result.clienT_PERM_STATE);
+                        $('#digi_PERM_pincode').val(result.clienT_PERM_Pincode);
+                        $('#PERM_ddlCountry').val(result.clienT_PERM_COUNTRY);
+
+
+                        $('#digi_Aadhar').val(result.digi_Aadhar);
+                        $('#digi_passport').val(result.digi_passport);
+                        $('#digi_voter').val(result.digi_Voter);
+                        $('#digi_pan').val(result.digilock_PANNo);
+                        $('#digiDrivinglicense').val(result.digi_Drivinglicense);
+
+
+                        //  var ddlState = $('#ddlState').val();
+                        // $('#ddlState').val(ddlState);
+                        //  document.getElementById("CorrFieldset").disabled = true;
+                        $('#EditAadharCorr').show();
+                    }
+                }
+            })
+        };
+
+        function EditCorr() {
+            debugger;
+            document.getElementById("CorrFieldset").disabled = false;
+        }
+        function EditPerClick() {
+            document.getElementById("digi_firstname").disabled = false;
+            document.getElementById("digi_middlename").disabled = false;
+            document.getElementById("digi_lastname").disabled = false;
+            document.getElementById("digi_DOB").disabled = false;
+            document.getElementById("digi_Gender").disabled = false;
+        }
+        function EditPanDataClick() {
+            document.getElementById("digi_firstname").disabled = false;
+            document.getElementById("digi_middlename").disabled = false;
+            document.getElementById("digi_lastname").disabled = false;
+            document.getElementById("digi_DOB").disabled = false;
+            document.getElementById("digi_Gender").disabled = false;
+
+        }
+    </script>
+
+    <script>
+        $(function () {
+            $(document).ready(function () {
+                debugger;
+                var digiKYCDOBDate = $('#digi_DOB');
+                var dt = new Date();
+                dt.setFullYear(new Date().getFullYear() - 18);
+                var dt1 = new Date();
+                dt1.setFullYear(new Date().getFullYear() - 130);
+                digiKYCDOBDate.datepicker({
+                    showOn: "button",
+                    buttonImage: "../../Images/admindatepikcer.png",
+                    buttonImageOnly: true,
+                    buttonText: "Select date",
+                    altFormat: "dd/mm/yy",
+                    dateFormat: "dd/mm/yy",
+                    minDate: dt1,
+                    maxDate: dt,
+                    yearRange: '-100:' + dt.getFullYear(),
+                    changeYear: true,
+                    changeMonth: true
+                }).mask('99/99/9999', { placeholder: "dd/mm/yyyy" });
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $("#ReKycRejecttxt").hide();
+            $("#ReKycsubmit").hide();
+        });
+    </script>
+
+    <script>
+        $('#ReKycApprove').click(function () {
+            debugger;
+            $("#ReKycRejecttxt").hide();
+            $.ajax({
+
+                url: '/KYCQuickEnroll/GetApprovedFlag?selectedValue=' + $("#ReKycRejecttxt").val() + '&appType=' + 'ReKyc',
+                type: 'POST',
+                dataType: 'json',
+                data: '', //{ selectedValue: $("#QuickApprove").val() },
+                contentType: 'application/json; charset=utf-8',
+                success: function (data) { 
+                    // swal('Re-KYC form Approved Successfully'); 
+                    $("html, body").animate({ scrollTop: 0 }, 600);
+                     swal({
+                            title: "Re-KYC form Approved Successfully",
+
+                            type: 'success',
+
+                            confirmButtonColor: '#DD6B55',
+                            confirmButtonText: 'Ok',
+
+                            closeOnConfirm: true,
+                            closeOnCancel: false
+                        },
+                            function (isConfirm) {
+
+                                if (isConfirm) {
+                                  tab2Click();
+                                
+                                $("#rekyct1").addClass("green");
+                                } else {
+                                    swal("Cancelled");
+                                }
+                            });
+                   
+                $(".hello").css("display","block");
+                $("#ReKycApprove").addClass("green");
+                $("#rekyct1").addClass("green");
+
+                $("#rekyc_tab").addClass("green");
+                },
+                error: function (err) { alert(err); }
+            });
+        });
+    </script>
+
+    <script>
+        $('#ReKycReject').click(function () {
+            debugger;
+            $("#ReKycRejecttxt").show();
+            $("#ReKycsubmit").show();
+
+        });
+    </script>
+
+    <script>
+        $('#ReKycRejecttxt').blur(function () {
+            debugger;
+            var reasonRKYC = $("#ReKycRejecttxt").val();
+            $("#ReKycRejecttxt").show();
+            $.ajax({
+
+                url: '/KYCQuickEnroll/GetApprovedFlag?selectedValue=' + $("#ReKycRejecttxt").val() + '&appType=' + 'RReKycCAF',
+                type: 'POST',
+
+                data: '', //{ selectedValue: $("#QuickApprove").val() },
+                contentType: 'application/json; charset=utf-8',
+                success: function (data) {
+                    swal("Re-KYC Form rejected with reject reason " + reasonRKYC);
+                },
+                error: function (err) { alert(err); }
+            });
+        });
+    </script>
+    @*//Add this new*@
+    <script type="text/javascript">
+        $(document).ready(function () {
+            debugger;
+
+            $('#HideVerificationType').hide();
+        }
+    </script>
+    <style>
+        .buttoncam span {
+            cursor: pointer;
+            display: inline-block;
+            position: relative;
+            transition: 0.5s;
+        }
+
+            .buttoncam span:after {
+                /*content: "\f030";*/
+                /*content: "\f095";*/
+                content: '\00bb';
+                position: absolute;
+                opacity: 0;
+                top: 0;
+                right: 19px;
+                transition: 0.5s;
+                color: white;
+                margin-top: -6px;
+                font-size: 19px;
+                font-weight: 800;
+            }
+        /*.buttoncam span:before {
+
+                            content: "\f030";
+
+                            position: absolute;
+                            opacity: 0;
+                            top: 0;
+                            right: 19px;
+                            transition: 0.5s;
+                            color: white;
+                            margin-top: -14px;
+                            font-size: 19px;
+                            font-weight: 800;
+                        }*/
+
+        .buttoncam:hover span {
+            padding-right: 24px;
+        }
+
+            .buttoncam:hover span:after {
+                opacity: 2;
+                right: 0;
+            }
+
+        .seconddialog {
+            transition: transform 0.3s ease-out 0s, -webkit-transform 0.3s ease-out 0s;
+            transform: translate(0px, -25%);
+            position: fixed;
+            width: 500px;
+            margin: 0.5rem;
+            background-color: rgb(255, 255, 255);
+            z-index: 999;
+            left: 29%;
+            top: 50%;
+            box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+            border-radius: 7px;
+        }
+
+        .pdbted {
+            margin-bottom: 15px !important;
+        }
+
+        .active:active {
+            color: green;
+        }
+
+        .active:focus {
+            color: green;
+        }
+
+        #getAadharData :focus :active {
+            outline: 1px solid green !important;
+            background-color: green;
+            color: #fff;
+        }
+
+        #getPanData {
+            outline: 1px solid green !important;
+            background-color: green;
+            color: #fff;
+        }
+
+        #getOtherData:focus :active {
+            outline: 1px solid green !important;
+            background-color: green;
+            color: #fff;
+        }
+
+        #getCKYCData:focus :active {
+            outline: 1px solid green !important;
+            background-color: green;
+            color: #fff;
+        }
+
+
+
+        .sheadbk {
+             background-color: #bf5252;
+            //border: 2px solid #8b0000 !important;
+            
+        }
+
+        .shead {
+            color: white !important;
+        }
+
+        .df1 {
+            display: flex;
+            margin: 5px 0px 5px 0px;
+        }
+
+        .stextinp {
+            
+            background-color: #e9e7e7;
+            border-radius: 4px;
+            height: 45px!important;
+            width: 72%;
+            padding: 8px !important;
+            border-radius: 3px !important;
+            border: solid 1px #b7b7b7;
+        }
+
+        .strtdiv {
+            border: 1px solid lightgrey;
+            padding: 0px 0px 0px 0px !important;
+        }
+
+        .marg1 {
+            width: 45%;
+            margin-left: 29px;
+        }
+
+        .marg2 {
+           
+            margin-left: 18px;
+            width: 45% !important;
+        }
+        .init-label{
+           font-size: 13px;
+    text-align: start;
+    font-weight: 600;
+        }
+
+            .init-input{
+                height: 45px!important;
+                width: 72%;
+                padding: 8px !important;
+                border-radius: 3px !important;
+                border: solid 1px #b7b7b7;
+            }
+            .init-re-input{
+               height: 28px!important;
+    font-size: 13px!important;
+    font-weight: 600;
+    margin-bottom: 8px;
+            }
+            .init_main_details_div{
+                margin: 0;
+    width: 48%;
+    border: 1px solid lightgrey;
+            }
+
+            @@media screen and (max-width:767px){
+                .init_wrapper_div {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+}
+.init_main_details_div {
+    width: 100%;
+}
+.init-re-input-sm {
+    width: 96%;
+}
+.demo-test-sm{
+    right: 6px!important;
+}
+.init_main_1
+{margin-bottom: 24px!important;}
+            }
+
+
+
+    </style>
+    @if (ViewBag.AdminFlag != "AdminFlag")
+    {
+            <style>
+
+                #admincaf {
+                    padding: 0px 15px !important;
+                }
+
+                .space3511 {
+                    width: 100%;
+                    min-height: 12px !important;
+                }
+
+                .space351 {
+                    width: 100%;
+                    min-height: 12px;
+                }
+
+                .panel-heading {
+                    padding: 9px 15px !important;
+                }
+            </style>
+    }
+
+    <style>
+        .mrgns {
+            margin-bottom: 10px;
+        }
+        .init_wrapper_div{
+            display: flex;
+    justify-content: space-evenly;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid pdcon btnmrgin" style="clear:both">
+
+        @using (Html.BeginForm("DigitalQuickEnrollment", "KYCQuickEnroll", FormMethod.Post, new { @Id = "DigiForm", enctype = "multipart/form-data" }))
+        {
+                <div>
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(model => model.DigiKYCPhoto, new { id = "digiphotoid" })
+                @Html.HiddenFor(model => model.Latitude_Longitude, new { id = "latitudelongitude_id" })
+                @Html.HiddenFor(model => model.Prediction, new { id = "Prediction_id" })
+                @Html.HiddenFor(model => model.PersonalId, new { id = "personalID" })
+                @Html.HiddenFor(model => model.PanVerificationType, new { @id = "PanID" })
+                @Html.HiddenFor(model => model.CKYCVerificationType, new { @id = "CKYCID" })
+                @Html.HiddenFor(model => model.AadharVerificationType, new { @id = "AadharID" })
+
+                    <div style="float:right;margin-right:6.6%;margin-top:1%">
+                        <label>Customer Reference Number :</label>
+                        <label>@ViewBag.PersonalId</label>
+                    </div>
+
+                    <div class="row" style="margin:2px">
+                        @**<div class="col-12" style="padding:2px">
+                            <input type="button" id="getAadharData" onclick="GetAadharVerifyData()" class="btn btn-primary float-right active spacAadharBtn" value="POPULATE AADHAAR DATA">
+                            <input type="button" id="getPanData" onclick="GetPanVerifyData()" class="btn btn-primary float-right active spacAadharBtn" value="POPULATE PAN DATA">
+                            <input type="button" id="getOtherData" onclick="GetCustOtherData()" class="btn btn-primary float-right active spacAadharBtn" value="POPULATE OTHER DATA">
+                            <input type="button" id="getCKYCData" onclick="GetCustCKYCData()" class="btn btn-primary float-right active spacAadharBtn" value="POPULATE CKYC DATA">
+                            <input type="button" id="getDigiPanData" onclick="GetCustDigiPanData()" class="btn btn-primary float-right active spacAadharBtn" value="POPULATE DigiPAN DATA">
+                            <input type="button" id="getDigiDrivingData" onclick="GetCustDigiDrivingData()" class="btn btn-primary float-right active spacAadharBtn" value="POPULATE DigiDRIVING DATA">
+                            <input type="button" id="getDigiAadharData" onclick="GetCustAadharData()" class="btn btn-primary float-right active spacAadharBtn" value="POPULATE AADHAAR DATA">
+                            <input type="button" id="getRekycDataFRomCBS" onclick="TOtest()" class="btn btn-primary float-right active spacAadharBtn" value="POPULATE Re-KYC DATA">
+                        </div>**@
+                    </div>
+                    <div class="space35btn1"></div>
+
+                    <div id="emailformOTP" class="seconddialog fadeInDown animated wow" style="display:none">
+                        <div class="form-header goipopuphead form_header">
+                            <div class="pan-header" style="text-align:center!important">OTP Verification</div>
+                        </div>
+                        <div style="margin-bottom:6%;margin-top:2.8%">
+                            <div class="col-lg-12">
+                                <div class="col-lg-8" style="margin-top:1.5%">
+                                    <div class="md-form">
+                                        <label style="top: 14px;padding-left:0%" for="emailcode" id="emlotp" class="label_val fontpfhndr active">Email Id</label>
+                                        <input type="text" id="emailcodeOTP" readonly="readonly" style="margin-left:8%" />
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <button type="button" onclick="GetOTP()" class="btn btn-primary get1" id="EmailGetOtp" style=" ">Get Otp</button>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="col-lg-8" style="margin-top:1.5%">
+                                    <div class="md-form">
+                                        <label style="top: 14px; padding-left:7%" for="emailauth" class="label_val fontpfhndr">OTP</label>
+                                        <input type="text" id="emailauth" style="margin-left:9%" />
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-4" style="margin-top:1%">
+                                    <button type="button" id="EmailAuthOtp" class="btn btn-primary" onclick="OTPAuthenticate()">Authenticate</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-top:1%;margin-left:14%;float:left">
+                            <div class="col-md-offset-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 clear" style="text-align:center">
+                                <button type="button" class="btn btn-primary" onclick="closeemail()">Close</button>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div id="DigiQuick" class="clearfix">
+                    @if (ViewBag.AdminFlag != "AdminFlag")
+                    {
+                        @*<link href="~/Content/Accordion/Accordion1/Accordiondegital1.css" rel="stylesheet" />
+                <link href="~/Content/Accordion/Accordion1/jquerysctipttop.css" rel="stylesheet" />*@
+                                <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+                                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+                        @*<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>*@
+                        @*<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">*@
+
+                                <link href="~/Content/newhomepage/NewCss/bootstrap.min.css" rel="stylesheet" />
+                                <link href="~/Content/newhomepage/bootstrap.min.css" rel="stylesheet" />
+                                <link href="~/Content/newhomepage/style.css" rel="stylesheet" />
+                                <link href="~/Content/newhomepage/fontawesome.min.css" rel="stylesheet" />
+
+                        @*<link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto" rel="stylesheet">*@
+                                <link href="~/Content/newhomepage/NewCss/css.css" rel="stylesheet" />
+                    }
+                        <fieldset class="customerSd" style>
+                            <legend id="Tohide"></legend>
+                            <div class="init_wrapper_div">
+                            <div class="init_main_details_div init_main_1" style="margin:0;">
+                                <div class="panel-heading adpd sheadbk" id="admincaf" style="padding: 1px 15px!important;">
+                                    <h3 class="panel-title shead">Re-KYC CUSTOMER DETAILS</h3>
+                                </div>
+
+                                <div id="REkycDivid" style="display:block !important;">
+                                    <div style="margin-top:5px;">
+
+                                        <div class="row" style="margin:0">
+                                                <label class="init-label col-md-6 col-lg-6 col-sm-12">Customer First Name<span style="color:red">*</span></label>
+                                                <div class="col-md-6 col-lg-6 col-sm-12">
+                                                @Html.TextBoxFor(model => model.RekycustomerFirstname, new { @id = "RekycustomerFirstname", @class = "init-re-input form-control", @maxlength = 12  ,@readonly = true})
+                                                @Html.ValidationMessageFor(model => model.RekycustomerFirstname, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        
+
+                                        <div class="row" style="margin:0">
+                                                <label class="init-label col-md-6 col-lg-6 col-sm-12">Customer Middle Name<span style="color:red">*</span></label>
+                                                <div class="col-md-6 col-lg-6 col-sm-12">
+                                                @Html.TextBoxFor(model => model.RekycustomerMiddlename, new { @id = "RekycustomerMiddlename", @class = "init-re-input form-control", @maxlength = 12,@readonly = true })
+                                                @Html.ValidationMessageFor(model => model.RekycustomerMiddlename, "", new { @class = "text-danger" })
+                                                </div>
+                                        </div>
+
+                                        <div class="row" style="margin:0">
+                                             <label class="init-label col-md-6 col-lg-6 col-sm-12">Customer Last Name<span style="color:red">*</span></label>
+                                            <div class="col-md-6 col-lg-6 col-sm-12">
+                                            @Html.TextBoxFor(model => model.RekycustomerLastname, new { @id = "RekycustomerLastname", @class = "init-re-input form-control", @maxlength = 12,@readonly = true })
+                                            @Html.ValidationMessageFor(model => model.RekycustomerLastname, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+
+                                        <div class="row" style="margin:0">
+                                             <label class="init-label col-md-6 col-lg-6 col-sm-12">Mobile Number<span style="color:red">*</span></label>
+                                            <div class="col-md-6 col-lg-6 col-sm-12">
+                                            @Html.TextBoxFor(model => model.RekycustomerMobileno, new { @id = "RekycustomerMobileno", @class = "init-re-input form-control", @maxlength = 12 ,@readonly = true})
+                                            @Html.ValidationMessageFor(model => model.RekycustomerMobileno, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+
+                                       <div class="row" style="margin:0">
+                                             <label class="init-label col-md-6 col-lg-6 col-sm-12">E-Mail ID<span style="color:red">*</span></label>
+                                            <div class="col-md-6 col-lg-6 col-sm-12">
+                                            @Html.TextBoxFor(model => model.RekycustomerEmailID, new { @id = "RekycustomerEmailID", @class = "init-re-input form-control", @maxlength = 12,@readonly = true })
+                                            @Html.ValidationMessageFor(model => model.RekycustomerEmailID, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+
+                                       <div class="row" style="margin:0">
+                                             <label class="init-label col-md-6 col-lg-6 col-sm-12">Date of Birth<span style="color:red">*</span></label>
+                                            <div class="col-md-6 col-lg-6 col-sm-12">
+                                            @Html.TextBoxFor(model => model.RekycustomerDOB, new { @id = "RekycustomerDOB", @class = "init-re-input form-control", @maxlength = 12,@readonly = true })
+                                            @Html.ValidationMessageFor(model => model.RekycustomerDOB, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+
+                                       <div class="row" style="margin:0">
+                                             <label class="init-label col-md-6 col-lg-6 col-sm-12">Gender<span style="color:red">*</span></label>
+                                            <div class="col-md-6 col-lg-6 col-sm-12">
+                                            @Html.TextBoxFor(model => model.RekycustomerGEnder, new { @id = "RekycustomerGEnder", @class = "init-re-input form-control", @maxlength = 12 ,@readonly = true})
+                                            @Html.ValidationMessageFor(model => model.RekycustomerGEnder, "", new { @class = "text-danger" })
+                                            </div>
+                                            
+                                        </div>
+
+                                       <div class="row" style="margin:0">
+                                             <label class="init-label col-md-6 col-lg-6 col-sm-12">Customer Address 1<span style="color:red">*</span></label>
+                                            <div class="col-md-6 col-lg-6 col-sm-12">
+                                            @Html.TextBoxFor(model => model.RekycustomerAdd1, new { @id = "RekycustomerAdd1", @class = "init-re-input form-control", @maxlength = 100 })
+                                            @Html.ValidationMessageFor(model => model.RekycustomerAdd1, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+
+                                       <div class="row" style="margin:0">
+                                             <label class="init-label col-md-6 col-lg-6 col-sm-12">Customer Address 2<span style="color:red">*</span></label>
+                                            <div class="col-md-6 col-lg-6 col-sm-12">
+                                            @Html.TextBoxFor(model => model.RekycustomerAdd2, new { @id = "RekycustomerAdd2", @class = "init-re-input form-control", @maxlength = 100 })
+                                            @Html.ValidationMessageFor(model => model.RekycustomerAdd2, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+
+                                       <div class="row" style="margin:0">
+                                             <label class="init-label col-md-6 col-lg-6 col-sm-12">Customer Address 3<span style="color:red">*</span></label>
+                                            <div class="col-md-6 col-lg-6 col-sm-12">
+                                            @Html.TextBoxFor(model => model.RekycustomerAdd3, new { @id = "RekycustomerAdd3", @class = "init-re-input form-control", @maxlength = 100 })
+                                            @Html.ValidationMessageFor(model => model.RekycustomerAdd3, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+
+                                       <div class="row" style="margin:0">
+                                            <label class="init-label col-md-6 col-lg-6 col-sm-12">City<span style="color:red">*</span></label>
+                                            <div class="col-md-6 col-lg-6 col-sm-12">
+                                            @Html.TextBoxFor(model => model.RekycustomerCity, new { @id = "RekycustomerCity", @class = "init-re-input form-control", @maxlength = 12 })
+                                            @Html.ValidationMessageFor(model => model.RekycustomerCity, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+
+                                       <div class="row" style="margin:0">
+                                             <label class="init-label col-md-6 col-lg-6 col-sm-12">Pincode<span style="color:red">*</span></label>
+                                            <div class="col-md-6 col-lg-6 col-sm-12">
+                                            @Html.TextBoxFor(model => model.RekycustomerPincode, new { @id = "RekycustomerPincode", @class = "init-re-input form-control", @maxlength = 20 })
+                                            @Html.ValidationMessageFor(model => model.RekycustomerPincode, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+
+                                       <div class="row" style="margin:0">
+                                             <label class="init-label col-md-6 col-lg-6 col-sm-12">State<span style="color:red">*</span></label>
+                                            <div class="col-md-6 col-lg-6 col-sm-12">
+                                            @Html.TextBoxFor(model => model.RekycustomerState, new { @id = "RekycustomerState", @class = "init-re-input form-control", @maxlength = 12 })
+                                            @Html.ValidationMessageFor(model => model.RekycustomerState, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+
+                                       <div class="row" style="margin:0">
+                                             <label class="init-label col-md-6 col-lg-6 col-sm-12">Country<span style="color:red">*</span></label>
+                                            <div class="col-md-6 col-lg-6 col-sm-12">
+                                            @Html.TextBoxFor(model => model.RekycustomerCountryID, new { @id = "RekycustomerCountryID", @class = "init-re-input form-control", @maxlength = 12 })
+                                            @Html.ValidationMessageFor(model => model.RekycustomerCountryID, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="row" style="margin:0">
+                                             <label class="init-label col-md-6 col-lg-6 col-sm-12">Customer no<span style="color:red">*</span></label>
+                                            <div class="col-md-6 col-lg-6 col-sm-12">
+                                            @Html.TextBoxFor(model => model.RekycustomerNO, new { @id = "RekycustomerNO", @class = "init-re-input form-control", @maxlength = 12 })
+                                            @Html.ValidationMessageFor(model => model.RekycustomerNO, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+
+                                        @*<div class="col-xl-12 df1">
+                                            <div class="col-xl-4 paddingleftCaf equalSpace">
+                                                <label class="init-label">Annual Income<span style="color:red">*</span></label>
+                                            </div>
+                                            <div class="col-xl-8 paddingleftCaf equalSpace">
+                                            @Html.TextBoxFor(model => model.RekycustomerAnnualIncome, new { @id = "RekycustomerAnnualIncome", @class = "digifont stextinp", @maxlength = 12  ,@readonly = true})
+                                            @Html.ValidationMessageFor(model => model.RekycustomerAnnualIncome, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+
+                                       <div class="row" style="margin:0">
+                                            <div class="col-xl-4 paddingleftCaf equalSpace">
+                                                <label class="init-label">Occupation<span style="color:red">*</span></label>
+                                            </div>
+                                            <div class="col-xl-8 paddingleftCaf equalSpace">
+                                            @Html.TextBoxFor(model => model.RekycustomerOccupation, new { @id = "RekycustomerOccupation", @class = "digifont stextinp", @maxlength = 12 ,@readonly = true})
+                                            @Html.ValidationMessageFor(model => model.RekycustomerOccupation, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>*@
+
+
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        @*second div*@
+
+                            <div class="init_main_details_div">
+                                <div class="panel-heading adpd sheadbk" id="admincaf2" style="padding: 1px 15px!important;">
+                                    <h3 class="panel-title shead">CUSTOMER Digi-Locker DETAILS </h3>
+                                </div>
+                                <div id="DigilockerDivid" style="">
+                                    <div style="margin-top:5px;">
+
+
+                                       <div class="row" style="margin:0">
+                                            <label class="init-label col-md-5 col-lg-5 col-sm-12">Customer First Name<span style="color:red">*</span></label>
+                                            <div class="col-md-6 col-lg-6 col-sm-12" style="position:relative">
+                                                @Html.TextBoxFor(model => model.DRekycustomerFirstname, new { @id = "DRekycustomerFirstname", @class = "init-re-input init-re-input-sm form-control", @maxlength = 12,@readonly=true })
+                                                @Html.ValidationMessageFor(model => model.DRekycustomerFirstname, "", new { @class = "text-danger" })
+                                                <img src="" alt="image" id="demo-test" class="demo-test-sm">
+                                            </div>
+                                        </div>
+
+                                       <div class="row" style="margin:0">
+                                             <label class="init-label col-md-5 col-lg-5 col-sm-12">Customer Middle Name<span style="color:red">*</span></label>
+                                            <div class="col-md-6 col-lg-6 col-sm-12" style="position:relative">
+                                                @Html.TextBoxFor(model => model.DRekycustomerMiddlename, new { @id = "DRekycustomerMiddlename", @class = "init-re-input init-re-input-sm form-control", @maxlength = 12,@readonly = true })
+                                                @Html.ValidationMessageFor(model => model.DRekycustomerMiddlename, "", new { @class = "text-danger" })
+                                                <img src="" id="demo-test" alt="img" class="demo-test-sm">
+                                            </div>
+
+                                        </div>
+
+                                       <div class="row" style="margin:0">
+                                             <label class="init-label col-md-5 col-lg-5 col-sm-12">Customer Last Name<span style="color:red">*</span></label>
+                                            <div class="col-md-6 col-lg-6 col-sm-12" style="position:relative">
+                                            @Html.TextBoxFor(model => model.DRekycustomerLastname, new { @id = "DRekycustomerLastname", @class = "init-re-input init-re-input-sm form-control", @maxlength = 12,@readonly = true })
+                                            @Html.ValidationMessageFor(model => model.DRekycustomerLastname, "", new { @class = "text-danger" })
+                                                <img src="" id="demo-test" alt="img" class="demo-test-sm">
+                                            </div>
+                                        </div>
+
+                                       <div class="row" style="margin:0">
+                                                <label class="init-label col-md-5 col-lg-5 col-sm-12">Mobile Number<span style="color:red">*</span></label>
+                                            <div class="col-md-6 col-lg-6 col-sm-12" style="position:relative">
+                                            @Html.TextBoxFor(model => model.DRekycustomerMobileno, new { @id = "DRekycustomerMobileno", @class = "init-re-input init-re-input-sm form-control", @maxlength = 12 })
+                                            @Html.ValidationMessageFor(model => model.DRekycustomerMobileno, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+
+                                       <div class="row" style="margin:0">
+                                           
+                                                <label class="init-label col-md-5 col-lg-5 col-sm-12">E-Mail ID<span style="color:red">*</span></label>
+                                          
+                                            <div class="col-md-6 col-lg-6 col-sm-12" style="position:relative">
+                                            @Html.TextBoxFor(model => model.DRekycustomerEmailID, new { @id = "DRekycustomerEmailID", @class = "init-re-input init-re-input-sm form-control", @maxlength = 12})
+                                            @Html.ValidationMessageFor(model => model.DRekycustomerEmailID, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+
+                                       <div class="row" style="margin:0">
+                                                <label class="init-label col-md-5 col-lg-5 col-sm-12">Date of Birth<span style="color:red">*</span></label>
+                                            <div class="col-md-6 col-lg-6 col-sm-12">
+                                            @Html.TextBoxFor(model => model.DRekycustomerDOB, new { @id = "DRekycustomerDOB", @class = "init-re-input init-re-input-sm form-control", @maxlength = 12,@readonly = true })
+                                            @Html.ValidationMessageFor(model => model.DRekycustomerDOB, "", new { @class = "text-danger" })
+                                                <img src="" id="demo-test" alt="img" class="demo-test-sm">
+                                            </div>
+                                        </div>
+                                       
+                                       <div class="row" style="margin:0">
+                                                <label class="init-label col-md-5 col-lg-5 col-sm-12">Gender<span style="color:red">*</span></label>
+                                            <div class="col-md-6 col-lg-6 col-sm-12" style="position:relative">
+                                            @Html.TextBoxFor(model => model.DRekycustomerGEnder, new { @id = "DRekycustomerGEnder", @class = "init-re-input init-re-input-sm form-control", @maxlength = 12,@readonly = true })
+                                            @Html.ValidationMessageFor(model => model.DRekycustomerGEnder, "", new { @class = "text-danger" })
+                                                <img src="" id="demo-test" alt="img" class="demo-test-sm">
+                                            </div>
+                                        </div>
+
+                                       <div class="row" style="margin:0">
+                                                <label class="init-label col-md-5 col-lg-5 col-sm-12">Customer Address 1<span style="color:red">*</span></label>
+                                            <div class="col-md-6 col-lg-6 col-sm-12" style="position:relative">
+                                            @Html.TextBoxFor(model => model.DRekycustomerAdd1, new { @id = "DRekycustomerAdd1", @class = "init-re-input init-re-input-sm form-control", @maxlength = 100 })
+                                            @Html.ValidationMessageFor(model => model.DRekycustomerAdd1, "", new { @class = "text-danger" })
+                                          
+                                                <img src="" id="demo-test" alt="img" class="demo-test-sm">
+                                                
+                                            </div>
+                                        </div>
+
+                                       <div class="row" style="margin:0">
+                                                <label class="init-label col-md-5 col-lg-5 col-sm-12">Customer Address 2<span style="color:red">*</span></label>
+                                            <div class="col-md-6 col-lg-6 col-sm-12" style="position:relative">
+                                            @Html.TextBoxFor(model => model.DRekycustomerAdd2, new { @id = "DRekycustomerAdd2", @class = "init-re-input init-re-input-sm form-control", @maxlength = 100 })
+                                            @Html.ValidationMessageFor(model => model.DRekycustomerAdd2, "", new { @class = "text-danger" })
+                                           <img src="" id="demo-test" alt="img" class="demo-test-sm">
+                                            </div>
+                                        </div>
+
+                                       <div class="row" style="margin:0">
+                                                <label class="init-label col-md-5 col-lg-5 col-sm-12">Customer Address 3<span style="color:red">*</span></label>
+                                            <div class="col-md-6 col-lg-6 col-sm-12" style="position:relative">
+                                            @Html.TextBoxFor(model => model.DRekycustomerAdd3, new { @id = "DRekycustomerAdd3", @class = "init-re-input init-re-input-sm form-control", @maxlength = 100 })
+                                            @Html.ValidationMessageFor(model => model.DRekycustomerAdd3, "", new { @class = "text-danger" })
+                                            <img src="" id="demo-test" alt="img" class="demo-test-sm">
+                                            </div>
+                                        </div>
+
+                                       <div class="row" style="margin:0">
+                                                <label class="init-label col-md-5 col-lg-5 col-sm-12">City<span style="color:red">*</span></label>
+                                            <div class="col-md-6 col-lg-6 col-sm-12" style="position:relative">
+                                            @Html.TextBoxFor(model => model.DRekycustomerCity, new { @id = "DRekycustomerCity", @class = "init-re-input init-re-input-sm form-control", @maxlength = 12 })
+                                            @Html.ValidationMessageFor(model => model.DRekycustomerCity, "", new { @class = "text-danger" })
+                                            <img src="" id="demo-test" alt="img" class="demo-test-sm">
+                                            </div>
+                                        </div>
+
+                                       <div class="row" style="margin:0">
+                                                <label class="init-label col-md-5 col-lg-5 col-sm-12">Pincode<span style="color:red">*</span></label>
+                                            <div class="col-md-6 col-lg-6 col-sm-12" style="position:relative">
+                                            @Html.TextBoxFor(model => model.DRekycustomerPincode, new { @id = "DRekycustomerPincode", @class = "init-re-input init-re-input-sm form-control", @maxlength = 20 })
+                                            @Html.ValidationMessageFor(model => model.DRekycustomerPincode, "", new { @class = "text-danger" })
+                                                <img src="" id="demo-test" alt="img" class="demo-test-sm">
+                                            </div>
+                                        </div>
+
+                                       <div class="row" style="margin:0">
+                                                <label class="init-label col-md-5 col-lg-5 col-sm-12">State<span style="color:red">*</span></label>
+                                            <div class="col-md-6 col-lg-6 col-sm-12" style="position:relative">
+                                            @Html.TextBoxFor(model => model.DRekycustomerState, new { @id = "DRekycustomerState", @class = "init-re-input init-re-input-sm form-control", @maxlength = 12 })
+                                            @Html.ValidationMessageFor(model => model.DRekycustomerState, "", new { @class = "text-danger" })
+                                            <img src="" id="demo-test" alt="img" class="demo-test-sm">
+                                            </div>
+                                        </div>
+
+                                       <div class="row" style="margin:0">
+                                                <label class="init-label col-md-5 col-lg-5 col-sm-12">Country<span style="color:red">*</span></label>
+                                            <div class="col-md-6 col-lg-6 col-sm-12" style="position:relative">
+                                            @Html.TextBoxFor(model => model.DRekycustomerCountryID, new { @id = "DRekycustomerCountryID", @class = "init-re-input init-re-input-sm form-control", @maxlength = 12 })
+                                            @Html.ValidationMessageFor(model => model.DRekycustomerCountryID, "", new { @class = "text-danger" })
+                                            </div>
+                                            @*<div class="col-xl-2 paddingleftCaf equalSpace">
+                                               @*<div id="demo-test">@ViewBag.CountryStatus</div>
+                                                <img src="" id="demo-test" alt="img">
+                                            </div>*@
+                                        </div>
+                                         
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                            <div id="tohideDigilockerdetails">
+                                <div class="space351"></div>
+
+                                <div class="faq" style="">
+                                    <div class="faqitem shdowaccor">
+                                        <div class="header">
+                                            <div class="hrddigi">
+                                            @* <i class="fa fa-user"></i>*@
+                                                <img src="~/Images/Image/user2icon.png" width="15px" height="15px">
+
+                                                Personal Details
+                                            </div>
+                                            <i class="fa fa-plus"></i>
+                                            <i class="fa fa-minus"></i>
+                                        </div>
+
+                                        <div class="content">
+
+                                            <div class="panel-body">
+                                            @*<div class="row">
+                                        <div class="col-12">
+                                        <input type="button" value="Edit Aadhaar Data" id="EditPerDetail" onclick="EditPerClick()" class="btn btn-info float-right butonrg rgt1 edibtn pdbted" />
+                                        <input type="button" value="Edit Pan Data" id="EditPanPerDetail" onclick="EditPanDataClick()" class=" btn btn-info float-rightbutonrg rgt1 edibtn" />
+                                        <p>&nbsp;</p>
+                                        </div>
+                                        </div>*@
+                                                <div class="row">
+
+                                                    <div class="col-xl-1 paddingleftCaf equalSpace">
+                                                        <label>Sub-Title<span style="color:red">*</span></label>
+                                                    </div>
+                                                    <div class="col-xl-2   paddingleftCaf equalSpace">
+                                                    @Html.DropDownListFor(model =>  model.SubTitle,(IEnumerable <SelectListItem>)ViewBag.per_name,  "--Select--", new
+                                                //@Html.DropDownListFor(model => model.name, (SelectList)ViewBag.per_name, "--Select Gender--", new
+                                                {
+                                                @id = "SubTitleId",
+                                                @class = "form-control DigiSelectwidth"@*, @maxlength = 50*@})
+                                                    @Html.ValidationMessageFor(model => model.SubTitle, "", new { @class = "text-danger" })
+                                                    </div>
+                                                    <div class="col-xl-1 paddingleftCaf equalSpace">
+                                                        <label>First Name<span style="color:red">*</span></label>
+
+                                                    </div>
+                                                    <div class="col-xl-2 paddingleftCaf equalSpace">
+                                                    @Html.TextBoxFor(model => model.Digi_FirstName, new { @id = "digi_firstname", @class = "digifont", @maxlength = 12 })
+                                                    @Html.ValidationMessageFor(model => model.Digi_FirstName, "", new { @class = "text-danger" })
+                                                    </div>
+                                                    <div class="col-xl-1 paddingleftCaf equalSpace">
+                                                        <label>Middle Name<span style="color:red">*</span></label>
+                                                    </div>
+                                                    <div class="col-xl-2 paddingleftCaf equalSpace">
+                                                    @Html.TextBoxFor(model => model.Digi_MiddleName, new { @id = "digi_middlename", @class = "digifont", @maxlength = 12 })
+                                                    @Html.ValidationMessageFor(model => model.Digi_MiddleName, "", new { @class = "text-danger" })
+                                                    </div>
+                                                    <div class="col-xl-1 paddingleftCaf equalSpace">
+                                                        <label>Last Name<span style="color:red">*</span></label>
+                                                    </div>
+                                                    <div class="col-xl-2 paddingleftCaf equalSpace">
+                                                    @Html.TextBoxFor(model => model.Digi_LastName, new { @id = "digi_lastname", @class = "digifont", @maxlength = 12 })
+                                                    @Html.ValidationMessageFor(model => model.Digi_LastName, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-xl-1 paddingleftCaf ">
+                                                        <label>Date Of Birth<span style="color:red">*</span></label>
+                                                    </div>
+                                                    <div class="col-xl-2 paddingleftCaf marBottmD">
+                                                    @Html.TextBoxFor(model => model.Digi_DOB, new { @id = "digi_DOB", @class = "" })
+                                                    @Html.ValidationMessageFor(model => model.Digi_DOB, "", new { @class = "text-danger" })
+                                                    </div>
+                                                    <div class="col-xl-1 paddingleftCaf equalSpace">
+                                                        <label>Gender<span style="color:red">*</span></label>
+                                                    </div>
+                                                    <div class="col-xl-2   paddingleftCaf equalSpace">
+                                                    @Html.DropDownListFor(model => model.Digi_gender, (SelectList)ViewBag.Gender, "--Select Gender--", new
+                                                {
+                                                @id = "digi_Gender",
+                                                @class = "form-control DigiSelectwidth"@*, @maxlength = 50*@})
+                                                    @Html.ValidationMessageFor(model => model.Digi_gender, "", new { @class = "text-danger" })
+                                                    </div>
+
+
+                                                    <div class="col-xl-1 paddingleftCaf equalSpace">
+                                                        <label>Caste Cd<span style="color:red">*</span></label>
+                                                    </div>
+                                                    <div class="col-xl-2   paddingleftCaf equalSpace">
+                                                    @Html.DropDownListFor(model => model.CasteCd, (IEnumerable <SelectListItem>)ViewBag.cast, "--Select--", new
+                                                {
+                                                @id = "CasteId",
+                                                @class = "form-control DigiSelectwidth"@*, @maxlength = 50*@})
+                                                    @Html.ValidationMessageFor(model => model.CasteCd, "", new { @class = "text-danger" })
+                                                    </div>
+
+                                                    <div class="col-xl-1 paddingleftCaf equalSpace">
+                                                        <label>Religion<span style="color:red">*</span></label>
+                                                    </div>
+                                                    <div class="col-xl-2   paddingleftCaf equalSpace">
+                                                    @Html.DropDownListFor(model => model.Religion, (IEnumerable <SelectListItem>)ViewBag.Religion, "--Select--", new
+                                                {
+                                                @id = "ReligionId",
+                                                @class = "form-control DigiSelectwidth"@*, @maxlength = 50*@})
+                                                    @Html.ValidationMessageFor(model => model.Religion, "", new { @class = "text-danger" })
+                                                    </div>
+
+                                                    <div class="col-xl-1 paddingleftCaf equalSpace">
+                                                        <label>Marital Status<span style="color:red">*</span></label>
+                                                    </div>
+                                                    <div class="col-xl-2   paddingleftCaf equalSpace">
+                                                    @Html.DropDownListFor(model => model.maritalstatus, (IEnumerable <SelectListItem>)ViewBag.maritalstatus, "--Select--", new
+                                                {
+                                                @id = "maritalstatusId",
+                                                @class = "form-control DigiSelectwidth"@*, @maxlength = 50*@})
+                                                    @Html.ValidationMessageFor(model => model.maritalstatus, "", new { @class = "text-danger" })
+                                                    </div>
+                                                    <div class="col-xl-2 disp1">
+                                                        <p>&nbsp;</p>
+                                                    </div>
+                                                    <div class="col-xl-2 disp1">
+                                                        <p>&nbsp;</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="faq" style="">
+                                    <div class="faqitem shdowaccor" style="">
+                                        <div class="header">
+                                            <div class="hrddigi">
+
+                                            @* <i class="fa fa-phone-square"></i> *@
+                                                <img src="~/Images/Image/phoneicon.png" width="15px" height="15px">
+                                                Contact Details
+
+                                            </div>
+                                            <i class="fa fa-plus"></i>
+                                            <i class="fa fa-minus"></i>
+                                        </div>
+                                        <div class="content">
+                                            <div class="panel-body">
+                                                <div class="row">
+                                                    <div class="col-xl-1 paddingleftCaf equalSpace">
+                                                        <label>Email Id<span style="color:red">*</span></label>
+                                                    </div>
+                                                    <div class="col-xl-2 paddingleftCaf equalSpace" style="">
+                                                    @Html.TextBoxFor(model => model.EmailId, new { @id = "emailId", @class = "digifont", @maxlength = 50 })
+                                                    @Html.ValidationMessageFor(model => model.EmailId, "", new { @class = "text-danger" })
+                                                    </div>
+                                                    <button type="button" class="btn btn-primary EmailGetOtpnew DigiSelectwidth marEmBtn" onclick="OTPAuth()" id="EmailGetOtpVerify">Email Verify</button>
+                                                    <label id="isEmailVerify" style="padding-left: 8px;margin-top:4px"><input type="checkbox" class="largerCheckbox" checked="checked" readonly />EmailVerify</label>
+                                                    <div class="col-xl-1 paddingleftCaf equalSpace" style="padding-right:0px">
+                                                        <label>Mobile No<span style="color:red">*</span></label>
+                                                    </div>
+                                                    <div class="col-xl-2 paddingleftCaf equalSpace">
+                                                    @Html.TextBoxFor(model => model.MobileNo, new { @id = "mobileNo", @class = "digifont", @maxlength = 10 })
+                                                    @Html.ValidationMessageFor(model => model.MobileNo, "", new { @class = "text-danger" })
+                                                    </div>
+                                                    <div class="col-xl-2 paddingleftCaf equalSpace">
+                                                        <label>Mobile No. belongs to<span style="color:red">*</span></label>
+                                                    </div>
+                                                    <div class="col-xl-2 paddingleftCaf equalSpace">
+                                                    @*@Html.DropDownListFor(model => model.MobileDetails, ViewBag.getEmailMobile as SelectList, "--Select--", new { @class = "form-control dropdiv DigiSelectwidth digifont" })*@
+                                                    @Html.DropDownListFor(model =>  model.MobileDetails, (IEnumerable <SelectListItem>)ViewBag.getEmailMobile,  "--Select--", new
+                                                {
+                                                @id = "",
+                                                @class = "form-control dropdiv DigiSelectwidth digifont"@*, @maxlength = 50*@})
+
+                                                    @Html.ValidationMessageFor(model => model.MobileDetails, "", new { @class = "text-danger dropdiv" })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="faq shdowaccor" style="">
+                                    <div class="faqitem">
+                                        <div class="header">
+                                            <div class="hrddigi">
+                                            @*<i class="fa fa-file-text"></i> *@
+                                                <img src="~/Images/Image/address.png" width="15px" height="15px">
+                                                Address Details
+                                            @*<div class="hrdigitxt">Address Details</div>*@
+                                            </div>
+                                            <i class="fa fa-plus"></i>
+                                            <i class="fa fa-minus"></i>
+                                        </div>
+                                        <div class="content aadhar-verify">
+                                            <div class="panel-body">
+                                                <div id="EditCorresPOA">
+                                                    <div class="row">
+                                                        <div class="col-xl-12">
+                                                        @*<button id="EditAadharCorr" onclick="EditCorr()" class="btn btn-info float-right butonrg rgt1 edibtn"><i class="fa fa-pencil"></i> Edit Aadhar</button>*@
+                                                        </div>
+                                                    </div>
+                                                    <fieldset class="accopenfrontend" id="CorrFieldset">
+                                                        <div class="row">
+                                                            <h3>Correspondence Address</h3>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-xl-2 paddingleftCaf">
+                                                                <label>Address 1<span style="color:red">*</span></label>
+                                                            </div>
+                                                            <div class="col-xl-10 paddingleftCaf">
+                                                            @Html.TextBoxFor(model => model.CLIENT_ADDRESS_1, new { @id = "digi_address1", @maxLength = "45", @rel = "funcvalidate", @class = "form-control txtboxfnt_sz", onblur = "return checkAddress(this)", style = "" })
+                                                            @Html.ValidationMessageFor(model => model.CLIENT_ADDRESS_1, "", new { @class = "text-danger clear" })
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-xl-2 paddingleftCaf">
+                                                                <label>Address 2<span style="color:red">*</span></label>
+                                                            </div>
+                                                            <div class="col-xl-10 paddingleftCaf">
+                                                            @Html.TextBoxFor(model => model.CLIENT_ADDRESS_2, new { @id = "digi_address2", @maxLength = "45", @rel = "funcvalidate", @class = "form-control txtboxfnt_sz", onblur = "return checkAddress(this)", style = "" })
+                                                            @Html.ValidationMessageFor(model => model.CLIENT_ADDRESS_1, "", new { @class = "text-danger clear" })
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-xl-2 paddingleftCaf">
+                                                                <label>Address 3<span style="color:red"></span></label>
+                                                            </div>
+                                                            <div class="col-xl-10 paddingleftCaf">
+                                                            @Html.TextBoxFor(model => model.CLIENT_ADDRESS_3, new { @id = "digi_address3", @maxLength = "45", @rel = "funcvalidate", @class = "form-control txtboxfnt_sz", onblur = "return checkAddress(this)", style = "" })
+                                                            @Html.ValidationMessageFor(model => model.CLIENT_ADDRESS_1, "", new { @class = "text-danger clear" })
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-xl-2 paddingleftCaf equalSpace">
+                                                                <label>City<span style="color:red">*</span></label>
+                                                            </div>
+                                                            <div class="col-xl-4 paddingleftCaf equalSpace">
+                                                            @Html.TextBoxFor(model => model.CLIENT_CITY, new { @id = "digi_city", @rel = "funcvalidate", @class = "form-control txtboxfnt_sz", style = "" })
+                                                            @Html.ValidationMessageFor(model => model.CLIENT_CITY, "", new { @class = "text-danger" })
+                                                            </div>
+                                                            <div class="col-xl-2 paddingleftCaf equalSpace">
+                                                                <label>Pincode<span style="color:red">*</span></label>
+                                                            </div>
+                                                            <div class="col-xl-4 paddingleftCaf equalSpace">
+                                                            @Html.TextBoxFor(model => model.Pincode, new { @id = "digi_pincode", @class = "form-control txtboxfnt_sz", @maxlength = 6 })
+                                                            @Html.ValidationMessageFor(model => model.Pincode, "", new { @class = "text-danger" })
+                                                            </div>
+                                                        </div>
+                                                        <div class="row rowMrgin">
+                                                            <div class="col-xl-2 paddingleftCaf equalSpace">
+                                                                <label>State<span style="color:red">*</span></label>
+                                                            </div>
+                                                            <div class="col-xl-4 paddingleftCaf equalSpace">
+                                                            @*@Html.DropDownListFor(model => model.CLIENT_STATE, ViewBag.State as SelectList, "--Select State--", new { @class = "form-control dropdownfnt_sz DigiSelectwidth", @id = "Add_ddlState" })*@
+                                                            @Html.DropDownListFor(model => model.CLIENT_STATE, (IEnumerable <SelectListItem>)ViewBag.State,  "--Select State--", new
+                                                        {
+                                                        @id = "Add_ddlState",
+                                                        @class = "form-control dropdownfnt_sz DigiSelectwidth"@*, @maxlength = 50*@})
+                                                            @Html.ValidationMessageFor(model => model.CLIENT_STATE, "", new { @class = "text-danger" })
+                                                            </div>
+                                                            <div class="col-xl-2 paddingleftCaf equalSpace">
+                                                                <label>Country<span style="color:red">*</span></label>
+                                                            </div>
+                                                            <div class="col-xl-4 paddingleftCaf equalSpace" id="countryorg">
+                                                            @* @Html.DropDownListFor(model => model.CLIENT_COUNTRY, ViewBag.getCountry as SelectList, "--Select Country--", new { @class = "form-control dropdownfnt_sz DigiSelectwidth", @id = "Add_ddlCountry" })*@
+                                                            @Html.DropDownListFor(model =>  model.CLIENT_COUNTRY, (IEnumerable <SelectListItem>)ViewBag.getCountry,  "--Select Country--", new
+                                                        {
+                                                        @id = "Add_ddlCountry",
+                                                        @class = "form-control dropdownfnt_sz DigiSelectwidth"@*, @maxlength = 50*@})
+                                                            @Html.ValidationMessageFor(model => model.CLIENT_COUNTRY, "", new { @class = "text-danger" })
+                                                            </div>
+
+                                                            <div class="col-xl-2 paddingleftCaf equalSpace" style="margin-bottom:12px;">
+                                                                <label>Residence<span style="color:red">*</span></label>
+                                                            </div>
+                                                            <div class="col-xl-4   paddingleftCaf equalSpace mrgns">
+                                                            @Html.DropDownListFor(model => model.Residence, (IEnumerable <SelectListItem>) ViewBag.residence , "--Select--", new
+                                                        {
+                                                        @id = "ResidenceId",
+                                                        @class = "form-control DigiSelectwidth"@*, @maxlength = 50*@})
+                                                            @Html.ValidationMessageFor(model => model.Residence, "", new { @class = "text-danger" })
+                                                            </div>
+
+                                                            <div class="col-xl-2 paddingleftCaf equalSpace" style="margin-bottom:12px;">
+                                                                <label>Residence Document<span style="color:red">*</span></label>
+                                                            </div>
+                                                            <div class="col-xl-4   paddingleftCaf equalSpace mrgns">
+                                                            @Html.DropDownListFor(model => model.ResidenceDocument, (IEnumerable <SelectListItem>)ViewBag.residencedocument, "--Select--", new
+                                                        {
+                                                        @id = "digi_Gender",
+                                                        @class = "form-control DigiSelectwidth"@*, @maxlength = 50*@})
+                                                            @Html.ValidationMessageFor(model => model.ResidenceDocument, "", new { @class = "text-danger" })
+                                                            </div>
+
+                                                            <div class="col-xl-2 paddingleftCaf equalSpace" style="margin-bottom:12px;">
+                                                                <label>residence YN<span style="color:red">*</span></label>
+                                                            </div>
+                                                            <div class="col-xl-4 paddingleftCaf equalSpace">
+                                                            @Html.DropDownListFor(model => model.residenceYN, (IEnumerable <SelectListItem>)ViewBag.residenceYN, "--Select--", new
+                                                        {
+                                                        @id = "digi_Gender",
+                                                        @class = "form-control DigiSelectwidth"@*, @maxlength = 50*@})
+                                                            @Html.ValidationMessageFor(model => model.residenceYN, "", new { @class = "text-danger" })
+                                                            </div>
+
+
+                                                        </div>
+                                                    </fieldset>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-xl-12">
+                                                    @Html.CheckBoxFor(model => model.Corresponence_Permanent_Address_same_flag, new { @class = "checkbox_in", id = "sameascorres", @checked = "checked" })
+                                                    @Html.ValidationMessageFor(model => model.Corresponence_Permanent_Address_same_flag, "", new { @class = "text-danger" })Same as Correspondence Address
+                                                    </div>
+                                                </div>
+                                                <fieldset class="accopenfrontend" id="EditPermPOA">
+                                                    <div class="row">
+                                                        <h3>Permanent Address</h3>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-xl-2 paddingleftCaf">
+                                                            <label>Address 1<span style="color:red">*</span></label>
+                                                        </div>
+                                                        <div class="col-xl-10 paddingleftCaf">
+                                                        @Html.TextBoxFor(model => model.CLIENT_PERM_ADDRESS_1, new { @id = "digi_permAddress1", @maxLength = "45", @rel = "funcvalidate", @class = "form-control txtboxfnt_sz", onblur = "return checkAddress(this)", style = "" })
+                                                        @Html.ValidationMessageFor(model => model.CLIENT_ADDRESS_1, "", new { @class = "text-danger clear" })
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-xl-2 paddingleftCaf">
+                                                            <label>Address 2<span style="color:red">*</span></label>
+                                                        </div>
+                                                        <div class="col-xl-10 paddingleftCaf">
+                                                        @Html.TextBoxFor(model => model.CLIENT_PERM_ADDRESS_2, new { @id = "digi_permAddress2", @maxLength = "45", @rel = "funcvalidate", @class = "form-control txtboxfnt_sz", onblur = "return checkAddress(this)", style = "" })
+                                                        @Html.ValidationMessageFor(model => model.CLIENT_ADDRESS_1, "", new { @class = "text-danger clear" })
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-xl-2 paddingleftCaf">
+                                                            <label>Address 3<span style="color:red"></span></label>
+                                                        </div>
+                                                        <div class="col-xl-10 paddingleftCaf">
+                                                        @Html.TextBoxFor(model => model.CLIENT_PERM_ADDRESS_3, new { @id = "digi_permAddress3", @maxLength = "45", @rel = "funcvalidate", @class = "form-control txtboxfnt_sz", onblur = "return checkAddress(this)", style = "" })
+                                                        @Html.ValidationMessageFor(model => model.CLIENT_ADDRESS_1, "", new { @class = "text-danger clear" })
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-xl-2 paddingleftCaf equalSpace">
+                                                            <label>City<span style="color:red">*</span></label>
+                                                        </div>
+                                                        <div class="col-xl-4 paddingleftCaf equalSpace">
+                                                        @Html.TextBoxFor(model => model.CLIENT_PERM_CITY, new { @id = "digi_permCity", @rel = "funcvalidate", @class = "form-control txtboxfnt_sz", style = "" })
+                                                        @Html.ValidationMessageFor(model => model.CLIENT_PERM_CITY, "", new { @class = "text-danger" })
+                                                        </div>
+                                                        <div class="col-xl-2 paddingleftCaf equalSpace">
+                                                            <label>Pincode<span style="color:red">*</span></label>
+                                                        </div>
+                                                        <div class="col-xl-4 paddingleftCaf equalSpace">
+                                                        @Html.TextBoxFor(model => model.CLIENT_PERM_Pincode, new { @id = "digi_PERM_pincode", @class = "form-control txtboxfnt_sz", @maxlength = 6 })
+                                                        @Html.ValidationMessageFor(model => model.CLIENT_PERM_Pincode, "", new { @class = "text-danger" })
+                                                        </div>
+                                                    </div>
+                                                    <div class="row rowMrgin">
+                                                        <div class="col-xl-2 paddingleftCaf equalSpace">
+                                                            <label>State<span style="color:red">*</span></label>
+                                                        </div>
+                                                        <div class="col-xl-4 paddingleftCaf equalSpace">
+                                                        @* @Html.DropDownListFor(model => model.CLIENT_PERM_STATE, ViewBag.per_State as SelectList, "--Select State--", new
+                                                    { @class = "form-control dropdownfnt_sz DigiSelectwidth", @id = "PERM_ddlState" })*@
+                                                        @Html.DropDownListFor(model =>  model.CLIENT_PERM_STATE, (IEnumerable <SelectListItem>)ViewBag.per_State,  "--Select State--", new
+                                                    {
+                                                    @id = "PERM_ddlState",
+                                                    @class = "form-control dropdownfnt_sz DigiSelectwidth"@*, @maxlength = 50*@})
+                                                        @Html.ValidationMessageFor(model => model.CLIENT_PERM_STATE, "", new { @class = "text-danger" })
+                                                        </div>
+                                                        <div class="col-xl-2 paddingleftCaf equalSpace">
+                                                            <label>Country<span style="color:red">*</span></label>
+                                                        </div>
+                                                        <div class="col-xl-4 paddingleftCaf equalSpace" id="dropprem">
+                                                        @*  @Html.DropDownListFor(model => model.CLIENT_PERM_COUNTRY, ViewBag.per_Country as SelectList, "--Select Country--", new { @class = "form-control dropdownfnt_sz DigiSelectwidth", @id = "PERM_ddlCountry" })*@
+                                                        @Html.DropDownListFor(model =>  model.CLIENT_PERM_COUNTRY, (IEnumerable <SelectListItem>)ViewBag.per_Country,  "--Select Country--", new
+                                                    {
+                                                    @id = "PERM_ddlCountry",
+                                                    @class = "form-control dropdownfnt_sz DigiSelectwidth"@*, @maxlength = 50*@})
+                                                        @Html.ValidationMessageFor(model => model.CLIENT_PERM_COUNTRY, "", new { @class = "text-danger" })
+                                                        </div>
+
+                                                    </div>
+                                                </fieldset>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="faq shdowaccor" style="">
+                                    <div class="faqitem" style="">
+                                        <div class="header">
+                                            <div class="hrddigi">
+                                            @*<i class="fa fa-file-text"></i>*@
+                                                <img src="~/Images/Image/otherdtls.png" width="15px" height="15px">
+                                                Other Details
+                                            @*<div class="hrdigitxt">Other Details</div>*@
+                                            </div>
+                                            <i class="fa fa-plus"></i>
+                                            <i class="fa fa-minus"></i>
+                                        </div>
+                                        <div class="content">
+                                            <div class="panel-body">
+                                                <div class="row">
+                                                    <div class="col-xl-2 paddingleftCaf equalSpace">
+                                                        <label>Passport</label>
+                                                    </div>
+                                                    <div class="col-xl-2 paddingleftCaf equalSpace">
+                                                    @Html.TextBoxFor(model => model.Digi_passport, new { @id = "digi_passport", @class = "form-control txtboxfnt_sz", @maxlength = 50 })
+                                                    @Html.ValidationMessageFor(model => model.Digi_passport, "", new { @class = "text-danger" })
+                                                    </div>
+                                                    <div class="col-xl-2 paddingleftCaf equalSpace">
+                                                        <label>Voter ID</label>
+                                                    </div>
+                                                    <div class="col-xl-2 paddingleftCaf equalSpace">
+                                                    @Html.TextBoxFor(model => model.Digi_Voter, new { @id = "digi_voter", @class = "form-control txtboxfnt_sz", @maxlength = 10 })
+                                                    @Html.ValidationMessageFor(model => model.Digi_Voter, "", new { @class = "text-danger" })
+                                                    </div>
+                                                    <div class="col-xl-2 paddingleftCaf equalSpace">
+                                                        <label>PAN No.<span style="color:red">*</span></label>
+                                                    </div>
+                                                    <div class="col-xl-2 paddingleftCaf equalSpace">
+                                                    @Html.TextBoxFor(model => model.Digi_PAN, new { @id = "digi_pan", @class = "form-control txtboxfnt_sz pandiv",@onblur="Panvalidation(this.id)", @maxlength = 10 })
+                                                    @Html.ValidationMessageFor(model => model.Digi_PAN, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                                <div class="row rowMrgin">
+                                                    <div class="col-xl-2 paddingleftCaf equalSpace">
+                                                        <label>Driving License</label>
+                                                    </div>
+                                                    <div class="col-xl-2 paddingleftCaf equalSpace">
+                                                    @Html.TextBoxFor(model => model.Digi_Drivinglicense, new { @id = "digiDrivinglicense", @class = "form-control txtboxfnt_sz", @maxlength = 50 })
+                                                    @Html.ValidationMessageFor(model => model.Digi_Drivinglicense, "", new { @class = "text-danger" })
+                                                    </div>
+                                                    <div class="col-xl-2 paddingleftCaf equalSpace">
+                                                        <label>Aadhaar Number</label>
+                                                    </div>
+                                                    <div class="col-xl-2 paddingleftCaf equalSpace">
+                                                    @Html.TextBoxFor(model => model.Digi_Aadhar, new { @id = "digi_Aadhar", @class = "form-control txtboxfnt_sz",@onblur="Aadharvalidation(this.id)", @maxlength = 12 })
+                                                    @Html.ValidationMessageFor(model => model.Digi_Aadhar, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="faq" style="">
+                                    <div class="faqitem shdowaccor" style="">
+                                        <div class="header">
+                                            <div class="hrddigi">
+
+                                            @*  <i class="fa fa-phone-square"></i> *@
+                                                <img src="~/Images/Dashboard/id details.png" width="15px" height="15px">
+                                                Account details
+                                            @*<div class="hrdigitxt">Account Details</div>*@
+                                            </div>
+                                            <i class="fa fa-plus"></i>
+                                            <i class="fa fa-minus"></i>
+                                        </div>
+                                        <div class="content">
+                                            <div class="panel-body">
+                                                <div class="row">
+
+                                                    <div class="col-xl-2 paddingleftCaf equalSpace">
+                                                        <label>Phone Banking<span style="color:red">*</span></label>
+                                                    </div>
+                                                    <div class="col-xl-2   paddingleftCaf equalSpace">
+                                                    @Html.DropDownListFor(model => model.PhoneBanking, (IEnumerable <SelectListItem>)ViewBag.phonebanking, "--Select--", new
+                                                {
+                                                @id = "digi_Gender",
+                                                @class = "form-control DigiSelectwidth"@*, @maxlength = 50*@})
+                                                    @Html.ValidationMessageFor(model => model.PhoneBanking, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            @if (ViewBag.AdminFlag != "AdminFlag")
+                            {
+
+                                        <div class="faq shdowaccor">
+                                            <div class="faqitem">
+                                                <div class="header">
+                                                    <div class="hrddigi">
+
+                                                @* <i class="fa fa-camera"></i>*@
+                                                        <img src="~/Images/Image/camerad.png" width="15px" height="15px">
+                                                        Customer Photo
+
+                                                    </div>
+                                                    <i class="fa fa-plus"></i>
+                                                    <i class="fa fa-minus"></i>
+                                                </div>
+                                                <div class="content">
+                                                    <div class="panel-body">
+                                                        <div id="DigiQuickCamera">
+                                                            <fieldset>
+                                                                <div class="">
+                                                                    <div id="DigiImageCapturediv_id" class="row mgtpbtm">
+                                                                        <div class="col-xl-2 starcameraBtn">
+                                                                            <div class="buttoncam getkcybg wdth16 btn btn-primary" onclick="captureimage()" id="capButton" style="cursor: pointer;"><span class="fa fa-camera" style="color: #ff6a00;" aria-hidden="true"></span> Start Camera</div>
+                                                                        </div>
+                                                                        <div id="DigitCaptureImage" class="captureimg col-xl-9 wstart "></div>
+                                                                @*<img alt="" class="zoomDocument" src="" id="livephoto" />*@
+                                                                    </div>
+                                                                </div>
+                                                            </fieldset>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+
+
+                                        <div class="container-fluid pd111" @*style="margin-right: -94.2%;"*@>
+
+                                            <div class="col-sm-12 sumbtn sumbtn1 " style="padding:0px">
+                                                <button class="btn btn-primary" value="Submit" type="button" id="orgregsubmit" onclick="SendPhotoOfCamera(this)">SUBMIT</button>
+                                            </div>
+
+
+                                        </div>
+                                    
+                              
+                            }
+                                
+
+                            </div>
+
+                           
+
+                            <div class="apprejbox appBox" @*style="float:left;"*@>
+                                @if (ViewBag.AdminFlag == "AdminFlag")
+                                {
+                                   <div class="digibtns" style="margin-bottom: 10px;width: 100%;display: flex;align-content: center;justify-content: center;align-items: center;flex-direction: row;margin-top: 20px;">  
+                                <input type="button"  class=" radioBtn btn btn-primary apprjct" id = "ReKycApprove" style = "margin-left:2%;font-size:18px;padding:10px 28px;font-weight: 600;font-size: 16px;" value="Approve" name="isAccountApproveOrReject"  />
+                    
+                                <input type="button"   class=" radioBtn btn btn-primary  apprjct" id = "ReKycReject" style = "margin-left:2%;font-size:18px; padding: 10px 28px;font-weight: 600;;font-size: 16px;" value="Reject" name="isAccountApproveOrReject"  />
+                                
+                                    <input class="digitext" type="text" id="ReKycRejecttxt" name="DigiRejecttxt1" style = "margin-left:2%;margin-left: 2%;
+    font-size: 16px;" >
+                                    <input type="button" class="btn btn-primary" id="ReKycsubmit" value="Submit"  style = "margin-left:2%;margin-left: 2%;
+    font-size: 16px;"/>
+                                </div>
+
+                                }
+                                </div> <div class="apprejbox appBox" style="width:100%;">
+                        @if (ViewBag.rekycrekyc == "DocumentFlag")
+                        {
+                           @* @Html.RadioButtonFor(model => model.isDigiApproveOrReject, "A", new { id = "DigiApprove", @class = "radioBtn", style = "float:left;margin-left:2%" })<p class="national_textappr">Approve</p>
+                            @Html.RadioButtonFor(model => model.isDigiApproveOrReject, "R", new { id = "DigiReject", @class = "radioBtn", style = "float:left;margin-left:0%" })<p class="national_textappr">Reject</p>
+                            <input type="text" id="DigiRejecttxt" name="DigiRejecttxt1">*@
+                             <div class="digibtns btnsdigi1" style="margin-bottom:10px;">  
+                                <input type="button"  class=" radioBtn btn btn-primary apprjct" id = "DocApproveforrekyc" style = "margin-left:-67%" value="Approve" name="isAccountApproveOrReject"  />
+                    
+                                <input type="button"   class=" radioBtn btn btn-primary  apprjct" id = "DocRejectforrekyc" style = "margin-left:-45%" value="Reject" name="isAccountApproveOrReject"  />
+                                
+                                    <input class="digitext" type="text" id="DocRejecttxtforrekyc" name="DigiRejecttxt1">
+                                    @*<input type="button" class="btn btn-primary" id="Docsubmit" value="Submit" />*@
+                                </div>
+                        }
+
+
+                            @**<div>
+                                <button type="button" class="btn btn-primary EmailGetOtpnew DigiSelectwidth marEmBtn" onclick="ToSaveChangedRekycDetails()" id="RekycDetailsButton">Save</button>
+                            </div>*
+                            <div>
+                           @Html.RadioButtonFor(model => model.isDigiApproveOrReject, "A", new { id = "DigiApprove", @class = "radioBtn", style = "float:left;margin-left:2%" })
+
+                                            <p class="national_textappr">Approve</p>
+                                    @Html.RadioButtonFor(model => model.isDigiApproveOrReject, "R", new { id = "DigiReject", @class = "radioBtn", style = "float:left;margin-left:0%" })
+
+                                            <p class="national_textappr">Reject</p>
+                                            <input type="text" id="DigiRejecttxt" name="DigiRejecttxt1">
+
+                            </div>*@
+
+
+                        </fieldset>
+                    </div>
+
+
+                @if (ViewBag.AdminFlag != "AdminFlag")
+                {
+                            <script src="../Content/Accordion/Accordion1/jquery-accordion.js"></script>
+
+                            <script>
+                                                                                                                      $(".faq").accordion({
+                                    questionClass: '.header',
+                                    answerClass: '.content',
+                                    itemClass: '.faqitem'
+                                });
+                            </script>
+                }
+
+                </div>
+                <div id="AadharRadio"></div>
+                <div id="Emailbaknew1"></div>
+
+
+        }
+        <div id="DigiCerti1"></div>
+        <div id="DIGIbag1"></div>
+        <script>
+            $("#EditAadharCorr").click(function () {
+                $('html, body').animate({
+                    scrollTop: $("#digi_address1").offset().top
+                }, 1000);
+            });
+        </script>
+        <script>
+            $("#getAadharData").click(function () {
+                $('html, body').animate({
+                    scrollTop: $("#EditPerDetail").offset().top
+                }, 1000);
+            });
+        </script>
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+

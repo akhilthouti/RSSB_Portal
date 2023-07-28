@@ -1,0 +1,55 @@
+﻿@{
+    Layout = null;
+}
+
+@{
+    var data = ViewBag.Message;
+}
+@if (data.Count > 0)
+{
+    <div class="table-responsive">
+        <table style="width:100%">
+            <tr class="trstyle">
+                <th class="thstyle">Document File</th>
+                <th class="thstyle">Document Type</th>
+                <th class="thstyle">Document Category</th>
+                <th class="thstyle">Image</th>
+                <th class="thstyle">Delete Document</th>
+            </tr>
+
+            @foreach (var products in data)
+            {
+
+                <tr style=" text-align:center; line-height: 0.3">
+                    <td class="tdstyle">@products.DocumentName</td>
+                    <td class="tdstyle">@products.DocumentType</td>
+                    <td class="tdstyle">@products.DocumentCategory</td>
+                    <td class="tdstyle">
+
+                        <img id=@products.DocumentId class="zoomDocument"
+                                 src="data:image/jpg;base64,@(Convert.ToBase64String(products.DocumentHistory))" />
+                        
+
+                    </td>
+                    <td class="tdstyle">
+
+                        <img src="~/Content/imgs/icons/delete.png" class="upload_icon upldptview deleteicon" id=@products.DocumentId onclick="deleteCurrentDoc(this)" style="" />
+                        
+                    </td>
+                </tr>
+
+            }
+
+        </table>
+    </div>
+
+
+}
+else
+{
+
+    <p>No Details Available</p>
+}
+
+
+

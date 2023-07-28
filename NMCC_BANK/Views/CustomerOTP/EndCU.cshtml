@@ -1,0 +1,124 @@
+﻿@{
+    ViewBag.Title = "EndCU";
+    Layout = "~/Views/Shared/AgentLayoutPage.cshtml";
+
+}
+<style>
+    @@media screen and (max-width:900px) {
+        .init_thank_img {
+            height: 330px !important;
+            margin-left: auto !important;
+        }
+
+        .init_help_text {
+            font-size: 32px !important;
+            font-weight: 700 !important;
+        }
+    }
+
+    @@media screen and (max-width:760px) {
+        .init_thank_img {
+            height: 220px !important;
+            margin-left: 0px !important;
+        }
+
+        .init_help_text {
+            font-size: 22px !important;
+            font-weight: 700 !important;
+        }
+
+        .init_thank_right {
+            display: flex;
+            align-content: center;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+    /* @@media only screen and (min-device-width: 768px){
+
+
+        }
+        @@media only screen and (min-device-width: 480px){
+            .init_thank_img{
+                height: 220px;
+                margin-left:auto;
+            }
+            .init_help_text{
+               font-size: 22px;
+                font-weight: 700t;
+            }
+
+            .init_thank_left {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            .init_thank_wrapper {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+    */
+
+    .init_thank_img {
+        height: 400px;
+        margin-left: 100px;
+    }
+    /*.init_thank_wrapper{
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+        }*/
+    .init_thank_inner {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .init_thank_main {
+        /*background-color: #ffeded;*/
+        height: 450px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .init_thank_left {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .init_thank_right {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    .init_help_text {
+        color: #262828eb;
+        font-size: 40px;
+        font-weight: 500;
+        margin-bottom: 0;
+        font-family: cursive;
+    }
+</style>
+<body>
+    <div class="init_thank_main">
+        <div class="row">
+            <div class="init_thank_left col-lg-6 col-md-6 col-sm-12">
+                <img src="~/content/imghome/meeting.png" alt="" srcset="" class="init_thank_img">
+            </div>
+            <div class="init_thank_right col-lg-6 col-md-6 col-sm-12">
+                <p class="init_help_text">Meeting Has Ended!</p>
+                <p class="init_help_text">Thank You!</p>
+                <p class="init_help_text">For Your Attention</p>
+                <a href="#">Having trouble? Contact us!</a>
+            </div>
+        </div>
+    </div>
+</body>

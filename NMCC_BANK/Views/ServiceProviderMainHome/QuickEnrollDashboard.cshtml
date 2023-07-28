@@ -1,0 +1,3873 @@
+﻿@model INDO_FIN_NET.Models.ClsFormFlag
+
+@using INDO_FIN_NET.Models;
+
+@{    
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <link href="~/css/multiclass.css" rel="stylesheet" />
+    <style>
+        .init_top_bar{
+            background-color: #bf5252;
+        }
+        .init_li_items{
+            list-style-type: none;
+            font-size: 16px;
+            font-weight: 500;
+            color: #fff;
+            padding: 2px 12px 2px -5px;
+            /*background-color: #bf5252;*/
+            padding-right: -13px;
+            width: 150px;
+            text-align: center;
+            border-right: 2px solid #fff;
+            cursor: pointer;
+            height: 40px;
+            display: grid;
+            align-items: center;
+        }
+
+        .init_li_items:hover {
+        background-color: rgb(247, 98, 23) !important;
+        }
+
+        .init_ul_main {
+            padding-left: 0;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+        }
+        @@media screen and (max-width:900px){
+             .init_li_items{
+                border: 2px solid #fff;
+                width: 250px;
+                margin: 6px;
+             }
+
+            .init_ul_main {
+                display: flex;
+                justify-content: center;
+                flex-direction: column;
+                align-items: center;
+            }
+            
+        }
+        
+        .bg-green{
+        background-color:green!important;
+        }
+    </style>
+    <style>
+
+        @@media screen and (max-width:900px){
+            .nav-tabs-sm{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+            .nav-li-sm{
+                display: block;
+                
+                text-transform: uppercase;
+                font-weight: 600;
+                border: 1px solid #e1e1e1;
+                border-radius: 6px;
+                width: 50%;
+                margin: 5px 0;
+                /*padding: 2px;*/
+            }
+            .nav-li-last{
+                margin-bottom: 6px;
+            }
+
+        }
+        @@media screen and (max-width:767px){
+            /*.nav-li-sm{
+                width: 70%;
+            }*/
+        }
+         .bg-green{
+            background-color:green!important;
+        }
+
+
+        #tab1 {
+            width: 100% !important;
+            float: left !important;
+        }
+
+        .progressbar {
+            counter-reset: step;
+        }
+
+            .progressbar li {
+                position: relative;
+                list-style: none;
+                float: left;
+                color: #676665;
+                float: left;
+                width: 12.2%;
+                margin-left: 0.7%;
+                text-align: center;
+            }
+                /*.progressbar li:hover {
+                background-color:#f76217;
+                color:#0f7041;
+            }*/
+                /* Circles */
+                .progressbar li:before {
+                    content: counter(step);
+                    counter-increment: step;
+                    width: 42px;
+                    height: 40px;
+                    border: 1px solid #5186e5;
+                    border-top: none;
+                    display: block;
+                    color: #f76217;
+                    border-radius: 50%;
+                    box-shadow: -1px 2px 6px 0px rgb(132, 173, 245);
+                    margin: -15px auto -9px auto;
+                    /* border-right: 83px; */
+                    background-color: #fff;
+                    line-height: 36px;
+                }
+
+
+                .progressbar li:after {
+                    content: "";
+                    position: absolute;
+                    width: 100%;
+                    height: 2px;
+                    /*background: #5186e5;*/
+                    top: 20px; /*half of height Parent (li) */
+                    left: -50%;
+                    z-index: -1;
+                }
+
+                .progressbar li:first-child:after {
+                    content: none;
+                }
+
+                .progressbar li.active:before {
+                    /*background: #238a58;*/
+                    background: #0f7041;
+                    content: "✔";
+                    color: #fff;
+                }
+
+        /*.progressbar li.active + li:after {
+                    background: #12653d;
+                    border:1px solid #12653d;
+                }*/
+    </style>
+
+    @if (ViewBag.AdminFlag == "AdminFlag")          //if Admin
+    {
+        @*<meta name="viewport" content="width=device-width" />
+            <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+
+            <link href="~/Scripts/sweetalert.css" rel="stylesheet" />
+            <script src="~/Scripts/sweetalert.min.js"></script>
+            <script src="~/Scripts/bootstrap-multiselect.js"></script>
+            <link href="~/Content/Accordion/Accordion1/Accordiondegital1.css" rel="stylesheet" />
+
+            <script src="../Content/Accordion/Accordion1/jquery-accordion.js"></script>
+            <link href="~/Content/Admincss.css" rel="stylesheet" />
+
+            <script src="http://localhost:22813/Scripts/jquery-3.3.1.min.js"></script>*@
+        <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+        @*<script src="~/Scripts/jquery.min.js"></script>*@
+        <link href="~/Scripts/sweetalert.css" rel="stylesheet" />
+        <script src="~/Scripts/sweetalert.min.js"></script>
+
+        <script src="../Content/Accordion/Accordion1/jquery-accordion.js"></script>
+
+    }
+    @*@if (ViewBag.AdminFlag == "AgentDropped")
+        {
+            <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+            <link href="~/Scripts/sweetalert.css" rel="stylesheet" />
+            <script src="~/Scripts/sweetalert.min.js"></script>
+
+            <script src="../Content/Accordion/Accordion1/jquery-accordion.js"></script>
+
+        }*@
+    else
+    {
+
+        <meta name="viewport" content="width=device-width" />
+        <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+
+        <link href="~/Scripts/sweetalert.css" rel="stylesheet" />
+        <script src="~/Scripts/sweetalert.min.js"></script>
+        <script src="~/Scripts/bootstrap-multiselect.js"></script>
+        <link href="~/Content/Accordion/Accordion1/Accordiondegital1.css" rel="stylesheet" />
+
+        <script src="../Content/Accordion/Accordion1/jquery-accordion.js"></script>
+
+        @*<script src="http://localhost:22813/Scripts/jquery-3.3.1.min.js"></script>*@
+
+
+    }
+    @if (ViewBag.AdminFlag == "AdminFlag")
+    {
+        <style>
+            .navbar {
+                margin-bottom: 0px !important;
+            }
+
+            #tab1 {
+                float: left;
+                width: 100% !important;
+                padding-top: 1.5%;
+            }
+
+            #PANArti {
+               @* float: left;*@
+                width: 100% !important;
+            }
+
+            #tab2 {
+                float: left;
+                width: 100% !important;
+            }
+
+            #tab5 {
+                float: left;
+                width: 100% !important;
+            }
+
+            #tab3 {
+                float: left;
+                width: 100% !important;
+            }
+
+            #tab4 {
+                float: left;
+                width: 100% !important;
+            }
+
+            #tab7 {
+                float: left;
+                width: 100% !important;
+            }
+
+              #tab8 {
+                float: left;
+                width: 100% !important;
+            }
+
+            #DigiQuick {
+                float: left;
+                width: 100% !important;
+            }
+
+            #CorrFieldset {
+                float: left !important;
+                width: 100% !important;
+            }
+
+            #EditPermPOA {
+                float: left !important;
+                width: 100% !important;
+            }
+        </style>
+    }
+
+
+
+    <script>
+        $(".faq").accordion({
+            questionClass: '.header',
+            answerClass: '.content',
+            itemClass: '.faqitem'
+        });
+        //$(window).load(function () {
+        //    debugger;
+        //    $('#Mobileform').hide();
+        //    $('#emailform').hide();
+        //});
+    </script>
+    @if (ViewBag.Cust == "NewCustomer")
+
+    {
+        <script type="text/javascript">
+            $(document).ready(function () {
+                debugger;
+
+
+                $('#SaveQEData').hide();
+                $('#UpdateQEData').show();
+                $("#ClearQEData").hide();
+
+            });
+        </script>
+        <script>
+         $(document).ready(function(){
+             $('#Litab8').hide();
+         });
+        </script>
+        <script>
+        $(document).ready(function () {
+            debugger;
+
+            @*if ('@Model.IsLogin' == 'true') {
+                $('#tab1').addClass("active");
+                $('#tab1').removeClass("hide");
+            }
+            if ('@Model.KYCverificationType' != '')
+                $('#Litab1').removeClass("active");
+                $('#tab1').addClass("hide");
+                $('#tab1').removeClass("active");
+                $('#tab5').removeClass("hide");
+                $('#Litab5').addClass("active");
+                $('#tab5').addClass("active");*@
+            }
+            if ('@Model.IsQuickEnrollSubmit' == 'True') {
+
+                $('#tab2').removeClass("hide");
+                $('#Litab2').addClass("active");
+                $('#tab2').addClass("active");
+
+                $('#Litab5').removeClass("active");
+                $('#tab5').addClass("hide");
+                $('#tab5').removeClass("active");
+
+                $('#Litab1').removeClass("active");
+                $('#tab1').addClass("hide");
+
+                $('#Litab3').removeClass("active");
+                $('#tab3').addClass("hide");
+                $('#tab3').removeClass("active");
+
+            }
+            if ('@Model.IsDocumentSubmit' == 'True') {
+                $('#Litab1').removeClass("active");
+                $('#tab1').addClass("hide");
+
+                $('#tab5').addClass("hide");
+                $('#tab5').removeClass("active");
+
+                $('#Litab2').removeClass("active");
+                $('#tab2').addClass("hide");
+                $('#tab2').removeClass("active");
+
+                $('#tab3').removeClass("hide");
+                $('#Litab3').addClass("active");
+                $('#tab3').addClass("active");
+
+
+
+            }
+            if ('@Model.IsIPVSubmit' == 'True' && '@Model.isIPVSkip'=='False') {
+
+
+                $('#Litab3').removeClass("active");
+                $('#tab3').addClass("hide");
+                $('#tab3').removeClass("active");
+
+                $('#Litab4').addClass("active");
+                $('#tab4').removeClass("hide");
+                $('#tab4').removeClass("active");
+                tab3Click();
+
+
+            }
+            if ('@Model.IsIPVSubmit' == 'True' && '@Model.isIPVSkip'=='True') {
+
+
+                $('#Litab3').removeClass("active");
+                $('#tab3').addClass("hide");
+                $('#tab3').removeClass("active");
+
+                $('#Litab4').addClass("active");
+                $('#tab4').removeClass("hide");
+                $('#tab4').removeClass("active");
+                //tab3Click();
+
+
+            }
+
+       // });
+        </script>
+
+    }
+    @if (ViewBag.Cust == "")           //////if Agent Login
+    {
+        <script type="text/javascript">
+            $(document).ready(function () {
+                debugger;
+                $('#DARejectDiv').hide();
+                $("#btnApprove").hide();
+                $("#btnReject").hide();
+                $('#Mobileform').hide();
+                $('#emailform').hide();
+                $('#QEisEmailVerify').hide();
+                $('#CustDigilockerVerify').hide();
+                $('#CustDigiDriving').hide();
+                $('#DigiAadharxml').hide();
+
+
+                @*document.getElementById("Aadharverificationtype").disabled = true;
+                document.getElementById("Panverificationtype").disabled = true;
+                document.getElementById("CKYCVerificationtype").disabled = true;
+                document.getElementById("Otherverification").disabled = true;
+                document.getElementById("ReKyc").disabled = true;
+                document.getElementById("DigiLocker").disabled = true;*@
+
+
+                $('#SavedQEData').hide();
+
+            });
+        </script>
+        if (ViewBag.AdminFlag != "AdminFlag")
+        {
+            <script>
+
+             $(document).ready(function() {
+                   debugger;
+
+                   if ('@Model.IsLogin' == 'true') {
+                //$('#Litab1').addClass("active");
+                $('#tab1').addClass("active");
+                $('#tab1').removeClass("hide");
+
+                       // $('#Litab1').addClass("active");
+                   }
+                   if ('@Model.KYCverificationType' != '')
+                   {@*'@Model.shareAadharNumber' == 'Y'*@
+                $('#Litab1').removeClass("active");
+                $('#tab1').addClass("hide");
+                $('#tab1').removeClass("active");
+                $('#tab5').removeClass("hide");
+                $('#Litab5').addClass("active");
+                $('#tab5').addClass("active");
+                   }
+                   if ('@Model.IsQuickEnrollSubmit' == 'True') {
+                $('#Litab5').removeClass("active");
+                $('#tab5').addClass("hide");
+                $('#tab5').removeClass("active");
+                $('#tab2').removeClass("hide");
+                $('#Litab2').addClass("active");
+                $('#tab2').addClass("active");
+
+                   }
+                   if ('@Model.IsDocumentSubmit' == 'True') {
+                $('#Litab2').removeClass("active");
+                $('#tab2').addClass("hide");
+                $('#tab2').removeClass("active");
+                $('#tab3').removeClass("hide");
+                $('#Litab3').addClass("active");
+                $('#tab3').addClass("active");
+                       tab3Click();
+
+
+                   }
+                   if ('@Model.IsIPVSubmit' == 'True' && '@Model.isIPVSkip' == 'False') {
+                $('#Litab3').removeClass("active");
+                $('#tab3').addClass("hide");
+                $('#tab3').removeClass("active");
+
+                //$('#Litab4').removeClass("active");
+                //$('#tab4').addClass("hide");
+                //$('#tab4').removeClass("active");
+
+                $('#tab3').removeClass("hide");
+                $('#Litab3').addClass("active");
+                $('#tab3').addClass("active");
+                       tab3Click();
+                       //$('#Litab4').addClass("active");
+                       //$('#tab4').addClass("active");
+                       //$('#tab4').removeClass("hide");
+                   } if ('@Model.IsIPVSubmit' == 'True' && '@Model.isIPVSkip' == 'True') {
+
+
+                $('#Litab3').removeClass("active");
+                $('#tab3').addClass("hide");
+                $('#tab3').removeClass("active");
+
+                $('#Litab4').addClass("active");
+                $('#tab4').removeClass("hide");
+                $('#tab4').removeClass("active");
+                       tab4Click();
+                       //tab3Click();
+
+
+                   }
+
+               });
+
+            </script>
+        }
+
+        if (ViewBag.AdminFlag == "AdminFlag")
+        {
+            <script>
+
+             $(document).ready(function() {
+                   debugger;
+
+                   if ('@Model.IsLogin' == 'true') {
+                //$('#Litab1').addClass("active");
+                $('#tab1').addClass("active");
+                $('#tab1').removeClass("hide");
+
+                       // $('#Litab1').addClass("active");
+                   }
+                   if ('@Model.KYCverificationType' != '')
+                   {@*'@Model.shareAadharNumber' == 'Y'*@
+                $('#Litab1').removeClass("active");
+                $('#tab1').addClass("hide");
+                $('#tab1').removeClass("active");
+                $('#tab5').removeClass("hide");
+                $('#Litab5').addClass("active");
+                $('#tab5').addClass("active");
+                   }
+                   if ('@Model.IsQuickEnrollSubmit' == 'True') {
+                $('#Litab5').removeClass("active");
+                $('#tab5').addClass("hide");
+                $('#tab5').removeClass("active");
+                $('#tab2').removeClass("hide");
+                $('#Litab2').addClass("active");
+                $('#tab2').addClass("active");
+
+                   }
+                   if ('@Model.IsDocumentSubmit' == 'True') {
+                $('#Litab2').removeClass("active");
+                $('#tab2').addClass("hide");
+                $('#tab2').removeClass("active");
+                $('#tab3').removeClass("hide");
+                $('#Litab3').addClass("active");
+                $('#tab3').addClass("active");
+
+
+
+                   }
+                   if ('@Model.IsIPVSubmit' == 'True' && '@Model.isIPVSkip' == 'False') {
+                $('#Litab3').removeClass("active");
+                $('#tab3').addClass("hide");
+                $('#tab3').removeClass("active");
+
+                //$('#Litab4').removeClass("active");
+                //$('#tab4').addClass("hide");
+                //$('#tab4').removeClass("active");
+
+                $('#tab3').removeClass("hide");
+                $('#Litab3').addClass("active");
+                $('#tab3').addClass("active");
+                       tab3Click();
+                       //$('#Litab4').addClass("active");
+                       //$('#tab4').addClass("active");
+                       //$('#tab4').removeClass("hide");
+                   } if ('@Model.IsIPVSubmit' == 'True' && '@Model.isIPVSkip' == 'True') {
+
+
+                $('#Litab3').removeClass("active");
+                $('#tab3').addClass("hide");
+                $('#tab3').removeClass("active");
+
+                $('#Litab4').addClass("active");
+                $('#tab4').removeClass("hide");
+                $('#tab4').removeClass("active");
+
+                       //tab3Click();
+
+
+                   }
+
+               });
+
+            </script>
+        }
+        <script type="text/javascript">
+            $(document).ready(function () {
+                debugger;
+                $('#getOtherData').hide();
+                $('#getPanData').hide();
+                $('#getAadharData').hide();
+                $('#getCKYCData').hide();
+                var isPChecked = $("#Panverificationtype").is(":checked");
+                if (isPChecked) {
+                    $('#CustPanVerify').show();
+                    $('#getOtherData').hide();
+                    $('#getPanData').show();
+                    $('#getAadharData').hide();
+                    $('#getCKYCData').hide();
+                    $('#CustEkyc').hide();
+                    $('#getDigiPanData').hide();
+                    $('#getDigiDrivingData').hide();
+
+
+
+
+                    // document.getElementById("CustPanVerify").style.pointerEvents = "none";
+
+                }
+                else {
+                    $('#CustPanVerify').hide();
+                }
+
+                ////ckyc
+                var isCChecked = $("#CKYCverificationtype").is(":checked");
+                if (isCChecked) {
+                    $('#changeCkycOption').show();
+
+                    $('#getCKYCData').show();
+                    $('#getOtherData').hide();
+                    $('#getPanData').hide();
+                    $('#getAadharData').hide();
+                    $('#CustEkyc').hide();
+                    $('#getDigiPanData').hide();
+                    $('#getDigiDrivingData').hide();
+                }
+                else {
+                    $('#changeCkycOption').hide();
+                    // document.getElementById("HideVerificationType").style.pointerEvents = "none";
+
+                    // FormDetails
+                }
+                ////aadhar..................
+                var isAChecked = $("#Aadharverificationtype").is(":checked");
+                if (isAChecked) {
+
+                    //$('#CustomerQuick').show();
+                    document.getElementById("OffEkyc").checked = true;
+                    document.getElementById("AXML").checked = true;
+                    document.getElementById("Offline").checked = true;
+                    $('#KYC').show();
+                    $('#CustomerQuick').show();
+                    $('#OffVerification').show();
+                    $('#testcustomerData').show();
+                    $('#getOtherData').hide();
+                    $('#getAadharData').show();
+                    $('#getCKYCData').hide();
+                    $('#getPanData').hide();
+                    $('#CustEkyc').hide();
+                    $('#getDigiPanData').hide();
+                    $('#getDigiDrivingData').hide();
+                }
+                else {
+                    $('#CustomerQuick').hide();
+                    //  document.getElementById("HideVerificationType").style.pointerEvents = "none";
+
+                }
+                //}
+            });
+        </script>
+        <script>
+            function startIPV(tr) {
+                debugger;
+                $("#startLoader").html("<div style='position: fixed;z-index: 5000;float: left;right: 50%;height: 50px;width: 50px;top:40%;'><i class='fa fa-pulse fa-fw dgldr ldrdesign' style='height:70px;width:70px;border-radius:50%;border-bottom:5px dotted grey;border-top:5px dotted black;border-right:5px dotted black;border-left:5px dotted black;height:80px;width:80px;position:absolute;margin: 20% 50%;'></i></div>");
+                $("#startLoader").show();
+                $('#overlay_disabl').show();
+                var newWindow;
+                $.ajax({
+                    url: '/IPVDetails/StartIPVMethod',
+                    cache: false,
+                    success: function (result) {
+                        debugger;
+                        $('#customerIpv').hide();
+                        $('#showipvdiv').hide();
+                        $('#StartIPVVideo').show();
+                        $('#StartIPVVideo').html(result);
+                        $("#startLoader").hide();
+                        $('#overlay_disabl').hide();
+                    }
+                })
+            }
+        </script>
+        <script>
+            function VideoKYC(tr) {
+                debugger;
+                $("#videoLoader").html("<div style='position: fixed;z-index: 5000;float: left;right: 50%;height: 50px;width: 50px;top:40%;'><i class='fa fa-pulse fa-fw dgldr ldrdesign' style='height:70px;width:70px;border-radius:50%;border-bottom:5px dotted grey;border-top:5px dotted black;border-right:5px dotted black;border-left:5px dotted black;height:80px;width:80px;position:absolute;margin: 20% 50%;'></i></div>");
+                $("#videoLoader").show();
+                $('#overlay_disabl').show();
+                var newWindow;
+                $.ajax({
+                    url: '/VCIP/StartRequestCamera',
+                    cache: false,
+                    success: function (result) {
+                        debugger;
+                        $('#customerIpv').hide();
+                        $('#showipvdiv').hide();
+                        $('#StartIPVVideo').show();
+                        $('#StartIPVVideo').html(result);
+                        $("#videoLoader").show();
+                        $('#overlay_disabl').show();
+                    }
+                })
+            }
+        </script>
+        <script>
+            function SkipVideoIPV(tr) {
+                debugger;
+                $("#skipLoader").html("<div style='position: fixed;z-index: 5000;float: left;right: 50%;height: 50px;width: 50px;top:40%;'><i class='fa fa-pulse fa-fw dgldr ldrdesign' style='height:70px;width:70px;border-radius:50%;border-bottom:5px dotted grey;border-top:5px dotted black;border-right:5px dotted black;border-left:5px dotted black;height:80px;width:80px;position:absolute;margin: 20% 50%;'></i></div>");
+                $("#skipLoader").show();
+                $('#overlay_disabl').show();
+                var newWindow;
+                $.ajax({
+                    url: '/VCIP/SkipIpv',
+                    cache: false,
+                    success: function (result) {
+                        debugger;
+                        //$('#customerIpv').hide();
+                        //$('#showipvdiv').hide();
+                        //$('#StartIPVVideo').show();
+                        //$('#StartIPVVideo').html(result);
+                        window.location.href = '/ServiceProviderMainHome/QuickEnrollDashboard';
+                        swal("IPV Skip Sucessfully");
+                        $("#skipLoader").hide();
+                        $('#overlay_disabl').hide();
+                    }
+                })
+            }
+        </script>
+        <script>
+        $(document).ready(function () {
+            debugger;
+            $('#reupload').hide();
+            //$('#showipvdiv').hide();
+            //$('#ipvdiv').hide();
+            if ('@ViewBag.ipvrecordflag' == 'True') {
+
+                var data = 'data:video/webm;base64,' + '@ViewBag.filepath';
+                document.getElementById('playvideosrc').src = data;
+                $('#playvideo')[0].currentSrc = data;
+                //document.getElementById('playvideo').play();
+                document.getElementById("playvideo").load();
+            }
+        })
+        function PreviewIPV(e) {
+            debugger;
+            $("#previewLoader").html("<div style='position: fixed;z-index: 5000;float: left;right: 50%;height: 50px;width: 50px;top:40%;'><i class='fa fa-pulse fa-fw dgldr ldrdesign' style='height:70px;width:70px;border-radius:50%;border-bottom:5px dotted grey;border-top:5px dotted black;border-right:5px dotted black;border-left:5px dotted black;height:80px;width:80px;position:absolute;margin: 20% 50%;'></i></div>");
+            $("#previewLoader").show();
+            $('#overlay_disabl').show();
+            document.getElementById('playvideo').play();
+            $("#previewLoader").hide();
+            $('#overlay_disabl').hide();
+        }
+        $(function () {
+            $('#ipvconfirm').click(function () {
+                debugger;
+                $("#conLoader").html("<div style='position: fixed;z-index: 5000;float: left;right: 50%;height: 50px;width: 50px;top:40%;'><i class='fa fa-pulse fa-fw dgldr ldrdesign' style='height:70px;width:70px;border-radius:50%;border-bottom:5px dotted grey;border-top:5px dotted black;border-right:5px dotted black;border-left:5px dotted black;height:80px;width:80px;position:absolute;margin: 20% 50%;'></i></div>");
+                $("#conLoader").show();
+                $('#overlay_disabl').show();
+                var token = $('input[name="__RequestVerificationToken"]').val();
+                $.ajax({
+                    url: '/IPVDetails/ConfirmIPVvideo?personalDetailId=' + '@ViewBag.PersonalId',
+                    type: 'POST',
+                    data: { __RequestVerificationToken: token },
+                    cache: false,
+                    success: function (result) {
+                        debugger;
+
+                        //swal(result);
+                        // $('#aadhaarHide').html(result);
+                        //window.location.url = '/EsignAdhar/Aadhaar';
+                        //$('#aadhaarHide').show(result);
+                        window.location.href = '/ServiceProviderMainHome/QuickEnrollDashboard';
+                        swal("IPV recorded Sucessfully");
+                        $("#conLoader").hide();
+                        $('#overlay_disabl').hide();
+                    }
+                })
+            })
+
+
+        });
+        </script>
+        <script>
+        function showIPV(tr) {
+            debugger;
+            $('#showipvdiv').show();
+        }
+
+        function DeleteIPV(e, param) {
+            debugger;
+            swal({
+                title: "Are you sure?",
+                text: "Do you want to Delete IPV Recording?",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Yes",
+                cancelButtonText: "No",
+                closeOnConfirm: false,
+                closeOnCancel: false
+            },
+                function (isConfirm) {
+                    debugger;
+                    var id = e.id;
+                    var idData = id.split('-');
+
+                    if (isConfirm) {
+                        $.ajax({
+                            url: '/IPVDetails/deleteIpvVideo?personalDetailId=' + '@ViewBag.PersonalId',
+                            type: 'GET',
+                            data: '',
+                            cache: false,
+                            success: function (result) {
+                                debugger;
+                                //var splitRslt = result.split('-');
+                                if (result >= 0) {
+                                    swal("Delete", "Video Deleted Successfully");
+                                    //$('#ipvVideorecord').hide();
+                                    //$('#deleteipv').hide();
+                                    $('#showipvdiv').hide();
+                                    window.location.href = '/ServiceProviderMainHome/QuickEnrollDashboard';
+
+                                    // $('#ipvvideodetails').show();
+
+                                    //$('#reupload').show();
+                                    // $('#customerIpv').show();
+                                    //$('#' + idData[0]).empty();
+                                    //$('#' + idData[1]).prop('disabled', false);
+                                }
+                            }
+                        });
+
+                    }
+                    else {
+                        swal("Cancelled", " Cancel your request  :)", "error");
+                    }
+                })
+        };
+        </script>
+    }
+    @if (ViewBag.AdminFlag == "AdminFlag")
+    {
+        <script type="text/javascript">
+        $(document).ready(function () {
+            debugger;
+            //Pan
+            //$('#HideVerificationType').hide();
+            //          $('#OffVerification').hide();
+            $('#KYCXMLVerify').hide();
+            $('#KYCQRCodeVerify').hide();
+            $('#OCRDiv_id').hide();
+            $('#KYCQRCodeScanVerify').hide();
+            //$('#testcustomerData').show();
+            $('#quickEnrollDiv').hide();
+            //$('#CustomerQuick').hide();
+            $('#AadharCaptcha').hide();
+            $('#KYC').hide();
+            $('#xmlConstentmsg').hide();
+            $('#xmlConstentmsgMe').hide();
+            $('#CKYCCustomerSearchDetails').hide();
+            $('#CustReKYC').hide();
+
+
+
+            $("#header").hide();
+            $("#topbar").hide();
+
+            $("#PANRejecttxt").hide();
+            $("#QuickRejecttxt").hide();
+            $("#DigiRejecttxt").hide();
+            $("#DocRejecttxt").hide();
+            $('#getOtherData').hide();
+            $('#getPanData').hide();
+            $('#getDigiPanData').hide();
+            $('#getDigiDrivingData').hide();
+            $('#getAadharData').hide();
+            $('#getCKYCData').hide();
+            $('#orgregsubmit').hide();
+            $('#AuthMobolieNos').hide();
+            $('#ConsentForm').hide();
+            $('#adrbtnid').hide();
+            $('#btnback').hide();
+            $('#CAFPDFRejecttxt').hide();
+            $('#btnApprove').hide();
+            $('#btnReject').hide();
+            var isPChecked = $("#Panverificationtype").is(":checked");
+            if (isPChecked) {
+                $('#CustPanVerify').show();
+                $('#getOtherData').hide();
+                $('#getPanData').show();
+                $('#getDigiPanData').hide();
+                $('#getDigiDrivingData').hide();
+                $('#getAadharData').hide();
+                $('#getCKYCData').hide();
+                $('#CustEkyc').hide();
+               // document.getElementById("CustPanVerify").style.pointerEvents = "none";
+
+            }
+            else {
+                $('#CustPanVerify').hide();
+            }
+
+            ////ckyc
+            var isCChecked = $("#CKYCverificationtype").is(":checked");
+            if (isCChecked) {
+                $('#changeCkycOption').show();
+
+                $('#getCKYCData').show();
+                $('#getOtherData').hide();
+                $('#getPanData').hide();
+                $('#getDigiPanData').hide();
+                $('#getDigiDrivingData').hide();
+                $('#getAadharData').hide();
+                $('#CustEkyc').hide();
+            }
+            else {
+                $('#changeCkycOption').hide();
+                 //document.getElementById("HideVerificationType").style.pointerEvents = "none";
+
+               // FormDetails
+            }
+            ////aadhar..................
+            var isAChecked = $("#Aadharverificationtype").is(":checked");
+            if (isAChecked) {
+
+                //$('#CustomerQuick').show();
+                document.getElementById("OffEkyc").checked = true;
+                document.getElementById("AXML").checked = true;
+                document.getElementById("Offline").checked = true;
+                $('#KYC').show();
+                $('#CustomerQuick').show();
+                $('#OffVerification').show();
+                $('#testcustomerData').show();
+                $('#getOtherData').hide();
+                $('#getAadharData').show();
+                $('#getCKYCData').hide();
+                $('#getPanData').hide();
+                $('#getDigiPanData').hide();
+                $('#getDigiDrivingData').hide();
+                $('#CustEkyc').hide();
+            }
+            else {
+                $('#CustomerQuick').hide();
+                //document.getElementById("HideVerificationType").style.pointerEvents = "none";
+
+            }
+
+            //Other
+            var isOtherChecked = $("#Otherverification").is(":checked");
+            if (isOtherChecked) {
+                $('#getOtherData').show();
+                $('#CustOther').show();
+
+                $('#getPanData').hide();
+                $('#getDigiPanData').hide();
+                $('#getDigiDrivingData').hide();
+                $('#getAadharData').hide();
+                $('#getCKYCData').hide();
+                $('#CustEkyc').hide();
+                //document.getElementById("CustOther").style.pointerEvents = "none";
+
+            }
+            else {
+                $('#getOtherData').hide();
+            }
+
+            var isEChecked = $("#OnlineEKYCVerificationType").is(":checked");
+            if (isEChecked) {
+                $('#CustEkyc').show();
+                $('#CustPanVerify').hide();
+                $('#getOtherData').hide();
+                $('#getPanData').hide();
+                $('#getAadharData').hide();
+                $('#getCKYCData').hide();
+                $('#getDigiPanData').hide();
+                $('#getDigiDrivingData').hide();
+
+                //document.getElementById("CustEkyc").style.pointerEvents = "none";
+
+            }
+            else {
+                $('#CustEkyc').hide();
+            }
+
+        })
+
+         $(document).ready(function () {
+             if ('@ViewBag.isshareAadharNumber' == 'N') {
+                $('#DigitalAadharRadio').show();
+                $('#AadharRadio').hide();
+            }
+            else {
+                $('#DigitalAadharRadio').hide();
+            }
+
+        });
+         $(document).ready(function () {
+             $('#pdfpaging').hide();                   //Next ,Previous button hide
+             $('#cropbutton').hide();                   //hide crop button
+             $('#viewport1').hide();
+             $('#btncrop').hide();
+             $('#close').hide();
+
+
+             $('#closepoi').hide();
+             $('#savepoi').hide();
+
+             $('#viewportpoa1').hide();
+             $('#pdfpagingpoa').hide();                   //Next ,Previous button hide
+             $('#cropbuttonpoa').hide();
+             $('#btncroppoa').hide();
+             $('#closepoa').hide();
+             $('#ViewNewpoa').hide();
+             $('#viewspoa').hide();
+
+             $('#ViewNew').hide();
+             $('#views').hide();
+             $('#DARejectDiv').hide();
+             $("#CameraOpenViewAddrs").hide();
+           // $('#SummeryDataView').hide();
+             ///Disable from adminside
+             @*document.getElementById("ddl_corrAdd").style.pointerEvents = "none";
+             document.getElementById("fileInput").style.pointerEvents = "none";
+             document.getElementById("corrAdd").style.pointerEvents = "none";
+             document.getElementById("ddl_corrAdd").style.pointerEvents = "none";
+             document.getElementById("ddl_idProof").style.pointerEvents = "none";*@
+
+            });
+
+        </script>
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                debugger;
+
+
+                if ('@ViewBag.CAF' === 'True') {
+
+                    $('#tab1').hide();
+                    $('#tab1').removeClass("active");
+                    $('#tab1').addClass("hide");
+                    $('#Litab5').addClass("active");
+                    $('#tab5').removeClass("hide");
+                }
+                if ('@ViewBag.Document' === 'True') {
+                    $('#tab1').hide();
+                    $('#tab5').hide();
+                    $('#tab1').removeClass("active");
+                    $('#tab1').addClass("hide");
+                    $('#tab5').removeClass("active");
+                    $('#tab5').addClass("hide");
+                    $('#Litab2').addClass("active");
+                    $('#tab2').removeClass("hide");
+                }
+                if ('@ViewBag.IPVReject' === 'True') {
+                    $('#tab1').hide();
+                    $('#tab5').hide();
+                    $('#tab2').hide();
+                    $('#tab1').removeClass("active");
+                    $('#tab1').addClass("hide");
+                    $('#tab5').removeClass("active");
+                    $('#tab5').addClass("hide");
+                    $('#tab2').removeClass("active");
+                    $('#tab2').addClass("hide");
+                    $('#Litab4').addClass("active");
+                    $('#tab4').removeClass("hide");
+                }
+                if ('@ViewBag.CAFPDF' === 'True') {
+                    $('#tab1').hide();
+                    $('#tab5').hide();
+                    $('#tab2').hide();
+                    $('#tab1').removeClass("active");
+                    $('#tab1').addClass("hide");
+                    $('#tab5').removeClass("active");
+                    $('#tab5').addClass("hide");
+                    $('#tab2').removeClass("active");
+                    $('#tab2').addClass("hide");
+
+                    $('#Litab4').addClass("active");
+                    $('#tab4').removeClass("hide");
+
+                }
+            });
+        </script>
+        //Quick Approve Reject section
+        <script>
+            $(document).ready(function () {
+                $("#QuickRejecttxt").hide();
+            });
+        </script>
+        <script>
+            $('#QuickApprove').click(function () {
+                $("#QuickRejecttxt").hide();
+                debugger;
+                $.ajax({
+                    url: '/KYCQuickEnroll/GetApprovedFlag?selectedValue=' + $("#QuickRejecttxt").val() + '&appType=' + 'Quick',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: '',
+                    contentType: 'application/json; charset=utf-8',
+                    success: function (data) { swal('Quick Enroll form Approved Successfully'); },
+                    error: function (err) { alert(err); }
+                });
+            });
+        </script>
+        <script>
+            $('#QuickReject').click(function () {
+                debugger;
+                $("#QuickRejecttxt").show();
+
+            });
+        </script>
+        <script>
+            $('#QuickRejecttxt').blur(function () {
+                debugger;
+                var reasonQuick = $("#QuickRejecttxt").val();
+                $("#QuickRejecttxt").show();
+                $.ajax({
+                    url: '/KYCQuickEnroll/GetApprovedFlag?selectedValue=' + $("#QuickRejecttxt").val() + '&appType=' + 'RQuick',
+                    type: 'POST',
+                    data: '',
+                    contentType: 'application/json; charset=utf-8',
+                    success: function (data) {
+                        swal("Quick Enroll Form rejected with reject reason " + reasonQuick);
+                    },
+                    error: function (err) { alert(err); }
+                });
+            });
+        </script>
+        //end Quick Section
+
+        //CAF Approve Reject section
+        <script>
+            $('#DigiApprove').change(function () {
+                debugger;
+                $("#DigiRejecttxt").hide();
+                $.ajax({
+
+                    url: '/KYCQuickEnroll/GetApprovedFlag?selectedValue=' + $("#DigiRejecttxt").val() + '&appType=' + 'Digi',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: '', //{ selectedValue: $("#QuickApprove").val() },
+                    contentType: 'application/json; charset=utf-8',
+                    success: function (data) { swal('CAF form Approved Successfully'); },
+                    error: function (err) { alert(err); }
+                });
+            });
+        </script>
+        <script>
+            $('#DigiReject').change(function () {
+                debugger;
+                $("#DigiRejecttxt").show();
+
+            });
+        </script>
+        <script>
+            $('#DigiRejecttxt').blur(function () {
+                debugger;
+                var reasonCAF = $("#DigiRejecttxt").val();
+                $("#DigiRejecttxt").show();
+                $.ajax({
+
+                    url: '/KYCQuickEnroll/GetApprovedFlag?selectedValue=' + $("#DigiRejecttxt").val() + '&appType=' + 'RDigi',
+                    type: 'POST',
+
+                    data: '', //{ selectedValue: $("#QuickApprove").val() },
+                    contentType: 'application/json; charset=utf-8',
+                    success: function (data) {
+                        swal("CAF Form rejected with reject reason " + reasonCAF);
+                    },
+                    error: function (err) { alert(err); }
+                });
+            });
+        </script>
+        //end CAF Section
+
+        //Document Approve Reject section
+        <script>
+            $('#DocApprove').change(function () {
+                debugger;
+                $("#DocRejecttxt").hide();
+                $.ajax({
+
+                    url: '/KYCQuickEnroll/GetApprovedFlag?selectedValue=' + $("#DocRejecttxt").val() + '&appType=' + 'Doc',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: '',
+                    contentType: 'application/json; charset=utf-8',
+                    success: function (data) { swal('Document Approved Successfully'); },
+                    error: function (err) { alert(err); }
+                });
+            });
+        </script>
+        <script>
+            $('#DocReject').change(function () {
+                debugger;
+                $("#DocRejecttxt").show();
+
+            });
+        </script>
+        <script>
+            $('#DocRejecttxt').blur(function () {
+                debugger;
+                var reasonDoc = $("#DocRejecttxt").val();
+                $("#DocRejecttxt").show();
+                $.ajax({
+
+                    url: '/KYCQuickEnroll/GetApprovedFlag?selectedValue=' + $("#DocRejecttxt").val() + '&appType=' + 'RDoc',
+                    type: 'POST',
+                    data: '',
+                    contentType: 'application/json; charset=utf-8',
+                    success: function (data) {
+                        swal("Document rejected with reject reason " + reasonDoc);
+                    },
+                    error: function (err) { alert(err); }
+                });
+            });
+        </script>
+        //end Document Section
+
+        //IPV Approve Reject section
+        <script>
+            $(document).ready(function () {
+                $("#IPVRejecttxt").hide();
+            });
+        </script>
+        <script>
+            $('#IPVApprove').change(function () {
+                $("#IPVRejecttxt").hide();
+                debugger;
+                $.ajax({
+                    url: '/KYCQuickEnroll/GetApprovedFlag?selectedValue=' + $("#QuickRejecttxt").val() + '&appType=' + 'IPV',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: '',
+                    contentType: 'application/json; charset=utf-8',
+                    success: function (data) { swal('IPV Approved Successfully'); },
+                    error: function (err) { alert(err); }
+                });
+            });
+        </script>
+        <script>
+            $('#IPVReject').change(function () {
+                debugger;
+                $("#IPVRejecttxt").show();
+
+            });
+        </script>
+        <script>
+            $('#IPVRejecttxt').blur(function () {
+                debugger;
+                var reasonIPV = $("#IPVRejecttxt").val();
+                $("#QuickRejecttxt").show();
+                $.ajax({
+                    url: '/KYCQuickEnroll/GetApprovedFlag?selectedValue=' + $("#IPVRejecttxt").val() + '&appType=' + 'RIPV',
+                    type: 'POST',
+                    data: '',
+                    contentType: 'application/json; charset=utf-8',
+                    success: function (data) {
+                        swal("IPV rejected with reject reason " + reasonIPV);
+                    },
+                    error: function (err) { alert(err); }
+                });
+            });
+        </script>
+        //end IPV Section
+        <script>
+            $('#CAFPDFApprove').change(function () {
+                $("#CAFPDFRejecttxt").hide();
+                debugger;
+                // alert("Good job");
+                $.ajax({
+
+                    url: "/KYCQuickEnroll/FinalApproveCheck?selectedValue=" + "",
+                    type: 'POST',
+                    data: '',
+                    cache: false,
+                    success: function (result) {
+                        if (result == 'Approve') {
+                            $("#btnApprove").show();
+                        }
+                        else {
+                            $("#btnApprove").hide();
+                            if (result.QuickReason != "") {
+                                $('#QuickEnrollDetailsRejectedReason').val(result.QuickReason);
+                                $("#IsQuickEnrollDetailsRejected").prop("checked", true);
+                            }
+                            if (result.DigiReason != "") {
+                                $('#CAFDetailsRejectedReason').val(result.DigiReason);
+                                $("#IsCAFDetailsRejected").prop("checked", true);
+                            }
+                            if (result.DocReason != "") {
+                                $('#DocumentDetailsRejectedReason').val(result.DocReason);
+                                $("#IsDocumentDetailsRejected").prop("checked", true);
+                            }
+                            if (result.CafPdfReason != "") {
+                                $('#CAFPDFRejectedReason').val(result.CafPdfReason);
+                                $("#CAFPDFReject").prop("checked", true);
+                            }
+                            if (result.IPVReason != "") {
+                                $('#IPVRejectedReason').val(result.IPVReason);
+                                $("#IsIPVRejected").prop("checked", true);
+                            }
+
+                            $("#btnReject").show();
+
+                        }
+                    }
+                });
+            });
+        </script>
+        <script>
+            $('#CAFPDFReject1').change(function () {
+                $("#CAFPDFRejecttxt").show();
+
+            });
+        </script>
+        <script>
+            $('#CAFPDFRejecttxt').blur(function () {
+                debugger;
+                $.ajax({
+
+                    url: "/KYCQuickEnroll/FinalApproveCheck?selectedValue=" + $("#CAFPDFRejecttxt").val(),
+                    type: 'POST',
+                    data: '',
+                    cache: false,
+                    success: function (result) {
+
+                        $("#btnApprove").hide();
+                        if (result.QuickReason != "") {
+                            $('#QuickEnrollDetailsRejectedReason').val(result.QuickReason);
+                            $("#IsQuickEnrollDetailsRejected").prop("checked", true);
+                        }
+                        if (result.DigiReason != "") {
+                            $('#CAFDetailsRejectedReason').val(result.DigiReason);
+                            $("#IsCAFDetailsRejected").prop("checked", true);
+                        }
+                        if (result.DocReason != "") {
+                            $('#DocumentDetailsRejectedReason').val(result.DocReason);
+                            $("#IsDocumentDetailsRejected").prop("checked", true);
+                        }
+                        if (result.CafPdfReason != "") {
+                            $('#CAFPDFRejectedReason').val(result.CafPdfReason);
+                            $("#CAFPDFReject").prop("checked", true);
+                        }
+                        if (result.IPVReason != "") {
+                            $('#IPVRejectedReason').val(result.IPVReason);
+                            $("#IsIPVRejected").prop("checked", true);
+                        }
+                        $("#btnReject").show();
+                    }
+                });
+            });
+        </script>
+        <script>
+            function DARejectForm() {
+                debugger;
+                $('#DARejectDiv').show();
+                if (document.getElementById('IsQuickEnrollDetailsRejected').checked === true) {
+                    $("#QuickEnrollDiv").show();
+                }
+                if (document.getElementById('IsCAFDetailsRejected').checked === true) {
+                    $("#CAFDiv").show();
+                }
+                if (document.getElementById('IsDocumentDetailsRejected').checked === true) {
+                    $("#DocumentDetailDiv").show();
+                }
+                if (document.getElementById('CAFPDFReject').checked === true) {
+                    $("#CAFPDFDiv").show();
+                }
+                if (document.getElementById('IsIPVRejected').checked === true) {
+                    $("#IPVDiv").show();
+                }
+                $('#blackbg1aprv').show();
+            }
+            function CloseModal() {
+
+                $('#DARejectDiv').hide();
+                $('#blackbg1aprv').hide();
+            }
+           @* document.getElementById('IsQuickEnrollDetailsRejected').onchange = function () {
+                if (document.getElementById('IsQuickEnrollDetailsRejected').checked === true) {
+                    $("#QuickEnrollDiv").show();
+                }
+                else {
+                    $("#QuickEnrollDetailsRejectedReason").val('');
+                    $("#QuickEnrollDiv").hide();
+                }
+            };
+            document.getElementById('IsCAFDetailsRejected').onchange = function () {
+                if (document.getElementById('IsCAFDetailsRejected').checked === true) {
+                    $("#CAFDiv").show();
+                }
+                else {
+                    $("#CAFDetailsRejectedReason").val('');
+                    $("#CAFDiv").hide();
+                }
+            };
+
+            document.getElementById('IsDocumentDetailsRejected').onchange = function () {
+                if (document.getElementById('IsDocumentDetailsRejected').checked === true) {
+                    $("#DocumentDetailDiv").show();
+                }
+                else {
+                    $("#DocumentDetailsRejectedReason").val('');
+                    $("#DocumentDetailDiv").hide();
+                }
+            };
+
+            document.getElementById('CAFPDFReject').onchange = function () {
+                if (document.getElementById('CAFPDFReject').checked === true) {
+                    $("#CAFPDFDiv").show();
+                }
+                else {
+                    $("#CAFPDFRejectedReason").val('');
+                    $("#CAFPDFDiv").hide();
+                }
+            };
+
+            document.getElementById('IsIPVRejected').onchange = function () {
+                if (document.getElementById('IsIPVRejected').checked === true) {
+                    $("#IPVDiv").show();
+                }
+                else {
+                    $("#IPVRejectedReason").val('');
+                    $("#IPVDiv").hide();
+                }
+            };*@
+
+        </script>
+        <script>
+            //$("#btnRejectMe").click(function () {
+            function funReject() {
+                debugger;
+                swal({
+                    title: "Are you sure?",
+                    text: "You want to reject " + $("#CustomerId").val() + "  customerId !",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: "Yes, Reject it!",
+                    closeOnConfirm: false
+                },
+                    function (isConfirm) {
+                        if (isConfirm) {
+                            swal({
+                                title: "An input!",
+                                text: "Enter Reject Reason For " + $("#CustomerId").val() + " customerId",
+                                type: "input",
+                                showCancelButon: true,
+                                closeOnConfirm: false,
+                                animation: "slide-from-top",
+                                inputPlaceholder: "Write something"
+                            },
+                                function (inputValue) {
+
+                                    if (inputValue === false)
+                                        return false;
+                                    if (inputValue === "" || inputValue.trim().length == 0) {
+                                        swal.showInputError("You need to write something!");
+                                        return false;
+                                    }
+                                    if (inputValue === null) {
+                                        swal.showInputError("You need to write something!");
+                                        return false;
+                                    }
+
+                                    var accountNumber = inputValue;
+                                    swal({
+                                        title: "",
+                                        text: "Reject Reason : " + accountNumber + " has been successfully assigned to customerId " + $("#CustomerId").val() + " ",
+                                        type: "info",
+                                        confirmButtonColor: "#DD6B55",
+                                        confirmButtonText: "Ok!",
+                                        closeOnConfirm: false,
+                                    },
+                                        function (isConfirm) {
+                                            if (isConfirm) {
+                                                $.ajax({
+                                                    url: "/KYCQuickEnroll/CKYCApplicationApproval?appId=" + $("#CustomerId").val() + "-R" + accountNumber + "&emailId=" + $("#CEmailId").val(),
+                                                    type: 'GET',
+                                                    data: '',
+                                                    cache: false,
+                                                    success: function (result) {
+                                                        if (result == 'Session Expired') {
+                                                            window.location.href = '/AccountLogin/AccountDetails?strLoginDetail=LogIn';
+                                                        }
+                                                        else {
+                                                            swal({
+                                                                title: "",
+                                                                text: result,
+                                                                type: "success",
+                                                            },
+                                                                function () {
+                                                                    window.location.reload();
+                                                                })
+                                                        }
+                                                    }
+                                                });
+                                            }
+                                        })
+                                })
+                        }
+                    })
+            }
+
+            function funApprove() {
+                debugger;
+                //$.post("/KYCQuickEnroll/CustomerQuickEnrollment").done(function (result) {
+                //    if (result == "Saved Successfully") {
+                $.ajax({
+                    //url: "/KYCQuickEnroll/CKYCApplicationApproval?appId=" + $("#CustomerId").val() + "&process=" + "Approve",
+                    url: "/KYCQuickEnroll/CKYCApplicationApproval?appId=" + $("#CustomerId").val() + "-A",
+                    type: 'GET',
+                    data: '',
+                    cache: false,
+                    success: function (result) {
+                        if (result == 'Session Expired') {
+                            window.location.href = '/AdminLogin/UserDetails';
+                        }
+                        else {
+                            swal({
+                                title: "",
+                                text: result,
+                                type: "success",
+                            },
+                                function () {
+
+                                    window.location.reload();
+                                })
+                        }
+                    }
+                });
+                //    }
+
+                //    else {
+                //        swal("Try Again");
+                //    }
+                //});
+            }
+
+            //function DARejectForm() {
+            //    debugger;
+
+            //    $('#DARejectDiv').show();
+            //    $('#blackbg1aprv').show();
+            //}
+        </script>
+
+        <script>
+            function DARejectClick() {
+                debugger;
+
+                var QuickEnrollFlag = 0,
+                    CAFFlag = 0,
+
+                    DocumentDetailFlag = 0,
+                    CAFPDFFlag = 0,
+                    IPVFlag = 0;
+                globalFlag = 0;
+
+                if (document.getElementById('IsQuickEnrollDetailsRejected').checked == true) {
+                    globalFlag = 1;
+                    if ($("#QuickEnrollDetailsRejectedReason").val() == "") {
+                        swal('Quick Enroll rejected reason should not be empty!');
+                        return false;
+                    }
+                    QuickEnrollFlag = 1;
+                }
+                if (document.getElementById('IsDocumentDetailsRejected').checked == true) {
+                    debugger;
+                    globalFlag = 1;
+                    if ($("#DocumentDetailsRejectedReason").val() == "") {
+                        swal('Document Details rejected reason should not be empty!');
+                        return false;
+                    }
+                    DocumentDetailFlag = 1;
+                }
+                if (document.getElementById('IsCAFDetailsRejected').checked === true) {
+                    globalFlag = 1;
+                    if ($("#CAFDetailsRejectedReason").val() == "") {
+                        swal('CAF details rejected reason should not be empty!');
+                        return false;
+                    }
+                    CAFFlag = 1;
+                }
+                if (document.getElementById('CAFPDFReject').checked === true) {
+                    globalFlag = 1;
+                    if ($("#CAFPDFRejectedReason").val() == "") {
+
+                        swal('CAF PDF rejected reason should not be empty!');
+                        return false;
+                    }
+                    CAFPDFFlag = 1;
+                }
+                if (document.getElementById('IsIPVRejected').checked === true) {
+                    globalFlag = 1;
+                    if ($("#IPVRejectedReason").val() == "") {
+
+                        swal('IPV rejected reason should not be empty!');
+                        return false;
+                    }
+                    IPVFlag = 1;
+                }
+                if (globalFlag == 0) {
+                    swal('Select atleast one details to reject customer!');
+                    return false;
+                }
+                swal({
+                    title: 'Are you sure?',
+                    text: "You want to reject selected customer details!",
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, reject it!'
+                },
+                    function (isConfirm) {
+                        if (isConfirm) {
+                            $.ajax({
+                                // url: "/KYCQuickEnroll/CKYCApplicationApproval?appId=" + $("#CustomerId").val() + "-R" + accountNumber + "&emailId=" + $("#CEmailId").val(),
+
+                                url: "/KYCQuickEnroll/ApplicationApproval?IsQuickEnrollDetailsRejected=" + $('#IsQuickEnrollDetailsRejected').prop("checked") +
+                                    "&QuickEnrollDetailsRejectedReason=" + $('#QuickEnrollDetailsRejectedReason').val() +
+                                    "&IsDocumentDetailsRejected=" + $('#IsDocumentDetailsRejected').prop("checked") +
+                                    "&DocumentDetailsRejectedReason=" + $('#DocumentDetailsRejectedReason').val() +
+                                    "&IsCAFDetailsRejected=" + $('#IsCAFDetailsRejected').prop("checked") +
+                                    "&CAFDetailsRejectedReason=" + $('#CAFDetailsRejectedReason').val() +
+                                    "&CAFPDFReject=" + $('#CAFPDFReject').prop("checked") +
+                                    "&CAFPDFRejectedReason=" + $('#CAFPDFRejectedReason').val() +
+                                    "&IsIPVRejected=" + $('#IsIPVRejected').prop("checked") +
+                                    "&IPVRejectedReason=" + $('#IPVRejectedReason').val() +
+                                    "&custId=" + $("#CustomerId").val() +
+                                    "&emailId=" + $("#CEmailId").val() +
+                                    "&process=" + "Reject",
+                                type: 'GET',
+                                data: '',
+                                cache: false,
+                                success: function (result) {
+                                    if (result == 'Session Expired') {
+                                        window.location.href = '/AccountLogin/AccountDetails?strLoginDetail=LogIn';
+                                    }
+                                    else {
+                                        //swal({
+                                        //    title: "",
+                                        //    text: result,
+                                        //    type: "success",
+                                        //},
+                                        //    function () {
+                                        //        window.location.reload();
+                                        //    })
+                                        if (result == "Success") {
+                                            $('#DARejectDiv').hide();
+                                            $("#loaderDAReject").hide();
+                                            $('#blackbg1').hide();
+                                            $("#overlay_DAReject").hide();
+
+                                            swal({
+                                                title: 'Rejected',
+                                                text: "Customer rejected successfully",
+                                                type: 'success',
+                                                confirmButtonColor: '#3085d6',
+                                                confirmButtonText: 'Okay',
+                                                allowEscapeKey: false,
+                                                allowOutsideClick: false
+                                            },
+                                                function () {
+                                                    window.location.reload();
+                                                })
+                                        }
+                                        else if (result == "Failed") {
+                                            swal({
+                                                type: 'error',
+                                                title: 'Oops...',
+                                                text: 'Sorry some error occured, please try later!'
+                                            })
+                                            setTimeout(function () { window.location.reload(); }, 2000);
+                                            $("#overlay_DAReject").hide();
+                                            $("#loaderDAReject").hide();
+                                        }
+                                        else {
+                                            swal({
+                                                type: 'error',
+                                                title: 'Oops...',
+                                                text: 'Sorry, some exception occured, please try later!'
+                                            })
+                                            setTimeout(function () { window.location.reload(); }, 2000);
+                                            $("#overlay_DAReject").hide();
+                                            $("#loaderDAReject").hide();
+                                        }
+                                    }
+                                }
+                            });
+                        }
+                    });
+
+            }
+
+            function DAApproveClick() {
+                debugger;
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You want to approve all details!",
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, approve it!'
+                }).then((result) => {
+                    if (result.value) {
+
+                        $("#prDAApprove").html("<div style='position: fixed;z-index: 9999;left: 45%;top:40%;background-color: #ffffffa8'><img class='ajax-loader' src='../Content/images/Loader/Webp.net-gifmaker.gif' height='70px' width='70px' align='middle' alt='ajaxloadergif' /></div>");
+                        $('#overlay_prDAApprove').show();
+                        $("#prDAApprove").show();
+                        var token = $("[name='__RequestVerificationToken']").val();
+                        $.ajax({
+                            url: "/DACDSILAndNSDLApi/DACDSILAndNSDLApiIntegration",
+                            type: 'POST',
+                            data: {
+                                __RequestVerificationToken: token
+                            },
+
+                            success: function (data) {
+                                debugger;
+                                if (data == "PrWithPOAAOFPDFSuccess") {
+                                    $("#prDAApprove").hide();
+                                    $('#overlay_prDAApprove').hide();
+                                    Swal.fire(
+                                        'Approved!',
+                                        'Customer approved by Precision & POA PDF and e-Sign Pdf with Trading Id mailed to customer successfully!',
+                                        'success'
+                                    )
+                                    //setTimeout(function () { window.location.reload(); }, 3000);
+                                }
+                                else if (data == "PrSuccessButPDFFailed") {
+                                    $("#prDAApprove").hide();
+                                    $('#overlay_prDAApprove').hide();
+                                    Swal.fire(
+                                        'Approved!',
+                                        'Customer approved by Precision But e-Sign Pdf with Trading Id not mailed to customer!',
+                                        'success'
+                                    )
+                                    //setTimeout(function () { window.location.reload(); }, 3000);
+                                }
+                                else if (data == "MaileSignException") {
+                                    $("#prDAApprove").hide();
+                                    $('#overlay_prDAApprove').hide();
+                                    Swal.fire(
+                                        'Approved!',
+                                        'Customer approved by Precision But e-Sign Pdf with Trading Id not mailed to customer!',
+                                        'success'
+                                    )
+                                    //setTimeout(function () { window.location.reload(); }, 3000);
+                                }
+                                else if (data == "PrFail") {
+                                    $("#prDAApprove").hide();
+                                    $('#overlay_prDAApprove').hide();
+                                    //swal.fire('Sorry some error occured, please try later!')
+                                    Swal.fire({
+                                        type: 'error',
+                                        title: 'Oops...',
+                                        text: 'Customer rejected by Precision, please check Dashboard!'//'Something went wrong!'
+                                    })
+                                    //setTimeout(function () { window.location.reload(); }, 3000);
+                                }
+                                else if (data == "ConnectionError") {
+                                    $("#prDAApprove").hide();
+                                    $('#overlay_prDAApprove').hide();
+                                    //swal.fire('Sorry some error occured, please try later!')
+                                    Swal.fire({
+                                        type: 'error',
+                                        title: 'Oops...',
+                                        text: 'Unable to connect Precision API Server!'//'Something went wrong!'
+                                    })
+                                    //setTimeout(function () { window.location.reload(); }, 3000);
+                                }
+                                else if (data == "PrecisionLogInsertError") {
+                                    $("#prDAApprove").hide();
+                                    $('#overlay_prDAApprove').hide();
+                                    //swal.fire('Sorry some error occured, please try later!')
+                                    Swal.fire({
+                                        type: 'error',
+                                        title: 'Oops...',
+                                        text: 'Precision log insertion error!'//'Something went wrong!'
+                                    })
+                                    //setTimeout(function () { window.location.reload(); }, 3000);
+                                }
+                                //CDSIL And NSDL API Error
+                                else if (data == "Connection Failed to Server") {
+                                    $("#prDAApprove").hide();
+                                    $('#overlay_prDAApprove').hide();
+                                    //swal.fire('Sorry some error occured, please try later!')
+                                    Swal.fire({
+                                        type: 'error',
+                                        title: 'Oops...',
+                                        text: 'DP Secured Connection Failed to Server!'//'Something went wrong!'
+                                    })
+                                    //setTimeout(function () { window.location.reload(); }, 3000);
+                                }
+                                else if (data == "TokenNotCreated") {
+                                    $("#prDAApprove").hide();
+                                    $('#overlay_prDAApprove').hide();
+                                    //swal.fire('Sorry some error occured, please try later!')
+                                    Swal.fire({
+                                        type: 'error',
+                                        title: 'Oops...',
+                                        text: 'DP Secured CDSIL API Token Not Created'//'Something went wrong!'
+                                    })
+                                    //setTimeout(function () { window.location.reload(); }, 3000);
+                                }
+                                else if (data == "Some Exception Occured") {
+                                    $("#prDAApprove").hide();
+                                    $('#overlay_prDAApprove').hide();
+                                    //swal.fire('Sorry some error occured, please try later!')
+                                    Swal.fire({
+                                        type: 'error',
+                                        title: 'Oops...',
+                                        text: 'DP Secured CDSIL OR NSDL API Some Exception Occured'//'Something went wrong!'
+                                    })
+                                    //setTimeout(function () { window.location.reload(); }, 3000);
+                                }
+                                else if (data == "Failed") {
+                                    $("#prDAApprove").hide();
+                                    $('#overlay_prDAApprove').hide();
+                                    //swal.fire('Sorry some error occured, please try later!')
+                                    Swal.fire({
+                                        type: 'error',
+                                        title: 'Oops...',
+                                        text: 'Some Exception Occured In DP Sec API'//'Something went wrong!'
+                                    })
+                                    //setTimeout(function () { window.location.reload(); }, 3000);
+                                }
+                                else if (data == "DpId Not Created Yet") {
+                                    $("#prDAApprove").hide();
+                                    $('#overlay_prDAApprove').hide();
+                                    //swal.fire('Sorry some error occured, please try later!')
+                                    Swal.fire({
+                                        type: 'error',
+                                        title: 'Oops...',
+                                        text: 'Some Exception Occured In DP Sec API'//'Something went wrong!'
+                                    })
+                                    //setTimeout(function () { window.location.reload(); }, 3000);
+                                }
+                                else if (data == "CustSignNotCrop") {
+                                    $("#prDAApprove").hide();
+                                    $('#overlay_prDAApprove').hide();
+                                    //swal.fire('Sorry some error occured, please try later!')
+                                    Swal.fire({
+                                        type: 'error',
+                                        title: 'Oops...',
+                                        text: 'Please Crop Customer Signature Before Approve'//'Something went wrong!'
+                                    })
+                                    //setTimeout(function () { window.location.reload(); }, 3000);
+                                }
+
+
+                                else {
+                                    $("#prDAApprove").hide();
+                                    $('#overlay_prDAApprove').hide();
+                                    //swal.fire('Sorry, some exception occured, please try later!')
+                                    Swal.fire({
+                                        type: 'error',
+                                        title: 'Oops...',
+                                        text: data//'Something went wrong!'
+                                    })
+                                    //setTimeout(function () { window.location.reload(); }, 3000);
+                                }
+                            },
+                            error: function () {
+                                $("#prDAApprove").hide();
+                                $('#overlay_prDAApprove').hide();
+                                Swal.fire("Error while Calling ajax Function");
+
+                            }
+                        })
+                    }
+                })
+            }
+        </script>
+
+        <script>
+            $(document).ready(function () {
+                $("#AccountRejecttxt").hide();
+            });
+        </script>
+        <script>
+            $('#AccountApprove').click(function () {
+                $("#AccountRejecttxt").hide();
+                debugger;
+                //$.ajax({
+                //    url: '/KYCQuickEnroll/GetApprovedFlag?selectedValue=' + $("#QuickRejecttxt").val() + '&appType=' + 'Account',
+                //    type: 'POST',
+                //    dataType: 'json',
+                //    data: '',
+                //    contentType: 'application/json; charset=utf-8',
+                //    success: function (data) { swal('Quick Enroll form Approved Successfully'); },
+                //    error: function (err) { alert(err); }
+                //});
+                swal('Account form Approved Successfully');
+            });
+        </script>
+        <script>
+            $('#AccountReject').click(function () {
+                debugger;
+                $("#AccountRejecttxt").show();
+
+            });
+        </script>
+        <script>
+            $('#AccountRejecttxt').blur(function () {
+                debugger;
+                var reasonAccount = $("#AccountRejecttxt").val();
+                $("#AccountRejecttxt").show();
+                //$.ajax({
+                //    url: '/KYCQuickEnroll/GetApprovedFlag?selectedValue=' + $("#AccountRejecttxt").val() + '&appType=' + 'RAccount',
+                //    type: 'POST',
+                //    data: '',
+                //    contentType: 'application/json; charset=utf-8',
+                //    success: function (data) {
+                //        swal("Account Form rejected with reject reason " + reasonAccount);
+                //    },
+                //    error: function (err) { alert(err); }
+                //});
+
+                swal("Account Form rejected with reject reason " + reasonAccount)
+            });
+        </script>
+        <script>
+            $(document).ready(function () {
+                //var isJChecked = $("#JointForAccountYes").is(":checked");
+                //if (isJChecked) {
+                if ($('#firstapplicantFNameid').val() != '') {
+                    $('#FirstHolder').show();
+                }
+                else {
+                    $('#FirstHolder').hide();
+                }
+                if ($('#SecondapplicantFNameid').val() != '') {
+                    $('#SecondHolder').show();
+                }
+                else {
+                    $('#SecondHolder').hide();
+                }
+                if ($('#ThirdapplicantFNameid').val() != '') {
+                    $('#ThirdHolder').show();
+                }
+                else {
+                    $('#ThirdHolder').hide();
+                }
+                //$('#ThirdHolder').hide();
+                //$('#SecondHolder').hide();
+                //}
+            })
+
+        </script>
+    }
+    <script>
+        function DataOfficeUseSave() {
+            debugger;
+
+            var cls =
+            {
+
+                "OfficeUseInitialAmount": $("#OfficeUseInitialAmountid").val(),
+                "OfficeUseDC_NO": $("#OfficeUseDC_NOid").val(),
+                "OfficeUseDate": $("#OfficeUseDateid").val(),
+                "OfficeUseWF_No": $("#OfficeUseWF_Noid").val(),
+                "OfficeUseNameAndSign": $("#OfficeUseNameAndSignid").val(),
+                "OfficeUseTicket_No": $("#OfficeUseTicket_Noid").val()
+            }
+
+            $.post("/CustomerAccount/CustomerAccForm?check=" + 'SaveOffice', cls).done(function (result) {
+                $("#docIdDiv").html("");
+                $('#overlay_disabl').hide();
+                if (result == 'Session Expired') {
+                    window.location.href = '/AccountLogin/AccountDetails?strLoginDetail=LogIn';
+                }
+                else if (result == "Success") {
+                    swal("Data saved successfully...!!!");
+                }
+                else if (result.includes("window.location.href = '/AccountLogin/AccountDetails?strLoginDetail=LogIn'")) {
+                    window.location.href = '/AccountLogin/AccountDetails?strLoginDetail=LogIn';
+                }
+                else {
+                    swal("Try Again");
+                }
+            });
+            //   }
+        }
+
+        function DataAOCUseSave() {
+            debugger;
+
+            var chkAOC_VISAorATM = false;
+            var chkAOC_SMSBanking = false;
+            var chkAOC_ACAndKYCComplied = false;
+            var chkAOC_IBComformationRequest = false;
+            var chkAOC_ChequeBookRequest = false;
+            var chkAOC_CosmoNetComformationRequest = false;
+            var chkAOC_AutoSweepVar = false;
+
+            if ($("#AOC_VISAorATMid").prop('checked') == true) {
+                chkAOC_VISAorATM = true;
+            }
+            if ($("#AOC_SMSBankingid").prop('checked') == true) {
+                chkAOC_SMSBanking = true;
+            }
+            if ($("#AOC_ACAndKYCCompliedid").prop('checked') == true) {
+                chkAOC_ACAndKYCComplied = true;
+            }
+            if ($("#AOC_IBComformationRequestid").prop('checked') == true) {
+                chkAOC_IBComformationRequest = true;
+            }
+            if ($("#AOC_ChequeBookRequestid").prop('checked') == true) {
+                chkAOC_ChequeBookRequest = true;
+            }
+            if ($("#AOC_CosmoNetComformationRequestid").prop('checked') == true) {
+                chkAOC_CosmoNetComformationRequest = true;
+            }
+            if ($("#AOC_AutoSweepid").prop('checked') == true) {
+                chkAOC_AutoSweepVar = true;
+            }
+
+            var cls =
+            {
+
+                "AOC_OfficerName": $("#AOC_OfficerNameid").val(),
+                "AOC_TicketNo": $("#AOC_TicketNoid").val(),
+                "AOC_VISAorATM": chkAOC_VISAorATM,
+                "AOC_SMSBanking": chkAOC_SMSBanking,
+                "AOC_ACAndKYCComplied": chkAOC_ACAndKYCComplied,
+                "AOC_IBComformationRequest": chkAOC_IBComformationRequest,
+                "AOC_ChequeBookRequest": chkAOC_ChequeBookRequest,
+                "AOC_CosmoNetComformationRequest": chkAOC_CosmoNetComformationRequest,
+                "AOC_AutoSweep": chkAOC_AutoSweepVar
+            }
+
+            $.post("/CustomerAccount/CustomerAccForm?check=" + 'SaveAOC', cls).done(function (result) {
+                $("#docIdDiv").html("");
+                $('#overlay_disabl').hide();
+                if (result == 'Session Expired') {
+                    window.location.href = '/AccountLogin/AccountDetails?strLoginDetail=LogIn';
+                }
+                else if (result == "Success") {
+                    swal("Data saved successfully...!!!");
+                }
+                else if (result.includes("window.location.href = '/AccountLogin/AccountDetails?strLoginDetail=LogIn'")) {
+                    window.location.href = '/AccountLogin/AccountDetails?strLoginDetail=LogIn';
+                }
+                else {
+                    swal("Try Again");
+                }
+            });
+            //   }
+        }
+
+        function DataABCSave() {
+            debugger;
+
+            var cls =
+            {
+
+                "ABCcell_OfficerName": $("#ABCcell_OfficerNameid").val(),
+                "ABCcell_TicketNo": $("#ABCcell_TicketNoid").val()
+
+            }
+
+            $.post("/CustomerAccount/CustomerAccForm?check=" + 'SaveABC', cls).done(function (result) {
+                $("#docIdDiv").html("");
+                $('#overlay_disabl').hide();
+                if (result == 'Session Expired') {
+                    window.location.href = '/AccountLogin/AccountDetails?strLoginDetail=LogIn';
+                }
+                else if (result == "Success") {
+                    swal("Data saved successfully...!!!");
+                }
+                else if (result.includes("window.location.href = '/AccountLogin/AccountDetails?strLoginDetail=LogIn'")) {
+                    window.location.href = '/AccountLogin/AccountDetails?strLoginDetail=LogIn';
+                }
+                else {
+                    swal("Try Again");
+                }
+            });
+            //   }
+        }
+        function pdfAccount(e) {
+            debugger;
+            var url = window.location.protocol + "//" + window.location.host + "/CustomerAccount/DownloadAccpdf";
+            window.open(url, '_blank');
+        }
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            if ('@ViewBag.msg' != null && '@ViewBag.msg' != '') {
+                swal('@ViewBag.msg');
+            }
+        });
+        function captureimage() {
+            debugger;
+            $.ajax({
+                url: '/KYCImageCapture/OpencameraForDigi',
+                type: 'GET',
+                cache: false,
+                success: function (result) {
+                    debugger;
+                    $('#DigitCaptureImage').html(result);
+                }
+            });
+        }
+        function SendPhoto(e) {
+            debugger;
+            var base64I;
+            var imageInnerHtml;
+            var b;
+            if ($('#DigitCaptureImage').is(':visible') == true) {
+                if (document.getElementById('livephoto').src != '') {
+                    if ($('#Digiresults').is(':visible') == true) {
+                        if (document.getElementById('Digiresults').innerHTML != "Your captured image will appear here...") {
+                            base64I = (document.getElementById("Digiresults").innerHTML);
+                            imageInnerHtml = base64I.split(",");
+                            b = imageInnerHtml[1];
+                            b = b.substring(0, b.length - 2);
+                        }
+                    }
+                }
+                else {
+                    swal("Capture photo");
+                    event.preventDefault();
+                }
+            }
+            $('#digiphotoid').val(b);
+        }
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $('.nav-tabs > li > a').click(function (event) {
+                event.preventDefault();//stop browser to take action for clicked anchor
+                //get displaying tab content jQuery selector
+                var active_tab_selector = $('.nav-tabs > li.active > a').attr('href');
+                //find actived navigation and remove 'active' css
+                var actived_nav = $('.nav-tabs > li.active');
+                actived_nav.removeClass('active');
+                //add 'active' css into clicked navigation
+                $(this).parents('li').addClass('active');
+                //hide displaying tab content
+                $(active_tab_selector).removeClass('active');
+                $(active_tab_selector).addClass('hide');
+                //show target tab content
+                var target_tab_selector = $(this).attr('href');
+                $(target_tab_selector).removeClass('hide');
+                $(target_tab_selector).addClass('active');
+            });
+        });
+    </script>
+
+
+    @if (ViewBag.AdminFlag != "AdminFlag")
+    {
+        <script>
+
+        $(document).ready(function () {
+            debugger;
+
+            if ('@Model.IsLogin' == 'true') {
+                //$('#Litab1').addClass("active");
+                $('#tab1').addClass("active");
+                $('#tab1').removeClass("hide");
+                //// $('#Litab1').addClass("active");
+            }
+            if ('@Model.KYCverificationType' != '')
+            {@*'@Model.shareAadharNumber' == 'Y'*@
+                $('#Litab1').removeClass("active");
+                $('#tab1').addClass("hide");
+                $('#tab1').removeClass("active");
+                $('#tab5').removeClass("hide");
+                $('#Litab5').addClass("active");
+                $('#tab5').addClass("active");
+            }
+            if ('@Model.IsQuickEnrollSubmit' == 'True') {
+                $('#Litab5').removeClass("active");
+                $('#tab5').addClass("hide");
+                $('#tab5').removeClass("active");
+                $('#tab2').removeClass("hide");
+                $('#Litab2').addClass("active");
+                $('#tab2').addClass("active");
+
+            }
+            if ('@Model.IsDocumentSubmit' == 'True' ) {
+                $('#Litab2').removeClass("active");
+                $('#tab2').addClass("hide");
+                $('#tab2').removeClass("active");
+                $('#tab3').removeClass("hide");
+                $('#Litab3').addClass("active");
+                $('#tab3').addClass("active");
+                tab3Click();
+
+            }
+            if ('@Model.IsIPVSubmit' == 'True'&& '@Model.isIPVSkip'=='False') {
+                $('#Litab3').removeClass("active");
+                $('#tab3').addClass("hide");
+                $('#tab3').removeClass("active");
+
+                //$('#Litab4').removeClass("active");
+                //$('#tab4').addClass("hide");
+                //$('#tab4').removeClass("active");
+
+                $('#tab3').removeClass("hide");
+                $('#Litab3').addClass("active");
+                $('#tab3').addClass("active");
+                tab3Click();
+
+                //$('#Litab4').addClass("active");
+                //$('#tab4').addClass("active");
+                //$('#tab4').removeClass("hide");
+            }
+            if ('@Model.IsIPVSubmit' == 'True'&& '@Model.isIPVSkip'=='True') {
+                $('#Litab3').removeClass("active");
+                $('#tab3').addClass("hide");
+                $('#tab3').removeClass("active");
+
+
+
+                //$('#Litab4').removeClass("active");
+                //$('#tab4').addClass("hide");
+                //$('#tab4').removeClass("active");
+
+
+                $('#Litab4').addClass("active");
+                $('#tab4').removeClass("hide");
+                $('#tab4').removeClass("active");
+                tab4Click();
+
+                //tab3Click();
+                //$('#Litab4').addClass("active");
+                //$('#tab4').addClass("active");
+                //$('#tab4').removeClass("hide");
+            }
+            //function GetCustomerData(e) {
+            //    debugger;
+            //    //var CustId = $('#custID').val();// PersonalId
+            //    $.ajax({
+            //        url = '/KYCQuickEnroll/DigitalQuickEnrollment?proceedwithOCR=' + $('#ocrno').val() + '&shareAadharNumber=' + $('#radiono').val()
+            //        + '&PersonalId=' + $('#custID').val(),
+            //        type: 'GET',
+            //        cache: false,
+            //        success: function (result) {
+
+            //        }
+
+            //    })
+            //}
+        });
+        </script>
+    }
+
+
+    @if (ViewBag.AdminFlag == "AdminFlag")
+    {
+        <script>
+
+        $(document).ready(function () {
+            debugger;
+
+            if ('@Model.IsLogin' == 'true') {
+                //$('#Litab1').addClass("active");
+                $('#tab1').addClass("active");
+                $('#tab1').removeClass("hide");
+                //// $('#Litab1').addClass("active");
+            }
+            if ('@Model.KYCverificationType' != '')
+            {@*'@Model.shareAadharNumber' == 'Y'*@
+                $('#Litab1').removeClass("active");
+                $('#tab1').addClass("hide");
+                $('#tab1').removeClass("active");
+                $('#tab5').removeClass("hide");
+                $('#Litab5').addClass("active");
+                $('#tab5').addClass("active");
+            }
+            if ('@Model.IsQuickEnrollSubmit' == 'True') {
+                $('#Litab5').removeClass("active");
+                $('#tab5').addClass("hide");
+                $('#tab5').removeClass("active");
+                $('#tab2').removeClass("hide");
+                $('#Litab2').addClass("active");
+                $('#tab2').addClass("active");
+
+            }
+            if ('@Model.IsDocumentSubmit' == 'True' ) {
+                $('#Litab2').removeClass("active");
+                $('#tab2').addClass("hide");
+                $('#tab2').removeClass("active");
+                $('#tab3').removeClass("hide");
+                $('#Litab3').addClass("active");
+                $('#tab3').addClass("active");
+               // tab3Click();
+
+            }
+            if ('@Model.IsIPVSubmit' == 'True'&& '@Model.isIPVSkip'=='False') {
+                $('#Litab3').removeClass("active");
+                $('#tab3').addClass("hide");
+                $('#tab3').removeClass("active");
+
+                $('#Litab4').removeClass("active");
+                $('#tab4').addClass("hide");
+                $('#tab4').removeClass("active");
+
+                //$('#tab3').removeClass("hide");
+                //$('#Litab3').addClass("active");
+                //$('#tab3').addClass("active");
+                //tab3Click();
+
+                //$('#Litab4').addClass("active");
+                //$('#tab4').addClass("active");
+                //$('#tab4').removeClass("hide");
+            }
+            if ('@Model.IsIPVSubmit' == 'True'&& '@Model.isIPVSkip'=='True') {
+                $('#Litab3').removeClass("active");
+                $('#tab3').addClass("hide");
+                $('#tab3').removeClass("active");
+
+
+
+                $('#Litab4').removeClass("active");
+                $('#tab4').addClass("hide");
+                $('#tab4').removeClass("active");
+
+
+                //$('#Litab4').addClass("active");
+                //$('#tab4').removeClass("hide");
+                //$('#tab4').removeClass("active");
+                //tab4Click();
+
+                //tab3Click();
+                //$('#Litab4').addClass("active");
+                //$('#tab4').addClass("active");
+                //$('#tab4').removeClass("hide");
+            }
+            //function GetCustomerData(e) {
+            //    debugger;
+            //    //var CustId = $('#custID').val();// PersonalId
+            //    $.ajax({
+            //        url = '/KYCQuickEnroll/DigitalQuickEnrollment?proceedwithOCR=' + $('#ocrno').val() + '&shareAadharNumber=' + $('#radiono').val()
+            //        + '&PersonalId=' + $('#custID').val(),
+            //        type: 'GET',
+            //        cache: false,
+            //        success: function (result) {
+
+            //        }
+
+            //    })
+            //}
+        });
+        </script>
+    }
+
+    <script>
+        ////quickenroll/////
+        function nxtenroll() {
+            $('#quickenrolldiv').hide();
+            $('#documentdiv').show();
+        }
+        ////document/////
+        function pvsdoc() {
+            $('#quickenrolldiv').show();
+            $('#documentdiv').hide();
+        }
+        function nxtdoc() {
+            $('#IPVdiv').show();
+            $('#documentdiv').hide();
+        }
+        ////ipv/////
+        function pvsIPV() {
+            $('#documentdiv').show();
+            $('#IPVdiv').hide();
+        }
+        function nxtIPV() {
+            $('#IPVdiv').hide();
+            $('#summarydiv').show();
+        }
+
+    </script>
+    <script>
+        function chkadharcard(e) {
+            debugger;
+            var radioid = e.id;
+            var url = null;
+            // if (radioid == "radioyes") {
+            url = '/KYCQuickEnroll/CustomerQuickEnrollment?proceedwithOCR=' + $('#ocrno').val() + '&shareAadharNumber=' + $('#radioyes').val();
+            $.ajax({
+                url: url,
+                type: 'get',
+                success: function (result) {
+                    debugger;
+                    // $("#AadharRadio").hide();
+                    $('#Aadharview').show();
+                    $('#Aadharview').html(result);
+                }
+            });
+            $('#ocrchk').hide();
+            $('#OCRView').html('');
+            $('#OCRView').hide();
+
+
+        }
+        function SelectAadharOption() {
+            debugger;
+            // $('#testcustomerData').hide();
+            //$('#CustomerQuick').show();
+        }
+
+    </script>
+
+    <script>
+        $(function () {
+            debugger;
+            //pan
+            $("#Panverificationtype").click(function () {
+                debugger;
+                if ($(this).is(":checked")) {
+                    $('#CustPanVerify').show();
+                    $('#btnPDF').hide();
+                    $('#btnPDFWithout').hide();
+                }
+                else {
+                    $('#CustPanVerify').hide();
+                    $('#btnPDF').show();
+                    $('#btnPDFWithout').show();
+
+                }
+            });
+            //ckyc
+            $("#CKYCVerificationtype").click(function () {
+                debugger;
+                if ($(this).is(":checked")) {
+                    $('#changeCkycOption').show();
+                    $('#btnPDF').hide();
+                    $('#btnPDFWithout').hide();
+                }
+                else {
+                    $('#changeCkycOption').hide();
+                    $('#btnPDF').show();
+                    $('#btnPDFWithout').show();
+                }
+            });
+            //aadhar
+            $("#Aadharverificationtype").click(function () {
+                debugger;
+                if ($(this).is(":checked")) {
+                    $('#testcustomerData').hide();
+                    $('#CustomerQuick').show();
+                    $('#btnPDF').show();
+                    $('#btnPDFWithout').show();
+                }
+                else {
+                    $('#CustomerQuick').hide();
+                    $('#btnPDF').hide();
+                    $('#btnPDFWithout').hide();
+                }
+            });
+            //Other
+            $("#Otherverification").click(function () {
+                debugger;
+                if ($(this).is(":checked")) {
+
+                    $('#CustOther').show();
+                }
+                else {
+                    $('#CustOther').hide();
+                }
+            });
+            //EKYC
+            $("#OnlineEKYCVerificationType").click(function () {
+                debugger;
+                if ($(this).is(":checked")) {
+                    $('#CustEkyc').show();
+                    $('#btnPDF').hide();
+                    $('#btnPDFWithout').hide();
+                }
+                else {
+                    $('#CustEkyc').hide();
+                    $('#btnPDF').show();
+                    $('#btnPDFWithout').show();
+                }
+            });
+            $("#ReKyc").click(function () {
+                debugger;
+                if ($(this).is(":checked")) {
+                    $('#CustReKYC').show();
+                    $('#btnPDF').hide();
+                    $('#btnPDFWithout').hide();
+                }
+                else {
+                    $('#CustReKYC').hide();
+                    $('#btnPDF').show();
+                    $('#btnPDFWithout').show();
+                }
+            });
+
+            $("#DigiLocker").click(function () {
+                debugger;
+                if ($(this).is(":checked")) {
+                    $('#CustDigi').show();
+                }
+                else {
+                    $('#CustDigi').hide();
+                }
+            });
+
+
+            //if ($(DigiLocker).is(":checked")) {
+            //    debugger;
+            //    $('#CustDigi').show();
+            //}
+            //else {
+            //    $('#CustDigi').hide();
+
+            //}
+        });
+    </script>
+    <script>
+        function PanVerification() {
+            debugger;
+            $.ajax({
+                url: '/KYCQuickEnroll/NSDLPanVerification?PanNo=' + $('#NSDL_pannumber').val(),
+                type: 'POST',
+                cache: false,
+                processData: false,
+                contentType: false,
+                success: function (result) {
+                    debugger;
+                    if (result != null) {
+                        //NSDL_firstname  NSDL_middlename NSDL_lastname
+                        $('#NSDL_firstname').val(result.NSDL_FirstName);
+                        $('#NSDL_middlename').val(result.NSDL_MiddleName);
+                        $('#NSDL_lastname').val(result.NSDL_LastName);
+                    }
+
+                }
+            })
+        }
+    </script>
+    <script>
+        function GridDocView() {
+            debugger;
+            var DocMainType = "I";
+            $.ajax({
+                url: '/DocumentDetails/GetDocumentsForGridView?DocMainType=' + DocMainType,
+                type: "GET",
+                contentType: false, // Not to set any content header
+                processData: false, // Not to process data
+                data: {},
+                async: false,
+                success: function (result) {
+                    debugger;
+                    $('#docdetails').html(result);
+                    $('#docdetails').show();
+
+                },
+                error: function (err) {
+                    alert(err.statusText);
+                }
+            });
+            debugger;
+            DocMainType = "CA";
+            $.ajax({
+                url: '/DocumentDetails/GetDocumentsForGridView?DocMainType=' + DocMainType,
+                type: "GET",
+                contentType: false, // Not to set any content header
+                processData: false, // Not to process data
+                data: {},
+                async: false,
+                success: function (result) {
+                    debugger;
+                    $('#docdetails_Add').html(result);
+                    $('#docdetails_Add').show();
+
+                },
+                error: function (err) {
+                    alert(err.statusText);
+                }
+            });
+
+            DocMainType = "SI";
+            $.ajax({
+                url: '/DocumentDetails/GetDocumentsForGridView?DocMainType=' + DocMainType,
+                type: "GET",
+                contentType: false, // Not to set any content header
+                processData: false, // Not to process data
+                data: {},
+                async: false,
+                success: function (result) {
+                    debugger;
+                    $('#docdetails_Sign').html(result);
+                    $('#docdetails_Sign').show();
+
+                },
+                error: function (err) {
+                    alert(err.statusText);
+                }
+            });
+
+        }
+    </script>
+    <script>
+//            $(document).ready(function(){
+//         $('.MyAction').live("click",function () {
+//        var id = $(this).attr('data-id');
+//        window.location = "/KYCQuickEnroll/CustomerQuickEnrollment";
+//      })
+//});
+    </script>
+    <script>
+        $(document).ready(function(){
+        $("#Litab1").click(function(){
+            debugger;
+            
+            $("#verifybag").show();
+            $("#blackbg").show();
+             
+            $("preloader").hide();
+            
+            
+            $.ajax({
+
+                url: "/AdminLogin/SubmitToFinacleCheck",
+                type: 'GET',
+                dataType: 'json',
+                result: '',
+                contentType: 'application/json; charset=utf-8',
+                 
+                success: function (result) {
+
+                    if (result == "1"){
+                         $('#Litab8').show();
+                           $("#bg").addClass("bg-green");
+                             $("#bg1").addClass("bg-green");
+                          $("#bg2").addClass("bg-green");
+                          $("#bg6").addClass("bg-green");
+
+                          $("#QuickApprove").addClass("bg-green");
+                         $("#DigiApprove").addClass("bg-green");
+                          $("#DocApprove").addClass("bg-green");
+                         $("#AccountApprove").addClass("bg-green");
+                          //$("#bg4").addClass("bg-green");
+
+
+                        
+                             
+                    }else if(result == "0"){
+                        
+                        $('#Litab8').hide();
+                        
+                    }
+                    else{
+                        $('#Litab8').hide();
+                    }
+
+
+                },
+                
+            });
+
+            
+        });
+        });
+        </script>
+         <script>
+        $(document).ready(function(){
+        $("#Litab5").click(function(){
+            debugger;
+            
+            $("#verifybag").show();
+            $("#blackbg").show();
+             
+            $("preloader").hide();
+            
+            
+            $.ajax({
+
+                url: "/AdminLogin/SubmitToFinacleCheck",
+                type: 'GET',
+                dataType: 'json',
+                result: '',
+                contentType: 'application/json; charset=utf-8',
+                 
+                success: function (result) {
+
+                    if (result == "1"){
+                         $('#Litab8').show();
+                           $("#bg2").addClass("bg-green");
+                        
+                             
+                    }else if(result == "0"){
+                        
+                        $('#Litab8').hide();
+                        
+                    }
+                    else{
+                        $('#Litab8').hide();
+                    }
+
+
+                },
+                
+            });
+
+            
+        });
+        });
+        </script>
+    <script>
+        function tab1Click() {
+            debugger;
+            $("#DigiCerti").html("<div style='position: fixed;z-index: 5000;float: left;right: 50%;height: 50px;width: 50px;top:40%;'><i class='fa fa-pulse fa-fw dgldr ldrdesign' style='height:70px;width:70px;border-radius:50%;border-bottom:5px dotted grey;border-top:5px dotted black;border-right:5px dotted black;border-left:5px dotted black;height:80px;width:80px;position:absolute;margin: 20% 50%;'></i></div>");
+            $("#DigiCerti").show();
+            $("#DIGIbag").show();
+           
+             $('#CustAllData').hide();
+            $.ajax({
+                url: '/KYCQuickEnroll/CustomerQuickEnrollment?msg=' + "1",
+                type: "GET",
+                contentType: false,
+                processData: false,
+                data: {},
+                success: function (result) {
+                    debugger;
+                    $("#DigiCerti").hide();
+                    $("#DIGIbag").hide();
+                    $('#tabShow').empty();
+                    $('#tabShow').html(result);
+                }
+            })            
+        }
+        function tab5Click() {
+            debugger;
+            $("#DigiCerti").html("<div style='position: fixed;z-index: 5000;float: left;right: 50%;height: 50px;width: 50px;top:40%;'><i class='fa fa-pulse fa-fw dgldr ldrdesign' style='height:70px;width:70px;border-radius:50%;border-bottom:5px dotted grey;border-top:5px dotted black;border-right:5px dotted black;border-left:5px dotted black;height:80px;width:80px;position:absolute;margin: 20% 50%;'></i></div>");
+            $("#DigiCerti").show();
+            $("#DIGIbag").show();
+              
+            $.ajax({
+                url: '/KYCQuickEnroll/DigitalQuickEnrollment',
+                type: "GET",
+                contentType: false, // Not to set any content header
+                processData: false, // Not to process data
+                data: {},
+                success: function (result) {
+                    debugger;
+                    $("#DigiCerti").hide();
+                    $("#DIGIbag").hide();
+                    $('#tabShow').empty();
+                    $('#tabShow').show();
+                    $('#tabShow').html(result);
+                }
+
+            })
+        }
+        function tab5ClickForEmpty(e) {
+            debugger;
+            $('#tabShow').empty();
+            // var page = $(this).attr('href');
+            $('.tabShow').load(page);
+            //location.reload();
+
+        }
+        function tab2Click() {
+            debugger;
+            $("#DigiCerti").html("<div style='position: fixed;z-index: 5000;float: left;right: 50%;height: 50px;width: 50px;top:40%;'><i class='fa fa-pulse fa-fw dgldr ldrdesign' style='height:70px;width:70px;border-radius:50%;border-bottom:5px dotted grey;border-top:5px dotted black;border-right:5px dotted black;border-left:5px dotted black;height:80px;width:80px;position:absolute;margin: 20% 50%;'></i></div>");
+            $("#DigiCerti").show();
+            $("#DIGIbag").show();
+               
+            $.ajax({
+                url: '/DocumentDetails/CustomerDocumentDetails',
+                type: "GET",
+                //contentType: false, // Not to set any content header
+                // processData: false, // Not to process data
+                data: {},
+                success: function (result) {
+                    debugger;
+                    $("#DigiCerti").hide();
+                    $("#DIGIbag").hide();
+                    $('#tabShow').empty();
+                    //$('#tabShow').show();
+                    $('#tabShow').html(result);
+                }
+
+            })
+        }
+        function tab2ClickForEmpty(e) {
+            debugger;
+            $('#tabShow').empty();
+            // var page = $(this).attr('href');
+            // $('.tabShow').load(page);
+            //location.reload();
+
+        }
+         function PreviewIPVForadmin(e) {
+            debugger;
+            $("#DigiCerti1").html("<div style='position: fixed;z-index: 5000;float: left;right: 50%;height: 50px;width: 50px;top:40%;'><i class='fa fa-pulse fa-fw dgldr ldrdesign' style='height:70px;width:70px;border-radius:50%;border-bottom:5px dotted grey;border-top:5px dotted black;border-right:5px dotted black;border-left:5px dotted black;height:80px;width:80px;position:absolute;margin: 20% 50%;'></i></div>");
+            $("#DigiCerti1").show();
+            $("#DIGIbag1").show();
+            if ('@ViewBag.filepath3' == '') {
+                $.ajax({
+                    url: '/IPVDetails/showVideo',
+                    cache: false,
+                    success: function (result) {
+                        debugger;
+                        $("#DigiCerti1").hide();
+                        $("#DIGIbag1").hide();
+                        $('#showvideo').show();
+                        $('#showvideo').html(result);
+
+                    }
+                })
+            } else {
+                document.getElementById('playvideo').play();
+                document.getElementById('playvideo1').play();
+                document.getElementById('playvideo2').play();
+            }
+
+
+        }
+        function tab3Click() {
+            debugger;
+            $('#tabShow').empty();
+            $('#tab4').hide();
+            $("#DigiCerti1").html("<div style='position: fixed;z-index: 5000;float: left;right: 50%;height: 50px;width: 50px;top:40%;'><i class='fa fa-pulse fa-fw dgldr ldrdesign' style='height:70px;width:70px;border-radius:50%;border-bottom:5px dotted grey;border-top:5px dotted black;border-right:5px dotted black;border-left:5px dotted black;height:80px;width:80px;position:absolute;margin: 20% 50%;'></i></div>");
+            $("#DigiCerti1").show();
+            $("#DIGIbag1").show();
+              
+            $.ajax({
+                url:  '/NEWIPVDetails/CustIPVdetails?msg=' + "1",
+                type: "GET",
+                data: {},
+                success: function (result) {
+                    debugger;
+                    $("#DigiCerti1").hide();
+                    $("#DIGIbag1").hide();
+                    $('#tabShow').empty();
+                    //$('#tabShow').show();
+                    $('#tabShow').html(result);
+                }
+
+            })
+        }
+        function tab3ClickForEmpty(e) {
+            debugger;
+            $('#tabShow').empty();
+            // var page = $(this).attr('href');
+            // $('.tabShow').load(page);
+            //location.reload();
+
+        }
+        function aadharsubmit(e) {
+            debugger;
+            // $('#isCAFPDFActive').addClass("active");
+            //$("li.active").parent().addClass("is-active");
+            $('#TabCafpdf').addClass("active");
+            var url = window.location.protocol + "//" + window.location.host + "/DataVerify/dowanloadpdf";
+            window.open(url, '_blank');
+            //setTimeout(function () {
+            //    window.location.reload(1);
+            //}, 5000);
+
+            //$('#isCAFPDFActive').is('active');
+        }
+        function pdfAccount(e) {
+            debugger;
+            $('#TabSavingAcc').addClass("active");
+            var url = window.location.protocol + "//" + window.location.host + "/CustomerAccount/DownloadAccpdf";
+            window.open(url, '_blank');
+        }
+        function tab7Click() {
+            debugger;
+            $("#DigiCerti").html("<div style='position: fixed;z-index: 5000;float: left;right: 50%;height: 50px;width: 50px;top:40%;'><i class='fa fa-pulse fa-fw dgldr ldrdesign' style='height:70px;width:70px;border-radius:50%;border-bottom:5px dotted grey;border-top:5px dotted black;border-right:5px dotted black;border-left:5px dotted black;height:80px;width:80px;position:absolute;margin: 20% 50%;'></i></div>");
+            $("#DigiCerti").show();
+            $("#DIGIbag").show();
+            $.ajax({
+                url: '/CustomerAccount/CustomerAccForm',
+                type: "GET",
+                //contentType: false, // Not to set any content header
+                // processData: false, // Not to process data
+                data: {},
+                success: function (result) {
+                    debugger;
+                    $("#DigiCerti").hide();
+                    $("#DIGIbag").hide();
+                    $('#tabShow').empty();
+                    //$('#tabShow').show();
+                    $('#tabShow').html(result);
+                }
+
+            })
+        }
+        function tab8Click() {
+            debugger;
+            $("#DigiCerti").html("<div style='position: fixed;z-index: 5000;float: left;right: 50%;height: 50px;width: 50px;top:40%;'><i class='fa fa-pulse fa-fw dgldr ldrdesign' style='height:70px;width:70px;border-radius:50%;border-bottom:5px dotted grey;border-top:5px dotted black;border-right:5px dotted black;border-left:5px dotted black;height:80px;width:80px;position:absolute;margin: 20% 50%;'></i></div>");
+            $("#DigiCerti").show();
+            $("#DIGIbag").show();
+              
+            $.ajax({
+                url: '/CustomerAccount/CBSCustomerIDCreation',
+                type: "GET",
+                //contentType: false, // Not to set any content header
+                // processData: false, // Not to process data
+                data: {},
+                success: function (result) {
+                    debugger;
+                    if(result=="Account Created Successfully")
+                    {
+                        swal({
+                            title: "Account Created Successfully",
+                            
+                            type: 'success',
+                            
+                            confirmButtonColor: '#DD6B55',
+                            confirmButtonText: 'Ok',
+                            
+                            closeOnConfirm: false,
+                            closeOnCancel: false
+                         },
+                         function(isConfirm){
+
+                           if (isConfirm){
+                             window.location.reload();
+                             window.location.href = '/AdminLogin/CustomerStatus';
+                             $.ajax({
+                                    url: '/CustomerAccount/CBSApproveDate',
+                                    type: 'POST',
+                                    cache: false,
+                                   data: {}
+                                    });
+                            } else {
+                              swal("Cancelled");
+                            }
+                         });
+                            
+                    }
+                    else if (result=="Joint Account Created Successfully")
+                    {
+                        swal({
+                            title: "Joint Account Created Successfully",
+                            
+                            type: 'success',
+                            
+                            confirmButtonColor: '#DD6B55',
+                            confirmButtonText: 'Ok',
+                            
+                            closeOnConfirm: false,
+                            closeOnCancel: false
+                         },
+                         function(isConfirm){
+
+                           if (isConfirm){
+                             window.location.reload();
+                             window.location.href = '/AdminLogin/CustomerStatus';
+                             $.ajax({
+                                    url: '/CustomerAccount/CBSApproveDate',
+                                    type: 'POST',
+                                    cache: false,
+                                   data: {}
+                                    });
+
+                            } else {
+                              swal("Cancelled");
+                            }
+                         });
+                        
+                    }
+                    else if(result=="Pan Already Exist")
+                    {
+                        swal({
+                            title: "Pan Already Exist",
+                            
+                            type: 'Warning',
+                            
+                            confirmButtonColor: '#DD6B55',
+                            confirmButtonText: 'Ok',
+                            
+                            closeOnConfirm: false,
+                            closeOnCancel: false
+                         },
+                         function(isConfirm){
+
+                           if (isConfirm){
+                             window.location.reload();
+
+                            } else {
+                              swal("Cancelled");
+                            }
+                         });
+                        
+                    }
+                    else
+                    {
+                        swal({
+                            title: "No Response From SIL APi",
+                            
+                            type: 'Warning',
+                            
+                            confirmButtonColor: '#DD6B55',
+                            confirmButtonText: 'Ok',
+                            
+                            closeOnConfirm: false,
+                            closeOnCancel: false
+                         },
+                         function(isConfirm){
+
+                           if (isConfirm){
+                             window.location.reload();
+
+                            } else {
+                              swal("Cancelled");
+                            }
+                         });
+                         
+                    }
+                    $("#DigiCerti").hide();
+                    $("#DIGIbag").hide();
+                    $('#tabShow').empty();
+                    //$('#tabShow').show();
+                    //$('#tabShow').html(result);
+                }
+
+            })
+        }
+
+
+
+        function GOToSaveaccPage() {
+            debugger;
+            $('#Litab4').removeClass("active");
+            $('#tab4').addClass("hide");
+            $('#tab4').removeClass("active");
+            $('#Litab7').addClass("active");
+            $('#tab7').addClass("active");
+            $('#tab7').removeClass("hide");
+            $("#DigiCerti").html("<div style='position: fixed;z-index: 5000;float: left;right: 50%;height: 50px;width: 50px;top:40%;'><i class='fa fa-pulse fa-fw dgldr ldrdesign' style='height:70px;width:70px;border-radius:50%;border-bottom:5px dotted grey;border-top:5px dotted black;border-right:5px dotted black;border-left:5px dotted black;height:80px;width:80px;position:absolute;margin: 20% 50%;'></i></div>");
+            $("#DigiCerti").show();
+            $("#DIGIbag").show();
+            $.ajax({
+                url: '/CustomerAccountController/CustomerAccForm?msg=' + "1",
+                type: "GET",
+                //contentType: false, // Not to set any content header
+                // processData: false, // Not to process data
+                data: {},
+                success: function (result) {
+                    debugger;
+                    $("#DigiCerti").hide();
+                    $("#DIGIbag").hide();
+                    //$('#tabShow').empty();
+                    $('#tabShow').show();
+                    $('#tabShow').html(result);
+                }
+
+            })
+        }
+        function tab7ClickForEmpty(e) {
+            debugger;
+            $('#tabShow').empty();
+            // var page = $(this).attr('href');
+            // $('.tabShow').load(page);
+            //location.reload();
+
+        }
+        function tab4ClickForEmpty(e) {
+            debugger;
+            $('#tabShow').empty();
+            // var page = $(this).attr('href');
+            // $('.tabShow').load(page);
+            //location.reload();
+
+        }
+        function tab4Click() {
+            debugger;
+            $('#tabShow').empty();
+            $('#tab4').hide();
+            $("#DigiCerti").html("<div style='position: fixed;z-index: 5000;float: left;right: 50%;height: 50px;width: 50px;top:40%;'><i class='fa fa-pulse fa-fw dgldr ldrdesign' style='height:70px;width:70px;border-radius:50%;border-bottom:5px dotted grey;border-top:5px dotted black;border-right:5px dotted black;border-left:5px dotted black;height:80px;width:80px;position:absolute;margin: 20% 50%;'></i></div>");
+            $("#DigiCerti").show();
+            $("#DIGIbag").show();
+              
+            $.ajax({
+                url: '/DataVerify/SummerySheetDetails',
+                type: "GET",
+                //contentType: false, // Not to set any content header
+                // processData: false, // Not to process data
+                data: {},
+                success: function (result) {
+                    debugger;
+                    $('#IPVvideoId').hide();
+                    $("#DigiCerti").hide();
+                    $("#DIGIbag").hide();
+                    $('#tabShow').empty();
+                    //$('#tabShow').show();
+                    $('#tabShow').html(result);
+                }
+
+            })
+            // var page = $(this).attr('href');
+            // $('.tabShow').load(page);
+            //location.reload();
+
+        }
+        function NextTab() {
+            debugger;
+            $('#Litab3').removeClass("active");
+            $('#tab3').addClass("hide");
+            $('#tab3').removeClass("active");
+            $('#Litab4').addClass("active");
+            $('#tab4').addClass("active");
+            $('#tab4').removeClass("hide");
+            $("#DigiCerti").html("<div style='position: fixed;z-index: 5000;float: left;right: 50%;height: 50px;width: 50px;top:40%;'><i class='fa fa-pulse fa-fw dgldr ldrdesign' style='height:70px;width:70px;border-radius:50%;border-bottom:5px dotted grey;border-top:5px dotted black;border-right:5px dotted black;border-left:5px dotted black;height:80px;width:80px;position:absolute;margin: 20% 50%;'></i></div>");
+            $("#DigiCerti").show();
+            $("#DIGIbag").show();
+            $.ajax({
+                url: '/DataVerify/SummerySheetDetails?msg=' + "1",
+                type: "GET",
+                //contentType: false, // Not to set any content header
+                // processData: false, // Not to process data
+                data: {},
+                success: function (result) {
+                    debugger;
+                    $('#IPVvideoId').hide();
+                    $("#DigiCerti").hide();
+                    $("#DIGIbag").hide();
+                    $('#tabShow').empty();
+                    //$('#tabShow').show();
+                    $('#tabShow').html(result);
+                }
+
+            })
+
+        }
+    </script>
+    @*<script>
+
+            function openNav() {
+                document.getElementById("mySidenav").style.width = "250px";
+                document.getElementById("main").style.marginLeft = "250px";
+            }
+
+            function closeNav() {
+                document.getElementById("mySidenav").style.width = "0";
+                document.getElementById("main").style.marginLeft = "0";
+            }
+        </script>*@
+    <script>
+        function LogOut() {
+
+            $.ajax({
+                url: "/OrganisationLogin/Logout",
+                type: "Get",
+                cache: false,
+
+                success: function (result) {
+
+                    debugger;
+                    if (result == "Logout") {
+                        //window.location.href = "http://localhost:62667/";
+                        window.location.href = "https://indoesign.co.in/";
+                    }
+                    else {
+                        swal(result);
+                    }
+                }
+            })
+        }
+    </script>
+     <script>
+            let jo  = "@ViewBag.jointTab";
+            if (jo == "true")
+            {
+                $('#init_over').hide();
+                $('#Litab1').hide();
+                $('#Litab2').hide();
+                $('#Litab3').hide();
+                $('#Litab4').hide();
+                $('#Litab5').hide();
+
+                $("#Litab7").show();
+                $('#Litab8').hide();
+
+
+            }     
+        </script>
+</head>
+<body>
+
+    @if ((ViewBag.Cust == "" || ViewBag.Cust == null) && ViewBag.AdminFlag != "AdminFlag")                    /////if Agent Login
+    {
+        <div class="loadera"></div>
+        <section id="dashboard-menu">
+            <div class="container-fluied">
+                <div class="row" style="margin:0%">
+                    <nav class="navbar navbar-expand-lg navbar-light bg-light dashboard-menu" style="margin-bottom: 11px!important;">
+                        <button class="navbar-toggler posmob" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav mr-auto">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Digital KYC</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Digital KYC</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Data Verification</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Update Digital KYC Data</a>
+                                </li>
+                            </ul>
+                            <form class="form-inline my-2 my-lg-0" style="float:right;padding-top:9px">
+                                <a class="nav-link" href="#" onclick="LogOut()">Logout</a>
+                            </form>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </section>
+
+
+
+        <div class="container-fluid" style="background-color: #f3f3f3;padding:0px">
+            @*<div class="clear">*@
+            @* add side nav for mobile *@
+
+            <a href="javascript:void(0);" class="ic menu">
+
+                <span class="line"></span>
+                <span class="line"></span>
+                <span class="line"></span>
+
+
+            </a>
+            @*<a href="javascript:void(0);" class="ic close"></a>*@
+
+            <ul id="deskt1" class="nav nav-tabs main-nav pddinglft6px">
+                @* add class main-nav *@
+
+
+                <li Id="Litab1" class="listAdmin">
+                    @if (Model.IsLogin == true && Model.IsQuickEnrollSubmit == null)
+                    {
+                        <a href="#tab1" style="width:100% !important" onclick="tab1Click()">QuickEnroll Details</a>
+                    }
+                    else
+                    {
+                        <a href="" style="width:100% !important" onclick="tab1Click()">QuickEnroll Details</a>
+                    }
+                </li>
+                <li Id="Litab5" class="listAdmin">
+                    @if ((Model.KYCverificationType == "" || Model.KYCverificationType == "False") && (Model.IsQuickEnrollSubmit == false || Model.IsQuickEnrollSubmit == null))
+                    {
+                        @*<a href="#tab5" style="width:100% !important" onclick="tab5ClickForEmpty()">CAF</a> *@ <a href="" style="width:100% !important">CAF</a>
+                    }
+                    else
+                    {
+                       @* <a href="" style="width:100% !important" onclick="tab5Click()">CAF</a>*@ <a href="#tab5" style="width:100% !important" onclick="tab5Click()">CAF</a>
+                    }
+                </li>
+                <li Id="Litab2" class="listAdmin">
+                    @if ((Model.IsQuickEnrollSubmit == null && Model.IsDocumentSubmit == null) || (Model.IsQuickEnrollSubmit == true && Model.IsDocumentSubmit == false))
+                    {
+                        <a href="#tab2" style="width:100% !important" onclick="tab2Click()" >Document Details</a>
+                    }
+                    else if ((Model.IsQuickEnrollSubmit == null && Model.IsDocumentSubmit == null) || (Model.IsQuickEnrollSubmit == false && Model.IsDocumentSubmit == false))
+                    {
+                        <a href="#tab2" style="width:100% !important" onclick="tab2Click()">Document Details</a>
+                    }
+                    else
+                    {
+                        <a href="#tab2" style="width:100% !important" onclick="tab2Click()">Document Details</a>
+                    }
+                </li>
+                <li Id="Litab3" class="listAdmin">
+                    @if (Model.IsDocumentSubmit == true && Model.IsIPVSubmit == false)
+                    {
+                        <a href="" style="width:100% !important" onclick="tab3Click()">V-KYC</a>
+                    }
+                    else if (Model.IsDocumentSubmit == true && Model.IsIPVSubmit == true && (Model.isIPVSkip == false || Model.isIPVSkip == true))
+                    {
+                        <a href="" style="width:100% !important" onclick="tab3Click()">V-KYC</a>
+
+                    }
+                    else if (Model.IsDocumentSubmit == false && Model.IsIPVSubmit == false)
+                    {
+                        <a href="#tab3" style="width:100% !important" onclick="tab3ClickForEmpty()">V-KYCs</a>
+                    }
+                    else if (Model.IsDocumentSubmit == null && Model.IsIPVSubmit == null)
+                    {
+                        <a href="#tab3" style="width:100% !important" onclick="tab3ClickForEmpty()">V-KYC</a>
+                    }
+                </li>
+                <li Id="Litab4" class="listAdmin">
+                    @if (Model.IsIPVSubmit == true && Model.isIPVSkip == false)
+                    {
+
+                        <a href="" style="width:100% !important" onclick="tab4Click()">Summary Sheet</a>
+                    }
+                    else if (Model.IsIPVSubmit == true && Model.isIPVSkip == true)
+                    {
+                        <a href="" style="width:100% !important" onclick="tab4Click()">Summary Sheet</a>
+                    }
+                    else
+                    {
+                        <a href="#tab4" style="width:100% !important" onclick="tab4Click()">Summary Sheet</a>
+                    }
+                </li>
+                <li Id="Litab7" class="listAdmin">
+                    @if (Model.AccountType != null)
+                    {
+                        <a href="#tab7" style="width:100% !important" onclick="tab7Click()">Saving Account</a>
+                    }
+                    else
+                    {
+
+                        <a href="#tab7" style="width:100% !important" onclick="tab7ClickForEmpty()">Saving Account</a>
+                    }
+                </li>
+
+
+            </ul>
+            @*<div id="mySidenav" class="sidenav ">
+                    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                    <ul class="ulMarTop">
+                        <li Id="Litab1" class="active listPadd">
+                            <a href="#tab1" class="achorLink" style="width:100% !important">QuickEnroll Details</a>
+                        </li>
+                        <li Id="Litab5" class="listPadd">
+                            <a href="#tab5" class="achorLink" style="width:100% !important">CAF</a>
+                        </li>
+                        <li Id="Litab2" class="listPadd">
+                            <a href="#tab2" class="achorLink" style="width:100% !important">Document Details</a>
+                        </li>
+                        <li Id="Litab3" class="listPadd">
+                            <a href="#tab3" class="achorLink" style="width:100% !important">IPV  Details</a>
+                        </li>
+                        <li Id="Litab4" class="listPadd">
+                            <a href="#tab4" class="achorLink" style="width:100% !important">CAF PDF</a>
+                        </li>
+                        <li Id="Litab7" class="listPadd">
+                            <a href="#tab7" class="achorLink" style="width:100% !important">Saving Account</a>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+                <div id="main">
+
+                    <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+
+                </div>*@
+            <ul class="progressbar">
+                @if (Model.IsSignUpDone == true)
+                {
+                    <li class="active"> </li>
+                }
+                else
+                {
+                    <li> </li>
+
+                }
+
+                @if (Model.IsQuickEnrollSubmit == true)
+                {
+                    <li class="active"> </li>
+                }
+                else
+                {
+                    <li> </li>
+                }
+                @if (Model.IsDocumentSubmit == true)
+                {
+                    <li class="active"> </li>
+                }
+                else
+                {
+                    <li> </li>
+                }
+                @if (Model.IsIPVSubmit == true)
+                {
+                    <li class="active"> </li>
+                }
+                else
+                {
+                    <li> </li>
+                }
+
+                <li Id="TabCafpdf"> </li>
+
+                <li Id="TabSavingAcc"> </li>
+
+
+            </ul>
+            @*</div>*@
+            @*//hiiiiii*@
+            @if (Model.IsLogin == true && Model.IsQuickEnrollSubmit == null)
+            {
+                <section id="tab1" onclick="tab1()" style="float:left;width:100%;clear:both">
+                    <div>
+@*                        location.href="KYCQuickEnroll/CustomerQuickEnrollment";*@       
+                       
+                    @* @Path.Contains(CustomerQuickEnrollment, "KYCQuickEnroll");*@
+                          @* @Url.Action("CustomerQuickEnrollment","KYCQuickEnroll")*@
+                           @*@Url.ExecutingFilePath("/Views/KYCQuickEnrollController/CustomerQuickEnrollment.cshtml")*@
+                           @*<a id="academicYear.Name" href="@Url.Action("CustomerQuickEnrollment", "KYCQuickEnroll",new {Model.IsQuickEnrollSubmit})">
+                            @Url.Action("https://localhost:5003/KYCQuickEnroll/CustomerQuickEnrollment");
+                            @UrlHelperExtensions.Action(Url,"CustomerQuickEnrollment");*@
+                           @* <ul>
+                        
+                              @Html.ActionLink("CustomerQuickEnrollment", "KYCQuickEnroll")
+                            </ul>*@
+
+                    </div>
+                </section>
+            } @if (Model.IsLogin == true && Model.IsQuickEnrollSubmit == false)
+            {
+                <section id="tab1" class="" style="clear:both;float:left;width:100%;">
+                    <div>
+
+                        @*<p>@{Html.RenderAction("CustomerQuickEnrollment", "KYCQuickEnroll");}</p>*@
+
+                    </div>
+                </section>
+            }
+
+            @*else
+                {
+                    <section id="tab1" class=" hide" style="clear:both">
+                        <div>
+                            @*<p>@{Html.RenderAction("CustomerQuickEnrollment", "KYCQuickEnroll");}</p>
+                        </div>
+                    </section>
+                }*@
+
+            @if ((Model.KYCverificationType != "" || Model.KYCverificationType == "False") && (Model.IsQuickEnrollSubmit == false || Model.IsQuickEnrollSubmit == null))
+            {
+                <section id="tab5" class="" style="clear:both;float:left;width:100%;">
+                    <div>
+                        @*<p>{@Url.Action("DigitalQuickEnrollment", "KYCQuickEnroll");}</p>*@
+                    </div>
+                </section>
+            } @if ((Model.KYCverificationType != "" || Model.KYCverificationType == "False" || Model.KYCverificationType == "XML" || Model.KYCverificationType == "PAN") && Model.IsQuickEnrollSubmit == true)
+            {
+                <section id="tab5" class="" style="clear:both;float:left;width:100%;">
+                    <div>
+                        @*<p>@{Html.RenderAction("DigitalQuickEnrollment", "KYCQuickEnroll");}</p>*@
+                    </div>
+                </section>
+            }
+            else
+            {
+                <section id="tab5" class=" hide" style="clear:both;float:left;width:100%;">
+                    <div class="fillprevious">
+                        <p class="fillpre">Fill Previous Form</p>
+                    </div>
+                </section>
+            }
+            @if (Model.IsQuickEnrollSubmit == true && Model.IsDocumentSubmit == false)
+            {
+                <section id="tab2" class=" hide" style="clear:both;float:left;width:100%;">
+                    <div>
+                        @*<p>{@Url.Action("CustomerDocumentDetails", "DocumentDetails");}</p>*@
+                    </div>
+                </section>
+            } @if (Model.IsQuickEnrollSubmit == true && Model.IsDocumentSubmit == true)
+            {
+                <section id="tab2" class="hide" style="clear:both;float:left;width:100%;">
+                    <div>
+                        @*<p>{@Url.Action("CustomerDocumentDetails", "DocumentDetails");}</p>*@
+                    </div>
+                </section>
+            }
+            else
+            {
+                <section id="tab2" class=" hide" style="clear:both;float:left;width:100%;">
+                    <div class="fillprevious">
+                        <p class="fillpre">Fill Previous Form</p>
+                    </div>
+                </section>
+            }
+
+            @if (Model.IsDocumentSubmit == true && Model.IsIPVSubmit == false)
+            {
+                <section id="tab3" class="" style="clear:both;float:left;width:100%;">
+                    <div>
+
+                        @*<p>@{Html.RenderAction("CustIPVdetails", "IPVDetails");}</p>*@
+
+                    </div>
+                </section>
+            } @if (Model.IsDocumentSubmit == true && Model.IsIPVSubmit == true)
+            {
+                <section id="tab3" class="" style="clear:both;float:left;width:100%;">
+                    <div>
+                        @*<p>@{Html.RenderAction("StartRequestCamera", "VCIP");}</p>*@
+                        @*<p>@{Html.RenderAction("CustIPVdetails", "IPVDetails");}</p>*@
+
+                    </div>
+                </section>
+            }
+
+            else
+            {
+                <section id="tab3" class=" hide" style="clear:both;float:left;width:100%;">
+                    <div class="fillprevious">
+                        <p class="fillpre">Fill Previous Form</p>
+                    </div>
+                </section>
+            }
+
+            @if (Model.IsIPVSubmit == true && Model.isIPVSkip == false)
+            {
+                <section id="tab4" class="" style="clear:both;float:left;width:100%;">
+                    <div>
+
+                        @*<p>@{Html.RenderAction("CustIPVdetails", "IPVDetails");}</p>*@
+                        @*<p>@{Html.RenderAction("SummerySheetDetails", "DataVerify");}</p>*@
+                    </div>
+                </section>
+            }@if (Model.IsIPVSubmit == true && Model.isIPVSkip == true)
+            {
+                <section id="tab4" class="hide" style="clear:both;float:left;width:100%;">
+                    <div>
+                        @*<p>@{Html.RenderAction("SummerySheetDetails", "DataVerify");}</p>*@
+                    </div>
+                </section>
+            }
+            else
+            {
+                <section id="tab4" class="hide" style="clear:both;float:left;width:100%;">
+                    <div class="fillprevious">
+                        <p class="fillpre">Fill Previous Form</p>
+                    </div>
+                </section>
+            }
+
+
+            @if (Model.AccountType != null)
+            {
+                <section id="tab7" class="tab-content hide" style="clear:both;float:left;width:100%;">
+                    <div>
+                        @*<p>@{Html.RenderAction("CustomerAccForm", "CustomerAccount");}</p>*@
+                    </div>
+                </section>
+            }
+            else
+            {
+                <section id="tab7" class="tab-content hide" style="clear:both;float:left;width:100%;">
+                    <div class="fillprevious">
+                        <p class="fillpre">Fill Previous Form</p>
+                    </div>
+                </section>
+            }
+        </div>
+    }
+    else if (ViewBag.AdminFlag == "AdminFlag")                                        ///Admin section starts
+    {
+        <div class="loadera"></div>
+        <div class="containerbx">
+            <div class="clear">
+
+                <ul class="nav nav-tabs pddinglft6px nav-tabs-sm" style="background-color:#047aee;">
+                    <li id="init_over" class="nav-li-sm">
+                        <a href="#tab6" Id="Litab6" onclick="GetCustData()" style="width:100% !important;float:left">Overview</a>
+                    </li>
+                    <li Id="Litab1" class="nav-li-sm">
+                        <a href="#tab1" id="bg" onclick="tab1Click()" style="width:100% !important;float:left">QuickEnroll Details</a>
+                    </li>
+
+                    <li Id="Litab5" class="nav-li-sm">
+                        <a href="#tab5" id="bg2" onclick="tab5Click()"  style="width:100% !important;float:left">CAF</a>
+                    </li>
+                    <li Id="Litab2" class="nav-li-sm">
+                        <a href="#tab2" id="bg3" onclick="tab2Click()" style="width:100% !important;float:left">Document Details</a>
+
+                    </li>
+                    <li Id="Litab3" class="nav-li-sm">
+                        <a href="#tab3" id="bg4" onclick="tab3Click()" style="width:100% !important;float:left">V-KYC</a>
+                    </li>
+                    <li Id="Litab4" class="nav-li-sm">
+                        <a href="#tab4" id="bg5" onclick="tab4Click()" style="width:100% !important;float:left">Summary Sheet</a>
+                    </li>
+                    <li Id="Litab7" class="nav-li-sm nav-li-last">
+                        <a href="#tab7" id="bg6" onclick="tab7Click()" style="width:100% !important;float:left">Saving Account</a>
+                    </li>
+                    
+                    <li Id="Litab8" class="nav-li-sm nav-li-last">
+                        <a href="#tab8" id="bg7" onclick="tab8Click()" style="width:100% !important;float:left">Submit To CBS</a>
+                    </li>
+                </ul>
+            </div>
+             </div>
+
+
+              <div class="init_top_bar" style="display:none">
+                <ul class="init_ul_main">
+                    <li class="init_li_items" Id="Litab6" onclick="GetCustData()">OverView</li>
+                    <li class="init_li_items" id="bg" onclick="tab1Click()">QuickEnroll Details</li>
+                    <li class="init_li_items" id="bg2" onclick="tab5Click()">CAF</li>
+                    <li class="init_li_items" id="bg3" onclick="tab2Click()">Document Details</li>
+                    <li class="init_li_items" id="bg4" onclick="tab3Click()">V-KYC</li>
+                    <li class="init_li_items" id="bg5" onclick="tab4Click()">Summary Sheet</li>
+                    <li class="init_li_items" id="bg6" onclick="tab7Click()">Saving Account</li>
+                    <li class="init_li_items" Id="Litab8" onclick="tab8Click()">Submit To CBS</li>
+                        
+                 </ul>
+             </div>
+           @* <section id="tab6" class="tab-content">
+                <div>
+                    
+                      <a type="button" class="btn btn-primary" href="@Url.Action("DataVerificationTabView", "AdminLogin",new { CustomerDetailId = 72 })">
+       
+    </a>
+
+                </div>
+
+            </section>
+            @if (Model.IsLogin == true && Model.IsQuickEnrollSubmit == true)
+            {
+                <section id="tab1" class="tab-content hide">
+                    <div>
+                        <p>{@Url.Action("CustomerQuickEnrollment", "KYCQuickEnroll");}</p>
+
+                    </div>
+                </section>
+            }
+
+            @if (Model.KYCverificationType != "")
+
+            {
+                <section id="tab5" class="tab-content">
+                    <div>
+                        <p>{@Url.Action("DigitalQuickEnrollment", "KYCQuickEnroll");}</p>
+                    </div>
+                </section>
+            }
+
+            @if (Model.IsQuickEnrollSubmit == true)
+            {
+                <section id="tab2" class="tab-content hide">
+                    <div>
+                        <p>{@Url.Action("CustomerDocumentDetails", "DocumentDetails");}</p>
+                    </div>
+                </section>
+            }
+            @if (Model.IsDocumentSubmit == true)
+            {
+
+                <section id="tab3" class="tab-content hide">
+                    <div>
+                        <p>{@Url.Action("CustIPVdetails", "IPVDetails");}</p>
+                    </div>
+                </section>
+            }
+
+            @if (Model.IsDocumentSubmit == true)
+            {
+
+                <section id="tab4" class="tab-content hide">
+                    <div>
+                        <p>{@Url.Action("SummerySheetDetails", "DataVerify");}</p>
+                    </div>
+                </section>
+            }
+            @if (Model.AccountType != null)
+            {
+                <section id="tab7" class="tab-content hide">
+                    <div>
+                        <p>{@Url.Action("CustomerAccForm", "CustomerAccount");}</p>
+                    </div>
+                </section>
+            }
+        </div>*@
+    }
+    else if (ViewBag.Cust == "NewCustomer")                                       ///Customer side starts
+    {
+        <div class="loadera"></div>
+        <div class="containerbx">
+            @* <div class="clear">*@
+            <a href="javascript:void(0);" class="ic menu">
+
+                <span class="line"></span>
+                <span class="line"></span>
+                <span class="line"></span>
+
+
+            </a>
+            <ul id="deskt1" class="nav nav-tabs pddinglft6px main-nav">
+                <li Id="Litab1" class="listAdmin">
+                    <a href="#tab1" style="width:100% !important;float:left!important">QuickEnroll Details</a>
+                </li>
+                <li Id="Litab5" class="listAdmin">
+                    <a href="#tab5" style="width:100% !important;float:left!important">CAF</a>
+                </li>
+                <li Id="Litab2" class="listAdmin">
+                    <a href="#tab2" style="width:100% !important;float:left!important">Document Details</a>
+                </li>
+                <li Id="Litab3" class="listAdmin">
+                    <a href="#tab3" style="width:100% !important;float:left!important">IPV  Details</a>
+                </li>
+                <li Id="Litab4" class="listAdmin">
+                    <a href="#tab4" style="width:100% !important;float:left!important">CAF PDF</a>
+                </li>
+
+            </ul>
+            @*</div>*@
+            <ul class="progressbar">
+
+                <li class="active"> </li>
+
+                @if (Model.IsQuickEnrollSubmit == true)
+                {
+                    <li class="active"> </li>
+                }
+                else
+                {
+                    <li> </li>
+                }
+                @if (Model.IsDocumentSubmit == true)
+                {
+                    <li class="active"> </li>
+                }
+                else
+                {
+                    <li> </li>
+                }
+                @if (Model.IsIPVSubmit == true)
+                {
+                    <li class="active"> </li>
+                }
+                else
+                {
+                    <li> </li>
+                }
+                @if (Model.IsIPVSubmit == true)
+                {
+                    <li class="active"> </li>
+                }
+                else
+                {
+                    <li> </li>
+                }
+                @if (Model.IsIPVSubmit == true)
+                {
+                    <li class="active"> </li>
+                }
+                else
+                {
+                    <li> </li>
+                }
+
+
+
+            </ul>
+            @*//hiiiiii*@
+            @if (Model.IsLogin == true && Model.IsQuickEnrollSubmit != true)
+            {
+                <section id="tab1" style="width:100% !important;float:left" class="tab-content">
+                    <div>
+                       
+                        <p>{@Url.Action("CustomerQuickEnrollment", "KYCQuickEnroll");}</p>
+                        <a href="@Url.Action("CustomerQuickEnrollment", "KYCQuickEnroll")">
+                    </div>
+                </section>
+            }
+
+            else
+            {
+                <section id="tab1" style="width:100% !important;float:left" class="tab-content hide">
+                    <div>
+                        <p>{@Url.Action("CustomerQuickEnrollment", "KYCQuickEnroll");}</p>
+                    </div>
+                </section>
+            }
+
+            @* /////  @if (Model.KYCverificationType != "")*@
+
+            @if (Model.KYCverificationType != "" || Model.KYCverificationType == "False")
+
+            {
+                <section id="tab5" style="width:100% !important;float:left" class="tab-content">
+                    <div>
+                        <p>{@Url.Action("DigitalQuickEnrollment", "KYCQuickEnroll");}</p>
+                    </div>
+                </section>
+            }
+            else
+            {
+                <section id="tab5" style=" " class="tab-content hide">
+                    <div class="fillprevious">
+                        <p class="fillpre">Fill Previous Form</p>
+                    </div>
+                </section>
+            }
+            @if (Model.IsQuickEnrollSubmit == true)
+            {
+                <section id="tab2" style="width:100% !important;float:left" class="tab-content hide">
+                    <div>
+                        <p>{@Url.Action("CustomerDocumentDetails", "DocumentDetails");}</p>
+                    </div>
+                </section>
+            }
+            else
+            {
+                <section id="tab2" style=" " class="tab-content hide">
+                    <div class="fillprevious">
+                        <p class="fillpre">Fill Previous Form</p>
+                    </div>
+                </section>
+            }
+
+            @if (Model.IsDocumentSubmit == true)
+            {
+                <section id="tab3" style="width:100% !important;float:left" class="tab-content hide">
+                    <div>
+                        <p>{@Url.Action("CustIPVdetails", "IPVDetails");}</p>
+                        @*<p>@{Html.RenderAction("StartRequestCamera", "VCIP");}</p>*@
+                        @*<p>@{Html.RenderAction("SummerySheetDetails", "DataVerify");}</p>*@
+                    </div>
+                </section>
+            }
+            else
+            {
+                <section id="tab3" style=" " class="tab-content hide">
+                    <div class="fillprevious">
+                        <p class="fillpre">Fill Previous Form</p>
+                    </div>
+                </section>
+            }
+
+            @if (Model.IsIPVSubmit == true)
+            {
+                <section id="tab4" style="width:100% !important;float:left" class="tab-content hide">
+                    <div>
+                        <p>{@Url.Action("SummerySheetDetails", "DataVerify");}</p>
+                    </div>
+                </section>
+            }
+            else
+            {
+                <section id="tab4" style=" " class="tab-content hide">
+                    <div class="fillprevious">
+                        <p class="fillpre">Fill Previous Form</p>
+                    </div>
+                </section>
+            }
+        </div>
+    }
+
+
+    <div id="Aadharview"></div>
+    <div id="OCRView"></div>
+    @*<div id="tabShow"></div>*@
+    <div id="tabShowVideo"></div>
+    <div id="DigiCerti"></div>
+    <div id="DIGIbag"></div>
+    <div id="DigiCerti1"></div>
+    <div id="DIGIbag1"></div>
+    <div id="skipLoader"></div>
+    <div id="startLoader"></div>
+    <div id="videoLoader"></div>
+    <div id="conLoader"></div>
+    <div id="previewLoader"></div>
+    
+
+</body>
+@*}*@
+</html>

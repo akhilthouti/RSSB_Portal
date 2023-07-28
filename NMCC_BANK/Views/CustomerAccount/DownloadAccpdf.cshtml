@@ -1,0 +1,1878 @@
+﻿@model ServiceProvider1.Models.UserDetails.ClsSummeryDetails
+@{
+    ViewData["Title"] = "DownloadAccpdf";
+    Layout = "~/Views/Shared/_pdf.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="~/Content/PDF/PDF.css" rel="stylesheet" />
+    <script src="~/Scripts/bootstrap-multiselect.js"></script>
+
+    <link href="~/Content/bootstrap-multiselect.css" rel="stylesheet" />
+
+    <style>
+        table.ex1 {
+            empty-cells: hide;
+        }
+
+        table.ex2 {
+            empty-cells: show;
+        }
+    </style>
+
+
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/PDF/PDF.css" rel="stylesheet" />
+    <script>
+        function CloseForm() {
+            $.ajax({
+                url: "/DataVerify/SummerySheet",
+                type: "Get",
+                cache: false,
+                success: function (result) {
+                    debugger;
+                    $("#Indo_Dashboard").hide();
+                    $('#QuickEnrollview').html(result);
+
+                }
+            })
+        }
+    </script>
+    <script>
+
+
+        function UserMobileOTPGenerate() {
+            debugger;
+            var UserMobileNo = $("#UserMobileNo_id").val();
+            $.ajax({
+                url: "/DataVerify/GenerateOTP?MbileNo=" + UserMobileNo,
+                type: "Get",
+                cache: false,
+                success: function (result) {
+                    debugger;
+                    if (result == "OTP Generated Successfully!!!!!" || result == "OK") {
+                        debugger;
+                        swal("OTP Generated Successfully");
+                    }
+                    else {
+                        swal(result);
+                    }
+                }
+            })
+        }
+        function CustMobileOTPGenerate() {
+            debugger;
+            var CMobileNo = $("#CustMobileNo_id").val();
+            $.ajax({
+                url: "/DataVerify/GenerateOTP?MbileNo=" + CMobileNo,
+                type: "Get",
+                cache: false,
+                success: function (result) {
+                    debugger;
+                    if (result == "OTP Generated Successfully!!!!!" || result == "OK") {
+                        debugger;
+                        swal("OTP Generated Successfully");
+                    }
+                    else {
+                        swal(result);
+                    }
+                }
+            })
+        }
+        function CVerifyOTP() {
+            debugger;
+            var MbileNo;
+            var OTP;
+
+            if ($("#CustOTP_id").val() != null && $("#CustOTP_id").val() != "") {
+                MbileNo = $("#CustMobileNo_id").val();
+                OTP = $("#CustOTP_id").val();
+            }
+            else if ($("#UserOTP_id").val() != null && $("#UserOTP_id").val() != "") {
+                MbileNo = $('#UserMobileNo_id').val();
+                OTP = $("#UserOTP_id").val();
+            }
+            else {
+                swal("Enter OTP");
+            }
+            $.ajax({
+                url: "/DataVerify/VerifyGenerateOTP?MbileNo=" + MbileNo + "&OTP=" + OTP,
+                type: "Get",
+                cache: false,
+                success: function (result) {
+                    debugger;
+                    if (result == "OTP Validated Successfully!!!!!" / "") {
+                        swal("hiiiii");
+                    }
+                    else {
+                        swal("OTP");
+                    }
+
+                    //if (result == "OTP Validated Successfully!!!!!") {
+                    //    swal(result);
+                    //}
+                    //else {
+                    //    swal(result);
+                    //}
+                }
+            })
+        }
+
+        function UserVerifyOTP() {
+            debugger;
+            var MbileNo;
+            var OTP;
+
+
+            if ($("#UserOTP_id").val() != null && $("#UserOTP_id").val() != "") {
+                MbileNo = $('#UserMobileNo_id').val();
+                OTP = $("#UserOTP_id").val();
+            }
+            else {
+                swal("Enter OTP");
+            }
+            $.ajax({
+                url: "/DataVerify/VerifyGenerateOTP?MbileNo=" + MbileNo + "&OTP=" + OTP,
+                type: "Get",
+                cache: false,
+                success: function (result) {
+                    debugger;
+                    if (result == "OTP Validated Successfully!!!!!") {
+                        swal(result);
+                    }
+                    else {
+                        swal(result);
+                    }
+                }
+            })
+        }
+    </script>
+    <script>
+        $(document).ready(function () {
+            //  window.location = "/PaymntReceipt/ShowPaymentReceipt" + "?ajaxcall=" + $('#NPSPaymentReceipt').val();
+            debugger;
+        @*if (@Model.ACCRegular == true) {
+
+                $('#ACRegular').prop('checked');
+                }*@
+                $('#btnPdf').click(function () {
+                    debugger;
+                    // window.location = "/DataVerify/dowanloadpdf";
+                    var url = window.location.protocol + "//" + window.location.host + "/DataVerify/dowanloadpdf";
+                    window.open(url, '_blank');
+                })
+            $('#closeformdata').click(function () {
+                debugger;
+                $('#SummeryDataView').hide();
+            })
+        })
+    </script>
+
+
+    <script>
+        function backtoview() {
+            window.location.href = '/ServiceProviderMainHome/QuickEnrollDashboard';
+        }
+    </script>
+
+    <style>
+        input {
+            font-size: 18px;
+        }
+
+        .hdpdfdi {
+            padding: 1px 10px 1px 10px !important;
+            font-size: 20px;
+        }
+
+        .fntsiz {
+            font-weight: 600;
+            font-size: 19px !important;
+        }
+
+        .disppdf {
+            display: flex;
+            flex-direction: row;
+        }
+
+        .lvpdfimg {
+            font-size: 20px;
+            padding-left: 1px !important;
+            padding-right: 1px !important;
+            width: 100%;
+            margin-left: 12px;
+        }
+
+        .accpdf {
+            border: 2px solid #4d4d4d;
+        }
+
+        .enrolldiginewbx {
+            font-size: 17px;
+        }
+
+        strong {
+            font-size: 19px !important;
+        }
+    </style>
+
+</head>
+<body style="font-family:Arial;font-size:20px">
+    @*  @Html.ActionLink("generate", "DownloadAccpdf")*@
+    @*<button type="submit" class="btn btn-success btn-lg float-right" id="btnPdf">Pdf Dowanload</button>*@
+    <div id="SummeryDataView">
+        <div class="">
+            @*<fieldset class="panel panel-primary list-panel">*@
+            <!--start page1 (pdf page:1)-->
+
+
+
+            <div class="start-pg1" style="page-break-after: always;width: 96%;margin:0% 2% 0% 2% !important;">
+
+                <div class="border_pdfdigi mgbtm_2d">
+                    <div class="bordergreydigi">
+                        <div style="width:100%;float:left">
+                            <div class="wdth60">
+                                @*<img src=" ~/Content/imgs/newlogoin.png" class="logopdf" />*@
+                                @*<img src=" ~/Content/imgs/COSMOS-Logo1.png" class="logopdf" />**@
+                                @*<img src="~/Content/imgs/photo_2020-03-13_12-56-53.jpg" class="logopdf" />*@
+                                @*<img src="~/Content/imgs/indofinnet_logo.png" class="logopdf" />*@
+                                @* <img src="~/Images/shahu.png" class="logonew" />*@
+
+                            </div>
+
+                            <div class="" style="width:39%;float:left;font-size:26px;margin-left:-5%"><h3>Rajarshi Shahu Sahakari Bank LTD</h3></div>
+                        </div>
+                        <div>
+
+                            <div class="" style="width:100%;text-align:center;font-size:20px;clear:both">(Limited Bank)</div>
+                            <div class="" style="width:100%;text-align:center;font-size:20px;clear:both">Registered office :597, Shahu Complex, Shivaji Road, Shukrawar Peth, Pune 411002 Telephone No: 020 - 24435385 / 24484810</div>
+                            <div class="" style="width:100%;text-align:center;font-size:20px;clear:both">Email : headoffice@rajarshishahubankpune.com  |  https://www.rajarshishahubankpune.com/ </div>
+                        </div>
+                        @*<div class="clsbtn">
+                        <img src="~/Images/crossimg1.jpg" class="imgcrss" id="closeformdata" />
+                        </div>*@
+
+
+                        <div style="float:left;width:100%;padding-top:1%">
+                            <div class="customerpdfdigi">
+                                <div class="custhdpdfdigi" style=" ">Savings Account Opening Form</div>
+                            </div>
+                            <div class="col-xl-12" style="float:left;width:100%;padding-top:1%;margin-left:5%;margin-bottom:1%">
+                                <div class="row">
+                                    <div class="col-xl-3" style="width:28%;float:left;margin-right:0.2%">
+                                        <label style="float:left"> <strong>Branch </strong></label>
+                                        <input type="text" value="@Model.Branch" class="textbox_btm1" style="float: left;border-top: none!important;border-right: none!important; border-left: none !important;" />
+                                    </div>
+                                    <div class="col-xl-1" style="width:2%;float:left">
+                                    </div>
+                                    <div class="col-xl-3" style="width:35%;float:left;margin-right:0.2%">
+                                        <label style="float:left"><strong>Account No </strong></label>
+                                        <input type="text" value="@Model.AccountNo" class="textbox_btm1" style="float: left;border-top: none!important;border-right: none!important; border-left: none !important;" />
+                                    </div>
+                                    <div class="col-xl-1" style="width:1.5%;float:left">
+                                    </div>
+                                    <div class="col-xl-3" style="width:25%;float:left;margin-right:0.2%">
+                                        <label style="float:left"><strong> Date </strong></label>
+                                        <input type="text" value="@Model.AccOpenDate" class="textbox_btm1" style="float: left;border-top: none!important;border-right: none!important; border-left: none !important;" />
+                                    </div>
+                                    <div class="col-xl-1" style="width:2%;float:left">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12" style="float:left;width:100%;padding-top:1%;padding-left:1%">
+                                <div class="row">
+                                    <div class="col-lg-3" style="float:left;width:25%;">
+                                        @if (Model.Regular == true)
+                                        {
+                                            <input type="checkbox" checked="checked" value="@Model.Regular" class="textbox_btm1" style="float: left;border-top: none!important;border-right: none!important; border-left: none !important; margin-left:18px;" />
+                                        }
+                                        else
+                                        {
+                                            <input type="checkbox" value="@Model.Regular" class="textbox_btm1" style="float: left;border-top: none!important;border-right: none!important; border-left: none !important;margin-left:18px;" />
+
+                                        }
+                                        <div class="enrolldiginewbx">
+                                            Current Account
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3" style="float:left;width:25%">
+                                        @if (Model.CosmoPremium == true)
+                                        {
+                                            <input type="checkbox" checked="checked" value="@Model.CosmoPremium" class="textbox_btm1" style="float: left;border-top: none!important;border-right: none!important; border-left: none !important;margin-left:18px;" />
+                                        }
+                                        else
+                                        {
+                                            <input type="checkbox" value="@Model.CosmoPremium" class="textbox_btm1" style="float: left;border-top: none!important;border-right: none!important; border-left: none !important;margin-left:18px;" />
+
+                                        }
+                                        <div class="enrolldiginewbx">
+                                            Saving Account
+                                        </div>
+                                    </div>
+                                    @*<div class="col-lg-3" style="float:left;width:25%">
+                                    @if (Model.CosmoSalary == true)
+                                    {
+                                    <input type="checkbox" checked="checked" value="@Model.CosmoSalary" class="textbox_btm1" style="float: left;border-top: none!important;border-right: none!important; border-left: none !important;margin-left:18px;" />
+                                    }
+                                    else
+                                    {
+                                    <input type="checkbox" value="@Model.CosmoSalary" class="textbox_btm1" style="float: left;border-top: none!important;border-right: none!important; border-left: none !important;margin-left:18px;" />
+
+                                    }
+                                    <div class="enrolldiginewbx"> Cosmo Salary</div>
+                                    </div>
+                                    <div class="col-lg-3" style="float:left;width:25%">
+                                    @if (Model.CosmoRoyale == true)
+                                    {
+                                    <input type="checkbox" checked="checked" value="@Model.CosmoRoyale" class="textbox_btm1" style="float: left;border-top: none!important;border-right: none!important; border-left: none !important;margin-left:18px;" />
+                                    }
+                                    else
+                                    {
+                                    <input type="checkbox" value="@Model.CosmoRoyale" class="textbox_btm1" style="float: left;border-top: none!important;border-right: none!important; border-left: none !important;margin-left:18px;" />
+
+                                    }
+                                    <div class="enrolldiginewbx"> Cosmo Royale</div>
+                                    </div>*@
+                                    @* </div>
+                                    </div>
+                                    <div class="col-lg-12" style="float:left;width:100%;padding-top:1%;padding-left:1%">
+                                    <div class="row">
+                                    <div class="col-lg-3" style="float:left;width:25%;">
+                                    @if (Model.CosmoPremiumPlus == true)
+                                    {
+                                    <input type="checkbox" checked="checked" value="@Model.CosmoPremiumPlus" class="textbox_btm1" style=" width:5%;float: left;border-top: none!important;border-right: none!important; border-left: none !important;margin-left:18px;" />
+                                    }
+                                    else
+                                    {
+                                    <input type="checkbox" value="@Model.CosmoPremiumPlus" class="textbox_btm1" style="float: left;border-top: none!important;border-right: none!important; border-left: none !important;margin-left:18px;" />
+
+                                    }
+                                    <div class="enrolldiginewbx" style="width:20%;"> Cosmo Premium Plus</div>
+                                    </div>
+                                    <div class="col-lg-3" style="float:left;width:25%">
+                                    @if (Model.BSBDA == true)
+                                    {
+                                    <input type="checkbox" checked="checked" value="@Model.BSBDA" class="textbox_btm1" style="float: left;border-top: none!important;border-right: none!important; border-left: none !important;margin-left:18px;" />
+                                    }
+                                    else
+                                    {
+                                    <input type="checkbox" value="@Model.BSBDA" class="textbox_btm1" style="float: left;border-top: none!important;border-right: none!important; border-left: none !important;margin-left:18px;" />
+
+                                    }
+                                    <div class="enrolldiginewbx"> BSBDA</div>
+                                    </div>
+                                    <div class="col-lg-3" style="float:left;width:25%">
+                                    @if (Model.CosmoYouth == true)
+                                    {
+                                    <input type="checkbox" checked="checked" value="@Model.CosmoYouth" class="textbox_btm1" style="float: left;border-top: none!important;border-right: none!important; border-left: none !important;margin-left:18px;" />
+                                    }
+                                    else
+                                    {
+                                    <input type="checkbox" value="@Model.CosmoYouth" class="textbox_btm1" style="float: left;border-top: none!important;border-right: none!important; border-left: none !important;margin-left:18px;" />
+
+                                    }
+                                    <div class="enrolldiginewbx"> Cosmo Youth</div>
+                                    </div>
+
+                                    <div class="col-lg-3" style="float:left;width:25%">
+                                    @if (Model.CosmoPremiumSalary == true)
+                                    {
+                                    <input type="checkbox" checked="checked" value="@Model.CosmoPremiumSalary" class="textbox_btm1" style="float: left;border-top: none!important;border-right: none!important; border-left: none !important;margin-left:18px;" />
+                                    }
+                                    else
+                                    {
+                                    <input type="checkbox" value="@Model.CosmoPremiumSalary" class="textbox_btm1" style="float: left;border-top: none!important;border-right: none!important; border-left: none !important;margin-left:18px;" />
+
+                                    }
+                                    <div class="enrolldiginewbx"> Cosmo Premium Sal</div>
+                                    </div>
+                                    </div>
+                                    </div>
+                                    <div class="col-lg-12" style="float:left;width:100%;padding-top:1%;">
+                                    <div class="col-lg-3" style="float:left;width:25%;margin-bottom:1%;">
+                                    @if (Model.other == true)
+                                    {
+                                    <input type="checkbox" checked="checked" value="@Model.other" class="textbox_btm1" style="float: left;border-top: none!important;border-right: none!important; border-left: none !important;" />
+                                    }
+                                    else
+                                    {
+                                    <input type="checkbox" value="@Model.other" class="textbox_btm1" style="float: left;border-top: none!important;border-right: none!important; border-left: none !important;" />
+
+                                    }
+                                    <div class="enrolldiginewbx"> Other</div>
+                                    </div>*@
+                                </div>
+
+
+                            </div>
+
+                            <div class="customerpdfdigi">
+                                <div class="custhdpdfdigi">Customer KYC Details</div>
+                            </div>
+                            <div class="wdth100p">
+                                <div class="wdth60ADi idcust disppdf">
+                                    @*<div class="enrolldiginewbx" style="border:1px solid red;">*@
+                                    <p style="font-size:18px;margin-left:20px"> Customer Details :&nbsp;&nbsp;&nbsp;&nbsp; @Model.CustomerId</p>
+                                    @*<input type="text" value="@Model.CustomerId" class="textbox_btm" style="width:50%;height: 22px;border-radius: 4px;" />*@
+
+                                    @*</div>*@
+                                    @* <div class="textbx">*@
+                                    @*@foreach (char data in "         ")
+                                    {
+                                    <input type="text" value="@data" class="bb_3" />
+                                    }*@
+                                    @* <input type="text" value="@Model.CustomerId" class="textbox_btm" style="width:50%;height: 22px;border-radius: 4px;" />*@
+                                    @*@Html.TextBoxFor(model => model.hiddenCustomerDetailId, new { @class = "form-control" })*@
+                                    @*</div>*@
+                                    @*@Html.TextBoxFor(model => model.KYC_FirstName, new { @class = "form-control", id = "KYC_FirstName" })*@
+                                </div>
+                                <div class="" style="position:absolute;margin-top:230px;margin-left:800px;">
+                                    @* class="wdth50pd"*@
+                                    @*<div style="float:left;margin-left:5%;border:1px solid ; width:30%">
+                                    <div class="hdpdf">KYC Photo</div>
+                                    <img src="data:image/jpg;base64,@(Html.Raw(Model.AadharPhoto))" alt="" id="Aadharphoto" class="appl_photo imgsize" />
+                                    </div>*@
+                                    <div style="float:left;margin-left:55%; margin-top:8.5%">
+                                        <div class="hdpdfdi lvpdfimg" style="padding-left:10px;padding-right:10px;">Live Photo</div>
+                                        <img src="@Model.PhotoDocument" alt="" id="Livephoto" class="appl_photodiig imgsize" style="height:138px ;width:100px;" />
+
+                                        @*<img src="data:image/jpg;base64," alt="" id="Livephoto" class="appl_photo imgsize" />
+                                        </div>*@
+                                    </div>
+                                    @*<div class="wdth20p">
+                                    <div class="img_adhar col-lg-12 col-md-12 col-sm-12 col-xs-12 KYCB" id="KYCImage001">
+                                    <img id="imgX" class="adhar_img KYCW_Hp" /> @*src="@ViewBag.Image"*@
+                                    @*<div class="pre_div preTXT">Offline KYC Image</div>
+                                    </div>
+                                    </div>*@
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="pdf1bxdigi accpdf">
+                                    <div class="namebx">
+                                        <div style="float:left; width:26%; text-align:center;margin-left:7%;"><strong>(First Name)</strong></div>
+                                        <div style="float:left; width:33%; text-align:center"><strong>(Middle Name)</strong></div>
+                                        <div style="float:left; width:25%;text-align:center"><strong>(Last Name)</strong></div>
+                                    </div>
+                                    <table class="tablepdf">
+                                        <tr class="trdigi">
+                                            <td class="textlft hdgrea fntsiz" style="">Name</td>
+                                            @*<td style="width:231px">
+                                            <input type="text" class="" style="width:231px" value="@Model.CFirstName" /><!---19 C--->
+                                            </td>
+                                            <td style="width:231px">
+                                            <input type="text" class="" style="width:231px" value="@Model.CMiddleName" /><!---19 C--->
+                                            </td>
+                                            <td style="width:231px">
+                                            <input type="text" class="" style="width:231px" value="@Model.CLastName" /><!---19 C--->
+                                            </td>*@
+                                            <td colspan="3" class="padlft1 widthbox">
+                                                @if (Model.CFirstName != null)
+                                                {
+                                                    @*foreach (char data in (Model.CFirstName.Length >= 8) ? Model.CFirstName.Substring(0, 8).PadRight(8, ' ') : Model.CFirstName.PadRight(8, ' '))
+                                                {
+                                                <input type="text" value='@data' class="bb1" />
+                                                }*@
+                                                    <input type="text" value="@Model.CFirstName" class="textbox_btm1" style="float: left;width: 31%;margin-right: 3%;border-top: none!important;border-right: none!important; border-left: none !important;" />
+                                                }
+                                                else
+                                                {
+                                                    @*foreach (char data in "        ")
+                                                {
+                                                <input type="text" value='@data' class="bb1" style="font-weight:900" />
+                                                }*@
+                                                    <input type="text" value="@Model.CFirstName" class="textbox_btm1" style="float: left;width: 31%;margin-right: 3%;border-top: none!important;border-right: none!important; border-left: none !important;" />
+                                                }
+                                                @if (Model.CMiddleName != null)
+                                                {
+                                                    @*foreach (char data in (Model.CMiddleName.Length >= 12) ? Model.CMiddleName.Substring(0, 12).PadRight(12, ' ') : Model.CMiddleName.PadRight(12, ' '))
+                                                {
+                                                <input type="text" value='@data' class="bb1" />
+                                                }*@
+                                                    <input type="text" value="@Model.CMiddleName" class="textbox_btm1" style="float: left;width: 32%;margin-right: 2%;border-top: none!important;border-right: none!important; border-left: none !important;" />
+                                                }
+                                                else
+                                                {
+                                                    @*foreach (char data in "        ")
+                                                {
+                                                <input type="text" value='@data' class="bb1" style="font-weight:900" />
+                                                }*@
+                                                    <input type="text" value="@Model.CMiddleName" class="textbox_btm1" style="float: left;width: 32%;margin-right: 2%;border-top: none!important;border-right: none!important; border-left: none !important;" />
+                                                }
+                                                @if (Model.CLastName != null)
+                                                {
+                                                    @*foreach (char data in (Model.CLastName.Length >= 8) ? Model.CLastName.Substring(0, 8).PadRight(8, ' ') : Model.CLastName.PadRight(8, ' '))
+                                                {
+                                                <input type="text" value='@data' class="bb1" />
+                                                }*@
+                                                    <input type="text" value="@Model.CLastName" class="textbox_btm1" style="float: left;width: 26%;margin-right: 0%;border-top: none!important;border-right: none!important; border-left: none !important;" />
+                                                }
+                                                else
+                                                {
+                                                    @*foreach (char data in "        ")
+                                                {
+                                                <input type="text" value='@data' class="bb1" style="font-weight:900" />
+                                                }*@
+                                                    <input type="text" value="@Model.CLastName" class="textbox_btm1" style="float: left;width: 26%;margin-right: 0%;border-top: none!important;border-right: none!important; border-left: none !important;" />
+                                                }
+                                                @*@foreach (char data in "                                                 ")
+                                                {
+                                                <input type="text" value="" class="bb1" />
+                                                }*@
+                                            </td>
+                                            @*<td colspan="3">@Html.TextBoxFor(model => model.KYC_FirstName, new { @class = "form-control", id = "KYC_FirstName" })</td>*@
+                                        </tr>
+                                        <tr class="trdigi">
+                                            <td class="textlft hdgrea fntsiz">DOB</td>
+                                            <td colspan="3" class="padlft1 widthbox">
+                                                @if (Model.DOB_DD != null)
+                                                {
+                                                    var DD = "";
+                                                    //a = a.PadRight(3, ' ');
+                                                    if (Model.DOB_DD.Length == 1)
+                                                    {
+                                                        DD = '0' + Model.DOB_DD;
+                                                    }
+                                                    else
+                                                    {
+                                                        DD = Model.DOB_DD;
+                                                    }
+                                                    //a = a.PadRight(3, ' ');
+                                                    foreach (char data in (DD.Length >= 2) ? DD.Substring(0, 2).PadRight(2, ' ') : DD.PadRight(2, ' '))
+                                                    {
+                                                        <input type="text" value='@data' class="bbdigi" />
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    foreach (char data in "DD")
+                                                    {
+                                                        <input type="text" value='@data' class="bbdigi" />
+                                                    }
+                                                }
+                                                <span>-</span>
+                                                @if (Model.DOB_MM != null)
+                                                {
+                                                    var MM = "";
+
+                                                    if (Model.DOB_MM.Length == 1)
+                                                    {
+                                                        MM = '0' + Model.DOB_MM;
+                                                    }
+                                                    else
+                                                    {
+                                                        MM = Model.DOB_MM;
+                                                    }
+                                                    //a = a.PadRight(3, ' ');
+                                                    foreach (char data in (MM.Length >= 2) ? MM.Substring(0, 2).PadRight(2, ' ') : MM.PadRight(2, ' '))
+                                                    {
+                                                        <input type="text" value='@data' class="bbdigi" />
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    foreach (char data in "MM")
+                                                    {
+                                                        <input type="text" value='@data' class="bbdigi" />
+                                                    }
+                                                }
+                                                <span>-</span>
+                                                @if (Model.DOB_yyyy != null)
+                                                {
+
+                                                    //a = a.PadRight(3, ' ');
+                                                    foreach (char data in (Model.DOB_yyyy.Length >= 4) ? Model.DOB_yyyy.Substring(0, 4).PadRight(4, ' ') : Model.DOB_yyyy.PadRight(4, ' '))
+                                                    {
+                                                        <input type="text" value='@data' class="bbdigi" />
+                                                    }
+
+
+                                                }
+                                                else
+                                                {
+                                                    foreach (char data in "yyyy")
+                                                    {
+                                                        <input type="text" value='@data' class="bbdigi" />
+                                                    }
+
+                                                }
+                                            </td>
+                                        </tr>
+                                        <tr class="trdigi">
+                                            <td class="textlft hdgrea fntsiz">Address</td>
+                                            <td colspan="3" class="padlft1 widthbox">
+                                                @if (Model.CAddress != null)
+                                                {
+                                                    @*foreach (char data in (Model.CAddress.Length >= 50) ? Model.CAddress.Substring(0, 50).PadRight(50, ' ') : Model.CAddress.PadRight(50, ' '))
+                                                {
+                                                <input type="text" value='@data' class="bb1" />
+                                                }*@
+                                                    <input type="text" value="@Model.CAddress" class="textbox_btm1" style="float:none;width:95%;border-top: none!important;border-right: none!important; border-left: none !important;" />
+
+                                                }
+                                                else
+                                                {
+                                                    <input type="text" value="@Model.CAddress" class="textbox_btm1" style="float:none;width:95%;border-top: none!important;border-right: none!important; border-left: none !important;" />
+                                                }
+                                                @*@foreach (char data in "                                                  ")
+                                                {
+                                                <input type="text" value="" class="bb1" />
+                                                }*@
+                                            </td>
+                                            @*<td>State</td>
+                                            <td>@Html.TextBoxFor(model => model.KYC_State, new { @class = "form-control" })</td>*@
+                                        </tr>
+                                        <tr class="trdigi">
+                                            <td class="textlft hdgrea fntsiz">Email-Id</td>
+                                            <td colspan="3" class="padlft1 widthbox">
+                                                @*@foreach (char data in "                ")
+                                                {
+                                                <input type="text" value="@Model.CEmailId" class="bb1" />
+                                                }*@
+                                                <input type="text" value="@Model.CEmailId" class="textbox_btm1" style="float:none;width:40%;border-top: none!important;border-right: none!important; border-left: none !important;" />
+                                            </td>
+                                        </tr>
+                                        <tr class="trdigi">
+                                            <td class="textlft hdgrea fntsiz">Mobile Number</td>
+                                            <td colspan="3" class="padlft1 widthbox">
+
+
+                                                <input type="text" value="@Model.CMobileNo" class="textbox_btm1" style="float:none;width:40%;border-top: none!important;border-right: none!important; border-left: none !important;" />
+                                            </td>
+                                        </tr>
+                                        <tr class="trdigi">
+                                            <td class="textlft hdgrea fntsiz">Gender</td>
+                                            <td colspan="3" class="padlft1 widthbox">
+                                                <input type="text" value="@Model.CGender" class="textbox_btm1" style="float:none;width:40%;border-top: none!important;border-right: none!important; border-left: none !important;" />
+
+                                            </td>
+                                        </tr>
+                                        <tr class="trdigi">
+                                            <td class="textlft hdgrea fntsiz"> Pan number</td>
+                                            <td colspan="3" class="padlft1 widthbox">
+
+
+                                                <input type="text" value="@Model.ManualPanNo" class="textbox_btm1" style="float:none;width:40%;border-top: none!important;border-right: none!important; border-left: none !important;" />
+                                            </td>
+                                        </tr>
+                                        <tr class="trdigi">
+                                            <td class="textlft hdgrea fntsiz"> Pin Code</td>
+                                            <td colspan="3" class="padlft1 widthbox">
+
+
+                                                <input type="text" value="@Model.Pin_Code" class="textbox_btm1" style="float:none;width:40%;border-top: none!important;border-right: none!important; border-left: none !important;" />
+                                            </td>
+                                        </tr>
+
+
+                                    </table>
+                                </div>
+
+
+
+
+                                @*<div>
+                                <div>
+                                <div class="wdth60pd" style="width: 60%;float: left;margin-top: 1%;">
+                                <label for="CustMobileNo_id" style="font-family: arial;font-size: 13px;padding-right: 2%;padding-left: 1%;" class="conset_textlable">Customer Mobile No</label>
+                                <input type="Text" name="Ekyc" id="CustMobileNo_id" value=@Model.CMobileNo />
+                                <input type="button" id="CustMobileNoButton_id" value="Send OTP" onclick="CustMobileOTPGenerate()" />
+                                </div>
+                                <div class="wdth40pd" style="width: 40%;float: left;margin-top: 1%;">
+                                <input type="Text" name="CustOTp" id="CustOTP_id" />
+                                <input type="button" value="Verify" id="CVerifyButton" onclick="CVerifyOTP()" />
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="wdth60pd" style="width: 60%;float: left;margin-top: 1%;">
+                                <label for="UserMobileNo_id" style="font-family: arial;font-size: 13px;padding-right: 6%;padding-left: 1%;" class="conset_textlable">User's Mobile No</label>
+                                <input type="Text" name="Ekyc" id="UserMobileNo_id" class="consetRadio_all" value=@Model.User_MobileNo />
+                                <input type="button" id="UserMobileNoButton_id" value="Send OTP" onclick="UserMobileOTPGenerate()" />
+                                </div>
+                                <div class="wdth40pd" style="width: 40%;float: left;margin-top: 1%;">
+                                <input type="Text" name="UserOTp" id="UserOTP_id" />
+                                <input type="button" value="Verify" id="CVerifyButton" onclick="UserVerifyOTP()" />
+                                </div>
+                                </div>
+                                </div>*@
+                                @*<div id="ForSignature" class="bgnon">
+
+                                <div class="box1"><center> Signature</center></div>
+                                <br />
+                                <div class="bgnonpdf">Signature</div>
+                                </div>*@
+                            </div>
+
+
+
+                            @if (Model.IsPanVerify == true)
+                            {
+                                <div class="digibox">
+                                    <div style="clear:both; width:100%; float:left">
+                                        <div class="customerpdfdigi mgtp0p5">
+                                            <div class="custhdpdfdigi">Pan Verification Details</div>
+                                        </div>
+                                        <div class="wdth65digi">
+                                            <table>
+                                                <tr class="trdigi2">
+                                                    <td class="textlft hdgrea1">PanTitle</td>
+                                                    <td class="padlft1 widthbox1">
+                                                        <input type="text" value="@Model.NSDL_PanTitle" class="textbox_btm1" style="float: left;width: 31%;margin-right: 3%;border-top: none!important;border-right: none!important; border-left: none !important;" />
+                                                    </td>
+                                                </tr>
+                                                <tr class="trdigi2">
+                                                    <td class="textlft hdgrea1">FirstName</td>
+                                                    <td class="padlft1 widthbox1">
+                                                        <input type="text" value="@Model.NSDL_FirstName" class="textbox_btm1" style="float: left;width: 100%;margin-right: 3%;border-top: none!important;border-right: none!important; border-left: none !important;" />
+                                                    </td>
+                                                </tr>
+                                                <tr class="trdigi2">
+                                                    <td class="textlft hdgrea1">MiddleName</td>
+                                                    <td class="padlft1 widthbox1">
+                                                        <input type="text" value="@Model.NSDL_MiddleName" class="textbox_btm1" style="float: left;width: 100%;margin-right: 3%;border-top: none!important;border-right: none!important; border-left: none !important;" />
+                                                    </td>
+                                                </tr>
+                                                <tr class="trdigi2">
+                                                    <td class="textlft hdgrea1">LastName</td>
+                                                    <td class="padlft1 widthbox1">
+                                                        <input type="text" value="@Model.NSDL_LastName" class="textbox_btm1" style="float: left;width: 100%;margin-right: 3%;border-top: none!important;border-right: none!important; border-left: none !important;" />
+                                                    </td>
+                                                </tr>
+                                                <tr class="trdigi2">
+                                                    <td class="textlft hdgrea1">NamePrintedOnPan</td>
+                                                    <td class="padlft1 widthbox1">
+                                                        <input type="text" value="@Model.NSDL_NamePrintedOnPan" class="textbox_btm1" style="float: left;width: 100%;margin-right: 3%;border-top: none!important;border-right: none!important; border-left: none !important;" />
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            @if (Model.IsCkycVerify == true)
+                            {
+
+                            }
+                            @if (Model.IsAadharVerify == true)
+                            {
+                                <div class="digibox">
+                                    <div style="clear:both; width:100%; float:left">
+                                        <div class="customerpdfdigi mgtp0p5">
+                                            <div class="custhdpdfdigi">Aadhar Verification Details</div>
+                                        </div>
+                                        <div class="wdth50pd1">
+                                            <div style="float:left;margin-left:15%; width:55%; margin-top:2%;">
+                                                <div class="hdpdfd" style="width:79%;padding-left:-100px;">Aadhar Photo</div>
+                                                <img src="data:image/jpg;base64,@(Html.Raw(Model.AadharPhoto))" alt="" id="Livephoto" class="appl_photodigi imgsize" />
+                                            </div>
+                                        </div>
+                                        <div class="wdth65digi">
+                                            <table>
+                                                <tr class="trdigi2">
+                                                    <td class="textlft hdgrea1">First Name</td>
+                                                    <td class="padlft1 widthbox1">
+                                                        <input type="text" value="@Model.AadharName" class="textbox_btm1" style="float: left;width: 100%;margin-right: 3%;border-top: none!important;border-right: none!important; border-left: none !important;" />
+                                                    </td>
+                                                </tr>
+                                                <tr class="trdigi2">
+                                                    <td class="textlft hdgrea1">Date Of Birth</td>
+                                                    <td class="padlft1 widthbox1">
+                                                        <input type="text" value="@Model.Aadhar_DateOfBirth" class="textbox_btm1" style="float: left;width: 100%;margin-right: 3%;border-top: none!important;border-right: none!important; border-left: none !important;" />
+                                                    </td>
+                                                </tr>
+                                                <tr class="trdigi2">
+                                                    <td class="textlft hdgrea1">Gender</td>
+                                                    <td class="padlft1 widthbox1">
+                                                        <input type="text" value="@Model.Aadhar_Gender" class="textbox_btm1" style="float: left;width: 100%;margin-right: 3%;border-top: none!important;border-right: none!important; border-left: none !important;" />
+                                                    </td>
+                                                </tr>
+                                                <tr class="trdigi2">
+                                                    <td class="textlft hdgrea1">Address</td>
+                                                    <td class="padlft1 widthbox1">
+                                                        <input type="text" value="@Model.Aadhar_Address" class="textbox_btm1" style="float: left;width: 100%;margin-right: 3%;border-top: none!important;border-right: none!important; border-left: none !important;" />
+                                                    </td>
+                                                </tr>
+                                                <tr class="trdigi2">
+                                                    <td class="textlft hdgrea1">Country</td>
+                                                    <td class="padlft1 widthbox1">
+                                                        <input type="text" value="@Model.AadharCountry" class="textbox_btm1" style="float: left;width: 100%;margin-right: 3%;border-top: none!important;border-right: none!important; border-left: none !important;" />
+                                                    </td>
+                                                </tr>
+                                                <tr class="trdigi2">
+                                                    <td class="textlft hdgrea1">Locality</td>
+                                                    <td class="padlft1 widthbox1">
+                                                        <input type="text" value="@Model.Aadhar_Locality" class="textbox_btm1" style="float: left;width: 100%;margin-right: 3%;border-top: none!important;border-right: none!important; border-left: none !important;" />
+                                                    </td>
+                                                </tr>
+                                                <tr class="trdigi2">
+                                                    <td class="textlft hdgrea1">State</td>
+                                                    <td class="padlft1 widthbox1">
+                                                        <input type="text" value="@Model.AadharState" class="textbox_btm1" style="float: left;width: 100%;margin-right: 3%;border-top: none!important;border-right: none!important; border-left: none !important;" />
+                                                    </td>
+                                                </tr>
+                                                <tr class="trdigi2">
+                                                    <td class="textlft hdgrea1">House</td>
+                                                    <td class="padlft1 widthbox1">
+                                                        <input type="text" value="@Model.AadharHouse" class="textbox_btm1" style="float: left;width: 100%;margin-right: 3%;border-top: none!important;border-right: none!important; border-left: none !important;" />
+                                                    </td>
+                                                </tr>
+                                                <tr class="trdigi2">
+                                                    <td class="textlft hdgrea1">Street</td>
+                                                    <td class="padlft1 widthbox1">
+                                                        <input type="text" value="@Model.AadharStreet" class="textbox_btm1" style="float: left;width: 100%;margin-right: 3%;border-top: none!important;border-right: none!important; border-left: none !important;" />
+                                                    </td>
+                                                </tr>
+                                                <tr class="trdigi2">
+                                                    <td class="textlft hdgrea1">District</td>
+                                                    <td class="padlft1 widthbox1">
+                                                        <input type="text" value="@Model.Aadhar_District" class="textbox_btm1" style="float: left;width: 100%;margin-right: 3%;border-top: none!important;border-right: none!important; border-left: none !important;" />
+                                                    </td>
+                                                </tr>
+                                                <tr class="trdigi2">
+                                                    <td class="textlft hdgrea1">Pincode</td>
+                                                    <td class="padlft1 widthbox1">
+                                                        <input type="text" value="@Model.Aadhar_Pincode" class="textbox_btm1" style="float: left;width: 100%;margin-right: 3%;border-top: none!important;border-right: none!important; border-left: none !important;" />
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div style="clear:both;"></div>
+                <!--end page18 (pdf page:15)-->
+                <!--start page18 (pdf page:15)-->
+                @if (Model.imgtypePhoto == "JPEG" || Model.imgtypePhoto == "JPG" || Model.imgtypePhoto == "jpeg" || Model.imgtypePhoto == "jpg" || Model.imgtypePhoto == "PNG" || Model.imgtypePhoto == "png")
+                {
+                    <div class="start-pg9" style="font-size:16px; page-break-before:always;">
+                        <div>
+                            <div class="pic-hdr" style="float:left; clear:both">Customer Photo</div>
+                            <div class="pic" style="height:100%">
+                                <img src="@Model.PhotoDocument" style="height:1000px;width:100%" />
+                            </div>
+                        </div>
+                    </div>
+                }
+                <!--end page18-->
+                <div class="clr"></div>
+                <!--start page19 (pdf page:15)-->
+                @if (Model.imgtypePOI == "JPEG" || Model.imgtypePOI == "JPG" || Model.imgtypePOI == "jpeg" || Model.imgtypePOI == "jpg" || Model.imgtypePOI == "PNG" || Model.imgtypePOI == "png")
+                {
+                    <div class="start-pg9" style="font-size:16px; page-break-before:always;">
+
+                        <div>
+                            <div class="pic-hdr">Proof of Indentity Document</div>
+                            <div class="pic" style="height:100%">
+                                <img src="@Model.POI_Document" style="height:1000px;width:100%" />
+                            </div>
+                            @*<div class="pic" style="height:100%">
+                        <img src="@Model.POI_Document1" style="height:1000px;width:100%" />
+                        </div>
+                        <div class="pic" style="height:100%">
+                        <img src="@Model..POI_Document2" style="height:1000px;width:100%" />
+                        </div>*@
+                        </div>
+
+                    </div>
+                }
+                <div class="clr"></div>
+                <!--start page21 -->
+                @if (Model.imgtypePOI == "pdf" || Model.imgtypePOI == "Pdf" || Model.imgtypePOI == "PDF")
+                {
+                    <div class="start-pg9" style="font-size:16px; page-break-before:always;">
+                        <div>
+                            <div class="pic-hdr">Digilocker Document</div>
+                            <div class="pic" style="height:100%">
+                                <img src="@Model.POI_Document" style="height:1000px;width:100%" />
+                            </div>
+                            @*<div class="pic" style="height:100%">
+                        <img src="@Model.POI_Document1" style="height:1000px;width:100%" />
+                        </div>
+                        <div class="pic" style="height:100%">
+                        <img src="@Model..POI_Document2" style="height:1000px;width:100%" />
+                        </div>*@
+                        </div>
+                    </div>
+                }
+                <div class="clr"></div>
+                <!--end page21-->
+                @if (Model.imgtypePOI == "POACam")
+                {
+                    <div class="start-pg9" style="font-size:16px; page-break-before:always;">
+
+                        <div>
+                            <div class="pic-hdr">Proof of Indentity Document</div>
+                            <div class="pic" style="height:100%">
+                                <img src="@Model.POI_Document" style="height:1000px;width:100%" />
+                            </div>
+                            @*<div class="pic" style="height:100%">
+                        <img src="@Model..POI_Document1" style="height:1000px;width:100%" />
+                        </div>
+                        <div class="pic" style="height:100%">
+                        <img src="@Model..POI_Document2" style="height:1000px;width:100%" />
+                        </div>*@
+                        </div>
+
+                    </div>
+                }
+                <!--end page19-->
+                <div class="clr"></div>
+                <!--start page20 -->
+                @if (Model.imgtypeCA == "JPEG" || Model.imgtypeCA == "JPG" || Model.imgtypeCA == "jpeg" || Model.imgtypeCA == "jpg")
+                {
+                    <div class="start-pg9" style="font-size:16px; page-break-before:always;">
+                        <div>
+                            <div class="pic-hdr">Proof Of Address Document</div>
+                            <div class="pic" style="height:100%">
+                                <img src="@Model.CA_Document" style="height:1000px;width:100%" />
+                            </div>
+
+                        </div>
+                    </div>
+                }
+                <div class="clr"></div>
+                <!--start page20 -->
+                @if (Model.imgtypeCA == "PDF" || Model.imgtypeCA == "Pdf" || Model.imgtypeCA == "pdf")
+                {
+                    <div class="start-pg9" style="font-size:16px; page-break-before:always;">
+                        <div>
+                            <div class="pic-hdr">Proof Of Address Document</div>
+                            <div class="pic" style="height:100%">
+                                <img src="@Model.CA_Document" style="height:1000px;width:100%" />
+                            </div>
+
+                        </div>
+                    </div>
+                }
+                <!--end page20-->
+                <!--start page20 -->
+                @if (Model.imgtypeCA == "POACam")
+                {
+                    <div class="start-pg9" style="font-size:16px; page-break-before:always;">
+                        <div>
+                            <div class="pic-hdr">Proof Of Address Document</div>
+                            <div class="pic" style="height:100%">
+                                <img src="@Model.CA_Document" style="height:1000px;width:100%" />
+                            </div>
+
+                        </div>
+                    </div>
+                }
+                <!--end page20-->
+                @if (Model.imgtypeSI == "JPEG" || Model.imgtypeSI == "JPG" || Model.imgtypeSI == "jpeg" || Model.imgtypeSI == "jpg")
+                {
+                    <div class="start-pg9" style="font-size:16px; page-break-before:always;">
+                        <div>
+                            <div class="pic-hdr">Signature</div>
+                            <div class="pic" style="height:100%">
+                                <img src="@Model.SI_Document" style="height:1000px;width:100 %" />
+                            </div>
+
+                        </div>
+                    </div>
+                }
+
+
+
+                <div class="start-pg9" style="font-size:16px; page-break-before:always;">
+                    <div style="float:left;width:100%;padding-top:1%">
+                        <div class="customerpdfdigi">
+                            <div class="custhdpdfdigi" style=" "> I wish to avail of following E-banking Services </div>
+                        </div>
+                        <div style="float:left;width:98%;padding-top:1%;padding-left:1%">
+                            <div style="float:left;width:30%;">
+                                @if (Model.CosmoRupayCard == true)
+                                {
+                                    <input type="checkbox" checked="checked" value="@Model.CosmoRupayCard" class="textbox_btm1" style="float: left;border-top: none!important;border-right: none!important; border-left: none !important;margin-left:18px;" />
+                                }
+                                else
+                                {
+                                    <input type="checkbox" value="@Model.CosmoRupayCard" class="textbox_btm1" style="float: left;border-top: none!important;border-right: none!important; border-left: none !important;margin-left:18px;" />
+
+                                }
+                                <div class="enrolldiginewbx">  Visa-Debit Card </div>
+
+                            </div>
+                            @*<div style="float:left;width:60%;">
+                            @if (Model.CosmoVisaDebitCard == true)
+                            {
+                            <input type="checkbox" checked="checked" value="@Model.CosmoVisaDebitCard" class="textbox_btm1" style="float: left;margin-right: 3%;border-top: none!important;border-right: none!important; border-left: none !important;margin-left:18px;" />
+                            }
+                            else
+                            {
+                            <input type="checkbox" value="@Model.CosmoVisaDebitCard" class="textbox_btm1" style="float: left;border-top: none!important;border-right: none!important; border-left: none !important;margin-left:18px;" />
+
+                            }
+                            <div class="enrolldiginewbx"> Cosmo Visa Debit Card </div>
+                            </div>*@
+                            <div style="float:left;width:60%;">
+                                @if (Model.UPI == true)
+                                {
+                                    <input type="checkbox" checked="checked" value="@Model.UPI" class="textbox_btm1" style="float: left;margin-right: 3%;border-top: none!important;border-right: none!important; border-left: none !important;margin-left:18px;" />
+                                }
+                                else
+                                {
+                                    <input type="checkbox" value="@Model.UPI" class="textbox_btm1" style="float: left;border-top: none!important;border-right: none!important; border-left: none !important;margin-left:18px;" />
+
+                                }
+                                <div class="enrolldiginewbx"> UPI </div>
+                            </div>
+                            <div style="float:left;width:60%;">
+                                @if (Model.InternetBanking == true)
+                                {
+                                    <input type="checkbox" checked="checked" value="@Model.InternetBanking" class="textbox_btm1" style="float: left;margin-right: 3%;border-top: none!important;border-right: none!important; border-left: none !important;margin-left:18px;" />
+                                }
+                                else
+                                {
+                                    <input type="checkbox" value="@Model.InternetBanking" class="textbox_btm1" style="float: left;border-top: none!important;border-right: none!important; border-left: none !important;margin-left:18px;" />
+
+                                }
+                                <div class="enrolldiginewbx"> InternetBanking </div>
+                            </div>
+                            <div style="float:left;width:60%;">
+                                @if (Model.IMPS == true)
+                                {
+                                    <input type="checkbox" checked="checked" value="@Model.IMPS" class="textbox_btm1" style="float: left;margin-right: 3%;border-top: none!important;border-right: none!important; border-left: none !important;margin-left:18px;" />
+                                }
+                                else
+                                {
+                                    <input type="checkbox" value="@Model.IMPS" class="textbox_btm1" style="float: left;border-top: none!important;border-right: none!important; border-left: none !important;margin-left:18px;" />
+
+                                }
+                                <div class="enrolldiginewbx"> IMPS </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div style="float:left;width:100%;padding-top:1%">
+                        <div class="customerpdfdigi">
+                            <div class="custhdpdfdigi" style=""> Existing Credit Card Facilites If Any </div>
+                        </div>
+                        <div style="float:left;width:100%;padding-top:1%;padding-left:1%">
+                            <div class="row">
+                                <div class="col-xl-3" style="width:25%;float:left">
+                                    @if (Model.CarLoan == true)
+                                    {
+                                        <input type="checkbox" checked="checked" value="@Model.CarLoan" class="textbox_btm1" style="float: left;border-top: none!important;border-right: none!important; border-left: none !important;margin-left:18px;" />
+                                    }
+                                    else
+                                    {
+                                        <input type="checkbox" value="@Model.CarLoan" class="textbox_btm1" style="float: left;border-top: none!important;border-right: none!important; border-left: none !important;margin-left:18px;" />
+
+                                    }
+                                    <div class="enrolldiginewbx"> Car Loan </div>
+                                </div>
+                                <div class="col-xl-3" style="width:25%;float:left">
+                                    @if (Model.ConsumerLoan == true)
+                                    {
+                                        <input type="checkbox" checked="checked" value="@Model.ConsumerLoan" class="textbox_btm1" style="float: left;border-top: none!important;border-right: none!important; border-left: none !important;margin-left:18px;" />
+                                    }
+                                    else
+                                    {
+                                        <input type="checkbox" value="@Model.ConsumerLoan" class="textbox_btm1" style="float: left;border-top: none!important;border-right: none!important; border-left: none !important;margin-left:18px;" />
+
+                                    }
+                                    <div class="enrolldiginewbx"> Consumer Loan </div>
+                                </div>
+                                <div class="col-xl-3" style="width:25%;float:left">
+                                    @if (Model.HomeLoan == true)
+                                    {
+                                        <input type="checkbox" checked="checked" value="@Model.HomeLoan" class="textbox_btm1" style="float: left;border-top: none!important;border-right: none!important; border-left: none !important;margin-left:18px;" />
+                                    }
+                                    else
+                                    {
+                                        <input type="checkbox" value="@Model.HomeLoan" class="textbox_btm1" style="float: left;border-top: none!important;border-right: none!important; border-left: none !important;margin-left:18px;" />
+
+                                    }
+                                    <div class="enrolldiginewbx"> Home Loan </div>
+                                </div>
+                                <div class="col-xl-3" style="width:25%;float:left">
+                                    @if (Model.BusinessLoan == true)
+                                    {
+                                        <input type="checkbox" checked="checked" value="@Model.BusinessLoan" class="textbox_btm1" style="float: left;border-top: none!important;border-right: none!important; border-left: none !important;margin-left:18px;" />
+                                    }
+                                    else
+                                    {
+                                        <input type="checkbox" value="@Model.BusinessLoan" class="textbox_btm1" style="float: left;border-top: none!important;border-right: none!important; border-left: none !important;margin-left:18px;" />
+
+                                    }
+                                    <div class="enrolldiginewbx"> Business Loan </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12" style="float:left;width:100%;padding-top:1%;padding-left:1%">
+                            <div class="row">
+                                <div class="col-xl-3" style="width:25%;float:left">
+                                    @if (Model.EducationLoan == true)
+                                    {
+                                        <input type="checkbox" checked="checked" value="@Model.EducationLoan" class="textbox_btm1" style="float: left;border-top: none!important;border-right: none!important; border-left: none !important;margin-left:18px;" />
+                                    }
+                                    else
+                                    {
+                                        <input type="checkbox" value="@Model.EducationLoan" class="textbox_btm1" style="float: left;border-top: none!important;border-right: none!important; border-left: none !important;margin-left:18px;" />
+
+                                    }
+                                    <div class="enrolldiginewbx"> Education Loan </div>
+                                </div>
+                                @* <div class="col-xl-3" style="width:25%;float:left">
+                                @if (Model.NewsPaper == true)
+                                {
+                                <input type="checkbox" checked="checked" value="@Model.NewsPaper" class="textbox_btm1" style="float: left;border-top: none!important;border-right: none!important; border-left: none !important;margin-left:18px;" />
+                                }
+                                else
+                                {
+                                <input type="checkbox" value="@Model.NewsPaper" class="textbox_btm1" style="float: left;border-top: none!important;border-right: none!important; border-left: none !important;margin-left:18px;" />
+
+                                }
+                                <div class="enrolldiginewbx"> News Paper </div>
+
+                                </div>*@
+                                @*<div class="col-xl-3" style="width:25%;float:left">
+                                @if (Model.Advertise == true)
+                                {
+                                <input type="checkbox" checked="checked" value="@Model.Advertise" class="textbox_btm1" style="float: left;border-top: none!important;border-right: none!important; border-left: none !important;margin-left:18px;" />
+                                }
+                                else
+                                {
+                                <input type="checkbox" value="@Model.Advertise" class="textbox_btm1" style="float: left;border-top: none!important;border-right: none!important; border-left: none !important;margin-left:18px;" />
+
+                                }
+                                <div class="enrolldiginewbx"> Advertise </div>
+                                </div>*@
+                                <div class="col-xl-3" style="width:25%;float:left">
+                                    @if (Model.OtherCreditFacility == true)
+                                    {
+                                        <input type="checkbox" checked="checked" value="@Model.OtherCreditFacility" class="textbox_btm1" style="float: left;border-top: none!important;border-right: none!important; border-left: none !important;margin-left:18px;" />
+                                    }
+                                    else
+                                    {
+                                        <input type="checkbox" value="@Model.OtherCreditFacility" class="textbox_btm1" style="float: left;border-top: none!important;border-right: none!important; border-left: none !important;margin-left:18px;" />
+
+                                    }
+                                    <div class="enrolldiginewbx"> Other </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12" style="float:left;width:100%;padding-top:1%;padding-left:1%;margin-bottom:1%">
+                            <div class="row">
+                                <div class="col-xl-3" style="width:25%;float:left">
+                                    @if (Model.Staff == true)
+                                    {
+                                        <input type="checkbox" checked="checked" value="@Model.Staff" class="textbox_btm1" style="float: left;border-top: none!important;border-right: none!important; border-left: none !important;margin-left:18px;" />
+                                    }
+                                    else
+                                    {
+                                        <input type="checkbox" value="@Model.Staff" class="textbox_btm1" style="float: left;border-top: none!important;border-right: none!important; border-left: none !important;margin-left:18px;" />
+
+                                    }
+                                    <div class="enrolldiginewbx">  Staff </div>
+                                </div>
+
+                                <div class="col-xl-3" style="width:25%;float:left">
+                                    @if (Model.RelativeFriend == true)
+                                    {
+                                        <input type="checkbox" checked="checked" value="@Model.RelativeFriend" class="textbox_btm1" style="float: left;border-top: none!important;border-right: none!important; border-left: none !important;margin-left:18px;" />
+                                    }
+                                    else
+                                    {
+                                        <input type="checkbox" value="@Model.RelativeFriend" class="textbox_btm1" style="float: left;border-top: none!important;border-right: none!important; border-left: none !important;margin-left:18px;" />
+
+                                    }
+                                    <div class="enrolldiginewbx"> Relative/Friend </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    @*<div class="customerpdfdigi" style="">
+                    <div class="custhdpdfdigi"> Account Usage </div>
+                    </div>
+                    <table style="font-family:arial,sans-serif;border-collapse: collapse; width: 98%;margin-left:1%;margin-bottom:1%">
+                    <tr>
+                    <th style="border: 1px solid #dddddd;text-align: left; padding: 8px;"></th>
+                    <th style="border: 1px solid #dddddd;text-align: left; padding: 8px;">Deposits</th>
+                    <th style="border: 1px solid #dddddd;text-align: left; padding: 8px;">Withdrawals</th>
+                    </tr>
+                    <tr>
+                    <td style="border: 1px solid #dddddd;text-align: left; padding: 8px;">1. Anticipated number of cash transaction per month</tdstyle="border:>
+                    <td style="border: 1px solid #dddddd;text-align: left; padding: 8px;"><input type="text" value="@Model.DepositNumberOfTxnPerMonth" class="textbox_btm1" style="float: left;width: 31%;margin-right: 3%;border-top: none!important;border-right: none!important; border-left: none !important;" /></td>
+                    <td style="border: 1px solid #dddddd;text-align: left; padding: 8px;"><input type="text" value="@Model.WithdrawNumberOfTxnPerMonth" class="textbox_btm1" style="float: left;width: 31%;margin-right: 3%;border-top: none!important;border-right: none!important; border-left: none !important;" /></td>
+                    </tr>
+                    <tr>
+                    <td style="border: 1px solid #dddddd;text-align: left; padding: 8px;">2.  Anticipated value of transaction per month</td>
+                    <td style="border: 1px solid #dddddd;text-align: left; padding: 8px;"><input type="text" value="@Model.DepositValueOfTxnPerMonth" class="textbox_btm1" style="float: left;width: 31%;margin-right: 3%;border-top: none!important;border-right: none!important; border-left: none !important;" /></td>
+                    <td style="border: 1px solid #dddddd;text-align: left; padding: 8px;"><input type="text" value="@Model.WithdrawValueOfTxnPerMonth" class="textbox_btm1" style="float: left;width: 31%;margin-right: 3%;border-top: none!important;border-right: none!important; border-left: none !important;" /></td>
+                    </tr>
+                    <tr>
+                    <td style="border: 1px solid #dddddd;text-align: left; padding: 8px;">3. Total funds expected to be deposited in to account over next three months</td>
+                    <td style="border: 1px solid #dddddd;text-align: left; padding: 8px;"><input type="text" value="@Model.DepositTotalFundsDepositedinThreeMonth" class="textbox_btm1" style="float: left;width: 31%;margin-right: 3%;border-top: none!important;border-right: none!important; border-left: none !important;" /></td>
+                    <td style="border: 1px solid #dddddd;text-align: left; padding: 8px;"><input type="text" value="@Model.WithdrawTotalFundsDepositedinThreeMonth" class="textbox_btm1" style="float: left;width: 31%;margin-right: 3%;border-top: none!important;border-right: none!important; border-left: none !important;" /></td>
+                    </tr>
+                    <tr>
+                    <td style="border: 1px solid #dddddd;text-align: left; padding: 8px;">4. Anticipated number of transaction per month(cheques/transfer etc.)</td>
+                    <td style="border: 1px solid #dddddd;text-align: left; padding: 8px;"><input type="text" value="@Model.DepositTxnPerMonthChequeOrTransfer" class="textbox_btm1" style="float: left;width: 31%;margin-right: 3%;border-top: none!important;border-right: none!important; border-left: none !important;" /></td>
+                    <td style="border: 1px solid #dddddd;text-align: left; padding: 8px;"><input type="text" value="@Model.WithdrawTxnPerMonthChequeOrTransfer" class="textbox_btm1" style="float: left;width: 31%;margin-right: 3%;border-top: none!important;border-right: none!important; border-left: none !important;" /></td>
+                    </tr>
+
+                    </table>*@
+                </div>
+
+                <div style="width:100%;float:left">
+                    <div class="customerpdfdigi" style="">
+                        <div class="custhdpdfdigi" style=" "> Nomination Form - DA - 1 </div>
+                    </div>
+                    <div style="width:98%;text-align:justify;font-size:15px;float:left;padding-top:1%;padding-left:1%">
+                        @if (Model.NomineeForAccountYes == true)
+                        {
+                            <input type="checkbox" checked="checked" value="@Model.NomineeForAccountYes" class="textbox_btm1" style="float: left;border-top: none!important;border-right: none!important; border-left: none !important;margin-left:18px;" />
+                        }
+                        else
+                        {
+                            <input type="checkbox" value="@Model.NomineeForAccountYes" class="textbox_btm1" style="float: left;border-top: none!important;border-right: none!important; border-left: none !important;margin-left:18px;" />
+
+                        }
+                        <div class="enrolldiginewbx"> Yes, I/We wish to nominate(as per details below ) </div>
+                    </div>
+                    <div style="width:98%;text-align:justify;font-size:15px;float:left;padding-top:1%;padding-left:1%">
+                        @if (Model.NomineeForAccountNo == true)
+                        {
+                            <input type="checkbox" checked="checked" value="@Model.NomineeForAccountNo" class="textbox_btm1" style="float: left;border-top: none!important;border-right: none!important; border-left: none !important;margin-left:18px;" />
+                        }
+                        else
+                        {
+                            <input type="checkbox" value="@Model.NomineeForAccountNo" class="textbox_btm1" style="float: left;border-top: none!important;border-right: none!important; border-left: none !important;margin-left:18px;" />
+
+                        }
+                        <div class="enrolldiginewbx"> No, I/We declare that I/We do not wish to make a nomination in my/our account. </div>
+                    </div>
+
+                    <div style="width:98%;text-align:justify;font-size:15px;float:left;padding-top:1%;padding-left:1%;">
+
+                        <p style="width:97%;margin-left:1%;font-size:17px;">
+                            Nomination under section 45ZA read with section 56nof the Banking  Regultion Act, 1949 and Rule  2(1) of the Co-op. Banks (nomination) Rules, 1985 in respect of Bank deposits.
+                            <br />
+                            Nominaate the following person to whom in the event of my/our death, the amount of the deposit, particulars where of are given below, may be returned by The Cosmos Co-op. Bank Ltd. Branch
+                            <input type="text" value="@Model.Branch" class="textbox_btm1" style="float: left;border-top: none!important;border-right: none!important; border-left: none !important;" />
+                            branch/office where deposit is held.
+
+                        </p>
+                    </div>
+                    <br />
+                    <div class="pdf1bxdigi accpdf" style="margin-top:1%">
+                        <div class="namebx">
+                            <div style="float:left; width:26%; text-align:center;margin-left:7%;"><strong>(First Name)</strong></div>
+                            <div style="float:left; width:33%; text-align:center"><strong>(Middle Name)</strong></div>
+                            <div style="float:left; width:25%;text-align:center"><strong>(Last Name)</strong></div>
+                        </div>
+                        <table class="tablepdf">
+                            <tr class="trdigi">
+                                <td class="textlft hdgrea fntsiz">Name</td>
+
+                                <td colspan="3" class="padlft1 widthbox">
+                                    @if (Model.NomineeFName != null)
+                                    {
+
+                                        <input type="text" value="@Model.NomineeFName" class="textbox_btm1" style="float: left;width:33%;border-top: none!important;border-right: none!important; border-left: none !important;" />
+                                    }
+                                    else
+                                    {
+
+                                        <input type="text" value="@Model.NomineeFName" class="textbox_btm1" style="float: left;width:33%;border-top: none!important;border-right: none!important; border-left: none !important;" />
+                                    }
+                                    @if (Model.NomineeMName != null)
+                                    {
+
+                                        <input type="text" value="@Model.NomineeMName" class="textbox_btm1" style="float: left;width:33%;border-top: none!important;border-right: none!important; border-left: none !important;" />
+                                    }
+                                    else
+                                    {
+
+                                        <input type="text" value="@Model.NomineeMName" class="textbox_btm1" style="float: left;width:33%;border-top: none!important;border-right: none!important; border-left: none !important;" />
+                                    }
+                                    @if (Model.NomineeLName != null)
+                                    {
+
+                                        <input type="text" value="@Model.NomineeLName" class="textbox_btm1" style="float: left;width:32%;border-top: none!important;border-right: none!important; border-left: none !important;" />
+                                    }
+                                    else
+                                    {
+
+                                        <input type="text" value="@Model.NomineeLName" class="textbox_btm1" style="float: left;width:32%;border-top: none!important;border-right: none!important; border-left: none !important;" />
+                                    }
+
+                                </td>
+
+                            </tr>
+
+                            <tr class="trdigi">
+                                <td class="textlft hdgrea fntsiz">Address</td>
+                                <td colspan="3" class="padlft1 widthbox">
+                                    @if (Model.Nominee_ADDRESS_1 != null)
+                                    {
+
+                                        <input type="text" value="@Model.Nominee_ADDRESS_1" class="textbox_btm1" style="float:none;width:99%;border-top: none!important;border-right: none!important; border-left: none !important;" />
+
+                                    }
+                                    else
+                                    {
+                                        <input type="text" value="@Model.Nominee_ADDRESS_1" class="textbox_btm1" style="float:none;width:99%;border-top: none!important;border-right: none!important; border-left: none !important;" />
+                                    }
+
+                                </td>
+                                <td class=" textlft" style="width: 12%;float:left"> &nbsp;&nbsp;</td>
+                                <td colspan="3" class="padlft1 widthbox">
+                                    @if (Model.Nominee_ADDRESS_2 != null)
+                                    {
+
+                                        <input type="text" value="@Model.Nominee_ADDRESS_2" class="textbox_btm1" style="float:none;width:99%;border-top: none!important;border-right: none!important; border-left: none !important;" />
+
+                                    }
+                                    else
+                                    {
+                                        <input type="text" value="@Model.Nominee_ADDRESS_2" class="textbox_btm1" style="float:none;width:99%;border-top: none!important;border-right: none!important; border-left: none !important;" />
+                                    }
+
+                                </td>
+                                <td class=" textlft" style="width: 12%;float:left">&nbsp;&nbsp;</td>
+                                <td colspan="3" class="padlft1 widthbox">
+                                    @if (Model.Nominee_ADDRESS_3 != null)
+                                    {
+
+                                        <input type="text" value="@Model.Nominee_ADDRESS_3" class="textbox_btm1" style="float:none;width:99%;border-top: none!important;border-right: none!important; border-left: none !important;" />
+
+                                    }
+                                    else
+                                    {
+                                        <input type="text" value="@Model.Nominee_ADDRESS_3" class="textbox_btm1" style="float:none;width:99%;border-top: none!important;border-right: none!important; border-left: none !important;" />
+                                    }
+
+                                </td>
+                            </tr>
+                            <tr class="trdigi2">
+                                <td class="textlft hdgrea fntsiz">City</td>
+                                <td class="padlft1 widthbox1">
+                                    <input type="text" value="@Model.Nominee_CITY" class="textbox_btm1" style="float: left;width: 100%;margin-right: 3%;border-top: none!important;border-right: none!important; border-left: none !important;" />
+                                </td>
+                            </tr>
+
+                            <tr class="trdigi2">
+                                <td class="textlft hdgrea fntsiz">Country</td>
+                                <td class="padlft1 widthbox1">
+                                    <input type="text" value="@Model.Nominee_COUNTRY" class="textbox_btm1" style="float: left;width: 100%;margin-right: 3%;border-top: none!important;border-right: none!important; border-left: none !important;" />
+                                </td>
+                            </tr>
+                            <tr class="trdigi2">
+                                <td class="textlft hdgrea fntsiz">State</td>
+                                <td class="padlft1 widthbox1">
+                                    <input type="text" value="@Model.Nominee_STATE" class="textbox_btm1" style="float: left;width: 100%;margin-right: 3%;border-top: none!important;border-right: none!important; border-left: none !important;" />
+                                </td>
+                            </tr>
+                            <tr class="trdigi">
+                                <td class="textlft hdgrea fntsiz"> Pin Code</td>
+                                <td colspan="3" class="padlft1 widthbox">
+
+
+                                    <input type="text" value="@Model.Nominee_Pincode" class="textbox_btm1" style="float:none;width:40%;border-top: none!important;border-right: none!important; border-left: none !important;" />
+                                </td>
+                            </tr>
+
+
+
+
+                        </table>
+                    </div>
+                    <br />
+                </div>
+
+
+
+                @if (Model.JointForAccountYes == true)
+                {
+
+                    <div class="start-pg1" style="page-break-after: always;page-break-before: always;width: 96%;margin:0% 2% 0% 2% !important;">
+
+                        <div class="border_pdfdigi mgbtm_2d" style="margin-top:1%">
+                            <div class="bordergreydigi">
+                                <div style="width:100%;float:left">
+                                    <div class="wdth60">
+                                        @*<img src="~/Content/imgs/newlogoin.png" class="logopdf" />*@
+                                        <img src="~/Content/imgs/COSMOS-Logo1.png" class="logopdf" />
+                                        @*<img src="~/Content/imgs/photo_2020-03-13_12-56-53.jpg" class="logopdf" />*@
+                                        @*<img src="~/Content/imgs/indofinnet_logo.png" class="logopdf" />*@
+
+
+                                    </div>
+
+                                    <div class="" style="width:39%;float:left;font-size:26px;margin-left:-5%"><h3>The Cosmos CO-OP. BANK LTD.</h3></div>
+                                </div>
+                                <div>
+
+                                    <div class="" style="width:100%;text-align:center;font-size:20px;clear:both">(Multistate Sheduled Bank)</div>
+                                    <div class="" style="width:100%;text-align:center;font-size:20px;clear:both">Registered office :'Cosmos Tower',Plot No. 6,ICS Colony,University Road, Ganeshkhind, Shivajinagar,Pune - 411007, Ph : 020- 67086780</div>
+                                    <div class="" style="width:100%;text-align:center;font-size:20px;clear:both">Email : customercare@cosmosbank.in  |  WWW.cosmosbank.com </div>
+                                </div>
+                                @*<div class="clsbtn">
+                            <img src="~/Images/crossimg1.jpg" class="imgcrss" id="closeformdata" />
+                            </div>*@
+
+
+
+
+                                <div class="customerpdfdigi">
+                                    <div class="custhdpdfdigi">Customer KYC Details</div>
+                                </div>
+                                <div class="wdth100p">
+                                    <div class="wdth60ADi idcust" style="width:98%;">
+                                        <div class="enrolldiginewbx" style="border:2px solid red;width:20%"> Customer Details:</div>
+                                        <div class="textbx">
+                                            @*@foreach (char data in "         ")
+                                        {
+                                        <input type="text" value="@data" class="bb_3" />
+                                        }*@
+                                            <input type="text" value="@Model.CustomerId1st" class="textbox_btm" style="float:none;width:50%;height: 22px;border-radius: 4px;" />
+                                            @*@Html.TextBoxFor(model => model.hiddenCustomerDetailId, new { @class = "form-control" })*@
+                                        </div>
+                                        @*@Html.TextBoxFor(model => model.KYC_FirstName, new { @class = "form-control", id = "KYC_FirstName" })*@
+                                    </div>
+                                    <div class="wdth50pd">
+                                        @*<div style="float:left;margin-left:5%;border:1px solid ; width:30%">
+                                    <div class="hdpdf">KYC Photo</div>
+                                    <img src="data:image/jpg;base64,@(Html.Raw(Model.AadharPhoto))" alt="" id="Aadharphoto" class="appl_photo imgsize" />
+                                    </div>*@
+                                        <div style="float:left;margin-left:55%; width:35%; margin-top:2%">
+                                            <div class="hdpdfdi pddpdf">Live Photo</div>
+                                            <img src="data:image/jpg;base64,@(Html.Raw(Model.LivePhoto1st))" alt="" id="Livephoto" class="appl_photodiig imgsize" />
+
+                                            @*<img src="data:image/jpg;base64," alt="" id="Livephoto" class="appl_photo imgsize" />
+                                        </div>*@
+                                        </div>
+                                        @*<div class="wdth20p">
+                                    <div class="img_adhar col-lg-12 col-md-12 col-sm-12 col-xs-12 KYCB" id="KYCImage001">
+                                    <img id="imgX" class="adhar_img KYCW_Hp" /> @*src="@ViewBag.Image"*@
+                                        @*<div class="pre_div preTXT">Offline KYC Image</div>
+                                    </div>
+                                    </div>*@
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <div class="pdf1bxdigi accpdf">
+                                        <div class="namebx">
+                                            <div style="float:left; width:26%; text-align:center;margin-left:7%;"><strong>(First Name)</strong></div>
+                                            <div style="float:left; width:33%; text-align:center"><strong>(Middle Name)</strong></div>
+                                            <div style="float:left; width:25%;text-align:center"><strong>(Last Name)</strong></div>
+                                        </div>
+                                        <table class="tablepdf">
+                                            <tr class="trdigi">
+                                                <td class="textlft hdgrea fntsiz">Name</td>
+                                                @*<td style="width:231px">
+                                            <input type="text" class="" style="width:231px" value="@Model.CFirstName" /><!---19 C--->
+                                            </td>
+                                            <td style="width:231px">
+                                            <input type="text" class="" style="width:231px" value="@Model.CMiddleName" /><!---19 C--->
+                                            </td>
+                                            <td style="width:231px">
+                                            <input type="text" class="" style="width:231px" value="@Model.CLastName" /><!---19 C--->
+                                            </td>*@
+                                                <td colspan="3" class="padlft1 widthbox">
+                                                    @if (Model.CFirstName1st != null)
+                                                    {
+                                                        @*foreach (char data in (Model.CFirstName.Length >= 8) ? Model.CFirstName.Substring(0, 8).PadRight(8, ' ') : Model.CFirstName.PadRight(8, ' '))
+                                                {
+                                                <input type="text" value='@data' class="bb1" />
+                                                }*@
+                                                        <input type="text" value="@Model.CFirstName1st" class="textbox_btm1" style="float: left;width: 31%;margin-right: 3%;border-top: none!important;border-right: none!important; border-left: none !important;" />
+                                                    }
+                                                    else
+                                                    {
+                                                        @*foreach (char data in "        ")
+                                                {
+                                                <input type="text" value='@data' class="bb1" style="font-weight:900" />
+                                                }*@
+                                                        <input type="text" value="@Model.CFirstName1st" class="textbox_btm1" style="float: left;width: 31%;margin-right: 3%;border-top: none!important;border-right: none!important; border-left: none !important;" />
+                                                    }
+                                                    @if (Model.CMiddleName1st != null)
+                                                    {
+                                                        @*foreach (char data in (Model.CMiddleName.Length >= 12) ? Model.CMiddleName.Substring(0, 12).PadRight(12, ' ') : Model.CMiddleName.PadRight(12, ' '))
+                                                {
+                                                <input type="text" value='@data' class="bb1" />
+                                                }*@
+                                                        <input type="text" value="@Model.CMiddleName1st" class="textbox_btm1" style="float: left;width: 32%;margin-right: 2%;border-top: none!important;border-right: none!important; border-left: none !important;" />
+                                                    }
+                                                    else
+                                                    {
+                                                        @*foreach (char data in "        ")
+                                                {
+                                                <input type="text" value='@data' class="bb1" style="font-weight:900" />
+                                                }*@
+                                                        <input type="text" value="@Model.CMiddleName1st" class="textbox_btm1" style="float: left;width: 32%;margin-right: 2%;border-top: none!important;border-right: none!important; border-left: none !important;" />
+                                                    }
+                                                    @if (Model.CLastName1st != null)
+                                                    {
+                                                        @*foreach (char data in (Model.CLastName.Length >= 8) ? Model.CLastName.Substring(0, 8).PadRight(8, ' ') : Model.CLastName.PadRight(8, ' '))
+                                                {
+                                                <input type="text" value='@data' class="bb1" />
+                                                }*@
+                                                        <input type="text" value="@Model.CLastName1st" class="textbox_btm1" style="float: left;width: 26%;margin-right: 0%;border-top: none!important;border-right: none!important; border-left: none !important;" />
+                                                    }
+                                                    else
+                                                    {
+                                                        @*foreach (char data in "        ")
+                                                {
+                                                <input type="text" value='@data' class="bb1" style="font-weight:900" />
+                                                }*@
+                                                        <input type="text" value="@Model.CLastName1st" class="textbox_btm1" style="float: left;width: 26%;margin-right: 0%;border-top: none!important;border-right: none!important; border-left: none !important;" />
+                                                    }
+                                                    @*@foreach (char data in "                                                 ")
+                                                {
+                                                <input type="text" value="" class="bb1" />
+                                                }*@
+                                                </td>
+                                                @*<td colspan="3">@Html.TextBoxFor(model => model.KYC_FirstName, new { @class = "form-control", id = "KYC_FirstName" })</td>*@
+                                            </tr>
+                                            <tr class="trdigi">
+                                                <td class="textlft hdgrea fntsiz">DOB</td>
+                                                <td colspan="3" class="padlft1 widthbox">
+                                                    @if (Model.DOB_DD1st != null)
+                                                    {
+                                                        var DD = "";
+                                                        //a = a.PadRight(3, ' ');
+                                                        if (Model.DOB_DD1st.Length == 1)
+                                                        {
+                                                            DD = '0' + Model.DOB_DD1st;
+                                                        }
+                                                        else
+                                                        {
+                                                            DD = Model.DOB_DD1st;
+                                                        }
+                                                        //a = a.PadRight(3, ' ');
+                                                        foreach (char data in (DD.Length >= 2) ? DD.Substring(0, 2).PadRight(2, ' ') : DD.PadRight(2, ' '))
+                                                        {
+                                                            <input type="text" value='@data' class="bbdigi" />
+                                                        }
+                                                    }
+                                                    else
+                                                    {
+                                                        foreach (char data in "DD")
+                                                        {
+                                                            <input type="text" value='@data' class="bbdigi" />
+                                                        }
+                                                    }
+                                                    <span>-</span>
+                                                    @if (Model.DOB_MM1st != null)
+                                                    {
+                                                        var MM = "";
+
+                                                        if (Model.DOB_MM1st.Length == 1)
+                                                        {
+                                                            MM = '0' + Model.DOB_MM1st;
+                                                        }
+                                                        else
+                                                        {
+                                                            MM = Model.DOB_MM1st;
+                                                        }
+                                                        //a = a.PadRight(3, ' ');
+                                                        foreach (char data in (MM.Length >= 2) ? MM.Substring(0, 2).PadRight(2, ' ') : MM.PadRight(2, ' '))
+                                                        {
+                                                            <input type="text" value='@data' class="bbdigi" />
+                                                        }
+                                                    }
+                                                    else
+                                                    {
+                                                        foreach (char data in "MM")
+                                                        {
+                                                            <input type="text" value='@data' class="bbdigi" />
+                                                        }
+                                                    }
+                                                    <span>-</span>
+                                                    @if (Model.DOB_yyyy1st != null)
+                                                    {
+
+                                                        //a = a.PadRight(3, ' ');
+                                                        foreach (char data in (Model.DOB_yyyy1st.Length >= 4) ? Model.DOB_yyyy1st.Substring(0, 4).PadRight(4, ' ') : Model.DOB_yyyy.PadRight(4, ' '))
+                                                        {
+                                                            <input type="text" value='@data' class="bbdigi" />
+                                                        }
+
+
+                                                    }
+                                                    else
+                                                    {
+                                                        foreach (char data in "yyyy")
+                                                        {
+                                                            <input type="text" value='@data' class="bbdigi" />
+                                                        }
+
+                                                    }
+                                                </td>
+                                            </tr>
+                                            <tr class="trdigi">
+                                                <td class="textlft hdgrea fntsiz">Address</td>
+                                                <td colspan="3" class="padlft1 widthbox">
+                                                    @if (Model.CAddress != null)
+                                                    {
+
+                                                        <input type="text" value="@Model.CAddress1st" class="textbox_btm1" style="float:none;width:95%;border-top: none!important;border-right: none!important; border-left: none !important;" />
+
+                                                    }
+                                                    else
+                                                    {
+                                                        <input type="text" value="@Model.CAddress1st" class="textbox_btm1" style="float:none;width:95%;border-top: none!important;border-right: none!important; border-left: none !important;" />
+                                                    }
+
+                                                </td>
+
+                                            </tr>
+                                            <tr class="trdigi">
+                                                <td class="textlft hdgrea fntsiz">Email-Id</td>
+                                                <td colspan="3" class="padlft1 widthbox">
+
+                                                    <input type="text" value="@Model.CEmailId1st" class="textbox_btm1" style="float:none;width:95%;border-top: none!important;border-right: none!important; border-left: none !important;" />
+                                                </td>
+                                            </tr>
+                                            <tr class="trdigi">
+                                                <td class="textlft hdgrea fntsiz">Mobile Number</td>
+                                                <td colspan="3" class="padlft1 widthbox">
+
+
+                                                    <input type="text" value="@Model.CMobileNo1st" class="textbox_btm1" style="float:none;width:40%;border-top: none!important;border-right: none!important; border-left: none !important;" />
+                                                </td>
+                                            </tr>
+                                            <tr class="trdigi">
+                                                <td class="textlft hdgrea fntsiz">Gender</td>
+                                                <td colspan="3" class="padlft1 widthbox">
+                                                    <input type="text" value="@Model.CGender1st" class="textbox_btm1" style="float:none;width:40%;border-top: none!important;border-right: none!important; border-left: none !important;" />
+
+                                                </td>
+                                            </tr>
+                                            <tr class="trdigi">
+                                                <td class="textlft hdgrea fntsiz"> Pan number</td>
+                                                <td colspan="3" class="padlft1 widthbox">
+
+
+                                                    <input type="text" value="@Model.ManualPanNo1st" class="textbox_btm1" style="float:none;width:40%;border-top: none!important;border-right: none!important; border-left: none !important;" />
+                                                </td>
+                                            </tr>
+                                            <tr class="trdigi">
+                                                <td class="textlft hdgrea fntsiz"> Pin Code</td>
+                                                <td colspan="3" class="padlft1 widthbox">
+
+
+                                                    <input type="text" value="@Model.Pin_Code1st" class="textbox_btm1" style="float:none;width:40%;border-top: none!important;border-right: none!important; border-left: none !important;" />
+                                                </td>
+                                            </tr>
+
+
+                                        </table>
+                                    </div>
+
+
+
+
+
+                                </div>
+
+
+
+                                @if (Model.IsPanVerify == true)
+                                {
+                                    <div class="digibox">
+                                        <div style="clear:both; width:100%; float:left">
+                                            <div class="customerpdfdigi mgtp0p5">
+                                                <div class="custhdpdfdigi">Pan Verification Details</div>
+                                            </div>
+                                            <div class="wdth65digi">
+                                                <table>
+                                                    <tr class="trdigi2">
+                                                        <td class="textlft hdgrea1">PanTitle</td>
+                                                        <td class="padlft1 widthbox1">
+                                                            <input type="text" value="@Model.NSDL_PanTitle" class="textbox_btm1" style="float: left;width: 31%;margin-right: 3%;border-top: none!important;border-right: none!important; border-left: none !important;" />
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="trdigi2">
+                                                        <td class="textlft hdgrea1">FirstName</td>
+                                                        <td class="padlft1 widthbox1">
+                                                            <input type="text" value="@Model.NSDL_FirstName" class="textbox_btm1" style="float: left;width: 100%;margin-right: 3%;border-top: none!important;border-right: none!important; border-left: none !important;" />
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="trdigi2">
+                                                        <td class="textlft hdgrea1">MiddleName</td>
+                                                        <td class="padlft1 widthbox1">
+                                                            <input type="text" value="@Model.NSDL_MiddleName" class="textbox_btm1" style="float: left;width: 100%;margin-right: 3%;border-top: none!important;border-right: none!important; border-left: none !important;" />
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="trdigi2">
+                                                        <td class="textlft hdgrea1">LastName</td>
+                                                        <td class="padlft1 widthbox1">
+                                                            <input type="text" value="@Model.NSDL_LastName" class="textbox_btm1" style="float: left;width: 100%;margin-right: 3%;border-top: none!important;border-right: none!important; border-left: none !important;" />
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="trdigi2">
+                                                        <td class="textlft hdgrea1">NamePrintedOnPan</td>
+                                                        <td class="padlft1 widthbox1">
+                                                            <input type="text" value="@Model.NSDL_NamePrintedOnPan" class="textbox_btm1" style="float: left;width: 100%;margin-right: 3%;border-top: none!important;border-right: none!important; border-left: none !important;" />
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                                @if (Model.IsCkycVerify == true)
+                                {
+
+                                }
+                                @if (Model.IsAadharVerify == true)
+                                {
+                                    <div class="digibox">
+                                        <div style="clear:both; width:100%; float:left">
+                                            <div class="customerpdfdigi mgtp0p5">
+                                                <div class="custhdpdfdigi">Aadhar Verification Details</div>
+                                            </div>
+                                            <div class="wdth50pd1">
+                                                <div style="float:left;margin-left:15%; width:55%; margin-top:2%">
+                                                    <div class="hdpdfd" style="width:79%">Aadhar Photo</div>
+                                                    <img src="data:image/jpg;base64,@(Html.Raw(Model.AadharPhoto1st))" alt="" id="Livephoto" class="appl_photodigi imgsize" />
+                                                </div>
+                                            </div>
+                                            <div class="wdth65digi">
+                                                <table>
+                                                    <tr class="trdigi2">
+                                                        <td class="textlft hdgrea1">First Name</td>
+                                                        <td class="padlft1 widthbox1">
+                                                            <input type="text" value="@Model.AadharName1st" class="textbox_btm1" style="float: left;width: 100%;margin-right: 3%;border-top: none!important;border-right: none!important; border-left: none !important;" />
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="trdigi2">
+                                                        <td class="textlft hdgrea1">Date Of Birth</td>
+                                                        <td class="padlft1 widthbox1">
+                                                            <input type="text" value="@Model.Aadhar_DateOfBirth1st" class="textbox_btm1" style="float: left;width: 100%;margin-right: 3%;border-top: none!important;border-right: none!important; border-left: none !important;" />
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="trdigi2">
+                                                        <td class="textlft hdgrea1">Gender</td>
+                                                        <td class="padlft1 widthbox1">
+                                                            <input type="text" value="@Model.Aadhar_Gender1st" class="textbox_btm1" style="float: left;width: 100%;margin-right: 3%;border-top: none!important;border-right: none!important; border-left: none !important;" />
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="trdigi2">
+                                                        <td class="textlft hdgrea1">Address</td>
+                                                        <td class="padlft1 widthbox1">
+                                                            <input type="text" value="@Model.Aadhar_Address1st" class="textbox_btm1" style="float: left;width: 100%;margin-right: 3%;border-top: none!important;border-right: none!important; border-left: none !important;" />
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="trdigi2">
+                                                        <td class="textlft hdgrea1">Country</td>
+                                                        <td class="padlft1 widthbox1">
+                                                            <input type="text" value="@Model.AadharCountry1st" class="textbox_btm1" style="float: left;width: 100%;margin-right: 3%;border-top: none!important;border-right: none!important; border-left: none !important;" />
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="trdigi2">
+                                                        <td class="textlft hdgrea1">Locality</td>
+                                                        <td class="padlft1 widthbox1">
+                                                            <input type="text" value="@Model.Aadhar_Locality1st" class="textbox_btm1" style="float: left;width: 100%;margin-right: 3%;border-top: none!important;border-right: none!important; border-left: none !important;" />
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="trdigi2">
+                                                        <td class="textlft hdgrea1">State</td>
+                                                        <td class="padlft1 widthbox1">
+                                                            <input type="text" value="@Model.AadharState1st" class="textbox_btm1" style="float: left;width: 100%;margin-right: 3%;border-top: none!important;border-right: none!important; border-left: none !important;" />
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="trdigi2">
+                                                        <td class="textlft hdgrea1">House</td>
+                                                        <td class="padlft1 widthbox1">
+                                                            <input type="text" value="@Model.AadharHouse1st" class="textbox_btm1" style="float: left;width: 100%;margin-right: 3%;border-top: none!important;border-right: none!important; border-left: none !important;" />
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="trdigi2">
+                                                        <td class="textlft hdgrea1">Street</td>
+                                                        <td class="padlft1 widthbox1">
+                                                            <input type="text" value="@Model.AadharStreet1st" class="textbox_btm1" style="float: left;width: 100%;margin-right: 3%;border-top: none!important;border-right: none!important; border-left: none !important;" />
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="trdigi2">
+                                                        <td class="textlft hdgrea1">District</td>
+                                                        <td class="padlft1 widthbox1">
+                                                            <input type="text" value="@Model.Aadhar_District1st" class="textbox_btm1" style="float: left;width: 100%;margin-right: 3%;border-top: none!important;border-right: none!important; border-left: none !important;" />
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="trdigi2">
+                                                        <td class="textlft hdgrea1">Pincode</td>
+                                                        <td class="padlft1 widthbox1">
+                                                            <input type="text" value="@Model.Aadhar_Pincode1st" class="textbox_btm1" style="float: left;width: 100%;margin-right: 3%;border-top: none!important;border-right: none!important; border-left: none !important;" />
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clr"></div>
+                    <br />
+                    if (Model.Joint1stimgtypePhoto == "JPEG" || Model.Joint1stimgtypePhoto == "JPG" || Model.Joint1stimgtypePhoto == "jpeg" || Model.Joint1stimgtypePhoto == "jpg" || Model.Joint1stimgtypePhoto == "PNG" || Model.Joint1stimgtypePhoto == "png")
+                    {
+                        <div class="start-pg9" style="font-size:16px; page-break-before:always;page-break-after:always;">
+                            <div>
+                                <div class="pic-hdr" style=" ">Joint Customer Photo</div>
+                                <div class="pic" style="height:100%">
+                                    <img src="@Model.Joint1stPhotoDocument" style="height:1000px;width:100%" />
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    <!--end page18-->
+                    <div class="clr"></div>
+                    <!--start page19 (pdf page:15)-->
+                    if (Model.Joint1stimgtypePOI == "JPEG" || Model.Joint1stimgtypePOI == "JPG" || Model.Joint1stimgtypePOI == "jpeg" || Model.Joint1stimgtypePOI == "jpg" || Model.Joint1stimgtypePOI == "PNG" || Model.Joint1stimgtypePOI == "png")
+                    {
+                        <div class="start-pg9" style="font-size:16px; page-break-before:always;page-break-after:always;">
+
+                            <div>
+                                <div class="pic-hdr">Joint Proof of Indentity Document</div>
+                                <div class="pic" style="height:100%">
+                                    <img src="@Model.Joint1stPOI_Document" style="height:1000px;width:100%" />
+                                </div>
+                            </div>
+
+                        </div>
+                    }
+                    <!--end page19-->
+                    <div class="clr"></div>
+                    <!--start page20 -->
+                    if (Model.Joint1stimgtypeCA == "JPEG" || Model.Joint1stimgtypeCA == "JPG" || Model.Joint1stimgtypeCA == "jpeg" || Model.Joint1stimgtypeCA == "jpg")
+                    {
+                        <div class="start-pg9" style="font-size:16px; page-break-before:always;page-break-after:always;">
+                            <div>
+                                <div class="pic-hdr">Joint Proof Of Address Document</div>
+                                <div class="pic" style="height:100%">
+                                    <img src="@Model.Joint1stCA_Document" style="height:1000px;width:100%" />
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+
+        </div>
+
+
+
+
+
+</body>
+</html>
+
+
+
+
+
+
+

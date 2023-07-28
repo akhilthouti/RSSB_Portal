@@ -1,0 +1,1590 @@
+﻿body {
+}
+
+.firnm1 {
+    float: left;
+    width: 16%;
+    background-color: #e6e3e3;
+    color: #656262;
+    font-size: 12px;
+    padding: 0px 0px 2px 2px;
+    text-align: center;
+}
+
+.firmar1 {
+    margin-left: 17%;
+}
+
+.midmar1 {
+    margin-left: 8%;
+}
+
+.lstmr1 {
+    margin-left: 5%;
+}
+
+.tabbornew {
+    border: 1px solid #e8e5e5;
+    width: 98%;
+    padding: 5px;
+    margin-left: 1%;
+    margin-top: 4px;
+}
+
+.imgsize {
+    width: 100px;
+    height: 120px;
+    float: left;
+    margin-left: 14%;
+    padding: 0px;
+    border: 1px solid #000;
+    margin-bottom: 7%;
+    margin-top: 5%;
+}
+
+.imgsizepdf {
+    width: 100px;
+    height: 120px;
+    float: left;
+    margin-left: 14%;
+    padding: 0px;
+    border: 1px solid #000;
+    margin-bottom: 2%;
+    margin-top: 2%;
+}
+
+.enrolltxt {
+    border: 1px solid #000;
+    height: 25px;
+}
+
+.imgcroosicon {
+    width: 30px;
+    float: right;
+    margin-left: 92%;
+    margin-top: -1.7% !important;
+}
+
+.liveimg {
+    float: left;
+    border: 1px solid #808080;
+    width: 76%;
+    /* background-color: #4e94c1; */
+    margin-top: 0%;
+    margin-left: -26%;
+}
+
+.bb {
+    width: 4.7% !important;
+    float: left;
+    margin-right: 1px;
+    border: 1px solid #000 !important;
+    font-size: 12px !important;
+}
+
+.firstnm {
+    text-align: left !important;
+    padding-left: 1% !important;
+}
+
+.forbank {
+    background-color: #a3cdf1;
+    width: 58%;
+    margin-top: 1%;
+    float: left;
+    font-weight: 600;
+    margin-bottom: 0%;
+    padding-left: 0.7%;
+    margin-left: 1%;
+    padding-bottom: 3px;
+    padding-top: 3px;
+}
+
+.custhd1 {
+    font-size: 15px;
+    font-weight: bold;
+    /* text-decoration: underline; */
+    text-align: center;
+    padding-left: 1%;
+    float: left;
+    width: 100%;
+}
+
+.hdpdf3 {
+    color: #fff;
+    /* padding: 2px 30px 2px 40px; */
+    font-size: 13px;
+    padding-left: 0%;
+    text-align: center;
+    background-color: #4e94c1;
+    clear: both;
+    margin-left: 0%;
+    width: 125%;
+    border: 1px solid #000;
+    font-weight: bold;
+    margin-top: 0px;
+    float: left;
+}
+
+.customerpdf {
+    width: 98%;
+    float: left;
+    background-color: rgb(163, 205, 241);
+    border-bottom: 2px solid #ccc;
+    border-top: 2px solid #ccc;
+    margin-bottom: 1%;
+    margin-left: 1%;
+}
+
+.wdth50pa {
+    width: 36%;
+    float: right;
+}
+
+.cdofbrnch {
+    padding-left: 2%;
+}
+
+.hdpdf11 {
+    float: left;
+    margin-left: 0%;
+    border: 1px solid #808080;
+    width: 100%;
+    height: auto;
+    color: #fff;
+    background-color: #4e94c1;
+    text-align: center;
+    margin-top: -0.6%;
+}
+
+.kyximg1 {
+    float: left;
+    margin-left: 23%;
+    border: 1px solid #808080;
+    width: 84%;
+    height: auto;
+    text-align: center;
+    margin-top: 0%;
+}
+
+.customerps {
+    border: 1px solid #a3cdf1;
+    margin-left: 2.5%;
+    padding-top: 1.3%;
+    margin-bottom: 0%;
+    padding-bottom: 0.7%;
+    width: 36%;
+    float: left;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.enroll {
+    font-size: 12px;
+    float: left;
+    padding-top: 1.5%;
+    margin-bottom: 1%;
+    margin-left: 1%;
+}
+
+.wdth100p {
+    width: 100%;
+    float: left
+}
+
+.wdth60A {
+    width: 58%;
+    float: left;
+    font-size: 12px;
+    font-weight: bold;
+    padding-top: 0%;
+    padding-bottom: 0.2%;
+    border: 1px solid #a3cdf1;
+    margin-left: 1%;
+    margin-bottom: 1%;
+}
+
+.wdth60Anew {
+    width: 11%;
+    float: left;
+    font-size: 12px;
+    font-weight: bold;
+    padding-top: 0%;
+    padding-bottom: 0.2%;
+    background-color: #a9a5a5;
+    border: 1px solid #a9a5a5;
+    margin-left: 50%;
+    margin-top: 3.5%;
+    margin-bottom: 1.5%;
+    color: #fff;
+    /*color: #3a3a3c;*/
+}
+
+.logopdfnew111 {
+    margin-left: 0%;
+    float: left;
+    width: 50%;
+}
+
+.custhdpdfnnew {
+    font-size: 15px;
+    font-weight: bold;
+    /* text-decoration: underline; */
+    text-align: center;
+    padding-top: 3px;
+    border-radius: 2px;
+    padding-bottom: 3px;
+    color: #3a3a3c;
+}
+
+.textbxcust {
+    float: left;
+    width: 24%;
+    margin-top: 1px;
+    margin-left: 0%;
+}
+
+.enrollnew {
+    font-size: 12px;
+    float: left;
+    padding-top: 2.5%;
+    margin-bottom: 0%;
+    margin-left: 14px;
+    margin-right: 1%;
+}
+
+.customerpdfphoto {
+    color: #000;
+    width: 36%;
+    float: left;
+    font-weight: 600;
+    background-color: #a3cdf1;
+    /* background-color: rgba(0,0,0,.12); */
+    /* border-bottom: 2px solid #ccc; */
+    /* border-top: 2px solid #ccc; */
+    margin-bottom: 0%;
+    margin-left: 2.5%;
+    margin-top: 1%;
+    padding-bottom: 3px;
+    padding-top: 3px;
+    padding-left: 0.7%;
+}
+
+.bbcust {
+    width: 1.9% !important;
+    float: left;
+    margin-right: 1px;
+    border: 1px solid #000 !important;
+    font-size: 12px !important;
+}
+
+.bbsub {
+    width: 4.5% !important;
+    float: left;
+    margin-right: 1px;
+    border: 1px solid #000 !important;
+    font-size: 12px !important;
+}
+
+.bbdic {
+    width: 2.6% !important;
+    float: left;
+    margin-right: 1px;
+    border: 1px solid #000 !important;
+    font-size: 12px !important;
+}
+
+.bbdob {
+    width: 1.4% !important;
+    float: left;
+    margin-right: 1px;
+    border: 1px solid #000 !important;
+    font-size: 12px !important;
+}
+
+.bb1 {
+    width: 2.7% !important;
+    float: left;
+    margin-right: 1px;
+    border: 1px solid #000 !important;
+    font-size: 12px !important;
+}
+
+.hdpdf1 {
+    float: left;
+    margin-left: 23%;
+    border: 1px solid #808080;
+    width: 100%;
+    height: auto;
+    text-align: center;
+    margin-top: 1.4%;
+}
+
+.bb41 {
+    width: 4% !important;
+    /*float: left;
+    margin-right: 1px;*/
+    border: 1px solid #000 !important;
+    font-size: 12px !important;
+}
+/*.imgsize2 {
+    width: 30%;
+    height: 300px;
+    float: left;
+    margin-left: 4%;
+    padding: 0px;
+    border: 1px solid #000;
+    margin-bottom: 5%;
+    margin-top: 5%;
+}*/
+.name1 {
+    margin-top: 0%;
+    margin-bottom: 3%;
+    border-bottom: 1px solid #7b7373;
+    padding-bottom: 0.5%;
+    border-top: 1px solid #7b7373;
+    float: left;
+    padding-top: 5px;
+    width: 100%;
+    background-color: #ccc;
+    padding-left: 1%;
+    padding-bottom: 1%;
+}
+
+.imgsize12 {
+    width: 113px;
+    height: 120px;
+    float: left;
+    margin-left: 1.2%;
+    padding: 0px;
+    border: 1px solid #000;
+    margin-bottom: 2%;
+    margin-top: -108%;
+}
+
+.bb1 {
+    width: 2.5% !important;
+    float: left;
+    margin-right: 1px;
+    font-size: 14px !important;
+    text-align: center !important;
+    font-family: arial !important;
+    height: 20px !important
+}
+
+.bb2 {
+    width: 3%;
+    float: left;
+    margin-right: 1px;
+    font-size: 12px
+}
+
+.bb3 {
+    width: 4%;
+    float: left;
+    margin-right: 1px;
+    font-size: 12px
+}
+
+.bb41 {
+    width: 7%;
+    float: left;
+    margin-right: 1px;
+    font-size: 12px
+}
+
+.bb42 {
+    width: 8.2%;
+    float: left;
+    margin-right: 1px;
+    font-size: 12px
+}
+
+.bb4 {
+    width: 6%;
+    float: left;
+    margin-right: 1px;
+    font-size: 12px
+}
+
+.bb5 {
+    width: 6%;
+    float: left;
+    margin-right: 1px;
+    font-size: 12px
+}
+
+.bb5_a {
+    width: 6.9%;
+    float: left;
+    margin-right: 1px;
+    font-size: 12px;
+}
+
+.bb_3 {
+    width: 8%;
+    float: left;
+    margin-right: 1px;
+    font-size: 12px
+}
+
+.bb_33 {
+    width: 7%;
+    float: left;
+    margin-right: 1px;
+    font-size: 12px
+}
+
+.bb_333 {
+    width: 7.7%;
+    float: left;
+    margin-right: 1px;
+    font-size: 12px
+}
+
+.bbDob {
+    width: 2%;
+    float: left;
+    font-size: 12px
+}
+
+.bbDob1 {
+    width: 8%;
+    float: left;
+    font-size: 12px
+}
+
+.bbDob3 {
+    width: 3%;
+    float: left;
+    font-size: 12px
+}
+
+.textbx {
+    float: left;
+    width: 55%;
+    margin-top: 1%;
+    margin-left: 2%;
+}
+
+.textlft {
+    padding-left: 0px;
+    text-align: center;
+}
+
+.tablepdf {
+    width: 100%;
+    margin-top: 1%;
+    font-size: 25px;
+    padding: 5px;
+    margin-bottom: 2%;
+}
+
+.adharformpdf {
+    float: left;
+    /*background-color: #a9a5a5;*/
+    border-radius: 2px;
+    border: 1px solid #ccc;
+    margin-bottom: 1.5%;
+    width: 98%;
+    /* margin-top: 1%; */
+    margin-left: 1%;
+}
+
+.custpdf1new {
+    width: 100%;
+    float: left;
+    background-color: #f5f4f4 !important;
+}
+
+.wdth50pnew {
+    width: 118%;
+    float: left;
+    margin-left: -24%;
+    margin-bottom: 2%;
+}
+
+.tablepdf1 {
+    width: 100%;
+    margin-top: 1%;
+    font-size: 25px;
+    padding: 5px;
+    margin-bottom: 1%;
+    border: none !important;
+}
+
+    .tablepdf1 tr td {
+        font-size: 14px;
+        padding: 4px;
+        width: 13%;
+    }
+
+.tablepdf tr td {
+    font-size: 13px;
+    padding: 4px;
+    /*width:13%;*/
+}
+
+.textlft1 {
+    text-align: right !important;
+}
+
+/*//summerydetails//*/
+.logopdf {
+    margin-left: 2%;
+    float: left;
+    width: 40%;
+}
+
+.border_pdf {
+    border-radius: 4px;
+    width: 98%;
+    margin-left: 10px;
+    float: left;
+    clear: both;
+    /*height: 651px;*/
+    /*overflow: auto;*/
+}
+
+.border_pdfnew {
+    border-radius: 4px;
+    width: 63%;
+    margin-left: 17%;
+    margin-top: 1.5%;
+    float: left;
+    clear: both;
+    /* height: 651px; */
+    /* overflow: auto; */
+}
+
+.bordergrey {
+    border: 2px solid #87888a;
+    float: left;
+    width: 100%;
+}
+
+.wdth60 {
+    width: 38%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    float: left;
+}
+
+.customerpdf {
+    width: 98%;
+    border-radius: 5px;
+    float: left;
+    color: #fff;
+    margin-left: 1%;
+    background-color: #d8d4d4 !important;
+    /*background-color: rgba(0,0,0,.12);*/
+    margin-bottom: 2%;
+}
+
+.custhdpdf {
+    font-size: 19px;
+    font-weight: bold;
+    /* text-decoration: underline; */
+    text-align: center;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    color: #292929;
+}
+
+.custhdpdfn {
+    font-size: 17px;
+    font-weight: bold;
+    /* text-decoration: underline; */
+    text-align: center;
+    padding-top: 8px;
+    border-radius: 13px;
+    padding-bottom: 6px;
+    color: #2523b5;
+}
+
+.wdth50p {
+    width: 40%;
+    float: right;
+    margin-bottom: 2%;
+}
+
+.hdpdf {
+    background-color: #8e8c8c !important;
+    color: #000;
+    border-bottom: 1px solid #000;
+    padding-bottom: 1%;
+    padding: 1px 18px 1px 19px;
+    font-size: 14px;
+    /*padding-left: 0.7%!important;*/
+    float: left;
+    text-align: center;
+    /* background-color: #ccc; */
+    clear: both;
+    /* margin-left: 0%; */
+    width: 100%;
+    /* border: 1px solid #928f8f; */
+    font-weight: bold;
+}
+
+.tablepdfnew1 {
+    width: 100%;
+    margin-top: 0%;
+    font-size: 25px;
+    padding: 0px 4px;
+    margin-bottom: 1%;
+}
+
+.wdth50pnewpdf1 {
+    width: 379px;
+    float: left;
+    margin-left: 0%;
+    margin-bottom: 2%;
+}
+
+.hdpdfnewpdf1 {
+    background-color: #8e8c8c !important;
+    color: #fff;
+    border-bottom: 1px solid #000;
+    padding-bottom: 1%;
+    padding: 1px 18px 1px 19px;
+    font-size: 13px;
+    /* padding-left: 0.7%!important; */
+    float: left;
+    text-align: center;
+    /* background-color: #ccc; */
+    clear: both;
+    /* margin-left: 0%; */
+    width: 100%;
+    /* border: 1px solid #928f8f; */
+    font-weight: bold;
+}
+
+.appl_photo {
+    height: 133px;
+    margin-left: 10% !important;
+    width: 114px !important;
+    float: left;
+}
+
+.appl_photopdf {
+    height: 100px;
+    margin-left: 10% !important;
+    width: 114px !important;
+    float: left;
+}
+
+.textbox_btm1 {
+    border-top: none !important;
+    border-left: none !important;
+    border-left: none !important;
+    border-bottom: 1px solid #7b7373 !important;
+    float: left !important;
+}
+
+.padlft1 {
+    float: left;
+    margin-left: 1%;
+    padding-bottom: 1.6%;
+    margin-right: 0px;
+}
+
+.bbDob {
+    width: 2% !important;
+    float: left !important;
+}
+
+.bbDob1 {
+    width: 8% !important;
+    float: left !important;
+}
+
+.custpdf1 {
+    width: 100%;
+    float: left;
+    background-color: #eceaea !important;
+    /* background-color: rgba(130, 128, 128, 0.12); */
+    padding-bottom: 0%;
+    /* margin-left: 1%;*/
+}
+
+.b1AgrDis1 {
+    width: 15%;
+    margin-left: 8%;
+    float: left;
+    margin-top: 3px;
+}
+
+.b1AgrDis1new {
+    width: 15%;
+    margin-left: 4%;
+    float: left;
+    margin-top: 3px;
+}
+
+.process {
+    float: left;
+    padding-top: 3px;
+    padding-left: 23%;
+}
+
+.process1 {
+    float: left;
+    padding-top: 3px;
+    padding-left: 42%;
+}
+
+.svctnbtn {
+    margin-top: 1% !important;
+    float: left;
+}
+
+.wdth60AD {
+    width: 57%;
+    float: left;
+    font-size: 12px;
+    font-weight: bold;
+    padding-top: 0%;
+    padding-bottom: 0.2%;
+    border: 1px solid #a3cdf1;
+    margin-left: 4% !important;
+    margin-top: 2%;
+    margin-bottom: 1%;
+}
+
+.wdth50pd {
+    width: 36%;
+    float: right;
+    margin-bottom: 2%;
+    margin-left: 2% !important;
+    /*margin-top:2%*/
+}
+
+.hdpdfd {
+    background-color: #8e8c8c !important;
+    color: #000;
+    border-bottom: 1px solid #000;
+    padding-bottom: 1%;
+    padding: 1px 18px 1px 19px;
+    font-size: 14px;
+    /* padding-left: 0.7%!important; */
+    float: left;
+    text-align: center;
+    /* background-color: #ccc; */
+    clear: both;
+    /* margin-left: 0%; */
+    width: 75%;
+    /* border: 1px solid #928f8f; */
+    font-weight: bold;
+}
+/*.mgbtm_2d {
+    margin-top:1%;
+    float:left;
+    width:100%;
+}*/
+.pic-hdr {
+    background-color: #ccc;
+    text-align: center;
+    width: 100%;
+    margin-top: 1%;
+    color: #000;
+    float: left;
+    font-weight: bold;
+    font-family: Arial !important;
+    font-size: 18px !important;
+    margin-bottom: 3%;
+    padding: 1% 0%;
+}
+/*//summerydetails//*/
+/*//summerysheet//*/
+.start-pg1 {
+    width: 100%;
+}
+
+.page_brk {
+    font-size: 16px !important;
+}
+
+.ovfl_at {
+    overflow: auto !important
+}
+
+.border_pdf1 {
+    border-radius: 4px;
+    width: 98%;
+    margin-left: 10px;
+    float: left;
+    clear: both;
+}
+
+.redtxt {
+    padding-top: 2%;
+    color: #c00000;
+    text-align: center;
+    font-weight: bold;
+    font-size: 21px;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif !important;
+}
+
+.IPV_wdth {
+    width: 93% !important;
+    float: left !important;
+}
+
+.DRK_blue {
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+    color: #173661;
+    padding-top: 5px;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif !important;
+}
+
+.dmtsct_tabel_row {
+    width: 100%;
+    border: 1px solid #000;
+    border-collapse: collapse;
+    text-align: center;
+    font-family: arial;
+}
+
+    .dmtsct_tabel_row td {
+        padding-left: 0%;
+        font-family: Arial;
+        font-size: 14px;
+        border: 1px solid #000;
+    }
+
+.PDF_tb {
+    margin-top: 1% !important;
+    float: left !important;
+    width: 98% !important;
+    margin: 0.5% 1% 0% 1% !important;
+}
+
+.PDF_tb1 {
+    margin-top: 1%;
+    float: left;
+    width: 98%;
+    margin: 1% 1%
+}
+
+.table_bg {
+    background-color: #1f497d;
+    color: #fff;
+    text-align: center;
+    font-family: arial;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.table_bgnew {
+    /* background-color: #1f497d; */
+    color: #fff !important;
+    text-align: center;
+    font-family: arial;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.light_blu {
+    color: #fff;
+    background-color: #548dd4;
+    font-size: 14px;
+}
+
+.pan_txt30 {
+    border: none !important;
+    text-align: center !important;
+    float: left !important;
+    width: 30% !important;
+    box-shadow: none !important;
+}
+
+.pan_txt40 {
+    border: none !important;
+    text-align: center !important;
+    float: left !important;
+    width: 40% !important;
+    box-shadow: none !important;
+}
+
+.aadhar_pc {
+    border: none !important;
+    box-shadow: none !important;
+    text-align: center !important
+}
+
+.Pick_txt {
+    font-family: arial;
+    color: #ccc;
+    font-size: 21px !important;
+}
+
+.IMG_hgWd {
+    height: 160px !important;
+    width: 193px !important;
+}
+
+.BRD_none {
+    border: none !important;
+    box-shadow: none !important;
+    text-align: center !important;
+}
+
+.green_txt {
+    font-size: 14px;
+    color: #33b384;
+    font-family: Arial;
+}
+
+.aadhar_pc {
+    border: none !important;
+    box-shadow: none !important;
+    text-align: center !important
+}
+
+.HGT18 {
+    height: 18px !important;
+}
+
+.End_page {
+    float: right;
+    font-family: Arial;
+    font-size: 14px;
+    padding-right: 1.5%;
+}
+
+.wdth2 {
+    width: 2% !important;
+}
+
+.wdth12_psn {
+    width: 12% !important;
+}
+
+.wdth154 {
+    width: 154px !important;
+}
+
+.font16 {
+    font-size: 16px
+}
+
+.clearfix {
+    clear: both
+}
+
+.Para_Txt {
+    font-size: 14px;
+    font-family: Arial;
+    color: #173661;
+    font-weight: 500;
+}
+
+.text1 {
+    margin-top: 1%;
+    float: left;
+    width: 98%;
+    margin: 1% 1%;
+}
+
+.cross1 {
+    float: left;
+    margin-top: -1%;
+    width: 7%;
+}
+
+.imgcroosicon1 {
+    width: 30px;
+    float: right;
+    margin-left: 87%;
+    margin-top: 0% !important;
+}
+
+.mgbtm_2 {
+    width: 98%;
+    margin-left: 1%;
+    margin-top: 1%;
+}
+/*//summerysheet//*/
+
+.wdth60ADi {
+    width: 60%;
+    float: left;
+    font-size: 12px;
+    font-weight: bold;
+    padding-top: 0%;
+    padding-bottom: 0.2%;
+    /* border: 2px solid #a3cdf1; */
+    margin-left: 1% !important;
+    margin-top: 2%;
+    margin-bottom: 1%;
+}
+
+.enrolldigi {
+    font-size: 16px;
+    float: left;
+    padding-top: 1.5%;
+    margin-bottom: 1%;
+    margin-left: 2%;
+}
+
+.enrolldiginewbx {
+    font-size: 16px;
+    float: left;
+    /* padding-top: 1.5%; */
+    margin-bottom: 1%;
+    margin-right: 1%;
+    padding-left: 1%;
+    width: 70% !important;
+}
+
+.enrolldiginew1 {
+    font-size: 16px;
+    float: left;
+    /* padding-top: 1.5%; */
+    margin-bottom: 1%;
+    /* margin-left: 2%; */
+}
+
+.customerpdfdigi {
+    width: 98%;
+    float: left;
+    margin-left: 1%;
+    border-radius: 4px;
+    background-color: #a5a2a2 !important;
+    /* background-color: rgba(0,0,0,.12); */
+    margin-bottom: 2%;
+}
+
+.custhdpdfdigi {
+    font-size: 18px;
+    /* border-radius: 9px; */
+    font-weight: bold;
+    /* text-decoration: underline; */
+    text-align: center;
+    padding-top: 0.5%;
+    padding-bottom: 0.5%;
+    color: #292929;
+}
+
+.border_pdfdigi {
+    border-radius: 4px;
+    width: 100%;
+    margin-left: 0px;
+    float: left;
+    clear: both;
+    /* height: 651px; */
+    /* overflow: auto; */
+}
+
+.bordergreydigi {
+    border: 2px solid #87888a;
+    float: left;
+    width: 100%;
+    border-radius: 4px;
+}
+
+.pdf1bx {
+    border: 1px solid #8c8989;
+    width: 95%;
+    padding: 5px;
+    clear: both;
+    margin-left: 2%;
+    border-radius: 4px;
+    background-color: #fff;
+    margin-bottom: 5%
+}
+
+.namebx {
+    float: left;
+    width: 100%;
+    margin-top: 1%;
+}
+
+.hdgrea {
+    width: 12%;
+    background-color: #ccc;
+    padding-left: 0.7%;
+    /* margin-bottom: 3% !important; */
+    float: left;
+}
+
+.mgtp0p5 {
+    margin-top: 0.5%;
+}
+
+.digibox {
+    border: 1px solid #efefef;
+    width: 100%;
+    padding: 5px;
+    float: left;
+    clear: both;
+    margin-left: 0%;
+    border-radius: 4px;
+    background-color: #fff;
+    margin-bottom: 0%;
+}
+
+#agr1 {
+    float: left;
+    width: 34%;
+    padding: 4px;
+    margin-top: 5%;
+}
+
+.widthbox {
+    width: 82%;
+    float: left;
+}
+
+.trdigi {
+    margin-bottom: 0.5%;
+    float: left;
+    width: 1200px !important;
+}
+
+.hdpdfdi {
+    background-color: #8e8c8c !important;
+    color: #000;
+    border-bottom: 1px solid #000;
+    padding-bottom: 1%;
+    padding: 1px 18px 1px 19px;
+    font-size: 14px;
+    /* padding-left: 0.7%!important; */
+    float: left;
+    text-align: center;
+    /* background-color: #ccc; */
+    clear: both;
+    /* margin-left: 0%; */
+    width: 77%;
+    /* border: 1px solid #928f8f; */
+    font-weight: bold;
+}
+
+.appl_photodiig {
+    height: 133px;
+    margin-left: 10% !important;
+    width: 128px !important;
+    float: left;
+}
+
+.wdth65digi {
+    width: 65%;
+    float: left;
+    margin-left: 1%;
+}
+
+.widthbox1 {
+    width: 77%;
+    float: left;
+}
+
+.appl_photodigi {
+    height: 133px;
+    margin-left: 14% !important;
+    width: 120px !important;
+    float: left;
+}
+
+.hdgrea1 {
+    width: 19%;
+    background-color: #ccc;
+    padding-left: 0.7%;
+    /* margin-bottom: 3% !important; */
+    float: left;
+}
+
+.wdth50pd1 {
+    width: 25%;
+    float: right;
+    margin-bottom: 2%;
+    margin-left: 2% !important;
+    /* margin-top: 2%; */
+}
+
+.trdigi2 {
+    margin-bottom: 0.5%;
+    float: left;
+    width: 100% !important;
+}
+
+.pdf1bxdigi {
+    border: 1px solid #8c8989;
+    width: 95%;
+    padding: 5px;
+    clear: both;
+    margin-left: 2%;
+    border-radius: 4px;
+    background-color: #fff;
+    margin-bottom: 2%;
+}
+
+.bbdigi {
+    width: 23px;
+    text-align: center;
+    margin-left: -5px;
+    text-transform: uppercase;
+    border-color: #000;
+    height: 25px;
+    border-width: 1px;
+    border-image-width: 0px;
+}
+
+body {
+    background: transparent;
+    font-size: 15px;
+    font-family: Verdana, Geneva, sans-serif
+}
+
+.dmtsctopfrm_tabel_row td {
+    padding-left: 1%;
+    padding-top: 0.6%;
+    padding-bottom: 0.6%;
+}
+
+.dmtsctopfrm_tabel_row {
+    width: 100%;
+    border: 1px solid #000;
+    border-collapse: collapse;
+}
+
+.flt_wdth {
+    float: left;
+    width: 100%;
+}
+
+.flt_none {
+    float: none !important;
+}
+
+.brall {
+    width: 100%;
+    /* border: none; */
+    border-bottom: 1px solid #757474;
+    border: 1px solid #ccc;
+    border-left: none;
+    border-top: none;
+    border-right: none;
+    color: #000;
+}
+
+    .brall:focus {
+        width: 100%;
+        /* border: none; */
+        border-bottom: 1px solid #757474 !important;
+        border: 1px solid #ccc;
+        border-left: none !important;
+        border-top: none !important;
+        border-right: none !important;
+        color: #000;
+    }
+
+.bralltxt {
+    width: 40%;
+    color: #000;
+    /* border: none; */
+    border-bottom: 1px solid #757474;
+    border: 1px solid #ccc;
+    border-left: none;
+    border-top: none;
+    border-right: none;
+}
+
+.toprightheadbox {
+    width: 41% !important;
+    margin-left: 13px;
+    font-size: 15px;
+    height: 34px !important;
+    border: 2px solid #4b514f !important;
+    text-align: center;
+}
+
+.blue_bxnew {
+    width: 25%;
+    padding: 25px 12px 21px 12px;
+    background-color: #fff;
+    color: #6c6c6d;
+    border: 2px solid #3e3b3b;
+    font-size: 24px;
+    text-align: left;
+    float: right;
+    margin-left: 9%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+
+.newp {
+    text-align: justify;
+    color: #000000;
+    font-size: 14px;
+    line-height: 100%;
+    float: left;
+    padding: 4px;
+}
+
+.pdiv {
+    width: 96%;
+    text-align: center;
+    padding: 2px;
+    float: left;
+    margin: 0% 0%;
+}
+
+.dmtsctopfrm_tabel_rownew td {
+    padding-left: 1%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+}
+
+.dmtsctopfrm_tabel_row td {
+    padding-left: 1%;
+    padding-top: 0.6%;
+    padding-bottom: 0.6%;
+}
+
+.dmtsctopfrm_tabel_rownew {
+    width: 100%;
+    border: 1px solid #000;
+    border-collapse: collapse;
+}
+
+.tab7 {
+    text-align: left;
+    margin-top: 1%;
+    margin-bottom: 1%
+}
+
+.newp1 {
+    text-align: center;
+    color: #000000;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 100%;
+    float: left;
+    padding: 4px;
+}
+
+.bralltxt36 {
+    width: 36%;
+    /* border: none; */
+    border-bottom: 1px solid #3e3d3d;
+    border: 1px solid #292828;
+    border-left: none;
+    border-top: none;
+    border-right: none;
+    color: #000;
+}
+
+.flt_r8 {
+    float: right !important;
+}
+
+.start-pg1 {
+    width: 100%;
+}
+
+.bralltxts {
+    width: 10%;
+    /* border: none; */
+    border-bottom: 1px solid #757474;
+    border: 1px solid #ccc;
+    border-left: none;
+    border-top: none;
+    border-right: none;
+}
+
+.newptxt {
+    text-align: left;
+    width: 96%;
+    margin: 0% 2%;
+}
+
+.bralltxts5 {
+    width: 10%;
+    /* border: none; */
+    border-bottom: 1px solid #757474;
+    border: 1px solid #3e3b3b;
+    border-left: none;
+    border-top: none;
+    border-right: none;
+}
+
+.bralltxts5sign {
+    width: 10%;
+    /* border: none; */
+    border-bottom: 1px solid #000;
+    border: 1px solid #000;
+    border-left: none;
+    border-top: none;
+    border-right: none;
+}
+
+.bralltxttab {
+    width: 20%;
+    /* border: none; */
+    border-bottom: 1px solid #757474;
+    border: 1px solid #ccc;
+    border-left: none;
+    border-top: none;
+    border-right: none;
+}
+
+.brall1 {
+    width: 50%;
+    /* border: none; */
+    border-bottom: 1px solid #757474;
+    border: 1px solid #ccc;
+    border-left: none;
+    border-top: none;
+    border-right: none;
+}
+
+.bbnew {
+    width: 33px !important;
+    text-align: center !important;
+    margin-left: -5px !important;
+    text-transform: uppercase !important;
+    border-color: #000 !important;
+    height: 25px !important;
+    border-width: 1px !important;
+    border-image-width: 0px !important;
+    border: 1px solid #000 !important;
+    padding-right: 6px !important;
+}
+
+.bgclr {
+    width: 100%;
+    /*background-color: #d3ecf5;*/
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.pad_o {
+    padding: 4px 0px;
+}
+
+.pdflogo {
+    width: 100%;
+    float: left;
+    padding: 5px;
+}
+
+.btext {
+    font-size: 17px;
+    float: left;
+    color: #000;
+}
+
+.pdfspan {
+    float: left;
+    margin-top: 0.8%;
+    clear: both;
+}
+
+.fntsz17 {
+    font-size: 18px !important;
+}
+
+.textbox_btm {
+    float: left;
+    border-bottom: 1px solid #000;
+    /* border: none; */
+    border-top: 1px #fff;
+    border-right: 1px #fff;
+    border-left: 1px #fff;
+    margin-left: 6px;
+    width: auto !important
+}
+
+.textbdotted_btm {
+    float: left;
+    border: none !important;
+    border-top: 1px #fff !important;
+    border-right: 1px #fff !important;
+    border-left: 1px #fff !important;
+    margin-left: 6px;
+    width: auto !important;
+    border-style: dotted !important;
+    border-bottom: 1px solid #808080;
+}
+
+.pdfspan {
+    float: left;
+    margin-top: 0.8%;
+    clear: both;
+}
+
+.abcbx {
+    width: 38%;
+    background-color: #fff;
+    color: #58585a;
+    border: 2px solid #6f6d6d;
+    font-size: 19px;
+    text-align: center;
+    padding: 50px 5px 5px;
+    float: right;
+    margin-left: 9%;
+    margin-top: 4%;
+}
+
+.class1 {
+    padding: 5px;
+    float: right;
+    margin-top: 7%;
+}
+
+.blue_bx {
+    width: 30%;
+    background-color: #fff;
+    color: #ccccff;
+    border: 2px solid #585757;
+    font-size: 24px;
+    text-align: center;
+    padding: 80px 35px 5px;
+    float: right;
+    margin-left: 9%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+
+.txt1nn {
+    padding-top: 1%;
+    padding-bottom: 6px;
+    width: 100%;
+    text-align: center;
+    float: left;
+}
+
+.thpg {
+    width: 100%;
+    float: left;
+}
+
+
+/*ADD for responsive rajeshree*/
+.agr122 {
+    float: left;
+    width: 34%;
+    padding: 4px;
+    margin-top: 5%;
+}
+
+.agreerd1 {
+    float: left;
+    margin-right: 3% !important;
+    margin-top: 3%;
+}
+
+@media only screen and (max-width:768px) {
+    .agreedcheck {
+        display: flex !important;
+        justify-content: center !important;
+        width: 100% !important;
+    }
+
+    .agreerd2 {
+        margin-top: 0.5% !important;
+        margin-right: 1% !important;
+    }
+}

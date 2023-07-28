@@ -1,0 +1,222 @@
+﻿@model INDO_FIN_NET.Models.UIDDATA
+@{
+    ViewBag.Title = "ViewDoc";
+}
+
+<h2>Aadhaar Data </h2>
+@using (Html.BeginForm())
+{
+    @*@if (Model.error == null)
+        {*@
+
+
+    <fieldset style="width: 39%;float: none;margin: 0% 31%;margin-bottom: 5px; border-radius:4px; padding:0px;" class="">
+
+        <div class="accopenfrontend" style="float:left;margin-top:1%;margin-bottom:0%; margin-left:1%;margin-right:1%;width: 96%; padding-left:5px;">
+            <legend style="background-color:#A33947;color:white;border-radius:2px;">Personal Information</legend>
+            <div style="float:left;width: 22%">
+                <!-- <img src="@ViewBag.Image" style="padding: 0px 0px 0px 6px; width:87px;" />-->
+                <img src="@ViewBag.Image" style="padding: 0px 0px 0px 6px; width:87px;" />
+            </div>
+            <div style="float:left;width: 60%">
+                <div class="form_rowreg" style="width:98%;margin:0.5%;float:left">
+
+                    <div class="main_input_reg">
+                        <div class="text_lbl" style="width:50%;float:left">@Html.LabelFor(model => model.name, "Name : ")</div>
+
+                        <div class="text_lbl" style="width:50%;float:left">
+                            @Html.TextBoxFor(model => model.name, new { @id = "name", @class = "textboxStyle", style = "height:18px;", disabled = "disabled", @onkeyup = "javascript:capitalize(this.id, this.value)", @onkeypress = "return onlyAlphabetsSpaceQuick(event,this);" })
+                        </div>
+
+                    </div>
+                </div>
+                <div class="form_rowreg" style="width:98%;margin:0.5%;float:left">
+
+                    <div class="main_input_reg">
+                        <div class="text_lbl" style="width:50%;float:left"> @Html.LabelFor(model => model.aadhaarNumber, "Aadhaar Number : ")</div>
+
+                        <div class="text_lbl" style="width:50%;float:left">
+                            @Html.TextBoxFor(model => model.aadhaarNumber, new { @id = "aadhaarNumber", @class = "textboxStyle", style = "height:18px;", disabled = "disabled", @onkeyup = "javascript:capitalize(this.id, this.value)", @onkeypress = "return onlyAlphabetsSpaceQuick(event,this);" })
+                        </div>
+
+                    </div>
+                </div>
+                <div class="form_rowreg" style="width:98%;margin:0.5%;float:left">
+
+                    <div class="main_input_reg">
+                        <div class="text_lbl" style="width:50%;float:left"> @Html.LabelFor(model => model.dateOfBirth, "Date Of Birth : ")</div>
+
+                        <div class="text_lbl" style="width:50%;float:left">
+                            @Html.TextBoxFor(model => model.dateOfBirth, new { @id = "dateOfBirth", @class = "textboxStyle", style = "height:18px;", disabled = "disabled", @onkeyup = "javascript:capitalize(this.id, this.value)", @onkeypress = "return onlyAlphabetsSpaceQuick(event,this);" })
+                        </div>
+                    </div>
+                </div>
+                <div class="form_rowreg" style="width:98%;margin:0.5%;float:left">
+
+                    <div class="main_input_reg">
+                        <div class="text_lbl" style="width:50%;float:left"> @Html.LabelFor(model => model.gender, "Gender : ")</div>
+                        <div class="text_lbl" style="width:50%;float:left">
+                            @Html.TextBoxFor(model => model.gender, new { @id = "gender", @class = "textboxStyle", style = "height:18px;", disabled = "disabled", @onkeyup = "javascript:capitalize(this.id, this.value)", @onkeypress = "return onlyAlphabetsSpaceQuick(event,this);" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="accopenfrontend" style="float:left;margin-top:1%;margin-bottom:0%; margin-left:1%;margin-right:1%;width: 96%; padding-left:5px;">
+            <div style="float:left;width: 60%">
+
+
+                <div class="form_rowreg" style="width:98%;float:left">
+
+                    <div class="main_input_reg">
+                        <div class="text_lbl" style="width:50%;float:left"> @Html.LabelFor(model => model.careOfPerson, "Care Of Person : ")</div>
+
+                        <div class="text_lbl" style="width:50%;float:left">
+                            @Html.TextBoxFor(model => model.careOfPerson, new { @id = "careOfPerson", @class = "textboxStyle", style = "height:18px;", disabled = "disabled", @onkeyup = "javascript:capitalize(this.id, this.value)", @onkeypress = "return onlyAlphabetsSpaceQuick(event,this);" })
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="accopenfrontend" style="float:left;margin-top:1%;margin-bottom:0%; margin-left:1%;margin-right:1%; padding-left:5px;width: 96%">
+            <legend style="background-color:#A33947;color:white;border-radius:2px;">Address</legend>
+            <div class="form_rowreg" style="width:94%;margin:0.5% 4%;float:left">
+
+                <div class="main_input_reg">
+                    <div class="text_lbl" style="width:40%;padding-left:9%;float:left"> @Html.LabelFor(model => model.landmark, "Landmark : ")</div>
+
+                    <div class="text_lbl" style="width:50%;float:left">
+                        @Html.TextBoxFor(model => model.landmark, new { @id = "landmark", @class = "textboxStyle", style = "height:18px;", disabled = "disabled", @onkeyup = "javascript:capitalize(this.id, this.value)", @onkeypress = "return onlyAlphabetsSpaceQuick(event,this);" })
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="form_rowreg" style="width:94%;margin:0.5% 4%;float:left">
+
+                <div class="main_input_reg">
+                    <div class="text_lbl" style="width:40%;padding-left:9%;float:left"> @Html.LabelFor(model => model.Street, "Street : ")</div>
+
+                    <div class="text_lbl" style="width:50%;float:left">
+                        @Html.TextBoxFor(model => model.Street, new { @id = "Street", @class = "textboxStyle", style = "height:18px;", disabled = "disabled", @onkeyup = "javascript:capitalize(this.id, this.value)", @onkeypress = "return onlyAlphabetsSpaceQuick(event,this);" })
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="form_rowreg" style="width:94%;margin:0.5% 4%;float:left">
+
+                <div class="main_input_reg">
+                    <div class="text_lbl" style="width:40%;padding-left:9%;float:left"> @Html.LabelFor(model => model.Country, "Country : ")</div>
+
+                    <div class="text_lbl" style="width:50%;float:left">
+                        @Html.TextBoxFor(model => model.Country, new { @id = "locality", @class = "textboxStyle", style = "height:18px;", disabled = "disabled", @onkeyup = "javascript:capitalize(this.id, this.value)", @onkeypress = "return onlyAlphabetsSpaceQuick(event,this);" })
+                    </div>
+
+                </div>
+            </div>
+            <div class="form_rowreg" style="width:94%;margin:0.5% 4%;float:left">
+
+                <div class="main_input_reg">
+                    <div class="text_lbl" style=" width:40%;padding-left:9%;float:left"> @Html.LabelFor(model => model.city, "City : ")</div>
+
+                    <div class="text_lbl" style="float:left;width:50%">
+                        @Html.TextBoxFor(model => model.city, new { @id = "city", @class = "textboxStyle", style = "height:18px;", disabled = "disabled", @onkeyup = "javascript:capitalize(this.id, this.value)", @onkeypress = "return onlyAlphabetsSpaceQuick(event,this);" })
+                    </div>
+
+                </div>
+            </div>
+            <div class="form_rowreg" style="width:94%;margin:0.5% 4%;float:left">
+
+                <div class="main_input_reg">
+                    <div class="text_lbl" style="width:40%;padding-left:9%;float:left">  @Html.LabelFor(model => model.district, "District : ")</div>
+
+                    <div class="text_lbl" style="width:50%;float:left">
+                        @Html.TextBoxFor(model => model.district, new { @id = "district", @class = "textboxStyle", style = "height:18px;", disabled = "disabled", @onkeyup = "javascript:capitalize(this.id, this.value)", @onkeypress = "return onlyAlphabetsSpaceQuick(event,this);" })
+                    </div>
+
+
+                </div>
+            </div>
+
+            <div class="form_rowreg" style="width:94%;margin:0.5% 4%;float:left">
+
+                <div class="main_input_reg">
+                    <div class="text_lbl" style="width:40%;padding-left:9%;float:left"> @Html.LabelFor(model => model.house, "House : ")</div>
+
+                    <div class="text_lbl" style="width:50%;float:left">
+                        @Html.TextBoxFor(model => model.house, new { @id = "house", @class = "textboxStyle", style = "height:18px;", disabled = "disabled", @onkeyup = "javascript:capitalize(this.id, this.value)", @onkeypress = "return onlyAlphabetsSpaceQuick(event,this);" })
+                    </div>
+
+                </div>
+            </div>
+            <div class="form_rowreg" style="width:94%;margin:0.5% 4%;float:left">
+
+                <div class="main_input_reg">
+                    <div class="text_lbl" style="width:40%;padding-left:9%;float:left"> @Html.LabelFor(model => model.state, "State : ")</div>
+
+                    <div class="text_lbl" style="width:50%;float:left">
+                        @Html.TextBoxFor(model => model.state, new { @id = "state", @class = "textboxStyle", style = "height:18px;", disabled = "disabled", @onkeyup = "javascript:capitalize(this.id, this.value)", @onkeypress = "return onlyAlphabetsSpaceQuick(event,this);" })
+                    </div>
+
+                </div>
+            </div>
+            <div class="form_rowreg" style="width:94%;margin:0.5% 4%;float:left">
+
+                <div class="main_input_reg">
+                    <div class="text_lbl" style="width:40%;float:left;padding-left:9%;"> @Html.LabelFor(model => model.pincode, "Pincode : ")</div>
+
+
+                    <div class="text_lbl" style="width:50%;float:left">
+                        @Html.TextBoxFor(model => model.pincode, new { @id = "pincode", @class = "textboxStyle", style = "height:18px;", disabled = "disabled", @onkeyup = "javascript:capitalize(this.id, this.value)", @onkeypress = "return onlyAlphabetsSpaceQuick(event,this);" })
+                    </div>
+
+                </div>
+            </div>
+            <div class="form_rowreg" style="width:94%;margin:0.5% 4%;float:left">
+
+                <div class="main_input_reg">
+                    <div class="text_lbl" style="width:40%;padding-left:9%;float:left">  @Html.LabelFor(model => model.postOfficeName, "Post Office Name : ")</div>
+
+                    <div class="text_lbl" style="width:50%;float:left">
+                        @Html.TextBoxFor(model => model.postOfficeName, new { @id = "postOfficeName", @class = "textboxStyle", style = "height:18px;", disabled = "disabled", @onkeyup = "javascript:capitalize(this.id, this.value)", @onkeypress = "return onlyAlphabetsSpaceQuick(event,this);" })
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="form_rowreg" style="width:94%;margin:0.5% 4%;float:left">
+
+                <div class="main_input_reg">
+                    <div class="text_lbl" style="width:40%;padding-left:9%;float:left">  @Html.LabelFor(model => model.postOfficeName, "Uid Token: ")</div>
+
+                    <div class="text_lbl" style="width:50%;float:left">
+                        @Html.TextBoxFor(model => model.uidtoken, new { @id = "uidtoken", @class = "textboxStyle", style = "height:18px;", disabled = "disabled", @onkeyup = "javascript:capitalize(this.id, this.value)", @onkeypress = "return onlyAlphabetsSpaceQuick(event,this);" })
+                    </div>
+
+                </div>
+            </div>
+
+
+
+
+        </div>
+
+
+
+
+    </fieldset>
+
+
+
+
+
+
+
+
+    @*}*@
+}

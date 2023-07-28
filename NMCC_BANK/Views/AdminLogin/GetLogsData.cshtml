@@ -1,0 +1,274 @@
+﻿@{
+    Layout = "~/Views/Shared/_AdminLayoutPage.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>DashBoard</title>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/Dashcss/dashboard.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.11.1.min.js"></script>
+    @*@Styles.Render("~/Content/Dashboard")*@
+    @*@Scripts.Render("~/bundles/jquery")*@
+    <link href="~/Scripts/sweetalert.css" rel="stylesheet" />
+    <script src="~/Scripts/sweetalert.min.js"></script>
+    <link href="~/Content1/Dashcss/shivani/css">
+    <link href="~/Content/snewcss.css" rel="stylesheet" />
+    <script>
+        function getDigiAadhardetails() {
+            debugger;
+            window.location.href = '/AdminLogin/getDigiAadhardetails';
+        }
+        function getDidiPandetails() {
+            debugger;
+            window.location.href = '/AdminLogin/getDidiPandetails';
+        }
+        function getAadharXMLdetails() {
+            debugger;
+            window.location.href = '/AdminLogin/getAadharXMLdetails';
+        }
+        function getPandetails() {
+            debugger;
+            window.location.href = '/AdminLogin/getPandetails';
+        }
+
+    </script>
+    <script>
+        function Home(){
+           window.location.href = '/AdminDashBoardNew/IndoFinAdminDashBoard'; 
+        }
+        </Script>
+        <script>
+        function LogOut(){
+           window.location.href = '/AdminLogin/UserDetails'; 
+        }
+        </Script>
+
+    <script>
+        $(function () {
+            var Accordion = function (el, multiple) {
+                this.el = el || {};
+                this.multiple = multiple || false;
+                var links = this.el.find('.link');
+                links.on('click', { el: this.el, multiple: this.multiple }, this.dropdown)
+            }
+            Accordion.prototype.dropdown = function (e) {
+                var $el = e.data.el;
+                $this = $(this),
+                    $next = $this.next();
+                $next.slideToggle();
+                $this.parent().toggleClass('open');
+                if (!e.data.multiple) {
+                    $el.find('.submenu').not($next).slideUp().parent().removeClass('open');
+                };
+            }
+            var accordion = new Accordion($('#accordion'), false);
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            if ('@ViewBag.msg' != null && '@ViewBag.msg' != '') {
+
+                swal('@ViewBag.msg');
+            }
+        });
+    </script>
+     <script>
+        function Home(){
+           window.location.href = '/AdminDashBoardNew/IndoFinAdminDashBoard'; 
+        }
+        </Script>
+    <style>
+        .icndsgn {
+            color: white;
+            display: flex;
+            justify-content: center;
+            font-size: 42px;
+            padding: 10px;
+        }
+
+        .box3 {
+            width: 231px;
+            height: 177px;
+            border-radius: 10px;
+            background-color: #db61e3;
+            margin: 20px;
+            transition: .3s all ease-in-out;
+            position: relative;
+        }
+        .box3:hover{
+             background: linear-gradient(130deg, #4b7bd0 0%, #84a9ea 100%);
+                box-shadow: none;
+        }
+        .bxdsgn {
+            border: 1px solid #d467d4;
+            background-color: #d467d4;
+            padding-top: 4px;
+            padding-bottom: 8px;
+            border-radius: 9px;
+            padding-left: 3px;
+            padding-right: 0px;
+        }
+
+        .bxtext {
+            color: white;
+            font-weight: 700;
+            font-size: 14px;
+            border-top: 2px solid white;
+            border-bottom: 1px solid white;
+            padding: 6px;
+            margin-top: 6px;
+        }
+
+        .numdt {
+            color: white;
+            font-weight: 700;
+            font-size: 25px !important;
+            text-align: center;
+        }
+
+        .bxdsply {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .bxdsply {
+            margin-top: -45px;
+        }
+
+        .bxtext2 {
+            margin-right: 0px;
+            margin-left: -1px;
+            display: flex;
+            padding-left: 18px;
+            justify-content: center;
+        }
+
+        .bxdsgn2 {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .bxdsgn3 {
+            padding: 15px 40px;
+            background-color: #87cb94;
+        }
+
+        .bxtext3 {
+            width: 101%;
+        }
+
+        .bxdsgn4 {
+            width: 15%;
+        }
+
+            .bxdsgn4:hover {
+                background: linear-gradient(130deg, #4b7bd0 0%, #84a9ea 100%);
+                box-shadow: none;
+            }
+
+        .bxdsgn3:hover {
+            background: linear-gradient(130deg, #4b7bd0 0%, #84a9ea 100%);
+            box-shadow: none;
+        }
+
+        .containerrw .box3 .boxContent .icon{
+            color: #fff;
+            font-size: 42px;
+            padding: 6px;
+        }
+    </style>
+</head>
+<body>
+    <section class="breadcrumbs" style="DISPLAY: NONE;">
+        <div class="container-fluid">
+            <div class="d-flex justify-content-between align-items-center">
+                <h3 style="color:#fff;font-size:20px">Dashboard</h3>
+            </div>
+        </div>
+    </section>
+    <section id="dashboard-menu">
+        <div class="container-fluied">
+            <div class="row" style="margin:0%">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light dashboard-menu" style="padding: -0.4rem 1rem !important;">
+                    <button class="navbar-toggler posmob" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent" style="font-size: 15px;">
+                        <div class="container-fluid">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h3 style="color:#fff;font-size:20px;margin-bottom: 0;">Dashboard</h3>
+                            </div>
+                        </div>
+                       
+                        <form class="form-inline my-2 my-lg-0" style="margin-right: 16px;">
+                            <a class="nav-link" style="box-shadow: 0 2px 4px 0 rgb(0 0 0 / 20%) !important;border: 1px solid rgba(255,255,255,0.1);" href="#" onclick="Home()">Home</a>
+                        </form>
+                        <form class="form-inline my-2 my-lg-0">
+                            <a class="nav-link" style="box-shadow: 0 2px 4px 0 rgb(0 0 0 / 20%) !important;border: 1px solid rgba(255,255,255,0.1);" href="#" onclick="LogOut()">Logout</a>
+                        </form>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </section>
+    <div class="containerrw">
+        <div class="box admnbox" id="cdetails" onclick="getDigiAadhardetails()">
+            <div class="boxContent">
+                <i class="fa fa-file-text icon"></i>
+                <div class="nocon numdt">@ViewBag.PendingCnt</div>
+                <h1 class="title adfntsz">Digilocker Aadhar</h1>
+            </div>
+            <a href="#"></a>
+            <a href="#"></a>
+        </div>
+       @* <div class="box1 admnbox" id="cdetails" onclick="getDidiPandetails()">
+            <div class="boxContent">
+                <i class="fa fa-file-text icon"></i>
+                <div class="nocon numdt">@ViewBag.approveCnt</div>
+                <h1 class="title adfntsz">Digilocker Pan</h1>
+            </div>
+            <a href="#"></a>
+            <a href="#"></a>
+        </div>
+        <div class="box3 admnbox bxdsgn bxdsgn2" id="cdetails" onclick="getAadharXMLdetails()">
+            <div class="boxContent bxdsply">
+                <i class="fa fa-file-text icon"></i>
+                <div class="nocon numdt">@ViewBag.JointCount</div>
+                <h1 class="title adfntsz bxtext bxtext2">Aadhar XML</h1>
+            </div>
+            <a href="#"></a>
+            <a href="#"></a>
+        </div>*@
+        <div class="box2 admnbox" id="cdetails" onclick="getPandetails()">
+            <div class="boxContent">
+                <i class="fa fa-file-text icon"></i>
+                <div class="nocon numdt">@ViewBag.rejectCnt</div>
+                <h1 class="title adfntsz">PAN</h1>
+            </div>
+            <a href="#"></a>
+            <a href="#"></a>
+        </div>
+
+    </div>
+    <div id="orgregresult"></div>
+    <ul id="list"></ul>
+    <p style="border-top: 1px solid rgba(0, 0, 0, 0.3);
+    text-align: center;
+    border-bottom: 1pxsol;
+    font-size: 14px;
+    margin-top: 54px;
+    padding: 9px 0;
+color: #2c4964;">© Indo-FinNet. All Rights Reserved  <a href="www.indofinnet.co.in" style="color:color: #2c4964;">Visit us at www.indofinnet.co.in</a></p>
+</body>
+</html>
+
+

@@ -1,0 +1,82 @@
+﻿@{
+    ViewData["Title"] = "eSignResponce";
+    Layout = "~/Views/Shared/_AdminLayoutPage.cshtml";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+
+        .headingback {
+            background-color: #e1e0e0;
+            text-align: center;
+        }
+
+        .titlesc {
+            font-family: Roboto,Arial,sans-serif !important;
+            letter-spacing: 0;
+            line-height: 32px;
+            display: inline-block;
+            color: #434444 !important;
+            font-size: 17px !important;
+            padding: 3px 10px !important;
+            font-weight: 600 !important;
+            margin-bottom: 0px !important;
+        }
+
+        .labelr {
+            background-color: #ebe9e9;
+            margin: 5px !important;
+            text-align: center;
+            border: 10px solid white;
+        }
+
+        .tdiv {
+            margin: 2px;
+            background-color: white;
+            border: 2px solid lightgrey;
+            padding: 2px;
+        }
+
+        .table1 {
+            /*border:1px solid lightgrey;*/
+            padding: 3px;
+            width: 96%;
+        }
+
+        input {
+            border-right: 0px;
+            border-left: 0px;
+            border-top: 0px;
+            width: 90%;
+        }
+        table {
+            border-spacing: 40px;
+        }
+
+        .cuslive {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+
+        tr {
+            margin-top: 2% !important;
+        }
+
+        .table2 {
+            width: 22%;
+        }
+    </style>
+</head>
+<body>
+    <div id="my-container" class="PDFObject-container">
+
+        <iframe id="ItemPreview" type="application/pdf" title="testPdf" aria-hidden="true" src="@ViewBag.DocPdf#toolbar=0" style="width:100%;" height="500" class="hgt405 iframedes" scrolling="yes" />
+    </div>
+</body>
+</html>
+
+
+
+

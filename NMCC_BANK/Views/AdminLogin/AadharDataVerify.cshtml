@@ -1,0 +1,648 @@
+﻿@model ServiceProvider1.Models.Admin.ClsDataVerification
+
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>DocDataVerify</title>
+    <link href="~/Content/Navigation/nestyle.css" rel="stylesheet" />
+    <link href="~/Content/snewcss.css" rel="stylesheet" />
+    <script src="~/Scripts/bootstrap-multiselect.js"></script>
+    <link href="~/Content/bootstrap-multiselect.css" rel="stylesheet" />
+    @*startAccordion*@
+    <link href="~/Content/Accordion/Accordion1.css" rel="stylesheet" />
+    <link href="~/Content/Dashcss/dashboard.css" rel="stylesheet" />
+    <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+    <link href="~/Content/Navigation/css/newcss.css" rel="stylesheet" />
+    <link href="~/Content/newhomepage/NewCss/snewcss.css" rel="stylesheet" />
+    <link href="~/Content/snewcss.css" rel="stylesheet" />
+    <link href="~/Content/Navigation/css/l81style.css" rel="stylesheet">
+    <style>
+         @@media screen and (max-width:767px){
+            .panbx{
+                width: 96%!important;
+                margin: auto;
+                margin-bottom: 12px;
+            }
+            .init-row{
+                margin: 0;
+            }
+           
+            .green_vld,.init_red{
+                position: absolute;
+                right: -18px;
+                margin-top: 32px;
+            }
+            }
+                    .btnsdigi1 {
+            margin-left: 24%;
+        }
+
+        @@media screen and (max-width:480px){
+            .init_flex {
+            display: flex;
+            flex-direction:column;
+        }
+        }
+        
+        @@media only screen and (max-width: 700px){
+        .form-control {
+            font-size: 16px !important;
+        }
+        }
+         .init_row {
+        display: flex;
+        justify-content: space-around;
+        margin: 0;
+        }
+        .lab-sm{
+            padding: 0;
+        }
+        .init-row-sm{
+            display: flex;
+            justify-content: space-evenly;
+            margin: 0;
+        }
+        .green {
+            background-color: green;
+            border: 1px solid green;
+        }
+        #pandivComp {
+            /*width: 94%;*/
+            margin: auto;
+            box-shadow: 0 2px 4px 0 rgb(0 0 0 / 8%);
+            padding-top: 20px;
+            padding-bottom: 20px;
+            background-color: #fff;
+        }
+        label {
+            color: #5d5c5c;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        .init_row {
+            display: flex;
+            justify-content: space-around;
+            margin: 0;
+        }
+        .panbx {
+            border: 1px solid #ccc;
+            width: 45%;
+            border-radius: 0 0 4px 4px;
+        }
+        .init_flex {
+            display: flex;
+        }
+        .control-label2 {
+            background-color: #bf5252;
+            color: #fff;
+            padding: 5px;
+            text-align: center;
+            /* font-family: 'Roboto','Poppins',sans-serif;*/
+            font-family: "Open Sans", sans-serif;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        .init_live {
+            font-size: 15px;
+            background-color: #e1e1e0;
+            padding: 0 15px;
+            margin-top: 4px;
+        }
+        .init_photo {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .init_img {
+            height: 121px;
+            width: 106px !important;
+        }
+        .form-control {
+            height: 30px !important;
+        }   
+        .green_icon {
+            height: 26px;
+        }
+         .bg-green{
+            background-color:green!important;
+        }
+        #score{
+            width: 29.5%;
+            border: 0px solid;
+            font-weight: 800;
+        }
+    </style>
+    <script>
+        $(document).ready(function () {
+            $("#AadharRejecttxt").hide();
+            $("preloader").hide(); AadhargetSumbit
+            $("#AadhargetSumbit").hide();
+        });
+    </script>
+        <script>
+        $('#AadharApprove').click(function () {
+            $("#AadharRejecttxt").hide();
+            debugger;
+            $.ajax({
+                url: '/KYCQuickEnroll/GetApprovedFlag?selectedValue=' + $("#AadharRejecttxt").val() + '&appType=' + 'Aadhaar',
+                type: 'POST',
+                dataType: 'json',
+                data: '',
+                contentType: 'application/json; charset=utf-8',
+               success: function (result) {
+                    swal('Aadhaar data Approved Successfully');
+                    $("html, body").animate({ scrollTop: 0 }, 600);
+                    swal('Aadhaar data Approved Successfully');
+                    $("#Litab6").addClass("bg-green");
+                     $("#init_over").removeClass("bg-green");
+                    if (result == "1"){
+                         $("#Litab6").addClass("bg-green");
+                    }else{
+                    }
+                },
+                error: function (err) { alert(err); }
+            });
+        });
+    </script>
+    <script>
+        $('#AadharApprove').change(function () {
+            $("#AadharRejecttxt").hide();
+            $("preloader").hide();
+            $("#AadhargetSumbit").hide();
+            debugger;
+            $.ajax({
+                url: '/KYCQuickEnroll/GetApprovedFlag?selectedValue=' + $("#AadharRejecttxt").val() + '&appType=' + 'Aadhaar',
+                type: 'POST',
+                dataType: 'json',
+                data: '',
+                contentType: 'application/json; charset=utf-8',
+                success: function (data) { swal('Aadhaar data Approved Successfully'); },
+                error: function (err) { alert(err); }
+            });
+        });
+    </script>
+      <script>
+        $('#AadharRejecttxt').blur(function () {
+            debugger;
+            var reasonQuick = $("#AadharRejecttxt").val();
+            $("#AadharRejecttxt").show();
+            $.ajax({
+                url: '/KYCQuickEnroll/GetApprovedFlag?selectedValue=' + $("#AadharRejecttxt").val() + '&appType=' + 'RAadhaar',
+                type: 'POST',
+                data: '',
+                contentType: 'application/json; charset=utf-8',
+                success: function (data) {
+                    swal("Aadhaar Data rejected with reject reason " + reasonAadhaar);
+                },
+                error: function (err) { alert(err); }
+            });
+        });
+    </script>
+    <script>
+        $('#AadharReject').click(function () {
+            debugger;
+            $("#AadharRejecttxt").show();
+            $("#AadhargetSumbit").show();
+        });
+    </script>
+    <script>
+        $('#AadharRejecttxt').blur(function () {
+            debugger;
+            var reasonAadhaar = $("#AadharRejecttxt").val();
+            $("#QuickRejecttxt").show();
+            $.ajax({
+                url: '/KYCQuickEnroll/GetApprovedFlag?selectedValue=' + $("#AadharRejecttxt").val() + '&appType=' + 'RAadhaar',
+                type: 'POST',
+                data: '',
+                contentType: 'application/json; charset=utf-8',
+                success: function (data) {
+                    swal("Aadhaar Data rejected with reject reason " + reasonAadhaar);
+                },
+                error: function (err) { alert(err); }
+            });
+        });
+    </script>
+    <link href="~/css/multiclass.css" rel="stylesheet" />
+</head>
+<body>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-horizontal mgbtm_2 brd_mgtp">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger", @id = "PAN" })
+            <fieldset class="panel panel-primary" id="AadharDV1">
+                <div class="panel-heading list-panel-heading">
+                    <div class="panel-title list-panel-title pan_dt">Aadhar Verification Details</div>             
+                </div>
+                <div class="clearfix"></div>
+                <div id="pandivComp">
+                    <fieldset class="init_pan_wrapper">
+                        <div class="row init-row-sm">
+                            <div class="panbx ">
+                                <div class="control-label2 quk_dtl">CAF Form Details</div>
+                                <div class="border_pan2 brd_quk">
+                                    <div class="col-md-6">
+                                    </div>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="row" style="margin: 0;">
+                                            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                                                <div class="col-12 init_photo">
+                                                    @if (Model.QELive_Photo != null)
+                                                    {
+                                                        <img src="data:image/jpg;base64,@(Html.Raw(Model.QELive_Photo))" alt="" id="photo" class="init_img" />
+                                                        @*<div class="col-lg-10 col-md-7 col-sm-7 col-xs-12 mg_btm2" style="margin-left: 19.2%;padding-left: 16%;width: 136px;background-color:#ccc;"> *@
+                                                        @Html.LabelFor(model => model.QELive_Photo, htmlAttributes: new { @class = "init_live"})
+                                                    }
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12" style="padding: 0;">
+                                                <div class="row" style="margin: 0;">
+                                                    @Html.LabelFor(model => model.QEFirstName, htmlAttributes: new { @class = "col-md-5 lab-sm" })
+                                                    <div class="col-lg-6 col-md-7 col-sm-7 col-xs-12" style="padding: 0;">
+                                                        @Html.EditorFor(model => model.QEFirstName, new { htmlAttributes = new { @class = "form-control", id = "fn", ReadOnly = "true" } })
+                                                        @Html.ValidationMessageFor(model => model.QEFirstName, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                                <div class="row" style="margin: 0;">
+                                                    @Html.LabelFor(model => model.QEMiddleName, htmlAttributes: new { @class = "col-md-5 lab-sm" })
+                                                    <div class="col-lg-6 col-md-7 col-sm-7 col-xs-12" style="padding: 0;">
+                                                        @Html.EditorFor(model => model.QEMiddleName, new { htmlAttributes = new { @class = "form-control", ReadOnly = "true" } })
+                                                        @Html.ValidationMessageFor(model => model.QEMiddleName, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                                <div class="row" style="margin: 0;">
+                                                    @Html.LabelFor(model => model.QELastName, htmlAttributes: new { @class = "col-md-5 lab-sm" })
+                                                    <div class="col-lg-6 col-md-7 col-sm-7 col-xs-12" style="padding: 0;">
+                                                        @Html.EditorFor(model => model.QELastName, new { htmlAttributes = new { @class = "form-control", ReadOnly = "true" } })
+                                                        @Html.ValidationMessageFor(model => model.QELastName, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                                <div class="row" style="margin: 0;">
+                                                    @Html.LabelFor(model => model.QEDOB, htmlAttributes: new { @class = "col-md-5 lab-sm" })
+                                                    <div class="col-lg-6 col-md-7 col-sm-7 col-xs-12" style="padding: 0;">
+                                                        @Html.EditorFor(model => model.QEDOB, new { htmlAttributes = new { @class = "form-control", ReadOnly = "true" } })
+                                                        @Html.ValidationMessageFor(model => model.QEDOB, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row" style="margin: 0;">
+                                            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12" style="padding: 0;">
+                                                <div class="row" style="margin: 0;">
+                                                    @Html.LabelFor(model => model.QEGender, htmlAttributes: new { @class = "col-md-5 lab-sm" })
+                                                    <div class="col-lg-6 col-md-7 col-sm-7 col-xs-12" style="padding:0">
+                                                        @Html.EditorFor(model => model.QEGender, new { htmlAttributes = new { @class = "form-control", ReadOnly = "true" } })
+                                                        @Html.ValidationMessageFor(model => model.QEGender, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12" style="padding: 0;">
+                                                <div class="row" style="margin: 0;">
+                                                    @Html.LabelFor(model => model.QEFatherName, htmlAttributes: new { @class = "col-md-5 lab-sm" })
+                                                    <div class="col-lg-6 col-md-7 col-sm-7 col-xs-12" style="padding:0">
+                                                        @Html.EditorFor(model => model.QEFatherName, new { htmlAttributes = new { @class = "form-control", ReadOnly = "true" } })
+                                                        @Html.ValidationMessageFor(model => model.QEFatherName, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>                                 
+                                        <div class="row" style="margin: 0;">
+                                            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12" style="padding: 0;">
+                                                <div class="row" style="margin: 0;">
+                                                    @Html.LabelFor(model => model.QEMobileNo, htmlAttributes: new { @class = "col-md-5 lab-sm" })
+                                                    <div class="col-lg-6 col-md-7 col-sm-7 col-xs-12" style="padding:0">
+                                                        @Html.EditorFor(model => model.QEMobileNo, new { htmlAttributes = new { @class = "form-control", ReadOnly = "true" } })
+                                                        @Html.ValidationMessageFor(model => model.QEMobileNo, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12" style="padding: 0;">
+                                                <div class="row" style="margin: 0;">
+                                                    @Html.LabelFor(model => model.QEEmailId, htmlAttributes: new { @class = "col-md-5 lab-sm" })
+                                                    <div class="col-lg-6 col-md-7 col-sm-7 col-xs-12" style="padding:0">
+                                                        @Html.EditorFor(model => model.QEEmailId, new { htmlAttributes = new { @class = "form-control", ReadOnly = "true" } })
+                                                        @Html.ValidationMessageFor(model => model.QEEmailId, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row" style="margin: 0;">
+                                            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12" style="padding: 0;">
+                                                <div class="row" style="margin: 0;">
+                                                    @Html.LabelFor(model => model.QECLIENT_ADDRESS_1, htmlAttributes: new { @class = "col-md-5 lab-sm" })
+                                                    <div class="col-lg-6 col-md-7 col-sm-7 col-xs-12" style="padding:0">
+                                                        @Html.EditorFor(model => model.QECLIENT_ADDRESS_1, new { htmlAttributes = new { @class = "form-control", ReadOnly = "true" } })
+                                                        @Html.ValidationMessageFor(model => model.QECLIENT_ADDRESS_1, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12" style="padding: 0;">
+                                                <div class="row" style="margin: 0;">
+                                                    @Html.LabelFor(model => model.QECLIENT_ADDRESS_2, htmlAttributes: new { @class = "col-md-5 lab-sm" })
+                                                    <div class="col-lg-6 col-md-7 col-sm-7 col-xs-12" style="padding:0">
+                                                        @Html.EditorFor(model => model.QECLIENT_ADDRESS_2, new { htmlAttributes = new { @class = "form-control", ReadOnly = "true" } })
+                                                        @Html.ValidationMessageFor(model => model.QECLIENT_ADDRESS_2, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row" style="margin: 0;">
+                                            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12" style="padding: 0;">
+                                                <div class="row" style="margin: 0;">
+                                                    @Html.LabelFor(model => model.QECLIENT_ADDRESS_3, htmlAttributes: new { @class = "col-md-5 lab-sm" })
+                                                    <div class="col-lg-6 col-md-7 col-sm-7 col-xs-12" style="padding:0">
+                                                        @Html.EditorFor(model => model.QECLIENT_ADDRESS_3, new { htmlAttributes = new { @class = "form-control", ReadOnly = "true" } })
+                                                        @Html.ValidationMessageFor(model => model.QECLIENT_ADDRESS_3, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12" style="padding: 0;">
+                                                <div class="row" style="margin: 0;">
+                                                    @Html.LabelFor(model => model.QECountry, htmlAttributes: new { @class = "col-md-5 lab-sm" })
+                                                    <div class="col-lg-6 col-md-7 col-sm-7 col-xs-12" style="padding:0">
+                                                        @Html.EditorFor(model => model.QECountry, new { htmlAttributes = new { @class = "form-control", ReadOnly = "true" } })
+                                                        @Html.ValidationMessageFor(model => model.QECountry, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row" style="margin: 0;">
+                                            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12" style="padding: 0;">
+                                                <div class="row" style="margin: 0;">
+                                                    @Html.LabelFor(model => model.QECity, htmlAttributes: new { @class = "col-md-5 lab-sm" })
+                                                    <div class="col-lg-6 col-md-7 col-sm-7 col-xs-12" style="padding:0">
+                                                        @Html.EditorFor(model => model.QECity, new { htmlAttributes = new { @class = "form-control", ReadOnly = "true" } })
+                                                        @Html.ValidationMessageFor(model => model.QECity, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12" style="padding: 0;">
+                                                <div class="row" style="margin: 0;">
+                                                    @Html.LabelFor(model => model.QEPin, htmlAttributes: new { @class = "col-md-5 lab-sm" })
+                                                    <div class="col-lg-6 col-md-7 col-sm-7 col-xs-12" style="padding:0">
+                                                        @Html.EditorFor(model => model.QEPin, new { htmlAttributes = new { @class = "form-control", ReadOnly = "true" } })
+                                                        @Html.ValidationMessageFor(model => model.QEPin, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row" style="margin: 0;">
+                                            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12" style="padding: 0;">
+                                                <div class="row" style="margin: 0;">
+                                                    @Html.LabelFor(model => model.QECLIENT_PERM_ADDRESS_1, htmlAttributes: new { @class = "col-md-5 lab-sm" })
+                                                    <div class="col-lg-6 col-md-7 col-sm-7 col-xs-12" style="padding:0">
+                                                        @Html.EditorFor(model => model.QECLIENT_PERM_ADDRESS_1, new { htmlAttributes = new { @class = "form-control", ReadOnly = "true" } })
+                                                        @Html.ValidationMessageFor(model => model.QECLIENT_PERM_ADDRESS_1, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                            </div>                                   
+                                            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12" style="padding: 0;">
+                                                <div class="row" style="margin: 0;">
+                                                    @Html.LabelFor(model => model.QECLIENT_PERM_ADDRESS_2, htmlAttributes: new { @class = "col-md-5 lab-sm" })
+                                                    <div class="col-lg-6 col-md-7 col-sm-7 col-xs-12" style="padding:0">
+                                                        @Html.EditorFor(model => model.QECLIENT_PERM_ADDRESS_2, new { htmlAttributes = new { @class = "form-control", ReadOnly = "true" } })
+                                                        @Html.ValidationMessageFor(model => model.QECLIENT_PERM_ADDRESS_2, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row" style="margin: 0;">
+                                            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12" style="padding: 0;">
+                                                <div class="row" style="margin: 0;">
+                                                    @Html.LabelFor(model => model.QECLIENT_PERM_ADDRESS_3, htmlAttributes: new { @class = "col-md-5 lab-sm" })
+                                                    <div class="col-lg-6 col-md-7 col-sm-7 col-xs-12" style="padding:0">
+                                                        @Html.EditorFor(model => model.QECLIENT_PERM_ADDRESS_3, new { htmlAttributes = new { @class = "form-control", ReadOnly = "true" } })
+                                                        @Html.ValidationMessageFor(model => model.QECLIENT_PERM_ADDRESS_3, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12" style="padding: 0;">
+                                                <div class="row" style="margin: 0;">
+                                                    @Html.LabelFor(model => model.QECLIENT_PERM_CITY, htmlAttributes: new { @class = "col-md-5 lab-sm" })
+                                                    <div class="col-lg-6 col-md-7 col-sm-7 col-xs-12" style="padding:0">
+                                                        @Html.EditorFor(model => model.QECLIENT_PERM_CITY, new { htmlAttributes = new { @class = "form-control", ReadOnly = "true" } })
+                                                        @Html.ValidationMessageFor(model => model.QECLIENT_PERM_CITY, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>                                    
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panbx">
+                                <div class="control-label2 quk_dtl">Aadhar -Extracted Details</div>
+                                <div class="border_pan2 quk_brd">
+                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="row">
+                                            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                                                <div class="col-12 init_photo">
+                                                     @if (Model.AadharPhotoDV != null)
+                                                        {
+                                                            <img src="@(Html.Raw(Model.AadharPhotoDV))" alt="" id="photo" class="init_img"/>                                                        
+                                                            @*@Html.LabelFor(model => model.QELive_Photo, htmlAttributes: new { @class = "init_live"})*@
+                                                            <label for="QELive_Photo" class = "init_live" >Document Photo</label>
+
+                                                            @if (@Model.facematching == "Match")
+                                                {
+                                                    <div class="green_vld">
+                                                        <img src="~/images/image/tick.png" class="green_icon" />
+                                                    </div>
+                                                }
+                                                else
+                                                {
+                                                    <div class="red_vld">
+                                                        <img src="~/images/image/wrong.png" class="green_icon" />
+                                           
+                                                    </div>
+                                                }
+                                                        @Html.EditorFor(model => model.score, new { htmlAttributes = new { @class = "col-md-5 form-control", ReadOnly = "true" } })
+                                                @Html.ValidationMessageFor(model => model.score, "", new { @class = "text-danger" })
+
+                                                        }
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12" style="padding: 0;">
+                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 init_flex" style="padding: 0;">
+                                                    @Html.LabelFor(model => model.AadharFirstNameDV, htmlAttributes: new { @class = "col-md-5" })
+                                                    <div class="col-lg-6 col-md-7 col-sm-7 col-xs-12">
+                                                @Html.EditorFor(model => model.AadharFirstNameDV, new { htmlAttributes = new { @class = "form-control", ReadOnly = "true" } })
+                                                @Html.ValidationMessageFor(model => model.AadharFirstNameDV, "", new { @class = "text-danger" })
+                                            </div>
+                                                @if (@Model.FirstNameStatus == "Match")
+                                                {
+                                                    <div class="green_vld">
+                                                        <img src="~/images/image/tick.png" class="green_icon" />
+                                                    </div>
+                                                }
+                                                else
+                                                {
+                                                        <div class="red_vld init_red">
+                                                        <img src="~/images/image/wrong.png" class="green_icon" />
+                                           
+                                                    </div>
+                                                }
+                                            </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 init_flex" style="padding: 0;">
+                                            @Html.LabelFor(model => model.AadharMiddleNameDV, htmlAttributes: new { @class = "col-md-5" })
+                                            <div class="col-lg-6 col-md-7 col-sm-7 col-xs-12">
+                                                @Html.EditorFor(model => model.AadharMiddleNameDV, new { htmlAttributes = new { @class = "form-control", ReadOnly = "true" } })
+                                                @Html.ValidationMessageFor(model => model.AadharMiddleNameDV, "", new { @class = "text-danger" })
+                                            </div>
+                                            @if (@Model.MiddleNameStatus == "Match")
+                                            {
+                                                <div class="green_vld">
+                                                    <img src="~/images/image/tick.png" class="green_icon" />                                                 
+                                                </div>
+                                            }
+                                            else
+                                            {
+                                                        <div class="red_vld init_red">
+                                                    <img src="~/images/image/wrong.png" class="green_icon" />
+                                                </div>
+                                            }
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 init_flex" style="padding: 0;">
+                                                    @Html.LabelFor(model => model.AadharLastNameDV, htmlAttributes: new { @class = "col-md-5" })
+                                                    <div class="col-lg-6 col-md-7 col-sm-7 col-xs-12">
+                                                @Html.EditorFor(model => model.AadharLastNameDV, new { htmlAttributes = new { @class = "form-control", ReadOnly = "true" } })
+                                                @Html.ValidationMessageFor(model => model.AadharLastNameDV, "", new { @class = "text-danger" })
+                                            </div>
+                                            @if (@Model.LastNameStatus == "Match")
+                                            {
+                                                <div class="green_vld">
+                                                    <img src="~/images/image/tick.png" class="green_icon" />
+                                                </div>
+                                            }
+                                            else
+                                            {
+                                                        <div class="red_vld init_red">
+                                                    <img src="~/images/image/wrong.png" class="green_icon" />
+                                                </div>
+                                            }
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 init_flex" style="padding: 0;">
+                                            @Html.LabelFor(model => model.AadharDOBDV, htmlAttributes: new { @class = "col-md-5" })
+                                            <div class="col-lg-6 col-md-7 col-sm-7 col-xs-12">
+                                                @Html.EditorFor(model => model.AadharDOBDV, new { htmlAttributes = new { @class = "form-control", ReadOnly = "true" } })
+                                                @Html.ValidationMessageFor(model => model.AadharDOBDV, "", new { @class = "text-danger" })
+                                            </div>
+                                            @if (@Model.DOBStatus == "Match")
+                                            {
+                                                <div class="green_vld">
+                                                    <img src="~/images/image/tick.png" class="green_icon" />
+                                                </div>
+                                            }
+                                            else
+                                            {
+                                                <div class="red_vld init_red">
+                                                    <img src="~/images/image/wrong.png" class="green_icon" />                                                 
+                                                </div>
+                                            }
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 init_flex" style="padding: 0;">
+                                                    @Html.LabelFor(model => model.AadharGenderDV, htmlAttributes: new { @class = "col-md-5" })
+                                                    <div class="col-lg-6 col-md-7 col-sm-7 col-xs-12">
+                                                @Html.EditorFor(model => model.AadharGenderDV, new { htmlAttributes = new { @class = "form-control", ReadOnly = "true" } })
+                                                @Html.ValidationMessageFor(model => model.AadharGenderDV, "", new { @class = "text-danger" })
+                                            </div>
+                                            @if (@Model.Genderstatus == "Match")
+                                            {
+                                                <div class="green_vld">
+                                                    <img src="~/images/image/tick.png" class="green_icon" />
+                                                </div>
+                                            }
+                                            else
+                                            {
+                                                        <div class="red_vld init_red">
+                                                    <img src="~/images/image/wrong.png" class="green_icon" />
+                                                </div>
+                                            }
+                                        </div>
+                                             </div>
+                                         </div>
+                                    </div>
+                                    <div class="row">                           
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 init_flex">
+                                            @Html.LabelFor(model => model.AadharAddress, htmlAttributes: new { @class = "col-md-5" })
+                                            <div class="col-lg-6 col-md-7 col-sm-7 col-xs-12">
+                                                @Html.EditorFor(model => model.AadharAddress, new { htmlAttributes = new { @class = "form-control", ReadOnly = "true" } })
+                                                @Html.ValidationMessageFor(model => model.AadharAddress, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 init_flex">
+                                            @Html.LabelFor(model => model.House, htmlAttributes: new { @class = "col-md-5" })
+                                            <div class="col-lg-6 col-md-7 col-sm-7 col-xs-12">
+                                                @Html.EditorFor(model => model.House, new { htmlAttributes = new { @class = "form-control", ReadOnly = "true" } })
+                                                @Html.ValidationMessageFor(model => model.House, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 init_flex">
+                                            @Html.LabelFor(model => model.Street, htmlAttributes: new { @class = "col-md-5" })
+                                            <div class="col-lg-6 col-md-7 col-sm-7 col-xs-12">
+                                                @Html.EditorFor(model => model.Street, new { htmlAttributes = new { @class = "form-control", ReadOnly = "true" } })
+                                                @Html.ValidationMessageFor(model => model.Street, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 init_flex">
+                                            @Html.LabelFor(model => model.State, htmlAttributes: new { @class = "col-md-5" })
+                                            <div class="col-lg-6 col-md-7 col-sm-7 col-xs-12">
+                                                @Html.EditorFor(model => model.State, new { htmlAttributes = new { @class = "form-control" ,ReadOnly = "true"} })
+                                                @Html.ValidationMessageFor(model => model.State, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 init_flex">
+                                            @Html.LabelFor(model => model.Post_Office, htmlAttributes: new { @class = "col-md-5" })
+                                            <div class="col-lg-6 col-md-7 col-sm-7 col-xs-12">
+                                                @Html.EditorFor(model => model.Post_Office, new { htmlAttributes = new { @class = "form-control", ReadOnly = "true"} })
+                                                @Html.ValidationMessageFor(model => model.Post_Office, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 init_flex">
+                                            @Html.LabelFor(model => model.Pin_Code, htmlAttributes: new { @class = "col-md-5" })
+                                            <div class="col-lg-6 col-md-7 col-sm-7 col-xs-12">
+                                                @Html.EditorFor(model => model.Pin_Code, new { htmlAttributes = new { @class = "form-control", ReadOnly = "true" } })
+                                                @Html.ValidationMessageFor(model => model.Pin_Code, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 init_flex">
+                                            @Html.LabelFor(model => model.Locality, htmlAttributes: new { @class = "col-md-5" })
+                                            <div class="col-lg-6 col-md-7 col-sm-7 col-xs-12">
+                                                @Html.EditorFor(model => model.Locality, new { htmlAttributes = new { @class = "form-control", ReadOnly = "true"} })
+                                                @Html.ValidationMessageFor(model => model.Locality, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+            </fieldset>
+            <div class="" style="display: flex;justify-content: center;margin: 12px;">
+                <input type="button"  class=" radioBtn btn btn-primary apprjct" id = "AadharApprove" style = "margin-left:2%" value="Approve" name="isAccountApproveOrReject"/>                    
+                                <input type="button"   class=" radioBtn btn btn-primary  apprjct" id = "AadharReject" style = "margin-left:2%" value="Reject" name="isAccountApproveOrReject"/>
+                                    <input class="digitext" type="text" id="AadharRejecttxt" name="AadharRejecttxt1">
+                                    <input type="button" class="btn btn-primary" id="AadhargetSumbit" value="Submit" />
+            </div>
+            <div class="apprejbox" style="float:left;width:100%;text-align:center;display:none;">
+                <input type="button" class=" radioBtn btn btn-primary apprjct" id="AadharApprove" style="margin-left:2%" value="Approve" name="isAccountApproveOrReject" />
+                <input type="button" class=" radioBtn btn btn-primary  apprjct" id="AadharReject" style="margin-left:2%" value="Reject" name="isAccountApproveOrReject" />
+                @Html.RadioButtonFor(model => model.isAadhaarApproveOrReject, "A", new { id = "AadharApprove", @class = "radioBtn", style = "float:left;margin-left:2%" })<p class="national_textappr">Approve</p>
+                @Html.RadioButtonFor(model => model.isAadhaarApproveOrReject, "R", new { id = "AadharReject", @class = "radioBtn", style = "float:left" })<p class="national_textappr">Reject</p>
+                <input type="text" id="AadharRejecttxt" name="AadharRejecttxt1">
+                <button type="button" onclick="GetButton ()" id="AadhargetSumbit">Sumbit </button>
+            </div>
+        </div>
+    }
+    <div id="loader_mdlAadhar"></div>
+    <div id="backgrounddisableAadhar"></div>
+</body>
+</html>
+

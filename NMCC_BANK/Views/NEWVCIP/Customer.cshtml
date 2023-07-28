@@ -1,0 +1,516 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    @*<script src="~/Scripts/jquery-3.5.1.min.js"></script>*@
+    @*<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>*@
+    @*<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>*@
+    <script src="~/Scripts1/jquery-ui.min.js"></script>
+    @*<link href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css" rel="stylesheet" />*@
+    <link href="~/Scripts1/jquery-ui.css" rel="stylesheet" />
+    @*<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>*@
+    <script src="~/Content1/Navigation/jquery.min.js"></script>
+    @*<script src="~/Content/VCIP/script.js"></script>*@
+    <script src="~/Content/VCIP/IPVscript/sweetalert.min.js"></script>
+    <link href="~/Content/VCIP/sweetalert.css" rel="stylesheet" />
+    <link href="~/Content/VCIP/sweetalert.min.css" rel="stylesheet" />
+    <script src="~/js/encryption.js"></script>
+    <title>customer</title>
+
+    <style>
+        .init_otp_main{
+            display: flex;
+            justify-content: center;
+            padding-top: 10px;
+            margin: 0;
+        }
+        .init_send_btn{
+            width:100%;
+        }
+        @@media screen and (max-width:992px){
+            .init_btn_div {
+                padding: 0;
+            }
+            .init_otp_main{
+                flex-direction:column;
+            }
+        }
+        
+    </style>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            if (!location.hash) {
+                location.hash = Math.floor(Math.random() * 0xFFFFFF).toString(16);
+            }
+            const roomHash = location.hash.substring(1);
+
+
+        });
+
+    </script>
+    <script>
+        function encryptText(textToEncrypt, encryptionKey, IV) {
+            const key = CryptoJS.enc.Utf8.parse(encryptionKey);
+            const iv = CryptoJS.enc.Utf8.parse(IV);
+            const encrypted = CryptoJS.TripleDES.encrypt(textToEncrypt, key, {
+                iv: iv,
+                mode: CryptoJS.mode.CBC,
+                padding: CryptoJS.pad.Pkcs7
+            });
+            return encrypted.toString();
+        }
+        function decryptText(textToDecrypt, encryptionKey, IV) {
+            const key = CryptoJS.enc.Utf8.parse(encryptionKey);
+            const iv = CryptoJS.enc.Utf8.parse(IV);
+            const decrypted = CryptoJS.TripleDES.decrypt(textToDecrypt, key, {
+                iv: iv,
+                mode: CryptoJS.mode.CBC,
+                padding: CryptoJS.pad.Pkcs7
+            });
+            return decrypted.toString(CryptoJS.enc.Utf8);
+        }
+    </script>
+
+    <script>
+        function verifymobileotp1(custid) {
+            debugger;
+            const textToEncrypt = $('#txtmobile1').val();
+            const encryptedMobileNo = encryptText(textToEncrypt, encryptionKey, IV);
+            $.ajax({
+                url: '/KYCQuickEnroll/QEMoblieOTPSend',
+                type: 'POST',
+                data: {
+                    MobileNumber: encryptedMobileNo
+                },
+                cache: false,
+                success: function (result) {
+                    debugger;
+                    $("#DigiCerti").hide();
+                    $("#DIGIbag").hide();
+                    if (result != null) {
+                        debugger;
+                        swal(result);
+                        // var elem = document.getElementById("QEMobileGetOtp");
+                        // $('#QEMobileGetOtp').val('Resend OTP');
+                        $("#QEMobileGetOtp").html('RESEND OTP');
+                        $("#QEMobileGetOtp").prop('disabled', true);
+                        setTimeout(function () {
+                            $("#QEMobileGetOtp").prop('disabled', false); // enable the button after 5 seconds
+                        }, 10000);
+                        // if (elem.value == "GET OTP") elem.value = "Resend OTP";
+                    } else {
+                        swal('OTP does not send.try again..');
+                    }
+                    // $('#DigitCaptureImage').html(result);
+                }
+            });
+
+        }
+    </script>
+    <script>
+        function verifyotp1(custid) {
+            debugger;
+            $("#DigiCerti").html("<div style='position: fixed;z-index: 5000;float: left;right: 50%;height: 50px;width: 50px;top:40%;'><i class='fa fa-pulse fa-fw dgldr ldrdesign' style='height:70px;width:70px;border-radius:50%;border-bottom:5px dotted grey;border-top:5px dotted black;border-right:5px dotted black;border-left:5px dotted black;height:80px;width:80px;position:absolute;margin: 20% 50%;'></i></div>");
+            $("#DigiCerti").show();
+            $("#DIGIbag").show();
+             var OTP = $('#txtotp1').val();
+            const textToEncrypt = $('#txtmobile1').val();
+            const encryptedMobileNo = encryptText(textToEncrypt, encryptionKey, IV);
+             $(".hello").hide();
+             $(".hell").css("display","block");
+             //swal("Authenticate Successfully... ");
+             $("#QEMobileform").hide();
+             $("#QEEmailbaknew1").css("display","none");
+             $('#QEMobileauth').val('');
+             $("")
+            if (OTP == '') {
+                 $("#DigiCerti").hide();
+                swal("Enter valid OTP...");
+                return false;
+            }
+            if (OTP.length > 6) {
+                $("#DigiCerti").hide();
+                swal("Enter 6 digit Valid OTP...");
+                $('#QEMobileauth').val('');
+
+                return false;
+            }
+            $.ajax({
+                //url: '/KYCQuickEnroll/OTPAutheticate',
+                url: '/KYCQuickEnroll/QEMobileOTPAuthenticate',
+                type: 'GET',
+                data: {
+                   OTP: OTP,
+                    MobileNumber: encryptedMobileNo
+                },
+                cache: false,
+                success: function (result) {
+                    debugger;
+                     $("#DigiCerti").hide();
+                    $("#DIGIbag").hide();
+                    if (result == "Verified Successfully") {
+                        swal("Verified Successfully");
+                           VKYCMEETINDID();
+
+
+                    } else {
+                        swal(result);
+                
+                    }
+                   
+                }
+            });
+        }
+    </script>     
+    <script>
+    
+    <script>
+        function VKYCMEETINDID() {
+            debugger;
+
+            //window.location.href = "/VKYC/Post";
+
+            //CPOVKYCMEETINDID();
+
+
+            $.ajax({
+                //// url: "/VKYC/POST",
+                url: "/VKYC/POST?Source=" + "CP1" + '&Password=' + "fdhffhd" + '&TxnId=' + "123" + '&Userid=' + "123" + '&ApplicationID=' + "123" + '&Mobileno=' + @ViewBag.QEMobileNo + '&EmailID=' + @ViewBag.QEEmailId + '&name=' + @ViewBag.QEFirstName + '&VkycType=' + "Assisted" + '&MeetingTime=' + "immediate",
+
+                type: "GET",
+                data: {
+
+                    // Source:CP1,
+                    // Password: fdhffhd,
+
+                    // TxnId:123,
+                    // Userid:123,
+                    // ApplicationID: 123,
+                    // Mobileno: Mobileno,
+                    // EmailID: EmailID,
+                    // name: name,
+                    // VkycType:Assisted,
+                    //MeetingTime:immediate
+
+                },
+                cache: false,
+                success: function (result) {
+                    debugger;
+                    CUSTOMERLOGIN();
+                    //if (nayab == "CUSTOMERLOGIN")
+                    //{
+                    //    window.location.href = "/NEWVCIP/CPOVKYC";
+
+                    //}
+
+
+                    //    window.location.href = "/CUSTOMEROTP/CUSTVKYC";
+
+
+                    //window.location.href = "/NEWVCIP/CPOVKYC";
+                    //alert("Success");
+                    //  url: "/NEWVCIP/CustomerOtherData?FirstNameOther=" + $("#FirstNameOther").val() + '&MiddleNameOther=' + $("#MiddleNameOther").val() + '&LastNameOther=' + $("#LastNameOther").val() + '&GenderOther=' + $('[name="GenderOther"]:checked').val() + '&DateOfBirthOther=' + $("#DateOfBirthOther").val() + '&AddressLine1=' + $("#Oaddressline1").val() + '&AddressLine2=' + $("#Oaddressline2").val() + '&City=' + $("#Other_City").val() + '&PinCode=' + $("#Other_PinCode").val() + '&State=' + $("#Other_State").val() + '&CountryCode=' + $("#Other_CountryCode").val() + '&DocType=' + $("#Other_DocType").val() + '&DocNo=' + $("#Other_DocNum").val(),
+
+                }
+
+            });
+
+
+        }
+        function CUSTOMERLOGIN() {
+            debugger;
+
+            window.location.href = "/VKYC/Custom";
+        }
+    </script>
+    <script>
+        function CPOVKYCMEETINDID() {
+            debugger;
+
+            window.location.href = "/NEWVCIP/CPOVKYC";
+
+            //$.ajax({
+
+            //    url: "/VKYC/POST",
+            //    type: "GET",
+
+            //    cache: false,
+            //    success:  successFunc,
+            //    error: errorFunc
+
+        }
+    </script>
+    <script>
+        function btnOTPshow() {
+            debugger;
+            swal("I agreed");
+            $('#btnotpsend1').prop("disabled", false);
+            $('#btnotpverify1').prop("disabled", false);
+            $('#btnAgree1').prop("disabled", true);
+
+            $('#instrdiv1').show();
+
+        }
+    </script>
+    <script>
+        function VideoKYC() {
+            debugger;
+            var CustID = @ViewBag.custid;
+            var newWindow;
+            $.ajax({
+                url: '/VKYC/POST',
+                data: {
+                    custid: CustID,
+                    Flag: "fromLink"
+                },
+                cache: false,
+                success: function (result) {
+                    debugger;
+                    $('#customerIpv1').hide();
+                    $('#showipvdiv1').hide();
+                    $('#verifypage1').hide();
+                    $('#StartIPVVideo1').show();
+                    $('#StartIPVVideo1').html(result);
+                }
+            })
+        }
+
+    </script>
+    <style>
+        .button1 span {
+            cursor: pointer;
+            display: inline-block;
+            position: relative;
+            transition: 0.5s;
+        }
+
+            .button1 span:after {
+                content: "\2713";
+                /*content: "\f095";*/
+                /*content: '\00bb';*/
+                position: absolute;
+                opacity: 0;
+                top: 0;
+                right: -20px;
+                transition: 0.5s;
+                color: white;
+                margin-top: -3px;
+                font-size: 19px;
+                font-weight: 800;
+            }
+
+        .button1:hover span {
+            padding-right: 25px;
+        }
+
+            .button1:hover span:after {
+                opacity: 2;
+                right: 0;
+            }
+
+        .button2 span {
+            cursor: pointer;
+            display: inline-block;
+            position: relative;
+            transition: 0.5s;
+        }
+
+            .button2 span:after {
+                content: "\f095";
+                position: absolute;
+                opacity: 0;
+                top: 0;
+                right: -20px;
+                transition: 0.5s;
+                color: white;
+                margin-top: -7px;
+                font-size: 19px;
+                font-weight: 800;
+            }
+        /*.button2 span:before {
+
+                        content: "\f095";
+
+                        position: absolute;
+                        opacity: 0;
+                        top: 0;
+                        right: -20px;
+                        transition: 0.5s;
+                        color: white;
+                        margin-top: -7px;
+                        font-size: 19px;
+                        font-weight: 800;
+                    }*/
+
+        .button2:hover span {
+            padding-right: 25px;
+        }
+
+            .button2:hover span:after {
+                opacity: 3;
+                right: 0;
+            }
+
+        .btn {
+            text-align: center;
+            margin-top: 0px;
+        }
+        /* Global Button Styles */
+        a.animated-button:link, a.animated-button:visited {
+            position: relative;
+            display: block;
+            margin: 30px auto 0;
+            padding: 14px 15px;
+            color: #fff;
+            font-size: 14px;
+            font-weight: bold;
+            text-align: center;
+            text-decoration: none;
+            text-transform: uppercase;
+            overflow: hidden;
+            letter-spacing: .08em;
+            border-radius: 0;
+            text-shadow: 0 0 1px rgba(0, 0, 0, 0.2), 0 1px 0 rgba(0, 0, 0, 0.2);
+            -webkit-transition: all 1s ease;
+            -moz-transition: all 1s ease;
+            -o-transition: all 1s ease;
+            transition: all 1s ease;
+        }
+
+            a.animated-button:link:after, a.animated-button:visited:after {
+                content: "";
+                position: absolute;
+                height: 0%;
+                left: 50%;
+                top: 50%;
+                width: 150%;
+                z-index: -1;
+                -webkit-transition: all 0.75s ease 0s;
+                -moz-transition: all 0.75s ease 0s;
+                -o-transition: all 0.75s ease 0s;
+                transition: all 0.75s ease 0s;
+            }
+
+            a.animated-button:link:hover, a.animated-button:visited:hover {
+                color: #FFF;
+                text-shadow: none;
+            }
+
+                a.animated-button:link:hover:after, a.animated-button:visited:hover:after {
+                    height: 450%;
+                }
+
+        a.animated-button:link, a.animated-button:visited {
+            position: relative;
+            display: block;
+            margin: 30px auto 0;
+            padding: 14px 15px;
+            color: #fff;
+            font-size: 14px;
+            border-radius: 0;
+            font-weight: bold;
+            text-align: center;
+            text-decoration: none;
+            text-transform: uppercase;
+            overflow: hidden;
+            letter-spacing: .08em;
+            text-shadow: 0 0 1px rgba(0, 0, 0, 0.2), 0 1px 0 rgba(0, 0, 0, 0.2);
+            -webkit-transition: all 1s ease;
+            -moz-transition: all 1s ease;
+            -o-transition: all 1s ease;
+            transition: all 1s ease;
+        }
+
+        /* Victoria Buttons */
+
+        a.animated-button.victoria-one {
+            border: 2px solid #D24D57;
+        }
+
+            a.animated-button.victoria-one:after {
+                background: #D24D57;
+                -moz-transform: translateX(-50%) translateY(-50%) rotate(-25deg);
+                -ms-transform: translateX(-50%) translateY(-50%) rotate(-25deg);
+                -webkit-transform: translateX(-50%) translateY(-50%) rotate(-25deg);
+                transform: translateX(-50%) translateY(-50%) rotate(-25deg);
+            }
+    </style>
+</head>
+<body>
+    <div id="verifypage1" style="width:100%;float:left;box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;">
+        <div id="instrdiv1" class="bordno" style="">
+            <h4 style="text-align: center;margin: 24px;font-weight: 600;color: #605d5d;">Instruction</h4>
+            <div style="justify-content: center;
+    display: flex;background-color: #e7e7e7;
+    border: 1px solid #ccc;
+    padding: 1%;
+    margin: 1% 5%;width:90%">
+                <ul class="pdl19p tabcnten">
+                    <li>Make use of Google Chrome browser for Video KYC</li>
+                    <li>Be connected to high internet speed</li>
+                    <li>Adequate light outside for clear recording</li>
+                    <li>Enable your camera, location and microphone</li>
+                </ul>
+            </div>
+            <div class="col-lg-12" style="text-align:center;">
+                <button value="Agree" id="btnAgree1" onclick="btnOTPshow()" class=" button1 animated-button victoria-one btn btn-success"><span>Agree</span></button>
+                @*<input type="button" style="height: 34px;
+                width: 150px;" value="Agree" onclick="btnOTPshow()" class="animated-button victoria-one btn btn-success" />*@
+
+            </div>
+
+        </div>
+
+        <div id="mobileverify1" class="bordno" style="clear:both;">
+            <div class="form-group init_otp_main" style="">
+                <div class="col-lg-3 disp" style="display: none;">
+                    @*<label style="padding: 3px 4px 4px 0px"> Mobile Number </label>*@
+                </div>
+                <div class="col-lg-8 col-md-12 col-sm-12" style="padding: 0;">
+                    <input type="text" id="txtmobile1" placeholder="Mobile Number" disabled="disabled" class="form-control" value="@ViewBag.MOB" style="height:34px" />
+                </div>
+                <div class="col-lg-4 init_btn_div" style="">
+                    <button id="btnotpsend1" class="btn btn-primary init_send_btn" value="Send OTP" disabled="disabled" onclick="verifymobileotp1(@ViewBag.custid)" style="padding: 5px 12px 7px 11px!important;">Send OTP</button>
+                </div>
+                <div class="col-lg-3 disp" style="display: none;">
+                </div>
+            </div>
+
+
+            <div class="form-group init_otp_main">
+                <div class="col-lg-3 disp" style="display: none;">
+                </div>
+
+                <div class="col-lg-8 col-md-12 col-sm-12" style="padding: 0;">
+                    <input type="password" id="txtotp1" class="form-control" placeholder="Enter OTP Here" maxlength="6" RegularExpression="^[0-9]{0,10}$" style="height: 34px;" />
+
+                </div>
+
+
+                <div class="col-lg-4 init_btn_div" style="">
+                    <button id="btnotpverify1" class="btn btn-primary init_send_btn" disabled="disabled" value="Verify" onclick="verifyotp1(@ViewBag.custid)" style="padding: 5px 12px 7px 11px!important">Verify</button>
+
+                    @*<input type="button" id="btnotpverify1" class="btn btn-primary" disabled="disabled" value="Verify" onclick="verifyotp(@ViewBag.custid)" style="width:100%" />*@
+                </div>
+
+
+                <div class="col-lg-3 disp" style="display: none;">
+                </div>
+
+                @*}*@
+
+            </div>
+        </div>
+
+    </div>
+
+    <div id="StartIPVVideo1"></div>
+    <div id="verifyLoader1"></div>
+</body>
+</html>
